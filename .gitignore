@@ -22,3 +22,6 @@
 *.yml
 
 .idea/dataSources.ids
+
+# Ignore application configuration
+/config/application.yml

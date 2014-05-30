@@ -39,3 +39,8 @@ gem 'spring',        group: :development
 # gem 'debugger', group: [:development, :test]
 
 gem 'bootstrap-sass', '~> 3.1.1'
+
+#postgresql gem
+gem 'pg'
+#save the important password and key as environment value
+gem 'figaro'
