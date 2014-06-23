@@ -13,4 +13,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require_tree .
+//= require angular/angular
+//= require angular/angular-route
+//= require main.js.coffee.erb
+//= require angular-rails-templates
+//= require_tree ../templates
+// //= require_tree .

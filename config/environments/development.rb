@@ -34,4 +34,7 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  #added in order to be compatible with angularjs
+  config.assets.js_compressor = Uglifier.new(mangle: false)
 end
