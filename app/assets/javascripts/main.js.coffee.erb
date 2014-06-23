@@ -1,0 +1,18 @@
+#= require_self
+#=require_tree  ./controllers
+#=require_tree  ./directives
+#=require_tree  ./filters
+#=require_tree  ./services
+#=require_tree  ../templates
+
+
+Place = angular.module("Place",['ngRoute','templates'])
+
+Place.config(['$routeProvider',
+  ($routeProvider) ->
+    $routeProvider.when('/',
+      templateUrl: '<%= asset_path('home.html') %>'
+      controller: 'HomeCtrl'
+    ).otherwise(redirectTo: '/')
+
+])
