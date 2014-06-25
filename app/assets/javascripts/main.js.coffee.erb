@@ -3,7 +3,6 @@
 #=require_tree  ./directives
 #=require_tree  ./filters
 #=require_tree  ./services
-#=require_tree  ../templates
 
 
 Place = angular.module("Place",['ngRoute','templates'])
@@ -11,7 +10,7 @@ Place = angular.module("Place",['ngRoute','templates'])
 Place.config(['$routeProvider',
   ($routeProvider) ->
     $routeProvider.when('/',
-      templateUrl: '<%= asset_path('home.html') %>'
+      templateUrl: '<%= asset_path('/templates/home.html') %>'
       controller: 'HomeCtrl'
     ).otherwise(redirectTo: '/')
 
