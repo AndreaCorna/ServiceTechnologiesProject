@@ -25,3 +25,9 @@
 
 # Ignore application configuration
 /config/application.yml
+*.sw*
+*~
+build/
+bin/
+node_modules/
+vendor/

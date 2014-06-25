@@ -55,5 +55,8 @@ Rails.application.routes.draw do
   #   end
 
   root 'home#index'
+  resources :home , :only => [:index]
+
+  get 'city/hotel' => 'city#hotel'
 
 end
