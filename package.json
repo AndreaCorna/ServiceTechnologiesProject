@@ -1,16 +1,13 @@
 {
-  "author": "Josh David Miller",
-  "name": "ng-boilerplate",
-  "version": "0.3.1",
-  "homepage": "http://bit.ly/ng-boilerplate",
-  "licenses": {
-    "type": "MIT",
-    "url": "https://raw.github.com/joshdmiller/ng-boilerplate/master/LICENSE"
-  },
-  "bugs": "https://github.com/joshdmiller/ng-boilerplate/issues",
+  "author": "Fontana Lorenzo",
+  "name": "rubyter",
+  "version": "0.0.1",
+  "homepage": "localhost",
+
+  "bugs": "",
   "repository": {
     "type": "git",
-    "url": "git@github.com:joshdmiller/ng-boilerplate.git"
+    "url": ""
   },
   "dependencies": {},
   "devDependencies": {
