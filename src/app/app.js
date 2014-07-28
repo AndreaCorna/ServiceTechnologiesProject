@@ -1,8 +1,8 @@
-angular.module( 'ngBoilerplate', [
+angular.module( 'places', [
   'templates-app',
   'templates-common',
-  'ngBoilerplate.home',
-  'ngBoilerplate.about',
+  'places.home',
+  'places.about',
   'ui.router'
 ])
 

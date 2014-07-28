@@ -1,5 +1,5 @@
 angular.module( 'places.city', [
-  'ui.state',
+  'ui.router',
   'placeholders',
   'ui.bootstrap'
 ])
