@@ -12,9 +12,8 @@
  * The dependencies block here is also where component dependencies should be
  * specified, as shown below.
  */
-angular.module( 'ngBoilerplate.home', [
-  'ui.state',
-  'plusOne'
+angular.module( 'places.home', [
+  'ui.state'
 ])
 
 /**
@@ -38,8 +37,17 @@ angular.module( 'ngBoilerplate.home', [
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'HomeCtrl', function HomeController( $scope ) {
+.controller( 'HomeCtrl', function HomeController($scope,$state ) {
+        $scope.city="";
+        $scope.search = function(){
+
+                $state.href('/city' ,city );
+
+
+
+        }   ;
 })
+
 
 ;
 

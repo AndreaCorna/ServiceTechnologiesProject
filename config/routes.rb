@@ -1,4 +1,24 @@
 Rails.application.routes.draw do
+
+
+
+
+  get 'guides/index'
+
+  get 'guides/new'
+
+  get 'guides/edit'
+
+  get 'guides/show'
+
+  get 'guides/update'
+
+  get 'guides/destroy'
+
+  get 'hotels/index'
+
+  get 'hotels/show'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -55,8 +75,20 @@ Rails.application.routes.draw do
   #   end
 
   root 'home#index'
-  resources :home , :only => [:index]
 
-  get 'city/hotel' => 'city#hotel'
+
+
+  resources :city, :only => []    do
+    resources :hotels    ,  :only => [:index,:show]
+    resources :culture   ,  :only => [:index,:show]
+    resources :entertainment  ,  :only => [:index,:show]
+    resources :utility  ,  :only => [:index,:show]
+
+  end
+
+  resources :guides
+
+
+
 
 end

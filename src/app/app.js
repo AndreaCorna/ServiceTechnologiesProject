@@ -1,11 +1,13 @@
-angular.module( 'ngBoilerplate', [
+
+angular.module( 'places', [
   'templates-app',
   'templates-common',
-  'ngBoilerplate.home',
-  'ngBoilerplate.about',
+  'places.home',
+  'places.about',
   'ui.state',
   'ui.route'
 ])
+
 
 .config( function myAppConfig ( $stateProvider, $urlRouterProvider ) {
   $urlRouterProvider.otherwise( '/home' );
