@@ -1,5 +1,5 @@
-angular.module( 'places.about', [
-  'ui.state',
+angular.module( 'ngBoilerplate.about', [
+  'ui.router',
   'placeholders',
   'ui.bootstrap'
 ])
