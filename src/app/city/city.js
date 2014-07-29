@@ -1,4 +1,4 @@
-angular.module( 'places.city', [
+angular.module( 'trippo.city', [
   'ui.router',
   'placeholders',
   'ui.bootstrap' ,

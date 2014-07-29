@@ -12,9 +12,9 @@
  * The dependencies block here is also where component dependencies should be
  * specified, as shown below.
  */
-angular.module( 'places.home', [
+angular.module( 'trippo.home', [
   'ui.router',
-  'places.city'
+  'trippo.city'
 ])
 
 /**

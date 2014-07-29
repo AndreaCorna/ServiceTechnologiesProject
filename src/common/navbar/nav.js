@@ -2,7 +2,7 @@
  * Created by Lorenzo on 28/07/14.
  */
 
-angular.module("navModule", [
+angular.module("trippo.navModule", [
 ])
 .controller( "navCtrl",[  "$scope","$location","$log",
     function($scope, $location, $log)

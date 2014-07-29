@@ -1,4 +1,4 @@
-angular.module( 'places.about', [
+angular.module( 'trippo.about', [
   'ui.router',
   'placeholders',
   'ui.bootstrap'

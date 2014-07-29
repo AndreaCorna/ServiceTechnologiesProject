@@ -5,7 +5,7 @@
  * automatically.
  */
 describe( 'home section', function() {
-  beforeEach( module( 'places.home' ) );
+  beforeEach( module( 'trippo.home' ) );
 
   it( 'should have a dummy test', inject( function() {
     expect( true ).toBeTruthy();

@@ -1,10 +1,10 @@
-angular.module( 'places', [
+angular.module( 'trippo', [
   'templates-app',
   'templates-common',
-  'places.home',
-  'places.city',
+  'trippo.home',
+  'trippo.city',
   'ui.router',
-  'navModule'
+  'trippo.navModule'
 ])
 
 .config( function myAppConfig ( $stateProvider, $urlRouterProvider ) {
