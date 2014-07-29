@@ -1,28 +1,33 @@
 angular.module( 'places.city', [
   'ui.router',
   'placeholders',
-  'ui.bootstrap'
+  'ui.bootstrap' ,
+  'ngResource'
+
 ])
 
 .config(function config( $stateProvider ) {
   $stateProvider.state( 'city', {
-    url: '/city',
+    url: '/city/:city_name',
     views: {
       "main": {
         controller: 'CityCtrl',
-        templateUrl: 'about/about.tpl.html'
+        templateUrl: 'city/city.tpl.html'
       }
     },
     data:{ pageTitle: 'What is It?' }
   });
 })
 
-.controller( 'CityCtrl', function CityCtrl( $scope ) {
-  // This is simple a demo for UI Boostrap.
+.controller( 'CityCtrl', function CityCtrl( $scope, $log , CityRes) {
+  $scope.city =   CityRes.query();
+  $scope.$log= $log;
+
 
 })
+
 .factory( 'CityRes', function ( $resource )  {
-        return $resource('../city.json');
+        return $resource("../../city");
     })
 ;
 

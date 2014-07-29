@@ -14,7 +14,7 @@
  */
 angular.module( 'places.home', [
   'ui.router',
-  'plusOne'
+  'places.city'
 ])
 
 /**
@@ -38,15 +38,12 @@ angular.module( 'places.home', [
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'HomeCtrl', function HomeController($scope,$state ) {
-        $scope.city="";
+.controller( 'HomeCtrl', function HomeController($scope,$location , CityRes ) {
+
         $scope.search = function(){
-
-                $state.href('/city' ,city );
-
-
-
-        }   ;
+            $location.path('/city/' + $scope.city);
+        };
+        $scope.cities = CityRes.query();
 })
 
 

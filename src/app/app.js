@@ -2,12 +2,13 @@ angular.module( 'places', [
   'templates-app',
   'templates-common',
   'places.home',
-  'places.about',
-  'ui.router'
+  'places.city',
+  'ui.router',
+  'navModule'
 ])
 
 .config( function myAppConfig ( $stateProvider, $urlRouterProvider ) {
-  $urlRouterProvider.otherwise( '/home' );
+    $urlRouterProvider.otherwise( '/home' );
 })
 
 .run( function run () {
