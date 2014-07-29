@@ -27,10 +27,6 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
-    angular-rails-templates (0.1.2)
-      railties (>= 3.1)
-      sprockets
-      tilt
     arel (5.0.1.20140414130214)
     builder (3.2.2)
     coffee-rails (4.0.1)
@@ -121,7 +117,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  angular-rails-templates
   coffee-rails (~> 4.0.0)
   figaro
   jbuilder (~> 2.0)
