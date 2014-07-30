@@ -8,6 +8,10 @@ git push origin master
 echo "[--]Checking out to heroku branch"
 git checkout heroku
 
+echo "[--]Pulling   heroku branch"
+
+git pull heroku master
+
 echo "[--]Crossing finger and merging master"
 
 git merge master
