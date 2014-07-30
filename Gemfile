@@ -43,5 +43,6 @@ gem 'spring',        group: :development
 
 #postgresql gem
 gem 'pg'
+
 #save the important password and key as environment value
 gem 'figaro'
