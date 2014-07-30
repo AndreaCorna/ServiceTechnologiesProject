@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 
 git checkout master
 git pull origin master
@@ -10,7 +9,6 @@ sed -i.bak "s/^\*\.yml//g" ".gitignore"
 git add .
 git commit -sam "heroku push"
 git push heroku heroku:master
-=======
 git checkout master
 echo "[--]Pulling from master to avoid conflicts"
 git pull origin master
@@ -41,4 +39,3 @@ git push heroku heroku:master
 echo "[--]Returning to master branch"
 
 git checkout master
->>>>>>> master
