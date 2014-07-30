@@ -18,21 +18,16 @@
 .idea/*
 
 *.xml
-<<<<<<< HEAD
-=======
 
->>>>>>> master
 
 .idea/dataSources.ids
-
+.gitignore.bak
 # Ignore application configuration
 /config/application.yml
 *.sw*
 *~
 bin/
 node_modules/
-<<<<<<< HEAD
-=======
 
 
->>>>>>> master
+
