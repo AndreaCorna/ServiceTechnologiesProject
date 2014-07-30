@@ -20,12 +20,16 @@
 *.xml
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> master
 =======
-*.yml
+
 >>>>>>> master
+=======
+
+>>>>>>> 90d84876bf27323cc0f0075b091a4eaff516030a
 
 .idea/dataSources.ids
 .gitignore.bak
@@ -35,9 +39,8 @@
 *~
 bin/
 node_modules/
-<<<<<<< HEAD
-=======
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 >>>>>>> master
@@ -45,3 +48,7 @@ node_modules/
 
 
 >>>>>>> master
+=======
+
+
+>>>>>>> 90d84876bf27323cc0f0075b091a4eaff516030a
