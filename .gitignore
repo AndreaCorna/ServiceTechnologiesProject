@@ -18,7 +18,7 @@
 .idea/*
 
 *.xml
-*.yml
+
 
 .idea/dataSources.ids
 
@@ -29,5 +29,5 @@
 bin/
 node_modules/
 
-build/
-vendor/
+
+
