@@ -18,6 +18,10 @@
 .idea/*
 
 *.xml
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
 
 .idea/dataSources.ids
 
@@ -27,3 +31,8 @@
 *~
 bin/
 node_modules/
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> master
