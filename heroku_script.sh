@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-
 git checkout master
 git pull origin master
 git checkout heroku
@@ -39,4 +37,3 @@ git push heroku heroku:master
 echo "[--]Returning to master branch"
 
 git checkout master
->>>>>>> master
