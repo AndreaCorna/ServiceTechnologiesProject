@@ -19,7 +19,6 @@
 
 *.xml
 
-*.yml
 
 .idea/dataSources.ids
 
@@ -27,7 +26,5 @@
 /config/application.yml
 *.sw*
 *~
-build/
 bin/
 node_modules/
-vendor/
