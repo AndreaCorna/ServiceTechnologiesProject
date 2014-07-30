@@ -13,9 +13,15 @@ git checkout master
 echo "[--]Pulling from master to avoid conflicts"
 git pull origin master
 
-echo "[--]Checking out to heroku branch"
+echo "[--]Pushing to  origin master "
+git push origin master
 
+echo "[--]Checking out to heroku branch"
 git checkout heroku
+
+echo "[--]Pulling   heroku branch"
+
+git pull heroku master
 
 echo "[--]Crossing finger and merging master"
 
@@ -26,6 +32,7 @@ echo "[--]Modifiying .gitignore"
 sed -i.bak "s/^vendor\///g" ".gitignore"
 sed -i.bak "s/^build\///g" ".gitignore"
 sed -i.bak "s/^\*\.yml//g" ".gitignore"
+rm .gitignore.bak
 
 echo "[--]Grunt Building"
 grunt build
