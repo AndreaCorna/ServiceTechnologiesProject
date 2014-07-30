@@ -2,8 +2,10 @@ git checkout master
 echo "[--]Pulling from master to avoid conflicts"
 git pull origin master
 
-echo "[--]Checking out to heroku branch"
+echo "[--]Pushing to  origin master "
+git push origin master
 
+echo "[--]Checking out to heroku branch"
 git checkout heroku
 
 echo "[--]Crossing finger and merging master"
