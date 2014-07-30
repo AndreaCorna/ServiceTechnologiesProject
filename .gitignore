@@ -21,7 +21,7 @@
 *.yml
 
 .idea/dataSources.ids
-
+.gitignore.bak
 # Ignore application configuration
 /config/application.yml
 *.sw*
