@@ -19,7 +19,6 @@
 
 *.xml
 
-
 .idea/dataSources.ids
 .gitignore.bak
 # Ignore application configuration
@@ -28,6 +27,4 @@
 *~
 bin/
 node_modules/
-
-
 
