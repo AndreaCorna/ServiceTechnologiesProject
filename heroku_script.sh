@@ -31,7 +31,7 @@ sed -i.bak "s/^\*\.yml//g" ".gitignore"
 
 echo "[--]Grunt Building"
 grunt build
-git add .
+git add -A
 git commit -sam "heroku push"
 echo "[--]Pushing to heroku"
 git push heroku heroku:master
