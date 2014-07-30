@@ -14,7 +14,14 @@
     <!-- compiled JavaScript --><% scripts.forEach( function ( file ) { %>
     <script type="text/javascript" src="<%= file %>"></script><% }); %>
 
-
+      <!-- prevent login modal to dissappear when clicj -->
+    <script>
+        $(function() {
+            // Fix input element click problem
+            $('.dropdown input').click(function(e) {
+                e.stopPropagation();
+            });
+        });</script>
   </head>
   <body>
   <nav role="navigation" class="navbar navbar-inverse navbar-static-top no_margin" ng-controller="navCtrl as nav">
@@ -34,20 +41,26 @@
           <ul class="nav navbar-nav navbar-right">
               <li ng-class="{ active: isActive('/home')}" class="navbar-item"><a href="#">Home</a></li>
               <li class="dropdown navbar-item">
-                  <a data-toggle="dropdown"  ng-class="{ hidden: isHidden()}" class="dropdown-toggle" href="#">Current trips <b class="caret"></b></a>
+                  <a data-toggle="dropdown"  ng-class="{ hidden: isHidden()}" class="dropdown-toggle" href="#">Current trips<strong class="caret"></strong> <b class="caret"></b></a>
                   <ul role="menu" class="dropdown-menu">
 
 
                   </ul>
               </li>
-              <li class="dropdown navbar-item">
-                  <a data-toggle="dropdown" class="dropdown-toggle" href="#">Login <b class="caret"></b></a>
-                  <ul role="menu" class="dropdown-menu">
-                      <li><a href="#">Login Facebook</a></li>
-                      <li><a href="#">Login Google</a></li>
-                      <li><a href="#">Login</a></li>
 
-                  </ul>
+              <li><a href="#" class="navbar-item">Sign Up</a></li>
+              <li class="dropdown">
+                  <a class="dropdown-toggle navbar-item" href="#" data-toggle="dropdown">Sign In</a>
+                  <div class="dropdown-menu" style="padding: 15px; margin-top: 8px">
+                      <form action="" method="post" accept-charset="UTF-8" class="form">
+                          <input id="user_username" style="margin-bottom: 15px;" type="text" name="username" placeholder="Username" size="30" />
+                          <input id="user_password" style="margin-bottom: 15px;" type="password" name="password" placeholder="Password" size="30" />
+                          <input id="user_remember_me" style="float: left; margin-right: 10px;" type="checkbox" name="user[remember_me]" value="1" />
+                          <label class="string optional" for="user_remember_me"> Remember me</label>
+
+                          <input class="btn btn-primary" style="clear: left; width: 100%; height: 32px; font-size: 13px;" type="submit" name="signin" value="Sign In" />
+                      </form>
+                  </div>
               </li>
 
           </ul>

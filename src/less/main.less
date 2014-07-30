@@ -34,6 +34,19 @@
 
 html,body{height: 100%;}
 
+
+
+.dropdown-menu::after {
+  position: absolute;
+  top: -12px;
+  right: 15px;
+  display: inline-block;
+  border-right: 12px solid transparent;
+  border-bottom: 12px solid white;
+  border-left: 12px solid transparent;
+  content: '';
+}
+
 code, pre, .pre {
   padding: 5px;
   margin: 10px 0;
