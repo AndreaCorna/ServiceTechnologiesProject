@@ -21,6 +21,7 @@ echo "[--]Modifiying .gitignore"
 sed -i.bak "s/^vendor\///g" ".gitignore"
 sed -i.bak "s/^build\///g" ".gitignore"
 sed -i.bak "s/^\*\.yml//g" ".gitignore"
+rm .gitignore.bak
 
 echo "[--]Grunt Building"
 grunt build
