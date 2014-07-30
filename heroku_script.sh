@@ -10,7 +10,7 @@ git checkout heroku
 
 echo "[--]Pulling   heroku branch"
 
-git pull heroku master
+git pull heroku heroku:master
 
 echo "[--]Crossing finger and merging master"
 
