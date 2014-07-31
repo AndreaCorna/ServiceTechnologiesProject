@@ -278,6 +278,9 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "         <button class=\"btn btn-primary btn-lg\" ng-click=\"getCultureDetails(c.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">\n" +
     "            Culture\n" +
     "         </button>\n" +
+    "         <button class=\"btn btn-primary btn-lg\" ng-click=\"addCultureItem(c)\" >\n" +
+    "             Add\n" +
+    "         </button>\n" +
     "      </span>\n" +
     "      <span ng-repeat=\"c in utilityList\">\n" +
     "        <p>{{c}}</p>\n" +

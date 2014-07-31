@@ -4,6 +4,9 @@
          <button class="btn btn-primary btn-lg" ng-click="getCultureDetails(c.id)" href="#moreInfoModal" data-toggle="modal">
             Culture
          </button>
+         <button class="btn btn-primary btn-lg" ng-click="addCultureItem(c)" >
+             Add
+         </button>
       </span>
       <span ng-repeat="c in utilityList">
         <p>{{c}}</p>
