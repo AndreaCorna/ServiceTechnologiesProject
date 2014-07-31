@@ -19,15 +19,17 @@ angular.module( 'trippo.city', [
   });
 })
 
-.controller( 'CityCtrl', function CityCtrl( $scope, $stateParams, $log ,$cacheFactory, CityRes, CultureRes) {
-  var $httpDefaultCache = $cacheFactory.get('$http');
-  $httpDefaultCache.removeAll();
+.controller( 'CityCtrl', function CityCtrl( $scope, $stateParams, $log , CityRes, CultureRes) {
   $scope.$log= $log;
   $scope.cultureList = CultureRes.list.query({city_name:$stateParams.city_name});
   $scope.cultureDetails = function(id_culture){
       $scope.details = CultureRes.details.query({city_name:$stateParams.city_name,id_culture:id_culture});
   };
-
+  /*
+  metti lista selezione di culture entertaiment ecc liste complete
+  servizi per gli oggetti selezionati.
+  Ogni oggetto va tenuto con il json delle info base le info complete in redis
+   */
 })
 
 .factory( 'CityRes', function ( $resource )  {

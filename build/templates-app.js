@@ -279,7 +279,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "            push\n" +
     "         </button>\n" +
     "     </span>\n" +
-    "\n" +
+    "    {{details}}\n" +
     "\n" +
     "</div>");
 }]);
