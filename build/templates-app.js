@@ -275,13 +275,34 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "<div>\n" +
     "     <span ng-repeat=\"c in cultureList\">\n" +
     "        <p>{{c}}</p>\n" +
-    "        <button ng-click=\"cultureDetails(c.id)\" >\n" +
-    "            push\n" +
+    "         <button class=\"btn btn-primary btn-lg\" ng-click=\"getCultureDetails(c.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">\n" +
+    "            Culture\n" +
+    "         </button>\n" +
+    "         <button class=\"btn btn-primary btn-lg\" ng-click=\"getUtilityDetails(c.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">\n" +
+    "             Utility\n" +
     "         </button>\n" +
     "     </span>\n" +
-    "    {{details}}\n" +
     "\n" +
-    "</div>");
+    "\n" +
+    "</div>\n" +
+    "\n" +
+    "<div class=\"modal fade\" id=\"moreInfoModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">\n" +
+    "    <div class=\"modal-dialog\">\n" +
+    "        <div class=\"modal-content\">\n" +
+    "            <div class=\"modal-header\">\n" +
+    "                <button type=\"button\" class=\"close\" data-dismiss=\"modal\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button>\n" +
+    "                <h4 class=\"modal-title\" id=\"myModalLabel\">More Information about {{moreInfoSelection}}</h4>\n" +
+    "            </div>\n" +
+    "            <div class=\"modal-body\">\n" +
+    "                {{moreInfoSelection}}\n" +
+    "            </div>\n" +
+    "            <div class=\"modal-footer\">\n" +
+    "                <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "");
 }]);
 
 angular.module("home/home.tpl.html", []).run(["$templateCache", function($templateCache) {

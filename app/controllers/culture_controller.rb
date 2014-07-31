@@ -2,13 +2,13 @@ class CultureController < ApplicationController
 
 
   def index
-    stupido = Stupid.new(123,"ciao");
-    stupido2 = Stupid.new(432,"ciao");
+    stupido = Stupid.new(123,"culture 1");
+    stupido2 = Stupid.new(432,"culture 2");
 
-    stupido3 = Stupid.new(43,"ciao");
+    stupido3 = Stupid.new(43,"culture 3");
 
-    stupido4 = Stupid.new(543,"ciao");
-    stupido5 = Stupid.new(5245543,"ciao");
+    stupido4 = Stupid.new(543,"culture 4");
+    stupido5 = Stupid.new(5245543,"culture 5");
     test = [stupido,stupido2,stupido3,stupido4,stupido5]
     render_with_protection    test.to_json
   end

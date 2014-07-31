@@ -25,8 +25,17 @@ angular.module( 'trippo.city', [
       $scope.utilityList = UtilityRes.list.query({city_name:$stateParams.city_name});
       $scope.entertainmentList= EntertainmentRes.list.query({city_name:$stateParams.city_name});
       $scope.hotelList = HotelRes.list.query({city_name:$stateParams.city_name});
-      $scope.cultureDetails = function(id_culture){
-          $scope.details = CultureRes.details.query({city_name:$stateParams.city_name,id_culture:id_culture});
+      $scope.getCultureDetails = function(id_culture){
+          $scope.moreInfoSelection = CultureRes.details.query({city_name:$stateParams.city_name,id_culture:id_culture});
+      };
+      $scope.getUtilityDetails = function(id_utility){
+          $scope.moreInfoSelection = UtilityRes.details.query({city_name:$stateParams.city_name,id_utility:id_utility});
+      };
+      $scope.getEntertainmentDetails = function(id_entertainment){
+          $scope.moreInfoSelection = EntertainmentRes.details.query({city_name:$stateParams.city_name,id_entertainment:id_entertainment});
+      };
+      $scope.getHotelDetails = function(id_hotel){
+          $scope.moreInfoSelection = HotelRes.details.query({city_name:$stateParams.city_name,id_hotel:id_hotel});
       };
 
   /*
