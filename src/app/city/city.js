@@ -19,9 +19,11 @@ angular.module( 'trippo.city', [
   });
 })
 
-.controller( 'CityCtrl', function CityCtrl( $scope, $stateParams, $log , CityRes, CultureRes) {
+.controller( 'CityCtrl', function CityCtrl( $scope, $stateParams, $log ,$cacheFactory, CityRes, CultureRes) {
+  var $httpDefaultCache = $cacheFactory.get('$http');
+  $httpDefaultCache.removeAll();
   $scope.$log= $log;
-  $scope.cultureList = CultureRes.list.query();
+  $scope.cultureList = CultureRes.list.query({city_name:$stateParams.city_name});
   $scope.cultureDetails = function(id_culture){
       $scope.details = CultureRes.details.query({city_name:$stateParams.city_name,id_culture:id_culture});
   };
@@ -33,7 +35,7 @@ angular.module( 'trippo.city', [
     })
 
 .factory( 'CultureRes', function ($resource) {
-        var cultureList = $resource("../../city/:city_name/culture", {city_name: "@city_name"});
+        var cultureList = $resource("../../city/:city_name/culture");
         var cultureDetails = $resource("../../city/:city_name/culture/:id_culture");
         return {
             list: cultureList,

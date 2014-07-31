@@ -8,8 +8,8 @@ class CultureController < ApplicationController
     stupido3 = Stupid.new(43,"ciao");
 
     stupido4 = Stupid.new(543,"ciao");
-
-    test = [stupido,stupido2,stupido3,stupido4]
+    stupido5 = Stupid.new(5245543,"ciao");
+    test = [stupido,stupido2,stupido3,stupido4,stupido5]
     render_with_protection    test.to_json
   end
 
