@@ -19,10 +19,12 @@ angular.module( 'trippo.city', [
   });
 })
 
-.controller( 'CityCtrl', function CityCtrl( $scope, $log , CityRes, CultureRes) {
-  $scope.city =   CityRes.query();
+.controller( 'CityCtrl', function CityCtrl( $scope, $stateParams, $log , CityRes, CultureRes) {
   $scope.$log= $log;
   $scope.cultureList = CultureRes.list.query();
+  $scope.cultureDetails = function(id_culture){
+      $scope.details = CultureRes.details.query({city_name:$stateParams.city_name,id_culture:id_culture});
+  };
 
 })
 
@@ -31,20 +33,11 @@ angular.module( 'trippo.city', [
     })
 
 .factory( 'CultureRes', function ($resource) {
-        var cultureList = function ($resource) {
-            return $resource("../../city/:city_name/culture", {city_name: "@city_name"});
-
-        };
-
-        var cultureDetails = function($resource,id_culture){
-            return $resource("../../city/:name_city/culture/:id_culture", {name_city: "@city_name",id_culture:id_culture});
-        };
-
+        var cultureList = $resource("../../city/:city_name/culture", {city_name: "@city_name"});
+        var cultureDetails = $resource("../../city/:city_name/culture/:id_culture");
         return {
-            list:function (){
-                cultureList($resource);},
-            details:function (id_culture){
-            cultureDetails($resource,id_culture);}
+            list: cultureList,
+            details: cultureDetails
         };
         })
 
