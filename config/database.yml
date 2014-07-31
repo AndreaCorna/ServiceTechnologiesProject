@@ -17,11 +17,8 @@ development:
   database: Rubyter
 
   username: rubyter
-<<<<<<< HEAD
-  password: youllneverguessitforever
-=======
+
   password: <%= ENV["SECRET_PASSWORD_DATABASE"] %>
->>>>>>> master
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
