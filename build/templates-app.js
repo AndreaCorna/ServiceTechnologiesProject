@@ -457,7 +457,15 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
 
 angular.module("home/home.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("home/home.tpl.html",
+    "<script type=\"text/ng-template\" id=\"customTemplate.html\">\n" +
+    "    <a class=\"col-md-12\">\n" +
+    "        <span bind-html-unsafe=\"match.label| typeaheadHighlight:query\"></span>\n" +
+    "       <i>({{match.model.state}})</i>\n" +
     "\n" +
+    "\n" +
+    "\n" +
+    "    </a>\n" +
+    "</script>\n" +
     "<div class=\"home_back fill\" >\n" +
     "    <div class=\"home\">\n" +
     "        <img src=\"assets/images/trippo.png\" class=\"center\" />\n" +
@@ -465,7 +473,10 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "\n" +
     "\n" +
     "\n" +
-    "            <input name=\"city\" ng-model=\"city\" type=\"text\" placeholder=\"Search here...\" class=\"form-control col-md-12\">\n" +
+    "            <input name=\"city\"  type=\"text\" placeholder=\"Search here...\" class=\"form-control col-md-12 typeahead\"\n" +
+    "                   ng-model=\"selected_city\"\n" +
+    "                   typeahead=\"city as city.name for city in cities | filter:$viewValue | limitTo:8\"\n" +
+    "                   typeahead-template-url=\"customTemplate.html\">\n" +
     "            <button id=\"submit\" type=\"submit\" ng-click=\"search()\">Search</button>\n" +
     "        </form>\n" +
     "\n" +
