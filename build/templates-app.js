@@ -273,9 +273,18 @@ angular.module("about/about.tpl.html", []).run(["$templateCache", function($temp
 angular.module("city/city.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("city/city.tpl.html",
     "<div>\n" +
-    "\n" +
-    "    {{cultureSelection}}\n" +
-    "    {{utilitySelection}}\n" +
+    "    <p>\n" +
+    "        List culture {{cultureSelection}}\n" +
+    "    </p>\n" +
+    "    <p>\n" +
+    "        List hotel {{hotelSelection}}\n" +
+    "    </p>\n" +
+    "    <p>\n" +
+    "        List entertainment {{entertainmentSelection}}\n" +
+    "    </p>\n" +
+    "    <p>\n" +
+    "        List utility {{utilitySelection}}\n" +
+    "    </p>\n" +
     "\n" +
     "</div>\n" +
     "\n" +
