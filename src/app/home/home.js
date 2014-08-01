@@ -43,7 +43,7 @@ angular.module( 'trippo.home', [
         $scope.search = function(){
             $location.path('/city/' + $scope.city);
         };
-        $scope.cities = CityRes.query();
+        $scope.cities = CityRes.list.query();
 })
 
 

@@ -1,33 +1,117 @@
 <div>
-     <span ng-repeat="c in cultureList">
-        <p>{{c}}</p>
-         <button class="btn btn-primary btn-lg" ng-click="getCultureDetails(c.id)" href="#moreInfoModal" data-toggle="modal">
-            Culture
-         </button>
-         <button class="btn btn-primary btn-lg" ng-click="addCultureItem(c)" >
-             Add
-         </button>
-         <button class="btn btn-primary btn-lg" ng-click="removeCultureItem(c)" >
-             Remove
-         </button>
-      </span>
+
     {{cultureSelection}}
     {{utilitySelection}}
-      <span ng-repeat="c in utilityList">
-        <p>{{c}}</p>
-         <button class="btn btn-primary btn-lg" ng-click="getUtilityDetails(c.id)" href="#moreInfoModal" data-toggle="modal">
-             Utility
-         </button>
-          <button class="btn btn-primary btn-lg" ng-click="addUtilityItem(c)" >
-              Add
-          </button>
-         <button class="btn btn-primary btn-lg" ng-click="removeUtilityItem(c)" >
-             Remove
-         </button>
-     </span>
-
 
 </div>
+
+<carousel interval="intervalImages">
+    <slide ng-repeat="image in slides" active="image.active">
+        <img ng-src="{{image.image}}" style="margin:auto;">
+        <div class="carousel-caption">
+            <p>{{image.descr}}</p>
+        </div>
+    </slide>
+</carousel>
+
+<tabset>
+    <tab heading="Culture">
+        <span ng-repeat="c in cultureList">
+             <div class="row">
+                 <div class="col-md-2" >
+                     <p>{{c}}</p>
+                 </div>
+                 <div class="col-md-2" >
+                     <button class="btn btn-primary btn-lg" ng-click="getCultureDetails(c.id)" href="#moreInfoModal" data-toggle="modal">
+                         More Info
+                     </button>
+                 </div>
+                 <div class="col-md-2">
+                     <button class="btn btn-primary btn-lg" ng-click="addCultureItem(c)">
+                         <i class="icon-white icon-plus "></i>
+                     </button>
+                     <button  class="btn btn-primary btn-lg" ng-click="removeCultureItem(c)" >
+                         <i class="icon-white icon-minus"></i>
+                     </button>
+                 </div>
+             </div>
+
+
+        </span>
+    </tab>
+    <tab heading="Utility">
+        <span ng-repeat="c in utilityList">
+            <div class="row">
+                <div class="col-md-2" >
+                    <p>{{c}}</p>
+                </div>
+                <div class="col-md-2" >
+                    <button class="btn btn-primary btn-lg" ng-click="getUtilityDetails(c.id)" href="#moreInfoModal" data-toggle="modal">
+                        More Info
+                    </button>
+                </div>
+                <div class="col-md-2">
+                    <button class="btn btn-primary btn-lg" ng-click="addUtilityItem(c)">
+                        <i class="icon-white icon-plus "></i>
+                    </button>
+                    <button  class="btn btn-primary btn-lg" ng-click="removeUtilityItem(c)" >
+                        <i class="icon-white icon-minus"></i>
+                    </button>
+                </div>
+            </div>
+        </span>
+    </tab>
+
+    <tab heading="Entertainment">
+        <span ng-repeat="c in entertainmentList">
+            <div class="row">
+                <div class="col-md-2" >
+                    <p>{{c}}</p>
+                </div>
+                <div class="col-md-2" >
+                    <button class="btn btn-primary btn-lg" ng-click="getEntertainmentDetails(c.id)" href="#moreInfoModal" data-toggle="modal">
+                        More Info
+                    </button>
+                </div>
+                <div class="col-md-2">
+                    <button class="btn btn-primary btn-lg" ng-click="addEntertainmentItem(c)">
+                        <i class="icon-white icon-plus "></i>
+                    </button>
+                    <button  class="btn btn-primary btn-lg" ng-click="removeEntertainmentItem(c)" >
+                        <i class="icon-white icon-minus"></i>
+                    </button>
+                </div>
+            </div>
+        </span>
+    </tab>
+
+    <tab heading="Hotel">
+        <span ng-repeat="c in hotelList">
+            <div class="row">
+                <div class="col-md-2" >
+                    <p>{{c}}</p>
+                </div>
+                <div class="col-md-2" >
+                    <button class="btn btn-primary btn-lg" ng-click="getHotelDetails(c.id)" href="#moreInfoModal" data-toggle="modal">
+                        More Info
+                    </button>
+                </div>
+                <div class="col-md-2">
+                    <button class="btn btn-primary btn-lg" ng-click="addHotelItem(c)">
+                        <i class="icon-white icon-plus "></i>
+                    </button>
+                    <button  class="btn btn-primary btn-lg" ng-click="removeHotelItem(c)" >
+                        <i class="icon-white icon-minus"></i>
+                    </button>
+                </div>
+            </div>
+        </span>
+    </tab>
+
+
+</tabset>
+
+
 
 <div class="modal fade" id="moreInfoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">

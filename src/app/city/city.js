@@ -21,6 +21,8 @@ angular.module( 'trippo.city', [
 
 .controller( 'CityCtrl', function CityCtrl( $scope, $stateParams, $log , CityRes, CultureRes, UtilityRes, EntertainmentRes, HotelRes, SelectionService) {
       $scope.$log= $log;
+      $scope.intervalImages = 5000;
+      $scope.slides = CityRes.images.query({city_name:$stateParams.city_name});
       $scope.cultureList = CultureRes.list.query({city_name:$stateParams.city_name});
       $scope.utilityList = UtilityRes.list.query({city_name:$stateParams.city_name});
       $scope.entertainmentList= EntertainmentRes.list.query({city_name:$stateParams.city_name});
@@ -78,7 +80,12 @@ angular.module( 'trippo.city', [
 })
 
 .factory( 'CityRes', function ( $resource )  {
-        return $resource("../../city");
+        var listCities = $resource("../../city/");
+        var imagesCity = $resource("../../city/:city_name");
+        return{
+            list:listCities,
+            images:imagesCity
+        };
     })
 
 .factory( 'CultureRes', function ($resource) {

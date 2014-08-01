@@ -7,7 +7,17 @@ class CityController < ApplicationController
 
 
   def show
-    test = ['stub city show index ',"city #{params[:city_id]}"]
+    test = [Provaimmagine.new("assets/images/trippo.png","descrizione1"),Provaimmagine.new("assets/images/trippo.png","descrizione2")];
     render  json:  test.to_json
+  end
+
+  class Provaimmagine
+    attr_accessor :image,:descr;
+
+    def initialize(image,descr)
+      @image = image
+      @descr = descr
+    end
+
   end
 end

@@ -273,35 +273,119 @@ angular.module("about/about.tpl.html", []).run(["$templateCache", function($temp
 angular.module("city/city.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("city/city.tpl.html",
     "<div>\n" +
-    "     <span ng-repeat=\"c in cultureList\">\n" +
-    "        <p>{{c}}</p>\n" +
-    "         <button class=\"btn btn-primary btn-lg\" ng-click=\"getCultureDetails(c.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">\n" +
-    "            Culture\n" +
-    "         </button>\n" +
-    "         <button class=\"btn btn-primary btn-lg\" ng-click=\"addCultureItem(c)\" >\n" +
-    "             Add\n" +
-    "         </button>\n" +
-    "         <button class=\"btn btn-primary btn-lg\" ng-click=\"removeCultureItem(c)\" >\n" +
-    "             Remove\n" +
-    "         </button>\n" +
-    "      </span>\n" +
+    "\n" +
     "    {{cultureSelection}}\n" +
     "    {{utilitySelection}}\n" +
-    "      <span ng-repeat=\"c in utilityList\">\n" +
-    "        <p>{{c}}</p>\n" +
-    "         <button class=\"btn btn-primary btn-lg\" ng-click=\"getUtilityDetails(c.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">\n" +
-    "             Utility\n" +
-    "         </button>\n" +
-    "          <button class=\"btn btn-primary btn-lg\" ng-click=\"addUtilityItem(c)\" >\n" +
-    "              Add\n" +
-    "          </button>\n" +
-    "         <button class=\"btn btn-primary btn-lg\" ng-click=\"removeUtilityItem(c)\" >\n" +
-    "             Remove\n" +
-    "         </button>\n" +
-    "     </span>\n" +
-    "\n" +
     "\n" +
     "</div>\n" +
+    "\n" +
+    "<carousel interval=\"intervalImages\">\n" +
+    "    <slide ng-repeat=\"image in slides\" active=\"image.active\">\n" +
+    "        <img ng-src=\"{{image.image}}\" style=\"margin:auto;\">\n" +
+    "        <div class=\"carousel-caption\">\n" +
+    "            <p>{{image.descr}}</p>\n" +
+    "        </div>\n" +
+    "    </slide>\n" +
+    "</carousel>\n" +
+    "\n" +
+    "<tabset>\n" +
+    "    <tab heading=\"Culture\">\n" +
+    "        <span ng-repeat=\"c in cultureList\">\n" +
+    "             <div class=\"row\">\n" +
+    "                 <div class=\"col-md-2\" >\n" +
+    "                     <p>{{c}}</p>\n" +
+    "                 </div>\n" +
+    "                 <div class=\"col-md-2\" >\n" +
+    "                     <button class=\"btn btn-primary btn-lg\" ng-click=\"getCultureDetails(c.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">\n" +
+    "                         More Info\n" +
+    "                     </button>\n" +
+    "                 </div>\n" +
+    "                 <div class=\"col-md-2\">\n" +
+    "                     <button class=\"btn btn-primary btn-lg\" ng-click=\"addCultureItem(c)\">\n" +
+    "                         <i class=\"icon-white icon-plus \"></i>\n" +
+    "                     </button>\n" +
+    "                     <button  class=\"btn btn-primary btn-lg\" ng-click=\"removeCultureItem(c)\" >\n" +
+    "                         <i class=\"icon-white icon-minus\"></i>\n" +
+    "                     </button>\n" +
+    "                 </div>\n" +
+    "             </div>\n" +
+    "\n" +
+    "\n" +
+    "        </span>\n" +
+    "    </tab>\n" +
+    "    <tab heading=\"Utility\">\n" +
+    "        <span ng-repeat=\"c in utilityList\">\n" +
+    "            <div class=\"row\">\n" +
+    "                <div class=\"col-md-2\" >\n" +
+    "                    <p>{{c}}</p>\n" +
+    "                </div>\n" +
+    "                <div class=\"col-md-2\" >\n" +
+    "                    <button class=\"btn btn-primary btn-lg\" ng-click=\"getUtilityDetails(c.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">\n" +
+    "                        More Info\n" +
+    "                    </button>\n" +
+    "                </div>\n" +
+    "                <div class=\"col-md-2\">\n" +
+    "                    <button class=\"btn btn-primary btn-lg\" ng-click=\"addUtilityItem(c)\">\n" +
+    "                        <i class=\"icon-white icon-plus \"></i>\n" +
+    "                    </button>\n" +
+    "                    <button  class=\"btn btn-primary btn-lg\" ng-click=\"removeUtilityItem(c)\" >\n" +
+    "                        <i class=\"icon-white icon-minus\"></i>\n" +
+    "                    </button>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "        </span>\n" +
+    "    </tab>\n" +
+    "\n" +
+    "    <tab heading=\"Entertainment\">\n" +
+    "        <span ng-repeat=\"c in entertainmentList\">\n" +
+    "            <div class=\"row\">\n" +
+    "                <div class=\"col-md-2\" >\n" +
+    "                    <p>{{c}}</p>\n" +
+    "                </div>\n" +
+    "                <div class=\"col-md-2\" >\n" +
+    "                    <button class=\"btn btn-primary btn-lg\" ng-click=\"getEntertainmentDetails(c.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">\n" +
+    "                        More Info\n" +
+    "                    </button>\n" +
+    "                </div>\n" +
+    "                <div class=\"col-md-2\">\n" +
+    "                    <button class=\"btn btn-primary btn-lg\" ng-click=\"addEntertainmentItem(c)\">\n" +
+    "                        <i class=\"icon-white icon-plus \"></i>\n" +
+    "                    </button>\n" +
+    "                    <button  class=\"btn btn-primary btn-lg\" ng-click=\"removeEntertainmentItem(c)\" >\n" +
+    "                        <i class=\"icon-white icon-minus\"></i>\n" +
+    "                    </button>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "        </span>\n" +
+    "    </tab>\n" +
+    "\n" +
+    "    <tab heading=\"Hotel\">\n" +
+    "        <span ng-repeat=\"c in hotelList\">\n" +
+    "            <div class=\"row\">\n" +
+    "                <div class=\"col-md-2\" >\n" +
+    "                    <p>{{c}}</p>\n" +
+    "                </div>\n" +
+    "                <div class=\"col-md-2\" >\n" +
+    "                    <button class=\"btn btn-primary btn-lg\" ng-click=\"getHotelDetails(c.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">\n" +
+    "                        More Info\n" +
+    "                    </button>\n" +
+    "                </div>\n" +
+    "                <div class=\"col-md-2\">\n" +
+    "                    <button class=\"btn btn-primary btn-lg\" ng-click=\"addHotelItem(c)\">\n" +
+    "                        <i class=\"icon-white icon-plus \"></i>\n" +
+    "                    </button>\n" +
+    "                    <button  class=\"btn btn-primary btn-lg\" ng-click=\"removeHotelItem(c)\" >\n" +
+    "                        <i class=\"icon-white icon-minus\"></i>\n" +
+    "                    </button>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "        </span>\n" +
+    "    </tab>\n" +
+    "\n" +
+    "\n" +
+    "</tabset>\n" +
+    "\n" +
+    "\n" +
     "\n" +
     "<div class=\"modal fade\" id=\"moreInfoModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">\n" +
     "    <div class=\"modal-dialog\">\n" +
