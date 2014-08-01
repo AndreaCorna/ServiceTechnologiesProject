@@ -299,28 +299,61 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "\n" +
     "<tabset>\n" +
     "    <tab heading=\"Culture\">\n" +
-    "        <span ng-repeat=\"c in cultureList\">\n" +
-    "             <div class=\"row\">\n" +
-    "                 <div class=\"col-md-2\" >\n" +
-    "                     <p>{{c}}</p>\n" +
-    "                 </div>\n" +
-    "                 <div class=\"col-md-2\" >\n" +
-    "                     <button class=\"btn btn-primary btn-lg\" ng-click=\"getCultureDetails(c.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">\n" +
-    "                         More Info\n" +
-    "                     </button>\n" +
-    "                 </div>\n" +
-    "                 <div class=\"col-md-2\">\n" +
-    "                     <button class=\"btn btn-primary btn-lg\" ng-click=\"addCultureItem(c)\">\n" +
-    "                         <i class=\"icon-white icon-plus \"></i>\n" +
-    "                     </button>\n" +
-    "                     <button  class=\"btn btn-primary btn-lg\" ng-click=\"removeCultureItem(c)\" >\n" +
-    "                         <i class=\"icon-white icon-minus\"></i>\n" +
-    "                     </button>\n" +
-    "                 </div>\n" +
-    "             </div>\n" +
+    "        <div class=\"container\">\n" +
+    "            <div class=\"row\">\n" +
+    "                <div class=\"well\">\n" +
+    "                    <h1 class=\"text-center\">Culture</h1>\n" +
+    "                    <div class=\"list-group\">\n" +
+    "                <span ng-repeat=\"c in cultureList\">\n" +
+    "                    <div class=\"list-group-item\">\n" +
+    "                        <div class=\"media col-md-3\">\n" +
+    "                            <figure class=\"pull-left\">\n" +
+    "                                <i class=\"fa fa-cloud-upload \">\n" +
+    "                                    Image\n" +
+    "                                </i>\n" +
+    "                            </figure>\n" +
+    "                        </div>\n" +
+    "                        <div class=\"col-md-6\">\n" +
+    "                            <h4 class=\"list-group-item-heading\">{{c.name}}</h4>\n" +
+    "                            <p class=\"list-group-item-text\">\n" +
+    "                            <div class=\"row\">\n" +
+    "                                Price\n" +
+    "                            </div>\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <p>Rating</p>\n" +
+    "                                <rating ng-model=\"c[rating]\"  readonly=\"true\" ></rating>\n" +
     "\n" +
-    "\n" +
-    "        </span>\n" +
+    "                            </div>\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <button class=\"btn btn-primary btn-lg\" ng-click=\"getCultureDetails(c.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">\n" +
+    "                                    More Info\n" +
+    "                                </button>\n" +
+    "                                <button class=\"btn btn-primary btn-lg\" ng-click=\"addCultureItem(c)\">\n" +
+    "                                    <i class=\"icon-white icon-plus \"></i>\n" +
+    "                                </button>\n" +
+    "                                <button  class=\"btn btn-primary btn-lg\" ng-click=\"removeCultureItem(c)\" >\n" +
+    "                                    <i class=\"icon-white icon-minus\"></i>\n" +
+    "                                </button>\n" +
+    "                            </div>\n" +
+    "                            </p>\n" +
+    "                        </div>\n" +
+    "                        <div class=\"col-md-3 text-center\">\n" +
+    "                            <div class=\"panel panel-default\">\n" +
+    "                                <div class=\"panel-body\">\n" +
+    "                                    <div class=\"ratetext\">Rate it</div>\n" +
+    "                                    <i class=\"fa fa-thumbs-o-up votes\"></i><i class=\"fa fa-thumbs-o-down votes\"></i>\n" +
+    "                                    <div class=\"stars\"></div>\n" +
+    "                                    <h2>464  <small>Clicks</small></h2>\n" +
+    "                                    <div id=\"rate1\"></div>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                </span>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
     "    </tab>\n" +
     "    <tab heading=\"Utility\">\n" +
     "        <span ng-repeat=\"c in utilityList\">\n" +
@@ -412,6 +445,13 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "        </div>\n" +
     "    </div>\n" +
     "</div>\n" +
+    "\n" +
+    "\n" +
+    "<!-- you need to include the shieldui css and js assets in order for the charts to work -->\n" +
+    "<link rel=\"stylesheet\" type=\"text/css\" href=\"http://www.shieldui.com/shared/components/latest/css/shieldui-all.min.css\" />\n" +
+    "<link rel=\"stylesheet\" type=\"text/css\" href=\"http://www.shieldui.com/shared/components/latest/css/light/all.min.css\" />\n" +
+    "<script type=\"text/javascript\" src=\"http://www.shieldui.com/shared/components/latest/js/shieldui-all.min.js\"></script>\n" +
+    "\n" +
     "");
 }]);
 

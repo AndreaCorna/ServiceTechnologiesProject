@@ -2,13 +2,13 @@ class CultureController < ApplicationController
 
 
   def index
-    stupido = Stupid.new(123,"culture 1");
-    stupido2 = Stupid.new(432,"culture 2");
+    stupido = Stupid.new(123,"prova","culture 1",1,3);
+    stupido2 = Stupid.new(432,"prova","culture 2",1,3);
 
-    stupido3 = Stupid.new(43,"culture 3");
+    stupido3 = Stupid.new(43,"prova","culture 3",1,3);
 
-    stupido4 = Stupid.new(543,"culture 4");
-    stupido5 = Stupid.new(5245543,"culture 5");
+    stupido4 = Stupid.new(543,"prova","culture 4",1,3);
+    stupido5 = Stupid.new(5245543,"prova","culture 5",1,3);
     test = [stupido,stupido2,stupido3,stupido4,stupido5]
     render_with_protection    test.to_json
   end
@@ -19,11 +19,14 @@ class CultureController < ApplicationController
   end
 
   class Stupid
-    attr_accessor :id,:descr;
+    attr_accessor :id,:name,:descr,:price,:rating;
 
-    def initialize(id,descr)
+    def initialize(id,name,descr,price,rating)
       @id = id;
+      @name = name;
       @descr=descr;
+      @price=price;
+      @rating=rating;
     end
 
   end
