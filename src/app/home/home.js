@@ -40,10 +40,33 @@ angular.module( 'trippo.home', [
  */
 .controller( 'HomeCtrl', function HomeController($scope,$location , CityRes ) {
 
-        $scope.search = function(){
-            $location.path('/city/' + $scope.city);
-        };
+
         $scope.cities = CityRes.query();
+
+        $scope.selected_city = undefined;
+
+        $scope.search = function(){
+            $location.path('/city/' + $scope.selected_city);
+        };
+        /**
+         * Unused but leaved in order to test how works if no list city but
+         */
+
+        $scope.getLocation = function(val) {
+            return $http.get('http://maps.googleapis.com/maps/api/geocode/json', {
+                params: {
+                    address: val,
+                    sensor: false
+                }
+            }).then(function(res){
+                var addresses = [];
+                angular.forEach(res.data.results, function(item){
+                    addresses.push(item.formatted_address);
+                });
+                return addresses;
+            });
+        };
+
 })
 
 

@@ -36,7 +36,7 @@ html,body{height: 100%;}
 
 
 
-.dropdown-menu::after {
+.signin_dropdown::after {
   position: absolute;
   top: -12px;
   right: 15px;
@@ -46,6 +46,20 @@ html,body{height: 100%;}
   border-left: 12px solid transparent;
   content: '';
 }
+
+.border-radius(@radius){
+  .border-top-radius(@radius);
+  .border-right-radius(@radius);
+  .border-bottom-radius(@radius);
+  .border-left-radius(@radius);
+}
+
+.signin_dropdown {
+  .border-radius( 10px );
+}
+
+
+/*Useless code*/
 
 code, pre, .pre {
   padding: 5px;
