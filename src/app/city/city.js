@@ -39,8 +39,35 @@ angular.module( 'trippo.city', [
       };
 
       $scope.addCultureItem = function(culture_item){
-          SelectionService.addCultureItem(culture_item);
-          /*Codice per recuperare le informazioni sulle selezioni*/
+          $scope.cultureSelection = SelectionService.addCultureItem(culture_item);
+      };
+
+      $scope.removeCultureItem = function(culture_item){
+          $scope.cultureSelection = SelectionService.removeCultureItem(culture_item);
+      };
+
+      $scope.addUtilityItem = function(utility_item){
+          $scope.utilitySelection = SelectionService.addUtilityItem(utility_item);
+      };
+
+      $scope.removeUtilityItem = function(utility_item){
+          $scope.utilitySelection = SelectionService.removeUtilityItem(utility_item);
+      };
+
+      $scope.addEntertainmentItem = function(entertainment_item){
+          $scope.entertainmentSelection = SelectionService.addEntertainmentItem(entertainment_item);
+      };
+
+      $scope.removeEntertainmentItem = function(entertainment_item){
+          $scope.entertainmentSelection = SelectionService.removeEntertainmentItem(entertainment_item);
+      };
+
+      $scope.addHotelItem = function(hotel_item){
+          $scope.hotelSelection = SelectionService.addHotelItem(hotel_item);
+      };
+
+      $scope.removeHotelItem = function(hotel_item){
+          $scope.hotelSelection = SelectionService.removeHotelItem(hotel_item);
       };
 
   /*
@@ -98,40 +125,98 @@ angular.module( 'trippo.city', [
         var utilitySelection = [];
         var hotelSelection = [];
         var entertainmentSelection = [];
+        return{
+            addCultureItem:function (culture_item) {
+                if(cultureSelection.indexOf(culture_item) == -1) {
+                    cultureSelection.push(culture_item);
+                }
+                return cultureSelection;
 
-        this.addCultureItem = function(culture_item){
-            cultureSelection.push(culture_item);
-        };
+            },
 
-        this.removeCultureItem = function(culture_item){
-            cultureSelection.remove(culture_item);
-        };
+            removeCultureItem:function (culture_item) {
+                var index = cultureSelection.indexOf(culture_item);
+                if(index != -1) {
+                    cultureSelection.splice(index, 1);
+                }
+                return cultureSelection;
 
-        this.getCultureSelection = function(){
-            return cultureSelection.promise;
-        };
+            },
 
-        this.addUtilityItem = function(utility_item){
-            utilitySelection.push(utility_item);
-        };
-        this.removeUtilityItem = function(utility_item){
-            utilitySelection.remove(utility_item);
-        };
+            getCultureSelection:function () {
+                return cultureSelection;
+            },
 
-        this.addHotelItem = function(hotel_item){
-            hotelSelection.push(hotel_item);
-        };
+            addUtilityItem:function (utility_item) {
+                if(utilitySelection.indexOf(utility_item) == -1) {
+                    utilitySelection.push(utility_item);
+                }
+                return utilitySelection;
 
-        this.removeHotelItem = function(hotel_item){
-            hotelSelection.remove(hotel_item);
-        };
+            },
 
-        this.addEntertainmentItem = function(entertainment_item){
-            entertainmentSelection.push(entertainment_item);
-        };
-        this.removeEntertainmentItem = function(entertainment_item){
-            entertainmentSelection.remove(entertainment_item);
-        };
+            removeUtilityItem:function (utility_item) {
+                var index = utilitySelection.indexOf(utility_item);
+                if(index != -1) {
+                    utilitySelection.splice(index, 1);
+                }
+                return utilitySelection;
+
+            },
+
+            getUtilitySelection:function(){
+               return utilitySelection;
+            },
+
+            addHotelItem:function (hotel_item) {
+                if(hotelSelection.indexOf(hotel_item) == -1) {
+                    hotelSelection.push(hotel_item);
+                }
+                return hotelSelection;
+
+            },
+
+            removeHotelItem:function (hotel_item) {
+                var index = hotelSelection.indexOf(hotel_item);
+                if(index != -1) {
+                    hotelSelection.splice(index, 1);
+                }
+                return hotelSelection;
+
+            },
+
+            getHotelSelection:function(){
+                return hotelSelection;
+            },
+
+            addEntertainmentItem:function (entertainment_item) {
+                if(entertainmentSelection.indexOf(entertainment_item) == -1) {
+                    entertainmentSelection.push(entertainment_item);
+                }
+                return entertainmentSelection;
+
+            },
+            removeEntertainmentItem:function (entertainment_item) {
+                var index = entertainmentSelection.indexOf(entertainment_item);
+                if (index != -1) {
+                    entertainmentSelection.splice(index, 1);
+                }
+                return entertainmentSelection;
+            },
+
+            getEntertainmentSelection:function(){
+                return entertainmentSelection;
+            },
+
+            getSelections:function(){
+                return{
+                    listCulture:cultureSelection,
+                    listUtility:utilitySelection,
+                    listHotel:hotelSelection,
+                    listEntertainment:entertainmentSelection
+                };
+            }
+         };
     })
 
 ;

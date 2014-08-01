@@ -281,11 +281,22 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "         <button class=\"btn btn-primary btn-lg\" ng-click=\"addCultureItem(c)\" >\n" +
     "             Add\n" +
     "         </button>\n" +
+    "         <button class=\"btn btn-primary btn-lg\" ng-click=\"removeCultureItem(c)\" >\n" +
+    "             Remove\n" +
+    "         </button>\n" +
     "      </span>\n" +
+    "    {{cultureSelection}}\n" +
+    "    {{utilitySelection}}\n" +
     "      <span ng-repeat=\"c in utilityList\">\n" +
     "        <p>{{c}}</p>\n" +
     "         <button class=\"btn btn-primary btn-lg\" ng-click=\"getUtilityDetails(c.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">\n" +
     "             Utility\n" +
+    "         </button>\n" +
+    "          <button class=\"btn btn-primary btn-lg\" ng-click=\"addUtilityItem(c)\" >\n" +
+    "              Add\n" +
+    "          </button>\n" +
+    "         <button class=\"btn btn-primary btn-lg\" ng-click=\"removeUtilityItem(c)\" >\n" +
+    "             Remove\n" +
     "         </button>\n" +
     "     </span>\n" +
     "\n" +

@@ -7,11 +7,22 @@
          <button class="btn btn-primary btn-lg" ng-click="addCultureItem(c)" >
              Add
          </button>
+         <button class="btn btn-primary btn-lg" ng-click="removeCultureItem(c)" >
+             Remove
+         </button>
       </span>
+    {{cultureSelection}}
+    {{utilitySelection}}
       <span ng-repeat="c in utilityList">
         <p>{{c}}</p>
          <button class="btn btn-primary btn-lg" ng-click="getUtilityDetails(c.id)" href="#moreInfoModal" data-toggle="modal">
              Utility
+         </button>
+          <button class="btn btn-primary btn-lg" ng-click="addUtilityItem(c)" >
+              Add
+          </button>
+         <button class="btn btn-primary btn-lg" ng-click="removeUtilityItem(c)" >
+             Remove
          </button>
      </span>
 
