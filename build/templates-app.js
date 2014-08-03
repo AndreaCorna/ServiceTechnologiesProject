@@ -289,7 +289,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "</div>\n" +
     "\n" +
     "<carousel interval=\"intervalImages\">\n" +
-    "    <slide ng-repeat=\"image in slides\" active=\"image.active\">\n" +
+    "    <slide ng-repeat=\"image in city\" active=\"image.active\">\n" +
     "        <img ng-src=\"{{image.image}}\" style=\"margin:auto;\">\n" +
     "        <div class=\"carousel-caption\">\n" +
     "            <p>{{image.descr}}</p>\n" +
@@ -356,72 +356,177 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "        </div>\n" +
     "    </tab>\n" +
     "    <tab heading=\"Utility\">\n" +
-    "        <span ng-repeat=\"c in utilityList\">\n" +
+    "        <div class=\"container\">\n" +
     "            <div class=\"row\">\n" +
-    "                <div class=\"col-md-2\" >\n" +
-    "                    <p>{{c}}</p>\n" +
-    "                </div>\n" +
-    "                <div class=\"col-md-2\" >\n" +
-    "                    <button class=\"btn btn-primary btn-lg\" ng-click=\"getUtilityDetails(c.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">\n" +
-    "                        More Info\n" +
-    "                    </button>\n" +
-    "                </div>\n" +
-    "                <div class=\"col-md-2\">\n" +
-    "                    <button class=\"btn btn-primary btn-lg\" ng-click=\"addUtilityItem(c)\">\n" +
-    "                        <i class=\"icon-white icon-plus \"></i>\n" +
-    "                    </button>\n" +
-    "                    <button  class=\"btn btn-primary btn-lg\" ng-click=\"removeUtilityItem(c)\" >\n" +
-    "                        <i class=\"icon-white icon-minus\"></i>\n" +
-    "                    </button>\n" +
+    "                <div class=\"well\">\n" +
+    "                    <h1 class=\"text-center\">Utility</h1>\n" +
+    "                    <div class=\"list-group\">\n" +
+    "                <span ng-repeat=\"c in utilityList\">\n" +
+    "                    <div class=\"list-group-item\">\n" +
+    "                        <div class=\"media col-md-3\">\n" +
+    "                            <figure class=\"pull-left\">\n" +
+    "                                <i class=\"fa fa-cloud-upload \">\n" +
+    "                                    Image\n" +
+    "                                </i>\n" +
+    "                            </figure>\n" +
+    "                        </div>\n" +
+    "                        <div class=\"col-md-6\">\n" +
+    "                            <h4 class=\"list-group-item-heading\">{{c.name}}</h4>\n" +
+    "                            <p class=\"list-group-item-text\">\n" +
+    "                            <div class=\"row\">\n" +
+    "                                Price\n" +
+    "                            </div>\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <p>Rating</p>\n" +
+    "                                <rating ng-model=\"c[rating]\"  readonly=\"true\" ></rating>\n" +
+    "\n" +
+    "                            </div>\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <button class=\"btn btn-primary btn-lg\" ng-click=\"getUtilityDetails(c.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">\n" +
+    "                                    More Info\n" +
+    "                                </button>\n" +
+    "                                <button class=\"btn btn-primary btn-lg\" ng-click=\"addUtilityItem(c)\">\n" +
+    "                                    <i class=\"icon-white icon-plus \"></i>\n" +
+    "                                </button>\n" +
+    "                                <button  class=\"btn btn-primary btn-lg\" ng-click=\"removeUtilityItem(c)\" >\n" +
+    "                                    <i class=\"icon-white icon-minus\"></i>\n" +
+    "                                </button>\n" +
+    "                            </div>\n" +
+    "                            </p>\n" +
+    "                        </div>\n" +
+    "                        <div class=\"col-md-3 text-center\">\n" +
+    "                            <div class=\"panel panel-default\">\n" +
+    "                                <div class=\"panel-body\">\n" +
+    "                                    <div class=\"ratetext\">Rate it</div>\n" +
+    "                                    <i class=\"fa fa-thumbs-o-up votes\"></i><i class=\"fa fa-thumbs-o-down votes\"></i>\n" +
+    "                                    <div class=\"stars\"></div>\n" +
+    "                                    <h2>464  <small>Clicks</small></h2>\n" +
+    "                                    <div id=\"rate1\"></div>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                </span>\n" +
+    "                    </div>\n" +
     "                </div>\n" +
     "            </div>\n" +
-    "        </span>\n" +
+    "        </div>\n" +
     "    </tab>\n" +
     "\n" +
     "    <tab heading=\"Entertainment\">\n" +
-    "        <span ng-repeat=\"c in entertainmentList\">\n" +
+    "        <div class=\"container\">\n" +
     "            <div class=\"row\">\n" +
-    "                <div class=\"col-md-2\" >\n" +
-    "                    <p>{{c}}</p>\n" +
-    "                </div>\n" +
-    "                <div class=\"col-md-2\" >\n" +
-    "                    <button class=\"btn btn-primary btn-lg\" ng-click=\"getEntertainmentDetails(c.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">\n" +
-    "                        More Info\n" +
-    "                    </button>\n" +
-    "                </div>\n" +
-    "                <div class=\"col-md-2\">\n" +
-    "                    <button class=\"btn btn-primary btn-lg\" ng-click=\"addEntertainmentItem(c)\">\n" +
-    "                        <i class=\"icon-white icon-plus \"></i>\n" +
-    "                    </button>\n" +
-    "                    <button  class=\"btn btn-primary btn-lg\" ng-click=\"removeEntertainmentItem(c)\" >\n" +
-    "                        <i class=\"icon-white icon-minus\"></i>\n" +
-    "                    </button>\n" +
+    "                <div class=\"well\">\n" +
+    "                    <h1 class=\"text-center\">Entertainment</h1>\n" +
+    "                    <div class=\"list-group\">\n" +
+    "                <span ng-repeat=\"c in entertainmentList\">\n" +
+    "                    <div class=\"list-group-item\">\n" +
+    "                        <div class=\"media col-md-3\">\n" +
+    "                            <figure class=\"pull-left\">\n" +
+    "                                <i class=\"fa fa-cloud-upload \">\n" +
+    "                                    Image\n" +
+    "                                </i>\n" +
+    "                            </figure>\n" +
+    "                        </div>\n" +
+    "                        <div class=\"col-md-6\">\n" +
+    "                            <h4 class=\"list-group-item-heading\">{{c.name}}</h4>\n" +
+    "                            <p class=\"list-group-item-text\">\n" +
+    "                            <div class=\"row\">\n" +
+    "                                Price\n" +
+    "                            </div>\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <p>Rating</p>\n" +
+    "                                <rating ng-model=\"c[rating]\"  readonly=\"true\" ></rating>\n" +
+    "\n" +
+    "                            </div>\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <button class=\"btn btn-primary btn-lg\" ng-click=\"getEntertainmentDetails(c.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">\n" +
+    "                                    More Info\n" +
+    "                                </button>\n" +
+    "                                <button class=\"btn btn-primary btn-lg\" ng-click=\"addEntertainmentItem(c)\">\n" +
+    "                                    <i class=\"icon-white icon-plus \"></i>\n" +
+    "                                </button>\n" +
+    "                                <button  class=\"btn btn-primary btn-lg\" ng-click=\"removeEntertainmentItem(c)\" >\n" +
+    "                                    <i class=\"icon-white icon-minus\"></i>\n" +
+    "                                </button>\n" +
+    "                            </div>\n" +
+    "                            </p>\n" +
+    "                        </div>\n" +
+    "                        <div class=\"col-md-3 text-center\">\n" +
+    "                            <div class=\"panel panel-default\">\n" +
+    "                                <div class=\"panel-body\">\n" +
+    "                                    <div class=\"ratetext\">Rate it</div>\n" +
+    "                                    <i class=\"fa fa-thumbs-o-up votes\"></i><i class=\"fa fa-thumbs-o-down votes\"></i>\n" +
+    "                                    <div class=\"stars\"></div>\n" +
+    "                                    <h2>464  <small>Clicks</small></h2>\n" +
+    "                                    <div id=\"rate1\"></div>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                </span>\n" +
+    "                    </div>\n" +
     "                </div>\n" +
     "            </div>\n" +
-    "        </span>\n" +
+    "        </div>\n" +
     "    </tab>\n" +
     "\n" +
     "    <tab heading=\"Hotel\">\n" +
-    "        <span ng-repeat=\"c in hotelList\">\n" +
+    "        <div class=\"container\">\n" +
     "            <div class=\"row\">\n" +
-    "                <div class=\"col-md-2\" >\n" +
-    "                    <p>{{c}}</p>\n" +
-    "                </div>\n" +
-    "                <div class=\"col-md-2\" >\n" +
-    "                    <button class=\"btn btn-primary btn-lg\" ng-click=\"getHotelDetails(c.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">\n" +
-    "                        More Info\n" +
-    "                    </button>\n" +
-    "                </div>\n" +
-    "                <div class=\"col-md-2\">\n" +
-    "                    <button class=\"btn btn-primary btn-lg\" ng-click=\"addHotelItem(c)\">\n" +
-    "                        <i class=\"icon-white icon-plus \"></i>\n" +
-    "                    </button>\n" +
-    "                    <button  class=\"btn btn-primary btn-lg\" ng-click=\"removeHotelItem(c)\" >\n" +
-    "                        <i class=\"icon-white icon-minus\"></i>\n" +
-    "                    </button>\n" +
+    "                <div class=\"well\">\n" +
+    "                    <h1 class=\"text-center\">Hotel</h1>\n" +
+    "                    <div class=\"list-group\">\n" +
+    "                <span ng-repeat=\"c in hotelList\">\n" +
+    "                    <div class=\"list-group-item\">\n" +
+    "                        <div class=\"media col-md-3\">\n" +
+    "                            <figure class=\"pull-left\">\n" +
+    "                                <i class=\"fa fa-cloud-upload \">\n" +
+    "                                    Image\n" +
+    "                                </i>\n" +
+    "                            </figure>\n" +
+    "                        </div>\n" +
+    "                        <div class=\"col-md-6\">\n" +
+    "                            <h4 class=\"list-group-item-heading\">{{c.name}}</h4>\n" +
+    "                            <p class=\"list-group-item-text\">\n" +
+    "                            <div class=\"row\">\n" +
+    "                                Price\n" +
+    "                            </div>\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <p>Rating</p>\n" +
+    "                                <rating ng-model=\"c[rating]\"  readonly=\"true\" ></rating>\n" +
+    "\n" +
+    "                            </div>\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <button class=\"btn btn-primary btn-lg\" ng-click=\"getHotelDetails(c.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">\n" +
+    "                                    More Info\n" +
+    "                                </button>\n" +
+    "                                <button class=\"btn btn-primary btn-lg\" ng-click=\"addHotelItem(c)\">\n" +
+    "                                    <i class=\"icon-white icon-plus \"></i>\n" +
+    "                                </button>\n" +
+    "                                <button  class=\"btn btn-primary btn-lg\" ng-click=\"removeHotelItem(c)\" >\n" +
+    "                                    <i class=\"icon-white icon-minus\"></i>\n" +
+    "                                </button>\n" +
+    "                            </div>\n" +
+    "                            </p>\n" +
+    "                        </div>\n" +
+    "                        <div class=\"col-md-3 text-center\">\n" +
+    "                            <div class=\"panel panel-default\">\n" +
+    "                                <div class=\"panel-body\">\n" +
+    "                                    <div class=\"ratetext\">Rate it</div>\n" +
+    "                                    <i class=\"fa fa-thumbs-o-up votes\"></i><i class=\"fa fa-thumbs-o-down votes\"></i>\n" +
+    "                                    <div class=\"stars\"></div>\n" +
+    "                                    <h2>464  <small>Clicks</small></h2>\n" +
+    "                                    <div id=\"rate1\"></div>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                </span>\n" +
+    "                    </div>\n" +
     "                </div>\n" +
     "            </div>\n" +
-    "        </span>\n" +
+    "        </div>\n" +
     "    </tab>\n" +
     "\n" +
     "\n" +

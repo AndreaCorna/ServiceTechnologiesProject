@@ -21,7 +21,7 @@ class CityController < ApplicationController
 
 
   def show
-    test = [City.new("prima","descrizione1","assets/images/trippo.png",),City.new("Seconda","descrizione2","assets/images/trippo.png")];
+    test = [City.new("prima","descrizione1","assets/images/trippo.png",)];
     render  json:  test.to_json
   end
 
