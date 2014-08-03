@@ -340,11 +340,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                        <div class=\"col-md-3 text-center\">\n" +
     "                            <div class=\"panel panel-default\">\n" +
     "                                <div class=\"panel-body\">\n" +
-    "                                    <div class=\"ratetext\">Rate it</div>\n" +
-    "                                    <i class=\"fa fa-thumbs-o-up votes\"></i><i class=\"fa fa-thumbs-o-down votes\"></i>\n" +
-    "                                    <div class=\"stars\"></div>\n" +
-    "                                    <h2>464  <small>Clicks</small></h2>\n" +
-    "                                    <div id=\"rate1\"></div>\n" +
+    "                                    <div class=\"ratetext\">Location</div>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
     "                        </div>\n" +
@@ -397,11 +393,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                        <div class=\"col-md-3 text-center\">\n" +
     "                            <div class=\"panel panel-default\">\n" +
     "                                <div class=\"panel-body\">\n" +
-    "                                    <div class=\"ratetext\">Rate it</div>\n" +
-    "                                    <i class=\"fa fa-thumbs-o-up votes\"></i><i class=\"fa fa-thumbs-o-down votes\"></i>\n" +
-    "                                    <div class=\"stars\"></div>\n" +
-    "                                    <h2>464  <small>Clicks</small></h2>\n" +
-    "                                    <div id=\"rate1\"></div>\n" +
+    "                                    <div class=\"ratetext\">Location</div>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
     "                        </div>\n" +
@@ -455,11 +447,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                        <div class=\"col-md-3 text-center\">\n" +
     "                            <div class=\"panel panel-default\">\n" +
     "                                <div class=\"panel-body\">\n" +
-    "                                    <div class=\"ratetext\">Rate it</div>\n" +
-    "                                    <i class=\"fa fa-thumbs-o-up votes\"></i><i class=\"fa fa-thumbs-o-down votes\"></i>\n" +
-    "                                    <div class=\"stars\"></div>\n" +
-    "                                    <h2>464  <small>Clicks</small></h2>\n" +
-    "                                    <div id=\"rate1\"></div>\n" +
+    "                                    <div class=\"ratetext\">Location</div>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
     "                        </div>\n" +
@@ -513,11 +501,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                        <div class=\"col-md-3 text-center\">\n" +
     "                            <div class=\"panel panel-default\">\n" +
     "                                <div class=\"panel-body\">\n" +
-    "                                    <div class=\"ratetext\">Rate it</div>\n" +
-    "                                    <i class=\"fa fa-thumbs-o-up votes\"></i><i class=\"fa fa-thumbs-o-down votes\"></i>\n" +
-    "                                    <div class=\"stars\"></div>\n" +
-    "                                    <h2>464  <small>Clicks</small></h2>\n" +
-    "                                    <div id=\"rate1\"></div>\n" +
+    "                                    <div class=\"ratetext\">Location</div>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
     "                        </div>\n" +

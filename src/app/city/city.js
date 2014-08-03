@@ -82,9 +82,13 @@ angular.module( 'trippo.city', [
 .factory( 'CityRes', function ( $resource )  {
         var listCities = $resource("../../city/");
         var detailsCity = $resource("../../city/:city_name");
+        var getCityDetails = function(){
+            return detailsCity;
+        };
         return{
             list:listCities,
-            details:detailsCity
+            details:detailsCity,
+            getCityDetails : getCityDetails
         };
     })
 
