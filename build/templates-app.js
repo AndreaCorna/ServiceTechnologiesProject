@@ -542,9 +542,6 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "    </div>\n" +
     "</div>\n" +
     "\n" +
-    "\n" +
-    "<!-- you need to include the shieldui css and js assets in order for the charts to work -->\n" +
-    "\n" +
     "");
 }]);
 

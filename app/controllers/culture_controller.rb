@@ -1,7 +1,8 @@
 class CultureController < ApplicationController
-
+#include GooglePlaces
 
   def index
+
     stupido = Stupid.new(123,"prova","culture 1",1,3);
     stupido2 = Stupid.new(432,"prova","culture 2",1,3);
 
@@ -9,7 +10,9 @@ class CultureController < ApplicationController
 
     stupido4 = Stupid.new(543,"prova","culture 4",1,3);
     stupido5 = Stupid.new(5245543,"prova","culture 5",1,3);
+
     test = [stupido,stupido2,stupido3,stupido4,stupido5]
+    #test = GooglePlaces.CultureItem.get_culture_items();
     render_with_protection    test.to_json
   end
 

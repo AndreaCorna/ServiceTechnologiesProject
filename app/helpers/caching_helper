@@ -1,0 +1,7 @@
+module CacheInformation
+
+  def getCultureItems(city)
+
+  end
+
+end
