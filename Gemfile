@@ -47,13 +47,12 @@ gem 'pg'
 #save the important password and key as environment value
 gem 'figaro'
 
-#redis gem
-#gem 'redis', '2.1.1'
+gem 'redis'
 
 #google places gem
-#gem 'google-api-client'
+gem 'google-api-client'
 
-#gem 'google_places'
+gem 'google_places'
 
 #expedia gem
-#gem 'expedia'
+gem 'expedia'
