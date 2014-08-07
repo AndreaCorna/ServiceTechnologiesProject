@@ -14,6 +14,8 @@ module HotelsHelper
     return details
   end
 
+  #add methods in order to use expedia api
+
   class HotelItem
     attr_accessor :id,:lat,:long,:price,:rating,:name,:photo,:icon,:reference;
 
