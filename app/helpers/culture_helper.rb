@@ -2,8 +2,11 @@ module CultureHelper
 
   def get_culture_items(city)
     puts 'parameter '+city
+    #client = GooglePlaces::Client.new(ENV['API_KEY'])
     culture_items = []
-    culture_items.append(CultureItem.new('lat','long','prova_helper',3,3,'photo','icon','reference'))
+    #culture_items.append(client.spots_by_query(city+" museum",:types => ['museum'],:language => 'it'))
+    culture_items.append(CultureItem.new('lat','long','prova_helper_culture',3,3,'photo','icon','reference'))
+    #$redis.set(city,culture_items);
     return culture_items
 
   end
@@ -15,12 +18,12 @@ module CultureHelper
   end
 
   class CultureItem
-    attr_accessor :id,:lat,:long,:price,:rating,:name,:photo,:icon,:reference;
+    attr_accessor :id,:lat,:lng,:price,:rating,:name,:photo,:icon,:reference;
 
-    def initialize(lat,long,name,rating,price,photo,icon,reference)
-      @id = name+'_'+lat+'_'+long;
+    def initialize(lat,lng,name,rating,price,photo,icon,reference)
+      @id = name+'_'+lat+'_'+lng;
       @lat = lat;
-      @long = long;
+      @lng = lng;
       @name = name;
       @rating = rating;
       @price = price;

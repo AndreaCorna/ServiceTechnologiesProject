@@ -18,10 +18,10 @@ module UtilityHelper
   class UtilityItem
     attr_accessor :id,:lat,:long,:price,:rating,:name,:photo,:icon,:reference;
 
-    def initialize(lat,long,name,rating,price,photo,icon,reference)
-      @id = name+'_'+lat+'_'+long;
+    def initialize(lat,lng,name,rating,price,photo,icon,reference)
+      @id = name+'_'+lat+'_'+lng;
       @lat = lat;
-      @long = long;
+      @lng = lng;
       @name = name;
       @rating = rating;
       @price = price;

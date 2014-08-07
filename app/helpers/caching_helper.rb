@@ -20,4 +20,8 @@ module CachingHelper
 
   end
 
+  def in_redis?
+
+  end
+
 end
