@@ -9,7 +9,9 @@ module CultureHelper
   end
 
   def get_culture_details(id)
-    puts 'details culture id '+id
+    details = []
+    details.append('details culture id '+id)
+    return details
   end
 
   class CultureItem

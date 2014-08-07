@@ -11,6 +11,6 @@ class CultureController < ApplicationController
     render_with_protection   details.to_json
   end
 
-  
+
 end
 
