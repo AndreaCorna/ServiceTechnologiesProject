@@ -18,7 +18,7 @@ module HotelsHelper
     attr_accessor :id,:lat,:long,:price,:rating,:name,:photo,:icon,:reference;
 
     def initialize(lat,long,name,rating,price,photo,icon,reference)
-      @id = name+lat+long;
+      @id = name+'_'+lat+'_'+long;
       @lat = lat;
       @long = long;
       @name = name;
