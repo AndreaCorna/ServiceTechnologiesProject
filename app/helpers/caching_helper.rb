@@ -11,7 +11,21 @@ module CachingHelper
   end
 
   def get_culture(city)
-    get_culture_items(city)
+    results=[]
+    if((results = $redis.get(city+'_culture')).nil?)
+      puts 'no redis data'
+      culture = get_culture_items(city)
+      results = {'culture' => culture}
+      $redis.set(city+'_culture',results.to_json)
+      return culture
+    else
+      puts 'redis data'
+      puts results
+      #to do parse json
+      return results
+    end
+
+
   end
 
   def get_utility(city)
@@ -28,10 +42,6 @@ module CachingHelper
 
   def hotel_details(id)
     get_hotel_details(id)
-  end
-
-  def in_redis?
-
   end
 
 end
