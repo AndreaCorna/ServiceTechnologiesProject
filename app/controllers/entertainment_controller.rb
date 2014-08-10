@@ -1,13 +1,13 @@
 class EntertainmentController < ApplicationController
-  include PlacesHelper::EntertainmentHelperCity
+  include CachingHelper
 
   def index
-    entertainment_items = get_entertainment_items(params[:city_id]);
+    entertainment_items = get_entertainment(params[:city_id]);
     render_with_protection    entertainment_items.to_json
   end
 
   def show
-    details = get_entertainment_details(params[:id])
+    details = get_details(params[:id])
     render_with_protection    details.to_json
   end
 end

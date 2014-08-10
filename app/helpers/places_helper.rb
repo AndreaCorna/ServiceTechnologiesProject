@@ -1,4 +1,5 @@
 module PlacesHelper
+
   module UtilityHelperCity
 
     def get_utility_items(city)
@@ -108,6 +109,12 @@ module PlacesHelper
 
     end
 
+  end
+
+  def get_details_item(id)
+    details = []
+    details.append('details general id '+id)
+    return details
   end
 
 end
