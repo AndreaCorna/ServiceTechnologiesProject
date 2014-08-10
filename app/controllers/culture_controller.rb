@@ -1,5 +1,5 @@
 class CultureController < ApplicationController
-  include CultureHelper
+  include PlacesHelper::CultureHelperCity
 
   def index
     culture_items = get_culture_items(params[:city_id])

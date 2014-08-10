@@ -1,5 +1,5 @@
 class EntertainmentController < ApplicationController
-  include EntertainmentHelper
+  include PlacesHelper::EntertainmentHelperCity
 
   def index
     entertainment_items = get_entertainment_items(params[:city_id]);

@@ -1,5 +1,5 @@
 class UtilityController < ApplicationController
-  include UtilityHelper
+  include PlacesHelper::UtilityHelperCity
   def index
     utility_items = get_utility_items(params[:city_id])
     render_with_protection    utility_items.to_json
