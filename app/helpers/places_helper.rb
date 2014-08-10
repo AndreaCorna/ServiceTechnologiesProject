@@ -117,4 +117,19 @@ module PlacesHelper
     return details
   end
 
+  def culture(city)
+    client = GooglePlaces::Client.new(ENV['API_KEY'])
+    result =client.spots_by_query(city+" museum",:types => ['museum'],:language => 'en')
+  end
+
+  def utility(city)
+    client = GooglePlaces::Client.new(ENV['API_KEY'])
+    result =client.spots_by_query(city+" museum",:types => ['museum'],:language => 'en')
+  end
+
+  def entertainment(city)
+    client = GooglePlaces::Client.new(ENV['API_KEY'])
+    result =client.spots_by_query(city+" museum",:types => ['museum'],:language => 'en')
+  end
+
 end
