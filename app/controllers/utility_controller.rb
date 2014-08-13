@@ -6,7 +6,7 @@ class UtilityController < ApplicationController
   end
 
   def show
-    utility_details = get_details(params[:id])
+    utility_details = get_details('utility',params[:id])
     render_with_protection   utility_details.to_json
   end
 

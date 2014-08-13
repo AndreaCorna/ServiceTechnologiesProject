@@ -5,7 +5,7 @@ module CachingHelper
   include PlacesHelper::EntertainmentHelperCity
   include HotelsHelper
 
-  def get_details(id)
+  def get_details(type,id)
     #add control if present in redis
     get_details_item(id)
   end
