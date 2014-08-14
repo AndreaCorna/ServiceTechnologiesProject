@@ -3,7 +3,7 @@ class CultureController < ApplicationController
 
   def index
     culture_items = get_culture(params[:city_id])
-    render_with_protection    culture_items.to_json
+    render_with_protection    culture_items
   end
 
   def show

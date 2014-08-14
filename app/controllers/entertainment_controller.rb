@@ -3,7 +3,7 @@ class EntertainmentController < ApplicationController
 
   def index
     entertainment_items = get_entertainment(params[:city_id]);
-    render_with_protection    entertainment_items.to_json
+    render_with_protection    entertainment_items
   end
 
   def show

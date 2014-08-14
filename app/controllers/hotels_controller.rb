@@ -2,7 +2,7 @@ class HotelsController < ApplicationController
   include CachingHelper
   def index
     hotels_list = get_hotels(params[:city_id])
-    render_with_protection    hotels_list.to_json
+    render_with_protection    hotels_list
   end
 
   def show
