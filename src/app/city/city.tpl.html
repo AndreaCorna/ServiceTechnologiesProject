@@ -50,11 +50,11 @@
                             <h4 class="list-group-item-heading">{{c.name}}</h4>
                             <p class="list-group-item-text">
                             <div class="row">
-                                <p>Price {{c.price_level || 'Free'}}</p>
+                                <p>Price {{c.price || 'Free'}}</p>
                             </div>
                             <div class="row">
-                                <p>Rating</p>
-                                <rating ng-model="c[rating]"  readonly="true" ></rating>
+                                <p>Rating {{c.rating}}</p>
+                                <rating value="c.rating" readonly="true" ></rating>
 
                             </div>
                             <div class="row">
@@ -103,11 +103,11 @@
                             <h4 class="list-group-item-heading">{{c.name}}</h4>
                             <p class="list-group-item-text">
                             <div class="row">
-                                <p>Price {{c.price_level || 'Free'}}</p>
+                                <p>Price {{c.price || 'Free'}}</p>
                             </div>
                             <div class="row">
-                                <p>Rating</p>
-                                <rating ng-model="c[rating]"  readonly="true" ></rating>
+                                <p>Rating {{c.rating}}</p>
+                                <rating value="c.rating" readonly="true" ></rating>
 
                             </div>
                             <div class="row">
@@ -157,11 +157,11 @@
                             <h4 class="list-group-item-heading">{{c.name}}</h4>
                             <p class="list-group-item-text">
                             <div class="row">
-                                <p>Price {{c.price_level || 'Free'}}</p>
+                                <p>Price {{c.price || 'Free'}}</p>
                             </div>
                             <div class="row">
-                                <p>Rating</p>
-                                <rating ng-model="c[rating]"  readonly="true" ></rating>
+                                <p>Rating {{c.rating}}</p>
+                                <rating value="c.rating" readonly="true" ></rating>
 
                             </div>
                             <div class="row">
@@ -215,7 +215,7 @@
                             </div>
                             <div class="row">
                                 <p>Rating</p>
-                                <rating ng-model="c[rating]"  readonly="true" ></rating>
+                                <rating value="c.rating" readonly="true" ></rating>
 
                             </div>
                             <div class="row">

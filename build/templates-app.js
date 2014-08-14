@@ -324,11 +324,11 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                            <h4 class=\"list-group-item-heading\">{{c.name}}</h4>\n" +
     "                            <p class=\"list-group-item-text\">\n" +
     "                            <div class=\"row\">\n" +
-    "                                <p>Price {{c.price_level || 'Free'}}</p>\n" +
+    "                                <p>Price {{c.price || 'Free'}}</p>\n" +
     "                            </div>\n" +
     "                            <div class=\"row\">\n" +
-    "                                <p>Rating</p>\n" +
-    "                                <rating ng-model=\"c[rating]\"  readonly=\"true\" ></rating>\n" +
+    "                                <p>Rating {{c.rating}}</p>\n" +
+    "                                <rating value=\"c.rating\" readonly=\"true\" ></rating>\n" +
     "\n" +
     "                            </div>\n" +
     "                            <div class=\"row\">\n" +

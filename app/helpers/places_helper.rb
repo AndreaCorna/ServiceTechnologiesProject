@@ -4,12 +4,11 @@ module PlacesHelper
 
     def get_utility_items(city)
       puts 'parameter '+city
-      client = GooglePlaces::Client.new(ENV['API_KEY'])
-      utility_items = client.spots_by_query(city+" museum",:types => ['museum'],:language => 'it')
-      #culture_items.append(CultureItem.new('lat','long','prova_helper_culture',3,3,'photo','icon','reference'))
+      #client = GooglePlaces::Client.new(ENV['API_KEY'])
+      #utility_items = client.spots_by_query(city+" museum",:types => ['museum'],:language => 'it')
       results = []
-      utility_items.each { |place|
-        results.append(CultureItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,place.photos,place.icon,place.place_id))}
+      #utility_items.each { |place|
+        #results.append(UtilityItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,place.photos,place.icon,place.place_id))}
       return results
 
     end
@@ -29,7 +28,7 @@ module PlacesHelper
         @lat = lat;
         @lng = lng;
         @name = name;
-        @rating = rating;
+        @rating = rating.to_i
         @price = price;
         @photos = photos;
         @icon = icon;
@@ -68,7 +67,7 @@ module PlacesHelper
         @lat = lat;
         @lng = lng;
         @name = name;
-        @rating = rating;
+        @rating = rating.to_i
         @price = price;
         @photos = photos;
         @icon = icon;
@@ -84,11 +83,11 @@ module PlacesHelper
 
     def get_entertainment_items(city)
       puts 'parameter '+city
-      client = GooglePlaces::Client.new(ENV['API_KEY'])
-      entertainment_items = client.spots_by_query(city+" museum",:types => ['museum'],:language => 'it')
+      #client = GooglePlaces::Client.new(ENV['API_KEY'])
+      #entertainment_items = client.spots_by_query(city+" museum",:types => ['museum'],:language => 'it')
       results = []
-      entertainment_items.each { |place|
-        results.append(CultureItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,place.photos,place.icon,place.place_id))}
+      #entertainment_items.each { |place|
+        #results.append(EntertainmentItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,place.photos,place.icon,place.place_id))}
       return results
 
 
@@ -109,7 +108,7 @@ module PlacesHelper
         @lat = lat;
         @lng = lng;
         @name = name;
-        @rating = rating;
+        @rating = rating.to_i
         @price = price;
         @photos = photos;
         @icon = icon;
