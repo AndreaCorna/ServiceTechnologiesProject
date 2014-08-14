@@ -316,7 +316,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                        <div class=\"media col-md-3\">\n" +
     "                            <figure class=\"pull-left\">\n" +
     "                                <i class=\"fa fa-cloud-upload \">\n" +
-    "                                    Image\n" +
+    "                                    <img ng-src=\"{{c.icon}}\" style=\"margin:auto;\">\n" +
     "                                </i>\n" +
     "                            </figure>\n" +
     "                        </div>\n" +
@@ -324,7 +324,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                            <h4 class=\"list-group-item-heading\">{{c.name}}</h4>\n" +
     "                            <p class=\"list-group-item-text\">\n" +
     "                            <div class=\"row\">\n" +
-    "                                Price\n" +
+    "                                <p>Price {{c.price_level || 'Free'}}</p>\n" +
     "                            </div>\n" +
     "                            <div class=\"row\">\n" +
     "                                <p>Rating</p>\n" +
@@ -369,7 +369,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                        <div class=\"media col-md-3\">\n" +
     "                            <figure class=\"pull-left\">\n" +
     "                                <i class=\"fa fa-cloud-upload \">\n" +
-    "                                    Image\n" +
+    "                                    <img ng-src=\"{{c.icon}}\" style=\"margin:auto;\">\n" +
     "                                </i>\n" +
     "                            </figure>\n" +
     "                        </div>\n" +
@@ -377,7 +377,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                            <h4 class=\"list-group-item-heading\">{{c.name}}</h4>\n" +
     "                            <p class=\"list-group-item-text\">\n" +
     "                            <div class=\"row\">\n" +
-    "                                Price\n" +
+    "                                <p>Price {{c.price_level || 'Free'}}</p>\n" +
     "                            </div>\n" +
     "                            <div class=\"row\">\n" +
     "                                <p>Rating</p>\n" +
@@ -423,7 +423,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                        <div class=\"media col-md-3\">\n" +
     "                            <figure class=\"pull-left\">\n" +
     "                                <i class=\"fa fa-cloud-upload \">\n" +
-    "                                    Image\n" +
+    "                                    <img ng-src=\"{{c.icon}}\" style=\"margin:auto;\">\n" +
     "                                </i>\n" +
     "                            </figure>\n" +
     "                        </div>\n" +
@@ -431,7 +431,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                            <h4 class=\"list-group-item-heading\">{{c.name}}</h4>\n" +
     "                            <p class=\"list-group-item-text\">\n" +
     "                            <div class=\"row\">\n" +
-    "                                Price\n" +
+    "                                <p>Price {{c.price_level || 'Free'}}</p>\n" +
     "                            </div>\n" +
     "                            <div class=\"row\">\n" +
     "                                <p>Rating</p>\n" +

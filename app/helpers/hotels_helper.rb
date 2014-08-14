@@ -2,7 +2,7 @@ module HotelsHelper
 
   def get_hotels_list(city)
     puts 'parameter '+city
-    hotels(city)
+    #hotels(city)
     hotels_list = []
     hotels_list.append(HotelItem.new('lat','long','prova_helper_hotel',3,3,'photo','icon','reference'))
     return hotels_list
@@ -22,8 +22,8 @@ module HotelsHelper
     # Per mandare alla pagina di expedia 84505 è il CID che definisce il template 147594 indica invece l'hotel
     # http://www.travelnow.com/templates/55505/hotels/147594/overview
     response = api.get_list({ :destinationString => city})
-    puts response.body
-    end
+    return response.body
+  end
 
   #add methods in order to use expedia api
 
