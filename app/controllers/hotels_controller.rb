@@ -7,6 +7,6 @@ class HotelsController < ApplicationController
 
   def show
     details = hotel_details(params[:id])
-    render_with_protection    details.to_json
+    render_with_protection    details
   end
 end

@@ -7,10 +7,9 @@ class CultureController < ApplicationController
   end
 
   def show
-    details = get_details('culture',params[:id])
-    render_with_protection   details.to_json
+    details = get_details(params[:id])
+    render_with_protection   details
   end
-
 
 end
 

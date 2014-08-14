@@ -5,9 +5,15 @@ module CachingHelper
   include PlacesHelper::EntertainmentHelperCity
   include HotelsHelper
 
-  def get_details(type,id)
-    #add control if present in redis
-    get_details_item(id)
+  def get_details(id)
+    results=[]
+    if((results = $redis.get(id)).nil?)
+      details = get_details_item(id)
+      $redis.set(id,details.to_json)
+      return details.to_json
+    else
+      return results
+    end
   end
 
   def get_culture(city)
@@ -22,9 +28,9 @@ module CachingHelper
       return culture.to_json
     else
       puts 'redis data get after insert'
-      puts $redis.get(city+'_culture')
+      puts results
       #to do parse json
-      return $redis.get(city+'_culture')
+      return results
     end
 
 
@@ -42,9 +48,9 @@ module CachingHelper
       return utility.to_json
     else
       puts 'redis data get after insert'
-      puts $redis.get(city+'_utility')
+      puts results
       #to do parse json
-      return $redis.get(city+'_utility')
+      return results
     end
   end
 
@@ -60,9 +66,9 @@ module CachingHelper
       return entertainment.to_json
     else
       puts 'redis data get after insert'
-      puts $redis.get(city+'_entertainment')
+      puts results
       #to do parse json
-      return $redis.get(city+'_entertainment')
+      return results
     end
   end
 
@@ -78,14 +84,21 @@ module CachingHelper
       return hotel.to_json
     else
       puts 'redis data get after insert'
-      puts $redis.get(city+'_hotel')
+      puts results
       #to do parse json
-      return $redis.get(city+'_hotel')
+      return results
     end
   end
 
   def hotel_details(id)
-    get_hotel_details(id)
+    results=[]
+    if((results = $redis.get(id)).nil?)
+      details = get_hotel_details(id)
+      $redis.set(id,details.to_json)
+      return details.to_json
+    else
+      return results
+    end
   end
 
 end
