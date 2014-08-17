@@ -528,17 +528,20 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "<div class=\"modal fade\" id=\"moreInfoModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">\n" +
     "    <div class=\"modal-dialog\">\n" +
     "        <div class=\"modal-content\">\n" +
-    "            <div class=\"modal-header\">\n" +
-    "                <button type=\"button\" class=\"close\" data-dismiss=\"modal\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button>\n" +
-    "                <h4 class=\"modal-title\" id=\"myModalLabel\">More Information about {{moreInfoSelection}}</h4>\n" +
-    "            </div>\n" +
-    "            <div class=\"modal-body\">\n" +
-    "                {{moreInfoSelection}}\n" +
-    "            </div>\n" +
-    "            <div class=\"modal-footer\">\n" +
-    "                <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>\n" +
-    "            </div>\n" +
+    "           <span ng-repeat=\"info in moreInfoSelection\">\n" +
+    "\n" +
+    "                <div class=\"modal-header\">\n" +
+    "                    <button type=\"button\" class=\"close\" data-dismiss=\"modal\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button>\n" +
+    "                    <h4 class=\"modal-title\" id=\"myModalLabel\">More Information about {{info.name}}</h4>\n" +
+    "                </div>\n" +
+    "                <div class=\"modal-body\">\n" +
+    "                    {{info.id}}\n" +
+    "                </div>\n" +
+    "                <div class=\"modal-footer\">\n" +
+    "                    <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>\n" +
+    "                </div>\n" +
     "        </div>\n" +
+    "\n" +
     "    </div>\n" +
     "</div>\n" +
     "\n" +

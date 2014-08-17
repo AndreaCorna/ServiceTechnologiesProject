@@ -23,7 +23,7 @@ module PlacesHelper
 
 
     class UtilityItem
-      attr_accessor :id,:lat,:lng,:price,:rating,:name,:photos,:icon,:place_id;
+      attr_accessor :id,:lat,:lng,:price,:rating,:name,:photos,:icon;
 
       def initialize(lat,lng,name,rating,price,photos,icon,place_id)
         @id = place_id
@@ -62,7 +62,7 @@ module PlacesHelper
     end
 
     class CultureItem
-      attr_accessor :id,:lat,:lng,:price,:rating,:name,:photos,:icon,:place_id;
+      attr_accessor :id,:lat,:lng,:price,:rating,:name,:photos,:icon;
 
       def initialize(lat,lng,name,rating,price,photos,icon,place_id)
         @id = place_id
@@ -103,7 +103,7 @@ module PlacesHelper
 
 
     class EntertainmentItem
-      attr_accessor :id,:lat,:lng,:price,:rating,:name,:photos,:icon,:place_id;
+      attr_accessor :id,:lat,:lng,:price,:rating,:name,:photos,:icon;
 
       def initialize(lat,lng,name,rating,price,photos,icon,place_id)
         @id = place_id
@@ -122,15 +122,47 @@ module PlacesHelper
 
   require 'httparty'
   require 'json'
+  require 'rubygems'
 
   def get_details_item(id)
     details = []
     response = HTTParty.get('https://maps.googleapis.com/maps/api/place/details/json?placeid='+id+'&key='+ENV['API_KEY'])
-    puts response.body
     json = JSON.parse(response.body)
-    puts json
-    details.append(json)
+    lat = json['result']['geometry']['location']['lat']
+    lng = json['result']['geometry']['location']['lng']
+    reviews = json['result']['reviews']
+    formatted_address = json['result']['formatted_address']
+    phone = json['result']['international_phone_number']
+    name = json['result']['name']
+    icon = json['result']['icon']
+    web_site = json['result']['website']
+    open_hours = json['result']['opening_hours']
+    photos = json['result']['photos']
+    rating = json['result']['user_ratings_total']
+    details_item = DetailedItem.new(id,lat,lng,name,rating,photos,icon,reviews,formatted_address,web_site,phone,open_hours)
+    details.append(details_item)
     return details
   end
+
+  class DetailedItem
+    attr_accessor :id,:lat,:lng,:name,:rating,:photos,:icon,:reviews,:formatted_address,:web_site,:international_phone,:open_hours;
+
+    def initialize(place_id,lat,lng,name,rating,photos,icon,reviews,formatted_address,web_site,international_phone,open_hours)
+      @id = place_id
+      @lat = lat;
+      @lng = lng;
+      @name = name;
+      @rating = rating.to_i
+      @photos = photos;
+      @icon = icon;
+      @reviews = reviews
+      @formatted_address = formatted_address
+      @web_site = web_site
+      @international_phone = international_phone
+      @open_hours = open_hours
+    end
+
+  end
+
 
 end
