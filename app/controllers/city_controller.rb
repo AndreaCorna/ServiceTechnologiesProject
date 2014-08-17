@@ -21,7 +21,9 @@ class CityController < ApplicationController
 
 
   def show
-    test = ['stub city show index ',"city #{params[:city_id]}"]
+    test = [City.new("prima","descrizione1","assets/images/trippo.png",)];
     render  json:  test.to_json
   end
+
+
 end

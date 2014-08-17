@@ -41,8 +41,7 @@ angular.module( 'trippo.home', [
 .controller( 'HomeCtrl', function HomeController($scope,$location , CityRes ) {
 
 
-        $scope.cities = CityRes.query();
-
+        $scope.cities = CityRes.list.query();
         $scope.selected_city = undefined;
 
         $scope.search = function(){
