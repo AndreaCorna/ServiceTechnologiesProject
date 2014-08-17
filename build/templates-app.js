@@ -540,6 +540,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                <div class=\"modal-footer\">\n" +
     "                    <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>\n" +
     "                </div>\n" +
+    "            </span>\n" +
     "        </div>\n" +
     "\n" +
     "    </div>\n" +
