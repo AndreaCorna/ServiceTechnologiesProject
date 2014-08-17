@@ -1,3 +1,5 @@
+require 'net/http'
+
 module PlacesHelper
 
   module UtilityHelperCity
@@ -44,7 +46,7 @@ module PlacesHelper
       puts 'parameter '+city
       client = GooglePlaces::Client.new(ENV['API_KEY'])
 
-      culture_items = client.spots_by_query(city+" museum",:types => ['museum'],:language => 'it')
+      culture_items = client.spots_by_query(city+' culture',:types => ['library','book_store','museum','aquarium','art_gallery'],:language => 'en')
       #culture_items.append(CultureItem.new('lat','long','prova_helper_culture',3,3,'photo','icon','reference'))
       results = []
       culture_items.each { |place|
@@ -118,9 +120,16 @@ module PlacesHelper
 
   end
 
+  require 'httparty'
+  require 'json'
+
   def get_details_item(id)
     details = []
-    details.append('details general id '+id)
+    response = HTTParty.get('https://maps.googleapis.com/maps/api/place/details/json?placeid='+id+'&key='+ENV['API_KEY'])
+    puts response.body
+    json = JSON.parse(response.body)
+    puts json
+    details.append(json)
     return details
   end
 

@@ -56,3 +56,5 @@ gem 'google_places'
 
 #expedia gem
 gem 'expedia'
+
+gem 'httparty'

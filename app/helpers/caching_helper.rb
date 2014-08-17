@@ -8,10 +8,13 @@ module CachingHelper
   def get_details(id)
     results=[]
     if((results = $redis.get(id)).nil?)
+      puts 'no redis data details'
       details = get_details_item(id)
-      $redis.set(id,details.to_json)
-      return details.to_json
+      $redis.set(id,details)
+      return details
     else
+      puts 'redis data details'
+
       return results
     end
   end
