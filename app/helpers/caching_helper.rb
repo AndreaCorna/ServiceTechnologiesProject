@@ -6,15 +6,16 @@ module CachingHelper
   include HotelsHelper
 
   def get_details(id)
-    results=[]
     if((results = $redis.get(id)).nil?)
       puts 'no redis data details'
       details = get_details_item(id)
-      $redis.set(id,details)
-      return details
+      $redis.set(id,details.to_json)
+      puts $redis.get(id)
+
+      return details.to_json
     else
       puts 'redis data details'
-
+      puts results
       return results
     end
   end
