@@ -16,7 +16,42 @@ angular.module( 'trippo.city', [
       }
     },
     data:{ pageTitle: 'What is It?' }
-  });
+  }).state( 'calendar', {
+      url: '/calendar',
+      parent:"city",
+      views: {
+          "content": {
+              controller: 'calendarCtrl',
+              templateUrl: 'plan_trip/calendar.tpl.html'
+
+          }
+      }
+  })
+
+      .state('dates', {
+          url: '/dates',
+          parent:"city",
+          views: {
+              "content@city": {
+                  controller: 'datesCtrl',
+                  templateUrl: 'plan_trip/trip_dates.tpl.html'
+
+              }
+          }
+
+      })
+      .state('planning', {
+          url: '/planning',
+          parent:"city",
+          views: {
+              "content@city": {
+                  controller: 'planningCtrl',
+                  templateUrl: 'plan_trip/planning.tpl.html'
+              }
+          }
+
+      });
+
 })
 
 .controller( 'CityCtrl', function CityCtrl( $scope, $log , CityRes) {

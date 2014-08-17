@@ -14,7 +14,8 @@
  */
 angular.module( 'trippo.home', [
   'ui.router',
-  'trippo.city'
+  'trippo.city',
+  'trippo.plan'
 ])
 
 /**
