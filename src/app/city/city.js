@@ -22,7 +22,7 @@ angular.module( 'trippo.city', [
           parent:"city",
           views: {
               "content@city": {
-                  controller: 'CityCtrl',
+                  controller: 'CultureCtrl',
                   templateUrl: 'city/culture.tpl.html'
 
               }
@@ -34,7 +34,7 @@ angular.module( 'trippo.city', [
           parent:"city",
           views: {
               "content@city": {
-                  controller: 'CityCtrl',
+                  controller: 'HotelCtrl',
                   templateUrl: 'city/hotel.tpl.html'
 
               }
@@ -46,7 +46,7 @@ angular.module( 'trippo.city', [
           parent:"city",
           views: {
               "content@city": {
-                  controller: 'CityCtrl',
+                  controller: 'EntertainmentCtrl',
                   templateUrl: 'city/entertainment.tpl.html'
 
               }
@@ -58,7 +58,7 @@ angular.module( 'trippo.city', [
           parent:"city",
           views: {
               "content@city": {
-                  controller: 'CityCtrl',
+                  controller: 'UtilityCtrl',
                   templateUrl: 'city/utility.tpl.html'
 
               }
@@ -71,7 +71,7 @@ angular.module( 'trippo.city', [
       parent:"city",
       views: {
           "content": {
-              controller: 'calendarCtrl',
+              controller: 'CalendarCtrl',
               templateUrl: 'plan_trip/calendar.tpl.html'
 
           }
@@ -83,7 +83,7 @@ angular.module( 'trippo.city', [
           parent:"city",
           views: {
               "content@city": {
-                  controller: 'datesCtrl',
+                  controller: 'DatesCtrl',
                   templateUrl: 'plan_trip/trip_dates.tpl.html'
 
               }
@@ -96,7 +96,7 @@ angular.module( 'trippo.city', [
           parent:"city",
           views: {
               "content@city": {
-                  controller: 'planningCtrl',
+                  controller: 'PlanningCtrl',
                   templateUrl: 'plan_trip/planning.tpl.html'
               }
           }
@@ -105,8 +105,26 @@ angular.module( 'trippo.city', [
 
 })
 
+.controller('CultureCtrl', function cultureCtrl($scope) {
 
 
+})
+
+
+.controller('EntertainmentCtrl', function cultureCtrl($scope) {
+
+
+})
+
+.controller('UtilityCtrl', function cultureCtrl($scope) {
+
+
+})
+
+.controller('HotelCtrl', function cultureCtrl($scope) {
+
+
+})
 
 .controller( 'CityCtrl', function CityCtrl( $scope, $stateParams, $log , CityRes, CultureRes, UtilityRes, EntertainmentRes, HotelRes, SelectionService) {
       $scope.$log= $log;

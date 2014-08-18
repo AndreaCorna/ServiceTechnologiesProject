@@ -13,7 +13,7 @@ angular.module('trippo.plan',[
 
 
 
-.controller('calendarCtrl', function calendarCtrl($scope, $log) {
+.controller('CalendarCtrl', function CalendarCtrl($scope, $log) {
         $scope.dtstart=null;
         $scope.dtend=null;
         $scope.$log= $log;
@@ -27,12 +27,12 @@ angular.module('trippo.plan',[
 
 })
 
-.controller('datesCtrl', function datesCtrl($scope) {
+.controller('DatesCtrl', function DatesCtrl($scope) {
 
 
 })
 
-.controller('planningCtrl', function planningCtrl($scope) {
+.controller('PlanningCtrl', function PlanningCtrl($scope) {
 
 
 });
