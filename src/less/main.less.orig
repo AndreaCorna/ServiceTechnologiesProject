@@ -154,3 +154,7 @@ h2 {
 
 @import '../app/home/home.less';
 @import '../app/city/city.less';
+<<<<<<< HEAD
+
+=======
+>>>>>>> master
