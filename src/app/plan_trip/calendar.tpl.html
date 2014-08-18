@@ -1,1 +1,20 @@
-<div>calendar</div>
+<div class="container">
+    <div class="row">
+        <form novalidate name="form" ng-submit="next()">
+            <div class="col-md-6">
+                <h1>Start date:<span ng-show="dtstart">{{dtstart | date:'dd/MM/yyyy'}}</span></h1>
+                <datepicker ng-model="dtstart" min-date="minDate" show-weeks="false" name="start" class="well well-sm" required></datepicker>
+                <span ng-show="form.start.$invalid && form.start.$pristine" >Required</span>
+            </div>
+
+            <div class="col-md-6">
+                <h1>End date:<span ng-show="dtend">{{dtend | date:'dd/MM/yyyy'}}</span></h1>
+                <datepicker ng-model="dtend" min-date="dtstart" show-weeks="false" name="end" class="well well-sm" required></datepicker>
+                <span ng-show="form.end.$error.required" >Required</span>
+            </div>
+            <button class="btn btn-primary pull-right"   ng-disabled="!form.$valid" >Next</button>
+        </form>
+    </div>
+
+
+</div>
