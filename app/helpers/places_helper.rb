@@ -39,7 +39,7 @@ module PlacesHelper
       puts 'parameter '+city
       client = GooglePlaces::Client.new(ENV['API_KEY'])
 
-      culture_items = client.spots_by_query(city+' culture',:types => ['library','book_store','museum','aquarium','art_gallery'],:language => 'en')
+      culture_items = client.spots_by_query(city+' museum || library',:types => ['library','book_store','museum','aquarium','art_gallery'],:language => 'en')
       #culture_items.append(CultureItem.new('lat','long','prova_helper_culture',3,3,'photo','icon','reference'))
       results = []
       culture_items.each { |place|
@@ -56,7 +56,7 @@ module PlacesHelper
         @lat = lat;
         @lng = lng;
         @name = name;
-        @rating = rating.to_i
+        @rating = rating
         @price = price;
         @photos = photos;
         @icon = icon;
