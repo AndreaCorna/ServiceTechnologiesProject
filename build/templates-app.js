@@ -535,7 +535,17 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                    <h4 class=\"modal-title\" id=\"myModalLabel\">More Information about {{info.name}}</h4>\n" +
     "                </div>\n" +
     "                <div class=\"modal-body\">\n" +
-    "                    {{info.id}}\n" +
+    "                    <div class=\"row\">\n" +
+    "                        <div class=\"column\" >\n" +
+    "                            {{info.id}}\n" +
+    "                        </div>\n" +
+    "                        <div class=\"column\">\n" +
+    "                            {{info.rating}}\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                    <div class=\"row\">\n" +
+    "\n" +
+    "                    </div>\n" +
     "                </div>\n" +
     "                <div class=\"modal-footer\">\n" +
     "                    <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>\n" +
