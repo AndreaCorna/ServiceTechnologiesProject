@@ -15,13 +15,6 @@ module PlacesHelper
 
     end
 
-    def get_utility_details(id)
-      details = []
-      details.append('details utility id '+id)
-      return details
-    end
-
-
     class UtilityItem
       attr_accessor :id,:lat,:lng,:price,:rating,:name,:photos,:icon;
 
@@ -55,12 +48,6 @@ module PlacesHelper
 
     end
 
-    def get_culture_details(id)
-      details = []
-      details.append('details culture id '+id)
-      return details
-    end
-
     class CultureItem
       attr_accessor :id,:lat,:lng,:price,:rating,:name,:photos,:icon;
 
@@ -92,13 +79,6 @@ module PlacesHelper
         #results.append(EntertainmentItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,place.photos,place.icon,place.place_id))}
       return results
 
-
-    end
-
-    def get_entertainment_details(id)
-      details = []
-      details.append('details entertainment id '+id)
-      return details
     end
 
 
