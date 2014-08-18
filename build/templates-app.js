@@ -280,9 +280,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "\n" +
     "\n" +
     "<div>\n" +
-    "    <p>\n" +
-    "        List culture {{cultureSelection}}\n" +
-    "    </p>\n" +
+    "\n" +
     "    <p>\n" +
     "        List hotel {{hotelSelection}}\n" +
     "    </p>\n" +
@@ -323,19 +321,18 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "<div class=\"modal fade\" id=\"moreInfoModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">\n" +
     "    <div class=\"modal-dialog\">\n" +
     "        <div class=\"modal-content\">\n" +
-    "           <span ng-repeat=\"info in moreInfoSelection\">\n" +
     "\n" +
     "                <div class=\"modal-header\">\n" +
     "                    <button type=\"button\" class=\"close\" data-dismiss=\"modal\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button>\n" +
-    "                    <h4 class=\"modal-title\" id=\"myModalLabel\">More Information about {{info.name}}</h4>\n" +
+    "                    <h4 class=\"modal-title\" id=\"myModalLabel\">More Information about {{moreInfoSelection.name}}</h4>\n" +
     "                </div>\n" +
     "                <div class=\"modal-body\">\n" +
     "                    <div class=\"row\">\n" +
     "                        <div class=\"column\" >\n" +
-    "                            {{info.id}}\n" +
+    "                            {{moreInfoSelection.id}}\n" +
     "                        </div>\n" +
     "                        <div class=\"column\">\n" +
-    "                            {{info.rating}}\n" +
+    "                            {{moreInfoSelection.rating}}\n" +
     "                        </div>\n" +
     "                    </div>\n" +
     "                    <div class=\"row\">\n" +
@@ -343,9 +340,9 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                    </div>\n" +
     "                </div>\n" +
     "                <div class=\"modal-footer\">\n" +
+    "\n" +
     "                    <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>\n" +
     "                </div>\n" +
-    "            </span>\n" +
     "        </div>\n" +
     "\n" +
     "    </div>\n" +
@@ -357,6 +354,9 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
 
 angular.module("city/culture.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("city/culture.tpl.html",
+    "<p>\n" +
+    "    List culture {{cultureSelection}}\n" +
+    "</p>\n" +
     "<div class=\"container\">\n" +
     "    <div class=\"row\">\n" +
     "        <div class=\"well\">\n" +
