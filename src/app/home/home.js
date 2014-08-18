@@ -48,10 +48,10 @@ angular.module( 'trippo.home', [
         $scope.search = function(){
             $log.log("city passed " + $scope.selected_city);
             if  ($scope.selected_city.name === undefined){
-                $location.path('/city/' + $scope.selected_city);
+                $location.path('/city/' + $scope.selected_city+"/culture");
             }
             else{
-                $location.path('/city/' + $scope.selected_city.name);
+                $location.path('/city/' + $scope.selected_city.name+"/culture");
             }
 
         };
