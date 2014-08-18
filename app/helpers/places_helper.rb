@@ -7,7 +7,7 @@ module PlacesHelper
     def get_utility_items(city)
       puts 'parameter '+city
       #client = GooglePlaces::Client.new(ENV['API_KEY'])
-      #utility_items = client.spots_by_query(city+" museum",:types => ['museum'],:language => 'it')
+      #utility_items = client.spots_by_query(city+" utility",:types => ['atm','bank','bus_station','doctor','fire_station','hospital','parking','pharmacy','subway_station','taxi_stand','train_station'],:language => 'en')
       results = []
       #utility_items.each { |place|
         #results.append(UtilityItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,place.photos,place.icon,place.place_id))}
