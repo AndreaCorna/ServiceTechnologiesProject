@@ -41,17 +41,22 @@ angular.module( 'trippo.home', [
  */
 .controller( 'HomeCtrl', function HomeController($scope,$log,$location , CityRes ) {
 
+<<<<<<< HEAD
+        $scope.$log = $log;
+        $scope.cities = CityRes.query();
 
+=======
         $scope.cities = CityRes.list.query();
+>>>>>>> master
         $scope.selected_city = undefined;
 
         $scope.search = function(){
             $log.log("city passed " + $scope.selected_city);
             if  ($scope.selected_city.name === undefined){
-                $location.path('/city/' + $scope.selected_city+"/culture");
+                $location.path('/city/' + $scope.selected_city);
             }
             else{
-                $location.path('/city/' + $scope.selected_city.name+"/culture");
+                $location.path('/city/' + $scope.selected_city.name);
             }
 
         };

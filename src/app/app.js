@@ -3,6 +3,7 @@ angular.module( 'trippo', [
   'templates-common',
   'trippo.home',
   'trippo.city',
+  'trippo.plan',
   'ui.router',
   'trippo.navModule'
 ])

@@ -15,69 +15,204 @@ angular.module( 'trippo.city', [
         templateUrl: 'city/city.tpl.html'
       }
     },
-    data:{ pageTitle: 'City' }
-  });
+    data:{ pageTitle: 'What is It?' }
+  })
+      .state('culture', {
+          url: '/culture',
+          parent:"city",
+          views: {
+              "content@city": {
+                  controller: 'CultureCtrl',
+                  templateUrl: 'city/culture.tpl.html'
+
+              }
+          }
+
+      })
+      .state('hotel', {
+          url: '/hotel',
+          parent:"city",
+          views: {
+              "content@city": {
+                  controller: 'HotelCtrl',
+                  templateUrl: 'city/hotel.tpl.html'
+
+              }
+          }
+
+      })
+      .state('entertainment', {
+          url: '/entertainment',
+          parent:"city",
+          views: {
+              "content@city": {
+                  controller: 'EntertainmentCtrl',
+                  templateUrl: 'city/entertainment.tpl.html'
+
+              }
+          }
+
+      })
+      .state('utility', {
+          url: '/utility',
+          parent:"city",
+          views: {
+              "content@city": {
+                  controller: 'UtilityCtrl',
+                  templateUrl: 'city/utility.tpl.html'
+
+              }
+          }
+
+      })
+
+      .state( 'calendar', {
+      url: '/calendar',
+      parent:"city",
+      views: {
+          "content": {
+              controller: 'CalendarCtrl',
+              templateUrl: 'plan_trip/calendar.tpl.html'
+
+          }
+      }
+  })
+
+      .state('dates', {
+          url: '/dates',
+          parent:"city",
+          views: {
+              "content@city": {
+                  controller: 'DatesCtrl',
+                  templateUrl: 'plan_trip/trip_dates.tpl.html'
+
+              }
+          }
+
+      })
+
+      .state('planning', {
+          url: '/planning',
+          parent:"city",
+          views: {
+              "content@city": {
+                  controller: 'PlanningCtrl',
+                  templateUrl: 'plan_trip/planning.tpl.html'
+              }
+          }
+
+      });
+
 })
 
-.controller( 'CityCtrl', function CityCtrl( $scope, $stateParams, $log , CityRes, CultureRes, UtilityRes, EntertainmentRes, HotelRes, SelectionService) {
-      $scope.$log= $log;
-      $scope.intervalImages = 5000;
-      $scope.city = CityRes.details.query({city_name:$stateParams.city_name});
-      $scope.cultureList = CultureRes.list.query({city_name:$stateParams.city_name});
-      $scope.utilityList = UtilityRes.list.query({city_name:$stateParams.city_name});
-      $scope.entertainmentList= EntertainmentRes.list.query({city_name:$stateParams.city_name});
-      $scope.hotelList = HotelRes.list.query({city_name:$stateParams.city_name});
-      $scope.getCultureDetails = function(id_culture){
-          $scope.moreInfoSelection = CultureRes.details.query({city_name:$stateParams.city_name,id_culture:id_culture});
-      };
-      $scope.getUtilityDetails = function(id_utility){
-          $scope.moreInfoSelection = UtilityRes.details.query({city_name:$stateParams.city_name,id_utility:id_utility});
-      };
-      $scope.getEntertainmentDetails = function(id_entertainment){
-          $scope.moreInfoSelection = EntertainmentRes.details.query({city_name:$stateParams.city_name,id_entertainment:id_entertainment});
-      };
-      $scope.getHotelDetails = function(id_hotel){
-          $scope.moreInfoSelection = HotelRes.details.query({city_name:$stateParams.city_name,id_hotel:id_hotel});
-      };
+.controller('CultureCtrl', function CultureCtrl($scope,CultureRes,$stateParams,SelectionService,ModalHandler) {
+        $scope.cultureList = CultureRes.list.query({city_name:$stateParams.city_name});
+        $scope.getCultureDetails = function(id_culture){
+            console.log("selection "+$scope.cultureSelection);
+            console.log("currently selected  "+id_culture);
 
-      $scope.addCultureItem = function(culture_item){
-          $scope.cultureSelection = SelectionService.addCultureItem(culture_item);
-      };
+            var data;
 
-      $scope.removeCultureItem = function(culture_item){
-          $scope.cultureSelection = SelectionService.removeCultureItem(culture_item);
-      };
+            CultureRes.details.query({city_name: $stateParams.city_name, id_culture: id_culture},function(response){
+                data =response;
+                console.log(data[0].name);
+                ModalHandler.setDetails(data[0]);
 
-      $scope.addUtilityItem = function(utility_item){
-          $scope.utilitySelection = SelectionService.addUtilityItem(utility_item);
-      };
 
-      $scope.removeUtilityItem = function(utility_item){
-          $scope.utilitySelection = SelectionService.removeUtilityItem(utility_item);
-      };
+            });
 
-      $scope.addEntertainmentItem = function(entertainment_item){
-          $scope.entertainmentSelection = SelectionService.addEntertainmentItem(entertainment_item);
-      };
 
-      $scope.removeEntertainmentItem = function(entertainment_item){
-          $scope.entertainmentSelection = SelectionService.removeEntertainmentItem(entertainment_item);
-      };
+        };
+        $scope.addCultureItem = function(culture_item){
+            $scope.cultureSelection = SelectionService.addCultureItem(culture_item);
+            console.log(ModalHandler.details);
+        };
 
-      $scope.addHotelItem = function(hotel_item){
-          $scope.hotelSelection = SelectionService.addHotelItem(hotel_item);
-      };
+        $scope.removeCultureItem = function(culture_item){
+            $scope.cultureSelection = SelectionService.removeCultureItem(culture_item);
+        };
 
-      $scope.removeHotelItem = function(hotel_item){
-          $scope.hotelSelection = SelectionService.removeHotelItem(hotel_item);
-      };
-
-  /*
-  metti lista selezione di culture entertaiment ecc liste complete
-  servizi per gli oggetti selezionati e tali oggetti vanno messi nei servizi.
-  Ogni oggetto va tenuto con il json delle info base le info complete in redis
-   */
 })
+
+
+.controller('EntertainmentCtrl', function EntertainmentCtrl($scope,EntertainmentRes,$stateParams,SelectionService) {
+        $scope.entertainmentList= EntertainmentRes.list.query({city_name:$stateParams.city_name});
+        $scope.getEntertainmentDetails = function(id_entertainment){
+            $scope.moreInfoSelection = EntertainmentRes.details.query({city_name:$stateParams.city_name,id_entertainment:id_entertainment});
+        };
+        $scope.addEntertainmentItem = function(entertainment_item){
+            $scope.entertainmentSelection = SelectionService.addEntertainmentItem(entertainment_item);
+        };
+
+        $scope.removeEntertainmentItem = function(entertainment_item){
+            $scope.entertainmentSelection = SelectionService.removeEntertainmentItem(entertainment_item);
+        };
+
+
+})
+
+.controller('UtilityCtrl', function UtilityCtrl($scope,UtilityRes,$stateParams,SelectionService) {
+        $scope.utilityList = UtilityRes.list.query({city_name:$stateParams.city_name});
+        $scope.getUtilityDetails = function(id_utility){
+            $scope.moreInfoSelection = UtilityRes.details.query({city_name:$stateParams.city_name,id_utility:id_utility});
+        };
+        $scope.addUtilityItem = function(utility_item){
+            $scope.utilitySelection = SelectionService.addUtilityItem(utility_item);
+        };
+
+        $scope.removeUtilityItem = function(utility_item){
+            $scope.utilitySelection = SelectionService.removeUtilityItem(utility_item);
+        };
+
+
+    })
+
+.controller('HotelCtrl', function HotelCtrl($scope,HotelRes,$stateParams,SelectionService) {
+        $scope.hotelList = HotelRes.list.query({city_name:$stateParams.city_name});
+        $scope.getHotelDetails = function(id_hotel){
+            $scope.moreInfoSelection = HotelRes.details.query({city_name:$stateParams.city_name,id_hotel:id_hotel});
+        };
+        $scope.addHotelItem = function(hotel_item){
+            $scope.hotelSelection = SelectionService.addHotelItem(hotel_item);
+        };
+
+        $scope.removeHotelItem = function(hotel_item){
+            $scope.hotelSelection = SelectionService.removeHotelItem(hotel_item);
+        };
+
+
+})
+
+
+
+
+.factory('ModalHandler', function () {
+    var details;
+        return {
+            getDetails: function () {
+                return details;
+            },
+            setDetails: function(value) {
+                details = value;
+            }
+        };
+})
+
+    .controller( 'CityCtrl', function CityCtrl( $scope, $stateParams, $log , CityRes,ModalHandler) {
+        $scope.$log= $log;
+        $scope.intervalImages = 5000;
+        $scope.moreInfoSelection=null;
+        $scope.city = CityRes.details.query({city_name:$stateParams.city_name});
+        $scope.$watchCollection(function () { return ModalHandler.getDetails(); }, function (newVal, oldVal) {
+            if (typeof newVal !== 'undefined') {
+                console.log("changing value") ;
+                $scope.moreInfoSelection = ModalHandler.getDetails();
+            }
+        });
+
+
+
+    })
 
 .factory( 'CityRes', function ( $resource )  {
         var listCities = $resource("../../city/");
@@ -138,6 +273,7 @@ angular.module( 'trippo.city', [
         var entertainmentSelection = [];
         return{
             addCultureItem:function (culture_item) {
+
                 if(cultureSelection.indexOf(culture_item) == -1) {
                     cultureSelection.push(culture_item);
                 }
