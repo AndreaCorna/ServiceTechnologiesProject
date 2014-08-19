@@ -4,21 +4,6 @@
     <script type="text/javascript" src="http://www.shieldui.com/shared/components/latest/js/shieldui-all.min.js"></script>
 </head>
 
-
-<div>
-
-    <p>
-        List hotel {{hotelSelection}}
-    </p>
-    <p>
-        List entertainment {{entertainmentSelection}}
-    </p>
-    <p>
-        List utility {{utilitySelection}}
-    </p>
-
-</div>
-
 <carousel interval="intervalImages">
     <slide ng-repeat="image in city" active="image.active">
         <img ng-src="{{image.image}}" style="margin:auto;">
@@ -33,7 +18,9 @@
         <li class='active'><a ui-sref="culture"><span>Culture</span></a></li>
         <li><a ui-sref="entertainment"><span>Entertainment</span></a></li>
         <li><a ui-sref="hotel"><span>Hotel</span></a></li>
-        <li ><a ui-sref="utility"><span>Utility</span></a></li>
+        <li><a ui-sref="utility"><span>Utility</span></a></li>
+        <li><a ui-sref="food"><span>Food</span></a></li>
+
         <li class='last'><a ui-sref="calendar"><span>Plan Trip</span></a></li>
     </ul>
 
