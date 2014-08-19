@@ -109,11 +109,11 @@ module PlacesHelper
 
     def get_food_items(city)
       puts 'parameter '+city
-      client = GooglePlaces::Client.new(ENV['API_KEY'])
-      food_items = client.spots_by_query(city+' food || restaurant || cafe || bakery',:types => ['food','restaurant','cafe','bakery'],:language => 'en')
+      #client = GooglePlaces::Client.new(ENV['API_KEY'])
+      #food_items = client.spots_by_query(city+' food || restaurant || cafe || bakery',:types => ['food','restaurant','cafe','bakery'],:language => 'en')
       results = []
-      food_items.each { |place|
-        results.append(FoodItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,place.photos,place.icon,place.place_id,'food'))}
+      #food_items.each { |place|
+       # results.append(FoodItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,place.photos,place.icon,place.place_id,'food'))}
       return results
 
     end
