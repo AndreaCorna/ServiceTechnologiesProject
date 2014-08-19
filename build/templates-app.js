@@ -314,13 +314,54 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                    <h4 class=\"modal-title\" id=\"myModalLabel\">More Information about {{moreInfoSelection.name}}</h4>\n" +
     "                </div>\n" +
     "                <div class=\"modal-body\">\n" +
-    "                    <div class=\"row\">\n" +
-    "                        <div class=\"column\" >\n" +
-    "                            {{moreInfoSelection.id}}\n" +
+    "                    <div class=\"container-fluid\">\n" +
+    "                        <div class=\"row\">\n" +
+    "                            <div class=\"col-lg-6\" >\n" +
+    "                                <div class=\"row\">\n" +
+    "                                    <b>Rating</b>\n" +
+    "                                </div>\n" +
+    "                                <div class=\"row\">\n" +
+    "                                    {{moreInfoSelection.rating}}\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                            <div class=\"col-lg-6\">\n" +
+    "                                <div class=\"row\">\n" +
+    "                                    <b>Price</b>\n" +
+    "                                </div>\n" +
+    "                                <div class=\"row\">\n" +
+    "                                    {{moreInfoSelection.price}}\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
     "                        </div>\n" +
-    "                        <div class=\"column\">\n" +
-    "                            {{moreInfoSelection.rating}}\n" +
+    "                        <div class=\"row\">\n" +
+    "                            <div class=\"col-lg-6\" >\n" +
+    "                                <div class=\"row\">\n" +
+    "                                    <b>Phone</b>\n" +
+    "                                </div>\n" +
+    "                                <div class=\"row\">\n" +
+    "                                    {{moreInfoSelection.international_phone}}\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                            <div class=\"col-lg-6\">\n" +
+    "                                <div class=\"row\">\n" +
+    "                                    <b>Address</b>\n" +
+    "                                </div>\n" +
+    "                                <div class=\"row\">\n" +
+    "                                    {{moreInfoSelection.formatted_address}}\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
     "                        </div>\n" +
+    "                        <div class=\"row\">\n" +
+    "                            <div class=\"col-lg-12\" >\n" +
+    "                                <div class=\"row\">\n" +
+    "                                    <b>Web Site</b>\n" +
+    "                                </div>\n" +
+    "                                <div class=\"row\">\n" +
+    "                                    {{moreInfoSelection.web_site}}\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "\n" +
     "                    </div>\n" +
     "                    <div class=\"row\">\n" +
     "\n" +

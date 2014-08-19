@@ -40,13 +40,54 @@
                     <h4 class="modal-title" id="myModalLabel">More Information about {{moreInfoSelection.name}}</h4>
                 </div>
                 <div class="modal-body">
-                    <div class="row">
-                        <div class="column" >
-                            {{moreInfoSelection.id}}
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg-6" >
+                                <div class="row">
+                                    <b>Rating</b>
+                                </div>
+                                <div class="row">
+                                    {{moreInfoSelection.rating}}
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="row">
+                                    <b>Price</b>
+                                </div>
+                                <div class="row">
+                                    {{moreInfoSelection.price}}
+                                </div>
+                            </div>
                         </div>
-                        <div class="column">
-                            {{moreInfoSelection.rating}}
+                        <div class="row">
+                            <div class="col-lg-6" >
+                                <div class="row">
+                                    <b>Phone</b>
+                                </div>
+                                <div class="row">
+                                    {{moreInfoSelection.international_phone}}
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="row">
+                                    <b>Address</b>
+                                </div>
+                                <div class="row">
+                                    {{moreInfoSelection.formatted_address}}
+                                </div>
+                            </div>
                         </div>
+                        <div class="row">
+                            <div class="col-lg-12" >
+                                <div class="row">
+                                    <b>Web Site</b>
+                                </div>
+                                <div class="row">
+                                    {{moreInfoSelection.web_site}}
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                     <div class="row">
 
