@@ -135,11 +135,25 @@ angular.module( 'trippo.city', [
 })
 
 
-.controller('EntertainmentCtrl', function EntertainmentCtrl($scope,EntertainmentRes,$stateParams,SelectionService) {
+.controller('EntertainmentCtrl', function EntertainmentCtrl($scope,EntertainmentRes,$stateParams,SelectionService,ModalHandler) {
         $scope.entertainmentList= EntertainmentRes.list.query({city_name:$stateParams.city_name});
         $scope.getEntertainmentDetails = function(id_entertainment){
-            $scope.moreInfoSelection = EntertainmentRes.details.query({city_name:$stateParams.city_name,id_entertainment:id_entertainment});
+            console.log("selection "+$scope.cultureSelection);
+            console.log("currently selected  "+id_entertainment);
+
+            var data;
+
+            EntertainmentRes.details.query({city_name: $stateParams.city_name, id_culture: id_entertainment},function(response){
+                data =response;
+                console.log(data[0].name);
+                ModalHandler.setDetails(data[0]);
+
+
+            });
+
+
         };
+
         $scope.addEntertainmentItem = function(entertainment_item){
             $scope.entertainmentSelection = SelectionService.addEntertainmentItem(entertainment_item);
         };
@@ -151,10 +165,23 @@ angular.module( 'trippo.city', [
 
 })
 
-.controller('UtilityCtrl', function UtilityCtrl($scope,UtilityRes,$stateParams,SelectionService) {
+.controller('UtilityCtrl', function UtilityCtrl($scope,UtilityRes,$stateParams,SelectionService,ModalHandler) {
         $scope.utilityList = UtilityRes.list.query({city_name:$stateParams.city_name});
         $scope.getUtilityDetails = function(id_utility){
-            $scope.moreInfoSelection = UtilityRes.details.query({city_name:$stateParams.city_name,id_utility:id_utility});
+            console.log("selection "+$scope.cultureSelection);
+            console.log("currently selected  "+id_utility);
+
+            var data;
+
+            UtilityRes.details.query({city_name: $stateParams.city_name, id_culture: id_utility},function(response){
+                data =response;
+                console.log(data[0].name);
+                ModalHandler.setDetails(data[0]);
+
+
+            });
+
+
         };
         $scope.addUtilityItem = function(utility_item){
             $scope.utilitySelection = SelectionService.addUtilityItem(utility_item);
@@ -167,10 +194,23 @@ angular.module( 'trippo.city', [
 
     })
 
-.controller('HotelCtrl', function HotelCtrl($scope,HotelRes,$stateParams,SelectionService) {
+.controller('HotelCtrl', function HotelCtrl($scope,HotelRes,$stateParams,SelectionService,ModalHandler) {
         $scope.hotelList = HotelRes.list.query({city_name:$stateParams.city_name});
         $scope.getHotelDetails = function(id_hotel){
-            $scope.moreInfoSelection = HotelRes.details.query({city_name:$stateParams.city_name,id_hotel:id_hotel});
+            console.log("selection "+$scope.cultureSelection);
+            console.log("currently selected  "+id_hotel);
+
+            var data;
+
+            HotelRes.details.query({city_name: $stateParams.city_name, id_culture: id_hotel},function(response){
+                data =response;
+                console.log(data[0].name);
+                ModalHandler.setDetails(data[0]);
+
+
+            });
+
+
         };
         $scope.addHotelItem = function(hotel_item){
             $scope.hotelSelection = SelectionService.addHotelItem(hotel_item);
