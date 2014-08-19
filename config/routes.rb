@@ -69,6 +69,7 @@ Rails.application.routes.draw do
     resources :culture   ,  :only => [:index,:show]
     resources :entertainment  ,  :only => [:index,:show]
     resources :utility  ,  :only => [:index,:show]
+    resources  :food     ,  :only => [:index,:show]
 
   end
 

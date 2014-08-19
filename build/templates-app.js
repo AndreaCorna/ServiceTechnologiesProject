@@ -1,4 +1,4 @@
-angular.module('templates-app', ['about/about.tpl.html', 'city/city.tpl.html', 'home/home.tpl.html']);
+angular.module('templates-app', ['about/about.tpl.html', 'city/city.tpl.html', 'city/culture.tpl.html', 'city/entertainment.tpl.html', 'city/food.tpl.html', 'city/hotel.tpl.html', 'city/utility.tpl.html', 'home/home.tpl.html', 'plan_trip/calendar.tpl.html', 'plan_trip/planning.tpl.html', 'plan_trip/trip_dates.tpl.html']);
 
 angular.module("about/about.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("about/about.tpl.html",
@@ -278,23 +278,6 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "    <script type=\"text/javascript\" src=\"http://www.shieldui.com/shared/components/latest/js/shieldui-all.min.js\"></script>\n" +
     "</head>\n" +
     "\n" +
-    "\n" +
-    "<div>\n" +
-    "    <p>\n" +
-    "        List culture {{cultureSelection}}\n" +
-    "    </p>\n" +
-    "    <p>\n" +
-    "        List hotel {{hotelSelection}}\n" +
-    "    </p>\n" +
-    "    <p>\n" +
-    "        List entertainment {{entertainmentSelection}}\n" +
-    "    </p>\n" +
-    "    <p>\n" +
-    "        List utility {{utilitySelection}}\n" +
-    "    </p>\n" +
-    "\n" +
-    "</div>\n" +
-    "\n" +
     "<carousel interval=\"intervalImages\">\n" +
     "    <slide ng-repeat=\"image in city\" active=\"image.active\">\n" +
     "        <img ng-src=\"{{image.image}}\" style=\"margin:auto;\">\n" +
@@ -304,13 +287,109 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "    </slide>\n" +
     "</carousel>\n" +
     "\n" +
-    "<tabset>\n" +
-    "    <tab heading=\"Culture\">\n" +
-    "        <div class=\"container\">\n" +
-    "            <div class=\"row\">\n" +
-    "                <div class=\"well\">\n" +
-    "                    <h1 class=\"text-center\">Culture</h1>\n" +
-    "                    <div class=\"list-group\">\n" +
+    "<div id='cssmenu'>\n" +
+    "    <ul>\n" +
+    "        <li class='active'><a ui-sref=\"culture\"><span>Culture</span></a></li>\n" +
+    "        <li><a ui-sref=\"entertainment\"><span>Entertainment</span></a></li>\n" +
+    "        <li><a ui-sref=\"hotel\"><span>Hotel</span></a></li>\n" +
+    "        <li><a ui-sref=\"utility\"><span>Utility</span></a></li>\n" +
+    "        <li><a ui-sref=\"food\"><span>Food</span></a></li>\n" +
+    "\n" +
+    "        <li class='last'><a ui-sref=\"calendar\"><span>Plan Trip</span></a></li>\n" +
+    "    </ul>\n" +
+    "\n" +
+    "</div>\n" +
+    "<div ui-view=\"content\" class=\"fill\"></div>\n" +
+    "\n" +
+    "\n" +
+    "\n" +
+    "\n" +
+    "\n" +
+    "<div class=\"modal fade\" id=\"moreInfoModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">\n" +
+    "    <div class=\"modal-dialog\">\n" +
+    "        <div class=\"modal-content\">\n" +
+    "\n" +
+    "                <div class=\"modal-header\">\n" +
+    "                    <button type=\"button\" class=\"close\" data-dismiss=\"modal\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button>\n" +
+    "                    <h4 class=\"modal-title\" id=\"myModalLabel\">More Information about {{moreInfoSelection.name}}</h4>\n" +
+    "                </div>\n" +
+    "                <div class=\"modal-body\">\n" +
+    "                    <div class=\"container-fluid\">\n" +
+    "                        <div class=\"row\">\n" +
+    "                            <div class=\"col-lg-6\" >\n" +
+    "                                <div class=\"row\">\n" +
+    "                                    <b>Rating</b>\n" +
+    "                                </div>\n" +
+    "                                <div class=\"row\">\n" +
+    "                                    {{moreInfoSelection.rating}}\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                            <div class=\"col-lg-6\">\n" +
+    "                                <div class=\"row\">\n" +
+    "                                    <b>Price</b>\n" +
+    "                                </div>\n" +
+    "                                <div class=\"row\">\n" +
+    "                                    {{moreInfoSelection.price}}\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "                        <div class=\"row\">\n" +
+    "                            <div class=\"col-lg-6\" >\n" +
+    "                                <div class=\"row\">\n" +
+    "                                    <b>Phone</b>\n" +
+    "                                </div>\n" +
+    "                                <div class=\"row\">\n" +
+    "                                    {{moreInfoSelection.international_phone}}\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                            <div class=\"col-lg-6\">\n" +
+    "                                <div class=\"row\">\n" +
+    "                                    <b>Address</b>\n" +
+    "                                </div>\n" +
+    "                                <div class=\"row\">\n" +
+    "                                    {{moreInfoSelection.formatted_address}}\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "                        <div class=\"row\">\n" +
+    "                            <div class=\"col-lg-12\" >\n" +
+    "                                <div class=\"row\">\n" +
+    "                                    <b>Web Site</b>\n" +
+    "                                </div>\n" +
+    "                                <div class=\"row\">\n" +
+    "                                    {{moreInfoSelection.web_site}}\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "\n" +
+    "                    </div>\n" +
+    "                    <div class=\"row\">\n" +
+    "\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "                <div class=\"modal-footer\">\n" +
+    "\n" +
+    "                    <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>\n" +
+    "                </div>\n" +
+    "        </div>\n" +
+    "\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "\n" +
+    "\n" +
+    "");
+}]);
+
+angular.module("city/culture.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("city/culture.tpl.html",
+    "<p>\n" +
+    "    List culture {{cultureSelection}}\n" +
+    "</p>\n" +
+    "<div class=\"container\">\n" +
+    "    <div class=\"row\">\n" +
+    "        <div class=\"well\">\n" +
+    "            <h1 class=\"text-center\">Culture</h1>\n" +
+    "            <div class=\"list-group\">\n" +
     "                <span ng-repeat=\"c in cultureList\">\n" +
     "                    <div class=\"list-group-item\">\n" +
     "                        <div class=\"media col-md-3\">\n" +
@@ -353,71 +432,22 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                        </div>\n" +
     "                    </div>\n" +
     "                </span>\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
     "            </div>\n" +
     "        </div>\n" +
-    "    </tab>\n" +
-    "    <tab heading=\"Utility\">\n" +
-    "        <div class=\"container\">\n" +
-    "            <div class=\"row\">\n" +
-    "                <div class=\"well\">\n" +
-    "                    <h1 class=\"text-center\">Utility</h1>\n" +
-    "                    <div class=\"list-group\">\n" +
-    "                <span ng-repeat=\"c in utilityList\">\n" +
-    "                    <div class=\"list-group-item\">\n" +
-    "                        <div class=\"media col-md-3\">\n" +
-    "                            <figure class=\"pull-left\">\n" +
-    "                                <i class=\"fa fa-cloud-upload \">\n" +
-    "                                    <img ng-src=\"{{c.icon}}\" style=\"margin:auto;\">\n" +
-    "                                </i>\n" +
-    "                            </figure>\n" +
-    "                        </div>\n" +
-    "                        <div class=\"col-md-6\">\n" +
-    "                            <h4 class=\"list-group-item-heading\">{{c.name}}</h4>\n" +
-    "                            <p class=\"list-group-item-text\">\n" +
-    "                            <div class=\"row\">\n" +
-    "                                <p>Price {{c.price || 'Free'}}</p>\n" +
-    "                            </div>\n" +
-    "                            <div class=\"row\">\n" +
-    "                                <p>Rating {{c.rating}}</p>\n" +
-    "                                <rating value=\"c.rating\" readonly=\"true\" ></rating>\n" +
-    "\n" +
-    "                            </div>\n" +
-    "                            <div class=\"row\">\n" +
-    "                                <button class=\"btn btn-primary btn-lg\" ng-click=\"getUtilityDetails(c.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">\n" +
-    "                                    More Info\n" +
-    "                                </button>\n" +
-    "                                <button class=\"btn btn-primary btn-lg\" ng-click=\"addUtilityItem(c)\">\n" +
-    "                                    <i class=\"icon-white icon-plus \"></i>\n" +
-    "                                </button>\n" +
-    "                                <button  class=\"btn btn-primary btn-lg\" ng-click=\"removeUtilityItem(c)\" >\n" +
-    "                                    <i class=\"icon-white icon-minus\"></i>\n" +
-    "                                </button>\n" +
-    "                            </div>\n" +
-    "                            </p>\n" +
-    "                        </div>\n" +
-    "                        <div class=\"col-md-3 text-center\">\n" +
-    "                            <div class=\"panel panel-default\">\n" +
-    "                                <div class=\"panel-body\">\n" +
-    "                                    <div class=\"ratetext\">Location</div>\n" +
-    "                                </div>\n" +
-    "                            </div>\n" +
-    "                        </div>\n" +
-    "                    </div>\n" +
-    "                </span>\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
-    "            </div>\n" +
-    "        </div>\n" +
-    "    </tab>\n" +
-    "\n" +
-    "    <tab heading=\"Entertainment\">\n" +
-    "        <div class=\"container\">\n" +
-    "            <div class=\"row\">\n" +
-    "                <div class=\"well\">\n" +
-    "                    <h1 class=\"text-center\">Entertainment</h1>\n" +
-    "                    <div class=\"list-group\">\n" +
+    "    </div>\n" +
+    "</div>");
+}]);
+
+angular.module("city/entertainment.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("city/entertainment.tpl.html",
+    "<p>\n" +
+    "    List entertainment {{entertainmentSelection}}\n" +
+    "</p>\n" +
+    "<div class=\"container\">\n" +
+    "    <div class=\"row\">\n" +
+    "        <div class=\"well\">\n" +
+    "            <h1 class=\"text-center\">Entertainment</h1>\n" +
+    "            <div class=\"list-group\">\n" +
     "                <span ng-repeat=\"c in entertainmentList\">\n" +
     "                    <div class=\"list-group-item\">\n" +
     "                        <div class=\"media col-md-3\">\n" +
@@ -460,18 +490,80 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                        </div>\n" +
     "                    </div>\n" +
     "                </span>\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
     "            </div>\n" +
     "        </div>\n" +
-    "    </tab>\n" +
+    "    </div>\n" +
+    "</div>");
+}]);
+
+angular.module("city/food.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("city/food.tpl.html",
+    "<p>\n" +
+    "    List food {{foodSelection}}\n" +
+    "</p>\n" +
+    "<div class=\"container\">\n" +
+    "    <div class=\"row\">\n" +
+    "        <div class=\"well\">\n" +
+    "            <h1 class=\"text-center\">Food</h1>\n" +
+    "            <div class=\"list-group\">\n" +
+    "                <span ng-repeat=\"c in foodList\">\n" +
+    "                    <div class=\"list-group-item\">\n" +
+    "                        <div class=\"media col-md-3\">\n" +
+    "                            <figure class=\"pull-left\">\n" +
+    "                                <i class=\"fa fa-cloud-upload \">\n" +
+    "                                    <img ng-src=\"{{c.icon}}\" style=\"margin:auto;\">\n" +
+    "                                </i>\n" +
+    "                            </figure>\n" +
+    "                        </div>\n" +
+    "                        <div class=\"col-md-6\">\n" +
+    "                            <h4 class=\"list-group-item-heading\">{{c.name}}</h4>\n" +
+    "                            <p class=\"list-group-item-text\">\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <p>Price {{c.price || 'Free'}}</p>\n" +
+    "                            </div>\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <p>Rating {{c.rating}}</p>\n" +
+    "                                <rating value=\"c.rating\" readonly=\"true\" ></rating>\n" +
     "\n" +
-    "    <tab heading=\"Hotel\">\n" +
-    "        <div class=\"container\">\n" +
-    "            <div class=\"row\">\n" +
-    "                <div class=\"well\">\n" +
-    "                    <h1 class=\"text-center\">Hotel</h1>\n" +
-    "                    <div class=\"list-group\">\n" +
+    "                            </div>\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <button class=\"btn btn-primary btn-lg\" ng-click=\"getFoodDetails(c.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">\n" +
+    "                                    More Info\n" +
+    "                                </button>\n" +
+    "                                <button class=\"btn btn-primary btn-lg\" ng-click=\"addFoodItem(c)\">\n" +
+    "                                    <i class=\"icon-white icon-plus \"></i>\n" +
+    "                                </button>\n" +
+    "                                <button  class=\"btn btn-primary btn-lg\" ng-click=\"removeFoodItem(c)\" >\n" +
+    "                                    <i class=\"icon-white icon-minus\"></i>\n" +
+    "                                </button>\n" +
+    "                            </div>\n" +
+    "                            </p>\n" +
+    "                        </div>\n" +
+    "                        <div class=\"col-md-3 text-center\">\n" +
+    "                            <div class=\"panel panel-default\">\n" +
+    "                                <div class=\"panel-body\">\n" +
+    "                                    <div class=\"ratetext\">Location</div>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                </span>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>");
+}]);
+
+angular.module("city/hotel.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("city/hotel.tpl.html",
+    "<p>\n" +
+    "    List hotel {{hotelSelection}}\n" +
+    "</p>\n" +
+    "<div class=\"container\">\n" +
+    "    <div class=\"row\">\n" +
+    "        <div class=\"well\">\n" +
+    "            <h1 class=\"text-center\">Hotel</h1>\n" +
+    "            <div class=\"list-group\">\n" +
     "                <span ng-repeat=\"c in hotelList\">\n" +
     "                    <div class=\"list-group-item\">\n" +
     "                        <div class=\"media col-md-3\">\n" +
@@ -514,49 +606,68 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                        </div>\n" +
     "                    </div>\n" +
     "                </span>\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
     "            </div>\n" +
     "        </div>\n" +
-    "    </tab>\n" +
-    "\n" +
-    "\n" +
-    "</tabset>\n" +
-    "\n" +
-    "\n" +
-    "\n" +
-    "<div class=\"modal fade\" id=\"moreInfoModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">\n" +
-    "    <div class=\"modal-dialog\">\n" +
-    "        <div class=\"modal-content\">\n" +
-    "           <span ng-repeat=\"info in moreInfoSelection\">\n" +
-    "\n" +
-    "                <div class=\"modal-header\">\n" +
-    "                    <button type=\"button\" class=\"close\" data-dismiss=\"modal\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button>\n" +
-    "                    <h4 class=\"modal-title\" id=\"myModalLabel\">More Information about {{info.name}}</h4>\n" +
-    "                </div>\n" +
-    "                <div class=\"modal-body\">\n" +
-    "                    <div class=\"row\">\n" +
-    "                        <div class=\"column\" >\n" +
-    "                            {{info.id}}\n" +
-    "                        </div>\n" +
-    "                        <div class=\"column\">\n" +
-    "                            {{info.rating}}\n" +
-    "                        </div>\n" +
-    "                    </div>\n" +
-    "                    <div class=\"row\">\n" +
-    "\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
-    "                <div class=\"modal-footer\">\n" +
-    "                    <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>\n" +
-    "                </div>\n" +
-    "            </span>\n" +
-    "        </div>\n" +
-    "\n" +
     "    </div>\n" +
-    "</div>\n" +
+    "</div>");
+}]);
+
+angular.module("city/utility.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("city/utility.tpl.html",
+    "<p>\n" +
+    "    List utility {{utilitySelection}}\n" +
+    "</p>\n" +
+    "<div class=\"container\">\n" +
+    "    <div class=\"row\">\n" +
+    "        <div class=\"well\">\n" +
+    "            <h1 class=\"text-center\">Utility</h1>\n" +
+    "            <div class=\"list-group\">\n" +
+    "                <span ng-repeat=\"c in utilityList\">\n" +
+    "                    <div class=\"list-group-item\">\n" +
+    "                        <div class=\"media col-md-3\">\n" +
+    "                            <figure class=\"pull-left\">\n" +
+    "                                <i class=\"fa fa-cloud-upload \">\n" +
+    "                                    <img ng-src=\"{{c.icon}}\" style=\"margin:auto;\">\n" +
+    "                                </i>\n" +
+    "                            </figure>\n" +
+    "                        </div>\n" +
+    "                        <div class=\"col-md-6\">\n" +
+    "                            <h4 class=\"list-group-item-heading\">{{c.name}}</h4>\n" +
+    "                            <p class=\"list-group-item-text\">\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <p>Price {{c.price || 'Free'}}</p>\n" +
+    "                            </div>\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <p>Rating {{c.rating}}</p>\n" +
+    "                                <rating value=\"c.rating\" readonly=\"true\" ></rating>\n" +
     "\n" +
-    "");
+    "                            </div>\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <button class=\"btn btn-primary btn-lg\" ng-click=\"getUtilityDetails(c.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">\n" +
+    "                                    More Info\n" +
+    "                                </button>\n" +
+    "                                <button class=\"btn btn-primary btn-lg\" ng-click=\"addUtilityItem(c)\">\n" +
+    "                                    <i class=\"icon-white icon-plus \"></i>\n" +
+    "                                </button>\n" +
+    "                                <button  class=\"btn btn-primary btn-lg\" ng-click=\"removeUtilityItem(c)\" >\n" +
+    "                                    <i class=\"icon-white icon-minus\"></i>\n" +
+    "                                </button>\n" +
+    "                            </div>\n" +
+    "                            </p>\n" +
+    "                        </div>\n" +
+    "                        <div class=\"col-md-3 text-center\">\n" +
+    "                            <div class=\"panel panel-default\">\n" +
+    "                                <div class=\"panel-body\">\n" +
+    "                                    <div class=\"ratetext\">Location</div>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                </span>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>");
 }]);
 
 angular.module("home/home.tpl.html", []).run(["$templateCache", function($templateCache) {
@@ -587,4 +698,39 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "\n" +
     "    </div>\n" +
     "</div>");
+}]);
+
+angular.module("plan_trip/calendar.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("plan_trip/calendar.tpl.html",
+    "<div class=\"container\">\n" +
+    "    <div class=\"row\">\n" +
+    "        <form novalidate name=\"form\" ng-submit=\"next()\">\n" +
+    "            <div class=\"col-md-6\">\n" +
+    "                <h1>Start date:<span ng-show=\"dtstart\">{{dtstart | date:'dd/MM/yyyy'}}</span></h1>\n" +
+    "                <datepicker ng-model=\"dtstart\" min-date=\"minDate\" show-weeks=\"false\" name=\"start\" class=\"well well-sm\" required></datepicker>\n" +
+    "                <span ng-show=\"form.start.$invalid && form.start.$pristine\" >Required</span>\n" +
+    "            </div>\n" +
+    "\n" +
+    "            <div class=\"col-md-6\">\n" +
+    "                <h1>End date:<span ng-show=\"dtend\">{{dtend | date:'dd/MM/yyyy'}}</span></h1>\n" +
+    "                <datepicker ng-model=\"dtend\" min-date=\"dtstart\" show-weeks=\"false\" name=\"end\" class=\"well well-sm\" required></datepicker>\n" +
+    "                <span ng-show=\"form.end.$error.required\" >Required</span>\n" +
+    "            </div>\n" +
+    "            <button class=\"btn btn-primary pull-right\"   ng-disabled=\"!form.$valid\" >Next</button>\n" +
+    "        </form>\n" +
+    "    </div>\n" +
+    "\n" +
+    "\n" +
+    "</div>");
+}]);
+
+angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("plan_trip/planning.tpl.html",
+    "<div>Planning</div>");
+}]);
+
+angular.module("plan_trip/trip_dates.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("plan_trip/trip_dates.tpl.html",
+    "<h4>Inline</h4>\n" +
+    "");
 }]);

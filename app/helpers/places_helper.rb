@@ -1,4 +1,7 @@
 require 'net/http'
+require 'httparty'
+require 'json'
+require 'rubygems'
 
 module PlacesHelper
 
@@ -7,26 +10,27 @@ module PlacesHelper
     def get_utility_items(city)
       puts 'parameter '+city
       #client = GooglePlaces::Client.new(ENV['API_KEY'])
-      #utility_items = client.spots_by_query(city+" utility",:types => ['atm','bank','bus_station','doctor','fire_station','hospital','parking','pharmacy','subway_station','taxi_stand','train_station'],:language => 'en')
+      #utility_items = client.spots_by_query(city+' airport || atm || bank || bus station || doctor || fire station || hospital || parking || pharmacy || subway station || taxi stand || train station || police',:types => ['airport','atm','bank','bus_station','doctor','fire_station','hospital','parking','pharmacy','police','subway_station','taxi_stand','train_station'],:language => 'en')
       results = []
       #utility_items.each { |place|
-        #results.append(UtilityItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,place.photos,place.icon,place.place_id))}
+        #results.append(UtilityItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,place.photos,place.icon,place.place_id,'utility'))}
       return results
 
     end
 
     class UtilityItem
-      attr_accessor :id,:lat,:lng,:price,:rating,:name,:photos,:icon;
+      attr_accessor :id,:lat,:lng,:price,:rating,:name,:photos,:icon,:tag;
 
-      def initialize(lat,lng,name,rating,price,photos,icon,place_id)
+      def initialize(lat,lng,name,rating,price,photos,icon,place_id,tag)
         @id = place_id
         @lat = lat;
         @lng = lng;
         @name = name;
-        @rating = rating.to_i
+        @rating = rating
         @price = price;
         @photos = photos;
         @icon = icon;
+        @tag = tag;
 
       end
     end
@@ -39,27 +43,27 @@ module PlacesHelper
       puts 'parameter '+city
       client = GooglePlaces::Client.new(ENV['API_KEY'])
 
-      culture_items = client.spots_by_query(city+' culture',:types => ['library','book_store','museum','aquarium','art_gallery'],:language => 'en')
-      #culture_items.append(CultureItem.new('lat','long','prova_helper_culture',3,3,'photo','icon','reference'))
+      culture_items = client.spots_by_query(city+' museum || library || aquarium || art gallery || church',:types => ['library','book_store','museum','aquarium','art_gallery','church'],:language => 'en')
       results = []
       culture_items.each { |place|
-        results.append(CultureItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,place.photos,place.icon,place.place_id))}
+        results.append(CultureItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,place.photos,place.icon,place.place_id,'culture'))}
       return results
 
     end
 
     class CultureItem
-      attr_accessor :id,:lat,:lng,:price,:rating,:name,:photos,:icon;
+      attr_accessor :id,:lat,:lng,:price,:rating,:name,:photos,:icon,:tag;
 
-      def initialize(lat,lng,name,rating,price,photos,icon,place_id)
+      def initialize(lat,lng,name,rating,price,photos,icon,place_id,tag)
         @id = place_id
         @lat = lat;
         @lng = lng;
         @name = name;
-        @rating = rating.to_i
+        @rating = rating
         @price = price;
         @photos = photos;
         @icon = icon;
+        @tag = tag;
 
       end
 
@@ -73,36 +77,65 @@ module PlacesHelper
     def get_entertainment_items(city)
       puts 'parameter '+city
       #client = GooglePlaces::Client.new(ENV['API_KEY'])
-      #entertainment_items = client.spots_by_query(city+" museum",:types => ['museum'],:language => 'it')
+      #entertainment_items = client.spots_by_query(city+' amusement_park || casino || gym || zoo || spa || park',:types => ['amusement_park','casino','gym','zoo','spa','park'],:language => 'en')
       results = []
       #entertainment_items.each { |place|
-        #results.append(EntertainmentItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,place.photos,place.icon,place.place_id))}
+        #results.append(EntertainmentItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,place.photos,place.icon,place.place_id,'entertainment'))}
       return results
 
     end
 
 
     class EntertainmentItem
-      attr_accessor :id,:lat,:lng,:price,:rating,:name,:photos,:icon;
+      attr_accessor :id,:lat,:lng,:price,:rating,:name,:photos,:icon,:tag;
 
-      def initialize(lat,lng,name,rating,price,photos,icon,place_id)
+      def initialize(lat,lng,name,rating,price,photos,icon,place_id,tag)
         @id = place_id
         @lat = lat;
         @lng = lng;
         @name = name;
-        @rating = rating.to_i
+        @rating = rating
         @price = price;
         @photos = photos;
         @icon = icon;
+        @tag = tag;
 
       end
     end
 
   end
 
-  require 'httparty'
-  require 'json'
-  require 'rubygems'
+  module FoodHelperCity
+
+    def get_food_items(city)
+      puts 'parameter '+city
+      #client = GooglePlaces::Client.new(ENV['API_KEY'])
+      #food_items = client.spots_by_query(city+' food || restaurant || cafe || bakery',:types => ['food','restaurant','cafe','bakery'],:language => 'en')
+      results = []
+      #food_items.each { |place|
+       # results.append(FoodItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,place.photos,place.icon,place.place_id,'food'))}
+      return results
+
+    end
+
+    class FoodItem
+      attr_accessor :id,:lat,:lng,:price,:rating,:name,:photos,:icon,:tag;
+
+      def initialize(lat,lng,name,rating,price,photos,icon,place_id,tag)
+        @id = place_id
+        @lat = lat;
+        @lng = lng;
+        @name = name;
+        @rating = rating
+        @price = price;
+        @photos = photos;
+        @icon = icon;
+        @tag = tag;
+
+      end
+    end
+  end
+
 
   def get_details_item(id)
     details = []
@@ -132,7 +165,7 @@ module PlacesHelper
       @lat = lat;
       @lng = lng;
       @name = name;
-      @rating = rating.to_i
+      @rating = rating
       @photos = photos;
       @icon = icon;
       @reviews = reviews
@@ -143,6 +176,7 @@ module PlacesHelper
     end
 
   end
+
 
 
 end

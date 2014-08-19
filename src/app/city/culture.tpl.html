@@ -1,0 +1,54 @@
+<p>
+    List culture {{cultureSelection}}
+</p>
+<div class="container">
+    <div class="row">
+        <div class="well">
+            <h1 class="text-center">Culture</h1>
+            <div class="list-group">
+                <span ng-repeat="c in cultureList">
+                    <div class="list-group-item">
+                        <div class="media col-md-3">
+                            <figure class="pull-left">
+                                <i class="fa fa-cloud-upload ">
+                                    <img ng-src="{{c.icon}}" style="margin:auto;">
+                                </i>
+                            </figure>
+                        </div>
+                        <div class="col-md-6">
+                            <h4 class="list-group-item-heading">{{c.name}}</h4>
+                            <p class="list-group-item-text">
+                            <div class="row">
+                                <p>Price {{c.price || 'Free'}}</p>
+                            </div>
+                            <div class="row">
+                                <p>Rating {{c.rating}}</p>
+                                <rating value="c.rating" readonly="true" ></rating>
+
+                            </div>
+                            <div class="row">
+                                <button class="btn btn-primary btn-lg" ng-click="getCultureDetails(c.id)" href="#moreInfoModal" data-toggle="modal">
+                                    More Info
+                                </button>
+                                <button class="btn btn-primary btn-lg" ng-click="addCultureItem(c)">
+                                    <i class="icon-white icon-plus "></i>
+                                </button>
+                                <button  class="btn btn-primary btn-lg" ng-click="removeCultureItem(c)" >
+                                    <i class="icon-white icon-minus"></i>
+                                </button>
+                            </div>
+                            </p>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <div class="ratetext">Location</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

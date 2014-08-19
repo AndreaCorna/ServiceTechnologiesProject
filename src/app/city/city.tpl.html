@@ -4,23 +4,6 @@
     <script type="text/javascript" src="http://www.shieldui.com/shared/components/latest/js/shieldui-all.min.js"></script>
 </head>
 
-
-<div>
-    <p>
-        List culture {{cultureSelection}}
-    </p>
-    <p>
-        List hotel {{hotelSelection}}
-    </p>
-    <p>
-        List entertainment {{entertainmentSelection}}
-    </p>
-    <p>
-        List utility {{utilitySelection}}
-    </p>
-
-</div>
-
 <carousel interval="intervalImages">
     <slide ng-repeat="image in city" active="image.active">
         <img ng-src="{{image.image}}" style="margin:auto;">
@@ -30,255 +13,93 @@
     </slide>
 </carousel>
 
-<tabset>
-    <tab heading="Culture">
-        <div class="container">
-            <div class="row">
-                <div class="well">
-                    <h1 class="text-center">Culture</h1>
-                    <div class="list-group">
-                <span ng-repeat="c in cultureList">
-                    <div class="list-group-item">
-                        <div class="media col-md-3">
-                            <figure class="pull-left">
-                                <i class="fa fa-cloud-upload ">
-                                    <img ng-src="{{c.icon}}" style="margin:auto;">
-                                </i>
-                            </figure>
-                        </div>
-                        <div class="col-md-6">
-                            <h4 class="list-group-item-heading">{{c.name}}</h4>
-                            <p class="list-group-item-text">
-                            <div class="row">
-                                <p>Price {{c.price || 'Free'}}</p>
-                            </div>
-                            <div class="row">
-                                <p>Rating {{c.rating}}</p>
-                                <rating value="c.rating" readonly="true" ></rating>
+<div id='cssmenu'>
+    <ul>
+        <li class='active'><a ui-sref="culture"><span>Culture</span></a></li>
+        <li><a ui-sref="entertainment"><span>Entertainment</span></a></li>
+        <li><a ui-sref="hotel"><span>Hotel</span></a></li>
+        <li><a ui-sref="utility"><span>Utility</span></a></li>
+        <li><a ui-sref="food"><span>Food</span></a></li>
 
-                            </div>
-                            <div class="row">
-                                <button class="btn btn-primary btn-lg" ng-click="getCultureDetails(c.id)" href="#moreInfoModal" data-toggle="modal">
-                                    More Info
-                                </button>
-                                <button class="btn btn-primary btn-lg" ng-click="addCultureItem(c)">
-                                    <i class="icon-white icon-plus "></i>
-                                </button>
-                                <button  class="btn btn-primary btn-lg" ng-click="removeCultureItem(c)" >
-                                    <i class="icon-white icon-minus"></i>
-                                </button>
-                            </div>
-                            </p>
-                        </div>
-                        <div class="col-md-3 text-center">
-                            <div class="panel panel-default">
-                                <div class="panel-body">
-                                    <div class="ratetext">Location</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </tab>
-    <tab heading="Utility">
-        <div class="container">
-            <div class="row">
-                <div class="well">
-                    <h1 class="text-center">Utility</h1>
-                    <div class="list-group">
-                <span ng-repeat="c in utilityList">
-                    <div class="list-group-item">
-                        <div class="media col-md-3">
-                            <figure class="pull-left">
-                                <i class="fa fa-cloud-upload ">
-                                    <img ng-src="{{c.icon}}" style="margin:auto;">
-                                </i>
-                            </figure>
-                        </div>
-                        <div class="col-md-6">
-                            <h4 class="list-group-item-heading">{{c.name}}</h4>
-                            <p class="list-group-item-text">
-                            <div class="row">
-                                <p>Price {{c.price || 'Free'}}</p>
-                            </div>
-                            <div class="row">
-                                <p>Rating {{c.rating}}</p>
-                                <rating value="c.rating" readonly="true" ></rating>
+        <li class='last'><a ui-sref="calendar"><span>Plan Trip</span></a></li>
+    </ul>
 
-                            </div>
-                            <div class="row">
-                                <button class="btn btn-primary btn-lg" ng-click="getUtilityDetails(c.id)" href="#moreInfoModal" data-toggle="modal">
-                                    More Info
-                                </button>
-                                <button class="btn btn-primary btn-lg" ng-click="addUtilityItem(c)">
-                                    <i class="icon-white icon-plus "></i>
-                                </button>
-                                <button  class="btn btn-primary btn-lg" ng-click="removeUtilityItem(c)" >
-                                    <i class="icon-white icon-minus"></i>
-                                </button>
-                            </div>
-                            </p>
-                        </div>
-                        <div class="col-md-3 text-center">
-                            <div class="panel panel-default">
-                                <div class="panel-body">
-                                    <div class="ratetext">Location</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </tab>
-
-    <tab heading="Entertainment">
-        <div class="container">
-            <div class="row">
-                <div class="well">
-                    <h1 class="text-center">Entertainment</h1>
-                    <div class="list-group">
-                <span ng-repeat="c in entertainmentList">
-                    <div class="list-group-item">
-                        <div class="media col-md-3">
-                            <figure class="pull-left">
-                                <i class="fa fa-cloud-upload ">
-                                    <img ng-src="{{c.icon}}" style="margin:auto;">
-                                </i>
-                            </figure>
-                        </div>
-                        <div class="col-md-6">
-                            <h4 class="list-group-item-heading">{{c.name}}</h4>
-                            <p class="list-group-item-text">
-                            <div class="row">
-                                <p>Price {{c.price || 'Free'}}</p>
-                            </div>
-                            <div class="row">
-                                <p>Rating {{c.rating}}</p>
-                                <rating value="c.rating" readonly="true" ></rating>
-
-                            </div>
-                            <div class="row">
-                                <button class="btn btn-primary btn-lg" ng-click="getEntertainmentDetails(c.id)" href="#moreInfoModal" data-toggle="modal">
-                                    More Info
-                                </button>
-                                <button class="btn btn-primary btn-lg" ng-click="addEntertainmentItem(c)">
-                                    <i class="icon-white icon-plus "></i>
-                                </button>
-                                <button  class="btn btn-primary btn-lg" ng-click="removeEntertainmentItem(c)" >
-                                    <i class="icon-white icon-minus"></i>
-                                </button>
-                            </div>
-                            </p>
-                        </div>
-                        <div class="col-md-3 text-center">
-                            <div class="panel panel-default">
-                                <div class="panel-body">
-                                    <div class="ratetext">Location</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </tab>
-
-    <tab heading="Hotel">
-        <div class="container">
-            <div class="row">
-                <div class="well">
-                    <h1 class="text-center">Hotel</h1>
-                    <div class="list-group">
-                <span ng-repeat="c in hotelList">
-                    <div class="list-group-item">
-                        <div class="media col-md-3">
-                            <figure class="pull-left">
-                                <i class="fa fa-cloud-upload ">
-                                    Image
-                                </i>
-                            </figure>
-                        </div>
-                        <div class="col-md-6">
-                            <h4 class="list-group-item-heading">{{c.name}}</h4>
-                            <p class="list-group-item-text">
-                            <div class="row">
-                                Price
-                            </div>
-                            <div class="row">
-                                <p>Rating</p>
-                                <rating value="c.rating" readonly="true" ></rating>
-
-                            </div>
-                            <div class="row">
-                                <button class="btn btn-primary btn-lg" ng-click="getHotelDetails(c.id)" href="#moreInfoModal" data-toggle="modal">
-                                    More Info
-                                </button>
-                                <button class="btn btn-primary btn-lg" ng-click="addHotelItem(c)">
-                                    <i class="icon-white icon-plus "></i>
-                                </button>
-                                <button  class="btn btn-primary btn-lg" ng-click="removeHotelItem(c)" >
-                                    <i class="icon-white icon-minus"></i>
-                                </button>
-                            </div>
-                            </p>
-                        </div>
-                        <div class="col-md-3 text-center">
-                            <div class="panel panel-default">
-                                <div class="panel-body">
-                                    <div class="ratetext">Location</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </tab>
+</div>
+<div ui-view="content" class="fill"></div>
 
 
-</tabset>
 
 
 
 <div class="modal fade" id="moreInfoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-           <span ng-repeat="info in moreInfoSelection">
 
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title" id="myModalLabel">More Information about {{info.name}}</h4>
+                    <h4 class="modal-title" id="myModalLabel">More Information about {{moreInfoSelection.name}}</h4>
                 </div>
                 <div class="modal-body">
-                    <div class="row">
-                        <div class="column" >
-                            {{info.id}}
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg-6" >
+                                <div class="row">
+                                    <b>Rating</b>
+                                </div>
+                                <div class="row">
+                                    {{moreInfoSelection.rating}}
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="row">
+                                    <b>Price</b>
+                                </div>
+                                <div class="row">
+                                    {{moreInfoSelection.price}}
+                                </div>
+                            </div>
                         </div>
-                        <div class="column">
-                            {{info.rating}}
+                        <div class="row">
+                            <div class="col-lg-6" >
+                                <div class="row">
+                                    <b>Phone</b>
+                                </div>
+                                <div class="row">
+                                    {{moreInfoSelection.international_phone}}
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="row">
+                                    <b>Address</b>
+                                </div>
+                                <div class="row">
+                                    {{moreInfoSelection.formatted_address}}
+                                </div>
+                            </div>
                         </div>
+                        <div class="row">
+                            <div class="col-lg-12" >
+                                <div class="row">
+                                    <b>Web Site</b>
+                                </div>
+                                <div class="row">
+                                    {{moreInfoSelection.web_site}}
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                     <div class="row">
 
                     </div>
                 </div>
                 <div class="modal-footer">
+
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
-            </span>
         </div>
 
     </div>
 </div>
+
 
