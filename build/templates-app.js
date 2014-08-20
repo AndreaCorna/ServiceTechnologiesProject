@@ -272,11 +272,6 @@ angular.module("about/about.tpl.html", []).run(["$templateCache", function($temp
 
 angular.module("city/city.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("city/city.tpl.html",
-    "<head>\n" +
-    "    <link rel=\"stylesheet\" type=\"text/css\" href=\"http://www.shieldui.com/shared/components/latest/css/shieldui-all.min.css\" />\n" +
-    "    <link rel=\"stylesheet\" type=\"text/css\" href=\"http://www.shieldui.com/shared/components/latest/css/light/all.min.css\" />\n" +
-    "    <script type=\"text/javascript\" src=\"http://www.shieldui.com/shared/components/latest/js/shieldui-all.min.js\"></script>\n" +
-    "</head>\n" +
     "\n" +
     "\n" +
     "<div>\n" +
@@ -609,19 +604,22 @@ angular.module("plan_trip/calendar.tpl.html", []).run(["$templateCache", functio
   $templateCache.put("plan_trip/calendar.tpl.html",
     "<div class=\"container\">\n" +
     "    <div class=\"row\">\n" +
-    "        <form novalidate name=\"form\" ng-submit=\"next()\">\n" +
+    "        <form novalidate name=\"form\" ng-submit=\"next(form)\">\n" +
+    "\n" +
+    "            <div ng-show=\"submitted  && (form.end.$error.required || form.start.$error.required)\" class=\"alert alert-danger\">\n" +
+    "                Field <strong>start date</strong> and <strong>end date</strong> are required\n" +
+    "            </div>\n" +
     "            <div class=\"col-md-6\">\n" +
     "                <h1>Start date:<span ng-show=\"dtstart\">{{dtstart | date:'dd/MM/yyyy'}}</span></h1>\n" +
-    "                <datepicker ng-model=\"dtstart\" min-date=\"minDate\" show-weeks=\"false\" name=\"start\" class=\"well well-sm\" required></datepicker>\n" +
-    "                <span ng-show=\"form.start.$invalid && form.start.$pristine\" >Required</span>\n" +
+    "                <datepicker ng-model=\"dtstart\" max-date=\"dtend\"  show-weeks=\"false\" name=\"start\" class=\"well well-sm\" required></datepicker>\n" +
     "            </div>\n" +
     "\n" +
     "            <div class=\"col-md-6\">\n" +
     "                <h1>End date:<span ng-show=\"dtend\">{{dtend | date:'dd/MM/yyyy'}}</span></h1>\n" +
     "                <datepicker ng-model=\"dtend\" min-date=\"dtstart\" show-weeks=\"false\" name=\"end\" class=\"well well-sm\" required></datepicker>\n" +
-    "                <span ng-show=\"form.end.$error.required\" >Required</span>\n" +
+    "\n" +
     "            </div>\n" +
-    "            <button class=\"btn btn-primary pull-right\"   ng-disabled=\"!form.$valid\" >Next</button>\n" +
+    "            <button class=\"btn btn-primary pull-right\"   >Next</button>\n" +
     "        </form>\n" +
     "    </div>\n" +
     "\n" +

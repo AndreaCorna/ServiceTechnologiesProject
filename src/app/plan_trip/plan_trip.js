@@ -13,19 +13,41 @@ angular.module('trippo.plan',[
 
 
 
-.controller('CalendarCtrl', function CalendarCtrl($scope, $log) {
+.controller('CalendarCtrl', function CalendarCtrl($scope, $state,$stateParams,DatesService) {
         $scope.dtstart=null;
         $scope.dtend=null;
-        $scope.$log= $log;
+        $scope.submitted =false;
 
+        $scope.next = function (form) {
+        $scope.submitted =true;
+            if (form.$valid) {
+                var now = moment();
+                console.log(now);
+                DatesService.createRangeDates($scope.dtstart,$scope.dtend) ;
+                $state.transitionTo('dates',{city_name: $stateParams.city_name});
+            }
 
-        $scope.next = function () {
-              $log.log("start "+$scope.dtstart+" end "+$scope.dtend) ;
         };
 
 
 
 })
+.factory('DatesService', function () {
+    var range=[];
+
+    return {
+        createRangeDates:function(start,end){
+
+            for (var m = moment(start); m.isBefore(moment(end).add(1, 'days')); m.add(1, 'days')) {
+                console.log(m.format('DD MMMM YYYY'));
+                range.push(m);
+            }
+
+            }
+        };
+})
+
+
 
 .controller('DatesCtrl', function DatesCtrl($scope) {
 

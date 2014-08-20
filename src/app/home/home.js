@@ -59,6 +59,8 @@ angular.module( 'trippo.home', [
          * Unused but leaved in order to test how works if no list city but
          */
 
+
+
         $scope.getLocation = function(val) {
             return $http.get('http://maps.googleapis.com/maps/api/geocode/json', {
                 params: {
