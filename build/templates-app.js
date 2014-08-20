@@ -361,10 +361,52 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                                </div>\n" +
     "                            </div>\n" +
     "                        </div>\n" +
+    "                        <div class=\"row\">\n" +
+    "                            <div class=\"col-lg-12\" >\n" +
+    "                                <div class=\"row\">\n" +
+    "                                    <b>Open Hours</b>\n" +
+    "                                </div>\n" +
+    "                                <div class=\"row\">\n" +
+    "                                    <table class=\"table table-hover\">\n" +
+    "                                        <thead>\n" +
+    "                                            <tr>\n" +
+    "                                                <th></th>\n" +
+    "                                                <th>Sunday</th>\n" +
+    "                                                <th>Monday</th>\n" +
+    "                                                <th>Tuesday</th>\n" +
+    "                                                <th>Wednesday</th>\n" +
+    "                                                <th>Thursday</th>\n" +
+    "                                                <th>Friday</th>\n" +
+    "                                                <th>Saturday</th>\n" +
+    "                                            </tr>\n" +
+    "                                        </thead>\n" +
+    "                                        <tbody>\n" +
+    "                                            <tr class=\"info\">\n" +
+    "                                                <td>Open</td>\n" +
+    "                                                <td>{{moreInfoSelection.open_hours.periods[0].open.time}}</td>\n" +
+    "                                                <td>{{moreInfoSelection.open_hours.periods[1].open.time}}</td>\n" +
+    "                                                <td>{{moreInfoSelection.open_hours.periods[2].open.time}}</td>\n" +
+    "                                                <td>{{moreInfoSelection.open_hours.periods[3].open.time}}</td>\n" +
+    "                                                <td>{{moreInfoSelection.open_hours.periods[4].open.time}}</td>\n" +
+    "                                                <td>{{moreInfoSelection.open_hours.periods[5].open.time}}</td>\n" +
+    "                                                <td>{{moreInfoSelection.open_hours.periods[6].open.time}}</td>\n" +
+    "                                            </tr>\n" +
+    "                                            <tr class=\"info\">\n" +
+    "                                                <td>Close</td>\n" +
+    "                                                <td>{{moreInfoSelection.open_hours.periods[0].close.time}}</td>\n" +
+    "                                                <td>{{moreInfoSelection.open_hours.periods[1].close.time}}</td>\n" +
+    "                                                <td>{{moreInfoSelection.open_hours.periods[2].close.time}}</td>\n" +
+    "                                                <td>{{moreInfoSelection.open_hours.periods[3].close.time}}</td>\n" +
+    "                                                <td>{{moreInfoSelection.open_hours.periods[4].close.time}}</td>\n" +
+    "                                                <td>{{moreInfoSelection.open_hours.periods[5].close.time}}</td>\n" +
+    "                                                <td>{{moreInfoSelection.open_hours.periods[6].close.time}}</td>\n" +
+    "                                            </tr>\n" +
+    "                                        </tbody>\n" +
     "\n" +
-    "                    </div>\n" +
-    "                    <div class=\"row\">\n" +
-    "\n" +
+    "                                    </table>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
     "                    </div>\n" +
     "                </div>\n" +
     "                <div class=\"modal-footer\">\n" +
