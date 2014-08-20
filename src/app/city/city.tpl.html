@@ -47,7 +47,7 @@
                                     <b>Rating</b>
                                 </div>
                                 <div class="row">
-                                    {{moreInfoSelection.rating}}
+                                    {{moreInfoSelection.rating || 'Unknown'}}
                                 </div>
                             </div>
                             <div class="col-lg-6">
@@ -55,7 +55,7 @@
                                     <b>Price</b>
                                 </div>
                                 <div class="row">
-                                    {{moreInfoSelection.price}}
+                                    {{moreInfoSelection.price || 'Unknown'}}
                                 </div>
                             </div>
                         </div>
@@ -108,7 +108,7 @@
                                         </thead>
                                         <tbody>
                                             <tr class="info">
-                                                <td>Open</td>
+                                                <td>From</td>
                                                 <td>{{moreInfoSelection.open_hours.periods[0].open.time}}</td>
                                                 <td>{{moreInfoSelection.open_hours.periods[1].open.time}}</td>
                                                 <td>{{moreInfoSelection.open_hours.periods[2].open.time}}</td>
@@ -118,7 +118,7 @@
                                                 <td>{{moreInfoSelection.open_hours.periods[6].open.time}}</td>
                                             </tr>
                                             <tr class="info">
-                                                <td>Close</td>
+                                                <td>To</td>
                                                 <td>{{moreInfoSelection.open_hours.periods[0].close.time}}</td>
                                                 <td>{{moreInfoSelection.open_hours.periods[1].close.time}}</td>
                                                 <td>{{moreInfoSelection.open_hours.periods[2].close.time}}</td>
