@@ -141,6 +141,7 @@ module PlacesHelper
     details = []
     response = HTTParty.get('https://maps.googleapis.com/maps/api/place/details/json?placeid='+id+'&key='+ENV['API_KEY'])
     json = JSON.parse(response.body)
+    puts json
     lat = json['result']['geometry']['location']['lat']
     lng = json['result']['geometry']['location']['lng']
     reviews = json['result']['reviews']
@@ -150,7 +151,14 @@ module PlacesHelper
     icon = json['result']['icon']
     web_site = json['result']['website']
     open_hours = json['result']['opening_hours']
-    photos = json['result']['photos']
+    photos = []
+    json['result']['photos'].each do |photo|
+      url = 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference='+photo['photo_reference']+'&key='+ENV['API_KEY']
+      photos.append(:image=>url)
+    end
+
+    puts photos
+
     rating = json['result']['user_ratings_total']
     details_item = DetailedItem.new(id,lat,lng,name,rating,photos,icon,reviews,formatted_address,web_site,phone,open_hours)
     details.append(details_item)

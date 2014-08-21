@@ -133,6 +133,17 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="row">
+                                    <carousel interval="intervalImages">
+                                        <slide ng-repeat="image in moreInfoSelection.photos" active="image.active">
+                                            <img ng-src="{{image.image}}" style="...">
+                                        </slide>
+                                    </carousel>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
