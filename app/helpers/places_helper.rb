@@ -2,6 +2,8 @@ require 'net/http'
 require 'httparty'
 require 'json'
 require 'rubygems'
+require 'base64'
+
 
 module PlacesHelper
 
@@ -152,13 +154,13 @@ module PlacesHelper
     web_site = json['result']['website']
     open_hours = json['result']['opening_hours']
     photos = []
-    json['result']['photos'].each do |photo|
-      url = 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference='+photo['photo_reference']+'&key='+ENV['API_KEY']
-      photos.append(:image=>url)
+    if(!json['result']['photos'].nil?)
+      json['result']['photos'].each do |photo|
+        url = 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference='+photo['photo_reference']+'&key='+ENV['API_KEY']
+        image_data = Base64.encode64(open(url).read)
+        photos.append(:image=>image_data)
+      end
     end
-
-    puts photos
-
     rating = json['result']['user_ratings_total']
     details_item = DetailedItem.new(id,lat,lng,name,rating,photos,icon,reviews,formatted_address,web_site,phone,open_hours)
     details.append(details_item)

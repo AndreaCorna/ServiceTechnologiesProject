@@ -2,7 +2,7 @@ module HotelsHelper
 
   def get_hotels_list(city)
     puts 'parameter '+city
-    #puts hotels(city)
+    puts hotels(city)
     hotels_list = []
     hotels_list.append(HotelItem.new('215910','lat','long','prova_helper_hotel',3,3,'photo','icon','reference','hotel'))
     return hotels_list

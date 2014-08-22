@@ -412,7 +412,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                                <div class=\"row\">\n" +
     "                                    <carousel interval=\"intervalImages\">\n" +
     "                                        <slide ng-repeat=\"image in moreInfoSelection.photos\" active=\"image.active\">\n" +
-    "                                            <img ng-src=\"{{image.image}}\" style=\"...\">\n" +
+    "                                            <img ng-src=\"data:image/JPEG;base64,{{image.image}}\" style=\"...\">\n" +
     "                                        </slide>\n" +
     "                                    </carousel>\n" +
     "                                </div>\n" +
