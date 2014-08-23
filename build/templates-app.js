@@ -321,7 +321,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                                    <b>Rating</b>\n" +
     "                                </div>\n" +
     "                                <div class=\"row\">\n" +
-    "                                    {{moreInfoSelection.rating}}\n" +
+    "                                    {{moreInfoSelection.rating || 'Unknown'}}\n" +
     "                                </div>\n" +
     "                            </div>\n" +
     "                            <div class=\"col-lg-6\">\n" +
@@ -329,7 +329,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                                    <b>Price</b>\n" +
     "                                </div>\n" +
     "                                <div class=\"row\">\n" +
-    "                                    {{moreInfoSelection.price}}\n" +
+    "                                    {{moreInfoSelection.price || 'Unknown'}}\n" +
     "                                </div>\n" +
     "                            </div>\n" +
     "                        </div>\n" +
@@ -382,7 +382,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                                        </thead>\n" +
     "                                        <tbody>\n" +
     "                                            <tr class=\"info\">\n" +
-    "                                                <td>Open</td>\n" +
+    "                                                <td>From</td>\n" +
     "                                                <td>{{moreInfoSelection.open_hours.periods[0].open.time}}</td>\n" +
     "                                                <td>{{moreInfoSelection.open_hours.periods[1].open.time}}</td>\n" +
     "                                                <td>{{moreInfoSelection.open_hours.periods[2].open.time}}</td>\n" +
@@ -392,7 +392,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                                                <td>{{moreInfoSelection.open_hours.periods[6].open.time}}</td>\n" +
     "                                            </tr>\n" +
     "                                            <tr class=\"info\">\n" +
-    "                                                <td>Close</td>\n" +
+    "                                                <td>To</td>\n" +
     "                                                <td>{{moreInfoSelection.open_hours.periods[0].close.time}}</td>\n" +
     "                                                <td>{{moreInfoSelection.open_hours.periods[1].close.time}}</td>\n" +
     "                                                <td>{{moreInfoSelection.open_hours.periods[2].close.time}}</td>\n" +
@@ -404,6 +404,17 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                                        </tbody>\n" +
     "\n" +
     "                                    </table>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "                        <div class=\"row\">\n" +
+    "                            <div class=\"col-lg-12\">\n" +
+    "                                <div class=\"row\">\n" +
+    "                                    <carousel interval=\"intervalImages\">\n" +
+    "                                        <slide ng-repeat=\"image in moreInfoSelection.photos\" active=\"image.active\">\n" +
+    "                                            <img ng-src=\"{{image.image}}\" style=\"...\">\n" +
+    "                                        </slide>\n" +
+    "                                    </carousel>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
     "                        </div>\n" +
