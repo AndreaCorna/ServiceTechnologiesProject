@@ -321,7 +321,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                                    <b>Rating</b>\n" +
     "                                </div>\n" +
     "                                <div class=\"row\">\n" +
-    "                                    {{moreInfoSelection.rating}}\n" +
+    "                                    {{moreInfoSelection.rating || 'Unknown'}}\n" +
     "                                </div>\n" +
     "                            </div>\n" +
     "                            <div class=\"col-lg-6\">\n" +
@@ -329,7 +329,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                                    <b>Price</b>\n" +
     "                                </div>\n" +
     "                                <div class=\"row\">\n" +
-    "                                    {{moreInfoSelection.price}}\n" +
+    "                                    {{moreInfoSelection.price || 'Unknown'}}\n" +
     "                                </div>\n" +
     "                            </div>\n" +
     "                        </div>\n" +
@@ -361,10 +361,65 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                                </div>\n" +
     "                            </div>\n" +
     "                        </div>\n" +
+    "                        <div class=\"row\">\n" +
+    "                            <div class=\"col-lg-12\" >\n" +
+    "                                <div class=\"row\">\n" +
+    "                                    <b>Open Hours</b>\n" +
+    "                                </div>\n" +
+    "                                <div class=\"row\">\n" +
+    "                                    <table class=\"table table-hover\">\n" +
+    "                                        <thead>\n" +
+    "                                            <tr>\n" +
+    "                                                <th></th>\n" +
+    "                                                <th>Sunday</th>\n" +
+    "                                                <th>Monday</th>\n" +
+    "                                                <th>Tuesday</th>\n" +
+    "                                                <th>Wednesday</th>\n" +
+    "                                                <th>Thursday</th>\n" +
+    "                                                <th>Friday</th>\n" +
+    "                                                <th>Saturday</th>\n" +
+    "                                            </tr>\n" +
+    "                                        </thead>\n" +
+    "                                        <tbody>\n" +
+    "                                            <tr class=\"info\">\n" +
+    "                                                <td>From</td>\n" +
+    "                                                <td>{{moreInfoSelection.open_hours.periods[0].open.time}}</td>\n" +
+    "                                                <td>{{moreInfoSelection.open_hours.periods[1].open.time}}</td>\n" +
+    "                                                <td>{{moreInfoSelection.open_hours.periods[2].open.time}}</td>\n" +
+    "                                                <td>{{moreInfoSelection.open_hours.periods[3].open.time}}</td>\n" +
+    "                                                <td>{{moreInfoSelection.open_hours.periods[4].open.time}}</td>\n" +
+    "                                                <td>{{moreInfoSelection.open_hours.periods[5].open.time}}</td>\n" +
+    "                                                <td>{{moreInfoSelection.open_hours.periods[6].open.time}}</td>\n" +
+    "                                            </tr>\n" +
+    "                                            <tr class=\"info\">\n" +
+    "                                                <td>To</td>\n" +
+    "                                                <td>{{moreInfoSelection.open_hours.periods[0].close.time}}</td>\n" +
+    "                                                <td>{{moreInfoSelection.open_hours.periods[1].close.time}}</td>\n" +
+    "                                                <td>{{moreInfoSelection.open_hours.periods[2].close.time}}</td>\n" +
+    "                                                <td>{{moreInfoSelection.open_hours.periods[3].close.time}}</td>\n" +
+    "                                                <td>{{moreInfoSelection.open_hours.periods[4].close.time}}</td>\n" +
+    "                                                <td>{{moreInfoSelection.open_hours.periods[5].close.time}}</td>\n" +
+    "                                                <td>{{moreInfoSelection.open_hours.periods[6].close.time}}</td>\n" +
+    "                                            </tr>\n" +
+    "                                        </tbody>\n" +
     "\n" +
-    "                    </div>\n" +
-    "                    <div class=\"row\">\n" +
-    "\n" +
+    "                                    </table>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "                        <div class=\"row\">\n" +
+    "                            <div class=\"col-lg-12\">\n" +
+    "                                <div class=\"row\">\n" +
+    "                                    <div class=\"panel-image-modal\">\n" +
+    "                                        <carousel interval=\"intervalImages\">\n" +
+    "                                            <slide ng-repeat=\"image in moreInfoSelection.photos\" active=\"image.active\">\n" +
+    "                                                <img class=\"image-modal\" ng-src=\"data:image/JPEG;base64,{{image.image}}\" >\n" +
+    "                                            </slide>\n" +
+    "                                        </carousel>\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
     "                    </div>\n" +
     "                </div>\n" +
     "                <div class=\"modal-footer\">\n" +
@@ -392,12 +447,10 @@ angular.module("city/culture.tpl.html", []).run(["$templateCache", function($tem
     "            <div class=\"list-group\">\n" +
     "                <span ng-repeat=\"c in cultureList\">\n" +
     "                    <div class=\"list-group-item\">\n" +
-    "                        <div class=\"media col-md-3\">\n" +
-    "                            <figure class=\"pull-left\">\n" +
-    "                                <i class=\"fa fa-cloud-upload \">\n" +
-    "                                    <img ng-src=\"{{c.icon}}\" style=\"margin:auto;\">\n" +
-    "                                </i>\n" +
-    "                            </figure>\n" +
+    "                        <div class=\"col-md-3\">\n" +
+    "                            <i class=\"icon-col-centered\">\n" +
+    "                                <img ng-src=\"{{c.icon}}\">\n" +
+    "                            </i>\n" +
     "                        </div>\n" +
     "                        <div class=\"col-md-6\">\n" +
     "                            <h4 class=\"list-group-item-heading\">{{c.name}}</h4>\n" +
@@ -415,18 +468,26 @@ angular.module("city/culture.tpl.html", []).run(["$templateCache", function($tem
     "                                    More Info\n" +
     "                                </button>\n" +
     "                                <button class=\"btn btn-primary btn-lg\" ng-click=\"addCultureItem(c)\">\n" +
-    "                                    <i class=\"icon-white icon-plus \"></i>\n" +
+    "                                    Add\n" +
     "                                </button>\n" +
     "                                <button  class=\"btn btn-primary btn-lg\" ng-click=\"removeCultureItem(c)\" >\n" +
-    "                                    <i class=\"icon-white icon-minus\"></i>\n" +
+    "                                    Remove\n" +
     "                                </button>\n" +
     "                            </div>\n" +
     "                            </p>\n" +
     "                        </div>\n" +
     "                        <div class=\"col-md-3 text-center\">\n" +
     "                            <div class=\"panel panel-default\">\n" +
-    "                                <div class=\"panel-body\">\n" +
-    "                                    <div class=\"ratetext\">Location</div>\n" +
+    "                                <div class=\"panel-body image-panel\">\n" +
+    "                                    <carousel interval=\"intervalImages\">\n" +
+    "                                        <div ng-if=\"c.photos.length==0\">\n" +
+    "                                            <img ng-src=\"assets/images/empty_photo.png\" style=\"position: center\">\n" +
+    "\n" +
+    "                                        </div>\n" +
+    "                                        <slide ng-repeat=\"image in c.photos\" active=\"image.active\">\n" +
+    "                                            <img class=\"image-item\" ng-src=\"{{image.image}}\" >\n" +
+    "                                        </slide>\n" +
+    "                                    </carousel>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
     "                        </div>\n" +
