@@ -298,136 +298,133 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "\n" +
     "\n" +
     "\n" +
+    "<div ng-show=\"modalEnabled\">\n" +
+    "    <div class=\"modal fade\" id=\"moreInfoModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">\n" +
+    "        <div class=\"modal-dialog\">\n" +
+    "            <div class=\"modal-content\">\n" +
     "\n" +
+    "                    <div class=\"modal-header\">\n" +
+    "                        <button type=\"button\" class=\"close\" data-dismiss=\"modal\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button>\n" +
+    "                        <h4 class=\"modal-title\" id=\"myModalLabel\">More Information about {{moreInfoSelection.name}}</h4>\n" +
+    "                    </div>\n" +
+    "                    <div class=\"modal-body\">\n" +
+    "                        <div class=\"container-fluid\">\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <div class=\"col-lg-6\" >\n" +
+    "                                    <div class=\"row\">\n" +
+    "                                        <b>Rating</b>\n" +
+    "                                    </div>\n" +
+    "                                    <div class=\"row\">\n" +
+    "                                        {{moreInfoSelection.rating || 'Unknown'}}\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                                <div class=\"col-lg-6\">\n" +
+    "                                    <div class=\"row\">\n" +
+    "                                        <b>Price</b>\n" +
+    "                                    </div>\n" +
+    "                                    <div class=\"row\">\n" +
+    "                                        {{moreInfoSelection.price || 'Unknown'}}\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <div class=\"col-lg-6\" >\n" +
+    "                                    <div class=\"row\">\n" +
+    "                                        <b>Phone</b>\n" +
+    "                                    </div>\n" +
+    "                                    <div class=\"row\">\n" +
+    "                                        {{moreInfoSelection.international_phone}}\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                                <div class=\"col-lg-6\">\n" +
+    "                                    <div class=\"row\">\n" +
+    "                                        <b>Address</b>\n" +
+    "                                    </div>\n" +
+    "                                    <div class=\"row\">\n" +
+    "                                        {{moreInfoSelection.formatted_address}}\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <div class=\"col-lg-12\" >\n" +
+    "                                    <div class=\"row\">\n" +
+    "                                        <b>Web Site</b>\n" +
+    "                                    </div>\n" +
+    "                                    <div class=\"row\">\n" +
+    "                                        {{moreInfoSelection.web_site}}\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <div class=\"col-lg-12\" >\n" +
+    "                                    <div class=\"row\">\n" +
+    "                                        <b>Open Hours</b>\n" +
+    "                                    </div>\n" +
+    "                                    <div class=\"row\">\n" +
+    "                                        <table class=\"table table-hover\">\n" +
+    "                                            <thead>\n" +
+    "                                                <tr>\n" +
+    "                                                    <th></th>\n" +
+    "                                                    <th>Sunday</th>\n" +
+    "                                                    <th>Monday</th>\n" +
+    "                                                    <th>Tuesday</th>\n" +
+    "                                                    <th>Wednesday</th>\n" +
+    "                                                    <th>Thursday</th>\n" +
+    "                                                    <th>Friday</th>\n" +
+    "                                                    <th>Saturday</th>\n" +
+    "                                                </tr>\n" +
+    "                                            </thead>\n" +
+    "                                            <tbody>\n" +
+    "                                                <tr class=\"info\">\n" +
+    "                                                    <td>From</td>\n" +
+    "                                                    <td>{{moreInfoSelection.open_hours.periods[0].open.time}}</td>\n" +
+    "                                                    <td>{{moreInfoSelection.open_hours.periods[1].open.time}}</td>\n" +
+    "                                                    <td>{{moreInfoSelection.open_hours.periods[2].open.time}}</td>\n" +
+    "                                                    <td>{{moreInfoSelection.open_hours.periods[3].open.time}}</td>\n" +
+    "                                                    <td>{{moreInfoSelection.open_hours.periods[4].open.time}}</td>\n" +
+    "                                                    <td>{{moreInfoSelection.open_hours.periods[5].open.time}}</td>\n" +
+    "                                                    <td>{{moreInfoSelection.open_hours.periods[6].open.time}}</td>\n" +
+    "                                                </tr>\n" +
+    "                                                <tr class=\"info\">\n" +
+    "                                                    <td>To</td>\n" +
+    "                                                    <td>{{moreInfoSelection.open_hours.periods[0].close.time}}</td>\n" +
+    "                                                    <td>{{moreInfoSelection.open_hours.periods[1].close.time}}</td>\n" +
+    "                                                    <td>{{moreInfoSelection.open_hours.periods[2].close.time}}</td>\n" +
+    "                                                    <td>{{moreInfoSelection.open_hours.periods[3].close.time}}</td>\n" +
+    "                                                    <td>{{moreInfoSelection.open_hours.periods[4].close.time}}</td>\n" +
+    "                                                    <td>{{moreInfoSelection.open_hours.periods[5].close.time}}</td>\n" +
+    "                                                    <td>{{moreInfoSelection.open_hours.periods[6].close.time}}</td>\n" +
+    "                                                </tr>\n" +
+    "                                            </tbody>\n" +
     "\n" +
-    "<div class=\"modal fade\" id=\"moreInfoModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">\n" +
-    "    <div class=\"modal-dialog\">\n" +
-    "        <div class=\"modal-content\">\n" +
-    "\n" +
-    "                <div class=\"modal-header\">\n" +
-    "                    <button type=\"button\" class=\"close\" data-dismiss=\"modal\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button>\n" +
-    "                    <h4 class=\"modal-title\" id=\"myModalLabel\">More Information about {{moreInfoSelection.name}}</h4>\n" +
-    "                </div>\n" +
-    "                <div class=\"modal-body\">\n" +
-    "                    <div class=\"container-fluid\">\n" +
-    "                        <div class=\"row\">\n" +
-    "                            <div class=\"col-lg-6\" >\n" +
-    "                                <div class=\"row\">\n" +
-    "                                    <b>Rating</b>\n" +
-    "                                </div>\n" +
-    "                                <div class=\"row\">\n" +
-    "                                    {{moreInfoSelection.rating || 'Unknown'}}\n" +
+    "                                        </table>\n" +
+    "                                    </div>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
-    "                            <div class=\"col-lg-6\">\n" +
-    "                                <div class=\"row\">\n" +
-    "                                    <b>Price</b>\n" +
-    "                                </div>\n" +
-    "                                <div class=\"row\">\n" +
-    "                                    {{moreInfoSelection.price || 'Unknown'}}\n" +
-    "                                </div>\n" +
-    "                            </div>\n" +
-    "                        </div>\n" +
-    "                        <div class=\"row\">\n" +
-    "                            <div class=\"col-lg-6\" >\n" +
-    "                                <div class=\"row\">\n" +
-    "                                    <b>Phone</b>\n" +
-    "                                </div>\n" +
-    "                                <div class=\"row\">\n" +
-    "                                    {{moreInfoSelection.international_phone}}\n" +
-    "                                </div>\n" +
-    "                            </div>\n" +
-    "                            <div class=\"col-lg-6\">\n" +
-    "                                <div class=\"row\">\n" +
-    "                                    <b>Address</b>\n" +
-    "                                </div>\n" +
-    "                                <div class=\"row\">\n" +
-    "                                    {{moreInfoSelection.formatted_address}}\n" +
-    "                                </div>\n" +
-    "                            </div>\n" +
-    "                        </div>\n" +
-    "                        <div class=\"row\">\n" +
-    "                            <div class=\"col-lg-12\" >\n" +
-    "                                <div class=\"row\">\n" +
-    "                                    <b>Web Site</b>\n" +
-    "                                </div>\n" +
-    "                                <div class=\"row\">\n" +
-    "                                    {{moreInfoSelection.web_site}}\n" +
-    "                                </div>\n" +
-    "                            </div>\n" +
-    "                        </div>\n" +
-    "                        <div class=\"row\">\n" +
-    "                            <div class=\"col-lg-12\" >\n" +
-    "                                <div class=\"row\">\n" +
-    "                                    <b>Open Hours</b>\n" +
-    "                                </div>\n" +
-    "                                <div class=\"row\">\n" +
-    "                                    <table class=\"table table-hover\">\n" +
-    "                                        <thead>\n" +
-    "                                            <tr>\n" +
-    "                                                <th></th>\n" +
-    "                                                <th>Sunday</th>\n" +
-    "                                                <th>Monday</th>\n" +
-    "                                                <th>Tuesday</th>\n" +
-    "                                                <th>Wednesday</th>\n" +
-    "                                                <th>Thursday</th>\n" +
-    "                                                <th>Friday</th>\n" +
-    "                                                <th>Saturday</th>\n" +
-    "                                            </tr>\n" +
-    "                                        </thead>\n" +
-    "                                        <tbody>\n" +
-    "                                            <tr class=\"info\">\n" +
-    "                                                <td>From</td>\n" +
-    "                                                <td>{{moreInfoSelection.open_hours.periods[0].open.time}}</td>\n" +
-    "                                                <td>{{moreInfoSelection.open_hours.periods[1].open.time}}</td>\n" +
-    "                                                <td>{{moreInfoSelection.open_hours.periods[2].open.time}}</td>\n" +
-    "                                                <td>{{moreInfoSelection.open_hours.periods[3].open.time}}</td>\n" +
-    "                                                <td>{{moreInfoSelection.open_hours.periods[4].open.time}}</td>\n" +
-    "                                                <td>{{moreInfoSelection.open_hours.periods[5].open.time}}</td>\n" +
-    "                                                <td>{{moreInfoSelection.open_hours.periods[6].open.time}}</td>\n" +
-    "                                            </tr>\n" +
-    "                                            <tr class=\"info\">\n" +
-    "                                                <td>To</td>\n" +
-    "                                                <td>{{moreInfoSelection.open_hours.periods[0].close.time}}</td>\n" +
-    "                                                <td>{{moreInfoSelection.open_hours.periods[1].close.time}}</td>\n" +
-    "                                                <td>{{moreInfoSelection.open_hours.periods[2].close.time}}</td>\n" +
-    "                                                <td>{{moreInfoSelection.open_hours.periods[3].close.time}}</td>\n" +
-    "                                                <td>{{moreInfoSelection.open_hours.periods[4].close.time}}</td>\n" +
-    "                                                <td>{{moreInfoSelection.open_hours.periods[5].close.time}}</td>\n" +
-    "                                                <td>{{moreInfoSelection.open_hours.periods[6].close.time}}</td>\n" +
-    "                                            </tr>\n" +
-    "                                        </tbody>\n" +
-    "\n" +
-    "                                    </table>\n" +
-    "                                </div>\n" +
-    "                            </div>\n" +
-    "                        </div>\n" +
-    "                        <div class=\"row\">\n" +
-    "                            <div class=\"col-lg-12\">\n" +
-    "                                <div class=\"row\">\n" +
-    "                                    <div class=\"panel-image-modal\">\n" +
-    "                                        <carousel interval=\"intervalImages\">\n" +
-    "                                            <slide ng-repeat=\"image in moreInfoSelection.photos\" active=\"image.active\">\n" +
-    "                                                <img class=\"image-modal\" ng-src=\"data:image/JPEG;base64,{{image.image}}\" >\n" +
-    "                                            </slide>\n" +
-    "                                        </carousel>\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <div class=\"col-lg-12\">\n" +
+    "                                    <div class=\"row\">\n" +
+    "                                        <div class=\"panel-image-modal\">\n" +
+    "                                            <carousel interval=\"intervalImages\">\n" +
+    "                                                <slide ng-repeat=\"image in moreInfoSelection.photos\" active=\"image.active\">\n" +
+    "                                                    <img class=\"image-modal\" ng-src=\"data:image/JPEG;base64,{{image.image}}\" >\n" +
+    "                                                </slide>\n" +
+    "                                            </carousel>\n" +
+    "                                        </div>\n" +
     "                                    </div>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
     "                        </div>\n" +
     "                    </div>\n" +
-    "                </div>\n" +
-    "                <div class=\"modal-footer\">\n" +
+    "                    <div class=\"modal-footer\">\n" +
     "\n" +
-    "                    <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>\n" +
-    "                </div>\n" +
+    "                        <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\"  ng-click=\"disableModal()\">Close</button>\n" +
+    "                    </div>\n" +
+    "            </div>\n" +
+    "\n" +
     "        </div>\n" +
-    "\n" +
     "    </div>\n" +
-    "</div>\n" +
-    "\n" +
-    "\n" +
-    "");
+    "</div>");
 }]);
 
 angular.module("city/culture.tpl.html", []).run(["$templateCache", function($templateCache) {
@@ -491,7 +488,10 @@ angular.module("city/culture.tpl.html", []).run(["$templateCache", function($tem
     "            </div>\n" +
     "        </div>\n" +
     "    </div>\n" +
-    "</div>");
+    "</div>\n" +
+    "\n" +
+    "\n" +
+    "");
 }]);
 
 angular.module("city/entertainment.tpl.html", []).run(["$templateCache", function($templateCache) {
