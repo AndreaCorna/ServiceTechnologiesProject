@@ -414,6 +414,66 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                                    </div>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <div class=\"col-lg-12\">\n" +
+    "                                    <p class=\"text-center\">\n" +
+    "                                        <b>Reviews</b>\n" +
+    "                                    </p>\n" +
+    "                                    <span ng-repeat=\"review in moreInfoSelection.reviews\">\n" +
+    "                                        <div class=\"panel-group\" id=\"{{review.author_name}}\">\n" +
+    "                                            <div class=\"panel  panel-info\">\n" +
+    "                                                <div class=\"panel-heading\">\n" +
+    "                                                    <h4 class=\"panel-title\">\n" +
+    "                                                        <a class=\"accordion-toggle\" data-toggle=\"collapse\" data-parent=\"#{{review.author_name}}\" data-target=\"#{{$index}}\">{{review.author_name}}</a>\n" +
+    "                                                    </h4>\n" +
+    "                                                </div>\n" +
+    "                                                <div id=\"{{$index}}\" class=\"panel-collapse collapse\">\n" +
+    "                                                    <div class=\"panel-body\">\n" +
+    "                                                        <p class=\"text-left\">\n" +
+    "                                                            <b>Ratings</b>\n" +
+    "                                                        </p>\n" +
+    "                                                        <div class=\"star-rating\">\n" +
+    "                                                            <span ng-repeat=\"aspect in review.aspects\">\n" +
+    "                                                                <div class=\"row\">\n" +
+    "                                                                    <div class=\"col-lg-3\">\n" +
+    "                                                                        <b class=\"text-capitalize\">{{aspect.type}}</b>\n" +
+    "                                                                    </div>\n" +
+    "                                                                    <div class=\"col-lg-8\">\n" +
+    "                                                                        <rating value=\"aspect.rating\" readonly=\"true\"></rating>\n" +
+    "                                                                    </div>\n" +
+    "                                                                </div>\n" +
+    "                                                            </span>\n" +
+    "                                                        </div>\n" +
+    "                                                        <div class=\"row\">\n" +
+    "                                                            <div class=\"col-lg-12\">\n" +
+    "                                                                <p class=\"text-left\">\n" +
+    "                                                                    <b>Comment</b>\n" +
+    "                                                                </p>\n" +
+    "                                                                {{review.text}}\n" +
+    "                                                            </div>\n" +
+    "                                                        </div>\n" +
+    "                                                        <div class=\"col-lg-12\">\n" +
+    "                                                            <div class=\"row\">\n" +
+    "                                                                <em>\n" +
+    "                                                                    <span>{{review.time | date:'medium'}}</span>\n" +
+    "                                                                </em>\n" +
+    "                                                            </div>\n" +
+    "                                                            <div class=\"row\">\n" +
+    "                                                                <em>\n" +
+    "                                                                    Contact User <a href=\"{{review.author_url}}\">GooglePlus!</a>\n" +
+    "                                                                </em>\n" +
+    "                                                            </div>\n" +
+    "                                                        </div>\n" +
+    "                                                    </div>\n" +
+    "\n" +
+    "                                                </div>\n" +
+    "                                            </div>\n" +
+    "\n" +
+    "                                   </div>\n" +
+    "                                  </span>\n" +
+    "\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
     "                        </div>\n" +
     "                    </div>\n" +
     "                    <div class=\"modal-footer\">\n" +
