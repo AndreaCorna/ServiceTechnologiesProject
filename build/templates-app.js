@@ -272,12 +272,6 @@ angular.module("about/about.tpl.html", []).run(["$templateCache", function($temp
 
 angular.module("city/city.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("city/city.tpl.html",
-    "<head>\n" +
-    "    <link rel=\"stylesheet\" type=\"text/css\" href=\"http://www.shieldui.com/shared/components/latest/css/shieldui-all.min.css\" />\n" +
-    "    <link rel=\"stylesheet\" type=\"text/css\" href=\"http://www.shieldui.com/shared/components/latest/css/light/all.min.css\" />\n" +
-    "    <script type=\"text/javascript\" src=\"http://www.shieldui.com/shared/components/latest/js/shieldui-all.min.js\"></script>\n" +
-    "</head>\n" +
-    "\n" +
     "<carousel interval=\"intervalImages\">\n" +
     "    <slide ng-repeat=\"image in city\" active=\"image.active\">\n" +
     "        <img ng-src=\"{{image.image}}\" style=\"margin:auto;\">\n" +
@@ -289,13 +283,14 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "\n" +
     "<div id='cssmenu'>\n" +
     "    <ul>\n" +
-    "        <li class='active'><a ui-sref=\"culture\"><span>Culture</span></a></li>\n" +
-    "        <li><a ui-sref=\"entertainment\"><span>Entertainment</span></a></li>\n" +
-    "        <li><a ui-sref=\"hotel\"><span>Hotel</span></a></li>\n" +
-    "        <li><a ui-sref=\"utility\"><span>Utility</span></a></li>\n" +
-    "        <li><a ui-sref=\"food\"><span>Food</span></a></li>\n" +
+    "        <li class='active'><a ui-sref=\"culture\" data-target=\"#\" data-toggle=\"pill\"><span>Culture</span></a></li>\n" +
+    "        <li><a ui-sref=\"entertainment\" data-target=\"#\" data-toggle=\"pill\"><span>Entertainment</span></a></li>\n" +
+    "        <li><a ui-sref=\"hotel\" data-target=\"#\" data-toggle=\"pill\"><span>Hotel</span></a></li>\n" +
+    "        <li><a ui-sref=\"utility\" data-target=\"#\" data-toggle=\"pill\"><span>Utility</span></a></li>\n" +
+    "        <li><a ui-sref=\"food\" data-target=\"#\" data-toggle=\"pill\"><span>Food</span></a></li>\n" +
     "\n" +
-    "        <li class='last'><a ui-sref=\"calendar\"><span>Plan Trip</span></a></li>\n" +
+    "\n" +
+    "        <li class='last'><a ui-sref=\"calendar\" data-target=\"#\" data-toggle=\"pill\"><span>Plan Trip</span></a></li>\n" +
     "    </ul>\n" +
     "\n" +
     "</div>\n" +

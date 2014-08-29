@@ -10,12 +10,15 @@ module PlacesHelper
   module UtilityHelperCity
 
     def get_utility_items(city)
-      puts 'parameter '+city
-      #client = GooglePlaces::Client.new(ENV['API_KEY'])
-      #utility_items = client.spots_by_query(city+' airport || atm || bank || bus station || doctor || fire station || hospital || parking || pharmacy || subway station || taxi stand || train station || police',:types => ['airport','atm','bank','bus_station','doctor','fire_station','hospital','parking','pharmacy','police','subway_station','taxi_stand','train_station'],:language => 'en')
+      client = GooglePlaces::Client.new(ENV['API_KEY'])
+      utility_items = client.spots_by_query(city+' airport || atm || bank || bus station || doctor || fire station || hospital || parking || pharmacy || subway station || taxi stand || train station || police',:types => ['airport','atm','bank','bus_station','doctor','fire_station','hospital','parking','pharmacy','police','subway_station','taxi_stand','train_station'],:language => 'en')
       results = []
-      #utility_items.each { |place|
-        #results.append(UtilityItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,place.photos,place.icon,place.place_id,'utility'))}
+      utility_items.each { |place|
+        photos = []
+        if(!place.photos[0].nil?)
+          photos.append(:image=>place.photos[0].fetch_url(400))
+        end
+        results.append(UtilityItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'utility'))}
       return results
 
     end
@@ -41,8 +44,6 @@ module PlacesHelper
   module CultureHelperCity
 
     def get_culture_items(city)
-      puts 'places module'
-      puts 'parameter '+city
       client = GooglePlaces::Client.new(ENV['API_KEY'])
 
       culture_items = client.spots_by_query(city+' museum || library || aquarium || art gallery || church',:types => ['library','book_store','museum','aquarium','art_gallery','church'],:language => 'en')
@@ -82,12 +83,15 @@ module PlacesHelper
   module EntertainmentHelperCity
 
     def get_entertainment_items(city)
-      puts 'parameter '+city
-      #client = GooglePlaces::Client.new(ENV['API_KEY'])
-      #entertainment_items = client.spots_by_query(city+' amusement_park || casino || gym || zoo || spa || park',:types => ['amusement_park','casino','gym','zoo','spa','park'],:language => 'en')
+      client = GooglePlaces::Client.new(ENV['API_KEY'])
+      entertainment_items = client.spots_by_query(city+' amusement_park || casino || gym || zoo || spa || park',:types => ['amusement_park','casino','gym','zoo','spa','park'],:language => 'en')
       results = []
-      #entertainment_items.each { |place|
-        #results.append(EntertainmentItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,place.photos,place.icon,place.place_id,'entertainment'))}
+      entertainment_items.each { |place|
+        photos = []
+        if(!place.photos[0].nil?)
+          photos.append(:image=>place.photos[0].fetch_url(400))
+        end
+        results.append(EntertainmentItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'entertainment'))}
       return results
 
     end
@@ -115,12 +119,15 @@ module PlacesHelper
   module FoodHelperCity
 
     def get_food_items(city)
-      puts 'parameter '+city
-      #client = GooglePlaces::Client.new(ENV['API_KEY'])
-      #food_items = client.spots_by_query(city+' food || restaurant || cafe || bakery',:types => ['food','restaurant','cafe','bakery'],:language => 'en')
+      client = GooglePlaces::Client.new(ENV['API_KEY'])
+      food_items = client.spots_by_query(city+' food || restaurant || cafe || bakery',:types => ['food','restaurant','cafe','bakery'],:language => 'en')
       results = []
-      #food_items.each { |place|
-       # results.append(FoodItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,place.photos,place.icon,place.place_id,'food'))}
+      food_items.each { |place|
+        photos = []
+        if(!place.photos[0].nil?)
+          photos.append(:image=>place.photos[0].fetch_url(400))
+        end
+        results.append(FoodItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'food'))}
       return results
 
     end
@@ -148,7 +155,7 @@ module PlacesHelper
     details = []
     response = HTTParty.get('https://maps.googleapis.com/maps/api/place/details/json?placeid='+id+'&key='+ENV['API_KEY'])
     json = JSON.parse(response.body)
-    puts json
+    #puts json
     lat = json['result']['geometry']['location']['lat']
     lng = json['result']['geometry']['location']['lng']
     reviews = json['result']['reviews']
