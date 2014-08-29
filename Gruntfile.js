@@ -102,7 +102,7 @@ module.exports = function ( grunt ) {
         files: [
           { 
             src: [ '**' ],
-            dest: '<%= build_dir %>/assets/fonts',
+            dest: '<%= build_dir %>/assets',
             cwd: 'src/assets',
             expand: true
           },
