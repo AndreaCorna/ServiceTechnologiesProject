@@ -140,6 +140,66 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <p class="text-center">
+                                        <b>Reviews</b>
+                                    </p>
+                                    <span ng-repeat="review in moreInfoSelection.reviews">
+                                        <div class="panel-group" id="{{review.author_name}}">
+                                            <div class="panel  panel-info">
+                                                <div class="panel-heading">
+                                                    <h4 class="panel-title">
+                                                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#{{review.author_name}}" data-target="#{{$index}}">{{review.author_name}}</a>
+                                                    </h4>
+                                                </div>
+                                                <div id="{{$index}}" class="panel-collapse collapse">
+                                                    <div class="panel-body">
+                                                        <p class="text-left">
+                                                            <b>Ratings</b>
+                                                        </p>
+                                                        <div class="star-rating">
+                                                            <span ng-repeat="aspect in review.aspects">
+                                                                <div class="row">
+                                                                    <div class="col-lg-3">
+                                                                        <b class="text-capitalize">{{aspect.type}}</b>
+                                                                    </div>
+                                                                    <div class="col-lg-8">
+                                                                        <rating value="aspect.rating" readonly="true"></rating>
+                                                                    </div>
+                                                                </div>
+                                                            </span>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-lg-12">
+                                                                <p class="text-left">
+                                                                    <b>Comment</b>
+                                                                </p>
+                                                                {{review.text}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-12">
+                                                            <div class="row">
+                                                                <em>
+                                                                    <span>{{review.time | date:'medium'}}</span>
+                                                                </em>
+                                                            </div>
+                                                            <div class="row">
+                                                                <em>
+                                                                    Contact User <a href="{{review.author_url}}">GooglePlus!</a>
+                                                                </em>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                   </div>
+                                  </span>
+
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer">
