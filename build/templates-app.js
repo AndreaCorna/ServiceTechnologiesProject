@@ -410,11 +410,13 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                        <div class=\"row\">\n" +
     "                            <div class=\"col-lg-12\">\n" +
     "                                <div class=\"row\">\n" +
-    "                                    <carousel interval=\"intervalImages\">\n" +
-    "                                        <slide ng-repeat=\"image in moreInfoSelection.photos\" active=\"image.active\">\n" +
-    "                                            <img ng-src=\"data:image/JPEG;base64,{{image.image}}\" width=\"400\" height=\"300\" style=\"position: center\">\n" +
-    "                                        </slide>\n" +
-    "                                    </carousel>\n" +
+    "                                    <div class=\"panel-image-modal\">\n" +
+    "                                        <carousel interval=\"intervalImages\">\n" +
+    "                                            <slide ng-repeat=\"image in moreInfoSelection.photos\" active=\"image.active\">\n" +
+    "                                                <img class=\"image-modal\" ng-src=\"data:image/JPEG;base64,{{image.image}}\" >\n" +
+    "                                            </slide>\n" +
+    "                                        </carousel>\n" +
+    "                                    </div>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
     "                        </div>\n" +
