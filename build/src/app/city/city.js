@@ -281,13 +281,18 @@ angular.module( 'trippo.city', [
         $scope.$log= $log;
         $scope.intervalImages = 5000;
         $scope.moreInfoSelection=null;
+        $scope.modalEnabled = false;
         $scope.city = CityRes.details.query({city_name:$stateParams.city_name});
         $scope.$watchCollection(function () { return ModalHandler.getDetails(); }, function (newVal, oldVal) {
             if (typeof newVal !== 'undefined') {
                 console.log("changing value") ;
                 $scope.moreInfoSelection = ModalHandler.getDetails();
+                $scope.modalEnabled = true;
             }
         });
+        $scope.disableModal = function(){
+            $scope.modalEnabled = false;
+        };
 
 
 
