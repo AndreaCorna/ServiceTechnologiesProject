@@ -1,5 +1,5 @@
 <p>
-    List utility {{utilitySelection}}
+    List Utility {{utilitySelection}}
 </p>
 <div class="container">
     <div class="row">
@@ -8,12 +8,10 @@
             <div class="list-group">
                 <span ng-repeat="c in utilityList">
                     <div class="list-group-item">
-                        <div class="media col-md-3">
-                            <figure class="pull-left">
-                                <i class="fa fa-cloud-upload ">
-                                    <img ng-src="{{c.icon}}" style="margin:auto;">
-                                </i>
-                            </figure>
+                        <div class="col-md-3">
+                            <i class="icon-col-centered">
+                                <img ng-src="{{c.icon}}">
+                            </i>
                         </div>
                         <div class="col-md-6">
                             <h4 class="list-group-item-heading">{{c.name}}</h4>
@@ -31,18 +29,26 @@
                                     More Info
                                 </button>
                                 <button class="btn btn-primary btn-lg" ng-click="addUtilityItem(c)">
-                                    <i class="icon-white icon-plus "></i>
+                                    Add
                                 </button>
                                 <button  class="btn btn-primary btn-lg" ng-click="removeUtilityItem(c)" >
-                                    <i class="icon-white icon-minus"></i>
+                                    Remove
                                 </button>
                             </div>
                             </p>
                         </div>
                         <div class="col-md-3 text-center">
                             <div class="panel panel-default">
-                                <div class="panel-body">
-                                    <div class="ratetext">Location</div>
+                                <div class="panel-body image-panel">
+                                    <carousel interval="intervalImages">
+                                        <div ng-if="c.photos.length==0">
+                                            <img ng-src="assets/images/empty_photo.png" style="position: center">
+
+                                        </div>
+                                        <slide ng-repeat="image in c.photos" active="image.active">
+                                            <img class="image-item" ng-src="{{image.image}}" >
+                                        </slide>
+                                    </carousel>
                                 </div>
                             </div>
                         </div>
