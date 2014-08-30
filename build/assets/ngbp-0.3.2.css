@@ -6553,10 +6553,8 @@ h2 {
   max-width: 240px;
 }
 .icon-col-centered {
-  display: inline-block;
-  float: none;
-  text-align: left;
-  margin-right: -4px;
+  padding-left: 80px;
+  padding-top: 50px;
 }
 .votes {
   font-size: 47px;
