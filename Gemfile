@@ -58,3 +58,5 @@ gem 'google_places'
 gem 'expedia'
 
 gem 'httparty'
+
+gem 'freebase-api'

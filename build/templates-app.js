@@ -500,32 +500,38 @@ angular.module("city/culture.tpl.html", []).run(["$templateCache", function($tem
     "                <span ng-repeat=\"c in cultureList\">\n" +
     "                    <div class=\"list-group-item\">\n" +
     "                        <div class=\"col-md-3\">\n" +
-    "                            <i class=\"icon-col-centered\">\n" +
-    "                                <img ng-src=\"{{c.icon}}\">\n" +
-    "                            </i>\n" +
-    "                        </div>\n" +
-    "                        <div class=\"col-md-6\">\n" +
-    "                            <h4 class=\"list-group-item-heading\">{{c.name}}</h4>\n" +
-    "                            <p class=\"list-group-item-text\">\n" +
     "                            <div class=\"row\">\n" +
-    "                                <p>Price {{c.price || 'Free'}}</p>\n" +
+    "                                <img class=\"icon-col-centered\" ng-src=\"{{c.icon}}\">\n" +
     "                            </div>\n" +
-    "                            <div class=\"row\">\n" +
-    "                                <p>Rating {{c.rating}}</p>\n" +
-    "                                <rating value=\"c.rating\" readonly=\"true\" ></rating>\n" +
-    "\n" +
-    "                            </div>\n" +
-    "                            <div class=\"row\">\n" +
-    "                                <button class=\"btn btn-primary btn-lg\" ng-click=\"getCultureDetails(c.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">\n" +
+    "                            <div class=\"row\" style=\"padding-top: 50px\">\n" +
+    "                                <button class=\"btn btn-primary\" ng-click=\"getCultureDetails(c.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">\n" +
     "                                    More Info\n" +
     "                                </button>\n" +
-    "                                <button class=\"btn btn-primary btn-lg\" ng-click=\"addCultureItem(c)\">\n" +
+    "                                <button class=\"btn btn-primary \" ng-click=\"addCultureItem(c)\">\n" +
     "                                    Add\n" +
     "                                </button>\n" +
-    "                                <button  class=\"btn btn-primary btn-lg\" ng-click=\"removeCultureItem(c)\" >\n" +
+    "                                <button  class=\"btn btn-primary \" ng-click=\"removeCultureItem(c)\" >\n" +
     "                                    Remove\n" +
     "                                </button>\n" +
     "                            </div>\n" +
+    "                        </div>\n" +
+    "                        <div class=\"col-md-6\">\n" +
+    "                            <p class=\"list-group-item-text\">\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <b class=\"text-capitalize\">{{c.name}}</b>\n" +
+    "                            </div>\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <div class=\"col-md-3\">\n" +
+    "                                    <p>Price {{c.price || 'Free'}}</p>\n" +
+    "                                </div>\n" +
+    "                                <div class=\"col-md-4\">\n" +
+    "                                    <p>Rating <rating value=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                            <div class=\"row\">\n" +
+    "                                 <div class=\"text-justify\">{{c.description}}</div>\n" +
+    "                            </div>\n" +
+    "\n" +
     "                            </p>\n" +
     "                        </div>\n" +
     "                        <div class=\"col-md-3 text-center\">\n" +
@@ -567,32 +573,38 @@ angular.module("city/entertainment.tpl.html", []).run(["$templateCache", functio
     "                <span ng-repeat=\"c in entertainmentList\">\n" +
     "                    <div class=\"list-group-item\">\n" +
     "                        <div class=\"col-md-3\">\n" +
-    "                            <i class=\"icon-col-centered\">\n" +
-    "                                <img ng-src=\"{{c.icon}}\">\n" +
-    "                            </i>\n" +
-    "                        </div>\n" +
-    "                        <div class=\"col-md-6\">\n" +
-    "                            <h4 class=\"list-group-item-heading\">{{c.name}}</h4>\n" +
-    "                            <p class=\"list-group-item-text\">\n" +
     "                            <div class=\"row\">\n" +
-    "                                <p>Price {{c.price || 'Free'}}</p>\n" +
+    "                                <img class=\"icon-col-centered\" ng-src=\"{{c.icon}}\">\n" +
     "                            </div>\n" +
-    "                            <div class=\"row\">\n" +
-    "                                <p>Rating {{c.rating}}</p>\n" +
-    "                                <rating value=\"c.rating\" readonly=\"true\" ></rating>\n" +
-    "\n" +
-    "                            </div>\n" +
-    "                            <div class=\"row\">\n" +
-    "                                <button class=\"btn btn-primary btn-lg\" ng-click=\"getEntertainmentDetails(c.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">\n" +
+    "                            <div class=\"row\" style=\"padding-top: 50px\">\n" +
+    "                                <button class=\"btn btn-primary\" ng-click=\"getEntertainmentDetails(c.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">\n" +
     "                                    More Info\n" +
     "                                </button>\n" +
-    "                                <button class=\"btn btn-primary btn-lg\" ng-click=\"addEntertainmentItem(c)\">\n" +
+    "                                <button class=\"btn btn-primary \" ng-click=\"addEntertainmentItem(c)\">\n" +
     "                                    Add\n" +
     "                                </button>\n" +
-    "                                <button  class=\"btn btn-primary btn-lg\" ng-click=\"removeEntertainmentItem(c)\" >\n" +
+    "                                <button  class=\"btn btn-primary \" ng-click=\"removeEntertainmentItem(c)\" >\n" +
     "                                    Remove\n" +
     "                                </button>\n" +
     "                            </div>\n" +
+    "                        </div>\n" +
+    "                        <div class=\"col-md-6\">\n" +
+    "                            <p class=\"list-group-item-text\">\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <b class=\"text-capitalize\">{{c.name}}</b>\n" +
+    "                            </div>\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <div class=\"col-md-3\">\n" +
+    "                                    <p>Price {{c.price || 'Free'}}</p>\n" +
+    "                                </div>\n" +
+    "                                <div class=\"col-md-4\">\n" +
+    "                                    <p>Rating <rating value=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <div class=\"text-justify\">{{c.description}}</div>\n" +
+    "                            </div>\n" +
+    "\n" +
     "                            </p>\n" +
     "                        </div>\n" +
     "                        <div class=\"col-md-3 text-center\">\n" +
@@ -631,32 +643,38 @@ angular.module("city/food.tpl.html", []).run(["$templateCache", function($templa
     "                <span ng-repeat=\"c in foodList\">\n" +
     "                    <div class=\"list-group-item\">\n" +
     "                        <div class=\"col-md-3\">\n" +
-    "                            <i class=\"icon-col-centered\">\n" +
-    "                                <img ng-src=\"{{c.icon}}\">\n" +
-    "                            </i>\n" +
-    "                        </div>\n" +
-    "                        <div class=\"col-md-6\">\n" +
-    "                            <h4 class=\"list-group-item-heading\">{{c.name}}</h4>\n" +
-    "                            <p class=\"list-group-item-text\">\n" +
     "                            <div class=\"row\">\n" +
-    "                                <p>Price {{c.price || 'Free'}}</p>\n" +
+    "                                <img class=\"icon-col-centered\" ng-src=\"{{c.icon}}\">\n" +
     "                            </div>\n" +
-    "                            <div class=\"row\">\n" +
-    "                                <p>Rating {{c.rating}}</p>\n" +
-    "                                <rating value=\"c.rating\" readonly=\"true\" ></rating>\n" +
-    "\n" +
-    "                            </div>\n" +
-    "                            <div class=\"row\">\n" +
-    "                                <button class=\"btn btn-primary btn-lg\" ng-click=\"getFoodDetails(c.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">\n" +
+    "                            <div class=\"row\" style=\"padding-top: 50px\">\n" +
+    "                                <button class=\"btn btn-primary\" ng-click=\"getFoodDetails(c.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">\n" +
     "                                    More Info\n" +
     "                                </button>\n" +
-    "                                <button class=\"btn btn-primary btn-lg\" ng-click=\"addFoodItem(c)\">\n" +
+    "                                <button class=\"btn btn-primary \" ng-click=\"addFoodItem(c)\">\n" +
     "                                    Add\n" +
     "                                </button>\n" +
-    "                                <button  class=\"btn btn-primary btn-lg\" ng-click=\"removeFoodItem(c)\" >\n" +
+    "                                <button  class=\"btn btn-primary \" ng-click=\"removeFoodItem(c)\" >\n" +
     "                                    Remove\n" +
     "                                </button>\n" +
     "                            </div>\n" +
+    "                        </div>\n" +
+    "                        <div class=\"col-md-6\">\n" +
+    "                            <p class=\"list-group-item-text\">\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <b class=\"text-capitalize\">{{c.name}}</b>\n" +
+    "                            </div>\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <div class=\"col-md-3\">\n" +
+    "                                    <p>Price {{c.price || 'Free'}}</p>\n" +
+    "                                </div>\n" +
+    "                                <div class=\"col-md-4\">\n" +
+    "                                    <p>Rating <rating value=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <div class=\"text-justify\">{{c.description}}</div>\n" +
+    "                            </div>\n" +
+    "\n" +
     "                            </p>\n" +
     "                        </div>\n" +
     "                        <div class=\"col-md-3 text-center\">\n" +
@@ -743,7 +761,7 @@ angular.module("city/hotel.tpl.html", []).run(["$templateCache", function($templ
 angular.module("city/utility.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("city/utility.tpl.html",
     "<p>\n" +
-    "    List Utility {{utilitySelection}}\n" +
+    "    List utility {{utilitySelection}}\n" +
     "</p>\n" +
     "<div class=\"container\">\n" +
     "    <div class=\"row\">\n" +
@@ -753,32 +771,38 @@ angular.module("city/utility.tpl.html", []).run(["$templateCache", function($tem
     "                <span ng-repeat=\"c in utilityList\">\n" +
     "                    <div class=\"list-group-item\">\n" +
     "                        <div class=\"col-md-3\">\n" +
-    "                            <i class=\"icon-col-centered\">\n" +
-    "                                <img ng-src=\"{{c.icon}}\">\n" +
-    "                            </i>\n" +
-    "                        </div>\n" +
-    "                        <div class=\"col-md-6\">\n" +
-    "                            <h4 class=\"list-group-item-heading\">{{c.name}}</h4>\n" +
-    "                            <p class=\"list-group-item-text\">\n" +
     "                            <div class=\"row\">\n" +
-    "                                <p>Price {{c.price || 'Free'}}</p>\n" +
+    "                                <img class=\"icon-col-centered\" ng-src=\"{{c.icon}}\">\n" +
     "                            </div>\n" +
-    "                            <div class=\"row\">\n" +
-    "                                <p>Rating {{c.rating}}</p>\n" +
-    "                                <rating value=\"c.rating\" readonly=\"true\" ></rating>\n" +
-    "\n" +
-    "                            </div>\n" +
-    "                            <div class=\"row\">\n" +
-    "                                <button class=\"btn btn-primary btn-lg\" ng-click=\"getUtilityDetails(c.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">\n" +
+    "                            <div class=\"row\" style=\"padding-top: 50px\">\n" +
+    "                                <button class=\"btn btn-primary\" ng-click=\"getUtilityDetails(c.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">\n" +
     "                                    More Info\n" +
     "                                </button>\n" +
-    "                                <button class=\"btn btn-primary btn-lg\" ng-click=\"addUtilityItem(c)\">\n" +
+    "                                <button class=\"btn btn-primary \" ng-click=\"addUtilityItem(c)\">\n" +
     "                                    Add\n" +
     "                                </button>\n" +
-    "                                <button  class=\"btn btn-primary btn-lg\" ng-click=\"removeUtilityItem(c)\" >\n" +
+    "                                <button  class=\"btn btn-primary \" ng-click=\"removeUtilityItem(c)\" >\n" +
     "                                    Remove\n" +
     "                                </button>\n" +
     "                            </div>\n" +
+    "                        </div>\n" +
+    "                        <div class=\"col-md-6\">\n" +
+    "                            <p class=\"list-group-item-text\">\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <b class=\"text-capitalize\">{{c.name}}</b>\n" +
+    "                            </div>\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <div class=\"col-md-3\">\n" +
+    "                                    <p>Price {{c.price || 'Free'}}</p>\n" +
+    "                                </div>\n" +
+    "                                <div class=\"col-md-4\">\n" +
+    "                                    <p>Rating <rating value=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <div class=\"text-justify\">{{c.description}}</div>\n" +
+    "                            </div>\n" +
+    "\n" +
     "                            </p>\n" +
     "                        </div>\n" +
     "                        <div class=\"col-md-3 text-center\">\n" +

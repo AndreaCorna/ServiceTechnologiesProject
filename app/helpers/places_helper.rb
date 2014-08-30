@@ -18,15 +18,16 @@ module PlacesHelper
         if(!place.photos[0].nil?)
           photos.append(:image=>place.photos[0].fetch_url(400))
         end
-        results.append(UtilityItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'utility'))}
+        description = get_description(place.name)
+        results.append(UtilityItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'utility',description))}
       return results
 
     end
 
     class UtilityItem
-      attr_accessor :id,:lat,:lng,:price,:rating,:name,:photos,:icon,:tag;
+      attr_accessor :id,:lat,:lng,:price,:rating,:name,:photos,:icon,:tag,:description;
 
-      def initialize(lat,lng,name,rating,price,photos,icon,place_id,tag)
+      def initialize(lat,lng,name,rating,price,photos,icon,place_id,tag,description)
         @id = place_id
         @lat = lat;
         @lng = lng;
@@ -36,13 +37,14 @@ module PlacesHelper
         @photos = photos;
         @icon = icon;
         @tag = tag;
+        @description = description;
 
       end
     end
   end
 
   module CultureHelperCity
-
+    include FreebaseHelper
     def get_culture_items(city)
       client = GooglePlaces::Client.new(ENV['API_KEY'])
 
@@ -54,15 +56,16 @@ module PlacesHelper
         if(!place.photos[0].nil?)
           photos.append(:image=>place.photos[0].fetch_url(400))
         end
-        results.append(CultureItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'culture'))}
+        description = get_description(place.name)
+        results.append(CultureItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'culture',description))}
       return results
 
     end
 
     class CultureItem
-      attr_accessor :id,:lat,:lng,:price,:rating,:name,:photos,:icon,:tag;
+      attr_accessor :id,:lat,:lng,:price,:rating,:name,:photos,:icon,:tag,:description;
 
-      def initialize(lat,lng,name,rating,price,photos,icon,place_id,tag)
+      def initialize(lat,lng,name,rating,price,photos,icon,place_id,tag,description)
         @id = place_id
         @lat = lat;
         @lng = lng;
@@ -72,6 +75,7 @@ module PlacesHelper
         @photos = photos;
         @icon = icon;
         @tag = tag;
+        @description = description;
 
       end
 
@@ -91,16 +95,17 @@ module PlacesHelper
         if(!place.photos[0].nil?)
           photos.append(:image=>place.photos[0].fetch_url(400))
         end
-        results.append(EntertainmentItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'entertainment'))}
+        description = get_description(place.name)
+        results.append(EntertainmentItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'entertainment',description))}
       return results
 
     end
 
 
     class EntertainmentItem
-      attr_accessor :id,:lat,:lng,:price,:rating,:name,:photos,:icon,:tag;
+      attr_accessor :id,:lat,:lng,:price,:rating,:name,:photos,:icon,:tag,:description;
 
-      def initialize(lat,lng,name,rating,price,photos,icon,place_id,tag)
+      def initialize(lat,lng,name,rating,price,photos,icon,place_id,tag,description)
         @id = place_id
         @lat = lat;
         @lng = lng;
@@ -110,6 +115,7 @@ module PlacesHelper
         @photos = photos;
         @icon = icon;
         @tag = tag;
+        @description = description;
 
       end
     end
@@ -127,15 +133,16 @@ module PlacesHelper
         if(!place.photos[0].nil?)
           photos.append(:image=>place.photos[0].fetch_url(400))
         end
-        results.append(FoodItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'food'))}
+        description = get_description(place.name)
+        results.append(FoodItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'food',description))}
       return results
 
     end
 
     class FoodItem
-      attr_accessor :id,:lat,:lng,:price,:rating,:name,:photos,:icon,:tag;
+      attr_accessor :id,:lat,:lng,:price,:rating,:name,:photos,:icon,:tag,:description;
 
-      def initialize(lat,lng,name,rating,price,photos,icon,place_id,tag)
+      def initialize(lat,lng,name,rating,price,photos,icon,place_id,tag,description)
         @id = place_id
         @lat = lat;
         @lng = lng;
@@ -145,6 +152,7 @@ module PlacesHelper
         @photos = photos;
         @icon = icon;
         @tag = tag;
+        @description = description;
 
       end
     end

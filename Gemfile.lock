@@ -52,6 +52,8 @@ GEM
     figaro (0.7.0)
       bundler (~> 1.0)
       rails (>= 3, < 5)
+    freebase-api (0.1.4)
+      httparty (~> 0.10)
     google-api-client (0.7.1)
       addressable (>= 2.3.2)
       autoparse (>= 0.3.3)
@@ -164,6 +166,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   expedia
   figaro
+  freebase-api
   google-api-client
   google_places
   httparty
