@@ -9,32 +9,38 @@
                 <span ng-repeat="c in entertainmentList">
                     <div class="list-group-item">
                         <div class="col-md-3">
-                            <i class="icon-col-centered">
-                                <img ng-src="{{c.icon}}">
-                            </i>
-                        </div>
-                        <div class="col-md-6">
-                            <h4 class="list-group-item-heading">{{c.name}}</h4>
-                            <p class="list-group-item-text">
                             <div class="row">
-                                <p>Price {{c.price || 'Free'}}</p>
+                                <img class="icon-col-centered" ng-src="{{c.icon}}">
                             </div>
-                            <div class="row">
-                                <p>Rating {{c.rating}}</p>
-                                <rating value="c.rating" readonly="true" ></rating>
-
-                            </div>
-                            <div class="row">
-                                <button class="btn btn-primary btn-lg" ng-click="getEntertainmentDetails(c.id)" href="#moreInfoModal" data-toggle="modal">
+                            <div class="row" style="padding-top: 50px">
+                                <button class="btn btn-primary" ng-click="getEntertainmentDetails(c.id)" href="#moreInfoModal" data-toggle="modal">
                                     More Info
                                 </button>
-                                <button class="btn btn-primary btn-lg" ng-click="addEntertainmentItem(c)">
+                                <button class="btn btn-primary " ng-click="addEntertainmentItem(c)">
                                     Add
                                 </button>
-                                <button  class="btn btn-primary btn-lg" ng-click="removeEntertainmentItem(c)" >
+                                <button  class="btn btn-primary " ng-click="removeEntertainmentItem(c)" >
                                     Remove
                                 </button>
                             </div>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="list-group-item-text">
+                            <div class="row">
+                                <b class="text-capitalize">{{c.name}}</b>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <p>Price {{c.price || 'Free'}}</p>
+                                </div>
+                                <div class="col-md-4">
+                                    <p>Rating <rating value="c.rating" readonly="true" ></rating></p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="text-justify">{{c.description}}</div>
+                            </div>
+
                             </p>
                         </div>
                         <div class="col-md-3 text-center">
