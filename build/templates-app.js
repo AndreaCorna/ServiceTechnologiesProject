@@ -307,7 +307,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "    </ul>\n" +
     "\n" +
     "</div>\n" +
-    "<div ui-view=\"content\" class=\"fill\"></div>\n" +
+    "<div ui-view=\"content\" ></div>\n" +
     "\n" +
     "\n" +
     "\n" +
@@ -576,11 +576,9 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "    <a class=\"col-md-12\">\n" +
     "        <span bind-html-unsafe=\"match.label| typeaheadHighlight:query\"></span>\n" +
     "       <i>({{match.model.state}})</i>\n" +
-    "\n" +
-    "\n" +
-    "\n" +
     "    </a>\n" +
     "</script>\n" +
+    "\n" +
     "<div class=\"home_back fill\" >\n" +
     "    <div class=\"home\">\n" +
     "        <img src=\"assets/images/trippo.png\" class=\"center\" />\n" +
@@ -605,17 +603,17 @@ angular.module("plan_trip/calendar.tpl.html", []).run(["$templateCache", functio
     "<div class=\"container\">\n" +
     "    <div class=\"row\">\n" +
     "        <form novalidate name=\"form\" ng-submit=\"next(form)\">\n" +
-    "\n" +
+    "            <h1 class=\"text-center\">Choose the period</h1>\n" +
     "            <div ng-show=\"submitted  && (form.end.$error.required || form.start.$error.required)\" class=\"alert alert-danger\">\n" +
     "                Field <strong>start date</strong> and <strong>end date</strong> are required\n" +
     "            </div>\n" +
     "            <div class=\"col-md-6\">\n" +
-    "                <h1>Start date:<span ng-show=\"dtstart\">{{dtstart | date:'dd/MM/yyyy'}}</span></h1>\n" +
+    "                <h2>Start date:<span ng-show=\"dtstart\">{{dtstart | date:'dd/MM/yyyy'}}</span></h2>\n" +
     "                <datepicker ng-model=\"dtstart\" max-date=\"dtend\"  show-weeks=\"false\" name=\"start\" class=\"well well-sm\" required></datepicker>\n" +
     "            </div>\n" +
     "\n" +
     "            <div class=\"col-md-6\">\n" +
-    "                <h1>End date:<span ng-show=\"dtend\">{{dtend | date:'dd/MM/yyyy'}}</span></h1>\n" +
+    "                <h2>End date:<span ng-show=\"dtend\">{{dtend | date:'dd/MM/yyyy'}}</span></h2>\n" +
     "                <datepicker ng-model=\"dtend\" min-date=\"dtstart\" show-weeks=\"false\" name=\"end\" class=\"well well-sm\" required></datepicker>\n" +
     "\n" +
     "            </div>\n" +
@@ -629,11 +627,22 @@ angular.module("plan_trip/calendar.tpl.html", []).run(["$templateCache", functio
 
 angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("plan_trip/planning.tpl.html",
-    "<div>Planning</div>");
+    "<div>Planning</div>\n" +
+    "\n" +
+    "<div class=\"sortable-container\" sv-root sv-part=\"selectedItems\">\n" +
+    "    <div ng-repeat=\"item in selectedItems\" sv-element=\"opts\" class=\"well\">\n" +
+    "        {{item}}\n" +
+    "    </div>\n" +
+    "</div>");
 }]);
 
 angular.module("plan_trip/trip_dates.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("plan_trip/trip_dates.tpl.html",
-    "<h4>Inline</h4>\n" +
-    "");
+    "<h1>Plan your date</h1>\n" +
+    "<div class=\"container\">\n" +
+    "    <div ng-repeat=\"curDate in dates\">\n" +
+    "        <a ui-sref=\"planning({date:curDate.format(dateFormat)})\">{{curDate.format(dateFormat)}}</a>\n" +
+    "\n" +
+    "    </div>\n" +
+    "</div>");
 }]);

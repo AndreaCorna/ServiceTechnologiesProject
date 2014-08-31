@@ -1,1 +1,7 @@
-<h4>Inline</h4>
+<h1>Plan your date</h1>
+<div class="container">
+    <div ng-repeat="curDate in dates">
+        <a ui-sref="planning({date:curDate.format(dateFormat)})">{{curDate.format(dateFormat)}}</a>
+
+    </div>
+</div>
