@@ -63,4 +63,4 @@ gem 'freebase-api'
 
 gem 'nokogiri', '~> 1.6.3.1'
 
-gem 'wiki-api', git: 'git://github.com/dblommesteijn/wiki-api.git'
+gem 'wikipedia-client'
