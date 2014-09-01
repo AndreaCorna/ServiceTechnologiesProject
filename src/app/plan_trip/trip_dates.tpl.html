@@ -1,7 +1,57 @@
-<h1>Plan your date</h1>
-<div class="container">
-    <div ng-repeat="curDate in dates">
-        <a ui-sref="planning({date:curDate.format(dateFormat)})">{{curDate.format(dateFormat)}}</a>
+<h1 class="text-center">PLAN YOUR DATES</h1>
+    <div class="row">
+
+            <ul>
+                <div ng-repeat="curDate in dates" class="event-list col-xs-4">
+
+                    <li>
+                    <time datetime="{{curDate.format(dateFormat)}}">
+                        <span class="day">{{curDate.format(dayFormat)}}</span>
+                        <span class="month">{{curDate.format(monthFormat)}}</span>
+                        <span class="year">{{curDate.format(yearFormat)}}</span>
+                        <span class="time">ALL DAY</span>
+                        <button href="#infoDate" data-toggle="modal" class="btn btn-primary btn-outlined">More</button>
+                        <a class="btn btn-primary btn-outlined" ui-sref="planning({date:curDate.format(dateFormat)})">Edit</a>
+
+                    </time>
+
+
+                </li>
+
+
+                </div>
+            </ul>
+
+    </div>
+</div>
+
+
+<div class="modal fade" id="infoDate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">More Information</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="column" >
+                        gtrgtr
+                    </div>
+                    <div class="column">
+                        gtrgtr
+                    </div>
+                </div>
+                <div class="row">
+
+                </div>
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
 
     </div>
 </div>

@@ -65,6 +65,9 @@ angular.module('trippo.plan',[
             console.log(date.format('DD MMMM YYYY'));
         });
         $scope.dateFormat ="DD-MM-YYYY";
+        $scope.dayFormat = "DD";
+        $scope.monthFormat = "MMM";
+        $scope.yearFormat ="YYYY";
 
 
 

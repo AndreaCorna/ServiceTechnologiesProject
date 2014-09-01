@@ -296,20 +296,20 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "        </div>\n" +
     "    </slide>\n" +
     "</carousel>\n" +
+    "<div class=\"container\">\n" +
+    "    <div id='cssmenu'>\n" +
+    "        <ul>\n" +
+    "            <li class='active'><a ui-sref=\"culture\"><span>Culture</span></a></li>\n" +
+    "            <li><a ui-sref=\"entertainment\"><span>Entertainment</span></a></li>\n" +
+    "            <li><a ui-sref=\"hotel\"><span>Hotel</span></a></li>\n" +
+    "            <li ><a ui-sref=\"utility\"><span>Utility</span></a></li>\n" +
+    "            <li class='last'><a ui-sref=\"calendar\"><span>Plan Trip</span></a></li>\n" +
+    "        </ul>\n" +
     "\n" +
-    "<div id='cssmenu'>\n" +
-    "    <ul>\n" +
-    "        <li class='active'><a ui-sref=\"culture\"><span>Culture</span></a></li>\n" +
-    "        <li><a ui-sref=\"entertainment\"><span>Entertainment</span></a></li>\n" +
-    "        <li><a ui-sref=\"hotel\"><span>Hotel</span></a></li>\n" +
-    "        <li ><a ui-sref=\"utility\"><span>Utility</span></a></li>\n" +
-    "        <li class='last'><a ui-sref=\"calendar\"><span>Plan Trip</span></a></li>\n" +
-    "    </ul>\n" +
+    "    </div>\n" +
+    "    <div ui-view=\"content\" class =\"main-content\"></div>\n" +
     "\n" +
     "</div>\n" +
-    "<div ui-view=\"content\" ></div>\n" +
-    "\n" +
-    "\n" +
     "\n" +
     "\n" +
     "\n" +
@@ -600,7 +600,6 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
 
 angular.module("plan_trip/calendar.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("plan_trip/calendar.tpl.html",
-    "<div class=\"container\">\n" +
     "    <div class=\"row\">\n" +
     "        <form novalidate name=\"form\" ng-submit=\"next(form)\">\n" +
     "            <h1 class=\"text-center\">Choose the period</h1>\n" +
@@ -638,10 +637,60 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
 
 angular.module("plan_trip/trip_dates.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("plan_trip/trip_dates.tpl.html",
-    "<h1>Plan your date</h1>\n" +
-    "<div class=\"container\">\n" +
-    "    <div ng-repeat=\"curDate in dates\">\n" +
-    "        <a ui-sref=\"planning({date:curDate.format(dateFormat)})\">{{curDate.format(dateFormat)}}</a>\n" +
+    "<h1 class=\"text-center\">PLAN YOUR DATES</h1>\n" +
+    "    <div class=\"row\">\n" +
+    "\n" +
+    "            <ul>\n" +
+    "                <div ng-repeat=\"curDate in dates\" class=\"event-list col-xs-4\">\n" +
+    "\n" +
+    "                    <li>\n" +
+    "                    <time datetime=\"{{curDate.format(dateFormat)}}\">\n" +
+    "                        <span class=\"day\">{{curDate.format(dayFormat)}}</span>\n" +
+    "                        <span class=\"month\">{{curDate.format(monthFormat)}}</span>\n" +
+    "                        <span class=\"year\">{{curDate.format(yearFormat)}}</span>\n" +
+    "                        <span class=\"time\">ALL DAY</span>\n" +
+    "                        <button href=\"#infoDate\" data-toggle=\"modal\" class=\"btn btn-primary btn-outlined\">More</button>\n" +
+    "                        <a class=\"btn btn-primary btn-outlined\" ui-sref=\"planning({date:curDate.format(dateFormat)})\">Edit</a>\n" +
+    "\n" +
+    "                    </time>\n" +
+    "\n" +
+    "\n" +
+    "                </li>\n" +
+    "\n" +
+    "\n" +
+    "                </div>\n" +
+    "            </ul>\n" +
+    "\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "\n" +
+    "\n" +
+    "<div class=\"modal fade\" id=\"infoDate\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">\n" +
+    "    <div class=\"modal-dialog\">\n" +
+    "        <div class=\"modal-content\">\n" +
+    "\n" +
+    "            <div class=\"modal-header\">\n" +
+    "                <button type=\"button\" class=\"close\" data-dismiss=\"modal\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button>\n" +
+    "                <h4 class=\"modal-title\" id=\"myModalLabel\">More Information</h4>\n" +
+    "            </div>\n" +
+    "            <div class=\"modal-body\">\n" +
+    "                <div class=\"row\">\n" +
+    "                    <div class=\"column\" >\n" +
+    "                        gtrgtr\n" +
+    "                    </div>\n" +
+    "                    <div class=\"column\">\n" +
+    "                        gtrgtr\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "                <div class=\"row\">\n" +
+    "\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "            <div class=\"modal-footer\">\n" +
+    "\n" +
+    "                <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
     "\n" +
     "    </div>\n" +
     "</div>");
