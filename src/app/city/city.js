@@ -105,7 +105,7 @@ angular.module( 'trippo.city', [
       })
 
       .state('planning', {
-          url: '/planning',
+          url: '/planning/:date',
           parent:"city",
           views: {
               "content@city": {
@@ -147,9 +147,7 @@ angular.module( 'trippo.city', [
         };
 
         $scope.$watchCollection(function () { return SelectionService.getCultureSelection(); }, function (newVal, oldVal) {
-                console.log("changing value culture") ;
                 $scope.cultureSelection = SelectionService.getCultureSelection();
-                console.log($scope.cultureSelection);
                 if(!$scope.$$phase) {
                     $scope.$apply();
                 }
@@ -179,12 +177,20 @@ angular.module( 'trippo.city', [
         };
 
         $scope.addEntertainmentItem = function(entertainment_item){
-            $scope.entertainmentSelection = SelectionService.addEntertainmentItem(entertainment_item);
+            $scope.entertainmentSelection = SelectionService.addEntertainmentItem(entertainment_item,$scope.entertainmentList);
         };
 
         $scope.removeEntertainmentItem = function(entertainment_item){
-            $scope.entertainmentSelection = SelectionService.removeEntertainmentItem(entertainment_item);
+            $scope.entertainmentSelection = SelectionService.removeEntertainmentItem(entertainment_item,$scope.entertainmentList);
         };
+
+        $scope.$watchCollection(function () { return SelectionService.getEntertainmentSelection(); }, function (newVal, oldVal) {
+            $scope.cultureSelection = SelectionService.getEntertainmentSelection();
+            if(!$scope.$$phase) {
+                $scope.$apply();
+            }
+
+        });
 
 
 })
@@ -208,12 +214,20 @@ angular.module( 'trippo.city', [
 
         };
         $scope.addUtilityItem = function(utility_item){
-            $scope.utilitySelection = SelectionService.addUtilityItem(utility_item);
+            $scope.utilitySelection = SelectionService.addUtilityItem(utility_item,$scope.utilityList);
         };
 
         $scope.removeUtilityItem = function(utility_item){
-            $scope.utilitySelection = SelectionService.removeUtilityItem(utility_item);
+            $scope.utilitySelection = SelectionService.removeUtilityItem(utility_item,$scope.utilityList);
         };
+
+        $scope.$watchCollection(function () { return SelectionService.getUtilitySelection(); }, function (newVal, oldVal) {
+            $scope.cultureSelection = SelectionService.getUtilitySelection();
+            if(!$scope.$$phase) {
+                $scope.$apply();
+            }
+        });
+
 
 
     })
@@ -264,12 +278,19 @@ angular.module( 'trippo.city', [
         };
 
         $scope.addFoodItem = function(food_item){
-            $scope.foodSelection = SelectionService.addFoodItem(food_item);
+            $scope.foodSelection = SelectionService.addFoodItem(food_item,$scope.foodList);
         };
 
         $scope.removeFoodItem = function(food_item){
-            $scope.foodSelection = SelectionService.removeFoodItem(food_item);
+            $scope.foodSelection = SelectionService.removeFoodItem(food_item,$scope.foodList);
         };
+
+        $scope.$watchCollection(function () { return SelectionService.getFoodSelection(); }, function (newVal, oldVal) {
+            $scope.cultureSelection = SelectionService.getFoodSelection();
+            if(!$scope.$$phase) {
+                $scope.$apply();
+            }
+        });
 
 })
 
@@ -278,11 +299,23 @@ angular.module( 'trippo.city', [
 
 .factory('ModalHandler', function () {
     var details;
+    var normalizeHours = function (details){
+        if(details.open_hours !== null){
+            for (var i=0;i<details.open_hours.periods.length;i++){
+                console.log("called function");
+                var day = details.open_hours.periods[i] ;
+                details.open_hours.periods[i].open.time = day.open.time.substr(0, 2) + ":" + day.open.time.substr(2);
+                details.open_hours.periods[i].close.time = day.close.time.substr(0, 2) + ":" + day.close.time.substr(2);
+
+            }
+        }
+    }  ;
         return {
             getDetails: function () {
                 return details;
             },
             setDetails: function(value) {
+                normalizeHours(value);
                 details = value;
             }
         };
@@ -294,9 +327,11 @@ angular.module( 'trippo.city', [
         $scope.moreInfoSelection=null;
         $scope.modalEnabled = false;
         $scope.city = CityRes.details.query({city_name:$stateParams.city_name});
+        /**
+         * Added a watch to update scope.moreInfoSelection which is set every time a moreInfo button is pushed
+         */
         $scope.$watchCollection(function () { return ModalHandler.getDetails(); }, function (newVal, oldVal) {
             if (typeof newVal !== 'undefined') {
-                console.log("changing value") ;
                 $scope.moreInfoSelection = ModalHandler.getDetails();
                 $scope.modalEnabled = true;
             }
@@ -308,6 +343,18 @@ angular.module( 'trippo.city', [
 
 
     })
+/**
+ * modify the value of the hour which comes from Google Api in a format of HH:mm
+ */
+.filter('hourFilter', function () {
+    return function (input) {
+       if (input !==undefined) {
+           var hourFormat = input.substr(0, 2) + ":" + input.substr(2);
+           console.log(hourFormat);
+           return hourFormat;
+       }
+    };
+})
 
 .factory( 'CityRes', function ( $resource )  {
         var listCities = $resource("../../city/");
@@ -402,18 +449,21 @@ angular.module( 'trippo.city', [
                 return cultureSelection;
             },
 
-            addUtilityItem:function (utility_item) {
+            addUtilityItem:function (utility_item,utilityList) {
                 if(utilitySelection.indexOf(utility_item) == -1) {
                     utilitySelection.push(utility_item);
+                    var index = utilityList.indexOf(utility_item);
+                    utilityList.splice(index,1);
                 }
                 return utilitySelection;
 
             },
 
-            removeUtilityItem:function (utility_item) {
+            removeUtilityItem:function (utility_item,utilityList) {
                 var index = utilitySelection.indexOf(utility_item);
                 if(index != -1) {
                     utilitySelection.splice(index, 1);
+                    utilityList.push(utility_item);
                 }
                 return utilitySelection;
 
@@ -444,17 +494,20 @@ angular.module( 'trippo.city', [
                 return hotelSelection;
             },
 
-            addEntertainmentItem:function (entertainment_item) {
+            addEntertainmentItem:function (entertainment_item,entertainmentList) {
                 if(entertainmentSelection.indexOf(entertainment_item) == -1) {
                     entertainmentSelection.push(entertainment_item);
+                    var index = entertainmentList.indexOf(entertainment_item);
+                    entertainmentList.splice(index,1);
                 }
                 return entertainmentSelection;
 
             },
-            removeEntertainmentItem:function (entertainment_item) {
+            removeEntertainmentItem:function (entertainment_item, entertainmentList) {
                 var index = entertainmentSelection.indexOf(entertainment_item);
                 if (index != -1) {
                     entertainmentSelection.splice(index, 1);
+                    entertainmentList.push(entertainment_item);
                 }
                 return entertainmentSelection;
             },
@@ -463,17 +516,20 @@ angular.module( 'trippo.city', [
                 return entertainmentSelection;
             },
 
-            addFoodItem:function(food_item){
+            addFoodItem:function(food_item,foodList){
                 if(foodSelection.indexOf(food_item) == -1){
                     foodSelection.push(food_item);
+                    var index = foodList.indexOf(food_item);
+                    foodList.splice(index,1);
                 }
                 return foodSelection;
             },
 
-            removeFoodItem:function(food_item){
+            removeFoodItem:function(food_item,foodList){
                 var index = foodSelection.indexOf(food_item);
                 if (index != -1) {
                     foodSelection.splice(index, 1);
+                    foodList.push(food_item);
                 }
                 return foodSelection;
             },

@@ -37,7 +37,7 @@ angular.module( 'trippo.home', [
 })
 
 /**
- * And of course we define a controller for our route.
+ *Home controller implements search and get the list of cities from a rest call to the cityResource
  */
 .controller( 'HomeCtrl', function HomeController($scope,$log,$location , CityRes ) {
 
@@ -56,9 +56,8 @@ angular.module( 'trippo.home', [
 
         };
         /**
-         * Unused but leaved in order to test how works if no list city but
+         * Unused but leaved in order to test how works if no list city but get from the Google Maps Api
          */
-
         $scope.getLocation = function(val) {
             return $http.get('http://maps.googleapis.com/maps/api/geocode/json', {
                 params: {

@@ -1,6 +1,3 @@
-<p>
-    List culture {{cultureSelection}}
-</p>
 <div class="container">
     <div class="row">
         <div class="well">
@@ -21,7 +18,7 @@
                                 </button>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6" style="height:230px">
                             <p class="list-group-item-text">
                             <div class="row">
                                 <b class="text-capitalize">{{c.name}}</b>
@@ -31,10 +28,10 @@
                                     <p>Price {{c.price || 'Free'}}</p>
                                 </div>
                                 <div class="col-md-4">
-                                    <p>Rating <rating value="c.rating" readonly="true" ></rating></p>
+                                    <p>Rating <rating ng-model="c.rating" readonly="true" ></rating></p>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row scrollable" style="max-height: 185px;overflow-y: auto">
                                 <div class="text-justify">{{c.description}}</div>
                             </div>
 
@@ -74,7 +71,7 @@
                                 </button>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6" style="height:230px">
                             <p class="list-group-item-text">
                             <div class="row">
                                 <b class="text-capitalize">{{c.name}}</b>
@@ -84,11 +81,11 @@
                                     <p>Price {{c.price || 'Free'}}</p>
                                 </div>
                                 <div class="col-md-4">
-                                    <p>Rating <rating value="c.rating" readonly="true" ></rating></p>
+                                    <p>Rating <rating ng-model="c.rating" readonly="true" ></rating></p>
                                 </div>
                             </div>
-                            <div class="row">
-                                 <div class="text-justify">{{c.description}}</div>
+                            <div class="row scrollable" style="max-height: 185px;overflow-y: auto">
+                                 <div class="text-justify" >{{c.description}}</div>
                             </div>
 
                             </p>

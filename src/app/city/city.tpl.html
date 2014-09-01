@@ -1,3 +1,4 @@
+
 <carousel interval="intervalImages">
     <slide ng-repeat="image in city" active="image.active">
         <img ng-src="{{image.image}}" style="margin:auto;">
@@ -131,9 +132,9 @@
                                 <div class="col-lg-12">
                                     <div class="row">
                                         <div class="panel-image-modal">
-                                            <carousel interval="intervalImages">
+                                            <carousel interval="intervalImages" >
                                                 <slide ng-repeat="image in moreInfoSelection.photos" active="image.active">
-                                                    <img class="image-modal" ng-src="data:image/JPEG;base64,{{image.image}}" >
+                                                    <img class="image-modal" style="height: 400px" ng-src="data:image/JPEG;base64,{{image.image}}" >
                                                 </slide>
                                             </carousel>
                                         </div>
@@ -165,7 +166,7 @@
                                                                         <b class="text-capitalize">{{aspect.type}}</b>
                                                                     </div>
                                                                     <div class="col-lg-8">
-                                                                        <rating value="aspect.rating" readonly="true"></rating>
+                                                                        <rating ng-model="aspect.rating" readonly="true"></rating>
                                                                     </div>
                                                                 </div>
                                                             </span>
