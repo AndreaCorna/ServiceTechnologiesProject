@@ -296,26 +296,191 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "        </div>\n" +
     "    </slide>\n" +
     "</carousel>\n" +
-    "<div class=\"container\">\n" +
-    "    <div id='cssmenu'>\n" +
-    "        <ul>\n" +
-    "            <li class='active'><a ui-sref=\"culture\"><span>Culture</span></a></li>\n" +
-    "            <li><a ui-sref=\"entertainment\"><span>Entertainment</span></a></li>\n" +
-    "            <li><a ui-sref=\"hotel\"><span>Hotel</span></a></li>\n" +
-    "            <li ><a ui-sref=\"utility\"><span>Utility</span></a></li>\n" +
-    "            <li class='last'><a ui-sref=\"calendar\"><span>Plan Trip</span></a></li>\n" +
-    "        </ul>\n" +
     "\n" +
-    "    </div>\n" +
-    "    <div ui-view=\"content\" class =\"main-content\"></div>\n" +
+    "<div id='cssmenu'>\n" +
+    "    <ul>\n" +
+    "        <li class='active'><a ui-sref=\"culture\" data-target=\"#\" data-toggle=\"pill\"><span>Culture</span></a></li>\n" +
+    "        <li><a ui-sref=\"entertainment\" data-target=\"#\" data-toggle=\"pill\"><span>Entertainment</span></a></li>\n" +
+    "        <li><a ui-sref=\"hotel\" data-target=\"#\" data-toggle=\"pill\"><span>Hotel</span></a></li>\n" +
+    "        <li><a ui-sref=\"utility\" data-target=\"#\" data-toggle=\"pill\"><span>Utility</span></a></li>\n" +
+    "        <li><a ui-sref=\"food\" data-target=\"#\" data-toggle=\"pill\"><span>Food</span></a></li>\n" +
+    "\n" +
+    "\n" +
+    "        <li class='last'><a ui-sref=\"calendar\" data-target=\"#\" data-toggle=\"pill\"><span>Plan Trip</span></a></li>\n" +
+    "    </ul>\n" +
     "\n" +
     "</div>\n" +
+    "<div ui-view=\"content\" class=\"fill\"></div>\n" +
     "\n" +
     "\n" +
     "\n" +
-    "<div class=\"modal fade\" id=\"moreInfoModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">\n" +
-    "    <div class=\"modal-dialog\">\n" +
-    "        <div class=\"modal-content\">\n" +
+    "<div ng-show=\"modalEnabled\">\n" +
+    "    <div class=\"modal fade\" id=\"moreInfoModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">\n" +
+    "        <div class=\"modal-dialog\">\n" +
+    "            <div class=\"modal-content\">\n" +
+    "\n" +
+    "                    <div class=\"modal-header\">\n" +
+    "                        <button type=\"button\" class=\"close\" data-dismiss=\"modal\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button>\n" +
+    "                        <h4 class=\"modal-title\" id=\"myModalLabel\">More Information about {{moreInfoSelection.name}}</h4>\n" +
+    "                    </div>\n" +
+    "                    <div class=\"modal-body\">\n" +
+    "                        <div class=\"container-fluid\">\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <div class=\"col-lg-6\" >\n" +
+    "                                    <div class=\"row\">\n" +
+    "                                        <b>Rating</b>\n" +
+    "                                    </div>\n" +
+    "                                    <div class=\"row\">\n" +
+    "                                        {{moreInfoSelection.rating || 'Unknown'}}\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                                <div class=\"col-lg-6\">\n" +
+    "                                    <div class=\"row\">\n" +
+    "                                        <b>Price</b>\n" +
+    "                                    </div>\n" +
+    "                                    <div class=\"row\">\n" +
+    "                                        {{moreInfoSelection.price || 'Unknown'}}\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <div class=\"col-lg-6\" >\n" +
+    "                                    <div class=\"row\">\n" +
+    "                                        <b>Phone</b>\n" +
+    "                                    </div>\n" +
+    "                                    <div class=\"row\">\n" +
+    "                                        {{moreInfoSelection.international_phone}}\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                                <div class=\"col-lg-6\">\n" +
+    "                                    <div class=\"row\">\n" +
+    "                                        <b>Address</b>\n" +
+    "                                    </div>\n" +
+    "                                    <div class=\"row\">\n" +
+    "                                        {{moreInfoSelection.formatted_address}}\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <div class=\"col-lg-12\" >\n" +
+    "                                    <div class=\"row\">\n" +
+    "                                        <b>Web Site</b>\n" +
+    "                                    </div>\n" +
+    "                                    <div class=\"row\">\n" +
+    "                                        {{moreInfoSelection.web_site}}\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <div class=\"col-lg-12\" >\n" +
+    "                                    <div class=\"row\">\n" +
+    "                                        <b>Open Hours</b>\n" +
+    "                                    </div>\n" +
+    "                                    <div class=\"row\">\n" +
+    "                                        <table class=\"table table-hover\">\n" +
+    "                                            <thead>\n" +
+    "                                                <tr>\n" +
+    "                                                    <th></th>\n" +
+    "                                                    <th>Sunday</th>\n" +
+    "                                                    <th>Monday</th>\n" +
+    "                                                    <th>Tuesday</th>\n" +
+    "                                                    <th>Wednesday</th>\n" +
+    "                                                    <th>Thursday</th>\n" +
+    "                                                    <th>Friday</th>\n" +
+    "                                                    <th>Saturday</th>\n" +
+    "                                                </tr>\n" +
+    "                                            </thead>\n" +
+    "                                            <tbody>\n" +
+    "                                                <tr class=\"info\">\n" +
+    "                                                    <td>From</td>\n" +
+    "                                                    <td>{{moreInfoSelection.open_hours.periods[0].open.time}}</td>\n" +
+    "                                                    <td>{{moreInfoSelection.open_hours.periods[1].open.time}}</td>\n" +
+    "                                                    <td>{{moreInfoSelection.open_hours.periods[2].open.time}}</td>\n" +
+    "                                                    <td>{{moreInfoSelection.open_hours.periods[3].open.time}}</td>\n" +
+    "                                                    <td>{{moreInfoSelection.open_hours.periods[4].open.time}}</td>\n" +
+    "                                                    <td>{{moreInfoSelection.open_hours.periods[5].open.time}}</td>\n" +
+    "                                                    <td>{{moreInfoSelection.open_hours.periods[6].open.time}}</td>\n" +
+    "                                                </tr>\n" +
+    "                                                <tr class=\"info\">\n" +
+    "                                                    <td>To</td>\n" +
+    "                                                    <td>{{moreInfoSelection.open_hours.periods[0].close.time}}</td>\n" +
+    "                                                    <td>{{moreInfoSelection.open_hours.periods[1].close.time}}</td>\n" +
+    "                                                    <td>{{moreInfoSelection.open_hours.periods[2].close.time}}</td>\n" +
+    "                                                    <td>{{moreInfoSelection.open_hours.periods[3].close.time}}</td>\n" +
+    "                                                    <td>{{moreInfoSelection.open_hours.periods[4].close.time}}</td>\n" +
+    "                                                    <td>{{moreInfoSelection.open_hours.periods[5].close.time}}</td>\n" +
+    "                                                    <td>{{moreInfoSelection.open_hours.periods[6].close.time}}</td>\n" +
+    "                                                </tr>\n" +
+    "                                            </tbody>\n" +
+    "\n" +
+    "                                        </table>\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <div class=\"col-lg-12\">\n" +
+    "                                    <div class=\"row\">\n" +
+    "                                        <div class=\"panel-image-modal\">\n" +
+    "                                            <carousel interval=\"intervalImages\">\n" +
+    "                                                <slide ng-repeat=\"image in moreInfoSelection.photos\" active=\"image.active\">\n" +
+    "                                                    <img class=\"image-modal\" ng-src=\"data:image/JPEG;base64,{{image.image}}\" >\n" +
+    "                                                </slide>\n" +
+    "                                            </carousel>\n" +
+    "                                        </div>\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <div class=\"col-lg-12\">\n" +
+    "                                    <p class=\"text-center\">\n" +
+    "                                        <b>Reviews</b>\n" +
+    "                                    </p>\n" +
+    "                                    <span ng-repeat=\"review in moreInfoSelection.reviews\">\n" +
+    "                                        <div class=\"panel-group\" id=\"{{review.author_name}}\">\n" +
+    "                                            <div class=\"panel  panel-info\">\n" +
+    "                                                <div class=\"panel-heading\">\n" +
+    "                                                    <h4 class=\"panel-title\">\n" +
+    "                                                        <a class=\"accordion-toggle\" data-toggle=\"collapse\" data-parent=\"#{{review.author_name}}\" data-target=\"#{{$index}}\">{{review.author_name}}</a>\n" +
+    "                                                    </h4>\n" +
+    "                                                </div>\n" +
+    "                                                <div id=\"{{$index}}\" class=\"panel-collapse collapse\">\n" +
+    "                                                    <div class=\"panel-body\">\n" +
+    "                                                        <p class=\"text-left\">\n" +
+    "                                                            <b>Ratings</b>\n" +
+    "                                                        </p>\n" +
+    "                                                        <div class=\"star-rating\">\n" +
+    "                                                            <span ng-repeat=\"aspect in review.aspects\">\n" +
+    "                                                                <div class=\"row\">\n" +
+    "                                                                    <div class=\"col-lg-3\">\n" +
+    "                                                                        <b class=\"text-capitalize\">{{aspect.type}}</b>\n" +
+    "                                                                    </div>\n" +
+    "                                                                    <div class=\"col-lg-8\">\n" +
+    "                                                                        <rating value=\"aspect.rating\" readonly=\"true\"></rating>\n" +
+    "                                                                    </div>\n" +
+    "                                                                </div>\n" +
+    "                                                            </span>\n" +
+    "                                                        </div>\n" +
+    "                                                        <div class=\"row\">\n" +
+    "                                                            <div class=\"col-lg-12\">\n" +
+    "                                                                <p class=\"text-left\">\n" +
+    "                                                                    <b>Comment</b>\n" +
+    "                                                                </p>\n" +
+    "                                                                {{review.text}}\n" +
+    "                                                            </div>\n" +
+    "                                                        </div>\n" +
+    "                                                        <div class=\"col-lg-12\">\n" +
+    "                                                            <div class=\"row\">\n" +
+    "                                                                <em>\n" +
+    "                                                                    <span>{{review.time | date:'medium'}}</span>\n" +
+    "                                                                </em>\n" +
+    "                                                            </div>\n" +
+    "                                                            <div class=\"row\">\n" +
+    "                                                                <em>\n" +
+    "                                                                    Contact User <a href=\"{{review.author_url}}\">GooglePlus!</a>\n" +
+    "                                                                </em>\n" +
+    "                                                            </div>\n" +
+    "                                                        </div>\n" +
+    "                                                    </div>\n" +
     "\n" +
     "                                                </div>\n" +
     "                                            </div>\n" +
