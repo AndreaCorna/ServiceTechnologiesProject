@@ -28,7 +28,7 @@
                                     <p>Price {{c.price || 'Free'}}</p>
                                 </div>
                                 <div class="col-md-4">
-                                    <p>Rating <rating value="c.rating" readonly="true" ></rating></p>
+                                    <p>Rating <rating ng-model="c.rating" readonly="true" ></rating></p>
                                 </div>
                             </div>
                             <div class="row">
@@ -71,7 +71,7 @@
                                 </button>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6" style="height:230px">
                             <p class="list-group-item-text">
                             <div class="row">
                                 <b class="text-capitalize">{{c.name}}</b>
