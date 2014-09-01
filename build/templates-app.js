@@ -497,7 +497,60 @@ angular.module("city/culture.tpl.html", []).run(["$templateCache", function($tem
     "        <div class=\"well\">\n" +
     "            <h1 class=\"text-center\">Culture</h1>\n" +
     "            <div class=\"list-group\">\n" +
-    "                <span ng-repeat=\"c in cultureList\">\n" +
+    "                <span ng-repeat=\"c in cultureSelection | orderBy:'name':false\">\n" +
+    "                    <div class=\"list-group-item\">\n" +
+    "                        <div class=\"col-md-3\">\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <img class=\"icon-col-centered\" ng-src=\"{{c.icon}}\">\n" +
+    "                            </div>\n" +
+    "                            <div class=\"row\" style=\"padding-top: 50px\">\n" +
+    "                                <button class=\"btn btn-primary\" ng-click=\"getCultureDetails(c.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">\n" +
+    "                                    More Info\n" +
+    "                                </button>\n" +
+    "                                <button  class=\"btn btn-primary \" ng-click=\"removeCultureItem(c)\" >\n" +
+    "                                    Remove\n" +
+    "                                </button>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "                        <div class=\"col-md-6\">\n" +
+    "                            <p class=\"list-group-item-text\">\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <b class=\"text-capitalize\">{{c.name}}</b>\n" +
+    "                            </div>\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <div class=\"col-md-3\">\n" +
+    "                                    <p>Price {{c.price || 'Free'}}</p>\n" +
+    "                                </div>\n" +
+    "                                <div class=\"col-md-4\">\n" +
+    "                                    <p>Rating <rating value=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <div class=\"text-justify\">{{c.description}}</div>\n" +
+    "                            </div>\n" +
+    "\n" +
+    "                            </p>\n" +
+    "                        </div>\n" +
+    "                        <div class=\"col-md-3 text-center\">\n" +
+    "                            <div class=\"panel panel-default\">\n" +
+    "                                <div class=\"panel-body image-panel\">\n" +
+    "                                    <carousel interval=\"intervalImages\">\n" +
+    "                                        <div ng-if=\"c.photos.length==0\">\n" +
+    "                                            <img ng-src=\"assets/images/empty_photo.png\" style=\"position: center\">\n" +
+    "\n" +
+    "                                        </div>\n" +
+    "                                        <slide ng-repeat=\"image in c.photos\" active=\"image.active\">\n" +
+    "                                            <img class=\"image-item\" ng-src=\"{{image.image}}\" >\n" +
+    "                                        </slide>\n" +
+    "                                    </carousel>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                </span>\n" +
+    "            </div>\n" +
+    "            <div class=\"list-group\">\n" +
+    "                <span ng-repeat=\"c in cultureList | orderBy:'name':false\">\n" +
     "                    <div class=\"list-group-item\">\n" +
     "                        <div class=\"col-md-3\">\n" +
     "                            <div class=\"row\">\n" +
@@ -509,9 +562,6 @@ angular.module("city/culture.tpl.html", []).run(["$templateCache", function($tem
     "                                </button>\n" +
     "                                <button class=\"btn btn-primary \" ng-click=\"addCultureItem(c)\">\n" +
     "                                    Add\n" +
-    "                                </button>\n" +
-    "                                <button  class=\"btn btn-primary \" ng-click=\"removeCultureItem(c)\" >\n" +
-    "                                    Remove\n" +
     "                                </button>\n" +
     "                            </div>\n" +
     "                        </div>\n" +
