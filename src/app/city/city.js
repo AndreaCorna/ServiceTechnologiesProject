@@ -299,11 +299,23 @@ angular.module( 'trippo.city', [
 
 .factory('ModalHandler', function () {
     var details;
+    var normalizeHours = function (details){
+        if(details.open_hours !== null){
+            for (var i=0;i<details.open_hours.periods.length;i++){
+                console.log("called function");
+                var day = details.open_hours.periods[i] ;
+                details.open_hours.periods[i].open.time = day.open.time.substr(0, 2) + ":" + day.open.time.substr(2);
+                details.open_hours.periods[i].close.time = day.close.time.substr(0, 2) + ":" + day.close.time.substr(2);
+
+            }
+        }
+    }  ;
         return {
             getDetails: function () {
                 return details;
             },
             setDetails: function(value) {
+                normalizeHours(value);
                 details = value;
             }
         };
@@ -315,9 +327,11 @@ angular.module( 'trippo.city', [
         $scope.moreInfoSelection=null;
         $scope.modalEnabled = false;
         $scope.city = CityRes.details.query({city_name:$stateParams.city_name});
+        /**
+         * Added a watch to update scope.moreInfoSelection which is set every time a moreInfo button is pushed
+         */
         $scope.$watchCollection(function () { return ModalHandler.getDetails(); }, function (newVal, oldVal) {
             if (typeof newVal !== 'undefined') {
-                console.log("changing value") ;
                 $scope.moreInfoSelection = ModalHandler.getDetails();
                 $scope.modalEnabled = true;
             }
@@ -329,6 +343,18 @@ angular.module( 'trippo.city', [
 
 
     })
+/**
+ * modify the value of the hour which comes from Google Api in a format of HH:mm
+ */
+.filter('hourFilter', function () {
+    return function (input) {
+       if (input !==undefined) {
+           var hourFormat = input.substr(0, 2) + ":" + input.substr(2);
+           console.log(hourFormat);
+           return hourFormat;
+       }
+    };
+})
 
 .factory( 'CityRes', function ( $resource )  {
         var listCities = $resource("../../city/");
