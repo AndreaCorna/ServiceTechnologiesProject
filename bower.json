@@ -1,13 +1,16 @@
 {
-  "name": "ng-boilerplate",
+  "name": "trippo",
   "version": "0.3.2",
   "devDependencies": {
     "angular": "~1.2",
     "angular-mocks": "~1.2",
     "bootstrap": "~3.2",
-    "angular-bootstrap": "~0.10.0",
+    "angular-bootstrap": "~0.11.0",
     "angular-ui-router": "~0.2",
-    "angular-resource": "~1.2.21"
+    "angular-resource": "~1.2.21",
+    "moment": "~2.8.1"
   },
-  "dependencies": {}
+  "dependencies": {
+
+  }
 }

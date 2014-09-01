@@ -105,7 +105,7 @@ angular.module( 'trippo.city', [
       })
 
       .state('planning', {
-          url: '/planning',
+          url: '/planning/:date',
           parent:"city",
           views: {
               "content@city": {
