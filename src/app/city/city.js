@@ -137,13 +137,24 @@ angular.module( 'trippo.city', [
 
         };
         $scope.addCultureItem = function(culture_item){
-            $scope.cultureSelection = SelectionService.addCultureItem(culture_item);
+            $scope.cultureSelection = SelectionService.addCultureItem(culture_item,$scope.cultureList);
             console.log(ModalHandler.details);
         };
 
+
         $scope.removeCultureItem = function(culture_item){
-            $scope.cultureSelection = SelectionService.removeCultureItem(culture_item);
+            $scope.cultureSelection = SelectionService.removeCultureItem(culture_item,$scope.cultureList);
         };
+
+        $scope.$watchCollection(function () { return SelectionService.getCultureSelection(); }, function (newVal, oldVal) {
+                console.log("changing value culture") ;
+                $scope.cultureSelection = SelectionService.getCultureSelection();
+                console.log($scope.cultureSelection);
+                if(!$scope.$$phase) {
+                    $scope.$apply();
+                }
+
+        });
 
 })
 
@@ -366,19 +377,22 @@ angular.module( 'trippo.city', [
         var entertainmentSelection = [];
         var foodSelection = [];
         return{
-            addCultureItem:function (culture_item) {
+            addCultureItem:function (culture_item,cultureList) {
 
                 if(cultureSelection.indexOf(culture_item) == -1) {
                     cultureSelection.push(culture_item);
+                    var index = cultureList.indexOf(culture_item);
+                    cultureList.splice(index,1);
                 }
                 return cultureSelection;
 
             },
 
-            removeCultureItem:function (culture_item) {
+            removeCultureItem:function (culture_item,cultureList) {
                 var index = cultureSelection.indexOf(culture_item);
                 if(index != -1) {
                     cultureSelection.splice(index, 1);
+                    cultureList.push(culture_item);
                 }
                 return cultureSelection;
 

@@ -9,8 +9,8 @@ module FreebaseHelper
       best_match.sync
       description = best_match.description
       if(description.nil?)
-          page = Wikipedia.find('Ruby on rails')
-          puts page.raw_data
+          #page = Wikipedia.find('Ruby on rails')
+          #puts page.raw_data
       end
     end
     return description
