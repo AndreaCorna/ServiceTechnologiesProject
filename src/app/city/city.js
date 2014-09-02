@@ -79,17 +79,6 @@ angular.module( 'trippo.city', [
 
       })
 
-      .state( 'calendar', {
-      url: '/calendar',
-      parent:"city",
-      views: {
-          "content": {
-              controller: 'CalendarCtrl',
-              templateUrl: 'plan_trip/calendar.tpl.html'
-
-          }
-      }
-  })
 
       .state('dates', {
           url: '/dates',
