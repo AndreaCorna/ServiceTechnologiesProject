@@ -301,17 +301,18 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "\n" +
     "\n" +
     "\n" +
-    "<div ng-show=\"modalEnabled\">\n" +
     "    <div class=\"modal fade\" id=\"moreInfoModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">\n" +
     "        <div class=\"modal-dialog\">\n" +
     "            <div class=\"modal-content\">\n" +
-    "\n" +
-    "                    <div class=\"modal-header\">\n" +
-    "                        <button type=\"button\" class=\"close\" data-dismiss=\"modal\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button>\n" +
-    "                        <h4 class=\"modal-title\" id=\"myModalLabel\">More Information about {{moreInfoSelection.name}}</h4>\n" +
+    "                    <div ng-show=\"modalEnabled\">\n" +
+    "                        <div class=\"modal-header\">\n" +
+    "                            <button type=\"button\" class=\"close\" data-dismiss=\"modal\" ng-click=\"disableModal()\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button>\n" +
+    "                            <h4 class=\"modal-title\" id=\"myModalLabel\">More Information about {{moreInfoSelection.name}}</h4>\n" +
+    "                        </div>\n" +
     "                    </div>\n" +
     "                    <div class=\"modal-body\">\n" +
-    "                        <div class=\"container-fluid\">\n" +
+    "                        <div ng-show=\"modalEnabled\">\n" +
+    "                            <div class=\"container-fluid\">\n" +
     "                            <div class=\"row\">\n" +
     "                                <div class=\"col-lg-6\" >\n" +
     "                                    <div class=\"row\">\n" +
@@ -478,6 +479,30 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                                </div>\n" +
     "                            </div>\n" +
     "                        </div>\n" +
+    "                        </div>\n" +
+    "                        <div ng-show=\"loaderEnabled\">\n" +
+    "                            <div class=\"container-fluid\">\n" +
+    "                                <div class=\"panel-body\">\n" +
+    "                                    <div class=\"loader\">\n" +
+    "                                    <div class=\"bouncywrap\">\n" +
+    "\n" +
+    "                                        <div class=\"dotcon dc1\">\n" +
+    "                                            <div class=\"dot\"></div>\n" +
+    "                                        </div>\n" +
+    "\n" +
+    "                                        <div class=\"dotcon dc2\">\n" +
+    "                                            <div class=\"dot\"></div>\n" +
+    "                                        </div>\n" +
+    "\n" +
+    "                                        <div class=\"dotcon dc3\">\n" +
+    "                                            <div class=\"dot\"></div>\n" +
+    "                                        </div>\n" +
+    "\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
     "                    </div>\n" +
     "                    <div class=\"modal-footer\">\n" +
     "\n" +
@@ -487,7 +512,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "\n" +
     "        </div>\n" +
     "    </div>\n" +
-    "</div>");
+    "");
 }]);
 
 angular.module("city/culture.tpl.html", []).run(["$templateCache", function($templateCache) {
