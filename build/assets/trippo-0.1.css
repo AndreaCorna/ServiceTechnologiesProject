@@ -6586,6 +6586,9 @@ a.list-group-item:focus {
   border-left: 10px solid #5CB85C;
   border-right: 10px solid #5CB85C;
 }
+/**
+*list of dates in trip dates
+*/
 .btn-outlined {
   border-radius: 0;
 }
@@ -6665,4 +6668,30 @@ a.list-group-item:focus {
     padding: 0px;
     margin: 0px;
   }
+}
+/**
+*List of item in planning
+*/
+.event-list > li:nth-child(odd) .culture-group {
+  display: inline-block;
+  width: 100%;
+  color: #ffffff;
+  background-color: #3c69c5;
+  padding: 5px;
+  text-align: center;
+  text-transform: uppercase;
+}
+/**
+*accordition properties
+*/
+.accordion-toggle:after {
+  font-family: 'FontAwesome';
+  content: "\f078";
+  float: right;
+}
+.panel-heading {
+  cursor: pointer;
+}
+.culture-group > h2 {
+  color: #ffffff;
 }
