@@ -1,3 +1,6 @@
+@import url("http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,400italic");
+@import url("//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css");
+@import url(http://fonts.googleapis.com/css?family=Capriola);
 /**
  * This is the main application stylesheet. It should include or import all
  * stylesheets used throughout the application as this is the only stylesheet in
@@ -6184,6 +6187,9 @@ button.close {
  * Typography-related.
  */
 /**
+*load external fonts
+*/
+/**
  * Typography
  */
 @font-face {
@@ -6428,14 +6434,138 @@ h2 {
 .home .selectedit {
   background-color: #f7de79;
 }
-.blogicon {
-  font-size: 217px;
-  color: #5CB85C;
+.main-content {
+  padding-bottom: 20px;
 }
-.ratetext {
-  font-size: 37px;
-  text-decoration: underline;
-  padding-bottom: 10px;
+#cssmenu,
+#cssmenu ul,
+#cssmenu ul li,
+#cssmenu ul li a {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  list-style: none;
+  line-height: 1;
+  display: block;
+  position: relative;
+  font-family: Capriola, Helvetica, sans-serif;
+}
+#cssmenu {
+  width: auto;
+  height: 59px;
+  margin-bottom: 20px;
+}
+#cssmenu.align-right {
+  float: right;
+}
+#cssmenu.align-right ul li {
+  float: right;
+  margin-right: 0;
+  margin-left: 4px;
+}
+#cssmenu.align-right ul li:first-child,
+#cssmenu.align-right ul li:first-child > a {
+  border-bottom-right-radius: 3px;
+}
+#cssmenu #bg-one,
+#cssmenu #bg-two,
+#cssmenu #bg-three,
+#cssmenu #bg-four {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+#cssmenu #bg-one {
+  height: 10px;
+  background: #0f71ba;
+}
+#cssmenu #bg-two {
+  height: 59px;
+  z-index: 2;
+  background: url('images/bg.png');
+}
+#cssmenu #bg-three {
+  bottom: 4px;
+  height: 55px;
+  z-index: 3;
+  background: #222222;
+  background: -moz-linear-gradient(top, #555555 0%, #222222 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #555555), color-stop(100%, #222222));
+  background: -webkit-linear-gradient(top, #555555 0%, #222222 100%);
+  background: -o-linear-gradient(top, #555555 0%, #222222 100%);
+  background: -ms-linear-gradient(top, #555555 0%, #222222 100%);
+  background: linear-gradient(to bottom, #555555 0%, #222222 100%);
+}
+#cssmenu #bg-four {
+  bottom: 4px;
+  height: 55px;
+  z-index: 4;
+  background: url('images/bg.png');
+}
+#cssmenu ul {
+  height: 59px;
+}
+#cssmenu ul li {
+  float: left;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  z-index: 5;
+}
+#cssmenu ul li a {
+  padding: 24px 30px 20px 30px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border-right: 1px solid;
+  color: #41474f;
+  font-size: 15px;
+  text-decoration: none;
+}
+#cssmenu ul li:hover,
+#cssmenu ul li.active {
+  background: #0f71ba;
+  background: -moz-linear-gradient(top, #3fa4f0 0%, #0f71ba 100%);
+  background: -webkit-gradient(linear, left top, color-stop(0%, #3fa4f0), color-stop(100%, #0f71ba));
+  background: -webkit-linear-gradient(top, #3fa4f0 0%, #0f71ba 100%);
+  background: -o-linear-gradient(top, #3fa4f0 0%, #0f71ba 100%);
+  background: -ms-linear-gradient(top, #3fa4f0 0%, #0f71ba 100%);
+}
+#cssmenu ul li a:hover,
+#cssmenu ul li.active > a {
+  color: #ffffff;
+  background: url('images/bg.png');
+}
+.panel-image-modal {
+  max-height: 400px;
+  max-width: 800px;
+}
+.image-modal {
+  width: auto;
+  height: auto;
+  max-height: 400px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.carousel-fixed-height {
+  height: 400px;
+}
+.image-item {
+  width: auto;
+  height: auto;
+  max-height: 200px;
+  max-width: 240px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.image-panel {
+  max-height: 230px;
+  max-width: 240px;
+}
+.icon-col-centered {
+  padding-left: 80px;
+  padding-top: 50px;
 }
 .votes {
   font-size: 47px;
@@ -6446,12 +6576,93 @@ h2 {
   height: auto;
   min-height: 250px;
 }
+.list-group-item {
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  font-family: sans-serif;
+}
 .list-group-item:hover,
 a.list-group-item:focus {
   border-left: 10px solid #5CB85C;
   border-right: 10px solid #5CB85C;
 }
-.list-group-item {
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
+.btn-outlined {
+  border-radius: 0;
+}
+.event-list {
+  list-style: none;
+  font-family: 'Lato', sans-serif;
+  margin: 0px;
+  padding: 10px;
+}
+.event-list > li {
+  background-color: #ffffff;
+  box-shadow: 0px 0px 5px #333333;
+  box-shadow: 0px 0px 5px rgba(51, 51, 51, 0.7);
+  padding: 00px;
+  margin: 0px 0px 20px;
+}
+.event-list > li:nth-child(odd) > time {
+  display: inline-block;
+  width: 100%;
+  color: #ffffff;
+  background-color: #c52c66;
+  padding: 5px;
+  text-align: center;
+  text-transform: uppercase;
+}
+.event-list > li:nth-child(even) > time {
+  background-color: #a552a7;
+}
+.event-list > li > time > span {
+  display: none;
+}
+.event-list > li > time > .day {
+  margin-top: 10px;
+  display: block;
+  font-size: 56pt;
+  font-weight: 100;
+  line-height: 1;
+}
+.event-list > li time > .month {
+  display: block;
+  margin: auto;
+  font-size: 24pt;
+  font-weight: 900;
+  line-height: 1;
+}
+.event-list > li time > .year {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 24pt;
+  font-weight: 300;
+  line-height: 1;
+}
+.event-list > li > img {
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .event-list > li {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 120px;
+    padding: 0px;
+  }
+  .event-list > li > time,
+  .event-list > li > img {
+    display: inline-block;
+  }
+  .event-list > li > time,
+  .event-list > li > img {
+    width: 120px;
+    float: left;
+  }
+  .event-list > li > time,
+  .event-list > li > img {
+    width: 220px;
+    height: 220px;
+    padding: 0px;
+    margin: 0px;
+  }
 }

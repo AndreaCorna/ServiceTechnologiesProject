@@ -406,9 +406,9 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                                <div class=\"col-lg-12\">\n" +
     "                                    <div class=\"row\">\n" +
     "                                        <div class=\"panel-image-modal\">\n" +
-    "                                            <carousel interval=\"intervalImages\">\n" +
+    "                                            <carousel interval=\"intervalImages\" >\n" +
     "                                                <slide ng-repeat=\"image in moreInfoSelection.photos\" active=\"image.active\">\n" +
-    "                                                    <img class=\"image-modal\" ng-src=\"data:image/JPEG;base64,{{image.image}}\" >\n" +
+    "                                                    <img class=\"image-modal\" style=\"height: 400px\" ng-src=\"data:image/JPEG;base64,{{image.image}}\" >\n" +
     "                                                </slide>\n" +
     "                                            </carousel>\n" +
     "                                        </div>\n" +
@@ -440,7 +440,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                                                                        <b class=\"text-capitalize\">{{aspect.type}}</b>\n" +
     "                                                                    </div>\n" +
     "                                                                    <div class=\"col-lg-8\">\n" +
-    "                                                                        <rating value=\"aspect.rating\" readonly=\"true\"></rating>\n" +
+    "                                                                        <rating ng-model=\"aspect.rating\" readonly=\"true\"></rating>\n" +
     "                                                                    </div>\n" +
     "                                                                </div>\n" +
     "                                                            </span>\n" +
@@ -510,7 +510,7 @@ angular.module("city/culture.tpl.html", []).run(["$templateCache", function($tem
     "                                </button>\n" +
     "                            </div>\n" +
     "                        </div>\n" +
-    "                        <div class=\"col-md-6\">\n" +
+    "                        <div class=\"col-md-6\" style=\"height:230px\">\n" +
     "                            <p class=\"list-group-item-text\">\n" +
     "                            <div class=\"row\">\n" +
     "                                <b class=\"text-capitalize\">{{c.name}}</b>\n" +
@@ -520,10 +520,10 @@ angular.module("city/culture.tpl.html", []).run(["$templateCache", function($tem
     "                                    <p>Price {{c.price || 'Free'}}</p>\n" +
     "                                </div>\n" +
     "                                <div class=\"col-md-4\">\n" +
-    "                                    <p>Rating <rating value=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
+    "                                    <p>Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
-    "                            <div class=\"row\">\n" +
+    "                            <div class=\"row scrollable\" style=\"max-height: 185px;overflow-y: auto\">\n" +
     "                                <div class=\"text-justify\">{{c.description}}</div>\n" +
     "                            </div>\n" +
     "\n" +
@@ -563,7 +563,7 @@ angular.module("city/culture.tpl.html", []).run(["$templateCache", function($tem
     "                                </button>\n" +
     "                            </div>\n" +
     "                        </div>\n" +
-    "                        <div class=\"col-md-6\">\n" +
+    "                        <div class=\"col-md-6\" style=\"height:230px\">\n" +
     "                            <p class=\"list-group-item-text\">\n" +
     "                            <div class=\"row\">\n" +
     "                                <b class=\"text-capitalize\">{{c.name}}</b>\n" +
@@ -576,8 +576,8 @@ angular.module("city/culture.tpl.html", []).run(["$templateCache", function($tem
     "                                    <p>Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
-    "                            <div class=\"row\">\n" +
-    "                                 <div class=\"text-justify\">{{c.description}}</div>\n" +
+    "                            <div class=\"row scrollable\" style=\"max-height: 185px;overflow-y: auto\">\n" +
+    "                                 <div class=\"text-justify\" >{{c.description}}</div>\n" +
     "                            </div>\n" +
     "\n" +
     "                            </p>\n" +
@@ -630,7 +630,7 @@ angular.module("city/entertainment.tpl.html", []).run(["$templateCache", functio
     "                                </button>\n" +
     "                            </div>\n" +
     "                        </div>\n" +
-    "                        <div class=\"col-md-6\">\n" +
+    "                        <div class=\"col-md-6\" style=\"height:230px\">\n" +
     "                            <p class=\"list-group-item-text\">\n" +
     "                            <div class=\"row\">\n" +
     "                                <b class=\"text-capitalize\">{{c.name}}</b>\n" +
@@ -643,7 +643,7 @@ angular.module("city/entertainment.tpl.html", []).run(["$templateCache", functio
     "                                    <p>Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
-    "                            <div class=\"row\">\n" +
+    "                            <div class=\"row scrollable\" style=\"max-height: 185px;overflow-y: auto\">\n" +
     "                                <div class=\"text-justify\">{{c.description}}</div>\n" +
     "                            </div>\n" +
     "\n" +
@@ -684,7 +684,7 @@ angular.module("city/entertainment.tpl.html", []).run(["$templateCache", functio
     "                                </button>\n" +
     "                            </div>\n" +
     "                        </div>\n" +
-    "                        <div class=\"col-md-6\">\n" +
+    "                        <div class=\"col-md-6\" style=\"height:230px\">\n" +
     "                            <p class=\"list-group-item-text\">\n" +
     "                            <div class=\"row\">\n" +
     "                                <b class=\"text-capitalize\">{{c.name}}</b>\n" +
@@ -694,10 +694,10 @@ angular.module("city/entertainment.tpl.html", []).run(["$templateCache", functio
     "                                    <p>Price {{c.price || 'Free'}}</p>\n" +
     "                                </div>\n" +
     "                                <div class=\"col-md-4\">\n" +
-    "                                    <p>Rating <rating value=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
+    "                                    <p>Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
-    "                            <div class=\"row\">\n" +
+    "                            <div class=\"row scrollable\" style=\"max-height: 185px;overflow-y: auto\">\n" +
     "                                <div class=\"text-justify\">{{c.description}}</div>\n" +
     "                            </div>\n" +
     "\n" +
@@ -748,7 +748,7 @@ angular.module("city/food.tpl.html", []).run(["$templateCache", function($templa
     "                                </button>\n" +
     "                            </div>\n" +
     "                        </div>\n" +
-    "                        <div class=\"col-md-6\">\n" +
+    "                        <div class=\"col-md-6\" style=\"height:230px\">\n" +
     "                            <p class=\"list-group-item-text\">\n" +
     "                            <div class=\"row\">\n" +
     "                                <b class=\"text-capitalize\">{{c.name}}</b>\n" +
@@ -761,7 +761,7 @@ angular.module("city/food.tpl.html", []).run(["$templateCache", function($templa
     "                                    <p>Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
-    "                            <div class=\"row\">\n" +
+    "                            <div class=\"row scrollable\" style=\"max-height: 185px;overflow-y: auto\">\n" +
     "                                <div class=\"text-justify\">{{c.description}}</div>\n" +
     "                            </div>\n" +
     "\n" +
@@ -802,7 +802,7 @@ angular.module("city/food.tpl.html", []).run(["$templateCache", function($templa
     "                                </button>\n" +
     "                            </div>\n" +
     "                        </div>\n" +
-    "                        <div class=\"col-md-6\">\n" +
+    "                        <div class=\"col-md-6\" style=\"height:230px\">\n" +
     "                            <p class=\"list-group-item-text\">\n" +
     "                            <div class=\"row\">\n" +
     "                                <b class=\"text-capitalize\">{{c.name}}</b>\n" +
@@ -812,10 +812,10 @@ angular.module("city/food.tpl.html", []).run(["$templateCache", function($templa
     "                                    <p>Price {{c.price || 'Free'}}</p>\n" +
     "                                </div>\n" +
     "                                <div class=\"col-md-4\">\n" +
-    "                                    <p>Rating <rating value=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
+    "                                    <p>Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
-    "                            <div class=\"row\">\n" +
+    "                            <div class=\"row scrollable\" style=\"max-height: 185px;overflow-y: auto\">\n" +
     "                                <div class=\"text-justify\">{{c.description}}</div>\n" +
     "                            </div>\n" +
     "\n" +
@@ -924,7 +924,7 @@ angular.module("city/utility.tpl.html", []).run(["$templateCache", function($tem
     "                                </button>\n" +
     "                            </div>\n" +
     "                        </div>\n" +
-    "                        <div class=\"col-md-6\">\n" +
+    "                        <div class=\"col-md-6\" style=\"height:230px\">\n" +
     "                            <p class=\"list-group-item-text\">\n" +
     "                            <div class=\"row\">\n" +
     "                                <b class=\"text-capitalize\">{{c.name}}</b>\n" +
@@ -937,7 +937,7 @@ angular.module("city/utility.tpl.html", []).run(["$templateCache", function($tem
     "                                    <p>Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
-    "                            <div class=\"row\">\n" +
+    "                            <div class=\"row scrollable\" style=\"max-height: 185px;overflow-y: auto\">\n" +
     "                                <div class=\"text-justify\">{{c.description}}</div>\n" +
     "                            </div>\n" +
     "\n" +
@@ -978,7 +978,7 @@ angular.module("city/utility.tpl.html", []).run(["$templateCache", function($tem
     "                                </button>\n" +
     "                            </div>\n" +
     "                        </div>\n" +
-    "                        <div class=\"col-md-6\">\n" +
+    "                        <div class=\"col-md-6\" style=\"height:230px\">\n" +
     "                            <p class=\"list-group-item-text\">\n" +
     "                            <div class=\"row\">\n" +
     "                                <b class=\"text-capitalize\">{{c.name}}</b>\n" +
@@ -988,10 +988,10 @@ angular.module("city/utility.tpl.html", []).run(["$templateCache", function($tem
     "                                    <p>Price {{c.price || 'Free'}}</p>\n" +
     "                                </div>\n" +
     "                                <div class=\"col-md-4\">\n" +
-    "                                    <p>Rating <rating value=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
+    "                                    <p>Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
-    "                            <div class=\"row\">\n" +
+    "                            <div class=\"row scrollable\" style=\"max-height: 185px;overflow-y: auto\">\n" +
     "                                <div class=\"text-justify\">{{c.description}}</div>\n" +
     "                            </div>\n" +
     "\n" +
