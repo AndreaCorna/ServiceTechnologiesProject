@@ -1,16 +1,16 @@
 {
-  "author": "Josh David Miller",
-  "name": "ngbp",
-  "version": "0.3.2",
-  "homepage": "https://github.com/ngbp/ngbp",
+  "author": "Andrea Corna, Lorenzo Fontana, Riccardo Motta",
+  "name": "trippo",
+  "version": "0.1",
+  "homepage": "",
   "licenses": {
     "type": "MIT",
-    "url": "https://raw.github.com/ngbp/ngbp/master/LICENSE"
+    "url": "E"
   },
-  "bugs": "https://github.com/ngbp/ngbp/issues",
+  "bugs": "",
   "repository": {
     "type": "git",
-    "url": "git@github.com:ngbp/ngbp.git"
+    "url": ""
   },
   "dependencies": {},
   "devDependencies": {

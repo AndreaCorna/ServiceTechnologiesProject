@@ -1,0 +1,114 @@
+<div class="container">
+    <div class="row">
+        <div class="well">
+            <h1 class="text-center">Entertainment</h1>
+            <div class="list-group">
+                <span ng-repeat="c in entertainmentSelection | orderBy:'name':false"">
+                    <div class="list-group-item">
+                        <div class="col-md-3">
+                            <div class="row">
+                                <img class="icon-col-centered" ng-src="{{c.icon}}">
+                            </div>
+                            <div class="row" style="padding-top: 50px">
+                                <button class="btn btn-primary" ng-click="getEntertainmentDetails(c.id)" href="#moreInfoModal" data-toggle="modal">
+                                    More Info
+                                </button>
+                                <button  class="btn btn-primary " ng-click="removeEntertainmentItem(c)" >
+                                    Remove
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-md-6" style="height:230px">
+                            <p class="list-group-item-text">
+                            <div class="row">
+                                <b class="text-capitalize">{{c.name}}</b>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <p>Price {{c.price || 'Free'}}</p>
+                                </div>
+                                <div class="col-md-4">
+                                    <p>Rating <rating ng-model="c.rating" readonly="true" ></rating></p>
+                                </div>
+                            </div>
+                            <div class="row scrollable" style="max-height: 185px;overflow-y: auto">
+                                <div class="text-justify">{{c.description}}</div>
+                            </div>
+
+                            </p>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <div class="panel panel-default">
+                                <div class="panel-body image-panel">
+                                    <carousel interval="intervalImages">
+                                        <div ng-if="c.photos.length==0">
+                                            <img ng-src="assets/images/empty_photo.png" style="position: center">
+
+                                        </div>
+                                        <slide ng-repeat="image in c.photos" active="image.active">
+                                            <img class="image-item" ng-src="{{image.image}}" >
+                                        </slide>
+                                    </carousel>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </span>
+            </div>
+
+            <div class="list-group">
+                <span ng-repeat="c in entertainmentList | orderBy:'name':false">
+                    <div class="list-group-item">
+                        <div class="col-md-3">
+                            <div class="row">
+                                <img class="icon-col-centered" ng-src="{{c.icon}}">
+                            </div>
+                            <div class="row" style="padding-top: 50px">
+                                <button class="btn btn-primary" ng-click="getEntertainmentDetails(c.id)" href="#moreInfoModal" data-toggle="modal">
+                                    More Info
+                                </button>
+                                <button class="btn btn-primary " ng-click="addEntertainmentItem(c)">
+                                    Add
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-md-6" style="height:230px">
+                            <p class="list-group-item-text">
+                            <div class="row">
+                                <b class="text-capitalize">{{c.name}}</b>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <p>Price {{c.price || 'Free'}}</p>
+                                </div>
+                                <div class="col-md-4">
+                                    <p>Rating <rating ng-model="c.rating" readonly="true" ></rating></p>
+                                </div>
+                            </div>
+                            <div class="row scrollable" style="max-height: 185px;overflow-y: auto">
+                                <div class="text-justify">{{c.description}}</div>
+                            </div>
+
+                            </p>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <div class="panel panel-default">
+                                <div class="panel-body image-panel">
+                                    <carousel interval="intervalImages">
+                                        <div ng-if="c.photos.length==0">
+                                            <img ng-src="assets/images/empty_photo.png" style="position: center">
+
+                                        </div>
+                                        <slide ng-repeat="image in c.photos" active="image.active">
+                                            <img class="image-item" ng-src="{{image.image}}" >
+                                        </slide>
+                                    </carousel>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,4 +1,4 @@
-angular.module('templates-app', ['about/about.tpl.html', 'city/city.tpl.html', 'home/home.tpl.html']);
+angular.module('templates-app', ['about/about.tpl.html', 'city/city.tpl.html', 'city/culture.tpl.html', 'city/entertainment.tpl.html', 'city/food.tpl.html', 'city/hotel.tpl.html', 'city/utility.tpl.html', 'home/home.tpl.html', 'plan_trip/calendar.tpl.html', 'plan_trip/planning.tpl.html', 'plan_trip/trip_dates.tpl.html']);
 
 angular.module("about/about.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("about/about.tpl.html",
@@ -272,28 +272,6 @@ angular.module("about/about.tpl.html", []).run(["$templateCache", function($temp
 
 angular.module("city/city.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("city/city.tpl.html",
-    "<head>\n" +
-    "    <link rel=\"stylesheet\" type=\"text/css\" href=\"http://www.shieldui.com/shared/components/latest/css/shieldui-all.min.css\" />\n" +
-    "    <link rel=\"stylesheet\" type=\"text/css\" href=\"http://www.shieldui.com/shared/components/latest/css/light/all.min.css\" />\n" +
-    "    <script type=\"text/javascript\" src=\"http://www.shieldui.com/shared/components/latest/js/shieldui-all.min.js\"></script>\n" +
-    "</head>\n" +
-    "\n" +
-    "\n" +
-    "<div>\n" +
-    "    <p>\n" +
-    "        List culture {{cultureSelection}}\n" +
-    "    </p>\n" +
-    "    <p>\n" +
-    "        List hotel {{hotelSelection}}\n" +
-    "    </p>\n" +
-    "    <p>\n" +
-    "        List entertainment {{entertainmentSelection}}\n" +
-    "    </p>\n" +
-    "    <p>\n" +
-    "        List utility {{utilitySelection}}\n" +
-    "    </p>\n" +
-    "\n" +
-    "</div>\n" +
     "\n" +
     "<carousel interval=\"intervalImages\">\n" +
     "    <slide ng-repeat=\"image in city\" active=\"image.active\">\n" +
@@ -304,174 +282,578 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "    </slide>\n" +
     "</carousel>\n" +
     "\n" +
-    "<tabset>\n" +
-    "    <tab heading=\"Culture\">\n" +
-    "        <div class=\"container\">\n" +
-    "            <div class=\"row\">\n" +
-    "                <div class=\"well\">\n" +
-    "                    <h1 class=\"text-center\">Culture</h1>\n" +
-    "                    <div class=\"list-group\">\n" +
-    "                <span ng-repeat=\"c in cultureList\">\n" +
-    "                    <div class=\"list-group-item\">\n" +
-    "                        <div class=\"media col-md-3\">\n" +
-    "                            <figure class=\"pull-left\">\n" +
-    "                                <i class=\"fa fa-cloud-upload \">\n" +
-    "                                    <img ng-src=\"{{c.icon}}\" style=\"margin:auto;\">\n" +
-    "                                </i>\n" +
-    "                            </figure>\n" +
-    "                        </div>\n" +
-    "                        <div class=\"col-md-6\">\n" +
-    "                            <h4 class=\"list-group-item-heading\">{{c.name}}</h4>\n" +
-    "                            <p class=\"list-group-item-text\">\n" +
-    "                            <div class=\"row\">\n" +
-    "                                <p>Price {{c.price || 'Free'}}</p>\n" +
-    "                            </div>\n" +
-    "                            <div class=\"row\">\n" +
-    "                                <p>Rating {{c.rating}}</p>\n" +
-    "                                <rating value=\"c.rating\" readonly=\"true\" ></rating>\n" +
+    "<div id='cssmenu'>\n" +
+    "    <ul>\n" +
+    "        <li class='active'><a ui-sref=\"culture\" data-target=\"#\" data-toggle=\"pill\"><span>Culture</span></a></li>\n" +
+    "        <li><a ui-sref=\"entertainment\" data-target=\"#\" data-toggle=\"pill\"><span>Entertainment</span></a></li>\n" +
+    "        <li><a ui-sref=\"hotel\" data-target=\"#\" data-toggle=\"pill\"><span>Hotel</span></a></li>\n" +
+    "        <li><a ui-sref=\"utility\" data-target=\"#\" data-toggle=\"pill\"><span>Utility</span></a></li>\n" +
+    "        <li><a ui-sref=\"food\" data-target=\"#\" data-toggle=\"pill\"><span>Food</span></a></li>\n" +
     "\n" +
+    "\n" +
+    "        <li class='last'><a ui-sref=\"calendar\" data-target=\"#\" data-toggle=\"pill\"><span>Plan Trip</span></a></li>\n" +
+    "    </ul>\n" +
+    "\n" +
+    "</div>\n" +
+    "<div ui-view=\"content\" class=\"fill\"></div>\n" +
+    "\n" +
+    "\n" +
+    "\n" +
+    "<div ng-show=\"modalEnabled\">\n" +
+    "    <div class=\"modal fade\" id=\"moreInfoModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">\n" +
+    "        <div class=\"modal-dialog\">\n" +
+    "            <div class=\"modal-content\">\n" +
+    "\n" +
+    "                    <div class=\"modal-header\">\n" +
+    "                        <button type=\"button\" class=\"close\" data-dismiss=\"modal\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button>\n" +
+    "                        <h4 class=\"modal-title\" id=\"myModalLabel\">More Information about {{moreInfoSelection.name}}</h4>\n" +
+    "                    </div>\n" +
+    "                    <div class=\"modal-body\">\n" +
+    "                        <div class=\"container-fluid\">\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <div class=\"col-lg-6\" >\n" +
+    "                                    <div class=\"row\">\n" +
+    "                                        <b>Rating</b>\n" +
+    "                                    </div>\n" +
+    "                                    <div class=\"row\">\n" +
+    "                                        {{moreInfoSelection.rating || 'Unknown'}}\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                                <div class=\"col-lg-6\">\n" +
+    "                                    <div class=\"row\">\n" +
+    "                                        <b>Price</b>\n" +
+    "                                    </div>\n" +
+    "                                    <div class=\"row\">\n" +
+    "                                        {{moreInfoSelection.price || 'Unknown'}}\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
     "                            </div>\n" +
     "                            <div class=\"row\">\n" +
-    "                                <button class=\"btn btn-primary btn-lg\" ng-click=\"getCultureDetails(c.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">\n" +
+    "                                <div class=\"col-lg-6\" >\n" +
+    "                                    <div class=\"row\">\n" +
+    "                                        <b>Phone</b>\n" +
+    "                                    </div>\n" +
+    "                                    <div class=\"row\">\n" +
+    "                                        {{moreInfoSelection.international_phone}}\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                                <div class=\"col-lg-6\">\n" +
+    "                                    <div class=\"row\">\n" +
+    "                                        <b>Address</b>\n" +
+    "                                    </div>\n" +
+    "                                    <div class=\"row\">\n" +
+    "                                        {{moreInfoSelection.formatted_address}}\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <div class=\"col-lg-12\" >\n" +
+    "                                    <div class=\"row\">\n" +
+    "                                        <b>Web Site</b>\n" +
+    "                                    </div>\n" +
+    "                                    <div class=\"row\">\n" +
+    "                                        {{moreInfoSelection.web_site}}\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <div class=\"col-lg-12\" >\n" +
+    "                                    <div class=\"row\">\n" +
+    "                                        <b>Open Hours</b>\n" +
+    "                                    </div>\n" +
+    "                                    <div class=\"row\">\n" +
+    "                                        <table class=\"table table-hover\">\n" +
+    "                                            <thead>\n" +
+    "                                                <tr>\n" +
+    "                                                    <th></th>\n" +
+    "                                                    <th>Sunday</th>\n" +
+    "                                                    <th>Monday</th>\n" +
+    "                                                    <th>Tuesday</th>\n" +
+    "                                                    <th>Wednesday</th>\n" +
+    "                                                    <th>Thursday</th>\n" +
+    "                                                    <th>Friday</th>\n" +
+    "                                                    <th>Saturday</th>\n" +
+    "                                                </tr>\n" +
+    "                                            </thead>\n" +
+    "                                            <tbody>\n" +
+    "                                                <tr class=\"info\">\n" +
+    "                                                    <td>From</td>\n" +
+    "                                                    <td>{{moreInfoSelection.open_hours.periods[0].open.time}}</td>\n" +
+    "                                                    <td>{{moreInfoSelection.open_hours.periods[1].open.time}}</td>\n" +
+    "                                                    <td>{{moreInfoSelection.open_hours.periods[2].open.time}}</td>\n" +
+    "                                                    <td>{{moreInfoSelection.open_hours.periods[3].open.time}}</td>\n" +
+    "                                                    <td>{{moreInfoSelection.open_hours.periods[4].open.time}}</td>\n" +
+    "                                                    <td>{{moreInfoSelection.open_hours.periods[5].open.time}}</td>\n" +
+    "                                                    <td>{{moreInfoSelection.open_hours.periods[6].open.time}}</td>\n" +
+    "                                                </tr>\n" +
+    "                                                <tr class=\"info\">\n" +
+    "                                                    <td>To</td>\n" +
+    "                                                    <td>{{moreInfoSelection.open_hours.periods[0].close.time}}</td>\n" +
+    "                                                    <td>{{moreInfoSelection.open_hours.periods[1].close.time}}</td>\n" +
+    "                                                    <td>{{moreInfoSelection.open_hours.periods[2].close.time}}</td>\n" +
+    "                                                    <td>{{moreInfoSelection.open_hours.periods[3].close.time}}</td>\n" +
+    "                                                    <td>{{moreInfoSelection.open_hours.periods[4].close.time}}</td>\n" +
+    "                                                    <td>{{moreInfoSelection.open_hours.periods[5].close.time}}</td>\n" +
+    "                                                    <td>{{moreInfoSelection.open_hours.periods[6].close.time}}</td>\n" +
+    "                                                </tr>\n" +
+    "                                            </tbody>\n" +
+    "\n" +
+    "                                        </table>\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <div class=\"col-lg-12\">\n" +
+    "                                    <div class=\"row\">\n" +
+    "                                        <div class=\"panel-image-modal\">\n" +
+    "                                            <carousel interval=\"intervalImages\">\n" +
+    "                                                <slide ng-repeat=\"image in moreInfoSelection.photos\" active=\"image.active\">\n" +
+    "                                                    <img class=\"image-modal\" ng-src=\"data:image/JPEG;base64,{{image.image}}\" >\n" +
+    "                                                </slide>\n" +
+    "                                            </carousel>\n" +
+    "                                        </div>\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <div class=\"col-lg-12\">\n" +
+    "                                    <p class=\"text-center\">\n" +
+    "                                        <b>Reviews</b>\n" +
+    "                                    </p>\n" +
+    "                                    <span ng-repeat=\"review in moreInfoSelection.reviews\">\n" +
+    "                                        <div class=\"panel-group\" id=\"{{review.author_name}}\">\n" +
+    "                                            <div class=\"panel  panel-info\">\n" +
+    "                                                <div class=\"panel-heading\">\n" +
+    "                                                    <h4 class=\"panel-title\">\n" +
+    "                                                        <a class=\"accordion-toggle\" data-toggle=\"collapse\" data-parent=\"#{{review.author_name}}\" data-target=\"#{{$index}}\">{{review.author_name}}</a>\n" +
+    "                                                    </h4>\n" +
+    "                                                </div>\n" +
+    "                                                <div id=\"{{$index}}\" class=\"panel-collapse collapse\">\n" +
+    "                                                    <div class=\"panel-body\">\n" +
+    "                                                        <p class=\"text-left\">\n" +
+    "                                                            <b>Ratings</b>\n" +
+    "                                                        </p>\n" +
+    "                                                        <div class=\"star-rating\">\n" +
+    "                                                            <span ng-repeat=\"aspect in review.aspects\">\n" +
+    "                                                                <div class=\"row\">\n" +
+    "                                                                    <div class=\"col-lg-3\">\n" +
+    "                                                                        <b class=\"text-capitalize\">{{aspect.type}}</b>\n" +
+    "                                                                    </div>\n" +
+    "                                                                    <div class=\"col-lg-8\">\n" +
+    "                                                                        <rating value=\"aspect.rating\" readonly=\"true\"></rating>\n" +
+    "                                                                    </div>\n" +
+    "                                                                </div>\n" +
+    "                                                            </span>\n" +
+    "                                                        </div>\n" +
+    "                                                        <div class=\"row\">\n" +
+    "                                                            <div class=\"col-lg-12\">\n" +
+    "                                                                <p class=\"text-left\">\n" +
+    "                                                                    <b>Comment</b>\n" +
+    "                                                                </p>\n" +
+    "                                                                {{review.text}}\n" +
+    "                                                            </div>\n" +
+    "                                                        </div>\n" +
+    "                                                        <div class=\"col-lg-12\">\n" +
+    "                                                            <div class=\"row\">\n" +
+    "                                                                <em>\n" +
+    "                                                                    <span>{{review.time | date:'medium'}}</span>\n" +
+    "                                                                </em>\n" +
+    "                                                            </div>\n" +
+    "                                                            <div class=\"row\">\n" +
+    "                                                                <em>\n" +
+    "                                                                    Contact User <a href=\"{{review.author_url}}\">GooglePlus!</a>\n" +
+    "                                                                </em>\n" +
+    "                                                            </div>\n" +
+    "                                                        </div>\n" +
+    "                                                    </div>\n" +
+    "\n" +
+    "                                                </div>\n" +
+    "                                            </div>\n" +
+    "\n" +
+    "                                   </div>\n" +
+    "                                  </span>\n" +
+    "\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                    <div class=\"modal-footer\">\n" +
+    "\n" +
+    "                        <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\"  ng-click=\"disableModal()\">Close</button>\n" +
+    "                    </div>\n" +
+    "            </div>\n" +
+    "\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>");
+}]);
+
+angular.module("city/culture.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("city/culture.tpl.html",
+    "<div class=\"container\">\n" +
+    "    <div class=\"row\">\n" +
+    "        <div class=\"well\">\n" +
+    "            <h1 class=\"text-center\">Culture</h1>\n" +
+    "            <div class=\"list-group\">\n" +
+    "                <span ng-repeat=\"c in cultureSelection | orderBy:'name':false\">\n" +
+    "                    <div class=\"list-group-item\">\n" +
+    "                        <div class=\"col-md-3\">\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <img class=\"icon-col-centered\" ng-src=\"{{c.icon}}\">\n" +
+    "                            </div>\n" +
+    "                            <div class=\"row\" style=\"padding-top: 50px\">\n" +
+    "                                <button class=\"btn btn-primary\" ng-click=\"getCultureDetails(c.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">\n" +
     "                                    More Info\n" +
     "                                </button>\n" +
-    "                                <button class=\"btn btn-primary btn-lg\" ng-click=\"addCultureItem(c)\">\n" +
-    "                                    <i class=\"icon-white icon-plus \"></i>\n" +
-    "                                </button>\n" +
-    "                                <button  class=\"btn btn-primary btn-lg\" ng-click=\"removeCultureItem(c)\" >\n" +
-    "                                    <i class=\"icon-white icon-minus\"></i>\n" +
+    "                                <button  class=\"btn btn-primary \" ng-click=\"removeCultureItem(c)\" >\n" +
+    "                                    Remove\n" +
     "                                </button>\n" +
     "                            </div>\n" +
+    "                        </div>\n" +
+    "                        <div class=\"col-md-6\">\n" +
+    "                            <p class=\"list-group-item-text\">\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <b class=\"text-capitalize\">{{c.name}}</b>\n" +
+    "                            </div>\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <div class=\"col-md-3\">\n" +
+    "                                    <p>Price {{c.price || 'Free'}}</p>\n" +
+    "                                </div>\n" +
+    "                                <div class=\"col-md-4\">\n" +
+    "                                    <p>Rating <rating value=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <div class=\"text-justify\">{{c.description}}</div>\n" +
+    "                            </div>\n" +
+    "\n" +
     "                            </p>\n" +
     "                        </div>\n" +
     "                        <div class=\"col-md-3 text-center\">\n" +
     "                            <div class=\"panel panel-default\">\n" +
-    "                                <div class=\"panel-body\">\n" +
-    "                                    <div class=\"ratetext\">Location</div>\n" +
+    "                                <div class=\"panel-body image-panel\">\n" +
+    "                                    <carousel interval=\"intervalImages\">\n" +
+    "                                        <div ng-if=\"c.photos.length==0\">\n" +
+    "                                            <img ng-src=\"assets/images/empty_photo.png\" style=\"position: center\">\n" +
+    "\n" +
+    "                                        </div>\n" +
+    "                                        <slide ng-repeat=\"image in c.photos\" active=\"image.active\">\n" +
+    "                                            <img class=\"image-item\" ng-src=\"{{image.image}}\" >\n" +
+    "                                        </slide>\n" +
+    "                                    </carousel>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
     "                        </div>\n" +
     "                    </div>\n" +
     "                </span>\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
     "            </div>\n" +
-    "        </div>\n" +
-    "    </tab>\n" +
-    "    <tab heading=\"Utility\">\n" +
-    "        <div class=\"container\">\n" +
-    "            <div class=\"row\">\n" +
-    "                <div class=\"well\">\n" +
-    "                    <h1 class=\"text-center\">Utility</h1>\n" +
-    "                    <div class=\"list-group\">\n" +
-    "                <span ng-repeat=\"c in utilityList\">\n" +
+    "            <div class=\"list-group\">\n" +
+    "                <span ng-repeat=\"c in cultureList | orderBy:'name':false\">\n" +
     "                    <div class=\"list-group-item\">\n" +
-    "                        <div class=\"media col-md-3\">\n" +
-    "                            <figure class=\"pull-left\">\n" +
-    "                                <i class=\"fa fa-cloud-upload \">\n" +
-    "                                    <img ng-src=\"{{c.icon}}\" style=\"margin:auto;\">\n" +
-    "                                </i>\n" +
-    "                            </figure>\n" +
-    "                        </div>\n" +
-    "                        <div class=\"col-md-6\">\n" +
-    "                            <h4 class=\"list-group-item-heading\">{{c.name}}</h4>\n" +
-    "                            <p class=\"list-group-item-text\">\n" +
+    "                        <div class=\"col-md-3\">\n" +
     "                            <div class=\"row\">\n" +
-    "                                <p>Price {{c.price || 'Free'}}</p>\n" +
+    "                                <img class=\"icon-col-centered\" ng-src=\"{{c.icon}}\">\n" +
     "                            </div>\n" +
-    "                            <div class=\"row\">\n" +
-    "                                <p>Rating {{c.rating}}</p>\n" +
-    "                                <rating value=\"c.rating\" readonly=\"true\" ></rating>\n" +
-    "\n" +
-    "                            </div>\n" +
-    "                            <div class=\"row\">\n" +
-    "                                <button class=\"btn btn-primary btn-lg\" ng-click=\"getUtilityDetails(c.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">\n" +
+    "                            <div class=\"row\" style=\"padding-top: 50px\">\n" +
+    "                                <button class=\"btn btn-primary\" ng-click=\"getCultureDetails(c.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">\n" +
     "                                    More Info\n" +
     "                                </button>\n" +
-    "                                <button class=\"btn btn-primary btn-lg\" ng-click=\"addUtilityItem(c)\">\n" +
-    "                                    <i class=\"icon-white icon-plus \"></i>\n" +
-    "                                </button>\n" +
-    "                                <button  class=\"btn btn-primary btn-lg\" ng-click=\"removeUtilityItem(c)\" >\n" +
-    "                                    <i class=\"icon-white icon-minus\"></i>\n" +
+    "                                <button class=\"btn btn-primary \" ng-click=\"addCultureItem(c)\">\n" +
+    "                                    Add\n" +
     "                                </button>\n" +
     "                            </div>\n" +
+    "                        </div>\n" +
+    "                        <div class=\"col-md-6\">\n" +
+    "                            <p class=\"list-group-item-text\">\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <b class=\"text-capitalize\">{{c.name}}</b>\n" +
+    "                            </div>\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <div class=\"col-md-3\">\n" +
+    "                                    <p>Price {{c.price || 'Free'}}</p>\n" +
+    "                                </div>\n" +
+    "                                <div class=\"col-md-4\">\n" +
+    "                                    <p>Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                            <div class=\"row\">\n" +
+    "                                 <div class=\"text-justify\">{{c.description}}</div>\n" +
+    "                            </div>\n" +
+    "\n" +
     "                            </p>\n" +
     "                        </div>\n" +
     "                        <div class=\"col-md-3 text-center\">\n" +
     "                            <div class=\"panel panel-default\">\n" +
-    "                                <div class=\"panel-body\">\n" +
-    "                                    <div class=\"ratetext\">Location</div>\n" +
+    "                                <div class=\"panel-body image-panel\">\n" +
+    "                                    <carousel interval=\"intervalImages\">\n" +
+    "                                        <div ng-if=\"c.photos.length==0\">\n" +
+    "                                            <img ng-src=\"assets/images/empty_photo.png\" style=\"position: center\">\n" +
+    "\n" +
+    "                                        </div>\n" +
+    "                                        <slide ng-repeat=\"image in c.photos\" active=\"image.active\">\n" +
+    "                                            <img class=\"image-item\" ng-src=\"{{image.image}}\" >\n" +
+    "                                        </slide>\n" +
+    "                                    </carousel>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
     "                        </div>\n" +
     "                    </div>\n" +
     "                </span>\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
     "            </div>\n" +
     "        </div>\n" +
-    "    </tab>\n" +
+    "    </div>\n" +
+    "</div>\n" +
     "\n" +
-    "    <tab heading=\"Entertainment\">\n" +
-    "        <div class=\"container\">\n" +
-    "            <div class=\"row\">\n" +
-    "                <div class=\"well\">\n" +
-    "                    <h1 class=\"text-center\">Entertainment</h1>\n" +
-    "                    <div class=\"list-group\">\n" +
-    "                <span ng-repeat=\"c in entertainmentList\">\n" +
+    "\n" +
+    "");
+}]);
+
+angular.module("city/entertainment.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("city/entertainment.tpl.html",
+    "<div class=\"container\">\n" +
+    "    <div class=\"row\">\n" +
+    "        <div class=\"well\">\n" +
+    "            <h1 class=\"text-center\">Entertainment</h1>\n" +
+    "            <div class=\"list-group\">\n" +
+    "                <span ng-repeat=\"c in entertainmentSelection | orderBy:'name':false\"\">\n" +
     "                    <div class=\"list-group-item\">\n" +
-    "                        <div class=\"media col-md-3\">\n" +
-    "                            <figure class=\"pull-left\">\n" +
-    "                                <i class=\"fa fa-cloud-upload \">\n" +
-    "                                    <img ng-src=\"{{c.icon}}\" style=\"margin:auto;\">\n" +
-    "                                </i>\n" +
-    "                            </figure>\n" +
-    "                        </div>\n" +
-    "                        <div class=\"col-md-6\">\n" +
-    "                            <h4 class=\"list-group-item-heading\">{{c.name}}</h4>\n" +
-    "                            <p class=\"list-group-item-text\">\n" +
+    "                        <div class=\"col-md-3\">\n" +
     "                            <div class=\"row\">\n" +
-    "                                <p>Price {{c.price || 'Free'}}</p>\n" +
+    "                                <img class=\"icon-col-centered\" ng-src=\"{{c.icon}}\">\n" +
     "                            </div>\n" +
-    "                            <div class=\"row\">\n" +
-    "                                <p>Rating {{c.rating}}</p>\n" +
-    "                                <rating value=\"c.rating\" readonly=\"true\" ></rating>\n" +
-    "\n" +
-    "                            </div>\n" +
-    "                            <div class=\"row\">\n" +
-    "                                <button class=\"btn btn-primary btn-lg\" ng-click=\"getEntertainmentDetails(c.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">\n" +
+    "                            <div class=\"row\" style=\"padding-top: 50px\">\n" +
+    "                                <button class=\"btn btn-primary\" ng-click=\"getEntertainmentDetails(c.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">\n" +
     "                                    More Info\n" +
     "                                </button>\n" +
-    "                                <button class=\"btn btn-primary btn-lg\" ng-click=\"addEntertainmentItem(c)\">\n" +
-    "                                    <i class=\"icon-white icon-plus \"></i>\n" +
-    "                                </button>\n" +
-    "                                <button  class=\"btn btn-primary btn-lg\" ng-click=\"removeEntertainmentItem(c)\" >\n" +
-    "                                    <i class=\"icon-white icon-minus\"></i>\n" +
+    "                                <button  class=\"btn btn-primary \" ng-click=\"removeEntertainmentItem(c)\" >\n" +
+    "                                    Remove\n" +
     "                                </button>\n" +
     "                            </div>\n" +
+    "                        </div>\n" +
+    "                        <div class=\"col-md-6\">\n" +
+    "                            <p class=\"list-group-item-text\">\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <b class=\"text-capitalize\">{{c.name}}</b>\n" +
+    "                            </div>\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <div class=\"col-md-3\">\n" +
+    "                                    <p>Price {{c.price || 'Free'}}</p>\n" +
+    "                                </div>\n" +
+    "                                <div class=\"col-md-4\">\n" +
+    "                                    <p>Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <div class=\"text-justify\">{{c.description}}</div>\n" +
+    "                            </div>\n" +
+    "\n" +
     "                            </p>\n" +
     "                        </div>\n" +
     "                        <div class=\"col-md-3 text-center\">\n" +
     "                            <div class=\"panel panel-default\">\n" +
-    "                                <div class=\"panel-body\">\n" +
-    "                                    <div class=\"ratetext\">Location</div>\n" +
+    "                                <div class=\"panel-body image-panel\">\n" +
+    "                                    <carousel interval=\"intervalImages\">\n" +
+    "                                        <div ng-if=\"c.photos.length==0\">\n" +
+    "                                            <img ng-src=\"assets/images/empty_photo.png\" style=\"position: center\">\n" +
+    "\n" +
+    "                                        </div>\n" +
+    "                                        <slide ng-repeat=\"image in c.photos\" active=\"image.active\">\n" +
+    "                                            <img class=\"image-item\" ng-src=\"{{image.image}}\" >\n" +
+    "                                        </slide>\n" +
+    "                                    </carousel>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
     "                        </div>\n" +
     "                    </div>\n" +
     "                </span>\n" +
+    "            </div>\n" +
+    "\n" +
+    "            <div class=\"list-group\">\n" +
+    "                <span ng-repeat=\"c in entertainmentList | orderBy:'name':false\">\n" +
+    "                    <div class=\"list-group-item\">\n" +
+    "                        <div class=\"col-md-3\">\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <img class=\"icon-col-centered\" ng-src=\"{{c.icon}}\">\n" +
+    "                            </div>\n" +
+    "                            <div class=\"row\" style=\"padding-top: 50px\">\n" +
+    "                                <button class=\"btn btn-primary\" ng-click=\"getEntertainmentDetails(c.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">\n" +
+    "                                    More Info\n" +
+    "                                </button>\n" +
+    "                                <button class=\"btn btn-primary \" ng-click=\"addEntertainmentItem(c)\">\n" +
+    "                                    Add\n" +
+    "                                </button>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "                        <div class=\"col-md-6\">\n" +
+    "                            <p class=\"list-group-item-text\">\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <b class=\"text-capitalize\">{{c.name}}</b>\n" +
+    "                            </div>\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <div class=\"col-md-3\">\n" +
+    "                                    <p>Price {{c.price || 'Free'}}</p>\n" +
+    "                                </div>\n" +
+    "                                <div class=\"col-md-4\">\n" +
+    "                                    <p>Rating <rating value=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <div class=\"text-justify\">{{c.description}}</div>\n" +
+    "                            </div>\n" +
+    "\n" +
+    "                            </p>\n" +
+    "                        </div>\n" +
+    "                        <div class=\"col-md-3 text-center\">\n" +
+    "                            <div class=\"panel panel-default\">\n" +
+    "                                <div class=\"panel-body image-panel\">\n" +
+    "                                    <carousel interval=\"intervalImages\">\n" +
+    "                                        <div ng-if=\"c.photos.length==0\">\n" +
+    "                                            <img ng-src=\"assets/images/empty_photo.png\" style=\"position: center\">\n" +
+    "\n" +
+    "                                        </div>\n" +
+    "                                        <slide ng-repeat=\"image in c.photos\" active=\"image.active\">\n" +
+    "                                            <img class=\"image-item\" ng-src=\"{{image.image}}\" >\n" +
+    "                                        </slide>\n" +
+    "                                    </carousel>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
     "                    </div>\n" +
-    "                </div>\n" +
+    "                </span>\n" +
     "            </div>\n" +
     "        </div>\n" +
-    "    </tab>\n" +
+    "    </div>\n" +
+    "</div>");
+}]);
+
+angular.module("city/food.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("city/food.tpl.html",
+    "<div class=\"container\">\n" +
+    "    <div class=\"row\">\n" +
+    "        <div class=\"well\">\n" +
+    "            <h1 class=\"text-center\">Food</h1>\n" +
+    "            <div class=\"list-group\">\n" +
+    "                <span ng-repeat=\"c in foodSelection | orderBy:'name':false\">\n" +
+    "                    <div class=\"list-group-item\">\n" +
+    "                        <div class=\"col-md-3\">\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <img class=\"icon-col-centered\" ng-src=\"{{c.icon}}\">\n" +
+    "                            </div>\n" +
+    "                            <div class=\"row\" style=\"padding-top: 50px\">\n" +
+    "                                <button class=\"btn btn-primary\" ng-click=\"getFoodDetails(c.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">\n" +
+    "                                    More Info\n" +
+    "                                </button>\n" +
+    "                                <button  class=\"btn btn-primary \" ng-click=\"removeFoodItem(c)\" >\n" +
+    "                                    Remove\n" +
+    "                                </button>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "                        <div class=\"col-md-6\">\n" +
+    "                            <p class=\"list-group-item-text\">\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <b class=\"text-capitalize\">{{c.name}}</b>\n" +
+    "                            </div>\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <div class=\"col-md-3\">\n" +
+    "                                    <p>Price {{c.price || 'Free'}}</p>\n" +
+    "                                </div>\n" +
+    "                                <div class=\"col-md-4\">\n" +
+    "                                    <p>Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <div class=\"text-justify\">{{c.description}}</div>\n" +
+    "                            </div>\n" +
     "\n" +
-    "    <tab heading=\"Hotel\">\n" +
-    "        <div class=\"container\">\n" +
-    "            <div class=\"row\">\n" +
-    "                <div class=\"well\">\n" +
-    "                    <h1 class=\"text-center\">Hotel</h1>\n" +
-    "                    <div class=\"list-group\">\n" +
+    "                            </p>\n" +
+    "                        </div>\n" +
+    "                        <div class=\"col-md-3 text-center\">\n" +
+    "                            <div class=\"panel panel-default\">\n" +
+    "                                <div class=\"panel-body image-panel\">\n" +
+    "                                    <carousel interval=\"intervalImages\">\n" +
+    "                                        <div ng-if=\"c.photos.length==0\">\n" +
+    "                                            <img ng-src=\"assets/images/empty_photo.png\" style=\"position: center\">\n" +
+    "\n" +
+    "                                        </div>\n" +
+    "                                        <slide ng-repeat=\"image in c.photos\" active=\"image.active\">\n" +
+    "                                            <img class=\"image-item\" ng-src=\"{{image.image}}\" >\n" +
+    "                                        </slide>\n" +
+    "                                    </carousel>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                </span>\n" +
+    "            </div>\n" +
+    "\n" +
+    "            <div class=\"list-group\">\n" +
+    "                <span ng-repeat=\"c in foodList | orderBy:'name':false\">\n" +
+    "                    <div class=\"list-group-item\">\n" +
+    "                        <div class=\"col-md-3\">\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <img class=\"icon-col-centered\" ng-src=\"{{c.icon}}\">\n" +
+    "                            </div>\n" +
+    "                            <div class=\"row\" style=\"padding-top: 50px\">\n" +
+    "                                <button class=\"btn btn-primary\" ng-click=\"getFoodDetails(c.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">\n" +
+    "                                    More Info\n" +
+    "                                </button>\n" +
+    "                                <button class=\"btn btn-primary \" ng-click=\"addFoodItem(c)\">\n" +
+    "                                    Add\n" +
+    "                                </button>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "                        <div class=\"col-md-6\">\n" +
+    "                            <p class=\"list-group-item-text\">\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <b class=\"text-capitalize\">{{c.name}}</b>\n" +
+    "                            </div>\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <div class=\"col-md-3\">\n" +
+    "                                    <p>Price {{c.price || 'Free'}}</p>\n" +
+    "                                </div>\n" +
+    "                                <div class=\"col-md-4\">\n" +
+    "                                    <p>Rating <rating value=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <div class=\"text-justify\">{{c.description}}</div>\n" +
+    "                            </div>\n" +
+    "\n" +
+    "                            </p>\n" +
+    "                        </div>\n" +
+    "                        <div class=\"col-md-3 text-center\">\n" +
+    "                            <div class=\"panel panel-default\">\n" +
+    "                                <div class=\"panel-body image-panel\">\n" +
+    "                                    <carousel interval=\"intervalImages\">\n" +
+    "                                        <div ng-if=\"c.photos.length==0\">\n" +
+    "                                            <img ng-src=\"assets/images/empty_photo.png\" style=\"position: center\">\n" +
+    "\n" +
+    "                                        </div>\n" +
+    "                                        <slide ng-repeat=\"image in c.photos\" active=\"image.active\">\n" +
+    "                                            <img class=\"image-item\" ng-src=\"{{image.image}}\" >\n" +
+    "                                        </slide>\n" +
+    "                                    </carousel>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                </span>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>");
+}]);
+
+angular.module("city/hotel.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("city/hotel.tpl.html",
+    "<p>\n" +
+    "    List hotel {{hotelSelection}}\n" +
+    "</p>\n" +
+    "<div class=\"container\">\n" +
+    "    <div class=\"row\">\n" +
+    "        <div class=\"well\">\n" +
+    "            <h1 class=\"text-center\">Hotel</h1>\n" +
+    "            <div class=\"list-group\">\n" +
     "                <span ng-repeat=\"c in hotelList\">\n" +
     "                    <div class=\"list-group-item\">\n" +
     "                        <div class=\"media col-md-3\">\n" +
@@ -489,7 +871,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                            </div>\n" +
     "                            <div class=\"row\">\n" +
     "                                <p>Rating</p>\n" +
-    "                                <rating value=\"c.rating\" readonly=\"true\" ></rating>\n" +
+    "                                <rating ng-model=\"c.rating\" readonly=\"true\" ></rating>\n" +
     "\n" +
     "                            </div>\n" +
     "                            <div class=\"row\">\n" +
@@ -514,39 +896,128 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                        </div>\n" +
     "                    </div>\n" +
     "                </span>\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
     "            </div>\n" +
     "        </div>\n" +
-    "    </tab>\n" +
-    "\n" +
-    "\n" +
-    "</tabset>\n" +
-    "\n" +
-    "\n" +
-    "\n" +
-    "<div class=\"modal fade\" id=\"moreInfoModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">\n" +
-    "    <div class=\"modal-dialog\">\n" +
-    "        <div class=\"modal-content\">\n" +
-    "           <span ng-repeat=\"info in moreInfoSelection\">\n" +
-    "\n" +
-    "                <div class=\"modal-header\">\n" +
-    "                    <button type=\"button\" class=\"close\" data-dismiss=\"modal\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button>\n" +
-    "                    <h4 class=\"modal-title\" id=\"myModalLabel\">More Information about {{info.name}}</h4>\n" +
-    "                </div>\n" +
-    "                <div class=\"modal-body\">\n" +
-    "                    {{info.id}}\n" +
-    "                </div>\n" +
-    "                <div class=\"modal-footer\">\n" +
-    "                    <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>\n" +
-    "                </div>\n" +
-    "            </span>\n" +
-    "        </div>\n" +
-    "\n" +
     "    </div>\n" +
-    "</div>\n" +
+    "</div>");
+}]);
+
+angular.module("city/utility.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("city/utility.tpl.html",
+    "<div class=\"container\">\n" +
+    "    <div class=\"row\">\n" +
+    "        <div class=\"well\">\n" +
+    "            <h1 class=\"text-center\">Utility</h1>\n" +
+    "            <div class=\"list-group\">\n" +
+    "                <span ng-repeat=\"c in utilitySelection | orderBy:'name':false\">\n" +
+    "                    <div class=\"list-group-item\">\n" +
+    "                        <div class=\"col-md-3\">\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <img class=\"icon-col-centered\" ng-src=\"{{c.icon}}\">\n" +
+    "                            </div>\n" +
+    "                            <div class=\"row\" style=\"padding-top: 50px\">\n" +
+    "                                <button class=\"btn btn-primary\" ng-click=\"getUtilityDetails(c.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">\n" +
+    "                                    More Info\n" +
+    "                                </button>\n" +
+    "                                <button  class=\"btn btn-primary \" ng-click=\"removeUtilityItem(c)\" >\n" +
+    "                                    Remove\n" +
+    "                                </button>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "                        <div class=\"col-md-6\">\n" +
+    "                            <p class=\"list-group-item-text\">\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <b class=\"text-capitalize\">{{c.name}}</b>\n" +
+    "                            </div>\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <div class=\"col-md-3\">\n" +
+    "                                    <p>Price {{c.price || 'Free'}}</p>\n" +
+    "                                </div>\n" +
+    "                                <div class=\"col-md-4\">\n" +
+    "                                    <p>Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <div class=\"text-justify\">{{c.description}}</div>\n" +
+    "                            </div>\n" +
     "\n" +
-    "");
+    "                            </p>\n" +
+    "                        </div>\n" +
+    "                        <div class=\"col-md-3 text-center\">\n" +
+    "                            <div class=\"panel panel-default\">\n" +
+    "                                <div class=\"panel-body image-panel\">\n" +
+    "                                    <carousel interval=\"intervalImages\">\n" +
+    "                                        <div ng-if=\"c.photos.length==0\">\n" +
+    "                                            <img ng-src=\"assets/images/empty_photo.png\" style=\"position: center\">\n" +
+    "\n" +
+    "                                        </div>\n" +
+    "                                        <slide ng-repeat=\"image in c.photos\" active=\"image.active\">\n" +
+    "                                            <img class=\"image-item\" ng-src=\"{{image.image}}\" >\n" +
+    "                                        </slide>\n" +
+    "                                    </carousel>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                </span>\n" +
+    "            </div>\n" +
+    "\n" +
+    "            <div class=\"list-group\">\n" +
+    "                <span ng-repeat=\"c in utilityList | orderBy:'name':false\">\n" +
+    "                    <div class=\"list-group-item\">\n" +
+    "                        <div class=\"col-md-3\">\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <img class=\"icon-col-centered\" ng-src=\"{{c.icon}}\">\n" +
+    "                            </div>\n" +
+    "                            <div class=\"row\" style=\"padding-top: 50px\">\n" +
+    "                                <button class=\"btn btn-primary\" ng-click=\"getUtilityDetails(c.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">\n" +
+    "                                    More Info\n" +
+    "                                </button>\n" +
+    "                                <button class=\"btn btn-primary \" ng-click=\"addUtilityItem(c)\">\n" +
+    "                                    Add\n" +
+    "                                </button>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "                        <div class=\"col-md-6\">\n" +
+    "                            <p class=\"list-group-item-text\">\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <b class=\"text-capitalize\">{{c.name}}</b>\n" +
+    "                            </div>\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <div class=\"col-md-3\">\n" +
+    "                                    <p>Price {{c.price || 'Free'}}</p>\n" +
+    "                                </div>\n" +
+    "                                <div class=\"col-md-4\">\n" +
+    "                                    <p>Rating <rating value=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <div class=\"text-justify\">{{c.description}}</div>\n" +
+    "                            </div>\n" +
+    "\n" +
+    "                            </p>\n" +
+    "                        </div>\n" +
+    "                        <div class=\"col-md-3 text-center\">\n" +
+    "                            <div class=\"panel panel-default\">\n" +
+    "                                <div class=\"panel-body image-panel\">\n" +
+    "                                    <carousel interval=\"intervalImages\">\n" +
+    "                                        <div ng-if=\"c.photos.length==0\">\n" +
+    "                                            <img ng-src=\"assets/images/empty_photo.png\" style=\"position: center\">\n" +
+    "\n" +
+    "                                        </div>\n" +
+    "                                        <slide ng-repeat=\"image in c.photos\" active=\"image.active\">\n" +
+    "                                            <img class=\"image-item\" ng-src=\"{{image.image}}\" >\n" +
+    "                                        </slide>\n" +
+    "                                    </carousel>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                </span>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>");
 }]);
 
 angular.module("home/home.tpl.html", []).run(["$templateCache", function($templateCache) {
@@ -555,11 +1026,9 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "    <a class=\"col-md-12\">\n" +
     "        <span bind-html-unsafe=\"match.label| typeaheadHighlight:query\"></span>\n" +
     "       <i>({{match.model.state}})</i>\n" +
-    "\n" +
-    "\n" +
-    "\n" +
     "    </a>\n" +
     "</script>\n" +
+    "\n" +
     "<div class=\"home_back fill\" >\n" +
     "    <div class=\"home\">\n" +
     "        <img src=\"assets/images/trippo.png\" class=\"center\" />\n" +
@@ -574,6 +1043,104 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "            <button id=\"submit\" type=\"submit\" ng-click=\"search()\">Search</button>\n" +
     "        </form>\n" +
     "\n" +
+    "\n" +
+    "    </div>\n" +
+    "</div>");
+}]);
+
+angular.module("plan_trip/calendar.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("plan_trip/calendar.tpl.html",
+    "    <div class=\"row\">\n" +
+    "        <form novalidate name=\"form\" ng-submit=\"next(form)\">\n" +
+    "            <h1 class=\"text-center\">Choose the period</h1>\n" +
+    "            <div ng-show=\"submitted  && (form.end.$error.required || form.start.$error.required)\" class=\"alert alert-danger\">\n" +
+    "                Field <strong>start date</strong> and <strong>end date</strong> are required\n" +
+    "            </div>\n" +
+    "            <div class=\"col-md-6\">\n" +
+    "                <h2>Start date:<span ng-show=\"dtstart\">{{dtstart | date:'dd/MM/yyyy'}}</span></h2>\n" +
+    "                <datepicker ng-model=\"dtstart\" max-date=\"dtend\"  show-weeks=\"false\" name=\"start\" class=\"well well-sm\" required></datepicker>\n" +
+    "            </div>\n" +
+    "\n" +
+    "            <div class=\"col-md-6\">\n" +
+    "                <h2>End date:<span ng-show=\"dtend\">{{dtend | date:'dd/MM/yyyy'}}</span></h2>\n" +
+    "                <datepicker ng-model=\"dtend\" min-date=\"dtstart\" show-weeks=\"false\" name=\"end\" class=\"well well-sm\" required></datepicker>\n" +
+    "\n" +
+    "            </div>\n" +
+    "            <button class=\"btn btn-primary pull-right\"   >Next</button>\n" +
+    "        </form>\n" +
+    "    </div>\n" +
+    "\n" +
+    "\n" +
+    "</div>");
+}]);
+
+angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("plan_trip/planning.tpl.html",
+    "<div>Planning</div>\n" +
+    "\n" +
+    "<div class=\"sortable-container\" sv-root sv-part=\"selectedItems\">\n" +
+    "    <div ng-repeat=\"item in selectedItems\" sv-element=\"opts\" class=\"well\">\n" +
+    "        {{item}}\n" +
+    "    </div>\n" +
+    "</div>");
+}]);
+
+angular.module("plan_trip/trip_dates.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("plan_trip/trip_dates.tpl.html",
+    "<h1 class=\"text-center\">PLAN YOUR DATES</h1>\n" +
+    "    <div class=\"row\">\n" +
+    "\n" +
+    "            <ul>\n" +
+    "                <div ng-repeat=\"curDate in dates\" class=\"event-list col-xs-4\">\n" +
+    "\n" +
+    "                    <li>\n" +
+    "                    <time datetime=\"{{curDate.format(dateFormat)}}\">\n" +
+    "                        <span class=\"day\">{{curDate.format(dayFormat)}}</span>\n" +
+    "                        <span class=\"month\">{{curDate.format(monthFormat)}}</span>\n" +
+    "                        <span class=\"year\">{{curDate.format(yearFormat)}}</span>\n" +
+    "                        <span class=\"time\">ALL DAY</span>\n" +
+    "                        <button href=\"#infoDate\" data-toggle=\"modal\" class=\"btn btn-primary btn-outlined\">More</button>\n" +
+    "                        <a class=\"btn btn-primary btn-outlined\" ui-sref=\"planning({date:curDate.format(dateFormat)})\">Edit</a>\n" +
+    "\n" +
+    "                    </time>\n" +
+    "\n" +
+    "\n" +
+    "                </li>\n" +
+    "\n" +
+    "\n" +
+    "                </div>\n" +
+    "            </ul>\n" +
+    "\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "\n" +
+    "\n" +
+    "<div class=\"modal fade\" id=\"infoDate\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">\n" +
+    "    <div class=\"modal-dialog\">\n" +
+    "        <div class=\"modal-content\">\n" +
+    "\n" +
+    "            <div class=\"modal-header\">\n" +
+    "                <button type=\"button\" class=\"close\" data-dismiss=\"modal\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button>\n" +
+    "                <h4 class=\"modal-title\" id=\"myModalLabel\">More Information</h4>\n" +
+    "            </div>\n" +
+    "            <div class=\"modal-body\">\n" +
+    "                <div class=\"row\">\n" +
+    "                    <div class=\"column\" >\n" +
+    "                        gtrgtr\n" +
+    "                    </div>\n" +
+    "                    <div class=\"column\">\n" +
+    "                        gtrgtr\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "                <div class=\"row\">\n" +
+    "\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "            <div class=\"modal-footer\">\n" +
+    "\n" +
+    "                <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
     "\n" +
     "    </div>\n" +
     "</div>");

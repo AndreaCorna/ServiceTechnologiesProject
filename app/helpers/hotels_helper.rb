@@ -2,15 +2,19 @@ module HotelsHelper
 
   def get_hotels_list(city)
     puts 'parameter '+city
-    #hotels(city)
+    puts hotels(city)
     hotels_list = []
-    hotels_list.append(HotelItem.new('lat','long','prova_helper_hotel',3,3,'photo','icon','reference'))
+    hotels_list.append(HotelItem.new('215910','lat','long','prova_helper_hotel',3,3,'photo','icon','reference','hotel'))
     return hotels_list
 
   end
 
   def get_hotel_details(id)
     details = []
+    api = Expedia::Api.new
+    response = api.get_information({ :hotelId => id})
+    puts response.body
+    #to parse
     details.append('details hotel id '+id)
     return details
   end
@@ -28,10 +32,10 @@ module HotelsHelper
   #add methods in order to use expedia api
 
   class HotelItem
-    attr_accessor :id,:lat,:lng,:price,:rating,:name,:photo,:icon,:reference;
+    attr_accessor :id,:lat,:lng,:price,:rating,:name,:photo,:icon,:reference,:tag;
 
-    def initialize(lat,lng,name,rating,price,photo,icon,reference)
-      @id = name+'_'+lat+'_'+lng;
+    def initialize(id,lat,lng,name,rating,price,photo,icon,reference,tag)
+      @id = id;
       @lat = lat;
       @lng = lng;
       @name = name;
@@ -40,6 +44,7 @@ module HotelsHelper
       @photo = photo;
       @icon = icon;
       @reference = reference;
+      @tag = tag;
     end
 
   end
