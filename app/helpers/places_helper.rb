@@ -11,7 +11,10 @@ module PlacesHelper
 
     def get_utility_items(city)
       client = GooglePlaces::Client.new(ENV['API_KEY'])
-      utility_items = client.spots_by_query(city+' airport || atm || bank || bus station || doctor || fire station || hospital || parking || pharmacy || subway station || taxi stand || train station || police',:types => ['airport','atm','bank','bus_station','doctor','fire_station','hospital','parking','pharmacy','police','subway_station','taxi_stand','train_station'],:language => 'en')
+      location = Geocoder.search(city)
+      lat = location[0].latitude
+      lng = location[0].longitude
+      utility_items= client.spots(lat,lng,:types => ['airport','atm','bank','bus_station','doctor','fire_station','hospital','parking','pharmacy','police','subway_station','taxi_stand','train_station'],:radius => 20000)
       results = []
       utility_items.each { |place|
         photos = []
@@ -45,11 +48,15 @@ module PlacesHelper
 
   module CultureHelperCity
     include FreebaseHelper
+
     def get_culture_items(city)
       client = GooglePlaces::Client.new(ENV['API_KEY'])
-
-      culture_items = client.spots_by_query(city+' museum || library || aquarium || art gallery || church',:types => ['library','book_store','museum','aquarium','art_gallery','church'],:language => 'en')
+      location = Geocoder.search(city)
+      lat = location[0].latitude
+      lng = location[0].longitude
+      culture_items= client.spots(lat,lng,:types => ['library','book_store','museum','aquarium','art_gallery','church'],:radius => 20000)
       puts culture_items.to_json
+
       results = []
       culture_items.each { |place|
         photos = []
@@ -88,7 +95,11 @@ module PlacesHelper
 
     def get_entertainment_items(city)
       client = GooglePlaces::Client.new(ENV['API_KEY'])
-      entertainment_items = client.spots_by_query(city+' amusement_park || casino || gym || zoo || spa || park',:types => ['amusement_park','casino','gym','zoo','spa','park'],:language => 'en')
+      location = Geocoder.search(city)
+      lat = location[0].latitude
+      lng = location[0].longitude
+      entertainment_items= client.spots(lat,lng,:types => ['amusement_park','casino','gym','zoo','spa','park'],:radius => 20000)
+
       results = []
       entertainment_items.each { |place|
         photos = []
@@ -126,7 +137,10 @@ module PlacesHelper
 
     def get_food_items(city)
       client = GooglePlaces::Client.new(ENV['API_KEY'])
-      food_items = client.spots_by_query(city+' food || restaurant || cafe || bakery',:types => ['food','restaurant','cafe','bakery'],:language => 'en')
+      location = Geocoder.search(city)
+      lat = location[0].latitude
+      lng = location[0].longitude
+      food_items = client.spots(lat,lng,:types => ['food','restaurant','cafe','bakery'],:radius => 20000)
       results = []
       food_items.each { |place|
         photos = []

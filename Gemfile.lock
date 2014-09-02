@@ -54,6 +54,7 @@ GEM
       rails (>= 3, < 5)
     freebase-api (0.1.4)
       httparty (~> 0.10)
+    geocoder (1.2.4)
     google-api-client (0.7.1)
       addressable (>= 2.3.2)
       autoparse (>= 0.3.3)
@@ -171,6 +172,7 @@ DEPENDENCIES
   expedia
   figaro
   freebase-api
+  geocoder
   google-api-client
   google_places
   httparty

@@ -64,3 +64,5 @@ gem 'freebase-api'
 gem 'nokogiri', '~> 1.6.3.1'
 
 gem 'wikipedia-client'
+
+gem 'geocoder'

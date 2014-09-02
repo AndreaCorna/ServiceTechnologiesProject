@@ -273,21 +273,6 @@ angular.module("about/about.tpl.html", []).run(["$templateCache", function($temp
 angular.module("city/city.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("city/city.tpl.html",
     "\n" +
-    "\n" +
-    "<div>\n" +
-    "\n" +
-    "    <p>\n" +
-    "        List hotel {{hotelSelection}}\n" +
-    "    </p>\n" +
-    "    <p>\n" +
-    "        List entertainment {{entertainmentSelection}}\n" +
-    "    </p>\n" +
-    "    <p>\n" +
-    "        List utility {{utilitySelection}}\n" +
-    "    </p>\n" +
-    "\n" +
-    "</div>\n" +
-    "\n" +
     "<carousel interval=\"intervalImages\">\n" +
     "    <slide ng-repeat=\"image in city\" active=\"image.active\">\n" +
     "        <img ng-src=\"{{image.image}}\" style=\"margin:auto;\">\n" +
@@ -588,7 +573,7 @@ angular.module("city/culture.tpl.html", []).run(["$templateCache", function($tem
     "                                    <p>Price {{c.price || 'Free'}}</p>\n" +
     "                                </div>\n" +
     "                                <div class=\"col-md-4\">\n" +
-    "                                    <p>Rating <rating value=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
+    "                                    <p>Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
     "                            <div class=\"row\">\n" +
@@ -655,7 +640,7 @@ angular.module("city/entertainment.tpl.html", []).run(["$templateCache", functio
     "                                    <p>Price {{c.price || 'Free'}}</p>\n" +
     "                                </div>\n" +
     "                                <div class=\"col-md-4\">\n" +
-    "                                    <p>Rating <rating value=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
+    "                                    <p>Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
     "                            <div class=\"row\">\n" +
@@ -773,7 +758,7 @@ angular.module("city/food.tpl.html", []).run(["$templateCache", function($templa
     "                                    <p>Price {{c.price || 'Free'}}</p>\n" +
     "                                </div>\n" +
     "                                <div class=\"col-md-4\">\n" +
-    "                                    <p>Rating <rating value=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
+    "                                    <p>Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
     "                            <div class=\"row\">\n" +
@@ -886,7 +871,7 @@ angular.module("city/hotel.tpl.html", []).run(["$templateCache", function($templ
     "                            </div>\n" +
     "                            <div class=\"row\">\n" +
     "                                <p>Rating</p>\n" +
-    "                                <rating value=\"c.rating\" readonly=\"true\" ></rating>\n" +
+    "                                <rating ng-model=\"c.rating\" readonly=\"true\" ></rating>\n" +
     "\n" +
     "                            </div>\n" +
     "                            <div class=\"row\">\n" +
@@ -949,7 +934,7 @@ angular.module("city/utility.tpl.html", []).run(["$templateCache", function($tem
     "                                    <p>Price {{c.price || 'Free'}}</p>\n" +
     "                                </div>\n" +
     "                                <div class=\"col-md-4\">\n" +
-    "                                    <p>Rating <rating value=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
+    "                                    <p>Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
     "                            <div class=\"row\">\n" +
