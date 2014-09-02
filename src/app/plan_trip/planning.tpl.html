@@ -1,7 +1,40 @@
 <div>Planning</div>
+<div class="panel-group" id="Culture">
+    <div class="panel  panel-primary">
+        <div class="panel-heading" data-toggle="collapse" data-parent="#Culture" data-target="#cultureList">
+            <h4 class="panel-title">
+                <a class="accordion-toggle" >Culture</a>
+            </h4>
+        </div>
+        <div id="cultureList" class="panel-collapse collapse">
+            <div class="panel-body">
+                <ul>
+                    <div ng-repeat="cult in culture" class="event-list col-xs-4">
 
+                        <li>
+                            <div class="culture-group">
+                                  <h2>Nome {{cult}}</h2>
+                                  <h3>Via hotel cult</h3>
+                            </div>
+
+
+                        </li>
+
+
+                    </div>
+                </ul>
+
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</div>
 <div class="sortable-container" sv-root sv-part="selectedItems">
     <div ng-repeat="item in selectedItems" sv-element="opts" class="well">
         {{item}}
     </div>
 </div>
+

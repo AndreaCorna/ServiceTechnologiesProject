@@ -77,10 +77,13 @@ angular.module('trippo.plan',[
 
 .controller('PlanningCtrl', function PlanningCtrl($scope) {
         $scope.selectedItems =["1","2","3","4","5","6","7","8","9"];
+        $scope.hotels =["1","2","3","4","5","6","7","8","9"];
+        $scope.culture =["1","2","3","4","5","6","7","8","9"];
 
 
 
-});
+
+    });
 
 
 
