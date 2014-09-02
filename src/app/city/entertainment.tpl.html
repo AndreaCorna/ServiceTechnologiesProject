@@ -2,6 +2,30 @@
     <div class="row">
         <div class="well">
             <h1 class="text-center">Entertainment</h1>
+            <div ng-show="loaderEnabled">
+                <div class="container-fluid">
+                    <div class="panel-body">
+                        <div class="loader">
+                            <div class="bouncywrap">
+
+                                <div class="dotcon dc1">
+                                    <div class="dot"></div>
+                                </div>
+
+                                <div class="dotcon dc2">
+                                    <div class="dot"></div>
+                                </div>
+
+                                <div class="dotcon dc3">
+                                    <div class="dot"></div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="list-group">
                 <span ng-repeat="c in entertainmentSelection | orderBy:'name':false"">
                     <div class="list-group-item">
