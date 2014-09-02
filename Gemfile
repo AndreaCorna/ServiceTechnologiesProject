@@ -46,3 +46,23 @@ gem 'pg'
 
 #save the important password and key as environment value
 gem 'figaro'
+
+gem 'redis'
+
+#google places gem
+gem 'google-api-client'
+
+gem 'google_places'
+
+#expedia gem
+gem 'expedia'
+
+gem 'httparty'
+
+gem 'freebase-api'
+
+gem 'nokogiri', '~> 1.6.3.1'
+
+gem 'wikipedia-client'
+
+gem 'geocoder'

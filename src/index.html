@@ -4,8 +4,10 @@
     <title ng-bind="pageTitle"></title>
 
 
-    <!-- font awesome from BootstrapCDN -->
-    <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,400italic' rel='stylesheet' type='text/css'>
+      <link href='http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css' rel='stylesheet' type='text/css'>
+
 
 
       <!-- compiled CSS --><% styles.forEach( function ( file ) { %>
@@ -33,7 +35,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Trippoaug</a>
+          <a class="navbar-brand" href="#">Trippo</a>
       </div>
       <!-- Collection of nav links, forms, and other content for toggling -->
       <div id="navbarCollapse" class="collapse navbar-collapse">
@@ -43,7 +45,7 @@
               <li ng-class="{ active: isActive('/home')}" class="navbar-item"><a href="#">Home</a></li>
 
               <li class="dropdown navbar-item">
-                  <a data-toggle="dropdown"  ng-class="{ hidden: isHidden()}" class="dropdown-toggle" href="#">Current trips<strong class="caret"></strong> <b class="caret"></b></a>
+                  <a data-toggle="dropdown"  ng-class="{ hidden: isHidden()}" class="dropdown-toggle" href="#">Current trips<b class="caret"></b></a>
                   <ul role="menu" class="dropdown-menu">
 
 
@@ -53,7 +55,7 @@
               <li><a href="#" class="navbar-item">Sign Up</a></li>
               <li class="dropdown">
                   <a class="dropdown-toggle navbar-item" href="#" data-toggle="dropdown">Sign In</a>
-                  <div class="dropdown-menu" style="padding: 15px; margin-top: 8px">
+                  <div class="signin_dropdown dropdown-menu " style="padding: 15px; margin-top: 8px">
                       <form action="" method="post" accept-charset="UTF-8" class="form">
                           <input id="user_username" style="margin-bottom: 15px;" type="text" name="username" placeholder="Username" size="30" />
                           <input id="user_password" style="margin-bottom: 15px;" type="password" name="password" placeholder="Password" size="30" />

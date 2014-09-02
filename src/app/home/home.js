@@ -14,7 +14,8 @@
  */
 angular.module( 'trippo.home', [
   'ui.router',
-  'trippo.city'
+  'trippo.city',
+  'trippo.plan'
 ])
 
 /**
@@ -36,14 +37,42 @@ angular.module( 'trippo.home', [
 })
 
 /**
- * And of course we define a controller for our route.
+ *Home controller implements search and get the list of cities from a rest call to the cityResource
  */
-.controller( 'HomeCtrl', function HomeController($scope,$location , CityRes ) {
+.controller( 'HomeCtrl', function HomeController($scope,$log,$location , CityRes ) {
+
+
+        $scope.cities = CityRes.list.query();
+        $scope.selected_city = undefined;
 
         $scope.search = function(){
-            $location.path('/city/' + $scope.city);
+            $log.log("city passed " + $scope.selected_city);
+            if  ($scope.selected_city.name === undefined){
+                $location.path('/city/' + $scope.selected_city+"/culture");
+            }
+            else{
+                $location.path('/city/' + $scope.selected_city.name+"/culture");
+            }
+
         };
-        $scope.cities = CityRes.query();
+        /**
+         * Unused but leaved in order to test how works if no list city but get from the Google Maps Api
+         */
+        $scope.getLocation = function(val) {
+            return $http.get('http://maps.googleapis.com/maps/api/geocode/json', {
+                params: {
+                    address: val,
+                    sensor: false
+                }
+            }).then(function(res){
+                var addresses = [];
+                angular.forEach(res.data.results, function(item){
+                    addresses.push(item.formatted_address);
+                });
+                return addresses;
+            });
+        };
+
 })
 
 

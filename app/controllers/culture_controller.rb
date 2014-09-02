@@ -1,11 +1,15 @@
 class CultureController < ApplicationController
+  include CachingHelper
+
   def index
-    test = ['stub culture index ',"city #{params[:city_id]}"]
-    render_with_protection    test.to_json
+    culture_items = get_culture(params[:city_id])
+    render_with_protection    culture_items
   end
 
   def show
-    test = ['stub culture show',"city #{params[:city_id]} and place id #{params[:id]}"]
-    render_with_protection   test.to_json
+    details = get_details(params[:id])
+    render_with_protection   details
   end
+
 end
+

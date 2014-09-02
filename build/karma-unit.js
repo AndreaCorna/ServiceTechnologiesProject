@@ -9,8 +9,10 @@ module.exports = function ( karma ) {
      * This is the list of file patterns to load into the browser during testing.
      */
     files: [
+      'vendor/moment/moment.js',
       'vendor/angular/angular.js',
       'vendor/angular-bootstrap/ui-bootstrap-tpls.min.js',
+      'vendor/angular-sortable-view/src/angular-sortable-view.js',
       'vendor/jquery/dist/jquery.js',
       'vendor/bootstrap/dist/js/bootstrap.js',
       'vendor/placeholders/angular-placeholders-0.0.1-SNAPSHOT.min.js',
