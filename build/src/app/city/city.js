@@ -326,6 +326,7 @@ angular.module( 'trippo.city', [
         $scope.intervalImages = 5000;
         $scope.moreInfoSelection=null;
         $scope.modalEnabled = false;
+        $scope.loaderEnabled = true;
         $scope.city = CityRes.details.query({city_name:$stateParams.city_name});
         /**
          * Added a watch to update scope.moreInfoSelection which is set every time a moreInfo button is pushed
@@ -335,9 +336,12 @@ angular.module( 'trippo.city', [
                 $scope.moreInfoSelection = ModalHandler.getDetails();
                 $scope.modalEnabled = true;
             }
+            $scope.loaderEnabled = false;
+
         });
         $scope.disableModal = function(){
             $scope.modalEnabled = false;
+            $scope.loaderEnabled = true;
         };
 
 
