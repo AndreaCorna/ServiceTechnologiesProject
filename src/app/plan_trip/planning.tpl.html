@@ -12,24 +12,88 @@
             <div class="panel-body">
                 <ul>
                     <div ng-repeat="cult in culture" class="event-list col-md-4">
-
                         <li>
-                            <div class="culture-group">
+                            <div class="not-selected">
                                   <h2>Nome {{cult}}</h2>
                                   <h3>Via hotel cult</h3>
                             </div>
-
-
                         </li>
-
-
                     </div>
                 </ul>
-
-
             </div>
         </div>
+    </div>
+</div>
 
+<div class="panel-group" id="Entertainment">
+    <div class="panel  panel-primary no-radius">
+        <div class="panel-heading no-radius  bigger-accordition" data-toggle="collapse" data-parent="#Entertainment" data-target="#entertainmentList">
+            <h4 class="panel-title bigger-title">
+                <a class="accordion-toggle bigger-title" >Entertainment</a>
+            </h4>
+        </div>
+        <div id="entertainmentList" class="panel-collapse collapse">
+            <div class="panel-body">
+                <ul>
+                    <div ng-repeat="ent in entertainment" class="event-list col-md-4">
+                        <li>
+                            <div class="not-selected">
+                                <h2>Nome {{ent}}</h2>
+                                <h3>Via hotel cult</h3>
+                            </div>
+                        </li>
+                    </div>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="panel-group" id="Hotel">
+    <div class="panel  panel-primary no-radius">
+        <div class="panel-heading no-radius  bigger-accordition" data-toggle="collapse" data-parent="#Hotel" data-target="#hotelList">
+            <h4 class="panel-title bigger-title">
+                <a class="accordion-toggle bigger-title" >Hotels</a>
+            </h4>
+        </div>
+        <div id="hotelList" class="panel-collapse collapse">
+            <div class="panel-body">
+                <ul>
+                    <div ng-repeat="hot in hotels" class="event-list col-md-4">
+                        <li>
+                            <div class="not-selected">
+                                <h2>Nome {{ent}}</h2>
+                                <h3>Via hotel cult</h3>
+                            </div>
+                        </li>
+                    </div>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="panel-group" id="Food">
+    <div class="panel  panel-primary no-radius">
+        <div class="panel-heading no-radius  bigger-accordition" data-toggle="collapse" data-parent="#Food" data-target="#foodList">
+            <h4 class="panel-title bigger-title">
+                <a class="accordion-toggle bigger-title" >Food</a>
+            </h4>
+        </div>
+        <div id="foodList" class="panel-collapse collapse">
+            <div class="panel-body">
+                <ul>
+                    <div ng-repeat="food in foods" class="event-list col-md-4">
+                        <li>
+                            <div class="not-selected">
+                                <h2>Nome {{ent}}</h2>
+                                <h3>Via hotel cult</h3>
+                            </div>
+                        </li>
+                    </div>
+                </ul>
+            </div>
+        </div>
     </div>
 </div>
 
