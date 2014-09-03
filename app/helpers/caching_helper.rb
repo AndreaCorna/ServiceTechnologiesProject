@@ -99,13 +99,13 @@ module CachingHelper
       puts 'no redis data'
       hotel = get_hotels_list(city)
       $redis.set(city+':hotel',hotel.to_json)
-      puts hotel.to_json
+      #puts hotel.to_json
       puts 'redis data culture'
-      puts $redis.get(city+':hotel')
+      #puts $redis.get(city+':hotel')
       return hotel.to_json
     else
       puts 'redis data get after insert'
-      puts results
+      #puts results
       return results
     end
   end

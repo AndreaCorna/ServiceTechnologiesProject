@@ -2,8 +2,29 @@
     <div class="row">
         <div class="well">
             <h1 class="text-center">Culture</h1>
-            <div class="list-group">
-                <span ng-repeat="c in cultureSelection | orderBy:'name':false">
+                <div class="list-group">
+                    <div ng-show="loaderEnabled">
+                        <div class="panel-body">
+                            <div class="loader">
+                                <div class="bouncywrap" style="margin-top: 700px;">
+
+                                    <div class="dotcon dc1">
+                                        <div class="dot"></div>
+                                    </div>
+
+                                    <div class="dotcon dc2">
+                                        <div class="dot"></div>
+                                    </div>
+
+                                    <div class="dotcon dc3">
+                                        <div class="dot"></div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <span ng-repeat="c in cultureSelection | orderBy:'name':false">
                     <div class="list-group-item">
                         <div class="col-md-3">
                             <div class="row">
@@ -54,8 +75,8 @@
                         </div>
                     </div>
                 </span>
-            </div>
-            <div class="list-group">
+                </div>
+                <div class="list-group">
                 <span ng-repeat="c in cultureList | orderBy:'name':false">
                     <div class="list-group-item">
                         <div class="col-md-3">
