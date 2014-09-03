@@ -22,8 +22,6 @@ module CachingHelper
   end
 
   def get_culture(city,token)
-    puts 'TOKEN'
-    puts token
     results=[]
     if(token.nil?)
       if((results = $redis.get(city+':culture')).nil?)
@@ -42,7 +40,7 @@ module CachingHelper
     else
       if((results = $redis.get(city+':culture:'+token)).nil?)
         puts 'no redis other data'
-        culture = get_culture_others(city,token)
+        culture = get_culture_others(token)
         $redis.set(city+':culture:'+token,culture.to_json)
         return culture.to_json
       else

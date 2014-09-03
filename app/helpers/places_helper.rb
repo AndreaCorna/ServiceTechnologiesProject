@@ -77,8 +77,23 @@ module PlacesHelper
 
     end
 
-    def get_culture_others(city,token)
-
+    def get_culture_others(token)
+      client = GooglePlaces::Client.new(ENV['API_KEY'])
+      culture_items= client.spots_by_pagetoken(token)
+      results = []
+      next_page_token = ''
+      culture_items.each { |place|
+        next_page_token = place.nextpagetoken
+        photos = []
+        if(!place.photos[0].nil?)
+          photos.append(:image=>place.photos[0].fetch_url(400))
+        end
+        description = get_description(place.name)
+        results.append(CultureItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'culture',description))}
+      json = []
+      json.append({:results=>results,:token=>next_page_token})
+      puts json.to_json
+      return json
     end
 
     class CultureItem
