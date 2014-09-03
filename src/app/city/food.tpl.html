@@ -1,11 +1,12 @@
     <div class="row">
         <div class="well">
             <h1 class="text-center">Food</h1>
-            <div ng-show="loaderEnabled">
-                <div class="container-fluid">
+
+            <div class="list-group">
+                <div ng-show="loaderEnabled">
                     <div class="panel-body">
                         <div class="loader">
-                            <div class="bouncywrap">
+                            <div class="bouncywrap" style="margin-top: 700px;">
 
                                 <div class="dotcon dc1">
                                     <div class="dot"></div>
@@ -23,9 +24,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="list-group">
                 <span ng-repeat="c in foodSelection | orderBy:'name':false">
                     <div class="list-group-item">
                         <div class="col-md-3">

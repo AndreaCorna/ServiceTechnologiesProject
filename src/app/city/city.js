@@ -341,6 +341,7 @@ angular.module( 'trippo.city', [
          * Added a watch to update scope.moreInfoSelection which is set every time a moreInfo button is pushed
          */
         $scope.$watchCollection(function () { return ModalHandler.getDetails(); }, function (newVal, oldVal) {
+            $scope.loaderEnabled = true;
             if (typeof newVal !== 'undefined') {
                 $scope.moreInfoSelection = ModalHandler.getDetails();
                 $scope.modalEnabled = true;
