@@ -1,10 +1,16 @@
 module HotelsHelper
 
   def get_hotels_list(city)
-    puts 'parameter '+city
-    puts hotels(city)
+    json = hotels(city)
     hotels_list = []
-    hotels_list.append(HotelItem.new('215910','lat','long','prova_helper_hotel',3,3,'photo','icon','reference','hotel'))
+    json['HotelListResponse']['HotelList']['HotelSummary'].each do |hotel|
+      address = hotel['address1']+' '+hotel['city']
+      photos = []
+      url = 'http://images.travelnow.com'+hotel['thumbNailUrl']
+      puts url
+      photos.append(:image=>url)
+      hotels_list.append(HotelItem.new(hotel['hotelId'],hotel['latitudine'],hotel['longitudine'],hotel['name'],hotel['hotelRating'],address,photos,'','hotel',hotel['shortDescription']))
+    end
     return hotels_list
 
   end
@@ -26,25 +32,26 @@ module HotelsHelper
     # Per mandare alla pagina di expedia 84505 è il CID che definisce il template 147594 indica invece l'hotel
     # http://www.travelnow.com/templates/55505/hotels/147594/overview
     response = api.get_list({ :destinationString => city})
+
     return response.body
   end
 
   #add methods in order to use expedia api
 
   class HotelItem
-    attr_accessor :id,:lat,:lng,:price,:rating,:name,:photo,:icon,:reference,:tag;
+    attr_accessor :id,:lat,:lng,:price,:rating,:name,:photos,:icon,:tag,:description;
 
-    def initialize(id,lat,lng,name,rating,price,photo,icon,reference,tag)
+    def initialize(id,lat,lng,name,rating,address,photo,icon,tag,description)
       @id = id;
       @lat = lat;
       @lng = lng;
       @name = name;
       @rating = rating;
-      @price = price;
-      @photo = photo;
+      @address = address;
+      @photos = photo;
       @icon = icon;
-      @reference = reference;
       @tag = tag;
+      @description = description;
     end
 
   end
