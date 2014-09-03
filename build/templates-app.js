@@ -291,7 +291,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "        <li><a ui-sref=\"food\" data-target=\"#\" data-toggle=\"pill\"><span>Food</span></a></li>\n" +
     "\n" +
     "\n" +
-    "        <li class='last'><a ui-sref=\"calendar\" data-target=\"#\" data-toggle=\"pill\"><span>Plan Trip</span></a></li>\n" +
+    "        <li class='last'><a ui-sref=\"dates\" data-target=\"#\" data-toggle=\"pill\"><span>Plan Trip</span></a></li>\n" +
     "    </ul>\n" +
     "\n" +
     "</div>\n" +
@@ -1241,6 +1241,7 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "\n" +
     "\n" +
     "\n" +
+    "\n" +
     "            <input name=\"city\"  type=\"text\" placeholder=\"Search here...\" class=\"form-control col-md-12 typeahead\"\n" +
     "                   ng-model=\"selected_city\"\n" +
     "                   typeahead=\"city as city.name for city in cities | filter:$viewValue | limitTo:8\"\n" +
@@ -1274,25 +1275,25 @@ angular.module("plan_trip/calendar.tpl.html", []).run(["$templateCache", functio
     "            <button class=\"btn btn-primary pull-right\"   >Next</button>\n" +
     "        </form>\n" +
     "    </div>\n" +
-    "\n" +
-    "\n" +
-    "</div>");
+    "");
 }]);
 
 angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("plan_trip/planning.tpl.html",
-    "<div>Planning</div>\n" +
+    "<div class=\"page-header\">\n" +
+    "    <h1>Planning</h1>\n" +
+    "</div>\n" +
     "<div class=\"panel-group\" id=\"Culture\">\n" +
-    "    <div class=\"panel  panel-primary\">\n" +
-    "        <div class=\"panel-heading\" data-toggle=\"collapse\" data-parent=\"#Culture\" data-target=\"#cultureList\">\n" +
-    "            <h4 class=\"panel-title\">\n" +
-    "                <a class=\"accordion-toggle\" >Culture</a>\n" +
+    "    <div class=\"panel  panel-primary no-radius\">\n" +
+    "        <div class=\"panel-heading no-radius  bigger-accordition\" data-toggle=\"collapse\" data-parent=\"#Culture\" data-target=\"#cultureList\">\n" +
+    "            <h4 class=\"panel-title bigger-title\">\n" +
+    "                <a class=\"accordion-toggle bigger-title\" >Culture</a>\n" +
     "            </h4>\n" +
     "        </div>\n" +
     "        <div id=\"cultureList\" class=\"panel-collapse collapse\">\n" +
     "            <div class=\"panel-body\">\n" +
     "                <ul>\n" +
-    "                    <div ng-repeat=\"cult in culture\" class=\"event-list col-xs-4\">\n" +
+    "                    <div ng-repeat=\"cult in culture\" class=\"event-list col-md-4\">\n" +
     "\n" +
     "                        <li>\n" +
     "                            <div class=\"culture-group\">\n" +
@@ -1326,31 +1327,62 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
 
 angular.module("plan_trip/trip_dates.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("plan_trip/trip_dates.tpl.html",
-    "<h1 class=\"text-center\">PLAN YOUR DATES</h1>\n" +
-    "    <div class=\"row\">\n" +
+    "<div class=\"page-header\">\n" +
+    "    <h1>Choose your dates</h1>\n" +
+    "</div>\n" +
     "\n" +
-    "            <ul>\n" +
-    "                <div ng-repeat=\"curDate in dates\" class=\"event-list col-xs-4\">\n" +
+    "    <form novalidate name=\"form\" ng-submit=\"next(form)\">\n" +
+    "        <div ng-show=\"submitted  && (form.end.$error.required || form.start.$error.required)\" class=\"alert alert-danger\">\n" +
+    "            Field <strong>start date</strong> and <strong>end date</strong> are required\n" +
+    "        </div>\n" +
+    "        <div class=\"row\">\n" +
+    "            <div class=\"col-md-4 col-md-offset-2\">\n" +
+    "                <h2>Start date:<span ng-show=\"dtstart\">{{dtstart | date:'dd/MM/yyyy'}}</span></h2>\n" +
+    "                <p class=\"input-group\">\n" +
+    "                    <input readonly=\"readonly\" type=\"text\" class=\"form-control well well-sm\" show-weeks=\"false\" datepicker-popup=\"{{datePickerFormat}}\"  show-button-bar=\"false\" is-open=\"startOpened\"  ng-model=\"dtstart\" max-date=\"dtend\"   name=\"start\"  required />\n" +
+    "                  <span class=\"input-group-btn\">\n" +
+    "                    <button id=\"startbtn\"   type=\"button\" class=\"btn btn-default\" ng-click=\"open($event)\"><i class=\"glyphicon glyphicon-calendar\"></i></button>\n" +
+    "                  </span>\n" +
+    "                </p>\n" +
+    "            </div>\n" +
+    "            <div class=\"col-md-4\">\n" +
+    "                <h2>End date:<span ng-show=\"dtend\">{{dtend | date:'dd/MM/yyyy'}}</span></h2>\n" +
+    "                <p class=\"input-group\">\n" +
+    "                    <input readonly=\"readonly\" type=\"text\" class=\"form-control well well-sm\" show-weeks=\"false\" datepicker-popup=\"{{datePickerFormat}}\"  show-button-bar=\"false\" is-open=\"endOpened\"   ng-model=\"dtend\" min-date=\"dtstart\"   name=\"end\"  required />\n" +
+    "                  <span class=\"input-group-btn\">\n" +
+    "                    <button  id=\"endbtn\" type=\"button\" class=\"btn btn-default\" ng-click=\"open($event)\"><i class=\"glyphicon glyphicon-calendar\"></i></button>\n" +
+    "                  </span>\n" +
+    "                </p>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
     "\n" +
-    "                    <li>\n" +
-    "                    <time datetime=\"{{curDate.format(dateFormat)}}\">\n" +
-    "                        <span class=\"day\">{{curDate.format(dayFormat)}}</span>\n" +
-    "                        <span class=\"month\">{{curDate.format(monthFormat)}}</span>\n" +
-    "                        <span class=\"year\">{{curDate.format(yearFormat)}}</span>\n" +
-    "                        <span class=\"time\">ALL DAY</span>\n" +
-    "                        <button href=\"#infoDate\" data-toggle=\"modal\" class=\"btn btn-primary btn-outlined\">More</button>\n" +
-    "                        <a class=\"btn btn-primary btn-outlined\" ui-sref=\"planning({date:curDate.format(dateFormat)})\">Edit</a>\n" +
     "\n" +
-    "                    </time>\n" +
+    "        <div class=\"row\">\n" +
+    "            <div class=\"col-md-12 text-center\">\n" +
+    "                <button id=\"singlefrfbutton\" name=\"singlebutton\" class=\"btn btn-primary\">Confirm</button>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </form>\n" +
     "\n" +
     "\n" +
-    "                </li>\n" +
+    "<div class=\"row\">\n" +
+    "    <ul style=\"padding: 0px\">\n" +
+    "        <div ng-repeat=\"curDate in dates\" class=\"event-list col-md-4\">\n" +
     "\n" +
+    "            <li>\n" +
     "\n" +
-    "                </div>\n" +
-    "            </ul>\n" +
+    "                <time datetime=\"{{curDate.format(dateFormat)}}\">\n" +
+    "                    <span class=\"day\">{{curDate.format(dayFormat)}}</span>\n" +
+    "                    <span class=\"month\">{{curDate.format(monthFormat)}}</span>\n" +
+    "                    <span class=\"year\">{{curDate.format(yearFormat)}}</span>\n" +
+    "                    <span class=\"time\">ALL DAY</span>\n" +
+    "                    <button href=\"#infoDate\" data-toggle=\"modal\" class=\"btn btn-primary btn-outlined\">More</button>\n" +
+    "                    <a class=\"btn btn-primary btn-outlined\" ui-sref=\"planning({date:curDate.format(dateFormat)})\">Edit</a>\n" +
+    "                </time>\n" +
+    "            </li>\n" +
+    "        </div>\n" +
+    "    </ul>\n" +
     "\n" +
-    "    </div>\n" +
     "</div>\n" +
     "\n" +
     "\n" +
