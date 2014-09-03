@@ -121,7 +121,10 @@ angular.module( 'trippo.city', [
 .controller('CultureCtrl', function CultureCtrl($scope,CultureRes,$stateParams,SelectionService,ModalHandler) {
         $scope.loaderEnabled = true;
         $scope.cultureList = CultureRes.list.query({city_name:$stateParams.city_name},function() {
-            $scope.loaderEnabled = false;});
+            $scope.loaderEnabled = false;
+            $scope.nextPageToken = $scope.cultureList[0].token;
+            $scope.cultureList = $scope.cultureList[0].results;});
+
         $scope.getCultureDetails = function(id_culture){
             console.log("selection "+$scope.cultureSelection);
             console.log("currently selected  "+id_culture);
@@ -162,9 +165,11 @@ angular.module( 'trippo.city', [
 .controller('EntertainmentCtrl', function EntertainmentCtrl($scope,EntertainmentRes,$stateParams,SelectionService,ModalHandler) {
         $scope.loaderEnabled = true;
         $scope.entertainmentList= EntertainmentRes.list.query({city_name:$stateParams.city_name},function() {
-            $scope.loaderEnabled = false;});
+            $scope.loaderEnabled = false;
+            $scope.nextPageToken = $scope.entertainmentList[0].token;
+            $scope.entertainmentList = $scope.entertainmentList[0].results;});
         $scope.getEntertainmentDetails = function(id_entertainment){
-            console.log("selection "+$scope.cultureSelection);
+            console.log("selection "+$scope.entertainmentSelection);
             console.log("currently selected  "+id_entertainment);
 
             var data;
@@ -202,9 +207,11 @@ angular.module( 'trippo.city', [
 .controller('UtilityCtrl', function UtilityCtrl($scope,UtilityRes,$stateParams,SelectionService,ModalHandler) {
         $scope.loaderEnabled = true;
         $scope.utilityList = UtilityRes.list.query({city_name:$stateParams.city_name},function() {
-            $scope.loaderEnabled = false;});
+            $scope.loaderEnabled = false;
+            $scope.nextPageToken = $scope.utilityList[0].token;
+            $scope.utilityList = $scope.utilityList[0].results;});
         $scope.getUtilityDetails = function(id_utility){
-            console.log("selection "+$scope.cultureSelection);
+            console.log("selection "+$scope.utilitySelection);
             console.log("currently selected  "+id_utility);
 
             var data;
@@ -243,7 +250,7 @@ angular.module( 'trippo.city', [
         $scope.hotelList = HotelRes.list.query({city_name:$stateParams.city_name},function() {
             $scope.loaderEnabled = false;});
         $scope.getHotelDetails = function(id_hotel){
-            console.log("selection "+$scope.cultureSelection);
+            console.log("selection "+$scope.hotelSelection);
             console.log("currently selected  "+id_hotel);
 
             var data;
@@ -272,9 +279,11 @@ angular.module( 'trippo.city', [
 .controller('FoodCtrl',function FoodCtrl($scope,FoodRes,$stateParams,SelectionService,ModalHandler){
         $scope.loaderEnabled = true;
         $scope.foodList = FoodRes.list.query({city_name:$stateParams.city_name},function() {
-            $scope.loaderEnabled = false;});
+            $scope.loaderEnabled = false;
+            $scope.nextPageToken = $scope.foodList[0].token;
+            $scope.foodList = $scope.foodList[0].results;});
         $scope.getFoodDetails = function(id_food){
-            console.log("selection "+$scope.cultureSelection);
+            console.log("selection "+$scope.foodSelection);
             console.log("currently selected  "+id_food);
 
             var data;
