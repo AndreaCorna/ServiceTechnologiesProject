@@ -6587,6 +6587,15 @@ a.list-group-item:focus {
   border-left: 10px solid #5CB85C;
   border-right: 10px solid #5CB85C;
 }
+.panel-image-hotel {
+  background-color: #ffffff;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  margin-left: auto;
+  margin-right: auto;
+}
 /**
 *list of dates in trip dates
 */
