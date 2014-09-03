@@ -39,7 +39,7 @@ angular.module( 'trippo.home', [
 /**
  *Home controller implements search and get the list of cities from a rest call to the cityResource
  */
-.controller( 'HomeCtrl', function HomeController($scope,$log,$location , CityRes ) {
+.controller( 'HomeCtrl', function HomeController($scope,$log,$location , CityRes,$http ) {
 
 
         $scope.cities = CityRes.list.query();

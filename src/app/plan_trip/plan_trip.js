@@ -63,7 +63,6 @@ angular.module('trippo.plan',[
         $scope.dtend=null;
         $scope.submitted =false;
         $scope.dates = DatesService.getRange();
-         console.log($scope.dates);
         /**
          * open the start or end datepicker based on which button is pushed
          * @param $event
@@ -74,8 +73,6 @@ angular.module('trippo.plan',[
 
             /*Checking if icon or button(its parent) has been pushed*/
             if($event.target.id == "startbtn" || $event.target.parentNode.id == "startbtn") {
-                console.log($event.target.id);
-
                 $scope.startOpened = true;
             }
             else if($event.target.id == "endbtn" || $event.target.parentNode.id == "endbtn"){

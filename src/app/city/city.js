@@ -288,6 +288,7 @@ angular.module( 'trippo.city', [
 
 .factory('ModalHandler', function () {
     var details;
+    /*Modify the format of the opening hour addin a : between numbers 08:00 instead of 0800*/
     var normalizeHours = function (details){
         if(details.open_hours !== null){
             for (var i=0;i<details.open_hours.periods.length;i++){
