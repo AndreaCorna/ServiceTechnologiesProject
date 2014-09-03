@@ -521,31 +521,29 @@ angular.module("city/culture.tpl.html", []).run(["$templateCache", function($tem
     "    <div class=\"row\">\n" +
     "        <div class=\"well\">\n" +
     "            <h1 class=\"text-center\">Culture</h1>\n" +
-    "                <div ng-show=\"loaderEnabled\">\n" +
-    "                <div class=\"container-fluid\">\n" +
-    "                    <div class=\"panel-body\">\n" +
-    "                        <div class=\"loader\">\n" +
-    "                            <div class=\"bouncywrap\">\n" +
+    "                <div class=\"list-group\">\n" +
+    "                    <div ng-show=\"loaderEnabled\">\n" +
+    "                        <div class=\"panel-body\">\n" +
+    "                            <div class=\"loader\">\n" +
+    "                                <div class=\"bouncywrap\" style=\"margin-top: 700px;\">\n" +
     "\n" +
-    "                                <div class=\"dotcon dc1\">\n" +
-    "                                    <div class=\"dot\"></div>\n" +
+    "                                    <div class=\"dotcon dc1\">\n" +
+    "                                        <div class=\"dot\"></div>\n" +
+    "                                    </div>\n" +
+    "\n" +
+    "                                    <div class=\"dotcon dc2\">\n" +
+    "                                        <div class=\"dot\"></div>\n" +
+    "                                    </div>\n" +
+    "\n" +
+    "                                    <div class=\"dotcon dc3\">\n" +
+    "                                        <div class=\"dot\"></div>\n" +
+    "                                    </div>\n" +
+    "\n" +
     "                                </div>\n" +
-    "\n" +
-    "                                <div class=\"dotcon dc2\">\n" +
-    "                                    <div class=\"dot\"></div>\n" +
-    "                                </div>\n" +
-    "\n" +
-    "                                <div class=\"dotcon dc3\">\n" +
-    "                                    <div class=\"dot\"></div>\n" +
-    "                                </div>\n" +
-    "\n" +
     "                            </div>\n" +
     "                        </div>\n" +
     "                    </div>\n" +
-    "                </div>\n" +
-    "            </div>\n" +
-    "                <div class=\"list-group\">\n" +
-    "                <span ng-repeat=\"c in cultureSelection | orderBy:'name':false\">\n" +
+    "                    <span ng-repeat=\"c in cultureSelection | orderBy:'name':false\">\n" +
     "                    <div class=\"list-group-item\">\n" +
     "                        <div class=\"col-md-3\">\n" +
     "                            <div class=\"row\">\n" +
@@ -596,7 +594,7 @@ angular.module("city/culture.tpl.html", []).run(["$templateCache", function($tem
     "                        </div>\n" +
     "                    </div>\n" +
     "                </span>\n" +
-    "            </div>\n" +
+    "                </div>\n" +
     "                <div class=\"list-group\">\n" +
     "                <span ng-repeat=\"c in cultureList | orderBy:'name':false\">\n" +
     "                    <div class=\"list-group-item\">\n" +
@@ -663,11 +661,12 @@ angular.module("city/entertainment.tpl.html", []).run(["$templateCache", functio
     "    <div class=\"row\">\n" +
     "        <div class=\"well\">\n" +
     "            <h1 class=\"text-center\">Entertainment</h1>\n" +
-    "            <div ng-show=\"loaderEnabled\">\n" +
-    "                <div class=\"container-fluid\">\n" +
+    "\n" +
+    "            <div class=\"list-group\">\n" +
+    "                <div ng-show=\"loaderEnabled\">\n" +
     "                    <div class=\"panel-body\">\n" +
     "                        <div class=\"loader\">\n" +
-    "                            <div class=\"bouncywrap\">\n" +
+    "                            <div class=\"bouncywrap\" style=\"margin-top: 700px;\">\n" +
     "\n" +
     "                                <div class=\"dotcon dc1\">\n" +
     "                                    <div class=\"dot\"></div>\n" +
@@ -685,9 +684,7 @@ angular.module("city/entertainment.tpl.html", []).run(["$templateCache", functio
     "                        </div>\n" +
     "                    </div>\n" +
     "                </div>\n" +
-    "            </div>\n" +
     "\n" +
-    "            <div class=\"list-group\">\n" +
     "                <span ng-repeat=\"c in entertainmentSelection | orderBy:'name':false\"\">\n" +
     "                    <div class=\"list-group-item\">\n" +
     "                        <div class=\"col-md-3\">\n" +
@@ -804,11 +801,12 @@ angular.module("city/food.tpl.html", []).run(["$templateCache", function($templa
     "    <div class=\"row\">\n" +
     "        <div class=\"well\">\n" +
     "            <h1 class=\"text-center\">Food</h1>\n" +
-    "            <div ng-show=\"loaderEnabled\">\n" +
-    "                <div class=\"container-fluid\">\n" +
+    "\n" +
+    "            <div class=\"list-group\">\n" +
+    "                <div ng-show=\"loaderEnabled\">\n" +
     "                    <div class=\"panel-body\">\n" +
     "                        <div class=\"loader\">\n" +
-    "                            <div class=\"bouncywrap\">\n" +
+    "                            <div class=\"bouncywrap\" style=\"margin-top: 700px;\">\n" +
     "\n" +
     "                                <div class=\"dotcon dc1\">\n" +
     "                                    <div class=\"dot\"></div>\n" +
@@ -826,9 +824,7 @@ angular.module("city/food.tpl.html", []).run(["$templateCache", function($templa
     "                        </div>\n" +
     "                    </div>\n" +
     "                </div>\n" +
-    "            </div>\n" +
     "\n" +
-    "            <div class=\"list-group\">\n" +
     "                <span ng-repeat=\"c in foodSelection | orderBy:'name':false\">\n" +
     "                    <div class=\"list-group-item\">\n" +
     "                        <div class=\"col-md-3\">\n" +
@@ -946,11 +942,12 @@ angular.module("city/hotel.tpl.html", []).run(["$templateCache", function($templ
     "    <div class=\"row\">\n" +
     "        <div class=\"well\">\n" +
     "            <h1 class=\"text-center\">Hotel</h1>\n" +
-    "            <div ng-show=\"loaderEnabled\">\n" +
-    "                <div class=\"container-fluid\">\n" +
+    "\n" +
+    "            <div class=\"list-group\">\n" +
+    "                <div ng-show=\"loaderEnabled\">\n" +
     "                    <div class=\"panel-body\">\n" +
     "                        <div class=\"loader\">\n" +
-    "                            <div class=\"bouncywrap\">\n" +
+    "                            <div class=\"bouncywrap\" style=\"margin-top: 700px;\">\n" +
     "\n" +
     "                                <div class=\"dotcon dc1\">\n" +
     "                                    <div class=\"dot\"></div>\n" +
@@ -968,9 +965,7 @@ angular.module("city/hotel.tpl.html", []).run(["$templateCache", function($templ
     "                        </div>\n" +
     "                    </div>\n" +
     "                </div>\n" +
-    "            </div>\n" +
     "\n" +
-    "            <div class=\"list-group\">\n" +
     "                <span ng-repeat=\"c in hotelList\">\n" +
     "                    <div class=\"list-group-item\">\n" +
     "                        <div class=\"media col-md-3\">\n" +
@@ -1024,11 +1019,11 @@ angular.module("city/utility.tpl.html", []).run(["$templateCache", function($tem
     "    <div class=\"row\">\n" +
     "        <div class=\"well\">\n" +
     "            <h1 class=\"text-center\">Utility</h1>\n" +
-    "            <div ng-show=\"loaderEnabled\">\n" +
-    "                <div class=\"container-fluid\">\n" +
+    "            <div class=\"list-group\">\n" +
+    "                <div ng-show=\"loaderEnabled\">\n" +
     "                    <div class=\"panel-body\">\n" +
     "                        <div class=\"loader\">\n" +
-    "                            <div class=\"bouncywrap\">\n" +
+    "                            <div class=\"bouncywrap\" style=\"margin-top: 700px;\">\n" +
     "\n" +
     "                                <div class=\"dotcon dc1\">\n" +
     "                                    <div class=\"dot\"></div>\n" +
@@ -1046,9 +1041,7 @@ angular.module("city/utility.tpl.html", []).run(["$templateCache", function($tem
     "                        </div>\n" +
     "                    </div>\n" +
     "                </div>\n" +
-    "            </div>\n" +
     "\n" +
-    "            <div class=\"list-group\">\n" +
     "                <span ng-repeat=\"c in utilitySelection | orderBy:'name':false\">\n" +
     "                    <div class=\"list-group-item\">\n" +
     "                        <div class=\"col-md-3\">\n" +
