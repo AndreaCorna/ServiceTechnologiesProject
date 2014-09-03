@@ -77,6 +77,10 @@ module PlacesHelper
 
     end
 
+    def get_culture_others(city,token)
+
+    end
+
     class CultureItem
       attr_accessor :id,:lat,:lng,:price,:rating,:name,:photos,:icon,:tag,:description;
 

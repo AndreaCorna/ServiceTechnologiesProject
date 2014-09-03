@@ -21,22 +21,35 @@ module CachingHelper
     end
   end
 
-  def get_culture(city)
+  def get_culture(city,token)
+    puts 'TOKEN'
+    puts token
     results=[]
-    if((results = $redis.get(city+':culture')).nil?)
-      puts 'no redis data'
-      culture = get_culture_items(city)
-      $redis.set(city+':culture',culture.to_json)
-      #puts culture.to_json
-      puts 'redis data culture'
-      #puts $redis.get(city+':culture')
-      return culture.to_json
+    if(token.nil?)
+      if((results = $redis.get(city+':culture')).nil?)
+        puts 'no redis data'
+        culture = get_culture_items(city)
+        $redis.set(city+':culture',culture.to_json)
+        #puts culture.to_json
+        puts 'redis data culture'
+        #puts $redis.get(city+':culture')
+        return culture.to_json
+      else
+        puts 'redis data get after insert'
+        #puts results
+        return results
+      end
     else
-      puts 'redis data get after insert'
-      #puts results
-      return results
+      if((results = $redis.get(city+':culture:'+token)).nil?)
+        puts 'no redis other data'
+        culture = get_culture_others(city,token)
+        $redis.set(city+':culture:'+token,culture.to_json)
+        return culture.to_json
+      else
+        puts 'redis data other'
+        return results
+      end
     end
-
 
   end
 
