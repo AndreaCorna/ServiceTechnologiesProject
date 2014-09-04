@@ -2,7 +2,8 @@ angular.module( 'trippo.city', [
   'ui.router',
   'placeholders',
   'ui.bootstrap' ,
-  'ngResource',
+  'trippo.resources',
+  'trippo.modal',
   'infinite-scroll'
 ])
 
@@ -79,17 +80,6 @@ angular.module( 'trippo.city', [
 
       })
 
-      .state( 'calendar', {
-      url: '/calendar',
-      parent:"city",
-      views: {
-          "content": {
-              controller: 'CalendarCtrl',
-              templateUrl: 'plan_trip/calendar.tpl.html'
-
-          }
-      }
-  })
 
       .state('dates', {
           url: '/dates',
@@ -143,31 +133,21 @@ angular.module( 'trippo.city', [
                 }
 
                 console.log($scope.cultureList);
-                });
-
-            }
-            $scope.scrollDisable = false;
-
-
-        };
-
-
-        $scope.getCultureDetails = function(id_culture){
-            console.log("selection "+$scope.cultureSelection);
-            console.log("currently selected  "+id_culture);
-
-            var data;
-
-            CultureRes.details.query({city_name: $stateParams.city_name, id_culture: id_culture},function(response){
-                data =response;
-                console.log(data[0].name);
-                ModalHandler.setDetails(data[0]);
-
+                $scope.scrollDisable = false;
 
             });
 
+            }
+
 
         };
+
+        $scope.setCultureDetails = function(culture_item){
+            console.log("called details");
+            
+            ModalHandler.setCultureDetails(culture_item);
+        } ;
+
         $scope.addCultureItem = function(culture_item){
             $scope.cultureSelection = SelectionService.addCultureItem(culture_item,$scope.cultureList);
             console.log(ModalHandler.details);
@@ -208,27 +188,16 @@ angular.module( 'trippo.city', [
                     for(var i=0;i<otherElements[0].results.length;i++){
                         $scope.entertainmentList.push(otherElements[0].results[i]);
                     }
+                    $scope.scrollDisable = false;
+
                 });
             }
-            $scope.scrollDisable = false;
         };
 
-        $scope.getEntertainmentDetails = function(id_entertainment){
-            console.log("selection "+$scope.entertainmentSelection);
-            console.log("currently selected  "+id_entertainment);
-
-            var data;
-
-            EntertainmentRes.details.query({city_name: $stateParams.city_name, id_entertainment: id_entertainment},function(response){
-                data =response;
-                console.log(data[0].name);
-                ModalHandler.setDetails(data[0]);
-
-
-            });
-
-
+        $scope.setEntertainmentDetails = function (entertainment_item) {
+            ModalHandler.setEntertainmentDetails(entertainment_item);
         };
+
 
         $scope.addEntertainmentItem = function(entertainment_item){
             $scope.entertainmentSelection = SelectionService.addEntertainmentItem(entertainment_item,$scope.entertainmentList);
@@ -269,27 +238,16 @@ angular.module( 'trippo.city', [
                     for(var i=0;i<otherElements[0].results.length;i++){
                         $scope.utilityList.push(otherElements[0].results[i]);
                     }
+                    $scope.scrollDisable = false;
+
                 });
             }
-            $scope.scrollDisable = false;
         };
 
-        $scope.getUtilityDetails = function(id_utility){
-            console.log("selection "+$scope.utilitySelection);
-            console.log("currently selected  "+id_utility);
-
-            var data;
-
-            UtilityRes.details.query({city_name: $stateParams.city_name, id_utility: id_utility},function(response){
-                data =response;
-                console.log(data[0].name);
-                ModalHandler.setDetails(data[0]);
-
-
-            });
-
-
+        $scope.setUtilityDetails = function(id_utility){
+           ModalHandler.setUtilityDetails(id_utility);
         };
+
         $scope.addUtilityItem = function(utility_item){
             $scope.utilitySelection = SelectionService.addUtilityItem(utility_item,$scope.utilityList);
         };
@@ -313,22 +271,12 @@ angular.module( 'trippo.city', [
         $scope.loaderEnabled = true;
         $scope.hotelList = HotelRes.list.query({city_name:$stateParams.city_name},function() {
             $scope.loaderEnabled = false;});
-        $scope.getHotelDetails = function(id_hotel){
-            console.log("selection "+$scope.hotelSelection);
-            console.log("currently selected  "+id_hotel);
 
-            var data;
-
-            HotelRes.details.query({city_name: $stateParams.city_name, id_hotel: id_hotel},function(response){
-                data =response;
-                console.log(data[0].name);
-                ModalHandler.setDetails(data[0]);
+        $scope.setHotelDetails = function(id_hotel){
+            ModalHandler.setHotelDetails(id_hotel);
+        } ;
 
 
-            });
-
-
-        };
         $scope.addHotelItem = function(hotel_item){
             $scope.hotelSelection = SelectionService.addHotelItem(hotel_item);
         };
@@ -359,22 +307,15 @@ angular.module( 'trippo.city', [
                     for(var i=0;i<otherElements[0].results.length;i++){
                         $scope.foodList.push(otherElements[0].results[i]);
                     }
+                    $scope.scrollDisable = false;
+
                 });
             }
-            $scope.scrollDisable = false;
         };
-        $scope.getFoodDetails = function(id_food){
-            console.log("selection "+$scope.foodSelection);
-            console.log("currently selected  "+id_food);
+        $scope.setFoodDetails = function(id_food){
+            ModalHandler.setFoodDetails(id_food);
+        } ;
 
-            var data;
-
-            FoodRes.details.query({city_name: $stateParams.city_name, id_food: id_food},function(response){
-                data =response;
-                console.log(data[0].name);
-                ModalHandler.setDetails(data[0]);
-            });
-        };
 
         $scope.addFoodItem = function(food_item){
             $scope.foodSelection = SelectionService.addFoodItem(food_item,$scope.foodList);
@@ -396,29 +337,7 @@ angular.module( 'trippo.city', [
 
 
 
-.factory('ModalHandler', function () {
-    var details;
-    var normalizeHours = function (details){
-        if(details.open_hours !== null){
-            for (var i=0;i<details.open_hours.periods.length;i++){
-                console.log("called function");
-                var day = details.open_hours.periods[i] ;
-                details.open_hours.periods[i].open.time = day.open.time.substr(0, 2) + ":" + day.open.time.substr(2);
-                details.open_hours.periods[i].close.time = day.close.time.substr(0, 2) + ":" + day.close.time.substr(2);
 
-            }
-        }
-    }  ;
-        return {
-            getDetails: function () {
-                return details;
-            },
-            setDetails: function(value) {
-                normalizeHours(value);
-                details = value;
-            }
-        };
-})
 
     .controller( 'CityCtrl', function CityCtrl( $scope, $stateParams, $log , CityRes,ModalHandler) {
         $scope.$log= $log;
@@ -473,64 +392,6 @@ angular.module( 'trippo.city', [
         };
     })
 
-.factory( 'CultureRes', function ($resource) {
-        var cultureList = $resource("../../city/:city_name/culture");
-        var cultureDetails = $resource("../../city/:city_name/culture/:id_culture");
-        var cultureOthers = $resource("../../city/:city_name/culture?token=:token");
-        return {
-            list: cultureList,
-            details: cultureDetails,
-            others: cultureOthers
-        };
-        })
-
-.factory('UtilityRes',function($resource){
-        var utilityList = $resource("../../city/:city_name/utility");
-        var utilityDetails = $resource("../../city/:city_name/utility/:id_utility");
-        var utilityOthers = $resource("../../city/:city_name/utility?token=:token");
-
-        return{
-            list:utilityList,
-            details:utilityDetails,
-            others:utilityOthers
-        };
-
-
-})
-
-.factory('EntertainmentRes',function($resource){
-        var entertainmentList = $resource("../../city/:city_name/entertainment");
-        var entertainmentDetails = $resource("../../city/:city_name/entertainment/:id_entertainment");
-        var entertainmentOthers = $resource("../../city/:city_name/entertainment?token=:token");
-
-        return{
-           list:entertainmentList,
-           details:entertainmentDetails,
-            others:entertainmentOthers
-         };
-})
-
-.factory('HotelRes',function($resource){
-        var hotelList = $resource("../../city/:city_name/hotels");
-        var hotelDetails = $resource("../../city/:city_name/hotels/:id_hotel");
-        return{
-            list:hotelList,
-            details:hotelDetails
-        };
-
-})
-
-.factory('FoodRes',function($resource){
-        var foodList = $resource("../../city/:city_name/food");
-        var foodDetails = $resource("../../city/:city_name/food/:id_food");
-        var foodOthers = $resource("../../city/:city_name/food?token=:token");
-
-        return{
-            list:foodList,
-            details:foodDetails,
-            others:foodOthers
-        };
-})
 
 .service('SelectionService',function(){
         var cultureSelection = [];
