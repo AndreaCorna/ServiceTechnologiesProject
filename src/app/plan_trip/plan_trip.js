@@ -5,7 +5,8 @@ angular.module('trippo.plan',[
     'ui.router',
     'ui.bootstrap',
     'ngResource',
-    'angular-sortable-view'
+    'angular-sortable-view',
+    'trippo.city'
 ])
 
 
@@ -112,19 +113,19 @@ angular.module('trippo.plan',[
 
 })
 
-.controller('PlanningCtrl', function PlanningCtrl($scope) {
+.controller('PlanningCtrl', function PlanningCtrl($scope,SelectionService) {
         $scope.selectedItems =["1","2","3","4","5","6","7","8","9"];
-        $scope.hotels =["1","2","3","4","5","6","7","8","9"];
-        $scope.culture =["c","u","l","t","su","6","7","8","9"];
-        $scope.entertainment =["ed","n","ts","e","r","t","a","8","9"];
-        $scope.foods = ["f","od","o","d","r","t","a","8","9"];
+        $scope.hotels =SelectionService. getHotelSelection();
+        $scope.culture =SelectionService.getCultureSelection();
+        $scope.entertainment =SelectionService.getEntertainmentSelection();
+        $scope.foods = SelectionService.getFoodSelection();
 
 
 
 
 
-    });
+
+});
 
 
 
- 

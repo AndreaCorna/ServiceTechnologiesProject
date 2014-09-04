@@ -1,3 +1,4 @@
+
 <div class="page-header">
     <h1>Planning</h1>
 </div>
@@ -14,8 +15,25 @@
                     <div ng-repeat="cult in culture" class="event-list col-md-4">
                         <li>
                             <div class="not-selected">
-                                  <h2>Nome {{cult}}</h2>
-                                  <h3>Via hotel cult</h3>
+                                <div class="row" style="height: 48px;">
+
+                                    <h1 class="item-name">{{cult.name}}</h1>
+                                </div>
+
+
+
+                                <div class="row">
+                                      <div ng-if="cult.photos.length==0">
+                                        <img class="fixed-size-image" ng-src="assets/images/empty_photo.png">
+                                      </div>
+                                      <div ng-if="cult.photos.length>0">
+                                          <img class="fixed-size-image" ng-src="{{cult.photos[0].image}}" >
+                                      </div>
+                                 </div>
+                                <div class="row">
+                                    <button class="btn btn-primary btn-outlined ">Add</button>
+                                    <button class="btn btn-primary btn-outlined " ng-click="getCultureDetails(cult.id)" href="#moreInfoModal" data-toggle="modal">More</button>
+                                </div>
                             </div>
                         </li>
                     </div>
@@ -38,8 +56,25 @@
                     <div ng-repeat="ent in entertainment" class="event-list col-md-4">
                         <li>
                             <div class="not-selected">
-                                <h2>Nome {{ent}}</h2>
-                                <h3>Via hotel cult</h3>
+                                <div class="row" style="height: 48px;">
+
+                                    <h1 class="item-name">{{ent.name}}</h1>
+                                </div>
+
+
+
+                                <div class="row">
+                                    <div ng-if="ent.photos.length==0">
+                                        <img class="fixed-size-image" ng-src="assets/images/empty_photo.png">
+                                    </div>
+                                    <div ng-if="ent.photos.length>0">
+                                        <img class="fixed-size-image" ng-src="{{ent.photos[0].image}}" >
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <button class="btn btn-primary btn-outlined ">Add</button>
+                                    <button class="btn btn-primary btn-outlined " ng-click="getEntertainmentDetails(ent.id)" href="#moreInfoModal" data-toggle="modal">More</button>
+                                </div>
                             </div>
                         </li>
                     </div>
@@ -62,8 +97,25 @@
                     <div ng-repeat="hot in hotels" class="event-list col-md-4">
                         <li>
                             <div class="not-selected">
-                                <h2>Nome {{ent}}</h2>
-                                <h3>Via hotel cult</h3>
+                                <div class="row" style="height: 48px;">
+
+                                    <h1 class="item-name">{{hot.name}}</h1>
+                                </div>
+
+
+
+                                <div class="row">
+                                    <div ng-if="hot.photos.length==0">
+                                        <img class="fixed-size-image" ng-src="assets/images/empty_photo.png">
+                                    </div>
+                                    <div ng-if="hot.photos.length>0">
+                                        <img class="fixed-size-image" ng-src="{{hot.photos[0].image}}" >
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <button class="btn btn-primary btn-outlined ">Add</button>
+                                    <button class="btn btn-primary btn-outlined " ng-click="getHotelDetails(hot.id)" href="#moreInfoModal" data-toggle="modal">More</button>
+                                </div>
                             </div>
                         </li>
                     </div>
@@ -86,8 +138,25 @@
                     <div ng-repeat="food in foods" class="event-list col-md-4">
                         <li>
                             <div class="not-selected">
-                                <h2>Nome {{ent}}</h2>
-                                <h3>Via hotel cult</h3>
+                                <div class="row" style="height: 48px;">
+
+                                    <h1 class="item-name">{{food.name}}</h1>
+                                </div>
+
+
+
+                                <div class="row">
+                                    <div ng-if="food.photos.length==0">
+                                        <img class="fixed-size-image" ng-src="assets/images/empty_photo.png">
+                                    </div>
+                                    <div ng-if="food.photos.length>0">
+                                        <img class="fixed-size-image" ng-src="{{food.photos[0].image}}" >
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <button class="btn btn-primary btn-outlined ">Add</button>
+                                    <button class="btn btn-primary btn-outlined " ng-click="getFoodDetails(food.id)" href="#moreInfoModal" data-toggle="modal">More</button>
+                                </div>
                             </div>
                         </li>
                     </div>
@@ -103,4 +172,5 @@
         {{item}}
     </div>
 </div>
+
 

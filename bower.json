@@ -9,7 +9,7 @@
     "angular-ui-router": "~0.2",
     "angular-resource": "~1.2.21",
     "moment": "~2.8.2",
-    "angular-sortable-view":"0.0.8"
+    "angular-sortable-view": "0.0.8"
   },
   "dependencies": {
 
