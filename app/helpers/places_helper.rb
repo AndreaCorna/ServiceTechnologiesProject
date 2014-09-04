@@ -31,6 +31,26 @@ module PlacesHelper
 
     end
 
+    def get_utility_others(token)
+      client = GooglePlaces::Client.new(ENV['API_KEY'])
+
+      utility_items= client.spots_by_pagetoken(token)
+      results = []
+      next_page_token = nil
+      utility_items.each { |place|
+        next_page_token = place.nextpagetoken
+        photos = []
+        if(!place.photos[0].nil?)
+          photos.append(:image=>place.photos[0].fetch_url(400))
+        end
+        description = get_description(place.name)
+        results.append(UtilityItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'utility',description))}
+      json = []
+      json.append({:results=>results,:token=>next_page_token})
+      return json
+
+    end
+
     class UtilityItem
       attr_accessor :id,:lat,:lng,:price,:rating,:name,:photos,:icon,:tag,:description;
 
@@ -72,7 +92,7 @@ module PlacesHelper
         results.append(CultureItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'culture',description))}
       json = []
       json.append({:results=>results,:token=>next_page_token})
-      puts json.to_json
+      #puts json.to_json
       return json
 
     end
@@ -142,6 +162,24 @@ module PlacesHelper
 
     end
 
+    def get_entertainment_others(token)
+      client = GooglePlaces::Client.new(ENV['API_KEY'])
+      entertainment_items= client.spots_by_pagetoken(token)
+      results = []
+      next_page_token = nil
+      entertainment_items.each { |place|
+        next_page_token = place.nextpagetoken
+        photos = []
+        if(!place.photos[0].nil?)
+          photos.append(:image=>place.photos[0].fetch_url(400))
+        end
+        description = get_description(place.name)
+        results.append(EntertainmentItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'entertainment',description))}
+      json = []
+      json.append({:results=>results,:token=>next_page_token})
+      return json
+    end
+
 
     class EntertainmentItem
       attr_accessor :id,:lat,:lng,:price,:rating,:name,:photos,:icon,:tag,:description;
@@ -185,6 +223,24 @@ module PlacesHelper
       json.append({:results=>results,:token=>next_page_token})
       return json
 
+    end
+
+    def get_food_others(token)
+      client = GooglePlaces::Client.new(ENV['API_KEY'])
+      food_items= client.spots_by_pagetoken(token)
+      results = []
+      next_page_token = nil
+      food_items.each { |place|
+        next_page_token = place.nextpagetoken
+        photos = []
+        if(!place.photos[0].nil?)
+          photos.append(:image=>place.photos[0].fetch_url(400))
+        end
+        description = get_description(place.name)
+        results.append(FoodItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'food',description))}
+      json = []
+      json.append({:results=>results,:token=>next_page_token})
+      return json
     end
 
     class FoodItem
