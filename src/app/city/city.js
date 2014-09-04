@@ -133,10 +133,11 @@ angular.module( 'trippo.city', [
                 }
 
                 console.log($scope.cultureList);
-                });
+                $scope.scrollDisable = false;
+
+            });
 
             }
-            $scope.scrollDisable = false;
 
 
         };
@@ -187,9 +188,10 @@ angular.module( 'trippo.city', [
                     for(var i=0;i<otherElements[0].results.length;i++){
                         $scope.entertainmentList.push(otherElements[0].results[i]);
                     }
+                    $scope.scrollDisable = false;
+
                 });
             }
-            $scope.scrollDisable = false;
         };
 
         $scope.setEntertainmentDetails = function (entertainment_item) {
@@ -236,9 +238,10 @@ angular.module( 'trippo.city', [
                     for(var i=0;i<otherElements[0].results.length;i++){
                         $scope.utilityList.push(otherElements[0].results[i]);
                     }
+                    $scope.scrollDisable = false;
+
                 });
             }
-            $scope.scrollDisable = false;
         };
 
         $scope.setUtilityDetails = function(id_utility){
@@ -304,9 +307,10 @@ angular.module( 'trippo.city', [
                     for(var i=0;i<otherElements[0].results.length;i++){
                         $scope.foodList.push(otherElements[0].results[i]);
                     }
+                    $scope.scrollDisable = false;
+
                 });
             }
-            $scope.scrollDisable = false;
         };
         $scope.setFoodDetails = function(id_food){
             ModalHandler.setFoodDetails(id_food);
