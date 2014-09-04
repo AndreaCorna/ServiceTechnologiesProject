@@ -596,7 +596,8 @@ angular.module("city/culture.tpl.html", []).run(["$templateCache", function($tem
     "                </span>\n" +
     "                </div>\n" +
     "                <div class=\"list-group\">\n" +
-    "                <span ng-repeat=\"c in cultureList | orderBy:'name':false\">\n" +
+    "                    <div infinite-scroll=\"loadMoreItems()\" infinite-scroll-distance=\"2\">\n" +
+    "                        <span ng-repeat=\"c in cultureList | orderBy:'name':false\">\n" +
     "                    <div class=\"list-group-item\">\n" +
     "                        <div class=\"col-md-3\">\n" +
     "                            <div class=\"row\">\n" +
@@ -647,6 +648,7 @@ angular.module("city/culture.tpl.html", []).run(["$templateCache", function($tem
     "                        </div>\n" +
     "                    </div>\n" +
     "                </span>\n" +
+    "                    </div>\n" +
     "            </div>\n" +
     "        </div>\n" +
     "    </div>\n" +

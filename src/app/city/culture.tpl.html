@@ -77,7 +77,8 @@
                 </span>
                 </div>
                 <div class="list-group">
-                <span ng-repeat="c in cultureList | orderBy:'name':false">
+                    <div infinite-scroll="loadMoreItems()" infinite-scroll-distance="2">
+                        <span ng-repeat="c in cultureList | orderBy:'name':false">
                     <div class="list-group-item">
                         <div class="col-md-3">
                             <div class="row">
@@ -128,6 +129,7 @@
                         </div>
                     </div>
                 </span>
+                    </div>
             </div>
         </div>
     </div>

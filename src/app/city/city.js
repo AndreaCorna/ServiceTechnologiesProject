@@ -2,8 +2,8 @@ angular.module( 'trippo.city', [
   'ui.router',
   'placeholders',
   'ui.bootstrap' ,
-  'ngResource'
-
+  'ngResource',
+  'infinite-scroll'
 ])
 
 .config(function config( $stateProvider ) {
@@ -125,6 +125,9 @@ angular.module( 'trippo.city', [
             $scope.nextPageToken = $scope.cultureList[0].token;
             $scope.cultureList = $scope.cultureList[0].results;});
 
+        $scope.loadMoreItems = function(){
+            console.log('infinite scroll activated');
+        };
         $scope.getCultureDetails = function(id_culture){
             console.log("selection "+$scope.cultureSelection);
             console.log("currently selected  "+id_culture);
