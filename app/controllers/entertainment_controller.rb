@@ -2,7 +2,7 @@ class EntertainmentController < ApplicationController
   include CachingHelper
 
   def index
-    entertainment_items = get_entertainment(params[:city_id]);
+    entertainment_items = get_entertainment(params[:city_id],params[:token]);
     render_with_protection    entertainment_items
   end
 

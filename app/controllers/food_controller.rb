@@ -2,7 +2,7 @@ class FoodController < ApplicationController
   include CachingHelper
 
   def index
-    food_items = get_food(params[:city_id])
+    food_items = get_food(params[:city_id],params[:token])
     render_with_protection    food_items
   end
 
