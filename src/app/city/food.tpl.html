@@ -79,7 +79,7 @@
             </div>
 
             <div class="list-group">
-                <div infinite-scroll="loadMoreItems()" infinite-scroll-distance="2">
+                <div infinite-scroll="loadMoreItems()" infinite-scroll-distance="2" infinite-scroll-disabled="scrollDisable">
 
                     <span ng-repeat="c in foodList | orderBy:'name':false">
                     <div class="list-group-item">
