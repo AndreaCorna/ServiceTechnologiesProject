@@ -171,6 +171,9 @@ angular.module( 'trippo.city', [
             $scope.loaderEnabled = false;
             $scope.nextPageToken = $scope.entertainmentList[0].token;
             $scope.entertainmentList = $scope.entertainmentList[0].results;});
+        $scope.loadMoreItems = function(){
+            console.log('infinite scroll activated');
+        };
         $scope.getEntertainmentDetails = function(id_entertainment){
             console.log("selection "+$scope.entertainmentSelection);
             console.log("currently selected  "+id_entertainment);
@@ -213,6 +216,9 @@ angular.module( 'trippo.city', [
             $scope.loaderEnabled = false;
             $scope.nextPageToken = $scope.utilityList[0].token;
             $scope.utilityList = $scope.utilityList[0].results;});
+        $scope.loadMoreItems = function(){
+            console.log('infinite scroll activated');
+        };
         $scope.getUtilityDetails = function(id_utility){
             console.log("selection "+$scope.utilitySelection);
             console.log("currently selected  "+id_utility);
@@ -285,6 +291,9 @@ angular.module( 'trippo.city', [
             $scope.loaderEnabled = false;
             $scope.nextPageToken = $scope.foodList[0].token;
             $scope.foodList = $scope.foodList[0].results;});
+        $scope.loadMoreItems = function(){
+            console.log('infinite scroll activated');
+        };
         $scope.getFoodDetails = function(id_food){
             console.log("selection "+$scope.foodSelection);
             console.log("currently selected  "+id_food);
