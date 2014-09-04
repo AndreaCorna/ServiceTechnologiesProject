@@ -26,7 +26,7 @@
                     </div>
                 </div>
 
-                <span ng-repeat="c in entertainmentSelection | orderBy:'name':false"">
+                <span ng-repeat="c in entertainmentSelection | orderBy:'name':false">
                     <div class="list-group-item">
                         <div class="col-md-3">
                             <div class="row">
@@ -80,7 +80,9 @@
             </div>
 
             <div class="list-group">
-                <span ng-repeat="c in entertainmentList | orderBy:'name':false">
+                <div infinite-scroll="loadMoreItems()" infinite-scroll-distance="2" infinite-scroll-disabled="scrollDisable">
+
+                    <span ng-repeat="c in entertainmentList | orderBy:'name':false">
                     <div class="list-group-item">
                         <div class="col-md-3">
                             <div class="row">
@@ -131,6 +133,7 @@
                         </div>
                     </div>
                 </span>
+                </div>
             </div>
         </div>
     </div>
