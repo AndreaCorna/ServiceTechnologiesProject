@@ -596,7 +596,8 @@ angular.module("city/culture.tpl.html", []).run(["$templateCache", function($tem
     "                </span>\n" +
     "                </div>\n" +
     "                <div class=\"list-group\">\n" +
-    "                <span ng-repeat=\"c in cultureList | orderBy:'name':false\">\n" +
+    "                    <div infinite-scroll=\"loadMoreItems()\" infinite-scroll-distance=\"2\" infinite-scroll-disabled=\"scrollDisable\">\n" +
+    "                        <span ng-repeat=\"c in cultureList | orderBy:'name':false\">\n" +
     "                    <div class=\"list-group-item\">\n" +
     "                        <div class=\"col-md-3\">\n" +
     "                            <div class=\"row\">\n" +
@@ -647,6 +648,7 @@ angular.module("city/culture.tpl.html", []).run(["$templateCache", function($tem
     "                        </div>\n" +
     "                    </div>\n" +
     "                </span>\n" +
+    "                    </div>\n" +
     "            </div>\n" +
     "        </div>\n" +
     "    </div>\n" +
@@ -685,7 +687,7 @@ angular.module("city/entertainment.tpl.html", []).run(["$templateCache", functio
     "                    </div>\n" +
     "                </div>\n" +
     "\n" +
-    "                <span ng-repeat=\"c in entertainmentSelection | orderBy:'name':false\"\">\n" +
+    "                <span ng-repeat=\"c in entertainmentSelection | orderBy:'name':false\">\n" +
     "                    <div class=\"list-group-item\">\n" +
     "                        <div class=\"col-md-3\">\n" +
     "                            <div class=\"row\">\n" +
@@ -739,7 +741,9 @@ angular.module("city/entertainment.tpl.html", []).run(["$templateCache", functio
     "            </div>\n" +
     "\n" +
     "            <div class=\"list-group\">\n" +
-    "                <span ng-repeat=\"c in entertainmentList | orderBy:'name':false\">\n" +
+    "                <div infinite-scroll=\"loadMoreItems()\" infinite-scroll-distance=\"2\" infinite-scroll-disabled=\"scrollDisable\">\n" +
+    "\n" +
+    "                    <span ng-repeat=\"c in entertainmentList | orderBy:'name':false\">\n" +
     "                    <div class=\"list-group-item\">\n" +
     "                        <div class=\"col-md-3\">\n" +
     "                            <div class=\"row\">\n" +
@@ -790,6 +794,7 @@ angular.module("city/entertainment.tpl.html", []).run(["$templateCache", functio
     "                        </div>\n" +
     "                    </div>\n" +
     "                </span>\n" +
+    "                </div>\n" +
     "            </div>\n" +
     "        </div>\n" +
     "    </div>\n" +
@@ -879,7 +884,9 @@ angular.module("city/food.tpl.html", []).run(["$templateCache", function($templa
     "            </div>\n" +
     "\n" +
     "            <div class=\"list-group\">\n" +
-    "                <span ng-repeat=\"c in foodList | orderBy:'name':false\">\n" +
+    "                <div infinite-scroll=\"loadMoreItems()\" infinite-scroll-distance=\"2\" infinite-scroll-disabled=\"scrollDisable\">\n" +
+    "\n" +
+    "                    <span ng-repeat=\"c in foodList | orderBy:'name':false\">\n" +
     "                    <div class=\"list-group-item\">\n" +
     "                        <div class=\"col-md-3\">\n" +
     "                            <div class=\"row\">\n" +
@@ -930,6 +937,7 @@ angular.module("city/food.tpl.html", []).run(["$templateCache", function($templa
     "                        </div>\n" +
     "                    </div>\n" +
     "                </span>\n" +
+    "                </div>\n" +
     "            </div>\n" +
     "        </div>\n" +
     "    </div>\n" +
@@ -1168,7 +1176,9 @@ angular.module("city/utility.tpl.html", []).run(["$templateCache", function($tem
     "            </div>\n" +
     "\n" +
     "            <div class=\"list-group\">\n" +
-    "                <span ng-repeat=\"c in utilityList | orderBy:'name':false\">\n" +
+    "                <div infinite-scroll=\"loadMoreItems()\" infinite-scroll-distance=\"2\" infinite-scroll-disabled=\"scrollDisable\">\n" +
+    "\n" +
+    "                    <span ng-repeat=\"c in utilityList | orderBy:'name':false\">\n" +
     "                    <div class=\"list-group-item\">\n" +
     "                        <div class=\"col-md-3\">\n" +
     "                            <div class=\"row\">\n" +
@@ -1219,6 +1229,7 @@ angular.module("city/utility.tpl.html", []).run(["$templateCache", function($tem
     "                        </div>\n" +
     "                    </div>\n" +
     "                </span>\n" +
+    "                </div>\n" +
     "            </div>\n" +
     "        </div>\n" +
     "    </div>\n" +
