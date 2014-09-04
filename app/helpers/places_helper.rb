@@ -81,7 +81,7 @@ module PlacesHelper
       client = GooglePlaces::Client.new(ENV['API_KEY'])
       culture_items= client.spots_by_pagetoken(token)
       results = []
-      next_page_token = ''
+      next_page_token = nil
       culture_items.each { |place|
         next_page_token = place.nextpagetoken
         photos = []

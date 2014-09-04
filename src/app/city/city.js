@@ -120,14 +120,38 @@ angular.module( 'trippo.city', [
 
 .controller('CultureCtrl', function CultureCtrl($scope,CultureRes,$stateParams,SelectionService,ModalHandler) {
         $scope.loaderEnabled = true;
+        $scope.scrollDisable = true;
         $scope.cultureList = CultureRes.list.query({city_name:$stateParams.city_name},function() {
             $scope.loaderEnabled = false;
             $scope.nextPageToken = $scope.cultureList[0].token;
-            $scope.cultureList = $scope.cultureList[0].results;});
+            $scope.cultureList = $scope.cultureList[0].results;
+            console.log($scope.nextPageToken);
+            $scope.scrollDisable = false;
+        });
 
         $scope.loadMoreItems = function(){
-            console.log('infinite scroll activated');
+            $scope.scrollDisable = true;
+            console.log($scope.nextPageToken);
+            if($scope.nextPageToken != null){
+            var otherElements = CultureRes.others.query({city_name: $stateParams.city_name, token: $scope.nextPageToken},function(){
+                $scope.nextPageToken = otherElements[0].token;
+                console.log('inside method');
+                console.log($scope.nextPageToken);
+                console.log(otherElements[0].results);
+                for(var i=0;i<otherElements[0].results.length;i++){
+                    $scope.cultureList.push(otherElements[0].results[i]);
+                }
+
+                console.log($scope.cultureList);
+                });
+
+            }
+            $scope.scrollDisable = false;
+
+
         };
+
+
         $scope.getCultureDetails = function(id_culture){
             console.log("selection "+$scope.cultureSelection);
             console.log("currently selected  "+id_culture);
@@ -407,9 +431,11 @@ angular.module( 'trippo.city', [
 .factory( 'CultureRes', function ($resource) {
         var cultureList = $resource("../../city/:city_name/culture");
         var cultureDetails = $resource("../../city/:city_name/culture/:id_culture");
+        var cultureOthers = $resource("../../city/:city_name/culture?token=:token");
         return {
             list: cultureList,
-            details: cultureDetails
+            details: cultureDetails,
+            others: cultureOthers
         };
         })
 
