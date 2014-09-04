@@ -142,14 +142,11 @@ angular.module( 'trippo.city', [
         };
 
         $scope.setCultureDetails = function(culture_item){
-            console.log("called details");
-            
             ModalHandler.setCultureDetails(culture_item);
         } ;
 
         $scope.addCultureItem = function(culture_item){
             $scope.cultureSelection = SelectionService.addCultureItem(culture_item,$scope.cultureList);
-            console.log(ModalHandler.details);
         };
 
 

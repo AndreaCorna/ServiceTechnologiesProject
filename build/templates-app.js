@@ -1330,7 +1330,7 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
     "                                 </div>\n" +
     "                                <div class=\"row\">\n" +
     "                                    <button class=\"btn btn-primary btn-outlined \">Add</button>\n" +
-    "                                    <button class=\"btn btn-primary btn-outlined \" ng-click=\"getCultureDetails(cult.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">More</button>\n" +
+    "                                    <button class=\"btn btn-primary btn-outlined \" ng-click=\"setCultureDetails(cult.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">More</button>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
     "                        </li>\n" +
@@ -1371,7 +1371,7 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
     "                                </div>\n" +
     "                                <div class=\"row\">\n" +
     "                                    <button class=\"btn btn-primary btn-outlined \">Add</button>\n" +
-    "                                    <button class=\"btn btn-primary btn-outlined \" ng-click=\"getEntertainmentDetails(ent.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">More</button>\n" +
+    "                                    <button class=\"btn btn-primary btn-outlined \" ng-click=\"setEntertainmentDetails(ent.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">More</button>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
     "                        </li>\n" +
@@ -1412,7 +1412,7 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
     "                                </div>\n" +
     "                                <div class=\"row\">\n" +
     "                                    <button class=\"btn btn-primary btn-outlined \">Add</button>\n" +
-    "                                    <button class=\"btn btn-primary btn-outlined \" ng-click=\"getHotelDetails(hot.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">More</button>\n" +
+    "                                    <button class=\"btn btn-primary btn-outlined \" ng-click=\"setHotelDetails(hot.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">More</button>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
     "                        </li>\n" +
@@ -1453,7 +1453,7 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
     "                                </div>\n" +
     "                                <div class=\"row\">\n" +
     "                                    <button class=\"btn btn-primary btn-outlined \">Add</button>\n" +
-    "                                    <button class=\"btn btn-primary btn-outlined \" ng-click=\"getFoodDetails(food.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">More</button>\n" +
+    "                                    <button class=\"btn btn-primary btn-outlined \" ng-click=\"setFoodDetails(food.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">More</button>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
     "                        </li>\n" +
