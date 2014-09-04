@@ -596,8 +596,8 @@ angular.module("city/culture.tpl.html", []).run(["$templateCache", function($tem
     "                </span>\n" +
     "                </div>\n" +
     "                <div class=\"list-group\">\n" +
-    "                    <div infinite-scroll=\"loadMoreItems()\" infinite-scroll-distance=\"2\" infinite-scroll-disabled=\"scrollDisable\">\n" +
-    "                        <span ng-repeat=\"c in cultureList | orderBy:'name':false\">\n" +
+    "                    <div infinite-scroll=\"infiniteScroll.nextPage(resource,cultureList)\" infinite-scroll-distance=\"2\" infinite-scroll-disabled=\"infiniteScroll.busy\">\n" +
+    "                        <span ng-repeat=\"c in infiniteScroll.itemList | orderBy:'name':false\">\n" +
     "                    <div class=\"list-group-item\">\n" +
     "                        <div class=\"col-md-3\">\n" +
     "                            <div class=\"row\">\n" +
@@ -741,9 +741,9 @@ angular.module("city/entertainment.tpl.html", []).run(["$templateCache", functio
     "            </div>\n" +
     "\n" +
     "            <div class=\"list-group\">\n" +
-    "                <div infinite-scroll=\"loadMoreItems()\" infinite-scroll-distance=\"2\" infinite-scroll-disabled=\"scrollDisable\">\n" +
+    "                <div infinite-scroll=\"infiniteScroll.nextPage(resource,entertainmentList)\" infinite-scroll-distance=\"2\" infinite-scroll-disabled=\"infiniteScroll.busy\">\n" +
     "\n" +
-    "                    <span ng-repeat=\"c in entertainmentList | orderBy:'name':false\">\n" +
+    "                    <span ng-repeat=\"c in infiniteScroll.itemList | orderBy:'name':false\">\n" +
     "                    <div class=\"list-group-item\">\n" +
     "                        <div class=\"col-md-3\">\n" +
     "                            <div class=\"row\">\n" +

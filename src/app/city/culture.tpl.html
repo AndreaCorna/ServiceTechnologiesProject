@@ -77,8 +77,8 @@
                 </span>
                 </div>
                 <div class="list-group">
-                    <div infinite-scroll="loadMoreItems()" infinite-scroll-distance="2" infinite-scroll-disabled="scrollDisable">
-                        <span ng-repeat="c in cultureList | orderBy:'name':false">
+                    <div infinite-scroll="infiniteScroll.nextPage(resource,cultureList)" infinite-scroll-distance="2" infinite-scroll-disabled="infiniteScroll.busy">
+                        <span ng-repeat="c in infiniteScroll.itemList | orderBy:'name':false">
                     <div class="list-group-item">
                         <div class="col-md-3">
                             <div class="row">
