@@ -1245,6 +1245,7 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "    </a>\n" +
     "</script>\n" +
     "\n" +
+    "\n" +
     "<div class=\"home_back fill\" >\n" +
     "    <div class=\"home\">\n" +
     "        <img src=\"assets/images/trippo.png\" class=\"center\" />\n" +
@@ -1252,8 +1253,7 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "\n" +
     "\n" +
     "\n" +
-    "\n" +
-    "            <input name=\"city\"  type=\"text\" placeholder=\"Search here...\" class=\"form-control col-md-12 typeahead\"\n" +
+    "            <input id=\"city\" name=\"city\"  type=\"text\" placeholder=\"Search here...\" class=\"form-control col-md-12 typeahead\"\n" +
     "                   ng-model=\"selected_city\"\n" +
     "                   typeahead=\"city as city.name for city in cities | filter:$viewValue | limitTo:8\"\n" +
     "                   typeahead-template-url=\"customTemplate.html\">\n" +
@@ -1262,7 +1262,12 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "\n" +
     "\n" +
     "    </div>\n" +
-    "</div>");
+    "</div>\n" +
+    "\n" +
+    "\n" +
+    "\n" +
+    "\n" +
+    "");
 }]);
 
 angular.module("plan_trip/calendar.tpl.html", []).run(["$templateCache", function($templateCache) {
@@ -1291,6 +1296,7 @@ angular.module("plan_trip/calendar.tpl.html", []).run(["$templateCache", functio
 
 angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("plan_trip/planning.tpl.html",
+    "\n" +
     "<div class=\"page-header\">\n" +
     "    <h1>Planning</h1>\n" +
     "</div>\n" +
@@ -1305,24 +1311,156 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
     "            <div class=\"panel-body\">\n" +
     "                <ul>\n" +
     "                    <div ng-repeat=\"cult in culture\" class=\"event-list col-md-4\">\n" +
-    "\n" +
     "                        <li>\n" +
-    "                            <div class=\"culture-group\">\n" +
-    "                                  <h2>Nome {{cult}}</h2>\n" +
-    "                                  <h3>Via hotel cult</h3>\n" +
+    "                            <div class=\"not-selected\">\n" +
+    "                                <div class=\"row\" style=\"height: 48px;\">\n" +
+    "\n" +
+    "                                    <h1 class=\"item-name\">{{cult.name}}</h1>\n" +
+    "                                </div>\n" +
+    "\n" +
+    "\n" +
+    "\n" +
+    "                                <div class=\"row\">\n" +
+    "                                      <div ng-if=\"cult.photos.length==0\">\n" +
+    "                                        <img class=\"fixed-size-image\" ng-src=\"assets/images/empty_photo.png\">\n" +
+    "                                      </div>\n" +
+    "                                      <div ng-if=\"cult.photos.length>0\">\n" +
+    "                                          <img class=\"fixed-size-image\" ng-src=\"{{cult.photos[0].image}}\" >\n" +
+    "                                      </div>\n" +
+    "                                 </div>\n" +
+    "                                <div class=\"row\">\n" +
+    "                                    <button class=\"btn btn-primary btn-outlined \">Add</button>\n" +
+    "                                    <button class=\"btn btn-primary btn-outlined \" ng-click=\"getCultureDetails(cult.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">More</button>\n" +
+    "                                </div>\n" +
     "                            </div>\n" +
-    "\n" +
-    "\n" +
     "                        </li>\n" +
-    "\n" +
-    "\n" +
     "                    </div>\n" +
     "                </ul>\n" +
-    "\n" +
-    "\n" +
     "            </div>\n" +
     "        </div>\n" +
+    "    </div>\n" +
+    "</div>\n" +
     "\n" +
+    "<div class=\"panel-group\" id=\"Entertainment\">\n" +
+    "    <div class=\"panel  panel-primary no-radius\">\n" +
+    "        <div class=\"panel-heading no-radius  bigger-accordition\" data-toggle=\"collapse\" data-parent=\"#Entertainment\" data-target=\"#entertainmentList\">\n" +
+    "            <h4 class=\"panel-title bigger-title\">\n" +
+    "                <a class=\"accordion-toggle bigger-title\" >Entertainment</a>\n" +
+    "            </h4>\n" +
+    "        </div>\n" +
+    "        <div id=\"entertainmentList\" class=\"panel-collapse collapse\">\n" +
+    "            <div class=\"panel-body\">\n" +
+    "                <ul>\n" +
+    "                    <div ng-repeat=\"ent in entertainment\" class=\"event-list col-md-4\">\n" +
+    "                        <li>\n" +
+    "                            <div class=\"not-selected\">\n" +
+    "                                <div class=\"row\" style=\"height: 48px;\">\n" +
+    "\n" +
+    "                                    <h1 class=\"item-name\">{{ent.name}}</h1>\n" +
+    "                                </div>\n" +
+    "\n" +
+    "\n" +
+    "\n" +
+    "                                <div class=\"row\">\n" +
+    "                                    <div ng-if=\"ent.photos.length==0\">\n" +
+    "                                        <img class=\"fixed-size-image\" ng-src=\"assets/images/empty_photo.png\">\n" +
+    "                                    </div>\n" +
+    "                                    <div ng-if=\"ent.photos.length>0\">\n" +
+    "                                        <img class=\"fixed-size-image\" ng-src=\"{{ent.photos[0].image}}\" >\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                                <div class=\"row\">\n" +
+    "                                    <button class=\"btn btn-primary btn-outlined \">Add</button>\n" +
+    "                                    <button class=\"btn btn-primary btn-outlined \" ng-click=\"getEntertainmentDetails(ent.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">More</button>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                        </li>\n" +
+    "                    </div>\n" +
+    "                </ul>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "\n" +
+    "<div class=\"panel-group\" id=\"Hotel\">\n" +
+    "    <div class=\"panel  panel-primary no-radius\">\n" +
+    "        <div class=\"panel-heading no-radius  bigger-accordition\" data-toggle=\"collapse\" data-parent=\"#Hotel\" data-target=\"#hotelList\">\n" +
+    "            <h4 class=\"panel-title bigger-title\">\n" +
+    "                <a class=\"accordion-toggle bigger-title\" >Hotels</a>\n" +
+    "            </h4>\n" +
+    "        </div>\n" +
+    "        <div id=\"hotelList\" class=\"panel-collapse collapse\">\n" +
+    "            <div class=\"panel-body\">\n" +
+    "                <ul>\n" +
+    "                    <div ng-repeat=\"hot in hotels\" class=\"event-list col-md-4\">\n" +
+    "                        <li>\n" +
+    "                            <div class=\"not-selected\">\n" +
+    "                                <div class=\"row\" style=\"height: 48px;\">\n" +
+    "\n" +
+    "                                    <h1 class=\"item-name\">{{hot.name}}</h1>\n" +
+    "                                </div>\n" +
+    "\n" +
+    "\n" +
+    "\n" +
+    "                                <div class=\"row\">\n" +
+    "                                    <div ng-if=\"hot.photos.length==0\">\n" +
+    "                                        <img class=\"fixed-size-image\" ng-src=\"assets/images/empty_photo.png\">\n" +
+    "                                    </div>\n" +
+    "                                    <div ng-if=\"hot.photos.length>0\">\n" +
+    "                                        <img class=\"fixed-size-image\" ng-src=\"{{hot.photos[0].image}}\" >\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                                <div class=\"row\">\n" +
+    "                                    <button class=\"btn btn-primary btn-outlined \">Add</button>\n" +
+    "                                    <button class=\"btn btn-primary btn-outlined \" ng-click=\"getHotelDetails(hot.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">More</button>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                        </li>\n" +
+    "                    </div>\n" +
+    "                </ul>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "\n" +
+    "<div class=\"panel-group\" id=\"Food\">\n" +
+    "    <div class=\"panel  panel-primary no-radius\">\n" +
+    "        <div class=\"panel-heading no-radius  bigger-accordition\" data-toggle=\"collapse\" data-parent=\"#Food\" data-target=\"#foodList\">\n" +
+    "            <h4 class=\"panel-title bigger-title\">\n" +
+    "                <a class=\"accordion-toggle bigger-title\" >Food</a>\n" +
+    "            </h4>\n" +
+    "        </div>\n" +
+    "        <div id=\"foodList\" class=\"panel-collapse collapse\">\n" +
+    "            <div class=\"panel-body\">\n" +
+    "                <ul>\n" +
+    "                    <div ng-repeat=\"food in foods\" class=\"event-list col-md-4\">\n" +
+    "                        <li>\n" +
+    "                            <div class=\"not-selected\">\n" +
+    "                                <div class=\"row\" style=\"height: 48px;\">\n" +
+    "\n" +
+    "                                    <h1 class=\"item-name\">{{food.name}}</h1>\n" +
+    "                                </div>\n" +
+    "\n" +
+    "\n" +
+    "\n" +
+    "                                <div class=\"row\">\n" +
+    "                                    <div ng-if=\"food.photos.length==0\">\n" +
+    "                                        <img class=\"fixed-size-image\" ng-src=\"assets/images/empty_photo.png\">\n" +
+    "                                    </div>\n" +
+    "                                    <div ng-if=\"food.photos.length>0\">\n" +
+    "                                        <img class=\"fixed-size-image\" ng-src=\"{{food.photos[0].image}}\" >\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                                <div class=\"row\">\n" +
+    "                                    <button class=\"btn btn-primary btn-outlined \">Add</button>\n" +
+    "                                    <button class=\"btn btn-primary btn-outlined \" ng-click=\"getFoodDetails(food.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">More</button>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                        </li>\n" +
+    "                    </div>\n" +
+    "                </ul>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
     "    </div>\n" +
     "</div>\n" +
     "\n" +
@@ -1332,6 +1470,7 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
     "        {{item}}\n" +
     "    </div>\n" +
     "</div>\n" +
+    "\n" +
     "\n" +
     "");
 }]);
