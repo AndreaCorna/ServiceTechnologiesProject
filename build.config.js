@@ -62,10 +62,6 @@ module.exports = {
    */
   vendor_files: {
     js: [
-    /**
-     * Not change relative order of jquery, angular an ngInfiniteScroll: they are in
-     * this way in order to load the correct dependency
-     */
       'vendor/moment/moment.js',
       'vendor/jquery/dist/jquery.js',
       'vendor/angular/angular.js',
@@ -76,12 +72,11 @@ module.exports = {
       'vendor/angular-ui-router/release/angular-ui-router.js',
       'vendor/angular-ui-utils/modules/route/route.js' ,
       'vendor/angular-resource/angular-resource.js',
-      'vendor/ngInfiniteScroll/build/ng-infinite-scroll.min.js',
-
+      'vendor/ngInfiniteScroll/build/ng-infinite-scroll.min.js'
     ],
     css: [
     ],
     assets: [
     ]
-  },
+  }
 };

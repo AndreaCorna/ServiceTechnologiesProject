@@ -39,19 +39,22 @@ angular.module( 'trippo.home', [
 /**
  *Home controller implements search and get the list of cities from a rest call to the cityResource
  */
-.controller( 'HomeCtrl', function HomeController($scope,$log,$location , CityRes ) {
+.controller( 'HomeCtrl', function HomeController($scope,$log,$location , CityRes,$http ) {
 
 
         $scope.cities = CityRes.list.query();
         $scope.selected_city = undefined;
 
-        $scope.search = function(){
+        $scope.search = function() {
             $log.log("city passed " + $scope.selected_city);
-            if  ($scope.selected_city.name === undefined){
-                $location.path('/city/' + $scope.selected_city+"/culture");
-            }
-            else{
-                $location.path('/city/' + $scope.selected_city.name+"/culture");
+            if ($scope.selected_city !== undefined) {
+
+                if ($scope.selected_city.name === undefined) {
+                    $location.path('/city/' + $scope.selected_city + "/culture");
+                }
+                else {
+                    $location.path('/city/' + $scope.selected_city.name + "/culture");
+                }
             }
 
         };
@@ -73,8 +76,23 @@ angular.module( 'trippo.home', [
             });
         };
 
+
 })
 
 
 ;
 
+/**
+ * jquery function to handle the typeahead in mobile devices
+ */
+$(function() {
+    $("#city").click(function() {
+        console.log("clicked");
+        if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+            $('html, body').animate({
+                scrollTop: $("#city").offset().top
+            }, 500);
+        }
+
+    });
+});

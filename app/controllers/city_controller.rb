@@ -10,7 +10,7 @@ class CityController < ApplicationController
 
 
   def show
-    details = get_city_details(params[:city_id])
+    details = get_city_details(params[:id])
     render  json:  details.to_json
   end
 
