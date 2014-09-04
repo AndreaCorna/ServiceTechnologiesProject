@@ -62,10 +62,13 @@ module.exports = {
    */
   vendor_files: {
     js: [
+<<<<<<< HEAD
     /**
      * Not change relative order of jquery, angular an ngInfiniteScroll: they are in
      * this way in order to load the correct dependency
      */
+=======
+>>>>>>> plan_trip
       'vendor/moment/moment.js',
       'vendor/jquery/dist/jquery.js',
       'vendor/angular/angular.js',
