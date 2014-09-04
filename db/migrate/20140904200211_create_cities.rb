@@ -5,8 +5,7 @@ class CreateCities < ActiveRecord::Migration
       t.column :state, :string
       t.column :lat, :float
       t.column :lng, :float
-      t.column :images, :string
-      t.timestamps
+      t.column :image, :string
     end
   end
 end

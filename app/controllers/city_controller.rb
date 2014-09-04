@@ -5,7 +5,9 @@ class CityController < ApplicationController
   end
 
   def show
-    details = City.find(params[:id])
+    details = []
+    details.append(City.find(params[:id]))
+    puts details.to_json
     render  json:  details.to_json
   end
 
