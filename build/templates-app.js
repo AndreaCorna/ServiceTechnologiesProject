@@ -1248,7 +1248,7 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "<div class=\"home_back fill\" >\n" +
     "    <div class=\"home\">\n" +
     "        <img src=\"assets/images/trippo.png\" class=\"center\" />\n" +
-    "        <form name=\"'city-form\" class=\"form-wrapper  cf\">\n" +
+    "        <form name=\"'city-form\" class=\"form-wrapper  cf\" autocomplete=\"off\">\n" +
     "\n" +
     "\n" +
     "\n" +
