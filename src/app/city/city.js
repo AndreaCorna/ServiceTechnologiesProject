@@ -125,14 +125,11 @@ angular.module( 'trippo.city', [
 
 
         $scope.setCultureDetails = function(culture_item){
-            console.log("called details");
-            
             ModalHandler.setCultureDetails(culture_item);
         } ;
 
         $scope.addCultureItem = function(culture_item){
             $scope.cultureSelection = SelectionService.addCultureItem(culture_item,$scope.cultureList);
-            console.log(ModalHandler.details);
         };
 
 
@@ -335,6 +332,7 @@ angular.module( 'trippo.city', [
         $scope.moreInfoSelection=null;
         $scope.modalEnabled = false;
         $scope.loaderEnabled = true;
+<<<<<<< HEAD
         $scope.city = CityRes.details.query({city_name:$stateParams.city_name},function(){
             $scope.images = $scope.city[0].images;
             $scope.city = $scope.city[0].details;
@@ -349,12 +347,11 @@ angular.module( 'trippo.city', [
                 $scope.modalEnabled = true;
             }
             $scope.loaderEnabled = false;
+=======
+        $scope.city = CityRes.details.query({city_name:$stateParams.city_name});
+>>>>>>> plan_trip
 
-        });
-        $scope.disableModal = function(){
-            $scope.modalEnabled = false;
-            $scope.loaderEnabled = true;
-        };
+
 
 
 
