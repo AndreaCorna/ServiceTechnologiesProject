@@ -6611,6 +6611,10 @@ h2 {
 .carousel-fixed-height {
   height: 400px;
 }
+.top-view {
+  padding-bottom: 30px;
+  background: url('images/top-page-back.png') repeat;
+}
 .image-item {
   width: auto;
   height: auto;
