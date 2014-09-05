@@ -1,4 +1,5 @@
 class CityController < ApplicationController
+  include CityHelper
   def index
     city_list = City.all
     render  json:  city_list.to_json
@@ -11,6 +12,19 @@ class CityController < ApplicationController
     puts details.to_json
     render  json:  details.to_json
   end
+
+  def populate
+    json = params[:cities]
+    puts json.to_json
+    cities = populate_database(json)
+    cities.each{ |city|
+      puts city.name
+      City.create({:name => city.name,:state => city.state,:lat => city.lat,:lng => city.lng})
+    }
+
+    render json: cities.to_json
+  end
+
 
 
 end
