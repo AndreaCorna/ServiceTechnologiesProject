@@ -79,8 +79,8 @@
                 <div class="list-group">
                     <div infinite-scroll="infiniteScroll.nextPage(resource,cultureList)" infinite-scroll-distance="2" infinite-scroll-disabled="infiniteScroll.busy">
                         <span ng-repeat="c in infiniteScroll.itemList | orderBy:'name':false">
-                    <div class="list-group-item">
-                        <div class="col-md-3">
+                            <div class="list-group-item">
+                               <div class="col-md-3">
                             <div class="row">
                                 <img class="icon-col-centered" ng-src="{{c.icon}}">
                             </div>
@@ -93,7 +93,7 @@
                                 </button>
                             </div>
                         </div>
-                        <div class="col-md-6" style="height:230px">
+                                <div class="col-md-6" style="height:230px">
                             <p class="list-group-item-text">
                             <div class="row">
                                 <b class="text-capitalize">{{c.name}}</b>
@@ -112,10 +112,10 @@
 
                             </p>
                         </div>
-                        <div class="col-md-3 text-center">
-                            <div class="panel panel-default">
-                                <div class="panel-body image-panel">
-                                    <carousel interval="intervalImages">
+                                <div class="col-md-3 text-center">
+                                    <div class="panel panel-default">
+                                        <div class="panel-body image-panel">
+                                            <carousel interval="intervalImages">
                                         <div ng-if="c.photos.length==0">
                                             <img ng-src="assets/images/empty_photo.png" style="position: center">
 
@@ -124,11 +124,11 @@
                                             <img class="image-item" ng-src="{{image.image}}" >
                                         </slide>
                                     </carousel>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </span>
+                        </span>
                     </div>
             </div>
         </div>
