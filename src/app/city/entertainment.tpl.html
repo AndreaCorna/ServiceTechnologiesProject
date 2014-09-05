@@ -80,9 +80,9 @@
             </div>
 
             <div class="list-group">
-                <div infinite-scroll="loadMoreItems()" infinite-scroll-distance="2" infinite-scroll-disabled="scrollDisable">
+                <div infinite-scroll="infiniteScroll.nextPage(resource,entertainmentList)" infinite-scroll-distance="2" infinite-scroll-disabled="infiniteScroll.busy">
 
-                    <span ng-repeat="c in entertainmentList | orderBy:'name':false">
+                    <span ng-repeat="c in infiniteScroll.itemList | orderBy:'name':false">
                     <div class="list-group-item">
                         <div class="col-md-3">
                             <div class="row">

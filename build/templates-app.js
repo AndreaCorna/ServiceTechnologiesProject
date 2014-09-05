@@ -272,15 +272,18 @@ angular.module("about/about.tpl.html", []).run(["$templateCache", function($temp
 
 angular.module("city/city.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("city/city.tpl.html",
-    "\n" +
-    "<carousel interval=\"intervalImages\">\n" +
-    "    <slide ng-repeat=\"image in city\" active=\"image.active\">\n" +
-    "        <img ng-src=\"{{image.image}}\" style=\"margin:auto;\">\n" +
-    "        <div class=\"carousel-caption\">\n" +
-    "            <p>{{image.descr}}</p>\n" +
+    "<div class=\"top-view\">\n" +
+    "    <div class=\"container \" >\n" +
+    "        <h3 class=\"text-capitalize text-center\" style=\"font-family: Capriola;\">Welcome to {{city.name}}</h3>\n" +
+    "        <div class=\"row background-carousel\">\n" +
+    "        <carousel interval=\"intervalImages\" class=\"carousel-fixed-height col-md-8 col-md-offset-2\" style=\"padding: 0px\">\n" +
+    "            <slide ng-repeat=\"image in images\" active=\"image.active\" style=\" height:100%;width:100%;\">\n" +
+    "                <img ng-src=\"{{image.url}}\" style=\" height:100%;width:100%;\" >\n" +
+    "            </slide>\n" +
+    "        </carousel>\n" +
     "        </div>\n" +
-    "    </slide>\n" +
-    "</carousel>\n" +
+    "    </div>\n" +
+    "</div>\n" +
     "\n" +
     "<div id='cssmenu'>\n" +
     "    <ul>\n" +
@@ -295,6 +298,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "    </ul>\n" +
     "\n" +
     "</div>\n" +
+    "\n" +
     "<div class=\"container\">\n" +
     "    <div ui-view=\"content\" class=\"fill\"></div>\n" +
     "</div>\n" +
@@ -596,10 +600,10 @@ angular.module("city/culture.tpl.html", []).run(["$templateCache", function($tem
     "                </span>\n" +
     "                </div>\n" +
     "                <div class=\"list-group\">\n" +
-    "                    <div infinite-scroll=\"loadMoreItems()\" infinite-scroll-distance=\"2\" infinite-scroll-disabled=\"scrollDisable\">\n" +
-    "                        <span ng-repeat=\"c in cultureList | orderBy:'name':false\">\n" +
-    "                    <div class=\"list-group-item\">\n" +
-    "                        <div class=\"col-md-3\">\n" +
+    "                    <div infinite-scroll=\"infiniteScroll.nextPage(resource,cultureList)\" infinite-scroll-distance=\"2\" infinite-scroll-disabled=\"infiniteScroll.busy\">\n" +
+    "                        <span ng-repeat=\"c in infiniteScroll.itemList | orderBy:'name':false\">\n" +
+    "                            <div class=\"list-group-item\">\n" +
+    "                               <div class=\"col-md-3\">\n" +
     "                            <div class=\"row\">\n" +
     "                                <img class=\"icon-col-centered\" ng-src=\"{{c.icon}}\">\n" +
     "                            </div>\n" +
@@ -612,7 +616,7 @@ angular.module("city/culture.tpl.html", []).run(["$templateCache", function($tem
     "                                </button>\n" +
     "                            </div>\n" +
     "                        </div>\n" +
-    "                        <div class=\"col-md-6\" style=\"height:230px\">\n" +
+    "                                <div class=\"col-md-6\" style=\"height:230px\">\n" +
     "                            <p class=\"list-group-item-text\">\n" +
     "                            <div class=\"row\">\n" +
     "                                <b class=\"text-capitalize\">{{c.name}}</b>\n" +
@@ -631,10 +635,10 @@ angular.module("city/culture.tpl.html", []).run(["$templateCache", function($tem
     "\n" +
     "                            </p>\n" +
     "                        </div>\n" +
-    "                        <div class=\"col-md-3 text-center\">\n" +
-    "                            <div class=\"panel panel-default\">\n" +
-    "                                <div class=\"panel-body image-panel\">\n" +
-    "                                    <carousel interval=\"intervalImages\">\n" +
+    "                                <div class=\"col-md-3 text-center\">\n" +
+    "                                    <div class=\"panel panel-default\">\n" +
+    "                                        <div class=\"panel-body image-panel\">\n" +
+    "                                            <carousel interval=\"intervalImages\">\n" +
     "                                        <div ng-if=\"c.photos.length==0\">\n" +
     "                                            <img ng-src=\"assets/images/empty_photo.png\" style=\"position: center\">\n" +
     "\n" +
@@ -643,11 +647,11 @@ angular.module("city/culture.tpl.html", []).run(["$templateCache", function($tem
     "                                            <img class=\"image-item\" ng-src=\"{{image.image}}\" >\n" +
     "                                        </slide>\n" +
     "                                    </carousel>\n" +
+    "                                        </div>\n" +
+    "                                    </div>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
-    "                        </div>\n" +
-    "                    </div>\n" +
-    "                </span>\n" +
+    "                        </span>\n" +
     "                    </div>\n" +
     "            </div>\n" +
     "        </div>\n" +
@@ -741,9 +745,9 @@ angular.module("city/entertainment.tpl.html", []).run(["$templateCache", functio
     "            </div>\n" +
     "\n" +
     "            <div class=\"list-group\">\n" +
-    "                <div infinite-scroll=\"loadMoreItems()\" infinite-scroll-distance=\"2\" infinite-scroll-disabled=\"scrollDisable\">\n" +
+    "                <div infinite-scroll=\"infiniteScroll.nextPage(resource,entertainmentList)\" infinite-scroll-distance=\"2\" infinite-scroll-disabled=\"infiniteScroll.busy\">\n" +
     "\n" +
-    "                    <span ng-repeat=\"c in entertainmentList | orderBy:'name':false\">\n" +
+    "                    <span ng-repeat=\"c in infiniteScroll.itemList | orderBy:'name':false\">\n" +
     "                    <div class=\"list-group-item\">\n" +
     "                        <div class=\"col-md-3\">\n" +
     "                            <div class=\"row\">\n" +
@@ -884,7 +888,7 @@ angular.module("city/food.tpl.html", []).run(["$templateCache", function($templa
     "            </div>\n" +
     "\n" +
     "            <div class=\"list-group\">\n" +
-    "                <div infinite-scroll=\"loadMoreItems()\" infinite-scroll-distance=\"2\" infinite-scroll-disabled=\"scrollDisable\">\n" +
+    "                <div infinite-scroll=\"infiniteScroll.nextPage(resource,foodList)\" infinite-scroll-distance=\"2\" infinite-scroll-disabled=\"infiniteScroll.busy\">\n" +
     "\n" +
     "                    <span ng-repeat=\"c in foodList | orderBy:'name':false\">\n" +
     "                    <div class=\"list-group-item\">\n" +
@@ -1176,11 +1180,11 @@ angular.module("city/utility.tpl.html", []).run(["$templateCache", function($tem
     "            </div>\n" +
     "\n" +
     "            <div class=\"list-group\">\n" +
-    "                <div infinite-scroll=\"loadMoreItems()\" infinite-scroll-distance=\"2\" infinite-scroll-disabled=\"scrollDisable\">\n" +
+    "                <div infinite-scroll=\"infiniteScroll.nextPage(resource,utilityList)\" infinite-scroll-distance=\"2\" infinite-scroll-disabled=\"infiniteScroll.busy\">\n" +
     "\n" +
     "                    <span ng-repeat=\"c in utilityList | orderBy:'name':false\">\n" +
-    "                    <div class=\"list-group-item\">\n" +
-    "                        <div class=\"col-md-3\">\n" +
+    "                        <div class=\"list-group-item\">\n" +
+    "                            <div class=\"col-md-3\">\n" +
     "                            <div class=\"row\">\n" +
     "                                <img class=\"icon-col-centered\" ng-src=\"{{c.icon}}\">\n" +
     "                            </div>\n" +
@@ -1193,7 +1197,7 @@ angular.module("city/utility.tpl.html", []).run(["$templateCache", function($tem
     "                                </button>\n" +
     "                            </div>\n" +
     "                        </div>\n" +
-    "                        <div class=\"col-md-6\" style=\"height:230px\">\n" +
+    "                            <div class=\"col-md-6\" style=\"height:230px\">\n" +
     "                            <p class=\"list-group-item-text\">\n" +
     "                            <div class=\"row\">\n" +
     "                                <b class=\"text-capitalize\">{{c.name}}</b>\n" +
@@ -1212,7 +1216,7 @@ angular.module("city/utility.tpl.html", []).run(["$templateCache", function($tem
     "\n" +
     "                            </p>\n" +
     "                        </div>\n" +
-    "                        <div class=\"col-md-3 text-center\">\n" +
+    "                            <div class=\"col-md-3 text-center\">\n" +
     "                            <div class=\"panel panel-default\">\n" +
     "                                <div class=\"panel-body image-panel\">\n" +
     "                                    <carousel interval=\"intervalImages\">\n" +
@@ -1228,7 +1232,7 @@ angular.module("city/utility.tpl.html", []).run(["$templateCache", function($tem
     "                            </div>\n" +
     "                        </div>\n" +
     "                    </div>\n" +
-    "                </span>\n" +
+    "                    </span>\n" +
     "                </div>\n" +
     "            </div>\n" +
     "        </div>\n" +
@@ -1249,7 +1253,7 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "<div class=\"home_back fill\" >\n" +
     "    <div class=\"home\">\n" +
     "        <img src=\"assets/images/trippo.png\" class=\"center\" />\n" +
-    "        <form name=\"'city-form\" class=\"form-wrapper  cf\">\n" +
+    "        <form name=\"'city-form\" class=\"form-wrapper  cf\" autocomplete=\"off\">\n" +
     "\n" +
     "\n" +
     "\n" +

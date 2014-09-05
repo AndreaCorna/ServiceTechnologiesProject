@@ -108,38 +108,21 @@ angular.module( 'trippo.city', [
 
 })
 
-.controller('CultureCtrl', function CultureCtrl($scope,CultureRes,$stateParams,SelectionService,ModalHandler) {
+.controller('CultureCtrl', function CultureCtrl($scope,CultureRes,$stateParams,SelectionService,ModalHandler,InfiniteScrollHandler) {
         $scope.loaderEnabled = true;
-        $scope.scrollDisable = true;
+        $scope.resource = CultureRes;
+
         $scope.cultureList = CultureRes.list.query({city_name:$stateParams.city_name},function() {
             $scope.loaderEnabled = false;
             $scope.nextPageToken = $scope.cultureList[0].token;
             $scope.cultureList = $scope.cultureList[0].results;
-            console.log($scope.nextPageToken);
-            $scope.scrollDisable = false;
+
+
+            $scope.infiniteScroll = new InfiniteScrollHandler($scope.nextPageToken,$scope.cultureList);
+
         });
 
-        $scope.loadMoreItems = function(){
-            $scope.scrollDisable = true;
-            console.log($scope.nextPageToken);
-            if($scope.nextPageToken != null){
-            var otherElements = CultureRes.others.query({city_name: $stateParams.city_name, token: $scope.nextPageToken},function(){
-                $scope.nextPageToken = otherElements[0].token;
-                console.log('inside method');
-                console.log($scope.nextPageToken);
-                console.log(otherElements[0].results);
-                for(var i=0;i<otherElements[0].results.length;i++){
-                    $scope.cultureList.push(otherElements[0].results[i]);
-                }
 
-                console.log($scope.cultureList);
-                });
-
-            }
-            $scope.scrollDisable = false;
-
-
-        };
 
         $scope.setCultureDetails = function(culture_item){
             ModalHandler.setCultureDetails(culture_item);
@@ -165,29 +148,21 @@ angular.module( 'trippo.city', [
 })
 
 
-.controller('EntertainmentCtrl', function EntertainmentCtrl($scope,EntertainmentRes,$stateParams,SelectionService,ModalHandler) {
+.controller('EntertainmentCtrl', function EntertainmentCtrl($scope,EntertainmentRes,$stateParams,SelectionService,ModalHandler,InfiniteScrollHandler) {
         $scope.loaderEnabled = true;
-        $scope.scrollDisable = true;
+        $scope.resource =   EntertainmentRes;
+
 
         $scope.entertainmentList= EntertainmentRes.list.query({city_name:$stateParams.city_name},function() {
             $scope.loaderEnabled = false;
             $scope.nextPageToken = $scope.entertainmentList[0].token;
             $scope.entertainmentList = $scope.entertainmentList[0].results;
-            $scope.scrollDisable = false;});
+            $scope.infiniteScroll = new InfiniteScrollHandler($scope.nextPageToken,$scope.entertainmentList);
 
-        $scope.loadMoreItems = function(){
-            $scope.scrollDisable = true;
-            console.log($scope.nextPageToken);
-            if($scope.nextPageToken != null){
-                var otherElements = EntertainmentRes.others.query({city_name: $stateParams.city_name, token: $scope.nextPageToken},function(){
-                    $scope.nextPageToken = otherElements[0].token;
-                    for(var i=0;i<otherElements[0].results.length;i++){
-                        $scope.entertainmentList.push(otherElements[0].results[i]);
-                    }
-                });
-            }
-            $scope.scrollDisable = false;
-        };
+
+        });
+
+
 
         $scope.setEntertainmentDetails = function (entertainment_item) {
             ModalHandler.setEntertainmentDetails(entertainment_item);
@@ -213,30 +188,20 @@ angular.module( 'trippo.city', [
 
 })
 
-.controller('UtilityCtrl', function UtilityCtrl($scope,UtilityRes,$stateParams,SelectionService,ModalHandler) {
+.controller('UtilityCtrl', function UtilityCtrl($scope,UtilityRes,$stateParams,SelectionService,ModalHandler,InfiniteScrollHandler) {
         $scope.loaderEnabled = true;
-        $scope.scrollDisable = true;
+        $scope.resource =   UtilityRes;
+
 
         $scope.utilityList = UtilityRes.list.query({city_name:$stateParams.city_name},function() {
             $scope.loaderEnabled = false;
             $scope.nextPageToken = $scope.utilityList[0].token;
             $scope.utilityList = $scope.utilityList[0].results;
-            $scope.scrollDisable = false;
+            $scope.infiniteScroll = new InfiniteScrollHandler($scope.nextPageToken,$scope.utilityList);
+
         });
 
-        $scope.loadMoreItems = function(){
-            $scope.scrollDisable = true;
-            console.log($scope.nextPageToken);
-            if($scope.nextPageToken != null){
-                var otherElements = UtilityRes.others.query({city_name: $stateParams.city_name, token: $scope.nextPageToken},function(){
-                    $scope.nextPageToken = otherElements[0].token;
-                    for(var i=0;i<otherElements[0].results.length;i++){
-                        $scope.utilityList.push(otherElements[0].results[i]);
-                    }
-                });
-            }
-            $scope.scrollDisable = false;
-        };
+
 
         $scope.setUtilityDetails = function(id_utility){
            ModalHandler.setUtilityDetails(id_utility);
@@ -282,29 +247,19 @@ angular.module( 'trippo.city', [
 
 })
 
-.controller('FoodCtrl',function FoodCtrl($scope,FoodRes,$stateParams,SelectionService,ModalHandler){
+.controller('FoodCtrl',function FoodCtrl($scope,FoodRes,$stateParams,SelectionService,ModalHandler,InfiniteScrollHandler){
         $scope.loaderEnabled = true;
-        $scope.scrollDisable = true;
+        $scope.resource =   FoodRes;
+
 
         $scope.foodList = FoodRes.list.query({city_name:$stateParams.city_name},function() {
             $scope.loaderEnabled = false;
             $scope.nextPageToken = $scope.foodList[0].token;
             $scope.foodList = $scope.foodList[0].results;
-            $scope.scrollDisable = false;
+            $scope.infiniteScroll = new InfiniteScrollHandler($scope.nextPageToken,$scope.foodList);
+
         });
-        $scope.loadMoreItems = function(){
-            $scope.scrollDisable = true;
-            console.log($scope.nextPageToken);
-            if($scope.nextPageToken != null){
-                var otherElements = FoodRes.others.query({city_name: $stateParams.city_name, token: $scope.nextPageToken},function(){
-                    $scope.nextPageToken = otherElements[0].token;
-                    for(var i=0;i<otherElements[0].results.length;i++){
-                        $scope.foodList.push(otherElements[0].results[i]);
-                    }
-                });
-            }
-            $scope.scrollDisable = false;
-        };
+
         $scope.setFoodDetails = function(id_food){
             ModalHandler.setFoodDetails(id_food);
         } ;
@@ -327,22 +282,61 @@ angular.module( 'trippo.city', [
 
 })
 
+.factory('InfiniteScrollHandler', function ($stateParams) {
 
+        var ScrollHandler = function(curr_token,list){
+             this.itemList = list;
+             this.busy = false;
+             this.token =curr_token;
+        };
+        ScrollHandler.prototype.nextPage = function(resource,list){
+            if (this.busy){return;}
+            this.busy = true;
+            this.itemList = list;
+
+
+
+            if(this.token != null){
+                var otherElements = resource.others.query({city_name: $stateParams.city_name, token: this.token},function(){
+                    console.log("previous token inside infinite scroll");
+                    console.log(this.token);
+                    this.token = otherElements[0].token;
+                    console.log("other elements");
+                    console.log(otherElements[0]);
+
+                    console.log("after token inside infinite scroll");
+                    console.log(this.token);
+
+                    for(var i=0;i<otherElements[0].results.length;i++){
+                        this.itemList.push(otherElements[0].results[i]);
+                    }
+                    this.busy = false;
+
+                }.bind(this));
+            }
+
+        };
+        return  ScrollHandler;
+
+
+
+    
+})
 
 
 
 
     .controller( 'CityCtrl', function CityCtrl( $scope, $stateParams, $log , CityRes,ModalHandler) {
-        $scope.$log= $log;
-        $scope.intervalImages = 5000;
-        $scope.moreInfoSelection=null;
+        $scope.$log = $log;
+        $scope.intervalImages = 8000;
+        $scope.moreInfoSelection = null;
         $scope.modalEnabled = false;
         $scope.loaderEnabled = true;
-        $scope.city = CityRes.details.query({city_name:$stateParams.city_name});
 
-
-
-
+        $scope.city = CityRes.details.query({city_name: $stateParams.city_name}, function () {
+            $scope.images = $scope.city[0].images;
+            $scope.city = $scope.city[0].details;
+        });
 
     })
 /**
