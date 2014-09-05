@@ -6,30 +6,12 @@ angular.module('trippo.plan',[
     'ui.bootstrap',
     'ngResource',
     'angular-sortable-view',
-    'trippo.city'
+    'trippo.city',
+    'trippo.modal'
 ])
 
 
-/**
- * Gets the start and end date from the view
- */
-.controller('CalendarCtrl', function CalendarCtrl($scope, $state,$stateParams,DatesService) {
-        $scope.dtstart=null;
-        $scope.dtend=null;
-        $scope.submitted =false;
 
-        $scope.next = function (form) {
-        $scope.submitted =true;
-            if (form.$valid) {
-                DatesService.createRangeDates($scope.dtstart,$scope.dtend) ;
-                $state.transitionTo('dates',{city_name: $stateParams.city_name});
-            }
-
-        };
-
-
-
-})
 /**
  * createRangesDates
  * params start start date of the range
@@ -38,19 +20,72 @@ angular.module('trippo.plan',[
  */
 .factory('DatesService', function () {
     var range=[];
+        /**
+         * generate a range of moments(dates)
+         * @param start
+         * @param end
+         * @returns {Array|*}  return array containing range of dates
+         */
+    var createRangeDates = function(start,end){
+        var datesRange=[];
+        for (var m = moment(start); m.isBefore(moment(end).add(1, 'days')); m.add(1, 'days')) {
+            var curr_day = angular.copy(m);
+            datesRange.push(curr_day);
+        }
+        return datesRange;
 
+    } ;
     return {
-        createRangeDates:function(start,end){
-            range=[];
-            for (var m = moment(start); m.isBefore(moment(end).add(1, 'days')); m.add(1, 'days')) {
-                console.log(m.format('DD MMMM YYYY'));
-                var curr_day = angular.copy(m);
-                range.push(curr_day);
-                }
+        /**
+         * Generate the set of object which will represent the day schedule
+         * @param start  start date of range
+         * @param end   end date of range
+         */
+        createRange:function(start,end){
+            var dates =createRangeDates(start,end);
+            angular.forEach(dates, function (value, key) {
+                var day_schedule = {
+                    date: value,
+                    todo: [],
+                    name:"",
+                    description:""
+                };
+                range[value]=day_schedule;
 
-            },
+            });
+            console.log("dates schedule");
+            console.log(range);
+
+
+        },
+        /**
+         * return the list of object representing day schedule
+         * @returns {Array}
+         */
         getRange:function(){
             return range;
+        } ,
+        /**
+         * return the range of dates of the day schedule objects
+         * @returns {Array}
+         */
+        getRangeDates:function(){
+            var dateRange=[] ;
+            console.log("range indateas");
+            console.log(range);
+            for (var key in range) {
+                dateRange.push(range[key].date);
+            } /*
+            angular.forEach(range, function (value, key) {
+                console.log("value");
+                console.log(value);
+
+                dateRange.push(value.date);
+            });
+            */
+            console.log(dateRange);
+
+            return dateRange;
         }
         };
 })
@@ -63,7 +98,7 @@ angular.module('trippo.plan',[
         $scope.dtstart=null;
         $scope.dtend=null;
         $scope.submitted =false;
-        $scope.dates = DatesService.getRange();
+        $scope.dates = DatesService.getRangeDates();
         /**
          * open the start or end datepicker based on which button is pushed
          * @param $event
@@ -91,8 +126,8 @@ angular.module('trippo.plan',[
         $scope.next = function (form) {
             $scope.submitted = true;
             if (form.$valid) {
-                DatesService.createRangeDates($scope.dtstart, $scope.dtend);
-                $scope.dates = DatesService.getRange();
+                DatesService.createRange($scope.dtstart, $scope.dtend);
+                $scope.dates = DatesService.getRangeDates();
             }
         };
 
@@ -113,8 +148,31 @@ angular.module('trippo.plan',[
 
 })
 
-.controller('PlanningCtrl', function PlanningCtrl($scope,SelectionService) {
+.controller('PlanningCtrl', function PlanningCtrl($scope,SelectionService,ModalHandler,StubHandler) {
+        /**
+         * List of fuction which set the content of the modal when clicked More button in item
+         */
+        $scope.setCultureDetails = function(id_culture){
+            ModalHandler.setCultureDetails(id_culture);
+        };
+        $scope.setEntertainmentDetails = function(id_entertainment){
+            ModalHandler.setEntertainmentDetails(id_entertainment);
+        };
+        $scope.setHotelsDetails = function(id_hotel){
+            ModalHandler.setHotelsDetails(id_hotel);
+        };
+        $scope.setFoodDetails = function(id_food){
+            ModalHandler.setFoodDetails(id_food);
+        };
+
+        var randomItems = [];
+        for (var i = 0; i < 10; i++) {
+            randomItems.push(StubHandler.getItemRandom());
+        }
+        //$scope.culture =randomItems;
+
         $scope.selectedItems =["1","2","3","4","5","6","7","8","9"];
+
         $scope.hotels =SelectionService. getHotelSelection();
         $scope.culture =SelectionService.getCultureSelection();
         $scope.entertainment =SelectionService.getEntertainmentSelection();
@@ -125,6 +183,32 @@ angular.module('trippo.plan',[
 
 
 
+})
+.factory('PlanningService', function () {
+
+
+})
+
+.factory('StubHandler', function () {
+    function makestring(){
+        var text = "";
+        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+        for( var i=0; i < 5; i++ ) {
+            text += possible.charAt(Math.floor(Math.random() * possible.length));
+        }
+        return text;
+    }
+        return {
+            getItemRandom : function(){
+                return {
+                    id:"fdsfsd",
+                    name: makestring(),
+                    photos : ["http://ilmiomappamondo.files.wordpress.com/2014/02/londra2.jpg","assets/images/empty_photo.png"]
+
+                };
+            }
+        };
 });
 
 

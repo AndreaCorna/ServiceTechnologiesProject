@@ -125,14 +125,11 @@ angular.module( 'trippo.city', [
 
 
         $scope.setCultureDetails = function(culture_item){
-            console.log("called details");
-            
             ModalHandler.setCultureDetails(culture_item);
         } ;
 
         $scope.addCultureItem = function(culture_item){
             $scope.cultureSelection = SelectionService.addCultureItem(culture_item,$scope.cultureList);
-            console.log(ModalHandler.details);
         };
 
 
@@ -330,33 +327,16 @@ angular.module( 'trippo.city', [
 
 
     .controller( 'CityCtrl', function CityCtrl( $scope, $stateParams, $log , CityRes,ModalHandler) {
-        $scope.$log= $log;
+        $scope.$log = $log;
         $scope.intervalImages = 5000;
-        $scope.moreInfoSelection=null;
+        $scope.moreInfoSelection = null;
         $scope.modalEnabled = false;
         $scope.loaderEnabled = true;
-        $scope.city = CityRes.details.query({city_name:$stateParams.city_name},function(){
+
+        $scope.city = CityRes.details.query({city_name: $stateParams.city_name}, function () {
             $scope.images = $scope.city[0].images;
             $scope.city = $scope.city[0].details;
         });
-        /**
-         * Added a watch to update scope.moreInfoSelection which is set every time a moreInfo button is pushed
-         */
-        $scope.$watchCollection(function () { return ModalHandler.getDetails(); }, function (newVal, oldVal) {
-            $scope.loaderEnabled = true;
-            if (typeof newVal !== 'undefined') {
-                $scope.moreInfoSelection = ModalHandler.getDetails();
-                $scope.modalEnabled = true;
-            }
-            $scope.loaderEnabled = false;
-
-        });
-        $scope.disableModal = function(){
-            $scope.modalEnabled = false;
-            $scope.loaderEnabled = true;
-        };
-
-
 
     })
 /**
