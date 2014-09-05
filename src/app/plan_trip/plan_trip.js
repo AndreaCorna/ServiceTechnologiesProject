@@ -183,32 +183,52 @@ angular.module('trippo.plan',[
             ModalHandler.setFoodDetails(id_food);
         };
 
-        var randomItems = [];
-        for (var i = 0; i < 10; i++) {
-            randomItems.push(StubHandler.getItemRandom());
+        var randomItemsc = [];
+        var  randomItemse = [];
+        var  randomItemsh = [];
+        var  randomItemsf = [];
+
+        for (var i = 0; i < 8; i++) {
+            randomItemsc.push(StubHandler.getItemRandom());
         }
-        //$scope.culture =randomItems;
-        console.log("date and moment");
-        
-        console.log($stateParams.date);
+        for (var g = 0; i < 8; i++) {
+            randomItemse.push(StubHandler.getItemRandom());
+        }
+        for (var f = 0; i < 8; i++) {
+            randomItemsh.push(StubHandler.getItemRandom());
+        }
+        for (var a = 0; i < 8; i++) {
+            randomItemsf.push(StubHandler.getItemRandom());
+        }
+        $scope.culture =randomItemsc;
+        $scope.entertainment = randomItemse;
+        $scope.hotel =randomItemsh;
+        $scope.food =randomItemsf;
 
-        
 
-        PlanningService.setCurrentDay($stateParams.date);
 
+
+        //get the item selected in the selectionService and set the current daySchedule removing item which has been removed from the Selection service
         $scope.hotels =SelectionService. getHotelSelection();
         $scope.culture =SelectionService.getCultureSelection();
         $scope.entertainment =SelectionService.getEntertainmentSelection();
         $scope.foods = SelectionService.getFoodSelection();
+        var selectedItems = $scope.culture.concat($scope.hotels,$scope.entertainment,$scope.foods) ;
+        PlanningService.initializeCurrentDay($stateParams.date,selectedItems);
 
-        $scope.selectedItems =[];
+
+        $scope.isScheduled = function (item) {
+              return PlanningService.isScheduled(item);
+        };
+
+        $scope.selectedItems =PlanningService.getCurrentTodo();
         $scope.addToSchedule = function (item) {
             $scope.selectedItems =  PlanningService.addToSchedule(item);
-            item["scheduled"] = true;
+
         };
         $scope.removeFromSchedule = function (item) {
             $scope.selectedItems =  PlanningService.removeFromSchedule(item);
-            item["scheduled"] = false;
+
         };
 
 
@@ -220,13 +240,25 @@ angular.module('trippo.plan',[
 
 
         return {
-             setCurrentDay: function(day){
-                 console.log("in set current");
+            /**
+             * set the current day of the schedule removing item which were removed from the selectedItem in city page
+             * @param day
+             */
+             initializeCurrentDay: function(day,selectedItems){
 
-                 console.log(day) ;
                  current_schedule = DatesService.getDay(day);
-                 console.log(current_schedule) ;
+                angular.forEach(current_schedule.todo, function (value, key) {
+                     if(selectedItems.indexOf(value)==-1){
+                         var index =current_schedule.todo.indexOf(value);
+                         current_schedule.todo.splice(index, 1);
+                     }
+                });
              },
+            /**
+             * add item to the todo_ array of schedule
+             * @param item
+             * @returns {*|day_schedule.todo_}  item of the current day
+             */
             addToSchedule:function(item){
                 var index = current_schedule.todo.indexOf(item);
                 if (index==-1){
@@ -235,12 +267,28 @@ angular.module('trippo.plan',[
                 return current_schedule.todo;
 
             },
+            /**
+             * remove item to the toodo array of schedule
+             * @param item
+             * @returns {*|day_schedule.todo_}  item of the current day
+             */
             removeFromSchedule:function(item){
                 var index = current_schedule.todo.indexOf(item);
                 if (index > -1) {
                     current_schedule.todo.splice(index, 1);
                 }
                 return current_schedule.todo;
+            },
+            getCurrentTodo:function(){
+                return current_schedule.todo;
+            } ,
+            /**
+             * check if item is inside current day todo_ array
+             * @param item
+             * @returns {boolean}
+             */
+            isScheduled:function(item){
+                return current_schedule.todo.indexOf(item)>-1 ;
             }
         };
 
