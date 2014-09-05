@@ -272,13 +272,17 @@ angular.module("about/about.tpl.html", []).run(["$templateCache", function($temp
 
 angular.module("city/city.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("city/city.tpl.html",
-    "<div class=\"container\" style=\"margin-bottom: 30px;\">\n" +
-    "    <h3 class=\"text-capitalize text-center\" style=\"font-family: Capriola;\">Welcome to {{city.name}}</h3>\n" +
-    "    <carousel interval=\"intervalImages\">\n" +
-    "        <slide ng-repeat=\"image in images\" active=\"image.active\">\n" +
-    "            <img ng-src=\"{{image.url}}\" style=\"margin:auto;\">\n" +
-    "        </slide>\n" +
-    "    </carousel>\n" +
+    "<div class=\"top-view\">\n" +
+    "    <div class=\"container \" >\n" +
+    "        <h3 class=\"text-capitalize text-center\" style=\"font-family: Capriola;\">Welcome to {{city.name}}</h3>\n" +
+    "        <div class=\"row background-carousel\">\n" +
+    "        <carousel interval=\"intervalImages\" class=\"carousel-fixed-height col-md-8 col-md-offset-2\" style=\"padding: 0px\">\n" +
+    "            <slide ng-repeat=\"image in images\" active=\"image.active\" style=\" height:100%;width:100%;\">\n" +
+    "                <img ng-src=\"{{image.url}}\" style=\" height:100%;width:100%;\" >\n" +
+    "            </slide>\n" +
+    "        </carousel>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
     "</div>\n" +
     "\n" +
     "<div id='cssmenu'>\n" +
