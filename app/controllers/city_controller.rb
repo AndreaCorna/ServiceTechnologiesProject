@@ -19,7 +19,7 @@ class CityController < ApplicationController
     cities = populate_database(json)
     cities.each{ |city|
       puts city.name
-      if(City.find_by_name(city).nil?)
+      if(City.find_by_name(city.name).nil?)
         City.create({:name => city.name,:state => city.state,:lat => city.lat,:lng => city.lng})
         photos = get_images_url(city.lat,city.lng)
         photos.each{ |photo|
