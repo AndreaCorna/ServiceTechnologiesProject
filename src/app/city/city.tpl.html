@@ -1,12 +1,11 @@
-
-<carousel interval="intervalImages">
-    <slide ng-repeat="image in images" active="image.active">
-        <img ng-src="{{image.url}}" style="margin:auto;">
-        <div class="carousel-caption">
-            <p>{{image.descr}}</p>
-        </div>
-    </slide>
-</carousel>
+<div class="container">
+    <h3 class="text-capitalize text-center" style="font-family: Capriola;">Welcome to {{city.name}}</h3>
+    <carousel interval="intervalImages">
+        <slide ng-repeat="image in images" active="image.active">
+            <img ng-src="{{image.url}}" style="margin:auto;">
+        </slide>
+    </carousel>
+</div>
 
 <div id='cssmenu'>
     <ul>

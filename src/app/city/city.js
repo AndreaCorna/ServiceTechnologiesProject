@@ -259,7 +259,7 @@ angular.module( 'trippo.city', [
             $scope.loaderEnabled = false;
             $scope.nextPageToken = $scope.foodList[0].token;
             $scope.foodList = $scope.foodList[0].results;
-            $scope.infiniteScroll = new InfiniteScrollHandler($scope.nextPageToken,$scope.utilityList);
+            $scope.infiniteScroll = new InfiniteScrollHandler($scope.nextPageToken,$scope.foodList);
 
         });
 
@@ -337,6 +337,7 @@ angular.module( 'trippo.city', [
         $scope.loaderEnabled = true;
         $scope.city = CityRes.details.query({city_name:$stateParams.city_name},function(){
             $scope.images = $scope.city[0].images;
+            $scope.city = $scope.city[0].details;
         });
         /**
          * Added a watch to update scope.moreInfoSelection which is set every time a moreInfo button is pushed
