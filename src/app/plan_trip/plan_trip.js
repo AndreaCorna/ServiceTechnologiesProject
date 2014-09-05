@@ -164,33 +164,20 @@ angular.module('trippo.plan',[
         $scope.setFoodDetails = function(id_food){
             ModalHandler.setFoodDetails(id_food);
         };
-        $scope.moreInfoSelection = null;
 
-        /**
-         * Added a watch to update scope.moreInfoSelection which is set every time a moreInfo button is pushed
-         */
-        $scope.$watchCollection(function () { return ModalHandler.getDetails(); }, function (newVal, oldVal) {
-            $scope.loaderEnabled = true;
-            if (typeof newVal !== 'undefined') {
-                $scope.moreInfoSelection = ModalHandler.getDetails();
-                $scope.modalEnabled = true;
-            }
-            $scope.loaderEnabled = false;
-
-        });
         var randomItems = [];
         for (var i = 0; i < 10; i++) {
             randomItems.push(StubHandler.getItemRandom());
         }
-        $scope.culture =randomItems;
+        //$scope.culture =randomItems;
 
         $scope.selectedItems =["1","2","3","4","5","6","7","8","9"];
-        /*
+
         $scope.hotels =SelectionService. getHotelSelection();
         $scope.culture =SelectionService.getCultureSelection();
         $scope.entertainment =SelectionService.getEntertainmentSelection();
         $scope.foods = SelectionService.getFoodSelection();
-         */
+
 
 
 
