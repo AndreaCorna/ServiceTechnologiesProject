@@ -20,6 +20,12 @@ class CityController < ApplicationController
     cities.each{ |city|
       puts city.name
       City.create({:name => city.name,:state => city.state,:lat => city.lat,:lng => city.lng})
+      photos = get_images_url(city.lat,city.lng)
+      photos.each{ |photo|
+        puts '.............................................................................'
+        puts photo['photo_file_url']
+        CityImage.create({:url =>photo['photo_file_url'],:city_id => city.name})
+      }
     }
 
     render json: cities.to_json

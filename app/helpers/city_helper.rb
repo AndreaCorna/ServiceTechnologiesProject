@@ -1,9 +1,11 @@
+require 'net/http'
+require 'httparty'
 module CityHelper
 
-  def populate_database(cities)
+   def populate_database(cities)
     results = []
-    ajs=  JSON.parse(cities)
-    ajs.each do |city|
+    response=  JSON.parse(cities)
+    response.each do |city|
         location = Geocoder.search(city)
         lat = location[0].latitude
         lng = location[0].longitude
@@ -14,6 +16,19 @@ module CityHelper
     end
     return results
 
+  end
+
+  def get_images_url(lat,lng)
+    photos = []
+    latitude = (lat+0.5).to_s
+    longitude =(lng+0.5).to_s
+    url = 'http://www.panoramio.com/map/get_panoramas.php?set=public&from=0&to=4&minx='+lng.to_s+'&miny='+lat.to_s+'&maxx='+longitude+'&maxy='+latitude+'&size=medium&mapfilter=true'
+    response = HTTParty.get(url)
+    json = JSON.parse(response.body)
+    puts json
+    json['photos'].each do |photo|
+      photos.append(photo)
+    end
   end
 
 
