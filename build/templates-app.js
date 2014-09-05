@@ -1329,8 +1329,13 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
     "                                      </div>\n" +
     "                                 </div>\n" +
     "                                <div class=\"row\">\n" +
-    "                                    <button class=\"btn btn-primary btn-outlined \">Add</button>\n" +
-    "                                    <button class=\"btn btn-primary btn-outlined \" ng-click=\"setCultureDetails(cult.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">More</button>\n" +
+    "                                    <div class=\"col-md-6\" ng-if=\"cult.scheduled\">\n" +
+    "                                        <button class=\"btn btn-primary btn-outlined pull-right\" ng-click=\"removeFromSchedule(cult)\">REMOVE</button>\n" +
+    "                                    </div>\n" +
+    "                                    <div class=\"col-md-6\" ng-if=\"!cult.scheduled\">\n" +
+    "                                        <button class=\"btn btn-primary btn-outlined pull-right\" ng-click=\"addToSchedule(cult)\">ADD</button>\n" +
+    "                                    </div>\n" +
+    "                                    <button class=\"btn btn-primary btn-outlined pull-left\" ng-click=\"setCultureDetails(cult.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">More</button>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
     "                        </li>\n" +

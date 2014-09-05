@@ -20,6 +20,8 @@ angular.module('trippo.plan',[
  */
 .factory('DatesService', function () {
     var range=[];
+
+
         /**
          * generate a range of moments(dates)
          * @param start
@@ -35,22 +37,32 @@ angular.module('trippo.plan',[
         return datesRange;
 
     } ;
+    var  dateFormat="DD-MM-YYYY";
+
     return {
         /**
-         * Generate the set of object which will represent the day schedule
+         * format used in url to describe specific date and represent the key of the hashmap range
+         */
+        dateFormat :dateFormat,
+        /**
+         * Generate the hash  of object which will represent the day schedule the key is the date in format dateFormat
          * @param start  start date of range
          * @param end   end date of range
          */
         createRange:function(start,end){
             var dates =createRangeDates(start,end);
-            angular.forEach(dates, function (value, key) {
+            angular.forEach(dates, function (value, index) {
                 var day_schedule = {
                     date: value,
                     todo: [],
                     name:"",
                     description:""
                 };
-                range[value]=day_schedule;
+                console.log("Range key:");
+                var key =   value.format(dateFormat);
+                console.log(key);
+
+                range[key]=day_schedule;
 
             });
             console.log("dates schedule");
@@ -60,10 +72,16 @@ angular.module('trippo.plan',[
         },
         /**
          * return the list of object representing day schedule
+         * @params day is the day which want to retrive in format DatesService.dateFormat i.e. (29-11-2005) the same format as the url parameter
          * @returns {Array}
          */
-        getRange:function(){
-            return range;
+        getDay:function(day){
+            console.log("days in range");
+            for (var o in range) {
+                console.log(o);
+
+            }
+            return range[day];
         } ,
         /**
          * return the range of dates of the day schedule objects
@@ -137,7 +155,7 @@ angular.module('trippo.plan',[
          * @type {string}
          */
         $scope.datePickerFormat ="dd-MM-yyyy";
-        $scope.dateFormat ="DD-MM-YYYY";
+        $scope.dateFormat =DatesService.dateFormat;
         $scope.dayFormat = "DD";
         $scope.monthFormat = "MMM";
         $scope.yearFormat ="YYYY";
@@ -148,7 +166,7 @@ angular.module('trippo.plan',[
 
 })
 
-.controller('PlanningCtrl', function PlanningCtrl($scope,SelectionService,ModalHandler,StubHandler) {
+.controller('PlanningCtrl', function PlanningCtrl($scope,SelectionService,ModalHandler,PlanningService,$stateParams,StubHandler) {
         /**
          * List of fuction which set the content of the modal when clicked More button in item
          */
@@ -170,21 +188,61 @@ angular.module('trippo.plan',[
             randomItems.push(StubHandler.getItemRandom());
         }
         //$scope.culture =randomItems;
+        console.log("date and moment");
+        
+        console.log($stateParams.date);
 
-        $scope.selectedItems =["1","2","3","4","5","6","7","8","9"];
+        
+
+        PlanningService.setCurrentDay($stateParams.date);
 
         $scope.hotels =SelectionService. getHotelSelection();
         $scope.culture =SelectionService.getCultureSelection();
         $scope.entertainment =SelectionService.getEntertainmentSelection();
         $scope.foods = SelectionService.getFoodSelection();
 
-
+        $scope.selectedItems =[];
+        $scope.addToSchedule = function (item) {
+            $scope.selectedItems =  PlanningService.addToSchedule(item);
+            item["scheduled"] = true;
+        };
+        $scope.removeFromSchedule = function (item) {
+            $scope.selectedItems =  PlanningService.removeFromSchedule(item);
+            item["scheduled"] = false;
+        };
 
 
 
 
 })
-.factory('PlanningService', function () {
+.factory('PlanningService', function (DatesService) {
+        var current_schedule;
+
+
+        return {
+             setCurrentDay: function(day){
+                 console.log("in set current");
+
+                 console.log(day) ;
+                 current_schedule = DatesService.getDay(day);
+                 console.log(current_schedule) ;
+             },
+            addToSchedule:function(item){
+                var index = current_schedule.todo.indexOf(item);
+                if (index==-1){
+                    current_schedule.todo.push(item);
+                }
+                return current_schedule.todo;
+
+            },
+            removeFromSchedule:function(item){
+                var index = current_schedule.todo.indexOf(item);
+                if (index > -1) {
+                    current_schedule.todo.splice(index, 1);
+                }
+                return current_schedule.todo;
+            }
+        };
 
 
 })

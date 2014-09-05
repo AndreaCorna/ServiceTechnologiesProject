@@ -31,8 +31,13 @@
                                       </div>
                                  </div>
                                 <div class="row">
-                                    <button class="btn btn-primary btn-outlined ">Add</button>
-                                    <button class="btn btn-primary btn-outlined " ng-click="setCultureDetails(cult.id)" href="#moreInfoModal" data-toggle="modal">More</button>
+                                    <div class="col-md-6" ng-if="cult.scheduled">
+                                        <button class="btn btn-primary btn-outlined pull-right" ng-click="removeFromSchedule(cult)">REMOVE</button>
+                                    </div>
+                                    <div class="col-md-6" ng-if="!cult.scheduled">
+                                        <button class="btn btn-primary btn-outlined pull-right" ng-click="addToSchedule(cult)">ADD</button>
+                                    </div>
+                                    <button class="btn btn-primary btn-outlined pull-left" ng-click="setCultureDetails(cult.id)" href="#moreInfoModal" data-toggle="modal">More</button>
                                 </div>
                             </div>
                         </li>
