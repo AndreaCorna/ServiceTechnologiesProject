@@ -191,31 +191,20 @@ angular.module( 'trippo.city', [
 
 })
 
-.controller('UtilityCtrl', function UtilityCtrl($scope,UtilityRes,$stateParams,SelectionService,ModalHandler) {
+.controller('UtilityCtrl', function UtilityCtrl($scope,UtilityRes,$stateParams,SelectionService,ModalHandler,InfiniteScrollHandler) {
         $scope.loaderEnabled = true;
-        $scope.scrollDisable = true;
+        $scope.resource =   UtilityRes;
+
 
         $scope.utilityList = UtilityRes.list.query({city_name:$stateParams.city_name},function() {
             $scope.loaderEnabled = false;
             $scope.nextPageToken = $scope.utilityList[0].token;
             $scope.utilityList = $scope.utilityList[0].results;
-            $scope.scrollDisable = false;
+            $scope.infiniteScroll = new InfiniteScrollHandler($scope.nextPageToken,$scope.utilityList);
+
         });
 
-        $scope.loadMoreItems = function(){
-            $scope.scrollDisable = true;
-            console.log($scope.nextPageToken);
-            if($scope.nextPageToken != null){
-                var otherElements = UtilityRes.others.query({city_name: $stateParams.city_name, token: $scope.nextPageToken},function(){
-                    $scope.nextPageToken = otherElements[0].token;
-                    for(var i=0;i<otherElements[0].results.length;i++){
-                        $scope.utilityList.push(otherElements[0].results[i]);
-                    }
-                    $scope.scrollDisable = false;
 
-                });
-            }
-        };
 
         $scope.setUtilityDetails = function(id_utility){
            ModalHandler.setUtilityDetails(id_utility);
@@ -261,30 +250,19 @@ angular.module( 'trippo.city', [
 
 })
 
-.controller('FoodCtrl',function FoodCtrl($scope,FoodRes,$stateParams,SelectionService,ModalHandler){
+.controller('FoodCtrl',function FoodCtrl($scope,FoodRes,$stateParams,SelectionService,ModalHandler,InfiniteScrollHandler){
         $scope.loaderEnabled = true;
-        $scope.scrollDisable = true;
+        $scope.resource =   FoodRes;
+
 
         $scope.foodList = FoodRes.list.query({city_name:$stateParams.city_name},function() {
             $scope.loaderEnabled = false;
             $scope.nextPageToken = $scope.foodList[0].token;
             $scope.foodList = $scope.foodList[0].results;
-            $scope.scrollDisable = false;
-        });
-        $scope.loadMoreItems = function(){
-            $scope.scrollDisable = true;
-            console.log($scope.nextPageToken);
-            if($scope.nextPageToken != null){
-                var otherElements = FoodRes.others.query({city_name: $stateParams.city_name, token: $scope.nextPageToken},function(){
-                    $scope.nextPageToken = otherElements[0].token;
-                    for(var i=0;i<otherElements[0].results.length;i++){
-                        $scope.foodList.push(otherElements[0].results[i]);
-                    }
-                    $scope.scrollDisable = false;
+            $scope.infiniteScroll = new InfiniteScrollHandler($scope.nextPageToken,$scope.foodList);
 
-                });
-            }
-        };
+        });
+
         $scope.setFoodDetails = function(id_food){
             ModalHandler.setFoodDetails(id_food);
         } ;
@@ -359,6 +337,7 @@ angular.module( 'trippo.city', [
         $scope.loaderEnabled = true;
         $scope.city = CityRes.details.query({city_name:$stateParams.city_name},function(){
             $scope.images = $scope.city[0].images;
+            $scope.city = $scope.city[0].details;
         });
         /**
          * Added a watch to update scope.moreInfoSelection which is set every time a moreInfo button is pushed
