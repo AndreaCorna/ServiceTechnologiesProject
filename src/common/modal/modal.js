@@ -82,6 +82,27 @@ angular.module('trippo.modal', ["trippo.resources"])
 
         };
     })
-;
+    .controller("ModalCtrl",function($scope,ModalHandler){
+        $scope.moreInfoSelection = null;
+        $scope.modalEnabled = false;
+        $scope.loaderEnabled = true;
+
+        /**
+         * Added a watch to update scope.moreInfoSelection which is set every time a moreInfo button is pushed
+         */
+        $scope.$watchCollection(function () { return ModalHandler.getDetails(); }, function (newVal, oldVal) {
+            $scope.loaderEnabled = true;
+            if (typeof newVal !== 'undefined') {
+                $scope.moreInfoSelection = ModalHandler.getDetails();
+                $scope.modalEnabled = true;
+            }
+            $scope.loaderEnabled = false;
+
+        });
+        $scope.disableModal = function(){
+            $scope.modalEnabled = false;
+            $scope.loaderEnabled = true;
+        };
+    });
 
 

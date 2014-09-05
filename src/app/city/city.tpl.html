@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" style="margin-bottom: 30px;">
     <h3 class="text-capitalize text-center" style="font-family: Capriola;">Welcome to {{city.name}}</h3>
     <carousel interval="intervalImages">
         <slide ng-repeat="image in images" active="image.active">
@@ -26,7 +26,7 @@
 
 
 
-    <div class="modal fade" id="moreInfoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade" ng-controller="ModalCtrl" id="moreInfoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                     <div ng-show="modalEnabled">

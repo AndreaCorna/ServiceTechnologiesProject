@@ -1,28 +1,46 @@
+require 'net/http'
+require 'httparty'
 module CityHelper
 
-  def get_list_cities()
-    city1 = City.new('Milan','Italy','image')
-    city2 = City.new('Madrid','Spain','image')
-    city3 = City.new('New York','States','image')
-    city4 = City.new('Amsterdam','Holland','image')
-    city5 = City.new('Mosca','Russia','image')
-    city6 = City.new('Berlin','Germany','image')
-    test = [city1,city2,city3,city4,city5,city6]
-    return test
+   def populate_database(cities)
+    results = []
+    response=  JSON.parse(cities)
+    response.each do |city|
+        location = Geocoder.search(city)
+        lat = location[0].latitude
+        lng = location[0].longitude
+        country = location[0].country
+        item = CityItem.new(city,country,lat,lng)
+        puts item.to_json
+        results.append(item)
+    end
+    return results
+
   end
 
-  def get_city_details(city)
-    puts city
-    test = [City.new("prima","descrizione1","assets/images/trippo.png",)];
-    return test
+  def get_images_url(lat,lng)
+    photos = []
+    latitude = (lat+0.5).to_s
+    longitude =(lng+0.5).to_s
+    url = 'http://www.panoramio.com/map/get_panoramas.php?set=public&from=0&to=4&minx='+lng.to_s+'&miny='+lat.to_s+'&maxx='+longitude+'&maxy='+latitude+'&size=medium&mapfilter=true'
+    response = HTTParty.get(url)
+    json = JSON.parse(response.body)
+    puts json
+    json['photos'].each do |photo|
+      photos.append(photo)
+    end
   end
 
 
-  class City
-    def initialize(name,state,image)
+
+  class CityItem
+    attr_accessor :name,:lat,:lng,:state;
+
+    def initialize(name,state,lat,lng)
       @name = name
       @state = state
-      @image = image
+      @lat = lat;
+      @lng = lng;
     end
   end
 
