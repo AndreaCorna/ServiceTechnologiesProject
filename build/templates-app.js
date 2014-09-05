@@ -272,7 +272,7 @@ angular.module("about/about.tpl.html", []).run(["$templateCache", function($temp
 
 angular.module("city/city.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("city/city.tpl.html",
-    "<div class=\"container\">\n" +
+    "<div class=\"container\" style=\"margin-bottom: 30px;\">\n" +
     "    <h3 class=\"text-capitalize text-center\" style=\"font-family: Capriola;\">Welcome to {{city.name}}</h3>\n" +
     "    <carousel interval=\"intervalImages\">\n" +
     "        <slide ng-repeat=\"image in images\" active=\"image.active\">\n" +

@@ -64,7 +64,7 @@ Rails.application.routes.draw do
 
 
 
-  resources :city, :only => [:index , :show]    do
+  resources :city, :only => [:index , :show,]    do
     resources :hotels    ,  :only => [:index,:show]
     resources :culture   ,  :only => [:index,:show]
     resources :entertainment  ,  :only => [:index,:show]
@@ -74,6 +74,8 @@ Rails.application.routes.draw do
   end
 
   resources :guides
+
+  get 'populate', :to => 'city#populate'
 
 
 
