@@ -1,7 +1,7 @@
 
 <carousel interval="intervalImages">
-    <slide ng-repeat="image in city" active="image.active">
-        <img ng-src="{{image.image}}" style="margin:auto;">
+    <slide ng-repeat="image in images" active="image.active">
+        <img ng-src="{{image.url}}" style="margin:auto;">
         <div class="carousel-caption">
             <p>{{image.descr}}</p>
         </div>

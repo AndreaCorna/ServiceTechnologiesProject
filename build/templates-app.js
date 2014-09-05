@@ -274,8 +274,8 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
   $templateCache.put("city/city.tpl.html",
     "\n" +
     "<carousel interval=\"intervalImages\">\n" +
-    "    <slide ng-repeat=\"image in city\" active=\"image.active\">\n" +
-    "        <img ng-src=\"{{image.image}}\" style=\"margin:auto;\">\n" +
+    "    <slide ng-repeat=\"image in images\" active=\"image.active\">\n" +
+    "        <img ng-src=\"{{image.url}}\" style=\"margin:auto;\">\n" +
     "        <div class=\"carousel-caption\">\n" +
     "            <p>{{image.descr}}</p>\n" +
     "        </div>\n" +

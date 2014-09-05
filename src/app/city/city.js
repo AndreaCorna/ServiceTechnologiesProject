@@ -357,7 +357,9 @@ angular.module( 'trippo.city', [
         $scope.moreInfoSelection=null;
         $scope.modalEnabled = false;
         $scope.loaderEnabled = true;
-        $scope.city = CityRes.details.query({city_name:$stateParams.city_name});
+        $scope.city = CityRes.details.query({city_name:$stateParams.city_name},function(){
+            $scope.images = $scope.city[0].images;
+        });
         /**
          * Added a watch to update scope.moreInfoSelection which is set every time a moreInfo button is pushed
          */
