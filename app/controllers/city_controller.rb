@@ -7,7 +7,9 @@ class CityController < ApplicationController
 
   def show
     details = []
+    puts params[:id]
     city = City.find_by_name(params[:id])
+    puts city.city_images
     details.append({:details => city,:images => city.city_images})
     puts details.to_json
     render  json:  details.to_json
