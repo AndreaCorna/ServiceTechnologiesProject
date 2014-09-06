@@ -40,7 +40,7 @@ module CachingHelper
     else
       if((results = $redis.get(city+':culture:'+token)).nil?)
         puts 'no redis other data'
-        culture = get_culture_others(token)
+        culture = get_culture_others(token,city)
         $redis.set(city+':culture:'+token,culture.to_json)
         return culture.to_json
       else
@@ -70,7 +70,7 @@ module CachingHelper
     else
       if((results = $redis.get(city+':utility:'+token)).nil?)
         puts 'no redis other data'
-        utility = get_utility_others(token)
+        utility = get_utility_others(token,city)
         $redis.set(city+':utility:'+token,utility.to_json)
         return utility.to_json
       else
@@ -100,7 +100,7 @@ module CachingHelper
     else
       if((results = $redis.get(city+':entertainment:'+token)).nil?)
         puts 'no redis other data'
-        entertainment = get_entertainment_others(token)
+        entertainment = get_entertainment_others(token,city)
         $redis.set(city+':entertainment:'+token,entertainment.to_json)
         return entertainment.to_json
       else
@@ -130,7 +130,7 @@ module CachingHelper
     else
       if((results = $redis.get(city+':food:'+token)).nil?)
         puts 'no redis other data'
-        food = get_food_others(token)
+        food = get_food_others(token,city)
         $redis.set(city+':food:'+token,food.to_json)
         return food.to_json
       else
