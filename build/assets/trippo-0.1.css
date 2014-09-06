@@ -6736,6 +6736,15 @@ a.list-group-item:focus {
   text-align: center;
   text-transform: uppercase;
 }
+.selected {
+  display: inline-block;
+  width: 100%;
+  color: #ffffff;
+  background-color: #f5e024;
+  padding: 5px;
+  text-align: center;
+  text-transform: uppercase;
+}
 /**
 *accordition properties
 */
