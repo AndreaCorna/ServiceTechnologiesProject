@@ -14,7 +14,7 @@
                 <ul>
                     <div ng-repeat="cult in culture" class="event-list col-md-4">
                         <li>
-                            <div class="not-selected">
+                            <div ng-class="isScheduled(cult) ? 'selected' :'not-selected'">
                                 <div class="row" style="height: 48px;">
 
                                     <h1 class="item-name">{{cult.name}}</h1>
@@ -31,9 +31,16 @@
                                       </div>
                                  </div>
                                 <div class="row">
-                                    <button class="btn btn-primary btn-outlined ">Add</button>
-                                    <button class="btn btn-primary btn-outlined " ng-click="setCultureDetails(cult.id)" href="#moreInfoModal" data-toggle="modal">More</button>
-                                </div>
+                                    <div class="btn-group">
+
+                                        <button ng-show="isScheduled(cult)" style="margin-right: 2px;" class="btn btn-primary btn-outlined " style="display: inline-block;" ng-click="removeFromSchedule(cult)">REMOVE</button>
+
+
+                                        <button ng-show="!isScheduled(cult)" style="margin-right: 2px"  class="btn btn-primary btn-outlined " style="display: inline-block;" ng-click="addToSchedule(cult)">ADD</button>
+
+                                        <button class="btn btn-primary btn-outlined " style="margin-left: 4px;margin-bottom: 5px"  ng-click="setCultureDetails(cult.id)" href="#moreInfoModal" data-toggle="modal">MORE</button>
+                                    </div>
+                                  </div>
                             </div>
                         </li>
                     </div>
