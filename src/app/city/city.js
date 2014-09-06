@@ -245,6 +245,13 @@ angular.module( 'trippo.city', [
             $scope.hotelSelection = SelectionService.removeHotelItem(hotel_item);
         };
 
+        $scope.$watchCollection(function () { return SelectionService.getHotelSelection(); }, function (newVal, oldVal) {
+            $scope.hotelSelection = SelectionService.getHotelSelection();
+            if(!$scope.$$phase) {
+                $scope.$apply();
+            }
+        });
+
 
 })
 
