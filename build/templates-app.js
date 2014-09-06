@@ -1065,10 +1065,10 @@ angular.module("city/hotel.tpl.html", []).run(["$templateCache", function($templ
     "                                </div>\n" +
     "                            </div>\n" +
     "                            <div class=\"row center-block\" style=\"padding-top: 50px\">\n" +
-    "                                <button class=\"btn btn-primary\" ng-click=\"setHotelDetails(c.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">\n" +
+    "                                <button class=\"btn btn-primary capriola\" ng-click=\"setHotelDetails(c.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">\n" +
     "                                    More Info\n" +
     "                                </button>\n" +
-    "                                <button class=\"btn btn-primary \" ng-click=\"addHotelItem(c)\">\n" +
+    "                                <button class=\"btn btn-primary capriola\" ng-click=\"addHotelItem(c)\">\n" +
     "                                    Add\n" +
     "                                </button>\n" +
     "                            </div>\n" +
@@ -1076,16 +1076,16 @@ angular.module("city/hotel.tpl.html", []).run(["$templateCache", function($templ
     "                        <div class=\"col-md-6\" style=\"height:230px\">\n" +
     "                            <p class=\"list-group-item-text\">\n" +
     "                            <div class=\"row\">\n" +
-    "                                <b class=\"text-capitalize\">{{c.name}}</b>\n" +
+    "                                <b class=\"text-capitalize capriola\">{{c.name}}</b>\n" +
     "                            </div>\n" +
     "                            <div class=\"row\">\n" +
-    "                                <p>Address {{c.address}}</p>\n" +
+    "                                <p class=\"capriola\">Address {{c.address}}</p>\n" +
     "                            </div>\n" +
     "                            <div class=\"row\">\n" +
-    "                                <p>Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
+    "                                <p class=\"capriola\">Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
     "                            </div>\n" +
     "                            <div class=\"row scrollable\" style=\"max-height: 185px;overflow-y: auto\">\n" +
-    "                                <div class=\"text-justify\">{{c.description}}</div>\n" +
+    "                                <div class=\"text-justify capriola\">{{c.description}}</div>\n" +
     "                            </div>\n" +
     "\n" +
     "                            </p>\n" +
@@ -1139,10 +1139,10 @@ angular.module("city/hotel.tpl.html", []).run(["$templateCache", function($templ
     "                                </div>\n" +
     "                            </div>\n" +
     "                            <div class=\"row center-block\" style=\"padding-top: 50px\">\n" +
-    "                                <button class=\"btn btn-primary\" ng-click=\"setHotelDetails(c.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">\n" +
+    "                                <button class=\"btn btn-primary capriola\" ng-click=\"setHotelDetails(c.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">\n" +
     "                                    More Info\n" +
     "                                </button>\n" +
-    "                                <button class=\"btn btn-primary \" ng-click=\"addHotelItem(c)\">\n" +
+    "                                <button class=\"btn btn-primary capriola\" ng-click=\"addHotelItem(c)\">\n" +
     "                                    Add\n" +
     "                                </button>\n" +
     "                            </div>\n" +
@@ -1150,16 +1150,16 @@ angular.module("city/hotel.tpl.html", []).run(["$templateCache", function($templ
     "                        <div class=\"col-md-6\" style=\"height:230px\">\n" +
     "                            <p class=\"list-group-item-text\">\n" +
     "                            <div class=\"row\">\n" +
-    "                                <b class=\"text-capitalize\">{{c.name}}</b>\n" +
+    "                                <b class=\"text-capitalize capriola\">{{c.name}}</b>\n" +
     "                            </div>\n" +
     "                            <div class=\"row\">\n" +
-    "                                <p>Address {{c.address}}</p>\n" +
+    "                                <p class=\"capriola\">Address {{c.address}}</p>\n" +
     "                            </div>\n" +
     "                            <div class=\"row\">\n" +
-    "                                <p>Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
+    "                                <p class=\"capriola\">Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
     "                            </div>\n" +
     "                            <div class=\"row scrollable\" style=\"max-height: 185px;overflow-y: auto\">\n" +
-    "                                <div class=\"text-justify\" >{{c.description}}</div>\n" +
+    "                                <div class=\"text-justify capriola\" >{{c.description}}</div>\n" +
     "                            </div>\n" +
     "\n" +
     "                            </p>\n" +

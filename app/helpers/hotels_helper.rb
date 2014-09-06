@@ -9,7 +9,8 @@ module HotelsHelper
       url = 'http://images.travelnow.com'+hotel['thumbNailUrl']
       puts url
       photos.append(:image=>url)
-      hotels_list.append(HotelItem.new(hotel['hotelId'],hotel['latitudine'],hotel['longitudine'],hotel['name'],hotel['hotelRating'],address,photos,'','hotel',hotel['shortDescription']))
+      descr = hotel['shortDescription'].strip_tags
+      hotels_list.append(HotelItem.new(hotel['hotelId'],hotel['latitudine'],hotel['longitudine'],hotel['name'],hotel['hotelRating'],address,photos,'','hotel',descr))
     end
     return hotels_list
 
