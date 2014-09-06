@@ -1,6 +1,5 @@
-require 'wikipedia'
 module FreebaseHelper
-
+  include WikipediaHelper
   def get_description(name,city)
     FreebaseAPI.session = FreebaseAPI::Session.new(key: ENV['API_KEY'], env: :stable)
 
@@ -10,8 +9,7 @@ module FreebaseHelper
       best_match.sync
       description = best_match.description
       if(description.nil?)
-          #page = Wikipedia.find('Ruby on rails')
-          #puts page.raw_data
+          description = get_wikipedia_description(name,city)
       end
     end
     return description
