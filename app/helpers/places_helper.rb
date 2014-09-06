@@ -16,14 +16,38 @@ module PlacesHelper
       lng = location[0].longitude
       utility_items= client.spots(lat,lng,:types => ['airport','atm','bank','bus_station','doctor','fire_station','hospital','parking','pharmacy','police','subway_station','taxi_stand','train_station'],:radius => 20000)
       results = []
+      next_page_token = ''
       utility_items.each { |place|
+        next_page_token = place.nextpagetoken
         photos = []
         if(!place.photos[0].nil?)
           photos.append(:image=>place.photos[0].fetch_url(400))
         end
         description = get_description(place.name)
         results.append(UtilityItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'utility',description))}
-      return results
+      json = []
+      json.append({:results=>results,:token=>next_page_token})
+      return json
+
+    end
+
+    def get_utility_others(token,city)
+      client = GooglePlaces::Client.new(ENV['API_KEY'])
+
+      utility_items= client.spots_by_pagetoken(token)
+      results = []
+      next_page_token = nil
+      utility_items.each { |place|
+        next_page_token = place.nextpagetoken
+        photos = []
+        if(!place.photos[0].nil?)
+          photos.append(:image=>place.photos[0].fetch_url(400))
+        end
+        description = get_description(place.name)
+        results.append(UtilityItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'utility',description))}
+      json = []
+      json.append({:results=>results,:token=>next_page_token})
+      return json
 
     end
 
@@ -55,18 +79,41 @@ module PlacesHelper
       lat = location[0].latitude
       lng = location[0].longitude
       culture_items= client.spots(lat,lng,:types => ['library','book_store','museum','aquarium','art_gallery','church'],:radius => 20000)
-      puts culture_items.to_json
-
+      #puts culture_items.to_json
       results = []
+      next_page_token = ''
       culture_items.each { |place|
+        next_page_token = place.nextpagetoken
         photos = []
         if(!place.photos[0].nil?)
           photos.append(:image=>place.photos[0].fetch_url(400))
         end
-        description = get_description(place.name)
+        description = get_description(place.name,city)
         results.append(CultureItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'culture',description))}
-      return results
+      json = []
+      json.append({:results=>results,:token=>next_page_token})
+      #puts json.to_json
+      return json
 
+    end
+
+    def get_culture_others(token,city)
+      client = GooglePlaces::Client.new(ENV['API_KEY'])
+      culture_items= client.spots_by_pagetoken(token)
+      results = []
+      next_page_token = nil
+      culture_items.each { |place|
+        next_page_token = place.nextpagetoken
+        photos = []
+        if(!place.photos[0].nil?)
+          photos.append(:image=>place.photos[0].fetch_url(400))
+        end
+        description = get_description(place.name,city)
+        results.append(CultureItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'culture',description))}
+      json = []
+      json.append({:results=>results,:token=>next_page_token})
+      puts json.to_json
+      return json
     end
 
     class CultureItem
@@ -99,17 +146,38 @@ module PlacesHelper
       lat = location[0].latitude
       lng = location[0].longitude
       entertainment_items= client.spots(lat,lng,:types => ['amusement_park','casino','gym','zoo','spa','park'],:radius => 20000)
-
+      next_page_token = ''
       results = []
       entertainment_items.each { |place|
+        next_page_token = place.nextpagetoken
         photos = []
         if(!place.photos[0].nil?)
           photos.append(:image=>place.photos[0].fetch_url(400))
         end
-        description = get_description(place.name)
+        description = get_description(place.name,city)
         results.append(EntertainmentItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'entertainment',description))}
-      return results
+      json = []
+      json.append({:results=>results,:token=>next_page_token})
+      return json
 
+    end
+
+    def get_entertainment_others(token,city)
+      client = GooglePlaces::Client.new(ENV['API_KEY'])
+      entertainment_items= client.spots_by_pagetoken(token)
+      results = []
+      next_page_token = nil
+      entertainment_items.each { |place|
+        next_page_token = place.nextpagetoken
+        photos = []
+        if(!place.photos[0].nil?)
+          photos.append(:image=>place.photos[0].fetch_url(400))
+        end
+        description = get_description(place.name,city)
+        results.append(EntertainmentItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'entertainment',description))}
+      json = []
+      json.append({:results=>results,:token=>next_page_token})
+      return json
     end
 
 
@@ -142,15 +210,37 @@ module PlacesHelper
       lng = location[0].longitude
       food_items = client.spots(lat,lng,:types => ['food','restaurant','cafe','bakery'],:radius => 20000)
       results = []
+      next_page_token = ''
       food_items.each { |place|
+        next_page_token = place.nextpagetoken
         photos = []
         if(!place.photos[0].nil?)
           photos.append(:image=>place.photos[0].fetch_url(400))
         end
-        description = get_description(place.name)
+        description = get_description(place.name,city)
         results.append(FoodItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'food',description))}
-      return results
+      json = []
+      json.append({:results=>results,:token=>next_page_token})
+      return json
 
+    end
+
+    def get_food_others(token,city)
+      client = GooglePlaces::Client.new(ENV['API_KEY'])
+      food_items= client.spots_by_pagetoken(token)
+      results = []
+      next_page_token = nil
+      food_items.each { |place|
+        next_page_token = place.nextpagetoken
+        photos = []
+        if(!place.photos[0].nil?)
+          photos.append(:image=>place.photos[0].fetch_url(400))
+        end
+        description = get_description(place.name,city)
+        results.append(FoodItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'food',description))}
+      json = []
+      json.append({:results=>results,:token=>next_page_token})
+      return json
     end
 
     class FoodItem

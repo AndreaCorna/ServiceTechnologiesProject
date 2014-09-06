@@ -2,7 +2,7 @@ class CultureController < ApplicationController
   include CachingHelper
 
   def index
-    culture_items = get_culture(params[:city_id])
+    culture_items = get_culture(params[:city_id],params[:token])
     render_with_protection    culture_items
   end
 

@@ -1,29 +1,40 @@
 class CityController < ApplicationController
+  include CityHelper
   def index
-    city1 = City.new('Milan','Italy','image')
-    city2 = City.new('Madrid','Spain','image')
-    city3 = City.new('New York','States','image')
-    city4 = City.new('Amsterdam','Holland','image')
-    city5 = City.new('Mosca','Russia','image')
-    city6 = City.new('Berlin','Germany','image')
-    test = [city1,city2,city3,city4,city5,city6]
-    render  json:  test.to_json
+    city_list = City.all
+    render  json:  city_list.to_json
   end
-
-  class City
-    def initialize(name,state,image)
-      @name = name
-      @state = state
-      @image = image
-    end
-  end
-
-
 
   def show
-    test = [City.new("prima","descrizione1","assets/images/trippo.png",)];
-    render  json:  test.to_json
+    details = []
+    puts params[:id]
+    city = City.find_by_name(params[:id])
+    puts city.city_images
+    details.append({:details => city,:images => city.city_images})
+    puts details.to_json
+    render  json:  details.to_json
   end
+
+  def populate
+    json = params[:cities]
+    puts json.to_json
+    cities = populate_database(json)
+    cities.each{ |city|
+      puts city.name
+      if(City.find_by_name(city.name).nil?)
+        City.create({:name => city.name,:state => city.state,:lat => city.lat,:lng => city.lng})
+        photos = get_images_url(city.lat,city.lng)
+        photos.each{ |photo|
+          puts '.............................................................................'
+          puts photo['photo_file_url']
+          CityImage.create({:url =>photo['photo_file_url'],:city_id => city.name})
+        }
+      end
+    }
+
+    render json: cities.to_json
+  end
+
 
 
 end

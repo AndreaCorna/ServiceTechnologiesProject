@@ -2,8 +2,9 @@ angular.module( 'trippo.city', [
   'ui.router',
   'placeholders',
   'ui.bootstrap' ,
-  'ngResource'
-
+  'trippo.resources',
+  'trippo.modal',
+  'infinite-scroll'
 ])
 
 .config(function config( $stateProvider ) {
@@ -79,17 +80,6 @@ angular.module( 'trippo.city', [
 
       })
 
-      .state( 'calendar', {
-      url: '/calendar',
-      parent:"city",
-      views: {
-          "content": {
-              controller: 'CalendarCtrl',
-              templateUrl: 'plan_trip/calendar.tpl.html'
-
-          }
-      }
-  })
 
       .state('dates', {
           url: '/dates',
@@ -118,27 +108,28 @@ angular.module( 'trippo.city', [
 
 })
 
-.controller('CultureCtrl', function CultureCtrl($scope,CultureRes,$stateParams,SelectionService,ModalHandler) {
-        $scope.cultureList = CultureRes.list.query({city_name:$stateParams.city_name});
-        $scope.getCultureDetails = function(id_culture){
-            console.log("selection "+$scope.cultureSelection);
-            console.log("currently selected  "+id_culture);
+.controller('CultureCtrl', function CultureCtrl($scope,CultureRes,$stateParams,SelectionService,ModalHandler,InfiniteScrollHandler) {
+        $scope.loaderEnabled = true;
+        $scope.resource = CultureRes;
 
-            var data;
-
-            CultureRes.details.query({city_name: $stateParams.city_name, id_culture: id_culture},function(response){
-                data =response;
-                console.log(data[0].name);
-                ModalHandler.setDetails(data[0]);
+        $scope.cultureList = CultureRes.list.query({city_name:$stateParams.city_name},function() {
+            $scope.loaderEnabled = false;
+            $scope.nextPageToken = $scope.cultureList[0].token;
+            $scope.cultureList = $scope.cultureList[0].results;
 
 
-            });
+            $scope.infiniteScroll = new InfiniteScrollHandler($scope.nextPageToken,$scope.cultureList);
+
+        });
 
 
-        };
+
+        $scope.setCultureDetails = function(culture_item){
+            ModalHandler.setCultureDetails(culture_item);
+        } ;
+
         $scope.addCultureItem = function(culture_item){
             $scope.cultureSelection = SelectionService.addCultureItem(culture_item,$scope.cultureList);
-            console.log(ModalHandler.details);
         };
 
 
@@ -157,24 +148,26 @@ angular.module( 'trippo.city', [
 })
 
 
-.controller('EntertainmentCtrl', function EntertainmentCtrl($scope,EntertainmentRes,$stateParams,SelectionService,ModalHandler) {
-        $scope.entertainmentList= EntertainmentRes.list.query({city_name:$stateParams.city_name});
-        $scope.getEntertainmentDetails = function(id_entertainment){
-            console.log("selection "+$scope.cultureSelection);
-            console.log("currently selected  "+id_entertainment);
-
-            var data;
-
-            EntertainmentRes.details.query({city_name: $stateParams.city_name, id_entertainment: id_entertainment},function(response){
-                data =response;
-                console.log(data[0].name);
-                ModalHandler.setDetails(data[0]);
+.controller('EntertainmentCtrl', function EntertainmentCtrl($scope,EntertainmentRes,$stateParams,SelectionService,ModalHandler,InfiniteScrollHandler) {
+        $scope.loaderEnabled = true;
+        $scope.resource =   EntertainmentRes;
 
 
-            });
+        $scope.entertainmentList= EntertainmentRes.list.query({city_name:$stateParams.city_name},function() {
+            $scope.loaderEnabled = false;
+            $scope.nextPageToken = $scope.entertainmentList[0].token;
+            $scope.entertainmentList = $scope.entertainmentList[0].results;
+            $scope.infiniteScroll = new InfiniteScrollHandler($scope.nextPageToken,$scope.entertainmentList);
 
 
+        });
+
+
+
+        $scope.setEntertainmentDetails = function (entertainment_item) {
+            ModalHandler.setEntertainmentDetails(entertainment_item);
         };
+
 
         $scope.addEntertainmentItem = function(entertainment_item){
             $scope.entertainmentSelection = SelectionService.addEntertainmentItem(entertainment_item,$scope.entertainmentList);
@@ -195,24 +188,25 @@ angular.module( 'trippo.city', [
 
 })
 
-.controller('UtilityCtrl', function UtilityCtrl($scope,UtilityRes,$stateParams,SelectionService,ModalHandler) {
-        $scope.utilityList = UtilityRes.list.query({city_name:$stateParams.city_name});
-        $scope.getUtilityDetails = function(id_utility){
-            console.log("selection "+$scope.cultureSelection);
-            console.log("currently selected  "+id_utility);
-
-            var data;
-
-            UtilityRes.details.query({city_name: $stateParams.city_name, id_utility: id_utility},function(response){
-                data =response;
-                console.log(data[0].name);
-                ModalHandler.setDetails(data[0]);
+.controller('UtilityCtrl', function UtilityCtrl($scope,UtilityRes,$stateParams,SelectionService,ModalHandler,InfiniteScrollHandler) {
+        $scope.loaderEnabled = true;
+        $scope.resource =   UtilityRes;
 
 
-            });
+        $scope.utilityList = UtilityRes.list.query({city_name:$stateParams.city_name},function() {
+            $scope.loaderEnabled = false;
+            $scope.nextPageToken = $scope.utilityList[0].token;
+            $scope.utilityList = $scope.utilityList[0].results;
+            $scope.infiniteScroll = new InfiniteScrollHandler($scope.nextPageToken,$scope.utilityList);
+
+        });
 
 
+
+        $scope.setUtilityDetails = function(id_utility){
+           ModalHandler.setUtilityDetails(id_utility);
         };
+
         $scope.addUtilityItem = function(utility_item){
             $scope.utilitySelection = SelectionService.addUtilityItem(utility_item,$scope.utilityList);
         };
@@ -233,23 +227,15 @@ angular.module( 'trippo.city', [
     })
 
 .controller('HotelCtrl', function HotelCtrl($scope,HotelRes,$stateParams,SelectionService,ModalHandler) {
-        $scope.hotelList = HotelRes.list.query({city_name:$stateParams.city_name});
-        $scope.getHotelDetails = function(id_hotel){
-            console.log("selection "+$scope.cultureSelection);
-            console.log("currently selected  "+id_hotel);
+        $scope.loaderEnabled = true;
+        $scope.hotelList = HotelRes.list.query({city_name:$stateParams.city_name},function() {
+            $scope.loaderEnabled = false;});
 
-            var data;
-
-            HotelRes.details.query({city_name: $stateParams.city_name, id_hotel: id_hotel},function(response){
-                data =response;
-                console.log(data[0].name);
-                ModalHandler.setDetails(data[0]);
+        $scope.setHotelDetails = function(id_hotel){
+            ModalHandler.setHotelDetails(id_hotel);
+        } ;
 
 
-            });
-
-
-        };
         $scope.addHotelItem = function(hotel_item){
             $scope.hotelSelection = SelectionService.addHotelItem(hotel_item);
         };
@@ -261,21 +247,23 @@ angular.module( 'trippo.city', [
 
 })
 
-.controller('FoodCtrl',function FoodCtrl($scope,FoodRes,$stateParams,SelectionService,ModalHandler){
+.controller('FoodCtrl',function FoodCtrl($scope,FoodRes,$stateParams,SelectionService,ModalHandler,InfiniteScrollHandler){
+        $scope.loaderEnabled = true;
+        $scope.resource =   FoodRes;
 
-        $scope.foodList = FoodRes.list.query({city_name:$stateParams.city_name});
-        $scope.getFoodDetails = function(id_food){
-            console.log("selection "+$scope.cultureSelection);
-            console.log("currently selected  "+id_food);
 
-            var data;
+        $scope.foodList = FoodRes.list.query({city_name:$stateParams.city_name},function() {
+            $scope.loaderEnabled = false;
+            $scope.nextPageToken = $scope.foodList[0].token;
+            $scope.foodList = $scope.foodList[0].results;
+            $scope.infiniteScroll = new InfiniteScrollHandler($scope.nextPageToken,$scope.foodList);
 
-            FoodRes.details.query({city_name: $stateParams.city_name, id_food: id_food},function(response){
-                data =response;
-                console.log(data[0].name);
-                ModalHandler.setDetails(data[0]);
-            });
-        };
+        });
+
+        $scope.setFoodDetails = function(id_food){
+            ModalHandler.setFoodDetails(id_food);
+        } ;
+
 
         $scope.addFoodItem = function(food_item){
             $scope.foodSelection = SelectionService.addFoodItem(food_item,$scope.foodList);
@@ -294,53 +282,61 @@ angular.module( 'trippo.city', [
 
 })
 
+.factory('InfiniteScrollHandler', function ($stateParams) {
 
-
-
-.factory('ModalHandler', function () {
-    var details;
-    var normalizeHours = function (details){
-        if(details.open_hours !== null){
-            for (var i=0;i<details.open_hours.periods.length;i++){
-                console.log("called function");
-                var day = details.open_hours.periods[i] ;
-                details.open_hours.periods[i].open.time = day.open.time.substr(0, 2) + ":" + day.open.time.substr(2);
-                details.open_hours.periods[i].close.time = day.close.time.substr(0, 2) + ":" + day.close.time.substr(2);
-
-            }
-        }
-    }  ;
-        return {
-            getDetails: function () {
-                return details;
-            },
-            setDetails: function(value) {
-                normalizeHours(value);
-                details = value;
-            }
+        var ScrollHandler = function(curr_token,list){
+             this.itemList = list;
+             this.busy = false;
+             this.token =curr_token;
         };
+        ScrollHandler.prototype.nextPage = function(resource,list){
+            if (this.busy){return;}
+            this.busy = true;
+            this.itemList = list;
+
+
+
+            if(this.token != null){
+                var otherElements = resource.others.query({city_name: $stateParams.city_name, token: this.token},function(){
+                    console.log("previous token inside infinite scroll");
+                    console.log(this.token);
+                    this.token = otherElements[0].token;
+                    console.log("other elements");
+                    console.log(otherElements[0]);
+
+                    console.log("after token inside infinite scroll");
+                    console.log(this.token);
+
+                    for(var i=0;i<otherElements[0].results.length;i++){
+                        this.itemList.push(otherElements[0].results[i]);
+                    }
+                    this.busy = false;
+
+                }.bind(this));
+            }
+
+        };
+        return  ScrollHandler;
+
+
+
+    
 })
 
+
+
+
     .controller( 'CityCtrl', function CityCtrl( $scope, $stateParams, $log , CityRes,ModalHandler) {
-        $scope.$log= $log;
+        $scope.$log = $log;
         $scope.intervalImages = 5000;
-        $scope.moreInfoSelection=null;
+        $scope.moreInfoSelection = null;
         $scope.modalEnabled = false;
-        $scope.city = CityRes.details.query({city_name:$stateParams.city_name});
-        /**
-         * Added a watch to update scope.moreInfoSelection which is set every time a moreInfo button is pushed
-         */
-        $scope.$watchCollection(function () { return ModalHandler.getDetails(); }, function (newVal, oldVal) {
-            if (typeof newVal !== 'undefined') {
-                $scope.moreInfoSelection = ModalHandler.getDetails();
-                $scope.modalEnabled = true;
-            }
+        $scope.loaderEnabled = true;
+
+        $scope.city = CityRes.details.query({city_name: $stateParams.city_name}, function () {
+            $scope.images = $scope.city[0].images;
+            $scope.city = $scope.city[0].details;
         });
-        $scope.disableModal = function(){
-            $scope.modalEnabled = false;
-        };
-
-
 
     })
 /**
@@ -369,53 +365,6 @@ angular.module( 'trippo.city', [
         };
     })
 
-.factory( 'CultureRes', function ($resource) {
-        var cultureList = $resource("../../city/:city_name/culture");
-        var cultureDetails = $resource("../../city/:city_name/culture/:id_culture");
-        return {
-            list: cultureList,
-            details: cultureDetails
-        };
-        })
-
-.factory('UtilityRes',function($resource){
-        var utilityList = $resource("../../city/:city_name/utility");
-        var utilityDetails = $resource("../../city/:city_name/utility/:id_utility");
-        return{
-            list:utilityList,
-            details:utilityDetails
-        };
-
-
-})
-
-.factory('EntertainmentRes',function($resource){
-        var entertainmentList = $resource("../../city/:city_name/entertainment");
-        var entertainmentDetails = $resource("../../city/:city_name/entertainment/:id_entertainment");
-        return{
-           list:entertainmentList,
-           details:entertainmentDetails
-         };
-})
-
-.factory('HotelRes',function($resource){
-        var hotelList = $resource("../../city/:city_name/hotels");
-        var hotelDetails = $resource("../../city/:city_name/hotels/:id_hotel");
-        return{
-            list:hotelList,
-            details:hotelDetails
-        };
-
-})
-
-.factory('FoodRes',function($resource){
-        var foodList = $resource("../../city/:city_name/food");
-        var foodDetails = $resource("../../city/:city_name/food/:id_food");
-        return{
-            list:foodList,
-            details:foodDetails
-        };
-})
 
 .service('SelectionService',function(){
         var cultureSelection = [];

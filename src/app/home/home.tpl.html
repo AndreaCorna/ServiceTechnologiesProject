@@ -5,14 +5,15 @@
     </a>
 </script>
 
+
 <div class="home_back fill" >
     <div class="home">
         <img src="assets/images/trippo.png" class="center" />
-        <form name="'city-form" class="form-wrapper  cf">
+        <form name="'city-form" class="form-wrapper  cf" autocomplete="off">
 
 
 
-            <input name="city"  type="text" placeholder="Search here..." class="form-control col-md-12 typeahead"
+            <input id="city" name="city"  type="text" placeholder="Search here..." class="form-control col-md-12 typeahead"
                    ng-model="selected_city"
                    typeahead="city as city.name for city in cities | filter:$viewValue | limitTo:8"
                    typeahead-template-url="customTemplate.html">
@@ -22,3 +23,7 @@
 
     </div>
 </div>
+
+
+
+

@@ -1,12 +1,15 @@
-
-<carousel interval="intervalImages">
-    <slide ng-repeat="image in city" active="image.active">
-        <img ng-src="{{image.image}}" style="margin:auto;">
-        <div class="carousel-caption">
-            <p>{{image.descr}}</p>
+<div class="top-view">
+    <div class="container " >
+        <h3 class="text-capitalize text-center" style="font-family: Capriola;">Welcome to {{city.name}}</h3>
+        <div class="row background-carousel">
+        <carousel interval="intervalImages" class="carousel-fixed-height col-md-8 col-md-offset-2" style="padding: 0px">
+            <slide ng-repeat="image in images" active="image.active" style=" height:100%;width:100%;">
+                <img ng-src="{{image.url}}" style=" height:100%;width:100%;" >
+            </slide>
+        </carousel>
         </div>
-    </slide>
-</carousel>
+    </div>
+</div>
 
 <div id='cssmenu'>
     <ul>
@@ -17,27 +20,29 @@
         <li><a ui-sref="food" data-target="#" data-toggle="pill"><span>Food</span></a></li>
 
 
-        <li class='last'><a ui-sref="calendar" data-target="#" data-toggle="pill"><span>Plan Trip</span></a></li>
+        <li class='last'><a ui-sref="dates" data-target="#" data-toggle="pill"><span>Plan Trip</span></a></li>
     </ul>
 
 </div>
+
 <div class="container">
     <div ui-view="content" class="fill"></div>
 </div>
 
 
 
-<div ng-show="modalEnabled">
-    <div class="modal fade" id="moreInfoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade" ng-controller="ModalCtrl" id="moreInfoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                        <h4 class="modal-title" id="myModalLabel">More Information about {{moreInfoSelection.name}}</h4>
+                    <div ng-show="modalEnabled">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" ng-click="disableModal()"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <h4 class="modal-title" id="myModalLabel">More Information about {{moreInfoSelection.name}}</h4>
+                        </div>
                     </div>
                     <div class="modal-body">
-                        <div class="container-fluid">
+                        <div ng-show="modalEnabled">
+                            <div class="container-fluid">
                             <div class="row">
                                 <div class="col-lg-6" >
                                     <div class="row">
@@ -204,6 +209,30 @@
                                 </div>
                             </div>
                         </div>
+                        </div>
+                        <div ng-show="loaderEnabled">
+                            <div class="container-fluid">
+                                <div class="panel-body">
+                                    <div class="loader">
+                                    <div class="bouncywrap">
+
+                                        <div class="dotcon dc1">
+                                            <div class="dot"></div>
+                                        </div>
+
+                                        <div class="dotcon dc2">
+                                            <div class="dot"></div>
+                                        </div>
+
+                                        <div class="dotcon dc3">
+                                            <div class="dot"></div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
 
@@ -213,4 +242,3 @@
 
         </div>
     </div>
-</div>
