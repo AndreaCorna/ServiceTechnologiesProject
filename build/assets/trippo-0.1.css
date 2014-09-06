@@ -6659,6 +6659,13 @@ a.list-group-item:focus {
   margin-left: auto;
   margin-right: auto;
 }
+.item-filter {
+  font-family: Capriola;
+  display: inline;
+}
+.capriola {
+  font-family: Capriola;
+}
 /**
 *list of dates in trip dates
 */
