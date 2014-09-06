@@ -23,7 +23,7 @@ module PlacesHelper
         if(!place.photos[0].nil?)
           photos.append(:image=>place.photos[0].fetch_url(400))
         end
-        description = get_description(place.name)
+        description = get_description(place.name,city)
         results.append(UtilityItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'utility',description))}
       json = []
       json.append({:results=>results,:token=>next_page_token})
@@ -43,7 +43,7 @@ module PlacesHelper
         if(!place.photos[0].nil?)
           photos.append(:image=>place.photos[0].fetch_url(400))
         end
-        description = get_description(place.name)
+        description = get_description(place.name,city)
         results.append(UtilityItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'utility',description))}
       json = []
       json.append({:results=>results,:token=>next_page_token})
