@@ -164,6 +164,7 @@ angular.module( 'trippo.city', [
 
 
 
+
         $scope.setEntertainmentDetails = function (entertainment_item) {
             ModalHandler.setEntertainmentDetails(entertainment_item);
         };

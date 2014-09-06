@@ -298,6 +298,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "    </ul>\n" +
     "\n" +
     "</div>\n" +
+    "\n" +
     "<div class=\"container\">\n" +
     "    <div ui-view=\"content\" class=\"fill\"></div>\n" +
     "</div>\n" +
@@ -1315,7 +1316,7 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
     "                <ul>\n" +
     "                    <div ng-repeat=\"cult in culture\" class=\"event-list col-md-4\">\n" +
     "                        <li>\n" +
-    "                            <div class=\"not-selected\">\n" +
+    "                            <div ng-class=\"isScheduled(cult) ? 'selected' :'not-selected'\">\n" +
     "                                <div class=\"row\" style=\"height: 48px;\">\n" +
     "\n" +
     "                                    <h1 class=\"item-name\">{{cult.name}}</h1>\n" +
@@ -1332,9 +1333,16 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
     "                                      </div>\n" +
     "                                 </div>\n" +
     "                                <div class=\"row\">\n" +
-    "                                    <button class=\"btn btn-primary btn-outlined \">Add</button>\n" +
-    "                                    <button class=\"btn btn-primary btn-outlined \" ng-click=\"setCultureDetails(cult.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">More</button>\n" +
-    "                                </div>\n" +
+    "                                    <div class=\"btn-group\">\n" +
+    "\n" +
+    "                                        <button ng-show=\"isScheduled(cult)\" style=\"margin-right: 2px;\" class=\"btn btn-primary btn-outlined \" style=\"display: inline-block;\" ng-click=\"removeFromSchedule(cult)\">REMOVE</button>\n" +
+    "\n" +
+    "\n" +
+    "                                        <button ng-show=\"!isScheduled(cult)\" style=\"margin-right: 2px\"  class=\"btn btn-primary btn-outlined \" style=\"display: inline-block;\" ng-click=\"addToSchedule(cult)\">ADD</button>\n" +
+    "\n" +
+    "                                        <button class=\"btn btn-primary btn-outlined \" style=\"margin-left: 4px;margin-bottom: 5px\"  ng-click=\"setCultureDetails(cult.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">MORE</button>\n" +
+    "                                    </div>\n" +
+    "                                  </div>\n" +
     "                            </div>\n" +
     "                        </li>\n" +
     "                    </div>\n" +
@@ -1529,8 +1537,8 @@ angular.module("plan_trip/trip_dates.tpl.html", []).run(["$templateCache", funct
     "                    <span class=\"month\">{{curDate.format(monthFormat)}}</span>\n" +
     "                    <span class=\"year\">{{curDate.format(yearFormat)}}</span>\n" +
     "                    <span class=\"time\">ALL DAY</span>\n" +
-    "                    <button href=\"#infoDate\" data-toggle=\"modal\" class=\"btn btn-primary btn-outlined\">More</button>\n" +
-    "                    <a class=\"btn btn-primary btn-outlined\" ui-sref=\"planning({date:curDate.format(dateFormat)})\">Edit</a>\n" +
+    "                    <button href=\"#infoDate\" data-toggle=\"modal\" class=\"btn btn-primary btn-outlined\">MORE</button>\n" +
+    "                    <a class=\"btn btn-primary btn-outlined\" ui-sref=\"planning({date:curDate.format(dateFormat)})\">EDIT</a>\n" +
     "                </time>\n" +
     "            </li>\n" +
     "        </div>\n" +
