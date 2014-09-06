@@ -179,7 +179,7 @@ angular.module( 'trippo.city', [
         };
 
         $scope.$watchCollection(function () { return SelectionService.getEntertainmentSelection(); }, function (newVal, oldVal) {
-            $scope.cultureSelection = SelectionService.getEntertainmentSelection();
+            $scope.entertainmentSelection = SelectionService.getEntertainmentSelection();
             if(!$scope.$$phase) {
                 $scope.$apply();
             }
@@ -217,7 +217,7 @@ angular.module( 'trippo.city', [
         };
 
         $scope.$watchCollection(function () { return SelectionService.getUtilitySelection(); }, function (newVal, oldVal) {
-            $scope.cultureSelection = SelectionService.getUtilitySelection();
+            $scope.utilitySelection = SelectionService.getUtilitySelection();
             if(!$scope.$$phase) {
                 $scope.$apply();
             }
@@ -275,7 +275,7 @@ angular.module( 'trippo.city', [
         };
 
         $scope.$watchCollection(function () { return SelectionService.getFoodSelection(); }, function (newVal, oldVal) {
-            $scope.cultureSelection = SelectionService.getFoodSelection();
+            $scope.foodSelection = SelectionService.getFoodSelection();
             if(!$scope.$$phase) {
                 $scope.$apply();
             }
