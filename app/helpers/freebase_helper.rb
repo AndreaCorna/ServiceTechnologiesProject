@@ -1,9 +1,10 @@
 require 'wikipedia'
 module FreebaseHelper
 
-  def get_description(name)
+  def get_description(name,city)
     FreebaseAPI.session = FreebaseAPI::Session.new(key: ENV['API_KEY'], env: :stable)
-    results = FreebaseAPI::Topic.search(name)
+
+    results = FreebaseAPI::Topic.search(name+' in '+city)
     best_match = results.values.first
     if(!best_match.nil?)
       best_match.sync
