@@ -179,7 +179,7 @@ angular.module( 'trippo.city', [
         };
 
         $scope.$watchCollection(function () { return SelectionService.getEntertainmentSelection(); }, function (newVal, oldVal) {
-            $scope.cultureSelection = SelectionService.getEntertainmentSelection();
+            $scope.entertainmentSelection = SelectionService.getEntertainmentSelection();
             if(!$scope.$$phase) {
                 $scope.$apply();
             }
@@ -217,7 +217,7 @@ angular.module( 'trippo.city', [
         };
 
         $scope.$watchCollection(function () { return SelectionService.getUtilitySelection(); }, function (newVal, oldVal) {
-            $scope.cultureSelection = SelectionService.getUtilitySelection();
+            $scope.utilitySelection = SelectionService.getUtilitySelection();
             if(!$scope.$$phase) {
                 $scope.$apply();
             }
@@ -227,10 +227,17 @@ angular.module( 'trippo.city', [
 
     })
 
-.controller('HotelCtrl', function HotelCtrl($scope,HotelRes,$stateParams,SelectionService,ModalHandler) {
+.controller('HotelCtrl', function HotelCtrl($scope,HotelRes,$stateParams,SelectionService,ModalHandler,InfiniteScrollHandler) {
         $scope.loaderEnabled = true;
+        $scope.resource =  HotelRes;
+
         $scope.hotelList = HotelRes.list.query({city_name:$stateParams.city_name},function() {
-            $scope.loaderEnabled = false;});
+            $scope.loaderEnabled = false;
+            $scope.nextPageToken = $scope.hotelList[0].token;
+            $scope.hotelList = $scope.hotelList[0].results;
+            console.log($scope.nextPageToken);
+            $scope.infiniteScroll = new InfiniteScrollHandler($scope.nextPageToken,$scope.hotelList);
+        });
 
         $scope.setHotelDetails = function(id_hotel){
             ModalHandler.setHotelDetails(id_hotel);
@@ -244,6 +251,13 @@ angular.module( 'trippo.city', [
         $scope.removeHotelItem = function(hotel_item){
             $scope.hotelSelection = SelectionService.removeHotelItem(hotel_item);
         };
+
+        $scope.$watchCollection(function () { return SelectionService.getHotelSelection(); }, function (newVal, oldVal) {
+            $scope.hotelSelection = SelectionService.getHotelSelection();
+            if(!$scope.$$phase) {
+                $scope.$apply();
+            }
+        });
 
 
 })
@@ -275,7 +289,7 @@ angular.module( 'trippo.city', [
         };
 
         $scope.$watchCollection(function () { return SelectionService.getFoodSelection(); }, function (newVal, oldVal) {
-            $scope.cultureSelection = SelectionService.getFoodSelection();
+            $scope.foodSelection = SelectionService.getFoodSelection();
             if(!$scope.$$phase) {
                 $scope.$apply();
             }

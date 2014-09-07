@@ -710,7 +710,7 @@ angular.module("city/entertainment.tpl.html", []).run(["$templateCache", functio
     "                        </div>\n" +
     "                    </div>\n" +
     "                </div>\n" +
-    "                <div ng-show=\"cultureSelection.length != 0\">\n" +
+    "                <div ng-show=\"entertainmentSelection.length != 0\">\n" +
     "                    <div class=\"row\" style=\"display: inline\">\n" +
     "                        <div class=\"text-capitalize item-filter\" >Name:</div>\n" +
     "                        <input type=\"text\" data-ng-model=\"elementSelectionName\" class=\"capriola\"/>\n" +
@@ -872,7 +872,7 @@ angular.module("city/food.tpl.html", []).run(["$templateCache", function($templa
     "                        </div>\n" +
     "                    </div>\n" +
     "                </div>\n" +
-    "                <div ng-show=\"cultureSelection.length != 0\">\n" +
+    "                <div ng-show=\"foodSelection.length != 0\">\n" +
     "                    <div class=\"row\" style=\"display: inline\">\n" +
     "                        <div class=\"text-capitalize item-filter\" >Name:</div>\n" +
     "                        <input type=\"text\" data-ng-model=\"elementSelectionName\" class=\"capriola\"/>\n" +
@@ -1011,7 +1011,7 @@ angular.module("city/hotel.tpl.html", []).run(["$templateCache", function($templ
     "\n" +
     "<div class=\"row\">\n" +
     "    <div class=\"well\">\n" +
-    "        <h1 class=\"text-center\" style=\"font-family: Capriola;\">Hotel</h1>\n" +
+    "        <h1 class=\"text-center capriola\" >Hotel</h1>\n" +
     "        <div class=\"list-group\">\n" +
     "            <div ng-show=\"loaderEnabled\">\n" +
     "                <div class=\"panel-body\">\n" +
@@ -1034,7 +1034,18 @@ angular.module("city/hotel.tpl.html", []).run(["$templateCache", function($templ
     "                    </div>\n" +
     "                </div>\n" +
     "            </div>\n" +
-    "                    <span ng-repeat=\"c in hotelSelection | orderBy:'name':false\">\n" +
+    "            <div ng-show=\"hotelSelection.length != 0\">\n" +
+    "                <div class=\"row\" style=\"display: inline\">\n" +
+    "                    <div class=\"text-capitalize item-filter\" >Name:</div>\n" +
+    "                    <input type=\"text\" class=\"capriola\" data-ng-model=\"elementSelectionName\" />\n" +
+    "                    <div class=\"text-capitalize item-filter\">Order by:</div>\n" +
+    "                    <select data-ng-model=\"elementSelectionOrder\" class=\"item-filter\">\n" +
+    "                        <option value=\"name\" selected>Name</option>\n" +
+    "                        <option value=\"rating\">Rating</option>\n" +
+    "                    </select>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "                    <span ng-repeat=\"c in hotelSelection | filter:{name:elementSelectionName} | orderBy:elementSelectionOrder\">\n" +
     "                    <div class=\"list-group-item\">\n" +
     "                        <div class=\"col-md-3\">\n" +
     "\n" +
@@ -1054,10 +1065,10 @@ angular.module("city/hotel.tpl.html", []).run(["$templateCache", function($templ
     "                                </div>\n" +
     "                            </div>\n" +
     "                            <div class=\"row center-block\" style=\"padding-top: 50px\">\n" +
-    "                                <button class=\"btn btn-primary\" ng-click=\"setHotelDetails(c.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">\n" +
+    "                                <button class=\"btn btn-primary capriola\" ng-click=\"setHotelDetails(c.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">\n" +
     "                                    More Info\n" +
     "                                </button>\n" +
-    "                                <button class=\"btn btn-primary \" ng-click=\"addHotelItem(c)\">\n" +
+    "                                <button class=\"btn btn-primary capriola\" ng-click=\"addHotelItem(c)\">\n" +
     "                                    Add\n" +
     "                                </button>\n" +
     "                            </div>\n" +
@@ -1065,16 +1076,16 @@ angular.module("city/hotel.tpl.html", []).run(["$templateCache", function($templ
     "                        <div class=\"col-md-6\" style=\"height:230px\">\n" +
     "                            <p class=\"list-group-item-text\">\n" +
     "                            <div class=\"row\">\n" +
-    "                                <b class=\"text-capitalize\">{{c.name}}</b>\n" +
+    "                                <b class=\"text-capitalize capriola\">{{c.name}}</b>\n" +
     "                            </div>\n" +
     "                            <div class=\"row\">\n" +
-    "                                <p>Address {{c.address}}</p>\n" +
+    "                                <p class=\"capriola\">Address {{c.address}}</p>\n" +
     "                            </div>\n" +
     "                            <div class=\"row\">\n" +
-    "                                <p>Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
+    "                                <p class=\"capriola\">Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
     "                            </div>\n" +
     "                            <div class=\"row scrollable\" style=\"max-height: 185px;overflow-y: auto\">\n" +
-    "                                <div class=\"text-justify\">{{c.description}}</div>\n" +
+    "                                <div class=\"text-justify capriola\">{{c.description}}</div>\n" +
     "                            </div>\n" +
     "\n" +
     "                            </p>\n" +
@@ -1098,7 +1109,17 @@ angular.module("city/hotel.tpl.html", []).run(["$templateCache", function($templ
     "                </span>\n" +
     "        </div>\n" +
     "        <div class=\"list-group\">\n" +
-    "                <span ng-repeat=\"c in hotelList | orderBy:'name':false\">\n" +
+    "            <div class=\"row\" style=\"display: inline\">\n" +
+    "                <div class=\"text-capitalize item-filter\" >Name:</div>\n" +
+    "                <input type=\"text\" data-ng-model=\"elementListName\" style=\"font-family: Capriola;\"/>\n" +
+    "                <div class=\"text-capitalize item-filter\">Order by:</div>\n" +
+    "                <select data-ng-model=\"elementListOrder\" class=\"item-filter\">\n" +
+    "                    <option value=\"name\" selected>Name</option>\n" +
+    "                    <option value=\"rating\">Rating</option>\n" +
+    "                </select>\n" +
+    "            </div>\n" +
+    "            <div infinite-scroll=\"infiniteScroll.nextPage(resource,hotelList)\" infinite-scroll-distance=\"2\" infinite-scroll-disabled=\"infiniteScroll.busy\">\n" +
+    "                <span ng-repeat=\"c in infiniteScroll.itemList | filter:{name:elementListName} | orderBy:elementListOrder\">\n" +
     "                    <div class=\"list-group-item\">\n" +
     "                        <div class=\"col-md-3\">\n" +
     "\n" +
@@ -1118,10 +1139,10 @@ angular.module("city/hotel.tpl.html", []).run(["$templateCache", function($templ
     "                                </div>\n" +
     "                            </div>\n" +
     "                            <div class=\"row center-block\" style=\"padding-top: 50px\">\n" +
-    "                                <button class=\"btn btn-primary\" ng-click=\"setHotelDetails(c.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">\n" +
+    "                                <button class=\"btn btn-primary capriola\" ng-click=\"setHotelDetails(c.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">\n" +
     "                                    More Info\n" +
     "                                </button>\n" +
-    "                                <button class=\"btn btn-primary \" ng-click=\"addHotelItem(c)\">\n" +
+    "                                <button class=\"btn btn-primary capriola\" ng-click=\"addHotelItem(c)\">\n" +
     "                                    Add\n" +
     "                                </button>\n" +
     "                            </div>\n" +
@@ -1129,16 +1150,16 @@ angular.module("city/hotel.tpl.html", []).run(["$templateCache", function($templ
     "                        <div class=\"col-md-6\" style=\"height:230px\">\n" +
     "                            <p class=\"list-group-item-text\">\n" +
     "                            <div class=\"row\">\n" +
-    "                                <b class=\"text-capitalize\">{{c.name}}</b>\n" +
+    "                                <b class=\"text-capitalize capriola\">{{c.name}}</b>\n" +
     "                            </div>\n" +
     "                            <div class=\"row\">\n" +
-    "                                <p>Address {{c.address}}</p>\n" +
+    "                                <p class=\"capriola\">Address {{c.address}}</p>\n" +
     "                            </div>\n" +
     "                            <div class=\"row\">\n" +
-    "                                <p>Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
+    "                                <p class=\"capriola\">Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
     "                            </div>\n" +
     "                            <div class=\"row scrollable\" style=\"max-height: 185px;overflow-y: auto\">\n" +
-    "                                <div class=\"text-justify\" >{{c.description}}</div>\n" +
+    "                                <div class=\"text-justify capriola\" >{{c.description}}</div>\n" +
     "                            </div>\n" +
     "\n" +
     "                            </p>\n" +
@@ -1183,7 +1204,7 @@ angular.module("city/utility.tpl.html", []).run(["$templateCache", function($tem
     "                        </div>\n" +
     "                    </div>\n" +
     "                </div>\n" +
-    "                <div ng-show=\"cultureSelection.length != 0\">\n" +
+    "                <div ng-show=\"utilitySelection.length != 0\">\n" +
     "                    <div class=\"row\" style=\"display: inline\">\n" +
     "                        <div class=\"text-capitalize item-filter\" >Name:</div>\n" +
     "                        <input type=\"text\" data-ng-model=\"elementSelectionName\" class=\"capriola\"/>\n" +

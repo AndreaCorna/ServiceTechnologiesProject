@@ -140,22 +140,28 @@ module CachingHelper
     end
   end
 
-  def get_hotels(city)
+  def get_hotels(city,token)
     results=[]
-    if((results = $redis.get(city+':hotel')).nil?)
-      puts 'no redis data'
-      hotel = get_hotels_list(city)
-      $redis.set(city+':hotel',hotel.to_json)
-      #puts hotel.to_json
-      puts 'redis data culture'
-      #puts $redis.get(city+':hotel')
-      return hotel.to_json
+    puts token
+    if(token.nil?)
+      if((results = $redis.get(city+':hotel')).nil?)
+        puts 'no redis data'
+        hotel = get_hotels_list(city)
+        return hotel
+      else
+        puts 'redis data get after insert'
+        #puts results
+        return results
+      end
     else
-      puts 'redis data get after insert'
-      #puts results
+
+      results = $redis.get(city+':hotel:'+token)
+      puts results
       return results
-    end
+      end
   end
+
+
 
   def hotel_details(id)
     results=[]
