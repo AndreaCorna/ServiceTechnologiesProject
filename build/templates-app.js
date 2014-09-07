@@ -359,7 +359,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                                        <b>Web Site</b>\n" +
     "                                    </div>\n" +
     "                                    <div class=\"row\">\n" +
-    "                                        <a href=\"{{moreInfoSelection.web_site}}\">{{moreInfoSelection.web_site}}</a>\n" +
+    "                                        <a target=\"_blank\" ng-href=\"{{moreInfoSelection.web_site}}\">{{moreInfoSelection.web_site}}</a>\n" +
     "                                    </div>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
@@ -465,7 +465,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                                                            </div>\n" +
     "                                                            <div class=\"row\">\n" +
     "                                                                <em>\n" +
-    "                                                                    Contact User <a href=\"{{review.author_url}}\">GooglePlus!</a>\n" +
+    "                                                                    Contact User <a target=\"_blank\" ng-href=\"{{review.author_url}}\">GooglePlus!</a>\n" +
     "                                                                </em>\n" +
     "                                                            </div>\n" +
     "                                                        </div>\n" +
@@ -1065,8 +1065,8 @@ angular.module("city/hotel.tpl.html", []).run(["$templateCache", function($templ
     "                                <button class=\"btn btn-primary capriola\" ng-click=\"setHotelDetails(c.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">\n" +
     "                                    More Info\n" +
     "                                </button>\n" +
-    "                                <button class=\"btn btn-primary capriola\" ng-click=\"addHotelItem(c)\">\n" +
-    "                                    Add\n" +
+    "                                <button class=\"btn btn-primary capriola\" ng-click=\"removeHotelItem(c)\">\n" +
+    "                                    Remove\n" +
     "                                </button>\n" +
     "                            </div>\n" +
     "                        </div>\n" +

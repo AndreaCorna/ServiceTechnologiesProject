@@ -14,14 +14,14 @@ module HotelsHelper
       url = 'http://images.travelnow.com'+hotel['thumbNailUrl']
       photos.append(:image=>url)
       descr = hotel['shortDescription'].strip_tags
-      hotels_list.append(HotelItem.new(hotel['hotelId'],hotel['latitudine'],hotel['longitudine'],hotel['name'],hotel['hotelRating'],address,photos,'','hotel',descr))
+      output = Nokogiri::HTML.fragment(descr)
+      hotels_list.append(HotelItem.new(hotel['hotelId'],hotel['latitudine'],hotel['longitudine'],hotel['name'],hotel['hotelRating'],address,photos,'','hotel',output.text))
       count = count + 1
       if(count == 20)
         count = 0
         next_tag = tag+1
         json_list = []
         json_list.append({:results=>hotels_list,:token=>next_tag.to_words})
-        puts json_list
         if(first)
           $redis.set(city+':hotel',json_list.to_json)
           first = false
