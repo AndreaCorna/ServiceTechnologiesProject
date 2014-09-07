@@ -1118,8 +1118,8 @@ angular.module("city/hotel.tpl.html", []).run(["$templateCache", function($templ
     "                    <option value=\"rating\">Rating</option>\n" +
     "                </select>\n" +
     "            </div>\n" +
-    "\n" +
-    "                <span ng-repeat=\"c in hotelList | filter:{name:elementListName} | orderBy:elementListOrder\">\n" +
+    "            <div infinite-scroll=\"infiniteScroll.nextPage(resource,hotelList)\" infinite-scroll-distance=\"2\" infinite-scroll-disabled=\"infiniteScroll.busy\">\n" +
+    "                <span ng-repeat=\"c in infiniteScroll.itemList | filter:{name:elementListName} | orderBy:elementListOrder\">\n" +
     "                    <div class=\"list-group-item\">\n" +
     "                        <div class=\"col-md-3\">\n" +
     "\n" +
