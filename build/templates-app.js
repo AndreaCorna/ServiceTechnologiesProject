@@ -305,20 +305,20 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "\n" +
     "\n" +
     "\n" +
-    "    <div class=\"modal fade\" ng-controller=\"ModalCtrl\" id=\"moreInfoModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">\n" +
+    "    <div class=\"modal fade\" ng-controller=\"ModalCtrl\" data-backdrop=\"static\" id=\"moreInfoModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">\n" +
     "        <div class=\"modal-dialog\">\n" +
     "            <div class=\"modal-content\">\n" +
     "                    <div ng-show=\"modalEnabled\">\n" +
     "                        <div class=\"modal-header\">\n" +
     "                            <button type=\"button\" class=\"close\" data-dismiss=\"modal\" ng-click=\"disableModal()\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button>\n" +
-    "                            <h4 class=\"modal-title\" id=\"myModalLabel\">More Information about {{moreInfoSelection.name}}</h4>\n" +
+    "                            <h4 class=\"modal-title capriola\" id=\"myModalLabel\">More Information about {{moreInfoSelection.name}}</h4>\n" +
     "                        </div>\n" +
     "                    </div>\n" +
     "                    <div class=\"modal-body\">\n" +
     "                        <div ng-show=\"modalEnabled\">\n" +
-    "                            <div class=\"container-fluid\">\n" +
+    "                            <div class=\"container-fluid capriola\">\n" +
     "                            <div class=\"row\">\n" +
-    "                                <div class=\"col-lg-6\" >\n" +
+    "                                <div class=\"col-lg-6 capriola\" >\n" +
     "                                    <div class=\"row\">\n" +
     "                                        <b>Rating</b>\n" +
     "                                    </div>\n" +
@@ -359,7 +359,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                                        <b>Web Site</b>\n" +
     "                                    </div>\n" +
     "                                    <div class=\"row\">\n" +
-    "                                        {{moreInfoSelection.web_site}}\n" +
+    "                                        <a href=\"{{moreInfoSelection.web_site}}\">{{moreInfoSelection.web_site}}</a>\n" +
     "                                    </div>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
@@ -372,7 +372,6 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                                        <table class=\"table table-hover\">\n" +
     "                                            <thead>\n" +
     "                                                <tr>\n" +
-    "                                                    <th></th>\n" +
     "                                                    <th>Sunday</th>\n" +
     "                                                    <th>Monday</th>\n" +
     "                                                    <th>Tuesday</th>\n" +
@@ -384,7 +383,6 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                                            </thead>\n" +
     "                                            <tbody>\n" +
     "                                                <tr class=\"info\">\n" +
-    "                                                    <td>From</td>\n" +
     "                                                    <td>{{moreInfoSelection.open_hours.periods[0].open.time}}</td>\n" +
     "                                                    <td>{{moreInfoSelection.open_hours.periods[1].open.time}}</td>\n" +
     "                                                    <td>{{moreInfoSelection.open_hours.periods[2].open.time}}</td>\n" +
@@ -394,7 +392,6 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                                                    <td>{{moreInfoSelection.open_hours.periods[6].open.time}}</td>\n" +
     "                                                </tr>\n" +
     "                                                <tr class=\"info\">\n" +
-    "                                                    <td>To</td>\n" +
     "                                                    <td>{{moreInfoSelection.open_hours.periods[0].close.time}}</td>\n" +
     "                                                    <td>{{moreInfoSelection.open_hours.periods[1].close.time}}</td>\n" +
     "                                                    <td>{{moreInfoSelection.open_hours.periods[2].close.time}}</td>\n" +
@@ -508,9 +505,9 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                            </div>\n" +
     "                        </div>\n" +
     "                    </div>\n" +
-    "                    <div class=\"modal-footer\">\n" +
+    "                    <div class=\"modal-footer capriola\">\n" +
     "\n" +
-    "                        <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\"  ng-click=\"disableModal()\">Close</button>\n" +
+    "                        <button type=\"button\" class=\"btn btn-default \" data-dismiss=\"modal\"  ng-click=\"disableModal()\">Close</button>\n" +
     "                    </div>\n" +
     "            </div>\n" +
     "\n" +
