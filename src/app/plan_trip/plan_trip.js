@@ -190,14 +190,8 @@ angular.module('trippo.plan',[
 
         for (var i = 0; i < 8; i++) {
             randomItemsc.push(StubHandler.getItemRandom());
-        }
-        for (var g = 0; i < 8; i++) {
             randomItemse.push(StubHandler.getItemRandom());
-        }
-        for (var f = 0; i < 8; i++) {
             randomItemsh.push(StubHandler.getItemRandom());
-        }
-        for (var a = 0; i < 8; i++) {
             randomItemsf.push(StubHandler.getItemRandom());
         }
         $scope.culture =randomItemsc;
