@@ -150,13 +150,10 @@ module CachingHelper
         return hotel
       else
         puts 'redis data get after insert'
-        #puts results
         return results
       end
     else
-
       results = $redis.get(city+':hotel:'+token)
-      puts results
       return results
       end
   end
