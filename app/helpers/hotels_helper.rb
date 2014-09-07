@@ -1,20 +1,42 @@
+require 'numbers_and_words'
+
 module HotelsHelper
 
   def get_hotels_list(city)
     json = hotels(city)
     hotels_list = []
+    count = 0
+    first = true
+    tag = 0
     json['HotelListResponse']['HotelList']['HotelSummary'].each do |hotel|
       address = hotel['address1']+' '+hotel['city']
       photos = []
       url = 'http://images.travelnow.com'+hotel['thumbNailUrl']
-      puts url
       photos.append(:image=>url)
       descr = hotel['shortDescription'].strip_tags
       hotels_list.append(HotelItem.new(hotel['hotelId'],hotel['latitudine'],hotel['longitudine'],hotel['name'],hotel['hotelRating'],address,photos,'','hotel',descr))
+      count = count + 1
+      if(count == 20)
+        count = 0
+        next_tag = tag+1
+        json_list = []
+        json_list.append({:results=>hotels_list,:token=>next_tag.to_words})
+        puts json_list
+        if(first)
+          $redis.set(city+':hotel',json_list.to_json)
+          first = false
+        else
+          to_add = tag.to_words
+          $redis.set(city+':hotel:'+to_add,json_list.to_json)
+        end
+        hotels_list.clear
+        tag = tag + 1
+      end
     end
-    return hotels_list
+    return  $redis.get(city+':hotel')
 
   end
+
 
   def get_hotel_details(id)
     details = []
