@@ -227,10 +227,17 @@ angular.module( 'trippo.city', [
 
     })
 
-.controller('HotelCtrl', function HotelCtrl($scope,HotelRes,$stateParams,SelectionService,ModalHandler) {
+.controller('HotelCtrl', function HotelCtrl($scope,HotelRes,$stateParams,SelectionService,ModalHandler,InfiniteScrollHandler) {
         $scope.loaderEnabled = true;
+        $scope.resource =  HotelRes;
+
         $scope.hotelList = HotelRes.list.query({city_name:$stateParams.city_name},function() {
-            $scope.loaderEnabled = false;});
+            $scope.loaderEnabled = false;
+            $scope.nextPageToken = $scope.hotelList[0].token;
+            $scope.hotelList = $scope.hotelList[0].results;
+            console.log($scope.nextPageToken);
+            $scope.infiniteScroll = new InfiniteScrollHandler($scope.nextPageToken,$scope.hotelList);
+        });
 
         $scope.setHotelDetails = function(id_hotel){
             ModalHandler.setHotelDetails(id_hotel);
