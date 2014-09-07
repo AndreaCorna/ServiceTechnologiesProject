@@ -50,9 +50,11 @@ angular.module('trippo.resources', [
 .factory('HotelRes',function($resource){
     var hotelList = $resource("../../city/:city_name/hotels");
     var hotelDetails = $resource("../../city/:city_name/hotels/:id_hotel");
+    var hotelOthers = $resource("../../city/:city_name/hotels?token=:token");
     return{
         list:hotelList,
-        details:hotelDetails
+        details:hotelDetails,
+        others:hotelOthers
     };
 
 })
