@@ -11,9 +11,10 @@ module PlacesHelper
 
     def get_utility_items(city)
       client = GooglePlaces::Client.new(ENV['API_KEY'])
-      location = Geocoder.search(city)
-      lat = location[0].latitude
-      lng = location[0].longitude
+      #location = Geocoder.search(city)
+      location = City.find_by_name(city)
+      lat = location.lat
+      lng = location.lng
       utility_items= client.spots(lat,lng,:types => ['airport','atm','bank','bus_station','doctor','fire_station','hospital','parking','pharmacy','police','subway_station','taxi_stand','train_station'],:radius => 20000)
       results = []
       next_page_token = ''
@@ -75,9 +76,10 @@ module PlacesHelper
 
     def get_culture_items(city)
       client = GooglePlaces::Client.new(ENV['API_KEY'])
-      location = Geocoder.search(city)
-      lat = location[0].latitude
-      lng = location[0].longitude
+      #location = Geocoder.search(city)
+      location = City.find_by_name(city)
+      lat = location.lat
+      lng = location.lng
       culture_items= client.spots(lat,lng,:types => ['library','book_store','museum','aquarium','art_gallery','church'],:radius => 20000)
       #puts culture_items.to_json
       results = []
@@ -142,9 +144,10 @@ module PlacesHelper
 
     def get_entertainment_items(city)
       client = GooglePlaces::Client.new(ENV['API_KEY'])
-      location = Geocoder.search(city)
-      lat = location[0].latitude
-      lng = location[0].longitude
+      #location = Geocoder.search(city)
+      location = City.find_by_name(city)
+      lat = location.lat
+      lng = location.lng
       entertainment_items= client.spots(lat,lng,:types => ['amusement_park','casino','gym','zoo','spa','park'],:radius => 20000)
       next_page_token = ''
       results = []
@@ -205,9 +208,10 @@ module PlacesHelper
 
     def get_food_items(city)
       client = GooglePlaces::Client.new(ENV['API_KEY'])
-      location = Geocoder.search(city)
-      lat = location[0].latitude
-      lng = location[0].longitude
+      #location = Geocoder.search(city)
+      location = City.find_by_name(city)
+      lat = location.lat
+      lng = location.lng
       food_items = client.spots(lat,lng,:types => ['food','restaurant','cafe','bakery'],:radius => 20000)
       results = []
       next_page_token = ''
