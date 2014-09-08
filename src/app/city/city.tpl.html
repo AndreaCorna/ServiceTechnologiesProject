@@ -91,44 +91,46 @@
                             </div>
                             <div class="row">
                                 <div class="col-lg-12" >
-                                    <div class="row">
-                                        <b>Open Hours</b>
-                                    </div>
-                                    <div class="row">
-                                        <table class="table table-hover">
-                                            <thead>
-                                                <tr>
-                                                    <th>Sunday</th>
-                                                    <th>Monday</th>
-                                                    <th>Tuesday</th>
-                                                    <th>Wednesday</th>
-                                                    <th>Thursday</th>
-                                                    <th>Friday</th>
-                                                    <th>Saturday</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr class="info">
-                                                    <td>{{moreInfoSelection.open_hours.periods[0].open.time}}</td>
-                                                    <td>{{moreInfoSelection.open_hours.periods[1].open.time}}</td>
-                                                    <td>{{moreInfoSelection.open_hours.periods[2].open.time}}</td>
-                                                    <td>{{moreInfoSelection.open_hours.periods[3].open.time}}</td>
-                                                    <td>{{moreInfoSelection.open_hours.periods[4].open.time}}</td>
-                                                    <td>{{moreInfoSelection.open_hours.periods[5].open.time}}</td>
-                                                    <td>{{moreInfoSelection.open_hours.periods[6].open.time}}</td>
-                                                </tr>
-                                                <tr class="info">
-                                                    <td>{{moreInfoSelection.open_hours.periods[0].close.time}}</td>
-                                                    <td>{{moreInfoSelection.open_hours.periods[1].close.time}}</td>
-                                                    <td>{{moreInfoSelection.open_hours.periods[2].close.time}}</td>
-                                                    <td>{{moreInfoSelection.open_hours.periods[3].close.time}}</td>
-                                                    <td>{{moreInfoSelection.open_hours.periods[4].close.time}}</td>
-                                                    <td>{{moreInfoSelection.open_hours.periods[5].close.time}}</td>
-                                                    <td>{{moreInfoSelection.open_hours.periods[6].close.time}}</td>
-                                                </tr>
-                                            </tbody>
+                                    <div ng-show="moreInfoSelection.open_hours != null">
+                                        <div class="row">
+                                            <b>Open Hours</b>
+                                        </div>
+                                        <div class="row">
+                                            <table class="table table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Sunday</th>
+                                                        <th>Monday</th>
+                                                        <th>Tuesday</th>
+                                                        <th>Wednesday</th>
+                                                        <th>Thursday</th>
+                                                        <th>Friday</th>
+                                                        <th>Saturday</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr class="info">
+                                                        <td>{{moreInfoSelection.open_hours.periods[0].open.time}}</td>
+                                                        <td>{{moreInfoSelection.open_hours.periods[1].open.time}}</td>
+                                                        <td>{{moreInfoSelection.open_hours.periods[2].open.time}}</td>
+                                                        <td>{{moreInfoSelection.open_hours.periods[3].open.time}}</td>
+                                                        <td>{{moreInfoSelection.open_hours.periods[4].open.time}}</td>
+                                                        <td>{{moreInfoSelection.open_hours.periods[5].open.time}}</td>
+                                                        <td>{{moreInfoSelection.open_hours.periods[6].open.time}}</td>
+                                                    </tr>
+                                                    <tr class="info">
+                                                        <td>{{moreInfoSelection.open_hours.periods[0].close.time}}</td>
+                                                        <td>{{moreInfoSelection.open_hours.periods[1].close.time}}</td>
+                                                        <td>{{moreInfoSelection.open_hours.periods[2].close.time}}</td>
+                                                        <td>{{moreInfoSelection.open_hours.periods[3].close.time}}</td>
+                                                        <td>{{moreInfoSelection.open_hours.periods[4].close.time}}</td>
+                                                        <td>{{moreInfoSelection.open_hours.periods[5].close.time}}</td>
+                                                        <td>{{moreInfoSelection.open_hours.periods[6].close.time}}</td>
+                                                    </tr>
+                                                </tbody>
 
-                                        </table>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
