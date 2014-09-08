@@ -13,9 +13,8 @@ module HotelsHelper
       photos = []
       url = 'http://images.travelnow.com'+hotel['thumbNailUrl']
       photos.append(:image=>url)
-      descr = hotel['shortDescription'].strip_tags
-      output = Nokogiri::HTML.fragment(descr)
-      hotels_list.append(HotelItem.new(hotel['hotelId'],hotel['latitudine'],hotel['longitudine'],hotel['name'],hotel['hotelRating'],address,photos,'','hotel',output.text))
+      description = parse_description(hotel['shortDescription'])
+      hotels_list.append(HotelItem.new(hotel['hotelId'],hotel['latitudine'],hotel['longitudine'],hotel['name'],hotel['hotelRating'],address,photos,'','hotel',description))
       count = count + 1
       if(count == 20)
         count = 0
@@ -37,7 +36,6 @@ module HotelsHelper
 
   end
 
-
   def get_hotel_details(id)
     details = []
     api = Expedia::Api.new
@@ -50,16 +48,18 @@ module HotelsHelper
 
   def hotels(city)
     api = Expedia::Api.new
-
-    # Method to search for a hotel. see http://developer.ean.com/docs/hotel-list/
-    # Per mandare alla pagina di expedia 84505 è il CID che definisce il template 147594 indica invece l'hotel
-    # http://www.travelnow.com/templates/55505/hotels/147594/overview
     response = api.get_list({ :destinationString => city})
-
     return response.body
   end
 
-  #add methods in order to use expedia api
+  def parse_description(description)
+    output = Nokogiri::HTML.fragment(description)
+    descr = output.text.gsub(/<[^>]*>/ui,'')
+    value, match, suffix = descr.rpartition('.')
+    value.slice! 'Property Location '
+    return value+'.'
+
+  end
 
   class HotelItem
     attr_accessor :id,:lat,:lng,:price,:rating,:name,:photos,:icon,:tag,:description;
