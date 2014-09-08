@@ -37,13 +37,18 @@ module HotelsHelper
   end
 
   def get_hotel_details(id)
-    details = []
     api = Expedia::Api.new
     response = api.get_information({ :hotelId => id})
-    puts response.body
-    #to parse
-    details.append('details hotel id '+id)
-    return details
+    hotel = response.body['HotelInformationResponse']['HotelSummary']
+    hotel_id = hotel['hotelId']
+    name = hotel['name']
+    address = hotel['address1']+' '+hotel['city']
+    rating = hotel['hotelRating']
+    lat = hotel['latitude']
+    lng = hotel['longitude']
+    descr = parse_description(hotel['HotelDetails']['propertyDescription'])
+    hotel_details = HotelDetails.new(hotel_id,name,address,rating,lat,lng,descr)
+    return hotel_details
   end
 
   def hotels(city)
@@ -74,6 +79,21 @@ module HotelsHelper
       @photos = photo;
       @icon = icon;
       @tag = tag;
+      @description = description;
+    end
+
+  end
+
+  class HotelDetails
+    attr_accessor :id,:name,:address,:rating,:lat,:lng,:description
+
+    def initialize(id,name,address,rating,lat,lng,description)
+      @id = id;
+      @name = name;
+      @address = address;
+      @rating = rating;
+      @lat = lat;
+      @lng = lng;
       @description = description;
     end
 
