@@ -164,13 +164,17 @@ angular.module('trippo.plan',[
 
 
 
+
 })
 
 .controller('PlanningCtrl', function PlanningCtrl($scope,SelectionService,ModalHandler,PlanningService,$stateParams,StubHandler) {
+
         /**
          * List of fuction which set the content of the modal when clicked More button in item
          */
         $scope.setCultureDetails = function(id_culture){
+            console.log("dewdew");
+            
             ModalHandler.setCultureDetails(id_culture);
         };
         $scope.setEntertainmentDetails = function(id_entertainment){
@@ -183,6 +187,8 @@ angular.module('trippo.plan',[
             ModalHandler.setFoodDetails(id_food);
         };
 
+        //*START STUB
+        StubHandler.createFakeDates();
         var randomItemsc = [];
         var  randomItemse = [];
         var  randomItemsh = [];
@@ -194,19 +200,23 @@ angular.module('trippo.plan',[
             randomItemsh.push(StubHandler.getItemRandom());
             randomItemsf.push(StubHandler.getItemRandom());
         }
+
         $scope.culture =randomItemsc;
         $scope.entertainment = randomItemse;
-        $scope.hotel =randomItemsh;
-        $scope.food =randomItemsf;
+        $scope.hotels =randomItemsh;
+        $scope.foods =randomItemsf;
 
+        //*END STUB
 
-
-
+        $scope.current_day = moment($stateParams.date);
         //get the item selected in the selectionService and set the current daySchedule removing item which has been removed from the Selection service
+        /*
+
         $scope.hotels =SelectionService. getHotelSelection();
         $scope.culture =SelectionService.getCultureSelection();
         $scope.entertainment =SelectionService.getEntertainmentSelection();
         $scope.foods = SelectionService.getFoodSelection();
+        */
         var selectedItems = $scope.culture.concat($scope.hotels,$scope.entertainment,$scope.foods) ;
         PlanningService.initializeCurrentDay($stateParams.date,selectedItems);
 
@@ -289,7 +299,7 @@ angular.module('trippo.plan',[
 
 })
 
-.factory('StubHandler', function () {
+.factory('StubHandler', function (DatesService) {
     function makestring(){
         var text = "";
         var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -300,11 +310,17 @@ angular.module('trippo.plan',[
         return text;
     }
         return {
+            createFakeDates: function(){
+                DatesService.createRange(moment(), moment());
+            } ,
             getItemRandom : function(){
+                var image1 = {image : "http://ilmiomappamondo.files.wordpress.com/2014/02/londra2.jpg"} ;
+                var image2 = {image : "assets/images/empty_photo.png"} ;
+
                 return {
                     id:"fdsfsd",
                     name: makestring(),
-                    photos : ["http://ilmiomappamondo.files.wordpress.com/2014/02/londra2.jpg","assets/images/empty_photo.png"]
+                    photos : [image1,image2]
 
                 };
             }

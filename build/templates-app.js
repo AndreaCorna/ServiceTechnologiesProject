@@ -1302,7 +1302,7 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
   $templateCache.put("plan_trip/planning.tpl.html",
     "\n" +
     "<div class=\"page-header\">\n" +
-    "    <h1>Planning</h1>\n" +
+    "    <h1 class=\"text-center subtitle\">{{current_day.format('dddd DD  MMMM YYYY')}}</h1>\n" +
     "</div>\n" +
     "<div class=\"panel-group\" id=\"Culture\">\n" +
     "    <div class=\"panel  panel-primary no-radius\">\n" +
@@ -1316,7 +1316,7 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
     "                <ul>\n" +
     "                    <div ng-repeat=\"cult in culture\" class=\"event-list col-md-4\">\n" +
     "                        <li>\n" +
-    "                            <div ng-class=\"isScheduled(cult) ? 'selected' :'not-selected'\">\n" +
+    "                            <div ng-class=\"isScheduled(cult) ? 'selected-cult' :'not-selected'\">\n" +
     "                                <div class=\"row\" style=\"height: 48px;\">\n" +
     "\n" +
     "                                    <h1 class=\"item-name\">{{cult.name}}</h1>\n" +
@@ -1364,7 +1364,7 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
     "                <ul>\n" +
     "                    <div ng-repeat=\"ent in entertainment\" class=\"event-list col-md-4\">\n" +
     "                        <li>\n" +
-    "                            <div class=\"not-selected\">\n" +
+    "                            <div ng-class=\"isScheduled(ent) ? 'selected-ent' :'not-selected'\">\n" +
     "                                <div class=\"row\" style=\"height: 48px;\">\n" +
     "\n" +
     "                                    <h1 class=\"item-name\">{{ent.name}}</h1>\n" +
@@ -1381,8 +1381,15 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
     "                                    </div>\n" +
     "                                </div>\n" +
     "                                <div class=\"row\">\n" +
-    "                                    <button class=\"btn btn-primary btn-outlined \">Add</button>\n" +
-    "                                    <button class=\"btn btn-primary btn-outlined \" ng-click=\"setEntertainmentDetails(ent.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">More</button>\n" +
+    "                                    <div class=\"btn-group\">\n" +
+    "\n" +
+    "                                        <button ng-show=\"isScheduled(ent)\" style=\"margin-right: 2px;\" class=\"btn btn-primary btn-outlined \" style=\"display: inline-block;\" ng-click=\"removeFromSchedule(ent)\">REMOVE</button>\n" +
+    "\n" +
+    "\n" +
+    "                                        <button ng-show=\"!isScheduled(ent)\" style=\"margin-right: 2px\"  class=\"btn btn-primary btn-outlined \" style=\"display: inline-block;\" ng-click=\"addToSchedule(ent)\">ADD</button>\n" +
+    "\n" +
+    "                                        <button class=\"btn btn-primary btn-outlined \" style=\"margin-left: 4px;margin-bottom: 5px\"  ng-click=\"setCultureDetails(ent.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">MORE</button>\n" +
+    "                                    </div>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
     "                        </li>\n" +
@@ -1405,7 +1412,7 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
     "                <ul>\n" +
     "                    <div ng-repeat=\"hot in hotels\" class=\"event-list col-md-4\">\n" +
     "                        <li>\n" +
-    "                            <div class=\"not-selected\">\n" +
+    "                            <div ng-class=\"isScheduled(hot) ? 'selected-hotel' :'not-selected'\">\n" +
     "                                <div class=\"row\" style=\"height: 48px;\">\n" +
     "\n" +
     "                                    <h1 class=\"item-name\">{{hot.name}}</h1>\n" +
@@ -1422,8 +1429,15 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
     "                                    </div>\n" +
     "                                </div>\n" +
     "                                <div class=\"row\">\n" +
-    "                                    <button class=\"btn btn-primary btn-outlined \">Add</button>\n" +
-    "                                    <button class=\"btn btn-primary btn-outlined \" ng-click=\"setHotelDetails(hot.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">More</button>\n" +
+    "                                    <div class=\"btn-group\">\n" +
+    "\n" +
+    "                                        <button ng-show=\"isScheduled(hot)\" style=\"margin-right: 2px;\" class=\"btn btn-primary btn-outlined \" style=\"display: inline-block;\" ng-click=\"removeFromSchedule(hot)\">REMOVE</button>\n" +
+    "\n" +
+    "\n" +
+    "                                        <button ng-show=\"!isScheduled(hot)\" style=\"margin-right: 2px\"  class=\"btn btn-primary btn-outlined \" style=\"display: inline-block;\" ng-click=\"addToSchedule(hot)\">ADD</button>\n" +
+    "\n" +
+    "                                        <button class=\"btn btn-primary btn-outlined \" style=\"margin-left: 4px;margin-bottom: 5px\"  ng-click=\"setCultureDetails(hot.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">MORE</button>\n" +
+    "                                    </div>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
     "                        </li>\n" +
@@ -1446,7 +1460,7 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
     "                <ul>\n" +
     "                    <div ng-repeat=\"food in foods\" class=\"event-list col-md-4\">\n" +
     "                        <li>\n" +
-    "                            <div class=\"not-selected\">\n" +
+    "                            <div ng-class=\"isScheduled(food) ? 'selected-food' :'not-selected'\">\n" +
     "                                <div class=\"row\" style=\"height: 48px;\">\n" +
     "\n" +
     "                                    <h1 class=\"item-name\">{{food.name}}</h1>\n" +
@@ -1463,8 +1477,15 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
     "                                    </div>\n" +
     "                                </div>\n" +
     "                                <div class=\"row\">\n" +
-    "                                    <button class=\"btn btn-primary btn-outlined \">Add</button>\n" +
-    "                                    <button class=\"btn btn-primary btn-outlined \" ng-click=\"setFoodDetails(food.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">More</button>\n" +
+    "                                    <div class=\"btn-group\">\n" +
+    "\n" +
+    "                                        <button ng-show=\"isScheduled(food)\" style=\"margin-right: 2px;\" class=\"btn btn-primary btn-outlined \" style=\"display: inline-block;\" ng-click=\"removeFromSchedule(food)\">REMOVE</button>\n" +
+    "\n" +
+    "\n" +
+    "                                        <button ng-show=\"!isScheduled(food)\" style=\"margin-right: 2px\"  class=\"btn btn-primary btn-outlined \" style=\"display: inline-block;\" ng-click=\"addToSchedule(food)\">ADD</button>\n" +
+    "\n" +
+    "                                        <button class=\"btn btn-primary btn-outlined \" style=\"margin-left: 4px;margin-bottom: 5px\"  ng-click=\"setCultureDetails(food.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">MORE</button>\n" +
+    "                                    </div>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
     "                        </li>\n" +
@@ -1475,12 +1496,53 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
     "    </div>\n" +
     "</div>\n" +
     "\n" +
-    "</div>\n" +
-    "<div class=\"sortable-container\" sv-root sv-part=\"selectedItems\">\n" +
-    "    <div ng-repeat=\"item in selectedItems\" sv-element=\"opts\" class=\"well\">\n" +
-    "        {{item}}\n" +
+    "<h1 class=\"text-center subtitle\">Planning</h1>\n" +
+    "    <div class=\"timeline-centered\" class=\"sortable-container\" sv-root sv-part=\"selectedItems\" >\n" +
+    "          <div ng-repeat=\"item in selectedItems\" sv-element=\"opts\">\n" +
+    "\n" +
+    "              <div class=\"row\">\n" +
+    "                     <div class= 'col-md-4 ' >\n" +
+    "                         <div class=\"selected-hotel\">\n" +
+    "                            <div class=\"row\" style=\"height: 48px;\">\n" +
+    "\n" +
+    "                                <h1 class=\"item-name\">{{item.name}}</h1>\n" +
+    "                            </div>\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <div ng-if=\"item.photos.length==0\">\n" +
+    "                                    <img class=\"fixed-size-image\" ng-src=\"assets/images/empty_photo.png\">\n" +
+    "                                </div>\n" +
+    "                                <div ng-if=\"item.photos.length>0\">\n" +
+    "                                    <img class=\"fixed-size-image\" ng-src=\"{{item.photos[0].image}}\" >\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <div class=\"btn-group\">\n" +
+    "\n" +
+    "                                    <button  style=\"margin-right: 2px;\" class=\"btn btn-primary btn-outlined z-up\" style=\"display: inline-block;\" ng-click=\"removeFromSchedule(item)\">REMOVE</button>\n" +
+    "                                    <button class=\"btn btn-primary btn-outlined z-up\" style=\";margin-left: 4px;margin-bottom: 5px\"  ng-click=\"setCultureDetails(item.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">MORE</button>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "                     </div>\n" +
+    "\n" +
+    "                     <article class=\"timeline-entry\" >\n" +
+    "                        <div class=\"timeline-entry-inner\">\n" +
+    "\n" +
+    "                            <div class=\"timeline-icon bg-success\">\n" +
+    "                                <i class=\"entypo-feather\"></i>\n" +
+    "                            </div>\n" +
+    "\n" +
+    "\n" +
+    "                        </div>\n" +
+    "\n" +
+    "                     </article>\n" +
+    "              </div>\n" +
+    "          </div>\n" +
     "    </div>\n" +
-    "</div>\n" +
+    "\n" +
+    "\n" +
+    "\n" +
+    "\n" +
     "\n" +
     "\n" +
     "");
