@@ -73,10 +73,12 @@ angular.module('trippo.modal', ["trippo.resources"])
 
             setCultureDetails : function(id_culture){
                 var data;
-                CultureRes.details.query({city_name: $stateParams.city_name, id_culture: id_culture},function(response){
+                CultureRes.get({city_name: $stateParams.city_name, id_culture: id_culture},function(response){
                     data =response;
-                    console.log(data[0].name);
-                    setDetails(data[0]);
+                    console.log("dsadsa");
+                    
+                    console.log(data.name);
+                    setDetails(data);
                 });
             }
 

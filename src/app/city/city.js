@@ -112,7 +112,7 @@ angular.module( 'trippo.city', [
         $scope.loaderEnabled = true;
         $scope.resource = CultureRes;
 
-        $scope.cultureList = CultureRes.list.query({city_name:$stateParams.city_name},function() {
+        $scope.cultureList = CultureRes.query({city_name:$stateParams.city_name},function() {
             $scope.loaderEnabled = false;
             $scope.nextPageToken = $scope.cultureList[0].token;
             $scope.cultureList = $scope.cultureList[0].results;
@@ -312,15 +312,9 @@ angular.module( 'trippo.city', [
 
 
             if(this.token != null){
-                var otherElements = resource.others.query({city_name: $stateParams.city_name, token: this.token},function(){
-                    console.log("previous token inside infinite scroll");
-                    console.log(this.token);
-                    this.token = otherElements[0].token;
-                    console.log("other elements");
-                    console.log(otherElements[0]);
+                var otherElements = resource.query({city_name: $stateParams.city_name, token: this.token},function(){
 
-                    console.log("after token inside infinite scroll");
-                    console.log(this.token);
+                    this.token = otherElements[0].token;
 
                     for(var i=0;i<otherElements[0].results.length;i++){
                         this.itemList.push(otherElements[0].results[i]);
