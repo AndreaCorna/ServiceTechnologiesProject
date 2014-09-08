@@ -1500,21 +1500,14 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
     "    <div class=\"timeline-centered\" class=\"sortable-container\" sv-root sv-part=\"selectedItems\" >\n" +
     "          <div ng-repeat=\"item in selectedItems\" sv-element=\"opts\">\n" +
     "\n" +
-    "              <div class=\"row\">\n" +
-    "                     <div class= 'col-md-4 ' >\n" +
-    "                         <div class=\"selected-hotel\">\n" +
+    "              <div class=\"row\" >\n" +
+    "                     <div class= 'col-md-4 col-md-offset-4' >\n" +
+    "                         <div class=\"{{getItemClass(item)}}\">\n" +
     "                            <div class=\"row\" style=\"height: 48px;\">\n" +
     "\n" +
     "                                <h1 class=\"item-name\">{{item.name}}</h1>\n" +
     "                            </div>\n" +
-    "                            <div class=\"row\">\n" +
-    "                                <div ng-if=\"item.photos.length==0\">\n" +
-    "                                    <img class=\"fixed-size-image\" ng-src=\"assets/images/empty_photo.png\">\n" +
-    "                                </div>\n" +
-    "                                <div ng-if=\"item.photos.length>0\">\n" +
-    "                                    <img class=\"fixed-size-image\" ng-src=\"{{item.photos[0].image}}\" >\n" +
-    "                                </div>\n" +
-    "                            </div>\n" +
+    "\n" +
     "                            <div class=\"row\">\n" +
     "                                <div class=\"btn-group\">\n" +
     "\n" +
@@ -1523,7 +1516,7 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
     "                                </div>\n" +
     "                            </div>\n" +
     "                        </div>\n" +
-    "                     </div>\n" +
+    "\n" +
     "\n" +
     "                     <article class=\"timeline-entry\" >\n" +
     "                        <div class=\"timeline-entry-inner\">\n" +
@@ -1536,6 +1529,7 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
     "                        </div>\n" +
     "\n" +
     "                     </article>\n" +
+    "                  </div>\n" +
     "              </div>\n" +
     "          </div>\n" +
     "    </div>\n" +
@@ -1608,34 +1602,5 @@ angular.module("plan_trip/trip_dates.tpl.html", []).run(["$templateCache", funct
     "\n" +
     "</div>\n" +
     "\n" +
-    "\n" +
-    "<div class=\"modal fade\" id=\"infoDate\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">\n" +
-    "    <div class=\"modal-dialog\">\n" +
-    "        <div class=\"modal-content\">\n" +
-    "\n" +
-    "            <div class=\"modal-header\">\n" +
-    "                <button type=\"button\" class=\"close\" data-dismiss=\"modal\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button>\n" +
-    "                <h4 class=\"modal-title\" id=\"myModalLabel\">More Information</h4>\n" +
-    "            </div>\n" +
-    "            <div class=\"modal-body\">\n" +
-    "                <div class=\"row\">\n" +
-    "                    <div class=\"column\" >\n" +
-    "                        gtrgtr\n" +
-    "                    </div>\n" +
-    "                    <div class=\"column\">\n" +
-    "                        gtrgtr\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
-    "                <div class=\"row\">\n" +
-    "\n" +
-    "                </div>\n" +
-    "            </div>\n" +
-    "            <div class=\"modal-footer\">\n" +
-    "\n" +
-    "                <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>\n" +
-    "            </div>\n" +
-    "        </div>\n" +
-    "\n" +
-    "    </div>\n" +
-    "</div>");
+    "");
 }]);

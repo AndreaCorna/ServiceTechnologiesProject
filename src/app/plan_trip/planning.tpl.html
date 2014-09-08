@@ -198,9 +198,9 @@
     <div class="timeline-centered" class="sortable-container" sv-root sv-part="selectedItems" >
           <div ng-repeat="item in selectedItems" sv-element="opts">
 
-              <div class="row">
-                     <div class= 'col-md-4 ' >
-                         <div class="selected-hotel">
+              <div class="row" >
+                     <div class= 'col-md-4 col-md-offset-4' >
+                         <div class="{{getItemClass(item)}}">
                             <div class="row" style="height: 48px;">
 
                                 <h1 class="item-name">{{item.name}}</h1>
@@ -221,7 +221,7 @@
                                 </div>
                             </div>
                         </div>
-                     </div>
+
 
                      <article class="timeline-entry" >
                         <div class="timeline-entry-inner">
@@ -234,6 +234,7 @@
                         </div>
 
                      </article>
+                  </div>
               </div>
           </div>
     </div>

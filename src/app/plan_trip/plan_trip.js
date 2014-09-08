@@ -187,7 +187,7 @@ angular.module('trippo.plan',[
             ModalHandler.setFoodDetails(id_food);
         };
 
-        //*START STUB
+
         StubHandler.createFakeDates();
         var randomItemsc = [];
         var  randomItemse = [];
@@ -195,10 +195,10 @@ angular.module('trippo.plan',[
         var  randomItemsf = [];
 
         for (var i = 0; i < 8; i++) {
-            randomItemsc.push(StubHandler.getItemRandom());
-            randomItemse.push(StubHandler.getItemRandom());
-            randomItemsh.push(StubHandler.getItemRandom());
-            randomItemsf.push(StubHandler.getItemRandom());
+            randomItemsc.push(StubHandler.getItemRandom("culture"));
+            randomItemse.push(StubHandler.getItemRandom("entertainment"));
+            randomItemsh.push(StubHandler.getItemRandom("hotel"));
+            randomItemsf.push(StubHandler.getItemRandom("food"));
         }
 
         $scope.culture =randomItemsc;
@@ -206,9 +206,10 @@ angular.module('trippo.plan',[
         $scope.hotels =randomItemsh;
         $scope.foods =randomItemsf;
 
-        //*END STUB
-
         $scope.current_day = moment($stateParams.date);
+
+        /*END STUB
+
         //get the item selected in the selectionService and set the current daySchedule removing item which has been removed from the Selection service
         /*
 
@@ -216,7 +217,7 @@ angular.module('trippo.plan',[
         $scope.culture =SelectionService.getCultureSelection();
         $scope.entertainment =SelectionService.getEntertainmentSelection();
         $scope.foods = SelectionService.getFoodSelection();
-        */
+         */
         var selectedItems = $scope.culture.concat($scope.hotels,$scope.entertainment,$scope.foods) ;
         PlanningService.initializeCurrentDay($stateParams.date,selectedItems);
 
@@ -233,6 +234,25 @@ angular.module('trippo.plan',[
         $scope.removeFromSchedule = function (item) {
             $scope.selectedItems =  PlanningService.removeFromSchedule(item);
 
+        };
+
+        $scope.getItemClass = function(item){
+            console.log("getItem");
+            console.log(item);
+
+
+            switch (item.tag){
+                case "culture" :
+                    console.log("fsdfs");
+
+                    return "selected-cult" ;
+                case "entertainment":
+                    return "selected-ent";
+                case "hotel":
+                    return "selected-hotel";
+                case "food":
+                    return "selected-food";
+            }
         };
 
 
@@ -313,14 +333,15 @@ angular.module('trippo.plan',[
             createFakeDates: function(){
                 DatesService.createRange(moment(), moment());
             } ,
-            getItemRandom : function(){
+            getItemRandom : function(type){
                 var image1 = {image : "http://ilmiomappamondo.files.wordpress.com/2014/02/londra2.jpg"} ;
                 var image2 = {image : "assets/images/empty_photo.png"} ;
 
                 return {
                     id:"fdsfsd",
                     name: makestring(),
-                    photos : [image1,image2]
+                    photos : [image1,image2],
+                    tag:type
 
                 };
             }
