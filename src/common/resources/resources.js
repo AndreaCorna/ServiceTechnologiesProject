@@ -26,7 +26,7 @@ angular.module('trippo.resources', [
 })
 
 .factory('EntertainmentRes',function($resource){
-    var entertainment = $resource("../../city/:city_name/entertainment/:id_entertainment");
+    var entertainment = $resource("../../city/:city_name/entertainment/:id");
 
     return entertainment;
 })

@@ -28,18 +28,16 @@ angular.module('trippo.modal', ["trippo.resources"])
             },
             setFoodDetails: function(id_food) {
                 var data;
-                FoodRes.details.query({city_name: $stateParams.city_name, id_food: id_food},function(response){
+                FoodRes.get({city_name: $stateParams.city_name, id: id_food},function(response){
                     data =response;
-                    console.log(data[0].name);
-                    setDetails(data[0]);
+                    setDetails(data);
                 });
             },
             setHotelDetails : function(id_hotel){
                 var data;
-                HotelRes.details.query({city_name: $stateParams.city_name, id_hotel: id_hotel},function(response){
+                HotelRes.get({city_name: $stateParams.city_name, id: id_hotel},function(response){
                     data =response;
-                    console.log(data[0].name);
-                    setDetails(data[0]);
+                    setDetails(data);
 
 
                 });
@@ -48,10 +46,9 @@ angular.module('trippo.modal', ["trippo.resources"])
             },
             setUtilityDetails : function(id_utility){
                 var data;
-                UtilityRes.details.query({city_name: $stateParams.city_name, id_utility: id_utility},function(response){
+                UtilityRes.get({city_name: $stateParams.city_name, id: id_utility},function(response){
                     data =response;
-                    console.log(data[0].name);
-                    setDetails(data[0]);
+                    setDetails(data);
 
 
                 });
@@ -60,10 +57,10 @@ angular.module('trippo.modal', ["trippo.resources"])
             },
             setEntertainmentDetails : function(id_entertainment){
                 var data;
-                EntertainmentRes.details.query({city_name: $stateParams.city_name, id_entertainment: id_entertainment},function(response){
+                EntertainmentRes.get({city_name: $stateParams.city_name, id: id_entertainment},function(response){
                     data =response;
-                    console.log(data[0].name);
-                    setDetails(data[0]);
+                    console.log(data.name);
+                    setDetails(data);
 
 
                 });
@@ -73,10 +70,9 @@ angular.module('trippo.modal', ["trippo.resources"])
 
             setCultureDetails : function(id_culture){
                 var data;
-                CultureRes.get({city_name: $stateParams.city_name, id_culture: id_culture},function(response){
+                CultureRes.get({city_name: $stateParams.city_name, id: id_culture},function(response){
                     data =response;
-                    console.log("dsadsa");
-                    
+
                     console.log(data.name);
                     setDetails(data);
                 });

@@ -153,7 +153,7 @@ angular.module( 'trippo.city', [
         $scope.resource =   EntertainmentRes;
 
 
-        $scope.entertainmentList= EntertainmentRes.list.query({city_name:$stateParams.city_name},function() {
+        $scope.entertainmentList= EntertainmentRes.query({city_name:$stateParams.city_name},function() {
             $scope.loaderEnabled = false;
             $scope.nextPageToken = $scope.entertainmentList[0].token;
             $scope.entertainmentList = $scope.entertainmentList[0].results;
@@ -194,7 +194,7 @@ angular.module( 'trippo.city', [
         $scope.resource =   UtilityRes;
 
 
-        $scope.utilityList = UtilityRes.list.query({city_name:$stateParams.city_name},function() {
+        $scope.utilityList = UtilityRes.query({city_name:$stateParams.city_name},function() {
             $scope.loaderEnabled = false;
             $scope.nextPageToken = $scope.utilityList[0].token;
             $scope.utilityList = $scope.utilityList[0].results;
@@ -231,7 +231,7 @@ angular.module( 'trippo.city', [
         $scope.loaderEnabled = true;
         $scope.resource =  HotelRes;
 
-        $scope.hotelList = HotelRes.list.query({city_name:$stateParams.city_name},function() {
+        $scope.hotelList = HotelRes.query({city_name:$stateParams.city_name},function() {
             $scope.loaderEnabled = false;
             $scope.nextPageToken = $scope.hotelList[0].token;
             $scope.hotelList = $scope.hotelList[0].results;
@@ -267,7 +267,7 @@ angular.module( 'trippo.city', [
         $scope.resource =   FoodRes;
 
 
-        $scope.foodList = FoodRes.list.query({city_name:$stateParams.city_name},function() {
+        $scope.foodList = FoodRes.query({city_name:$stateParams.city_name},function() {
             $scope.loaderEnabled = false;
             $scope.nextPageToken = $scope.foodList[0].token;
             $scope.foodList = $scope.foodList[0].results;
@@ -335,19 +335,19 @@ angular.module( 'trippo.city', [
 
 
 
-    .controller( 'CityCtrl', function CityCtrl( $scope, $stateParams, $log , CityRes,ModalHandler) {
-        $scope.$log = $log;
-        $scope.intervalImages = 5000;
-        $scope.moreInfoSelection = null;
-        $scope.modalEnabled = false;
-        $scope.loaderEnabled = true;
+.controller( 'CityCtrl', function CityCtrl( $scope, $stateParams, $log , CityRes) {
+    $scope.$log = $log;
+    $scope.intervalImages = 5000;
+    $scope.moreInfoSelection = null;
+    $scope.modalEnabled = false;
+    $scope.loaderEnabled = true;
 
-        $scope.city = CityRes.details.query({city_name: $stateParams.city_name}, function () {
-            $scope.images = $scope.city[0].images;
-            $scope.city = $scope.city[0].details;
-        });
+    $scope.city = CityRes.details.query({city_name: $stateParams.city_name}, function () {
+        $scope.images = $scope.city[0].images;
+        $scope.city = $scope.city[0].details;
+    });
 
-    })
+})
 /**
  * modify the value of the hour which comes from Google Api in a format of HH:mm
  */
