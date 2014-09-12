@@ -268,7 +268,6 @@ module PlacesHelper
 
 
   def get_details_item(id)
-    details = []
     response = HTTParty.get('https://maps.googleapis.com/maps/api/place/details/json?placeid='+id+'&key='+ENV['API_KEY'])
     json = JSON.parse(response.body)
     #puts json
@@ -291,8 +290,7 @@ module PlacesHelper
     end
     rating = json['result']['user_ratings_total']
     details_item = DetailedItem.new(id,lat,lng,name,rating,photos,icon,reviews,formatted_address,web_site,phone,open_hours)
-    details.append(details_item)
-    return details
+    return details_item
   end
 
   class DetailedItem

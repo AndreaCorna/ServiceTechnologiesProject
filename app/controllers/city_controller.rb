@@ -7,20 +7,15 @@ class CityController < ApplicationController
 
   def show
     details = []
-    puts params[:id]
-    city = City.find_by_name(params[:id])
-    puts city.city_images
+    city = City.find_by_name(params[:id].downcase)
     details.append({:details => city,:images => city.city_images})
-    puts details.to_json
     render  json:  details.to_json
   end
 
   def populate
     json = params[:cities]
-    puts json.to_json
     cities = populate_database(json)
     cities.each{ |city|
-      puts city.name
       if(City.find_by_name(city.name).nil?)
         City.create({:name => city.name,:state => city.state,:lat => city.lat,:lng => city.lng})
         photos = get_images_url(city.lat,city.lng)

@@ -10,7 +10,7 @@ module CityHelper
         lat = location[0].latitude
         lng = location[0].longitude
         country = location[0].country
-        item = CityItem.new(city,country,lat,lng)
+        item = CityItem.new(city.downcase,country,lat,lng)
         puts item.to_json
         results.append(item)
     end
