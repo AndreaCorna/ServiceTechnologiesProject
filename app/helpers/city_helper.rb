@@ -20,8 +20,8 @@ module CityHelper
 
   def get_images_url(lat,lng)
     photos = []
-    latitude = (lat+0.5).to_s
-    longitude =(lng+0.5).to_s
+    latitude = (lat+0.01).to_s
+    longitude =(lng+0.01).to_s
     url = 'http://www.panoramio.com/map/get_panoramas.php?set=public&from=0&to=4&minx='+lng.to_s+'&miny='+lat.to_s+'&maxx='+longitude+'&maxy='+latitude+'&size=medium&mapfilter=true'
     response = HTTParty.get(url)
     json = JSON.parse(response.body)
