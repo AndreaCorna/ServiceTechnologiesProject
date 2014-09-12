@@ -112,7 +112,7 @@ angular.module( 'trippo.city', [
         $scope.loaderEnabled = true;
         $scope.resource = CultureRes;
 
-        $scope.cultureList = CultureRes.list.query({city_name:$stateParams.city_name},function() {
+        $scope.cultureList = CultureRes.query({city_name:$stateParams.city_name},function() {
             $scope.loaderEnabled = false;
             $scope.nextPageToken = $scope.cultureList[0].token;
             $scope.cultureList = $scope.cultureList[0].results;
@@ -125,7 +125,7 @@ angular.module( 'trippo.city', [
 
 
         $scope.setCultureDetails = function(culture_item){
-            ModalHandler.setCultureDetails(culture_item);
+            ModalHandler.setDetailsByResource($scope.resource ,culture_item);
         } ;
 
         $scope.addCultureItem = function(culture_item){
@@ -153,7 +153,7 @@ angular.module( 'trippo.city', [
         $scope.resource =   EntertainmentRes;
 
 
-        $scope.entertainmentList= EntertainmentRes.list.query({city_name:$stateParams.city_name},function() {
+        $scope.entertainmentList= EntertainmentRes.query({city_name:$stateParams.city_name},function() {
             $scope.loaderEnabled = false;
             $scope.nextPageToken = $scope.entertainmentList[0].token;
             $scope.entertainmentList = $scope.entertainmentList[0].results;
@@ -166,7 +166,7 @@ angular.module( 'trippo.city', [
 
 
         $scope.setEntertainmentDetails = function (entertainment_item) {
-            ModalHandler.setEntertainmentDetails(entertainment_item);
+            ModalHandler.setDetailsByResource($scope.resource,entertainment_item);
         };
 
 
@@ -194,7 +194,7 @@ angular.module( 'trippo.city', [
         $scope.resource =   UtilityRes;
 
 
-        $scope.utilityList = UtilityRes.list.query({city_name:$stateParams.city_name},function() {
+        $scope.utilityList = UtilityRes.query({city_name:$stateParams.city_name},function() {
             $scope.loaderEnabled = false;
             $scope.nextPageToken = $scope.utilityList[0].token;
             $scope.utilityList = $scope.utilityList[0].results;
@@ -205,7 +205,7 @@ angular.module( 'trippo.city', [
 
 
         $scope.setUtilityDetails = function(id_utility){
-           ModalHandler.setUtilityDetails(id_utility);
+           ModalHandler.setDetailsByResource($scope.resource,id_utility);
         };
 
         $scope.addUtilityItem = function(utility_item){
@@ -231,7 +231,7 @@ angular.module( 'trippo.city', [
         $scope.loaderEnabled = true;
         $scope.resource =  HotelRes;
 
-        $scope.hotelList = HotelRes.list.query({city_name:$stateParams.city_name},function() {
+        $scope.hotelList = HotelRes.query({city_name:$stateParams.city_name},function() {
             $scope.loaderEnabled = false;
             $scope.nextPageToken = $scope.hotelList[0].token;
             $scope.hotelList = $scope.hotelList[0].results;
@@ -240,7 +240,7 @@ angular.module( 'trippo.city', [
         });
 
         $scope.setHotelDetails = function(id_hotel){
-            ModalHandler.setHotelDetails(id_hotel);
+            ModalHandler.setDetailsByResource($scope.resource,id_hotel);
         } ;
 
 
@@ -267,7 +267,7 @@ angular.module( 'trippo.city', [
         $scope.resource =   FoodRes;
 
 
-        $scope.foodList = FoodRes.list.query({city_name:$stateParams.city_name},function() {
+        $scope.foodList = FoodRes.query({city_name:$stateParams.city_name},function() {
             $scope.loaderEnabled = false;
             $scope.nextPageToken = $scope.foodList[0].token;
             $scope.foodList = $scope.foodList[0].results;
@@ -276,7 +276,7 @@ angular.module( 'trippo.city', [
         });
 
         $scope.setFoodDetails = function(id_food){
-            ModalHandler.setFoodDetails(id_food);
+            ModalHandler.setDetailsByResource($scope.resource,id_food);
         } ;
 
 
@@ -312,15 +312,9 @@ angular.module( 'trippo.city', [
 
 
             if(this.token != null){
-                var otherElements = resource.others.query({city_name: $stateParams.city_name, token: this.token},function(){
-                    console.log("previous token inside infinite scroll");
-                    console.log(this.token);
-                    this.token = otherElements[0].token;
-                    console.log("other elements");
-                    console.log(otherElements[0]);
+                var otherElements = resource.query({city_name: $stateParams.city_name, token: this.token},function(){
 
-                    console.log("after token inside infinite scroll");
-                    console.log(this.token);
+                    this.token = otherElements[0].token;
 
                     for(var i=0;i<otherElements[0].results.length;i++){
                         this.itemList.push(otherElements[0].results[i]);
@@ -341,31 +335,20 @@ angular.module( 'trippo.city', [
 
 
 
-    .controller( 'CityCtrl', function CityCtrl( $scope, $stateParams, $log , CityRes,ModalHandler) {
-        $scope.$log = $log;
-        $scope.intervalImages = 5000;
-        $scope.moreInfoSelection = null;
-        $scope.modalEnabled = false;
-        $scope.loaderEnabled = true;
+.controller( 'CityCtrl', function CityCtrl( $scope, $stateParams, $log , CityRes) {
+    $scope.$log = $log;
+    $scope.intervalImages = 5000;
+    $scope.moreInfoSelection = null;
+    $scope.modalEnabled = false;
+    $scope.loaderEnabled = true;
 
-        $scope.city = CityRes.details.query({city_name: $stateParams.city_name}, function () {
-            $scope.images = $scope.city[0].images;
-            $scope.city = $scope.city[0].details;
-        });
+    $scope.city = CityRes.details.query({city_name: $stateParams.city_name}, function () {
+        $scope.images = $scope.city[0].images;
+        $scope.city = $scope.city[0].details;
+    });
 
-    })
-/**
- * modify the value of the hour which comes from Google Api in a format of HH:mm
- */
-.filter('hourFilter', function () {
-    return function (input) {
-       if (input !==undefined) {
-           var hourFormat = input.substr(0, 2) + ":" + input.substr(2);
-           console.log(hourFormat);
-           return hourFormat;
-       }
-    };
 })
+
 
 .factory( 'CityRes', function ( $resource )  {
         var listCities = $resource("../../city/");

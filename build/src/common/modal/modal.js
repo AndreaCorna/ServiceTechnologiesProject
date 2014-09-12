@@ -26,59 +26,14 @@ angular.module('trippo.modal', ["trippo.resources"])
             getDetails: function () {
                 return details;
             },
-            setFoodDetails: function(id_food) {
+            setDetailsByResource: function(resource,id) {
                 var data;
-                FoodRes.details.query({city_name: $stateParams.city_name, id_food: id_food},function(response){
+                resource.get({city_name: $stateParams.city_name, id: id},function(response){
                     data =response;
-                    console.log(data[0].name);
-                    setDetails(data[0]);
-                });
-            },
-            setHotelDetails : function(id_hotel){
-                var data;
-                HotelRes.details.query({city_name: $stateParams.city_name, id_hotel: id_hotel},function(response){
-                    data =response;
-                    console.log(data[0].name);
-                    setDetails(data[0]);
-
-
-                });
-
-
-            },
-            setUtilityDetails : function(id_utility){
-                var data;
-                UtilityRes.details.query({city_name: $stateParams.city_name, id_utility: id_utility},function(response){
-                    data =response;
-                    console.log(data[0].name);
-                    setDetails(data[0]);
-
-
-                });
-
-
-            },
-            setEntertainmentDetails : function(id_entertainment){
-                var data;
-                EntertainmentRes.details.query({city_name: $stateParams.city_name, id_entertainment: id_entertainment},function(response){
-                    data =response;
-                    console.log(data[0].name);
-                    setDetails(data[0]);
-
-
-                });
-
-
-            },
-
-            setCultureDetails : function(id_culture){
-                var data;
-                CultureRes.details.query({city_name: $stateParams.city_name, id_culture: id_culture},function(response){
-                    data =response;
-                    console.log(data[0].name);
-                    setDetails(data[0]);
+                    setDetails(data);
                 });
             }
+
 
         };
     })
