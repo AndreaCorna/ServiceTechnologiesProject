@@ -195,11 +195,12 @@
 </div>
 
 <h1 class="text-center subtitle">Planning</h1>
-    <div class="timeline-centered" class="sortable-container" sv-root sv-part="selectedItems" >
+    <div  class="sortable-container timeline-centered" sv-root sv-part="selectedItems" >
+        <div class="timeline-list col-md-4">
           <div ng-repeat="item in selectedItems"  sv-element="opts">
 
               <div class="row" >
-                     <div class= 'col-md-4 ' >
+
                          <div class=" timeline-item {{getItemClass(item)}}">
                             <div class="row" style="height: 48px;">
 
@@ -227,9 +228,10 @@
                         </div>
 
                      </article>
-                  </div>
+
               </div>
           </div>
+        </div>
     </div>
 
 

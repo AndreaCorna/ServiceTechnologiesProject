@@ -1497,11 +1497,12 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
     "</div>\n" +
     "\n" +
     "<h1 class=\"text-center subtitle\">Planning</h1>\n" +
-    "    <div class=\"timeline-centered\" class=\"sortable-container\" sv-root sv-part=\"selectedItems\" >\n" +
+    "    <div  class=\"sortable-container timeline-centered\" sv-root sv-part=\"selectedItems\" >\n" +
+    "        <div class=\"timeline-list col-md-4\">\n" +
     "          <div ng-repeat=\"item in selectedItems\"  sv-element=\"opts\">\n" +
     "\n" +
     "              <div class=\"row\" >\n" +
-    "                     <div class= 'col-md-4 col-md-offset-4' >\n" +
+    "\n" +
     "                         <div class=\" timeline-item {{getItemClass(item)}}\">\n" +
     "                            <div class=\"row\" style=\"height: 48px;\">\n" +
     "\n" +
@@ -1529,9 +1530,10 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
     "                        </div>\n" +
     "\n" +
     "                     </article>\n" +
-    "                  </div>\n" +
+    "\n" +
     "              </div>\n" +
     "          </div>\n" +
+    "        </div>\n" +
     "    </div>\n" +
     "\n" +
     "\n" +
