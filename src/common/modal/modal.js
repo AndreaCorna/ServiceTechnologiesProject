@@ -26,57 +26,14 @@ angular.module('trippo.modal', ["trippo.resources"])
             getDetails: function () {
                 return details;
             },
-            setFoodDetails: function(id_food) {
+            setDetailsByResource: function(resource,id) {
                 var data;
-                FoodRes.get({city_name: $stateParams.city_name, id: id_food},function(response){
+                resource.get({city_name: $stateParams.city_name, id: id},function(response){
                     data =response;
-                    setDetails(data);
-                });
-            },
-            setHotelDetails : function(id_hotel){
-                var data;
-                HotelRes.get({city_name: $stateParams.city_name, id: id_hotel},function(response){
-                    data =response;
-                    setDetails(data);
-
-
-                });
-
-
-            },
-            setUtilityDetails : function(id_utility){
-                var data;
-                UtilityRes.get({city_name: $stateParams.city_name, id: id_utility},function(response){
-                    data =response;
-                    setDetails(data);
-
-
-                });
-
-
-            },
-            setEntertainmentDetails : function(id_entertainment){
-                var data;
-                EntertainmentRes.get({city_name: $stateParams.city_name, id: id_entertainment},function(response){
-                    data =response;
-                    console.log(data.name);
-                    setDetails(data);
-
-
-                });
-
-
-            },
-
-            setCultureDetails : function(id_culture){
-                var data;
-                CultureRes.get({city_name: $stateParams.city_name, id: id_culture},function(response){
-                    data =response;
-
-                    console.log(data.name);
                     setDetails(data);
                 });
             }
+
 
         };
     })

@@ -125,7 +125,7 @@ angular.module( 'trippo.city', [
 
 
         $scope.setCultureDetails = function(culture_item){
-            ModalHandler.setCultureDetails(culture_item);
+            ModalHandler.setDetailsByResource($scope.resource ,culture_item);
         } ;
 
         $scope.addCultureItem = function(culture_item){
@@ -166,7 +166,7 @@ angular.module( 'trippo.city', [
 
 
         $scope.setEntertainmentDetails = function (entertainment_item) {
-            ModalHandler.setEntertainmentDetails(entertainment_item);
+            ModalHandler.setDetailsByResource($scope.resource,entertainment_item);
         };
 
 
@@ -205,7 +205,7 @@ angular.module( 'trippo.city', [
 
 
         $scope.setUtilityDetails = function(id_utility){
-           ModalHandler.setUtilityDetails(id_utility);
+           ModalHandler.setDetailsByResource($scope.resource,id_utility);
         };
 
         $scope.addUtilityItem = function(utility_item){
@@ -240,7 +240,7 @@ angular.module( 'trippo.city', [
         });
 
         $scope.setHotelDetails = function(id_hotel){
-            ModalHandler.setHotelDetails(id_hotel);
+            ModalHandler.setDetailsByResource($scope.resource,id_hotel);
         } ;
 
 
@@ -276,7 +276,7 @@ angular.module( 'trippo.city', [
         });
 
         $scope.setFoodDetails = function(id_food){
-            ModalHandler.setFoodDetails(id_food);
+            ModalHandler.setDetailsByResource($scope.resource,id_food);
         } ;
 
 
@@ -348,18 +348,7 @@ angular.module( 'trippo.city', [
     });
 
 })
-/**
- * modify the value of the hour which comes from Google Api in a format of HH:mm
- */
-.filter('hourFilter', function () {
-    return function (input) {
-       if (input !==undefined) {
-           var hourFormat = input.substr(0, 2) + ":" + input.substr(2);
-           console.log(hourFormat);
-           return hourFormat;
-       }
-    };
-})
+
 
 .factory( 'CityRes', function ( $resource )  {
         var listCities = $resource("../../city/");
