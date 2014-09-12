@@ -1316,7 +1316,7 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
     "                <ul>\n" +
     "                    <div ng-repeat=\"cult in culture\" class=\"event-list col-md-4\">\n" +
     "                        <li>\n" +
-    "                            <div ng-class=\"isScheduled(cult) ? 'selected-cult' :'not-selected'\">\n" +
+    "                            <div ng-class=\"isScheduled(cult) ? 'selected-item culture' :'not-selected'\">\n" +
     "                                <div class=\"row\" style=\"height: 48px;\">\n" +
     "\n" +
     "                                    <h1 class=\"item-name\">{{cult.name}}</h1>\n" +
@@ -1364,7 +1364,7 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
     "                <ul>\n" +
     "                    <div ng-repeat=\"ent in entertainment\" class=\"event-list col-md-4\">\n" +
     "                        <li>\n" +
-    "                            <div ng-class=\"isScheduled(ent) ? 'selected-ent' :'not-selected'\">\n" +
+    "                            <div ng-class=\"isScheduled(ent) ? 'selected-item  entertainment' :'not-selected'\">\n" +
     "                                <div class=\"row\" style=\"height: 48px;\">\n" +
     "\n" +
     "                                    <h1 class=\"item-name\">{{ent.name}}</h1>\n" +
@@ -1412,7 +1412,7 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
     "                <ul>\n" +
     "                    <div ng-repeat=\"hot in hotels\" class=\"event-list col-md-4\">\n" +
     "                        <li>\n" +
-    "                            <div ng-class=\"isScheduled(hot) ? 'selected-hotel' :'not-selected'\">\n" +
+    "                            <div ng-class=\"isScheduled(hot) ? 'selected-item  hotel' :'not-selected'\">\n" +
     "                                <div class=\"row\" style=\"height: 48px;\">\n" +
     "\n" +
     "                                    <h1 class=\"item-name\">{{hot.name}}</h1>\n" +
@@ -1460,7 +1460,7 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
     "                <ul>\n" +
     "                    <div ng-repeat=\"food in foods\" class=\"event-list col-md-4\">\n" +
     "                        <li>\n" +
-    "                            <div ng-class=\"isScheduled(food) ? 'selected-food' :'not-selected'\">\n" +
+    "                            <div ng-class=\"isScheduled(food) ? 'selected-item food' :'not-selected'\">\n" +
     "                                <div class=\"row\" style=\"height: 48px;\">\n" +
     "\n" +
     "                                    <h1 class=\"item-name\">{{food.name}}</h1>\n" +
@@ -1502,7 +1502,7 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
     "\n" +
     "              <div class=\"row\" >\n" +
     "                     <div class= 'col-md-4 col-md-offset-4' >\n" +
-    "                         <div class=\"{{getItemClass(item)}}\">\n" +
+    "                         <div class=\" selected-item {{getItemClass(item)}}\">\n" +
     "                            <div class=\"row\" style=\"height: 48px;\">\n" +
     "\n" +
     "                                <h1 class=\"item-name\">{{item.name}}</h1>\n" +
@@ -1602,5 +1602,34 @@ angular.module("plan_trip/trip_dates.tpl.html", []).run(["$templateCache", funct
     "\n" +
     "</div>\n" +
     "\n" +
-    "");
+    "\n" +
+    "<div class=\"modal fade\" id=\"infoDate\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">\n" +
+    "    <div class=\"modal-dialog\">\n" +
+    "        <div class=\"modal-content\">\n" +
+    "\n" +
+    "            <div class=\"modal-header\">\n" +
+    "                <button type=\"button\" class=\"close\" data-dismiss=\"modal\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button>\n" +
+    "                <h4 class=\"modal-title\" id=\"myModalLabel\">More Information</h4>\n" +
+    "            </div>\n" +
+    "            <div class=\"modal-body\">\n" +
+    "                <div class=\"row\">\n" +
+    "                    <div class=\"column\" >\n" +
+    "                        gtrgtr\n" +
+    "                    </div>\n" +
+    "                    <div class=\"column\">\n" +
+    "                        gtrgtr\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "                <div class=\"row\">\n" +
+    "\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "            <div class=\"modal-footer\">\n" +
+    "\n" +
+    "                <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "\n" +
+    "    </div>\n" +
+    "</div>");
 }]);

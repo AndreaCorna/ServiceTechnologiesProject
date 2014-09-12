@@ -14,7 +14,7 @@
                 <ul>
                     <div ng-repeat="cult in culture" class="event-list col-md-4">
                         <li>
-                            <div ng-class="isScheduled(cult) ? 'selected-cult' :'not-selected'">
+                            <div ng-class="isScheduled(cult) ? 'selected-item culture-color' :'not-selected'">
                                 <div class="row" style="height: 48px;">
 
                                     <h1 class="item-name">{{cult.name}}</h1>
@@ -62,7 +62,7 @@
                 <ul>
                     <div ng-repeat="ent in entertainment" class="event-list col-md-4">
                         <li>
-                            <div ng-class="isScheduled(ent) ? 'selected-ent' :'not-selected'">
+                            <div ng-class="isScheduled(ent) ? 'selected-item  entertainment-color' :'not-selected'">
                                 <div class="row" style="height: 48px;">
 
                                     <h1 class="item-name">{{ent.name}}</h1>
@@ -110,7 +110,7 @@
                 <ul>
                     <div ng-repeat="hot in hotels" class="event-list col-md-4">
                         <li>
-                            <div ng-class="isScheduled(hot) ? 'selected-hotel' :'not-selected'">
+                            <div ng-class="isScheduled(hot) ? 'selected-item  hotel-color' :'not-selected'">
                                 <div class="row" style="height: 48px;">
 
                                     <h1 class="item-name">{{hot.name}}</h1>
@@ -158,7 +158,7 @@
                 <ul>
                     <div ng-repeat="food in foods" class="event-list col-md-4">
                         <li>
-                            <div ng-class="isScheduled(food) ? 'selected-food' :'not-selected'">
+                            <div ng-class="isScheduled(food) ? 'selected-item food-color' :'not-selected'">
                                 <div class="row" style="height: 48px;">
 
                                     <h1 class="item-name">{{food.name}}</h1>
@@ -200,19 +200,12 @@
 
               <div class="row" >
                      <div class= 'col-md-4 col-md-offset-4' >
-                         <div class="{{getItemClass(item)}}">
+                         <div class=" selected-item {{getItemClass(item)}}">
                             <div class="row" style="height: 48px;">
 
                                 <h1 class="item-name">{{item.name}}</h1>
                             </div>
-                            <div class="row">
-                                <div ng-if="item.photos.length==0">
-                                    <img class="fixed-size-image" ng-src="assets/images/empty_photo.png">
-                                </div>
-                                <div ng-if="item.photos.length>0">
-                                    <img class="fixed-size-image" ng-src="{{item.photos[0].image}}" >
-                                </div>
-                            </div>
+
                             <div class="row">
                                 <div class="btn-group">
 

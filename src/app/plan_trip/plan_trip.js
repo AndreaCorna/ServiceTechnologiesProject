@@ -243,15 +243,13 @@ angular.module('trippo.plan',[
 
             switch (item.tag){
                 case "culture" :
-                    console.log("fsdfs");
-
-                    return "selected-cult" ;
+                    return "culture-color" ;
                 case "entertainment":
-                    return "selected-ent";
+                    return "entertainment-color";
                 case "hotel":
-                    return "selected-hotel";
+                    return "hotel-color";
                 case "food":
-                    return "selected-food";
+                    return "food-color";
             }
         };
 
