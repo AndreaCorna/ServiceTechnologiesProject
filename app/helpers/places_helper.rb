@@ -81,7 +81,6 @@ module PlacesHelper
       lat = location.lat
       lng = location.lng
       culture_items= client.spots(lat,lng,:types => ['library','book_store','museum','aquarium','art_gallery','church'],:radius => 20000)
-      #puts culture_items.to_json
       results = []
       next_page_token = ''
       culture_items.each { |place|
@@ -94,7 +93,6 @@ module PlacesHelper
         results.append(CultureItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'culture',description))}
       json = []
       json.append({:results=>results,:token=>next_page_token})
-      #puts json.to_json
       return json
 
     end
@@ -114,7 +112,6 @@ module PlacesHelper
         results.append(CultureItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'culture',description))}
       json = []
       json.append({:results=>results,:token=>next_page_token})
-      puts json.to_json
       return json
     end
 
@@ -271,7 +268,6 @@ module PlacesHelper
     details = []
     response = HTTParty.get('https://maps.googleapis.com/maps/api/place/details/json?placeid='+id+'&key='+ENV['API_KEY'])
     json = JSON.parse(response.body)
-    #puts json
     lat = json['result']['geometry']['location']['lat']
     lng = json['result']['geometry']['location']['lng']
     reviews = json['result']['reviews']
