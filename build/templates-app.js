@@ -1316,7 +1316,7 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
     "                <ul>\n" +
     "                    <div ng-repeat=\"cult in culture\" class=\"event-list col-md-4\">\n" +
     "                        <li>\n" +
-    "                            <div ng-class=\"isScheduled(cult) ? 'selected-item culture' :'not-selected'\">\n" +
+    "                            <div ng-class=\"isScheduled(cult) ? 'selected-item culture-color' :'not-selected'\">\n" +
     "                                <div class=\"row\" style=\"height: 48px;\">\n" +
     "\n" +
     "                                    <h1 class=\"item-name\">{{cult.name}}</h1>\n" +
@@ -1364,7 +1364,7 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
     "                <ul>\n" +
     "                    <div ng-repeat=\"ent in entertainment\" class=\"event-list col-md-4\">\n" +
     "                        <li>\n" +
-    "                            <div ng-class=\"isScheduled(ent) ? 'selected-item  entertainment' :'not-selected'\">\n" +
+    "                            <div ng-class=\"isScheduled(ent) ? 'selected-item  entertainment-color' :'not-selected'\">\n" +
     "                                <div class=\"row\" style=\"height: 48px;\">\n" +
     "\n" +
     "                                    <h1 class=\"item-name\">{{ent.name}}</h1>\n" +
@@ -1412,7 +1412,7 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
     "                <ul>\n" +
     "                    <div ng-repeat=\"hot in hotels\" class=\"event-list col-md-4\">\n" +
     "                        <li>\n" +
-    "                            <div ng-class=\"isScheduled(hot) ? 'selected-item  hotel' :'not-selected'\">\n" +
+    "                            <div ng-class=\"isScheduled(hot) ? 'selected-item  hotel-color' :'not-selected'\">\n" +
     "                                <div class=\"row\" style=\"height: 48px;\">\n" +
     "\n" +
     "                                    <h1 class=\"item-name\">{{hot.name}}</h1>\n" +
@@ -1460,7 +1460,7 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
     "                <ul>\n" +
     "                    <div ng-repeat=\"food in foods\" class=\"event-list col-md-4\">\n" +
     "                        <li>\n" +
-    "                            <div ng-class=\"isScheduled(food) ? 'selected-item food' :'not-selected'\">\n" +
+    "                            <div ng-class=\"isScheduled(food) ? 'selected-item food-color' :'not-selected'\">\n" +
     "                                <div class=\"row\" style=\"height: 48px;\">\n" +
     "\n" +
     "                                    <h1 class=\"item-name\">{{food.name}}</h1>\n" +
@@ -1498,11 +1498,11 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
     "\n" +
     "<h1 class=\"text-center subtitle\">Planning</h1>\n" +
     "    <div class=\"timeline-centered\" class=\"sortable-container\" sv-root sv-part=\"selectedItems\" >\n" +
-    "          <div ng-repeat=\"item in selectedItems\" sv-element=\"opts\">\n" +
+    "          <div ng-repeat=\"item in selectedItems\"  sv-element=\"opts\">\n" +
     "\n" +
     "              <div class=\"row\" >\n" +
     "                     <div class= 'col-md-4 col-md-offset-4' >\n" +
-    "                         <div class=\" selected-item {{getItemClass(item)}}\">\n" +
+    "                         <div class=\" timeline-item {{getItemClass(item)}}\">\n" +
     "                            <div class=\"row\" style=\"height: 48px;\">\n" +
     "\n" +
     "                                <h1 class=\"item-name\">{{item.name}}</h1>\n" +
@@ -1521,7 +1521,7 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
     "                     <article class=\"timeline-entry\" >\n" +
     "                        <div class=\"timeline-entry-inner\">\n" +
     "\n" +
-    "                            <div class=\"timeline-icon bg-success\">\n" +
+    "                            <div class=\"timeline-icon \">\n" +
     "                                <i class=\"entypo-feather\"></i>\n" +
     "                            </div>\n" +
     "\n" +
