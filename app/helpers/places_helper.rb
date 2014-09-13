@@ -275,7 +275,7 @@ module PlacesHelper
     name = json['result']['name']
     icon = json['result']['icon']
     web_site = json['result']['website']
-    open_hours = json['result']['opening_hours']
+    open_hours = parse_open_hours(json['result']['opening_hours']['periods'])
     photos = []
     if(!json['result']['photos'].nil?)
       json['result']['photos'].each do |photo|
@@ -288,6 +288,27 @@ module PlacesHelper
     details_item = DetailedItem.new(id,lat,lng,name,rating,photos,icon,reviews,formatted_address,web_site,phone,open_hours)
     details.append(details_item)
     return details
+  end
+
+  def parse_open_hours(data)
+    open_hours = Array.new(7)
+    open_hours.each do
+      |object|
+      object = nil
+    end
+    data.each do |couple|
+      day = couple['close']['day']
+      if(open_hours[day].nil?)
+        time = []
+        time.append({:open => couple['open']['time'],:close => couple['close']['time'] })
+        open_hours[day] = {:day => day, :hours => time}
+      else
+        hash = {:open => couple['open']['time'],:close => couple['close']['time']}
+        open_hours[day]['hours'.to_sym].append(hash)
+      end
+    end
+    puts open_hours
+    return open_hours.to_json
   end
 
   class DetailedItem
