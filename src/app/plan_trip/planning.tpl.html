@@ -1,4 +1,4 @@
-
+<div class="planning">
 <div class="page-header">
     <h1 class="text-center subtitle">{{current_day.format('dddd DD  MMMM YYYY')}}</h1>
 </div>
@@ -194,7 +194,7 @@
     </div>
 </div>
 
-<h1 id="planning" class="text-center subtitle">Planning</h1>
+    <h1 id="planning" class="text-center subtitle">Planning</h1>
     <div  class="sortable-container timeline-centered" sv-root sv-part="selectedItems" >
         <div class="row">
             <div class="timeline-list col-md-4">
@@ -230,25 +230,29 @@
           </div>
             </div>
             <div id="scrollingMaps" class="col-md-8">
-
-                    <map destination="250 Gibraltar Rd Horsham PA" type="roadmap" marker-content="Toll Brothers"></map>
-
+                  <div ng-show="origin && destination">
+                    <map origin="origin" destination="destination" type="roadmap" marker-content="Toll Brothers"></map>
+                  </div>
             </div>
         </div>
     </div>
+</div>
 
 
 <script>
 
-    //mantaining the maps on the top of the page when scrolling
-    $().ready(function() {
-        $(window).scroll(function(){
+//mantaining the maps on the top of the page when scrolling
+$().ready(function() {
+        $(window).scroll(function () {
+            if ($("#planning").offset().top!==undefined) {
 
-            if ($(window).scrollTop() > $("#planning").offset().top){
-                $("#scrollingMaps").stop().animate({"marginTop": ($(window).scrollTop()-$("#planning").offset().top) + "px"}, "slow" );
+                if ($(window).scrollTop() > $("#planning").offset().top) {
+                    $("#scrollingMaps").stop().animate({"marginTop": ($(window).scrollTop() - $("#planning").offset().top) + "px"}, "slow");
+                }
             }
         });
-    });
+
+});
 </script>
 
 

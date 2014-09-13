@@ -259,13 +259,20 @@ angular.module('trippo.plan',[
          *MAPS HANDLING
          * current start and destination variable for the map
          */
-        $scope.start = "";
-        $scope.destination = "";
+        $scope.origin=undefined;
+        $scope.destination=undefined;
         $scope.setMapsStart = function (start) {
-            $scope.start = start.name;
+            $scope.origin = start;
             var index_dest = $scope.selectedItems.indexOf(start)+1;
-            $scope.destination = $scope.selectedItems[index_dest].name;
-            console.log(start);
+            $scope.destination = ($scope.selectedItems[index_dest] === undefined) ? $scope.selectedItems[index_dest-1] : $scope.selectedItems[index_dest];
+
+                console.log("orgigin in cntrl");
+            console.log($scope.origin);
+
+            console.log("dest in cntrl");
+            console.log($scope.destination);
+
+
 
         };
 
@@ -356,7 +363,9 @@ angular.module('trippo.plan',[
                     id:"fdsfsd",
                     name: makestring(),
                     photos : [image1,image2],
-                    tag:type
+                    tag:type,
+                    lat:45,
+                    lng:23
 
                 };
             }

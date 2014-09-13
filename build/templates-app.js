@@ -1300,7 +1300,7 @@ angular.module("plan_trip/calendar.tpl.html", []).run(["$templateCache", functio
 
 angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("plan_trip/planning.tpl.html",
-    "\n" +
+    "<div class=\"planning\">\n" +
     "<div class=\"page-header\">\n" +
     "    <h1 class=\"text-center subtitle\">{{current_day.format('dddd DD  MMMM YYYY')}}</h1>\n" +
     "</div>\n" +
@@ -1496,7 +1496,7 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
     "    </div>\n" +
     "</div>\n" +
     "\n" +
-    "<h1 id=\"planning\" class=\"text-center subtitle\">Planning</h1>\n" +
+    "    <h1 id=\"planning\" class=\"text-center subtitle\">Planning</h1>\n" +
     "    <div  class=\"sortable-container timeline-centered\" sv-root sv-part=\"selectedItems\" >\n" +
     "        <div class=\"row\">\n" +
     "            <div class=\"timeline-list col-md-4\">\n" +
@@ -1532,25 +1532,29 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
     "          </div>\n" +
     "            </div>\n" +
     "            <div id=\"scrollingMaps\" class=\"col-md-8\">\n" +
-    "\n" +
-    "                    <map destination=\"250 Gibraltar Rd Horsham PA\" type=\"roadmap\" marker-content=\"Toll Brothers\"></map>\n" +
-    "\n" +
+    "                  <div ng-show=\"origin && destination\">\n" +
+    "                    <map origin=\"origin\" destination=\"destination\" type=\"roadmap\" marker-content=\"Toll Brothers\"></map>\n" +
+    "                  </div>\n" +
     "            </div>\n" +
     "        </div>\n" +
     "    </div>\n" +
+    "</div>\n" +
     "\n" +
     "\n" +
     "<script>\n" +
     "\n" +
-    "    //mantaining the maps on the top of the page when scrolling\n" +
-    "    $().ready(function() {\n" +
-    "        $(window).scroll(function(){\n" +
+    "//mantaining the maps on the top of the page when scrolling\n" +
+    "$().ready(function() {\n" +
+    "        $(window).scroll(function () {\n" +
+    "            if ($(\"#planning\").offset().top!==undefined) {\n" +
     "\n" +
-    "            if ($(window).scrollTop() > $(\"#planning\").offset().top){\n" +
-    "                $(\"#scrollingMaps\").stop().animate({\"marginTop\": ($(window).scrollTop()-$(\"#planning\").offset().top) + \"px\"}, \"slow\" );\n" +
+    "                if ($(window).scrollTop() > $(\"#planning\").offset().top) {\n" +
+    "                    $(\"#scrollingMaps\").stop().animate({\"marginTop\": ($(window).scrollTop() - $(\"#planning\").offset().top) + \"px\"}, \"slow\");\n" +
+    "                }\n" +
     "            }\n" +
     "        });\n" +
-    "    });\n" +
+    "\n" +
+    "});\n" +
     "</script>\n" +
     "\n" +
     "\n" +
