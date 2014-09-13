@@ -276,6 +276,7 @@ module PlacesHelper
     icon = json['result']['icon']
     web_site = json['result']['website']
     open_hours = parse_open_hours(json['result']['opening_hours']['periods'])
+    puts open_hours
     photos = []
     if(!json['result']['photos'].nil?)
       json['result']['photos'].each do |photo|
@@ -296,19 +297,21 @@ module PlacesHelper
       |object|
       object = nil
     end
-    data.each do |couple|
-      day = couple['close']['day']
-      if(open_hours[day].nil?)
-        time = []
-        time.append({:open => couple['open']['time'],:close => couple['close']['time'] })
-        open_hours[day] = {:day => day, :hours => time}
-      else
-        hash = {:open => couple['open']['time'],:close => couple['close']['time']}
-        open_hours[day]['hours'.to_sym].append(hash)
+    if(!data.nil?)
+      data.each do |couple|
+        day = couple['close']['day']
+        if(open_hours[day].nil?)
+          time = []
+          time.append({:open => couple['open']['time'],:close => couple['close']['time'] })
+          open_hours[day] = {:day => day, :hours => time}
+        else
+          hash = {:open => couple['open']['time'],:close => couple['close']['time']}
+          open_hours[day]['hours'.to_sym].append(hash)
+        end
       end
     end
     puts open_hours
-    return open_hours.to_json
+    return open_hours
   end
 
   class DetailedItem
