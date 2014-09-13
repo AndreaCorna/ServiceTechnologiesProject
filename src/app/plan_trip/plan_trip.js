@@ -7,7 +7,8 @@ angular.module('trippo.plan',[
     'ngResource',
     'angular-sortable-view',
     'trippo.city',
-    'trippo.modal'
+    'trippo.modal',
+    'common.mapComponent'
 ])
 
 
@@ -173,8 +174,6 @@ angular.module('trippo.plan',[
          * List of fuction which set the content of the modal when clicked More button in item
          */
         $scope.setCultureDetails = function(id_culture){
-            console.log("dewdew");
-            
             ModalHandler.setCultureDetails(id_culture);
         };
         $scope.setEntertainmentDetails = function(id_entertainment){
@@ -186,8 +185,8 @@ angular.module('trippo.plan',[
         $scope.setFoodDetails = function(id_food){
             ModalHandler.setFoodDetails(id_food);
         };
-
-
+        //START STUB
+        /*
         StubHandler.createFakeDates();
         var randomItemsc = [];
         var  randomItemse = [];
@@ -207,17 +206,17 @@ angular.module('trippo.plan',[
         $scope.foods =randomItemsf;
 
         $scope.current_day = moment($stateParams.date);
+        */
 
-        /*END STUB
-
+        //END STUB
         //get the item selected in the selectionService and set the current daySchedule removing item which has been removed from the Selection service
-        /*
+
 
         $scope.hotels =SelectionService. getHotelSelection();
         $scope.culture =SelectionService.getCultureSelection();
         $scope.entertainment =SelectionService.getEntertainmentSelection();
         $scope.foods = SelectionService.getFoodSelection();
-         */
+
         var selectedItems = $scope.culture.concat($scope.hotels,$scope.entertainment,$scope.foods) ;
         PlanningService.initializeCurrentDay($stateParams.date,selectedItems);
 
@@ -225,7 +224,9 @@ angular.module('trippo.plan',[
         $scope.isScheduled = function (item) {
               return PlanningService.isScheduled(item);
         };
-
+        /**
+         * loading the previously chosen items
+         */
         $scope.selectedItems =PlanningService.getCurrentTodo();
         $scope.addToSchedule = function (item) {
             $scope.selectedItems =  PlanningService.addToSchedule(item);
@@ -235,11 +236,12 @@ angular.module('trippo.plan',[
             $scope.selectedItems =  PlanningService.removeFromSchedule(item);
 
         };
-
+        /**
+         * return correct class based on the item tag
+         * @param item   tag
+         * @returns {string} class
+         */
         $scope.getItemClass = function(item){
-            console.log("getItem");
-            console.log(item);
-
 
             switch (item.tag){
                 case "culture" :
@@ -252,6 +254,21 @@ angular.module('trippo.plan',[
                     return "food-color";
             }
         };
+
+        /**
+         *MAPS HANDLING
+         * current start and destination variable for the map
+         */
+        $scope.start = "";
+        $scope.destination = "";
+        $scope.setMapsStart = function (start) {
+            $scope.start = start.name;
+            var index_dest = $scope.selectedItems.indexOf(start)+1;
+            $scope.destination = $scope.selectedItems[index_dest].name;
+            console.log(start);
+
+        };
+
 
 
 

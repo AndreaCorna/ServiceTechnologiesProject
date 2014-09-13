@@ -1496,47 +1496,62 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
     "    </div>\n" +
     "</div>\n" +
     "\n" +
-    "<h1 class=\"text-center subtitle\">Planning</h1>\n" +
+    "<h1 id=\"planning\" class=\"text-center subtitle\">Planning</h1>\n" +
     "    <div  class=\"sortable-container timeline-centered\" sv-root sv-part=\"selectedItems\" >\n" +
-    "        <div class=\"timeline-list col-md-4\">\n" +
-    "          <div ng-repeat=\"item in selectedItems\"  sv-element=\"opts\">\n" +
+    "        <div class=\"row\">\n" +
+    "            <div class=\"timeline-list col-md-4\">\n" +
+    "                <div ng-repeat=\"item in selectedItems\"  sv-element=\"opts\">\n" +
+    "                    <div class=\"row\" >\n" +
+    "                            <div class=\" timeline-item {{getItemClass(item)}}\">\n" +
+    "                                <div class=\"row\" style=\"height: 48px;\">\n" +
     "\n" +
-    "              <div class=\"row\" >\n" +
+    "                                    <h1 class=\"item-name\">{{item.name}}</h1>\n" +
+    "                                </div>\n" +
     "\n" +
-    "                         <div class=\" timeline-item {{getItemClass(item)}}\">\n" +
-    "                            <div class=\"row\" style=\"height: 48px;\">\n" +
+    "                                <div class=\"row\">\n" +
+    "                                    <div class=\"btn-group\">\n" +
     "\n" +
-    "                                <h1 class=\"item-name\">{{item.name}}</h1>\n" +
-    "                            </div>\n" +
-    "\n" +
-    "                            <div class=\"row\">\n" +
-    "                                <div class=\"btn-group\">\n" +
-    "\n" +
-    "                                    <button  style=\"margin-right: 2px;\" class=\"btn btn-primary btn-outlined z-up\" style=\"display: inline-block;\" ng-click=\"removeFromSchedule(item)\">REMOVE</button>\n" +
-    "                                    <button class=\"btn btn-primary btn-outlined z-up\" style=\";margin-left: 4px;margin-bottom: 5px\"  ng-click=\"setCultureDetails(item.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">MORE</button>\n" +
+    "                                        <button  style=\"margin-right: 2px;\" class=\"btn btn-primary btn-outlined z-up\" style=\"display: inline-block;\" ng-click=\"removeFromSchedule(item)\">REMOVE</button>\n" +
+    "                                        <button class=\"btn btn-primary btn-outlined z-up\" style=\";margin-left: 4px;margin-bottom: 5px\"  ng-click=\"setCultureDetails(item.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">MORE</button>\n" +
+    "                                    </div>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
-    "                        </div>\n" +
+    "                            <article class=\"timeline-entry\" >\n" +
+    "                                <div class=\"timeline-entry-inner\">\n" +
+    "\n" +
+    "                                    <div ng-click=\"setMapsStart(item)\"  class=\"timeline-icon \">\n" +
+    "                                        <i class=\"entypo-feather\"></i>\n" +
+    "                                    </div>\n" +
     "\n" +
     "\n" +
-    "                     <article class=\"timeline-entry\" >\n" +
-    "                        <div class=\"timeline-entry-inner\">\n" +
+    "                                </div>\n" +
     "\n" +
-    "                            <div class=\"timeline-icon \">\n" +
-    "                                <i class=\"entypo-feather\"></i>\n" +
-    "                            </div>\n" +
-    "\n" +
-    "\n" +
-    "                        </div>\n" +
-    "\n" +
-    "                     </article>\n" +
+    "                            </article>\n" +
     "\n" +
     "              </div>\n" +
     "          </div>\n" +
+    "            </div>\n" +
+    "            <div id=\"scrollingMaps\" class=\"col-md-8\">\n" +
+    "\n" +
+    "                    <map destination=\"250 Gibraltar Rd Horsham PA\" type=\"roadmap\" marker-content=\"Toll Brothers\"></map>\n" +
+    "\n" +
+    "            </div>\n" +
     "        </div>\n" +
     "    </div>\n" +
     "\n" +
     "\n" +
+    "<script>\n" +
+    "\n" +
+    "    //mantaining the maps on the top of the page when scrolling\n" +
+    "    $().ready(function() {\n" +
+    "        $(window).scroll(function(){\n" +
+    "\n" +
+    "            if ($(window).scrollTop() > $(\"#planning\").offset().top){\n" +
+    "                $(\"#scrollingMaps\").stop().animate({\"marginTop\": ($(window).scrollTop()-$(\"#planning\").offset().top) + \"px\"}, \"slow\" );\n" +
+    "            }\n" +
+    "        });\n" +
+    "    });\n" +
+    "</script>\n" +
     "\n" +
     "\n" +
     "\n" +
