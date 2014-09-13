@@ -205,12 +205,13 @@ angular.module('trippo.plan',[
         $scope.hotels =randomItemsh;
         $scope.foods =randomItemsf;
 
-        $scope.current_day = moment($stateParams.date);
+
         */
 
         //END STUB
         //get the item selected in the selectionService and set the current daySchedule removing item which has been removed from the Selection service
 
+        $scope.current_day = moment($stateParams.date);
 
         $scope.hotels =SelectionService. getHotelSelection();
         $scope.culture =SelectionService.getCultureSelection();
