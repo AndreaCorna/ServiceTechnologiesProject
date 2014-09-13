@@ -559,7 +559,7 @@ angular.module("city/culture.tpl.html", []).run(["$templateCache", function($tem
     "                            </div>\n" +
     "                        </div>\n" +
     "                    </div>\n" +
-    "                    <div ng-show=\"cultureSelection.length != 0\">\n" +
+    "                    <div ng-show=\"cultureSelection != undefined && cultureSelection.length != 0\">\n" +
     "                        <div class=\"row\" style=\"display: inline\">\n" +
     "                            <div class=\"text-capitalize item-filter\" >Name:</div>\n" +
     "                            <input type=\"text\" class=\"capriola\" data-ng-model=\"elementSelectionName\" />\n" +
