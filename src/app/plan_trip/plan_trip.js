@@ -8,7 +8,7 @@ angular.module('trippo.plan',[
     'angular-sortable-view',
     'trippo.city',
     'trippo.modal',
-    'common.mapComponent'
+    'common.maps'
 ])
 
 
@@ -181,7 +181,7 @@ angular.module('trippo.plan',[
             ModalHandler.setFoodDetails(id_food);
         };
         //START STUB
-         /*
+        /*
         StubHandler.createFakeDates();
         var randomItemsc = [];
         var  randomItemse = [];
@@ -201,8 +201,8 @@ angular.module('trippo.plan',[
         $scope.foods =randomItemsf;
 
 
-
         */
+
         //END STUB
         //get the item selected in the selectionService and set the current daySchedule removing item which has been removed from the Selection service
 

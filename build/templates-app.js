@@ -1533,7 +1533,7 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
     "            </div>\n" +
     "            <div id=\"scrollingMaps\" class=\"col-md-8\">\n" +
     "                  <div ng-show=\"origin && destination\">\n" +
-    "                    <map origin=\"origin\" destination=\"destination\" type=\"roadmap\" marker-content=\"Toll Brothers\"></map>\n" +
+    "                    <map origin=\"origin\" destination=\"destination\" type=\"roadmap\" ></map>\n" +
     "                  </div>\n" +
     "            </div>\n" +
     "        </div>\n" +
