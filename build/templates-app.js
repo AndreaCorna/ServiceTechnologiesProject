@@ -1354,7 +1354,7 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "\n" +
     "\n" +
     "\n" +
-    "            <input id=\"city\" name=\"city\"  type=\"text\" placeholder=\"Search here...\" class=\"form-control col-md-12 typeahead\"\n" +
+    "            <input id=\"city\" name=\"city\"  type=\"text\" placeholder=\"Search here...\" class=\"form-control col-md-12 text-capitalize typeahead\"\n" +
     "                   ng-model=\"selected_city\"\n" +
     "                   typeahead=\"city as city.name for city in cities | filter:$viewValue | limitTo:8\"\n" +
     "                   typeahead-template-url=\"customTemplate.html\">\n" +
