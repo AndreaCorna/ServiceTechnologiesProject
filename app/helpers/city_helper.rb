@@ -11,7 +11,6 @@ module CityHelper
         lng = location[0].longitude
         country = location[0].country
         item = CityItem.new(city.downcase,country,lat,lng)
-        puts item.to_json
         results.append(item)
     end
     return results
@@ -25,7 +24,6 @@ module CityHelper
     url = 'http://www.panoramio.com/map/get_panoramas.php?set=public&from=0&to=4&minx='+lng.to_s+'&miny='+lat.to_s+'&maxx='+longitude+'&maxy='+latitude+'&size=medium&mapfilter=true'
     response = HTTParty.get(url)
     json = JSON.parse(response.body)
-    puts json
     json['photos'].each do |photo|
       photos.append(photo)
     end
