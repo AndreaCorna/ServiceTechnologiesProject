@@ -115,13 +115,9 @@ angular.module( 'trippo.city', [
         CultureService.initCultureList($stateParams.city_name,function (){
             //setting the infinite scroll after cultureService initialization through callback function
             $scope.infiniteScroll =  CultureService.getInfinityScroll($stateParams.city_name);
+            $scope.loaderEnabled = false;
+
         }) ;
-
-
-
-
-
-
 
         $scope.setCultureDetails = function(culture_item){
             ModalHandler.setDetailsByResource($scope.resource ,culture_item);
