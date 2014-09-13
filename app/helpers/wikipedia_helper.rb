@@ -7,7 +7,7 @@ module WikipediaHelper
   def get_wikipedia_description(name,city)
     url = URI.encode('http://en.wikipedia.org/w/api.php?action=query&format=json&list=search&srsearch='+name+' '+city+'&prop=timestamp')
     response = HTTParty.get(url)
-    description = ''
+    description = nil
     json = JSON.parse(response.body)
     if(!json.nil? && !json['query']['search'][0].nil?)
         title = json['query']['search'][0]['title']

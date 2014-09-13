@@ -25,10 +25,9 @@ module CachingHelper
         puts 'no redis data'
         culture = get_culture_items(city)
         $redis.set(city+':culture',culture.to_json)
-        puts 'redis data culture'
         return culture.to_json
       else
-        puts 'redis data get after insert'
+        puts 'redis data'
         return results
       end
     else
@@ -54,7 +53,7 @@ module CachingHelper
         $redis.set(city+':utility',utility.to_json)
         return utility.to_json
       else
-        puts 'redis data get after insert'
+        puts 'redis data'
         return results
       end
     else
@@ -77,10 +76,9 @@ module CachingHelper
         puts 'no redis data'
         entertainment = get_entertainment_items(city)
         $redis.set(city+':entertainment',entertainment.to_json)
-        puts 'redis data culture'
         return entertainment.to_json
       else
-        puts 'redis data get after insert'
+        puts 'redis data'
         return results
       end
     else
@@ -106,7 +104,7 @@ module CachingHelper
         $redis.set(city+':food',food.to_json)
         return food.to_json
       else
-        puts 'redis data get after insert'
+        puts 'redis data'
         return results
       end
     else
@@ -131,7 +129,7 @@ module CachingHelper
         hotel = get_hotels_list(city)
         return hotel
       else
-        puts 'redis data get after insert'
+        puts 'redis data'
         return results
       end
     else
