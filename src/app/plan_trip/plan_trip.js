@@ -61,13 +61,12 @@ angular.module('trippo.plan',[
                 };
                 console.log("Range key:");
                 var key =   value.format(dateFormat);
-                console.log(key);
+
 
                 range[key]=day_schedule;
 
             });
-            console.log("dates schedule");
-            console.log(range);
+
 
 
         },
@@ -79,7 +78,6 @@ angular.module('trippo.plan',[
         getDay:function(day){
             console.log("days in range");
             for (var o in range) {
-                console.log(o);
 
             }
             return range[day];
@@ -90,8 +88,6 @@ angular.module('trippo.plan',[
          */
         getRangeDates:function(){
             var dateRange=[] ;
-            console.log("range indateas");
-            console.log(range);
             for (var key in range) {
                 dateRange.push(range[key].date);
             } /*
@@ -102,7 +98,6 @@ angular.module('trippo.plan',[
                 dateRange.push(value.date);
             });
             */
-            console.log(dateRange);
 
             return dateRange;
         }
@@ -186,7 +181,7 @@ angular.module('trippo.plan',[
             ModalHandler.setFoodDetails(id_food);
         };
         //START STUB
-        /*
+         /*
         StubHandler.createFakeDates();
         var randomItemsc = [];
         var  randomItemse = [];
@@ -206,12 +201,13 @@ angular.module('trippo.plan',[
         $scope.foods =randomItemsf;
 
 
-        */
 
+        */
         //END STUB
         //get the item selected in the selectionService and set the current daySchedule removing item which has been removed from the Selection service
 
-        $scope.current_day = moment($stateParams.date);
+        $scope.current_day = moment($stateParams.date,"DD-MM-YYYY");
+        console.log($scope.current_day);
 
         $scope.hotels =SelectionService. getHotelSelection();
         $scope.culture =SelectionService.getCultureSelection();
@@ -266,12 +262,6 @@ angular.module('trippo.plan',[
             $scope.origin = start;
             var index_dest = $scope.selectedItems.indexOf(start)+1;
             $scope.destination = ($scope.selectedItems[index_dest] === undefined) ? $scope.selectedItems[index_dest-1] : $scope.selectedItems[index_dest];
-
-                console.log("orgigin in cntrl");
-            console.log($scope.origin);
-
-            console.log("dest in cntrl");
-            console.log($scope.destination);
 
 
 
