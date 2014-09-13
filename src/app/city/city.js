@@ -108,19 +108,18 @@ angular.module( 'trippo.city', [
 
 })
 
-.controller('CultureCtrl', function CultureCtrl($scope,CultureRes,$stateParams,SelectionService,ModalHandler,InfiniteScrollHandler) {
+.controller('CultureCtrl', function CultureCtrl(CultureService,$scope,CultureRes,$stateParams,SelectionService,ModalHandler,InfiniteScrollHandler) {
         $scope.loaderEnabled = true;
         $scope.resource = CultureRes;
 
-        $scope.cultureList = CultureRes.query({city_name:$stateParams.city_name},function() {
-            $scope.loaderEnabled = false;
-            $scope.nextPageToken = $scope.cultureList[0].token;
-            $scope.cultureList = $scope.cultureList[0].results;
+        CultureService.initCultureList($stateParams.city_name,function (){
+            //setting the infinite scroll after cultureService initialization through callback function
+            $scope.infiniteScroll =  CultureService.getInfinityScroll($stateParams.city_name);
+        }) ;
 
 
-            $scope.infiniteScroll = new InfiniteScrollHandler($scope.nextPageToken,$scope.cultureList);
 
-        });
+
 
 
 
@@ -129,24 +128,97 @@ angular.module( 'trippo.city', [
         } ;
 
         $scope.addCultureItem = function(culture_item){
-            $scope.cultureSelection = SelectionService.addCultureItem(culture_item,$scope.cultureList);
+            $scope.cultureSelection = SelectionService.addCultureItem(culture_item,$stateParams.city_name);
         };
 
 
         $scope.removeCultureItem = function(culture_item){
-            $scope.cultureSelection = SelectionService.removeCultureItem(culture_item,$scope.cultureList);
+            $scope.cultureSelection = SelectionService.removeCultureItem(culture_item,$stateParams.city_name);
         };
 
-        $scope.$watchCollection(function () { return SelectionService.getCultureSelection(); }, function (newVal, oldVal) {
-                $scope.cultureSelection = SelectionService.getCultureSelection();
+        $scope.$watchCollection(function () { return SelectionService.getCultureSelection($stateParams.city_name); }, function (newVal, oldVal) {
+                $scope.cultureSelection = SelectionService.getCultureSelection($stateParams.city_name);
                 if(!$scope.$$phase) {
                     $scope.$apply();
                 }
 
         });
+        //syncronize the value of the   cultureList inside CultureService with the $scope.cultureList
+        $scope.$watchCollection(function () { return CultureService.getCultureList($stateParams.city_name); }, function (newVal, oldVal) {
+            $scope.cultureList  = CultureService.getCultureList($stateParams.city_name);
+            if(!$scope.$$phase) {
+                $scope.$apply();
+            }
+
+        });
 
 })
+/**
+ * Handle the state of the culture list items of different cities
+ */
+.factory("CultureService",function CultureService(CultureRes,InfiniteScrollHandler){
+    //hash with  key: "city",  value : array of culture item
+    var cultureList=[];
+    //hash with key: "city" , value : InfiniteScrollHandler object of the city
+    var infiniteScroll =[];
 
+        var initCultureList = function(city,callback){
+        //check if  cultureList of city hasn't already been request
+        if (cultureList[city] === undefined) {
+
+            //first time to request so REST call to fetch data
+            CultureRes.query({city_name: city}, function (cult) {
+
+                //code executed when data has been fetched
+                var token =  cult[0].token;
+
+                //initialize cultureList[city] with the data coming from the api call
+                cultureList[city] = cult[0].results;
+
+               //creating infinity scrollhandler for this city
+                infiniteScroll[city] = new InfiniteScrollHandler(token,cultureList[city]);
+
+                 //calling callback function
+                if (typeof callback == 'function'){
+                    callback();
+                }
+            });
+        }
+        else{
+            if (typeof callback == 'function'){
+                callback();
+            }
+        }
+
+    } ;
+    var getInfinityScroll = function(city){
+        return  infiniteScroll[city];
+    } ;
+    var getCultureList = function(city){
+        return cultureList[city];
+    } ;
+    var addItem = function(city,item){
+          cultureList[city].push(item);
+    };
+
+    var removeItem = function(city,item){
+       var index = cultureList[city].indexOf(item);
+       if (index != -1){
+          cultureList[city].splice(index,1);
+       }
+    };
+    return {
+        initCultureList : initCultureList,
+        addItem :addItem ,
+        removeItem : removeItem,
+        getCultureList:getCultureList,
+        getInfinityScroll :getInfinityScroll
+
+
+    };
+
+
+})
 
 .controller('EntertainmentCtrl', function EntertainmentCtrl($scope,EntertainmentRes,$stateParams,SelectionService,ModalHandler,InfiniteScrollHandler) {
         $scope.loaderEnabled = true;
@@ -296,14 +368,18 @@ angular.module( 'trippo.city', [
         });
 
 })
-
+/**
+ * Handle the infinitescroll making subsequent api calls with different token
+ */
 .factory('InfiniteScrollHandler', function ($stateParams) {
 
+        //initialize the Scroll handler with a token and a list which will be used to append items
         var ScrollHandler = function(curr_token,list){
              this.itemList = list;
              this.busy = false;
              this.token =curr_token;
         };
+        //ATTENTION PROBABLY list param is not correct why not use the same passed in initialize?
         ScrollHandler.prototype.nextPage = function(resource,list){
             if (this.busy){return;}
             this.busy = true;
@@ -364,36 +440,38 @@ angular.module( 'trippo.city', [
     })
 
 
-.service('SelectionService',function(){
-        var cultureSelection = [];
+.service('SelectionService',function(CultureService){
+        var cultureSelection= [];
         var utilitySelection = [];
         var hotelSelection = [];
         var entertainmentSelection = [];
         var foodSelection = [];
         return{
-            addCultureItem:function (culture_item,cultureList) {
-
-                if(cultureSelection.indexOf(culture_item) == -1) {
-                    cultureSelection.push(culture_item);
-                    var index = cultureList.indexOf(culture_item);
-                    cultureList.splice(index,1);
+            addCultureItem:function (culture_item,city) {
+                if (cultureSelection[city]===undefined){
+                    cultureSelection[city] =[];
                 }
-                return cultureSelection;
+                if( cultureSelection[city].indexOf(culture_item) == -1) {
+                    CultureService.removeItem(city,culture_item);
+                    cultureSelection[city].push(culture_item);
+
+                }
+                return cultureSelection[city];
 
             },
 
-            removeCultureItem:function (culture_item,cultureList) {
-                var index = cultureSelection.indexOf(culture_item);
+            removeCultureItem:function (culture_item,city) {
+                var index = cultureSelection[city].indexOf(culture_item);
                 if(index != -1) {
-                    cultureSelection.splice(index, 1);
-                    cultureList.push(culture_item);
+                    cultureSelection[city].splice(index, 1);
+                    CultureService.addItem(city,culture_item);
                 }
-                return cultureSelection;
+                return cultureSelection[city];
 
             },
 
-            getCultureSelection:function () {
-                return cultureSelection;
+            getCultureSelection:function (city) {
+                return cultureSelection[city];
             },
 
             addUtilityItem:function (utility_item,utilityList) {
