@@ -24,7 +24,7 @@
                             </div>
                         </div>
                     </div>
-                    <div ng-show="cultureSelection.length != 0">
+                    <div ng-show="cultureSelection != undefined && cultureSelection.length != 0">
                         <div class="row" style="display: inline">
                             <div class="text-capitalize item-filter" >Name:</div>
                             <input type="text" class="capriola" data-ng-model="elementSelectionName" />
