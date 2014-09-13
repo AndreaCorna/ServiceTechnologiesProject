@@ -34,7 +34,6 @@ module PlacesHelper
 
     def get_utility_others(token,city)
       client = GooglePlaces::Client.new(ENV['API_KEY'])
-
       utility_items= client.spots_by_pagetoken(token)
       results = []
       next_page_token = nil

@@ -4,7 +4,7 @@ module CityHelper
 
    def populate_database(cities)
     results = []
-    response=  JSON.parse(cities)
+    response = JSON.parse(cities)
     response.each do |city|
         location = Geocoder.search(city)
         lat = location[0].latitude
