@@ -364,46 +364,59 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                                </div>\n" +
     "                            </div>\n" +
     "                            <div class=\"row\">\n" +
-    "                                <div class=\"col-lg-12\" >\n" +
-    "                                    <div ng-show=\"moreInfoSelection.open_hours != null\">\n" +
-    "                                        <div class=\"row\">\n" +
-    "                                            <b>Open Hours</b>\n" +
+    "                                <div class=\"col-lg-3\" >\n" +
+    "                                    <div>\n" +
+    "                                        Sunday\n" +
+    "                                        <div ng-repeat=\"couple in moreInfoSelection.open_hours[0].hours\">\n" +
+    "                                            {{couple.open}} - {{couple.close}}\n" +
     "                                        </div>\n" +
-    "                                        <div class=\"row\">\n" +
-    "                                            <table class=\"table table-hover\">\n" +
-    "                                                <thead>\n" +
-    "                                                    <tr>\n" +
-    "                                                        <th>Sunday</th>\n" +
-    "                                                        <th>Monday</th>\n" +
-    "                                                        <th>Tuesday</th>\n" +
-    "                                                        <th>Wednesday</th>\n" +
-    "                                                        <th>Thursday</th>\n" +
-    "                                                        <th>Friday</th>\n" +
-    "                                                        <th>Saturday</th>\n" +
-    "                                                    </tr>\n" +
-    "                                                </thead>\n" +
-    "                                                <tbody>\n" +
-    "                                                    <tr class=\"info\">\n" +
-    "                                                        <td>{{moreInfoSelection.open_hours.periods[0].open.time}}</td>\n" +
-    "                                                        <td>{{moreInfoSelection.open_hours.periods[1].open.time}}</td>\n" +
-    "                                                        <td>{{moreInfoSelection.open_hours.periods[2].open.time}}</td>\n" +
-    "                                                        <td>{{moreInfoSelection.open_hours.periods[3].open.time}}</td>\n" +
-    "                                                        <td>{{moreInfoSelection.open_hours.periods[4].open.time}}</td>\n" +
-    "                                                        <td>{{moreInfoSelection.open_hours.periods[5].open.time}}</td>\n" +
-    "                                                        <td>{{moreInfoSelection.open_hours.periods[6].open.time}}</td>\n" +
-    "                                                    </tr>\n" +
-    "                                                    <tr class=\"info\">\n" +
-    "                                                        <td>{{moreInfoSelection.open_hours.periods[0].close.time}}</td>\n" +
-    "                                                        <td>{{moreInfoSelection.open_hours.periods[1].close.time}}</td>\n" +
-    "                                                        <td>{{moreInfoSelection.open_hours.periods[2].close.time}}</td>\n" +
-    "                                                        <td>{{moreInfoSelection.open_hours.periods[3].close.time}}</td>\n" +
-    "                                                        <td>{{moreInfoSelection.open_hours.periods[4].close.time}}</td>\n" +
-    "                                                        <td>{{moreInfoSelection.open_hours.periods[5].close.time}}</td>\n" +
-    "                                                        <td>{{moreInfoSelection.open_hours.periods[6].close.time}}</td>\n" +
-    "                                                    </tr>\n" +
-    "                                                </tbody>\n" +
-    "\n" +
-    "                                            </table>\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                                <div class=\"col-lg-3\" >\n" +
+    "                                    <div>\n" +
+    "                                        Monday\n" +
+    "                                        <div ng-repeat=\"couple in moreInfoSelection.open_hours[1].hours\">\n" +
+    "                                            {{couple.open}} - {{couple.close}}\n" +
+    "                                        </div>\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                                <div class=\"col-lg-3\" >\n" +
+    "                                    <div>\n" +
+    "                                        Tuesday\n" +
+    "                                        <div ng-repeat=\"couple in moreInfoSelection.open_hours[2].hours\">\n" +
+    "                                            {{couple.open}} - {{couple.close}}\n" +
+    "                                        </div>\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                                <div class=\"col-lg-3\" >\n" +
+    "                                    <div>\n" +
+    "                                        Wednesday\n" +
+    "                                        <div ng-repeat=\"couple in moreInfoSelection.open_hours[3].hours\">\n" +
+    "                                            {{couple.open}} - {{couple.close}}\n" +
+    "                                        </div>\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                                <div class=\"col-lg-3\" >\n" +
+    "                                    <div>\n" +
+    "                                        Thursday\n" +
+    "                                        <div ng-repeat=\"couple in moreInfoSelection.open_hours[4].hours\">\n" +
+    "                                            {{couple.open}} - {{couple.close}}\n" +
+    "                                        </div>\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                                <div class=\"col-lg-3\" >\n" +
+    "                                    <div>\n" +
+    "                                        Friday\n" +
+    "                                        <div ng-repeat=\"couple in moreInfoSelection.open_hours[5].hours\">\n" +
+    "                                            {{couple.open}} - {{couple.close}}\n" +
+    "                                        </div>\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                                <div class=\"col-lg-3\" >\n" +
+    "                                    <div>\n" +
+    "                                        Saturday\n" +
+    "                                        <div ng-repeat=\"couple in moreInfoSelection.open_hours[6].hours\">\n" +
+    "                                            {{couple.open}} - {{couple.close}}\n" +
     "                                        </div>\n" +
     "                                    </div>\n" +
     "                                </div>\n" +
@@ -1340,7 +1353,7 @@ angular.module("city/utility.tpl.html", []).run(["$templateCache", function($tem
 angular.module("home/home.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("home/home.tpl.html",
     "<script type=\"text/ng-template\" id=\"customTemplate.html\">\n" +
-    "    <a class=\"col-md-12\">\n" +
+    "    <a class=\"col-md-12 text-capitalize\">\n" +
     "        <span bind-html-unsafe=\"match.label| typeaheadHighlight:query\"></span>\n" +
     "       <i>({{match.model.state}})</i>\n" +
     "    </a>\n" +
@@ -1354,7 +1367,7 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "\n" +
     "\n" +
     "\n" +
-    "            <input id=\"city\" name=\"city\"  type=\"text\" placeholder=\"Search here...\" class=\"form-control col-md-12 typeahead\"\n" +
+    "            <input id=\"city\" name=\"city\"  type=\"text\" placeholder=\"Search here...\" class=\"form-control col-md-12 text-capitalize typeahead\"\n" +
     "                   ng-model=\"selected_city\"\n" +
     "                   typeahead=\"city as city.name for city in cities | filter:$viewValue | limitTo:8\"\n" +
     "                   typeahead-template-url=\"customTemplate.html\">\n" +

@@ -7,12 +7,15 @@ angular.module('trippo.modal', ["trippo.resources"])
         /*Modify the format of the opening hour addin a : between numbers 08:00 instead of 0800*/
         var normalizeHours = function (details){
             if(details.open_hours !== null){
-                for (var i=0;i<details.open_hours.periods.length;i++){
+                for (var i=0;i<details.open_hours.length;i++){
                     console.log("called function");
-                    var day = details.open_hours.periods[i] ;
-                    details.open_hours.periods[i].open.time = day.open.time.substr(0, 2) + ":" + day.open.time.substr(2);
-                    details.open_hours.periods[i].close.time = day.close.time.substr(0, 2) + ":" + day.close.time.substr(2);
+                    var day = details.open_hours[i] ;
+                    for(var j=0;j<day.hours.length;j++){
+                        couple = day.hours[j];
+                        details.open_hours[i].hours[j].open = couple.open.substr(0, 2) + ":" + couple.open.substr(2);
+                        details.open_hours[i].hours[j].close = couple.close.substr(0, 2) + ":" + couple.close.substr(2);
 
+                    }
                 }
             }
         };
