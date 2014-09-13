@@ -1340,7 +1340,7 @@ angular.module("city/utility.tpl.html", []).run(["$templateCache", function($tem
 angular.module("home/home.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("home/home.tpl.html",
     "<script type=\"text/ng-template\" id=\"customTemplate.html\">\n" +
-    "    <a class=\"col-md-12\">\n" +
+    "    <a class=\"col-md-12 text-capitalize\">\n" +
     "        <span bind-html-unsafe=\"match.label| typeaheadHighlight:query\"></span>\n" +
     "       <i>({{match.model.state}})</i>\n" +
     "    </a>\n" +
