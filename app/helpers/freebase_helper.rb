@@ -1,5 +1,6 @@
 module FreebaseHelper
   include WikipediaHelper
+
   def get_description(name,city)
     FreebaseAPI.session = FreebaseAPI::Session.new(key: ENV['API_KEY'], env: :stable)
 
