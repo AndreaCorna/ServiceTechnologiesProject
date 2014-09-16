@@ -97,7 +97,7 @@
                             <option value="rating">Rating</option>
                         </select>
                     </div>
-                    <div infinite-scroll="infiniteScroll.nextPage(resource,cultureList)" infinite-scroll-distance="2" infinite-scroll-disabled="infiniteScroll.busy">
+                    <div infinite-scroll="infiniteScroll.nextPage(resource)" infinite-scroll-distance="2" infinite-scroll-disabled="infiniteScroll.busy">
                         <span ng-repeat="c in infiniteScroll.itemList | filter:{name:elementListName} | orderBy:elementListOrder">
                             <div class="list-group-item">
                                <div class="col-md-3">
