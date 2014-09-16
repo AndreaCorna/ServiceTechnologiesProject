@@ -6,6 +6,7 @@ module CachingHelper
   include PlacesHelper::FoodHelperCity
   include HotelsHelper
 
+  #The method returns the details about the place
   def get_details(id)
     if((results = $redis.get(id)).nil?)
       puts 'no redis data details'
@@ -18,9 +19,12 @@ module CachingHelper
     end
   end
 
+
+  #The method returns the list of the places related to culture category, specifying the token if you want more results.
   def get_culture(city,token)
     results=[]
     if(token.nil?)
+      #first request
       if((results = $redis.get(city+':culture')).nil?)
         puts 'no redis data'
         culture = get_culture_items(city)

@@ -1,5 +1,6 @@
 require 'net/http'
 require 'httparty'
+
 module CityHelper
 
    def populate_database(cities)

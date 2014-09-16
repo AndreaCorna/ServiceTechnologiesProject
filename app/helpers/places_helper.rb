@@ -275,7 +275,6 @@ module PlacesHelper
     icon = json['result']['icon']
     web_site = json['result']['website']
     open_hours = parse_open_hours(json['result']['opening_hours']['periods'])
-    puts open_hours
     photos = []
     if(!json['result']['photos'].nil?)
       json['result']['photos'].each do |photo|
@@ -291,8 +290,7 @@ module PlacesHelper
 
   def parse_open_hours(data)
     open_hours = Array.new(7)
-    open_hours.each do
-      |object|
+    open_hours.each do |object|
       object = nil
     end
     if(!data.nil?)
@@ -308,7 +306,6 @@ module PlacesHelper
         end
       end
     end
-    puts open_hours
     return open_hours
   end
 
