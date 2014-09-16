@@ -25,7 +25,7 @@
                         </div>
                     </div>
                 </div>
-                <div ng-show="entertainmentSelection.length != 0">
+                <div ng-show="entertainmentSelection != undefined && entertainmentSelection.length !=  0">
                     <div class="row" style="display: inline">
                         <div class="text-capitalize item-filter" >Name:</div>
                         <input type="text" data-ng-model="elementSelectionName" class="capriola"/>
@@ -99,7 +99,7 @@
                         <option value="rating">Rating</option>
                     </select>
                 </div>
-                <div infinite-scroll="infiniteScroll.nextPage(resource,entertainmentList)" infinite-scroll-distance="2" infinite-scroll-disabled="infiniteScroll.busy">
+                <div infinite-scroll="infiniteScroll.nextPage(resource)" infinite-scroll-distance="2" infinite-scroll-disabled="infiniteScroll.busy">
 
                     <span ng-repeat="c in infiniteScroll.itemList | filter:{name:elementListName} | orderBy:elementListOrder">
                     <div class="list-group-item">
