@@ -632,7 +632,7 @@ angular.module("city/culture.tpl.html", []).run(["$templateCache", function($tem
     "                            <option value=\"rating\">Rating</option>\n" +
     "                        </select>\n" +
     "                    </div>\n" +
-    "                    <div infinite-scroll=\"infiniteScroll.nextPage(resource,cultureList)\" infinite-scroll-distance=\"2\" infinite-scroll-disabled=\"infiniteScroll.busy\">\n" +
+    "                    <div infinite-scroll=\"infiniteScroll.nextPage(resource)\" infinite-scroll-distance=\"2\" infinite-scroll-disabled=\"infiniteScroll.busy\">\n" +
     "                        <span ng-repeat=\"c in infiniteScroll.itemList | filter:{name:elementListName} | orderBy:elementListOrder\">\n" +
     "                            <div class=\"list-group-item\">\n" +
     "                               <div class=\"col-md-3\">\n" +
@@ -722,7 +722,7 @@ angular.module("city/entertainment.tpl.html", []).run(["$templateCache", functio
     "                        </div>\n" +
     "                    </div>\n" +
     "                </div>\n" +
-    "                <div ng-show=\"entertainmentSelection.length != 0\">\n" +
+    "                <div ng-show=\"entertainmentSelection != undefined && entertainmentSelection.length !=  0\">\n" +
     "                    <div class=\"row\" style=\"display: inline\">\n" +
     "                        <div class=\"text-capitalize item-filter\" >Name:</div>\n" +
     "                        <input type=\"text\" data-ng-model=\"elementSelectionName\" class=\"capriola\"/>\n" +
@@ -796,7 +796,7 @@ angular.module("city/entertainment.tpl.html", []).run(["$templateCache", functio
     "                        <option value=\"rating\">Rating</option>\n" +
     "                    </select>\n" +
     "                </div>\n" +
-    "                <div infinite-scroll=\"infiniteScroll.nextPage(resource,entertainmentList)\" infinite-scroll-distance=\"2\" infinite-scroll-disabled=\"infiniteScroll.busy\">\n" +
+    "                <div infinite-scroll=\"infiniteScroll.nextPage(resource)\" infinite-scroll-distance=\"2\" infinite-scroll-disabled=\"infiniteScroll.busy\">\n" +
     "\n" +
     "                    <span ng-repeat=\"c in infiniteScroll.itemList | filter:{name:elementListName} | orderBy:elementListOrder\">\n" +
     "                    <div class=\"list-group-item\">\n" +
