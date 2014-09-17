@@ -415,7 +415,7 @@ angular.module( 'trippo.city', [
         }) ;
 
         $scope.setHotelDetails = function(hotel_item){
-            ModalHandler.setDetailsByResource($scope.resource ,hotel_item);
+            ModalHandler.setDetailsHotel($scope.resource ,hotel_item);
         } ;
 
         $scope.addHotelItem = function(hotel_item){
