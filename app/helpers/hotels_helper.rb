@@ -46,7 +46,7 @@ module HotelsHelper
     rating = hotel['hotelRating']
     lat = hotel['latitude']
     lng = hotel['longitude']
-    descr = parse_description_wikipedia(hotel['HotelDetails']['propertyDescription'])
+    descr = parse_description(response.body['HotelInformationResponse']['HotelDetails']['propertyDescription'])
     hotel_details = HotelDetails.new(hotel_id,name,address,rating,lat,lng,descr)
     return hotel_details
   end
@@ -57,7 +57,7 @@ module HotelsHelper
     return response.body
   end
 
-  def parse_description_wikipedia(description)
+  def parse_description(description)
     output = Nokogiri::HTML.fragment(description)
     descr = output.text.gsub(/<[^>]*>/ui,'')
     value, match, suffix = descr.rpartition('.')

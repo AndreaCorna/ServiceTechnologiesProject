@@ -37,6 +37,14 @@ angular.module('trippo.modal', ["trippo.resources"])
                     data =response;
                     setDetails(data);
                 });
+            },
+
+            setDetailsHotel: function(resource,id){
+                var data;
+                resource.get({city_name: $stateParams.city_name, id: id},function(response){
+                    data =response;
+                    details = data;
+                });
             }
 
 

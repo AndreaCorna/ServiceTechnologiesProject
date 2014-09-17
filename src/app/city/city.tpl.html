@@ -31,7 +31,7 @@
 
 
 
-    <div class="modal fade" ng-controller="ModalCtrl" data-backdrop="static" id="moreInfoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade" ng-controller="ModalCtrl" data-backdrop="static" id="moreInfoModalPlace" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                     <div ng-show="modalEnabled">
@@ -308,3 +308,76 @@
 
         </div>
     </div>
+
+
+
+<div class="modal fade" ng-controller="ModalCtrl" data-backdrop="static" id="moreInfoModalHotel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div ng-show="modalEnabled">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" ng-click="disableModal()"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title capriola" id="myModalLabelHotel">More Information about {{moreInfoSelection.name}}</h4>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div ng-show="modalEnabled">
+                    <div class="container-fluid capriola">
+                        <div class="row">
+                            <div class="col-lg-6 capriola" >
+                            <div class="row">
+                                <b>Rating</b>
+                            </div>
+                            <div class="row">
+                                {{moreInfoSelection.rating || 'Unknown'}}
+                            </div>
+                        </div>
+                            <div class="col-lg-6 capriola" >
+                            <div class="row">
+                                <b>Address</b>
+                            </div>
+                            <div class="row">
+                                {{moreInfoSelection.address || 'Unknown'}}
+                            </div>
+                        </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 capriola" >
+                                <div class="panel panel-default">
+                                    <div>
+                                        <div class="text-center">Description</div>
+                                        <div class="text-justify">
+                                            {{moreInfoSelection.description}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div ng-show="loaderEnabled">
+                    <div class="container-fluid">
+                        <div class="panel-body">
+                            <div class="loader">
+                                <div class="bouncywrap">
+                                    <div class="dotcon dc1">
+                                        <div class="dot"></div>
+                                    </div>
+                                    <div class="dotcon dc2">
+                                        <div class="dot"></div>
+                                    </div>
+                                    <div class="dotcon dc3">
+                                         <div class="dot"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer capriola">
+                <button type="button" class="btn btn-default " data-dismiss="modal"  ng-click="disableModal()">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
