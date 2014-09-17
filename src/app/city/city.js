@@ -139,14 +139,7 @@ angular.module( 'trippo.city', [
                 }
 
         });
-        //syncronize the value of the   cultureList inside CultureService with the $scope.cultureList
-       /** $scope.$watchCollection(function () { return CultureService.getCultureList($stateParams.city_name); }, function (newVal, oldVal) {
-            $scope.cultureList  = CultureService.getCultureList($stateParams.city_name);
-            if(!$scope.$$phase) {
-                $scope.$apply();
-            }
 
-        });*/
 
 })
 /**
