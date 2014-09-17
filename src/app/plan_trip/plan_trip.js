@@ -51,6 +51,7 @@ angular.module('trippo.plan',[
          * @param end   end date of range
          */
         createRange:function(start,end){
+            range = [];
             var dates =createRangeDates(start,end);
             angular.forEach(dates, function (value, index) {
                 var day_schedule = {
@@ -60,7 +61,10 @@ angular.module('trippo.plan',[
                     description:""
                 };
                 console.log("Range key:");
+
+
                 var key =   value.format(dateFormat);
+                console.log(key);
 
 
                 range[key]=day_schedule;
