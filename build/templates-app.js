@@ -305,7 +305,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "\n" +
     "\n" +
     "\n" +
-    "    <div class=\"modal fade\" ng-controller=\"ModalCtrl\" data-backdrop=\"static\" id=\"moreInfoModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">\n" +
+    "    <div class=\"modal fade\" ng-controller=\"ModalCtrl\" data-backdrop=\"static\" id=\"moreInfoModalPlace\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">\n" +
     "        <div class=\"modal-dialog\">\n" +
     "            <div class=\"modal-content\">\n" +
     "                    <div ng-show=\"modalEnabled\">\n" +
@@ -582,6 +582,79 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "\n" +
     "        </div>\n" +
     "    </div>\n" +
+    "\n" +
+    "\n" +
+    "\n" +
+    "<div class=\"modal fade\" ng-controller=\"ModalCtrl\" data-backdrop=\"static\" id=\"moreInfoModalHotel\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">\n" +
+    "    <div class=\"modal-dialog\">\n" +
+    "        <div class=\"modal-content\">\n" +
+    "            <div ng-show=\"modalEnabled\">\n" +
+    "                <div class=\"modal-header\">\n" +
+    "                    <button type=\"button\" class=\"close\" data-dismiss=\"modal\" ng-click=\"disableModal()\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button>\n" +
+    "                    <h4 class=\"modal-title capriola\" id=\"myModalLabelHotel\">More Information about {{moreInfoSelection.name}}</h4>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "            <div class=\"modal-body\">\n" +
+    "                <div ng-show=\"modalEnabled\">\n" +
+    "                    <div class=\"container-fluid capriola\">\n" +
+    "                        <div class=\"row\">\n" +
+    "                            <div class=\"col-lg-6 capriola\" >\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <b>Rating</b>\n" +
+    "                            </div>\n" +
+    "                            <div class=\"row\">\n" +
+    "                                {{moreInfoSelection.rating || 'Unknown'}}\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "                            <div class=\"col-lg-6 capriola\" >\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <b>Address</b>\n" +
+    "                            </div>\n" +
+    "                            <div class=\"row\">\n" +
+    "                                {{moreInfoSelection.address || 'Unknown'}}\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "                        </div>\n" +
+    "                        <div class=\"row\">\n" +
+    "                            <div class=\"col-lg-12 capriola\" >\n" +
+    "                                <div class=\"panel panel-default\">\n" +
+    "                                    <div>\n" +
+    "                                        <div class=\"text-center\">Description</div>\n" +
+    "                                        <div class=\"text-justify\">\n" +
+    "                                            {{moreInfoSelection.description}}\n" +
+    "                                        </div>\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "                <div ng-show=\"loaderEnabled\">\n" +
+    "                    <div class=\"container-fluid\">\n" +
+    "                        <div class=\"panel-body\">\n" +
+    "                            <div class=\"loader\">\n" +
+    "                                <div class=\"bouncywrap\">\n" +
+    "                                    <div class=\"dotcon dc1\">\n" +
+    "                                        <div class=\"dot\"></div>\n" +
+    "                                    </div>\n" +
+    "                                    <div class=\"dotcon dc2\">\n" +
+    "                                        <div class=\"dot\"></div>\n" +
+    "                                    </div>\n" +
+    "                                    <div class=\"dotcon dc3\">\n" +
+    "                                         <div class=\"dot\"></div>\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "            <div class=\"modal-footer capriola\">\n" +
+    "                <button type=\"button\" class=\"btn btn-default \" data-dismiss=\"modal\"  ng-click=\"disableModal()\">Close</button>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>\n" +
     "");
 }]);
 
@@ -631,7 +704,7 @@ angular.module("city/culture.tpl.html", []).run(["$templateCache", function($tem
     "                                <img class=\"icon-col-centered\" ng-src=\"{{c.icon}}\">\n" +
     "                            </div>\n" +
     "                            <div class=\"row\" style=\"padding-top: 50px\">\n" +
-    "                                <button class=\"btn btn-primary capriola\" ng-click=\"setCultureDetails(c.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">\n" +
+    "                                <button class=\"btn btn-primary capriola\" ng-click=\"setCultureDetails(c.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">\n" +
     "                                    More Info\n" +
     "                                </button>\n" +
     "                                <button  class=\"btn btn-primary capriola\" ng-click=\"removeCultureItem(c)\" >\n" +
@@ -694,7 +767,7 @@ angular.module("city/culture.tpl.html", []).run(["$templateCache", function($tem
     "                                <img class=\"icon-col-centered\" ng-src=\"{{c.icon}}\">\n" +
     "                            </div>\n" +
     "                            <div class=\"row\" style=\"padding-top: 50px\">\n" +
-    "                                <button class=\"btn btn-primary capriola\" ng-click=\"setCultureDetails(c.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">\n" +
+    "                                <button class=\"btn btn-primary capriola\" ng-click=\"setCultureDetails(c.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">\n" +
     "                                    More Info\n" +
     "                                </button>\n" +
     "                                <button class=\"btn btn-primary capriola\" ng-click=\"addCultureItem(c)\">\n" +
@@ -794,7 +867,7 @@ angular.module("city/entertainment.tpl.html", []).run(["$templateCache", functio
     "                                <img class=\"icon-col-centered\" ng-src=\"{{c.icon}}\">\n" +
     "                            </div>\n" +
     "                            <div class=\"row\" style=\"padding-top: 50px\">\n" +
-    "                                <button class=\"btn btn-primary capriola\" ng-click=\"setEntertainmentDetails(c.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">\n" +
+    "                                <button class=\"btn btn-primary capriola\" ng-click=\"setEntertainmentDetails(c.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">\n" +
     "                                    More Info\n" +
     "                                </button>\n" +
     "                                <button  class=\"btn btn-primary capriola\" ng-click=\"removeEntertainmentItem(c)\" >\n" +
@@ -859,7 +932,7 @@ angular.module("city/entertainment.tpl.html", []).run(["$templateCache", functio
     "                                <img class=\"icon-col-centered\" ng-src=\"{{c.icon}}\">\n" +
     "                            </div>\n" +
     "                            <div class=\"row\" style=\"padding-top: 50px\">\n" +
-    "                                <button class=\"btn btn-primary capriola\" ng-click=\"setEntertainmentDetails(c.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">\n" +
+    "                                <button class=\"btn btn-primary capriola\" ng-click=\"setEntertainmentDetails(c.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">\n" +
     "                                    More Info\n" +
     "                                </button>\n" +
     "                                <button class=\"btn btn-primary capriola\" ng-click=\"addEntertainmentItem(c)\">\n" +
@@ -956,7 +1029,7 @@ angular.module("city/food.tpl.html", []).run(["$templateCache", function($templa
     "                                <img class=\"icon-col-centered\" ng-src=\"{{c.icon}}\">\n" +
     "                            </div>\n" +
     "                            <div class=\"row\" style=\"padding-top: 50px\">\n" +
-    "                                <button class=\"btn btn-primary capriola\" ng-click=\"setFoodDetails(c.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">\n" +
+    "                                <button class=\"btn btn-primary capriola\" ng-click=\"setFoodDetails(c.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">\n" +
     "                                    More Info\n" +
     "                                </button>\n" +
     "                                <button  class=\"btn btn-primary capriola\" ng-click=\"removeFoodItem(c)\" >\n" +
@@ -1021,7 +1094,7 @@ angular.module("city/food.tpl.html", []).run(["$templateCache", function($templa
     "                                <img class=\"icon-col-centered\" ng-src=\"{{c.icon}}\">\n" +
     "                            </div>\n" +
     "                            <div class=\"row\" style=\"padding-top: 50px\">\n" +
-    "                                <button class=\"btn btn-primary capriola\" ng-click=\"setFoodDetails(c.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">\n" +
+    "                                <button class=\"btn btn-primary capriola\" ng-click=\"setFoodDetails(c.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">\n" +
     "                                    More Info\n" +
     "                                </button>\n" +
     "                                <button class=\"btn btn-primary capriola\" ng-click=\"addFoodItem(c)\">\n" +
@@ -1131,7 +1204,7 @@ angular.module("city/hotel.tpl.html", []).run(["$templateCache", function($templ
     "                                </div>\n" +
     "                            </div>\n" +
     "                            <div class=\"row center-block\" style=\"padding-top: 50px\">\n" +
-    "                                <button class=\"btn btn-primary capriola\" ng-click=\"setHotelDetails(c.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">\n" +
+    "                                <button class=\"btn btn-primary capriola\" ng-click=\"setHotelDetails(c.id)\" href=\"#moreInfoModalHotel\" data-toggle=\"modal\">\n" +
     "                                    More Info\n" +
     "                                </button>\n" +
     "                                <button class=\"btn btn-primary capriola\" ng-click=\"removeHotelItem(c)\">\n" +
@@ -1205,7 +1278,7 @@ angular.module("city/hotel.tpl.html", []).run(["$templateCache", function($templ
     "                                </div>\n" +
     "                            </div>\n" +
     "                            <div class=\"row center-block\" style=\"padding-top: 50px\">\n" +
-    "                                <button class=\"btn btn-primary capriola\" ng-click=\"setHotelDetails(c.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">\n" +
+    "                                <button class=\"btn btn-primary capriola\" ng-click=\"setHotelDetails(c.id)\" href=\"#moreInfoModalHotel\" data-toggle=\"modal\">\n" +
     "                                    More Info\n" +
     "                                </button>\n" +
     "                                <button class=\"btn btn-primary capriola\" ng-click=\"addHotelItem(c)\">\n" +
@@ -1288,7 +1361,7 @@ angular.module("city/utility.tpl.html", []).run(["$templateCache", function($tem
     "                                <img class=\"icon-col-centered\" ng-src=\"{{c.icon}}\">\n" +
     "                            </div>\n" +
     "                            <div class=\"row\" style=\"padding-top: 50px\">\n" +
-    "                                <button class=\"btn btn-primary capriola\" ng-click=\"setUtilityDetails(c.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">\n" +
+    "                                <button class=\"btn btn-primary capriola\" ng-click=\"setUtilityDetails(c.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">\n" +
     "                                    More Info\n" +
     "                                </button>\n" +
     "                                <button  class=\"btn btn-primary capriola\" ng-click=\"removeUtilityItem(c)\" >\n" +
@@ -1353,7 +1426,7 @@ angular.module("city/utility.tpl.html", []).run(["$templateCache", function($tem
     "                                <img class=\"icon-col-centered\" ng-src=\"{{c.icon}}\">\n" +
     "                            </div>\n" +
     "                            <div class=\"row\" style=\"padding-top: 50px\">\n" +
-    "                                <button class=\"btn btn-primary capriola\" ng-click=\"setUtilityDetails(c.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">\n" +
+    "                                <button class=\"btn btn-primary capriola\" ng-click=\"setUtilityDetails(c.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">\n" +
     "                                    More Info\n" +
     "                                </button>\n" +
     "                                <button class=\"btn btn-primary capriola\" ng-click=\"addUtilityItem(c)\">\n" +
