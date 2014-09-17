@@ -209,10 +209,10 @@ angular.module('trippo.plan',[
 
 
         //get the item selected in the selectionService and set the current daySchedule removing item which has been removed from the Selection service
-        $scope.hotels =SelectionService.getHotelSelection();
-        $scope.culture =SelectionService.getCultureSelection();
-        $scope.entertainment =SelectionService.getEntertainmentSelection();
-        $scope.foods = SelectionService.getFoodSelection();
+        $scope.hotels =SelectionService.getHotelSelection($stateParams.city_name);
+        $scope.culture =SelectionService.getCultureSelection($stateParams.city_name);
+        $scope.entertainment =SelectionService.getEntertainmentSelection($stateParams.city_name);
+        $scope.foods = SelectionService.getFoodSelection($stateParams.city_name);
         var selectedItems = $scope.culture.concat($scope.hotels,$scope.entertainment,$scope.foods) ;
         PlanningService.initializeCurrentDay($stateParams.date,selectedItems);
 
