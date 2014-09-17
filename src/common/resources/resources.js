@@ -9,6 +9,10 @@ angular.module('trippo.resources', [
     'ngResource'
 ])
 
+.factory('CityRes', function ($resource){
+     var city = $resource ("../../city/:city_name");
+     return city;
+})
 
 .factory( 'CultureRes', function ($resource) {
     var culture = $resource("../../city/:city_name/culture/:id");
