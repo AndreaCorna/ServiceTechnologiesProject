@@ -636,26 +636,12 @@ angular.module( 'trippo.city', [
     $scope.modalEnabled = false;
     $scope.loaderEnabled = true;
 
-    $scope.city = CityRes.details.query({city_name: $stateParams.city_name}, function () {
+    $scope.city = CityRes.query({city_name: $stateParams.city_name}, function () {
         $scope.images = $scope.city[0].images;
         $scope.city = $scope.city[0].details;
     });
 
 })
-
-
-.factory( 'CityRes', function ( $resource )  {
-        var listCities = $resource("../../city/");
-        var detailsCity = $resource("../../city/:city_name");
-        var getCityDetails = function(){
-            return detailsCity;
-        };
-        return{
-            list:listCities,
-            details:detailsCity,
-            getCityDetails : getCityDetails
-        };
-    })
 
 
 .service('SelectionService',function(CultureService,EntertainmentService,FoodService,UtilityService,HotelService){
