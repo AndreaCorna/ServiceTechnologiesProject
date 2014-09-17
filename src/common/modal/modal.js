@@ -10,11 +10,13 @@ angular.module('trippo.modal', ["trippo.resources"])
                 for (var i=0;i<details.open_hours.length;i++){
                     console.log("called function");
                     var day = details.open_hours[i] ;
-                    for(var j=0;j<day.hours.length;j++){
-                        couple = day.hours[j];
-                        details.open_hours[i].hours[j].open = couple.open.substr(0, 2) + ":" + couple.open.substr(2);
-                        details.open_hours[i].hours[j].close = couple.close.substr(0, 2) + ":" + couple.close.substr(2);
+                    if(day !== null) {
+                        for (var j = 0; j < day.hours.length; j++) {
+                            couple = day.hours[j];
+                            details.open_hours[i].hours[j].open = couple.open.substr(0, 2) + ":" + couple.open.substr(2);
+                            details.open_hours[i].hours[j].close = couple.close.substr(0, 2) + ":" + couple.close.substr(2);
 
+                        }
                     }
                 }
             }
