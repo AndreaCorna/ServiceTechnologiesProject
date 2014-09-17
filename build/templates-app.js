@@ -364,59 +364,113 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                                </div>\n" +
     "                            </div>\n" +
     "                            <div class=\"row\">\n" +
+    "                                <div class=\"col-lg-12\">\n" +
+    "                                    <div class=\"text-capitalize text-center\">\n" +
+    "                                        <b>Open Hours</b>\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
     "                                <div class=\"col-lg-3\" >\n" +
-    "                                    <div>\n" +
-    "                                        Sunday\n" +
-    "                                        <div ng-repeat=\"couple in moreInfoSelection.open_hours[0].hours\">\n" +
-    "                                            {{couple.open}} - {{couple.close}}\n" +
+    "                                    <div class=\"panel panel-info\">\n" +
+    "                                        <div>\n" +
+    "                                            <div class=\"text-center\">Sunday</div>\n" +
+    "                                            <div class=\"text-center\" ng-repeat=\"couple in moreInfoSelection.open_hours[0].hours\">\n" +
+    "                                                {{couple.open}} - {{couple.close}}\n" +
+    "                                            </div>\n" +
+    "                                            <div ng-if=\"moreInfoSelection.open_hours[0] == null\">\n" +
+    "                                                <div class=\"text-center\">\n" +
+    "                                                    <b>Closed</b>\n" +
+    "                                                </div>\n" +
+    "                                            </div>\n" +
     "                                        </div>\n" +
     "                                    </div>\n" +
     "                                </div>\n" +
     "                                <div class=\"col-lg-3\" >\n" +
-    "                                    <div>\n" +
-    "                                        Monday\n" +
-    "                                        <div ng-repeat=\"couple in moreInfoSelection.open_hours[1].hours\">\n" +
-    "                                            {{couple.open}} - {{couple.close}}\n" +
+    "                                    <div class=\"panel panel-info\">\n" +
+    "                                        <div>\n" +
+    "                                            <div class=\"text-center\">Monday</div>\n" +
+    "                                            <div class=\"text-center\" ng-repeat=\"couple in moreInfoSelection.open_hours[1].hours\">\n" +
+    "                                                {{couple.open}} - {{couple.close}}\n" +
+    "                                            </div>\n" +
+    "                                            <div ng-if=\"moreInfoSelection.open_hours[1] == null\">\n" +
+    "                                                <div class=\"text-center\">\n" +
+    "                                                    <b>Closed</b>\n" +
+    "                                                </div>\n" +
+    "                                            </div>\n" +
     "                                        </div>\n" +
     "                                    </div>\n" +
     "                                </div>\n" +
     "                                <div class=\"col-lg-3\" >\n" +
-    "                                    <div>\n" +
-    "                                        Tuesday\n" +
-    "                                        <div ng-repeat=\"couple in moreInfoSelection.open_hours[2].hours\">\n" +
-    "                                            {{couple.open}} - {{couple.close}}\n" +
+    "                                    <div class=\"panel panel-info\">\n" +
+    "                                        <div>\n" +
+    "                                            <div class=\"text-center\">Tuesday</div>\n" +
+    "                                            <div class=\"text-center\" ng-repeat=\"couple in moreInfoSelection.open_hours[2].hours\">\n" +
+    "                                                {{couple.open}} - {{couple.close}}\n" +
+    "                                            </div>\n" +
+    "                                            <div ng-if=\"moreInfoSelection.open_hours[2] == null\">\n" +
+    "                                                <div class=\"text-center\">\n" +
+    "                                                    <b>Closed</b>\n" +
+    "                                                </div>\n" +
+    "                                            </div>\n" +
     "                                        </div>\n" +
     "                                    </div>\n" +
     "                                </div>\n" +
     "                                <div class=\"col-lg-3\" >\n" +
-    "                                    <div>\n" +
-    "                                        Wednesday\n" +
-    "                                        <div ng-repeat=\"couple in moreInfoSelection.open_hours[3].hours\">\n" +
-    "                                            {{couple.open}} - {{couple.close}}\n" +
+    "                                    <div class=\"panel panel-info\">\n" +
+    "                                        <div>\n" +
+    "                                            <div class=\"text-center\">Wednesday</div>\n" +
+    "                                            <div class=\"text-center\" ng-repeat=\"couple in moreInfoSelection.open_hours[3].hours\">\n" +
+    "                                                {{couple.open}} - {{couple.close}}\n" +
+    "                                            </div>\n" +
+    "                                            <div ng-if=\"moreInfoSelection.open_hours[3] == null\">\n" +
+    "                                                <div class=\"text-center\">\n" +
+    "                                                    <b>Closed</b>\n" +
+    "                                                </div>\n" +
+    "                                            </div>\n" +
     "                                        </div>\n" +
     "                                    </div>\n" +
     "                                </div>\n" +
     "                                <div class=\"col-lg-3\" >\n" +
-    "                                    <div>\n" +
-    "                                        Thursday\n" +
-    "                                        <div ng-repeat=\"couple in moreInfoSelection.open_hours[4].hours\">\n" +
-    "                                            {{couple.open}} - {{couple.close}}\n" +
+    "                                    <div class=\"panel panel-info\">\n" +
+    "                                        <div>\n" +
+    "                                            <div class=\"text-center\">Thursday</div>\n" +
+    "                                            <div class=\"text-center\" ng-repeat=\"couple in moreInfoSelection.open_hours[4].hours\">\n" +
+    "                                                {{couple.open}} - {{couple.close}}\n" +
+    "                                            </div>\n" +
+    "                                            <div ng-if=\"moreInfoSelection.open_hours[4] == null\">\n" +
+    "                                                <div class=\"text-center\">\n" +
+    "                                                    <b>Closed</b>\n" +
+    "                                                </div>\n" +
+    "                                            </div>\n" +
     "                                        </div>\n" +
     "                                    </div>\n" +
     "                                </div>\n" +
     "                                <div class=\"col-lg-3\" >\n" +
-    "                                    <div>\n" +
-    "                                        Friday\n" +
-    "                                        <div ng-repeat=\"couple in moreInfoSelection.open_hours[5].hours\">\n" +
-    "                                            {{couple.open}} - {{couple.close}}\n" +
+    "                                    <div class=\"panel panel-info\">\n" +
+    "                                        <div>\n" +
+    "                                            <div class=\"text-center\">Friday</div>\n" +
+    "                                            <div class=\"text-center\" ng-repeat=\"couple in moreInfoSelection.open_hours[5].hours\">\n" +
+    "                                                {{couple.open}} - {{couple.close}}\n" +
+    "                                            </div>\n" +
+    "                                            <div ng-if=\"moreInfoSelection.open_hours[5] == null\">\n" +
+    "                                                <div class=\"text-center\">\n" +
+    "                                                    <b>Closed</b>\n" +
+    "                                                </div>\n" +
+    "                                            </div>\n" +
     "                                        </div>\n" +
     "                                    </div>\n" +
     "                                </div>\n" +
     "                                <div class=\"col-lg-3\" >\n" +
-    "                                    <div>\n" +
-    "                                        Saturday\n" +
-    "                                        <div ng-repeat=\"couple in moreInfoSelection.open_hours[6].hours\">\n" +
-    "                                            {{couple.open}} - {{couple.close}}\n" +
+    "                                    <div class=\"panel panel-info\">\n" +
+    "                                        <div>\n" +
+    "                                            <div class=\"text-center\">Saturday</div>\n" +
+    "                                            <div class=\"text-center\" ng-repeat=\"couple in moreInfoSelection.open_hours[6].hours\">\n" +
+    "                                                {{couple.open}} - {{couple.close}}\n" +
+    "                                            </div>\n" +
+    "                                            <div ng-if=\"moreInfoSelection.open_hours[6] == null\">\n" +
+    "                                                <div class=\"text-center\">\n" +
+    "                                                    <b>Closed</b>\n" +
+    "                                                </div>\n" +
+    "                                            </div>\n" +
     "                                        </div>\n" +
     "                                    </div>\n" +
     "                                </div>\n" +
