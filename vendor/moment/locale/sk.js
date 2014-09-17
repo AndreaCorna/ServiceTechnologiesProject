@@ -12,24 +12,15 @@
         factory(window.moment); // Browser global
     }
 }(function (moment) {
-<<<<<<< HEAD
-    var months = "január_február_marec_apríl_máj_jún_júl_august_september_október_november_december".split("_"),
-        monthsShort = "jan_feb_mar_apr_máj_jún_júl_aug_sep_okt_nov_dec".split("_");
-=======
     var months = 'január_február_marec_apríl_máj_jún_júl_august_september_október_november_december'.split('_'),
         monthsShort = 'jan_feb_mar_apr_máj_jún_júl_aug_sep_okt_nov_dec'.split('_');
->>>>>>> 3559bba7069e0a5ae395d0b2097e2327ca3221e2
 
     function plural(n) {
         return (n > 1) && (n < 5);
     }
 
     function translate(number, withoutSuffix, key, isFuture) {
-<<<<<<< HEAD
-        var result = number + " ";
-=======
         var result = number + ' ';
->>>>>>> 3559bba7069e0a5ae395d0b2097e2327ca3221e2
         switch (key) {
         case 's':  // a few seconds / in a few seconds / a few seconds ago
             return (withoutSuffix || isFuture) ? 'pár sekúnd' : 'pár sekundami';
@@ -92,20 +83,6 @@
             }
             return _monthsParse;
         }(months, monthsShort)),
-<<<<<<< HEAD
-        weekdays : "nedeľa_pondelok_utorok_streda_štvrtok_piatok_sobota".split("_"),
-        weekdaysShort : "ne_po_ut_st_št_pi_so".split("_"),
-        weekdaysMin : "ne_po_ut_st_št_pi_so".split("_"),
-        longDateFormat : {
-            LT: "H:mm",
-            L : "DD.MM.YYYY",
-            LL : "D. MMMM YYYY",
-            LLL : "D. MMMM YYYY LT",
-            LLLL : "dddd D. MMMM YYYY LT"
-        },
-        calendar : {
-            sameDay: "[dnes o] LT",
-=======
         weekdays : 'nedeľa_pondelok_utorok_streda_štvrtok_piatok_sobota'.split('_'),
         weekdaysShort : 'ne_po_ut_st_št_pi_so'.split('_'),
         weekdaysMin : 'ne_po_ut_st_št_pi_so'.split('_'),
@@ -118,7 +95,6 @@
         },
         calendar : {
             sameDay: '[dnes o] LT',
->>>>>>> 3559bba7069e0a5ae395d0b2097e2327ca3221e2
             nextDay: '[zajtra o] LT',
             nextWeek: function () {
                 switch (this.day()) {
@@ -154,19 +130,11 @@
                     return '[minulú sobotu o] LT';
                 }
             },
-<<<<<<< HEAD
-            sameElse: "L"
-        },
-        relativeTime : {
-            future : "za %s",
-            past : "pred %s",
-=======
             sameElse: 'L'
         },
         relativeTime : {
             future : 'za %s',
             past : 'pred %s',
->>>>>>> 3559bba7069e0a5ae395d0b2097e2327ca3221e2
             s : translate,
             m : translate,
             mm : translate,
