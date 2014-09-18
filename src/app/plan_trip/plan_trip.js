@@ -212,10 +212,11 @@ angular.module('trippo.plan',[
 
         $scope.current_day = moment($stateParams.date,"DD-MM-YYYY");
 
-        $scope.hotels =SelectionService. getHotelSelection();
-        $scope.culture =SelectionService.getCultureSelection();
-        $scope.entertainment =SelectionService.getEntertainmentSelection();
-        $scope.foods = SelectionService.getFoodSelection();
+        $scope.hotels =SelectionService. getHotelSelection($stateParams.city_name);
+        $scope.culture =SelectionService.getCultureSelection($stateParams.city_name);
+        $scope.entertainment =SelectionService.getEntertainmentSelection($stateParams.city_name);
+        $scope.foods = SelectionService.getFoodSelection($stateParams.city_name);
+
 
         var selectedItems = $scope.culture.concat($scope.hotels,$scope.entertainment,$scope.foods) ;
         PlanningService.initializeCurrentDay($stateParams.date,selectedItems);

@@ -1,6 +1,12 @@
-<form novalidate name="mapContainer" class="mapContainer panel">
-    <div id="theMap"></div>
+<div  class="panel">
+    <form id="mode">
+        <input type="button" ng-click="setTravelMode('DRIVING');" value="DRIVING"/>
+        <input type="button" ng-click="setTravelMode('WALKING');"  value="WALKING" />
+        <input type="button" ng-click="setTravelMode('TRANSIT');"   value="TRANSIT"/>
+    </form>
+    <div id="theMap">
+    </div>
     <div class="directions" ng-show="directions || directions==undefined">
     </div>
 
-</form>
+</div>
