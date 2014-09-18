@@ -9,63 +9,41 @@ angular.module('trippo.resources', [
     'ngResource'
 ])
 
+.factory('CityRes', function ($resource){
+     var city = $resource ("../../city/:city_name");
+     return city;
+})
 
 .factory( 'CultureRes', function ($resource) {
-    var cultureList = $resource("../../city/:city_name/culture");
-    var cultureDetails = $resource("../../city/:city_name/culture/:id_culture");
-    var cultureOthers = $resource("../../city/:city_name/culture?token=:token");
-    return {
-        list: cultureList,
-        details: cultureDetails,
-        others: cultureOthers
-    };
+    var culture = $resource("../../city/:city_name/culture/:id");
+    return culture;
 })
 
 .factory('UtilityRes',function($resource){
-    var utilityList = $resource("../../city/:city_name/utility");
-    var utilityDetails = $resource("../../city/:city_name/utility/:id_utility");
-    var utilityOthers = $resource("../../city/:city_name/utility?token=:token");
 
-    return{
-        list:utilityList,
-        details:utilityDetails,
-        others:utilityOthers
-    };
+    var utility = $resource("../../city/:city_name/utility/:id");
+
+
+    return utility;
 
 
 })
 
 .factory('EntertainmentRes',function($resource){
-    var entertainmentList = $resource("../../city/:city_name/entertainment");
-    var entertainmentDetails = $resource("../../city/:city_name/entertainment/:id_entertainment");
-    var entertainmentOthers = $resource("../../city/:city_name/entertainment?token=:token");
+    var entertainment = $resource("../../city/:city_name/entertainment/:id");
 
-    return{
-        list:entertainmentList,
-        details:entertainmentDetails,
-        others:entertainmentOthers
-    };
+    return entertainment;
 })
 
 .factory('HotelRes',function($resource){
-    var hotelList = $resource("../../city/:city_name/hotels");
-    var hotelDetails = $resource("../../city/:city_name/hotels/:id_hotel");
-    return{
-        list:hotelList,
-        details:hotelDetails
-    };
+    var hotel = $resource("../../city/:city_name/hotels/:id");
+    return hotel;
 
 })
 
 .factory('FoodRes',function($resource){
-    var foodList = $resource("../../city/:city_name/food");
-    var foodDetails = $resource("../../city/:city_name/food/:id_food");
-    var foodOthers = $resource("../../city/:city_name/food?token=:token");
+    var food = $resource("../../city/:city_name/food/:id");
 
-    return{
-        list:foodList,
-        details:foodDetails,
-        others:foodOthers
-    };
+    return food;
 }) ;
 

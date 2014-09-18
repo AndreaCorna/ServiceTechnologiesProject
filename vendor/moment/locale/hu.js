@@ -50,19 +50,6 @@
     }
 
     return moment.defineLocale('hu', {
-<<<<<<< HEAD
-        months : "január_február_március_április_május_június_július_augusztus_szeptember_október_november_december".split("_"),
-        monthsShort : "jan_feb_márc_ápr_máj_jún_júl_aug_szept_okt_nov_dec".split("_"),
-        weekdays : "vasárnap_hétfő_kedd_szerda_csütörtök_péntek_szombat".split("_"),
-        weekdaysShort : "vas_hét_kedd_sze_csüt_pén_szo".split("_"),
-        weekdaysMin : "v_h_k_sze_cs_p_szo".split("_"),
-        longDateFormat : {
-            LT : "H:mm",
-            L : "YYYY.MM.DD.",
-            LL : "YYYY. MMMM D.",
-            LLL : "YYYY. MMMM D., LT",
-            LLLL : "YYYY. MMMM D., dddd LT"
-=======
         months : 'január_február_március_április_május_június_július_augusztus_szeptember_október_november_december'.split('_'),
         monthsShort : 'jan_feb_márc_ápr_máj_jún_júl_aug_szept_okt_nov_dec'.split('_'),
         weekdays : 'vasárnap_hétfő_kedd_szerda_csütörtök_péntek_szombat'.split('_'),
@@ -74,7 +61,6 @@
             LL : 'YYYY. MMMM D.',
             LLL : 'YYYY. MMMM D., LT',
             LLLL : 'YYYY. MMMM D., dddd LT'
->>>>>>> 3559bba7069e0a5ae395d0b2097e2327ca3221e2
         },
         meridiem : function (hours, minutes, isLower) {
             if (hours < 12) {
@@ -96,13 +82,8 @@
             sameElse : 'L'
         },
         relativeTime : {
-<<<<<<< HEAD
-            future : "%s múlva",
-            past : "%s",
-=======
             future : '%s múlva',
             past : '%s',
->>>>>>> 3559bba7069e0a5ae395d0b2097e2327ca3221e2
             s : translate,
             m : translate,
             mm : translate,

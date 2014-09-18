@@ -108,204 +108,500 @@ angular.module( 'trippo.city', [
 
 })
 
-.controller('CultureCtrl', function CultureCtrl($scope,CultureRes,$stateParams,SelectionService,ModalHandler,InfiniteScrollHandler) {
+.controller('CultureCtrl', function CultureCtrl(CultureService,$scope,CultureRes,$stateParams,SelectionService,ModalHandler) {
         $scope.loaderEnabled = true;
         $scope.resource = CultureRes;
 
-        $scope.cultureList = CultureRes.list.query({city_name:$stateParams.city_name},function() {
+        CultureService.initCultureList($stateParams.city_name,function (){
+            //setting the infinite scroll after cultureService initialization through callback function
+            $scope.infiniteScroll =  CultureService.getInfinityScroll($stateParams.city_name);
             $scope.loaderEnabled = false;
-            $scope.nextPageToken = $scope.cultureList[0].token;
-            $scope.cultureList = $scope.cultureList[0].results;
 
-
-            $scope.infiniteScroll = new InfiniteScrollHandler($scope.nextPageToken,$scope.cultureList);
-
-        });
-
-
+        }) ;
 
         $scope.setCultureDetails = function(culture_item){
-            ModalHandler.setCultureDetails(culture_item);
+            ModalHandler.setDetailsByResource($scope.resource ,culture_item);
         } ;
 
         $scope.addCultureItem = function(culture_item){
-            $scope.cultureSelection = SelectionService.addCultureItem(culture_item,$scope.cultureList);
+            $scope.cultureSelection = SelectionService.addCultureItem(culture_item,$stateParams.city_name);
         };
 
 
         $scope.removeCultureItem = function(culture_item){
-            $scope.cultureSelection = SelectionService.removeCultureItem(culture_item,$scope.cultureList);
+            $scope.cultureSelection = SelectionService.removeCultureItem(culture_item,$stateParams.city_name);
         };
 
-        $scope.$watchCollection(function () { return SelectionService.getCultureSelection(); }, function (newVal, oldVal) {
-                $scope.cultureSelection = SelectionService.getCultureSelection();
+        $scope.$watchCollection(function () { return SelectionService.getCultureSelection($stateParams.city_name); }, function (newVal, oldVal) {
+                $scope.cultureSelection = SelectionService.getCultureSelection($stateParams.city_name);
                 if(!$scope.$$phase) {
                     $scope.$apply();
                 }
 
         });
 
+
+})
+/**
+ * Handle the state of the culture list items of different cities
+ */
+.factory("CultureService",function CultureService(CultureRes,InfiniteScrollHandler){
+    //hash with  key: "city",  value : array of culture item
+    var cultureList=[];
+    //hash with key: "city" , value : InfiniteScrollHandler object of the city
+    var infiniteScroll =[];
+
+        var initCultureList = function(city,callback){
+        //check if  cultureList of city hasn't already been request
+        if (cultureList[city] === undefined) {
+
+            //first time to request so REST call to fetch data
+            CultureRes.query({city_name: city}, function (cult) {
+
+                //code executed when data has been fetched
+                var token =  cult[0].token;
+
+                //initialize cultureList[city] with the data coming from the api call
+                cultureList[city] = cult[0].results;
+
+               //creating infinity scrollhandler for this city
+                infiniteScroll[city] = new InfiniteScrollHandler(token,cultureList[city]);
+
+                 //calling callback function
+                if (typeof callback == 'function'){
+                    callback();
+                }
+            });
+        }
+        else{
+            if (typeof callback == 'function'){
+                callback();
+            }
+        }
+
+    } ;
+    var getInfinityScroll = function(city){
+        return  infiniteScroll[city];
+    } ;
+    var getCultureList = function(city){
+        return cultureList[city];
+    } ;
+    var addItem = function(city,item){
+          cultureList[city].push(item);
+    };
+
+    var removeItem = function(city,item){
+       var index = cultureList[city].indexOf(item);
+       if (index != -1){
+          cultureList[city].splice(index,1);
+       }
+    };
+    return {
+        initCultureList : initCultureList,
+        addItem :addItem ,
+        removeItem : removeItem,
+        getCultureList:getCultureList,
+        getInfinityScroll :getInfinityScroll
+
+
+    };
+
+
 })
 
-
-.controller('EntertainmentCtrl', function EntertainmentCtrl($scope,EntertainmentRes,$stateParams,SelectionService,ModalHandler,InfiniteScrollHandler) {
+.controller('EntertainmentCtrl', function EntertainmentCtrl(EntertainmentService,$scope,EntertainmentRes,$stateParams,SelectionService,ModalHandler) {
         $scope.loaderEnabled = true;
-        $scope.resource =   EntertainmentRes;
+        $scope.resource = EntertainmentRes;
 
-
-        $scope.entertainmentList= EntertainmentRes.list.query({city_name:$stateParams.city_name},function() {
+        EntertainmentService.initEntertainmentList($stateParams.city_name,function (){
+            //setting the infinite scroll after cultureService initialization through callback function
+            $scope.infiniteScroll =  EntertainmentService.getInfinityScroll($stateParams.city_name);
             $scope.loaderEnabled = false;
-            $scope.nextPageToken = $scope.entertainmentList[0].token;
-            $scope.entertainmentList = $scope.entertainmentList[0].results;
-            $scope.infiniteScroll = new InfiniteScrollHandler($scope.nextPageToken,$scope.entertainmentList);
 
+        }) ;
 
-        });
-
-
-
-        $scope.setEntertainmentDetails = function (entertainment_item) {
-            ModalHandler.setEntertainmentDetails(entertainment_item);
-        };
-
+        $scope.setEntertainmentDetails = function(entertainment_item){
+            ModalHandler.setDetailsByResource($scope.resource ,entertainment_item);
+        } ;
 
         $scope.addEntertainmentItem = function(entertainment_item){
-            $scope.entertainmentSelection = SelectionService.addEntertainmentItem(entertainment_item,$scope.entertainmentList);
+            $scope.entertainmentSelection = SelectionService.addEntertainmentItem(entertainment_item,$stateParams.city_name);
         };
+
 
         $scope.removeEntertainmentItem = function(entertainment_item){
-            $scope.entertainmentSelection = SelectionService.removeEntertainmentItem(entertainment_item,$scope.entertainmentList);
+            $scope.entertainmentSelection = SelectionService.removeEntertainmentItem(entertainment_item,$stateParams.city_name);
         };
 
-        $scope.$watchCollection(function () { return SelectionService.getEntertainmentSelection(); }, function (newVal, oldVal) {
-            $scope.cultureSelection = SelectionService.getEntertainmentSelection();
+        $scope.$watchCollection(function () { return SelectionService.getEntertainmentSelection($stateParams.city_name); }, function (newVal, oldVal) {
+            $scope.entertainmentSelection = SelectionService.getEntertainmentSelection($stateParams.city_name);
             if(!$scope.$$phase) {
                 $scope.$apply();
             }
 
         });
+})
 
+.factory('EntertainmentService', function EntertainmentService(EntertainmentRes,InfiniteScrollHandler){
+        var entertainmentList=[];
+        //hash with key: "city" , value : InfiniteScrollHandler object of the city
+        var infiniteScroll =[];
+
+        var initEntertainmentList = function(city,callback){
+            //check if  cultureList of city hasn't already been request
+            if (entertainmentList[city] === undefined) {
+
+                //first time to request so REST call to fetch data
+                EntertainmentRes.query({city_name: city}, function (cult) {
+
+                    //code executed when data has been fetched
+                    var token =  cult[0].token;
+
+                    //initialize cultureList[city] with the data coming from the api call
+                    entertainmentList[city] = cult[0].results;
+
+                    //creating infinity scrollhandler for this city
+                    infiniteScroll[city] = new InfiniteScrollHandler(token,entertainmentList[city]);
+
+                    //calling callback function
+                    if (typeof callback == 'function'){
+                        callback();
+                    }
+                });
+            }
+            else{
+                if (typeof callback == 'function'){
+                    callback();
+                }
+            }
+
+        } ;
+        var getInfinityScroll = function(city){
+            return  infiniteScroll[city];
+        } ;
+        var getEntertainmentList = function(city){
+            return entertainmentList[city];
+        } ;
+        var addItem = function(city,item){
+            entertainmentList[city].push(item);
+        };
+        var removeItem = function(city,item){
+            var index = entertainmentList[city].indexOf(item);
+            if (index != -1){
+                entertainmentList[city].splice(index,1);
+            }
+        };
+
+        return {
+            initEntertainmentList : initEntertainmentList,
+            addItem :addItem ,
+            removeItem : removeItem,
+            getEntertainmentList:getEntertainmentList,
+            getInfinityScroll :getInfinityScroll
+        };
 
 })
 
-.controller('UtilityCtrl', function UtilityCtrl($scope,UtilityRes,$stateParams,SelectionService,ModalHandler,InfiniteScrollHandler) {
+.controller('UtilityCtrl', function UtilityCtrl(UtilityService,$scope,UtilityRes,$stateParams,SelectionService,ModalHandler) {
         $scope.loaderEnabled = true;
-        $scope.resource =   UtilityRes;
+        $scope.resource = UtilityRes;
 
-
-        $scope.utilityList = UtilityRes.list.query({city_name:$stateParams.city_name},function() {
+        UtilityService.initUtilityList($stateParams.city_name,function (){
+            //setting the infinite scroll after cultureService initialization through callback function
+            $scope.infiniteScroll =  UtilityService.getInfinityScroll($stateParams.city_name);
             $scope.loaderEnabled = false;
-            $scope.nextPageToken = $scope.utilityList[0].token;
-            $scope.utilityList = $scope.utilityList[0].results;
-            $scope.infiniteScroll = new InfiniteScrollHandler($scope.nextPageToken,$scope.utilityList);
 
-        });
+        }) ;
 
-
-
-        $scope.setUtilityDetails = function(id_utility){
-           ModalHandler.setUtilityDetails(id_utility);
-        };
+        $scope.setUtilityDetails = function(utility_item){
+            ModalHandler.setDetailsByResource($scope.resource ,utility_item);
+        } ;
 
         $scope.addUtilityItem = function(utility_item){
-            $scope.utilitySelection = SelectionService.addUtilityItem(utility_item,$scope.utilityList);
+            $scope.utilitySelection = SelectionService.addUtilityItem(utility_item,$stateParams.city_name);
         };
+
 
         $scope.removeUtilityItem = function(utility_item){
-            $scope.utilitySelection = SelectionService.removeUtilityItem(utility_item,$scope.utilityList);
+            $scope.utilitySelection = SelectionService.removeUtilityItem(utility_item,$stateParams.city_name);
         };
 
-        $scope.$watchCollection(function () { return SelectionService.getUtilitySelection(); }, function (newVal, oldVal) {
-            $scope.cultureSelection = SelectionService.getUtilitySelection();
+        $scope.$watchCollection(function () { return SelectionService.getUtilitySelection($stateParams.city_name); }, function (newVal, oldVal) {
+            $scope.utilitySelection = SelectionService.getUtilitySelection($stateParams.city_name);
             if(!$scope.$$phase) {
                 $scope.$apply();
             }
+
         });
+})
 
+.factory('UtilityService', function UtilityService(UtilityRes,InfiniteScrollHandler){
+        var utilityList=[];
+        //hash with key: "city" , value : InfiniteScrollHandler object of the city
+        var infiniteScroll =[];
 
+        var initUtilityList = function(city,callback){
+            //check if  cultureList of city hasn't already been request
+            if (utilityList[city] === undefined) {
+
+                //first time to request so REST call to fetch data
+                UtilityRes.query({city_name: city}, function (cult) {
+
+                    //code executed when data has been fetched
+                    var token =  cult[0].token;
+
+                    //initialize cultureList[city] with the data coming from the api call
+                    utilityList[city] = cult[0].results;
+
+                    //creating infinity scrollhandler for this city
+                    infiniteScroll[city] = new InfiniteScrollHandler(token,utilityList[city]);
+
+                    //calling callback function
+                    if (typeof callback == 'function'){
+                        callback();
+                    }
+                });
+            }
+            else{
+                if (typeof callback == 'function'){
+                    callback();
+                }
+            }
+
+        } ;
+        var getInfinityScroll = function(city){
+            return  infiniteScroll[city];
+        } ;
+        var getUtilityList = function(city){
+            return utilityList[city];
+        } ;
+        var addItem = function(city,item){
+            utilityList[city].push(item);
+        };
+        var removeItem = function(city,item){
+            var index = utilityList[city].indexOf(item);
+            if (index != -1){
+                utilityList[city].splice(index,1);
+            }
+        };
+
+        return {
+            initUtilityList : initUtilityList,
+            addItem :addItem ,
+            removeItem : removeItem,
+            getUtilityList:getUtilityList,
+            getInfinityScroll :getInfinityScroll
+        };
 
     })
 
-.controller('HotelCtrl', function HotelCtrl($scope,HotelRes,$stateParams,SelectionService,ModalHandler) {
+
+.controller('HotelCtrl', function HotelCtrl(HotelService,$scope,HotelRes,$stateParams,SelectionService,ModalHandler) {
         $scope.loaderEnabled = true;
-        $scope.hotelList = HotelRes.list.query({city_name:$stateParams.city_name},function() {
-            $scope.loaderEnabled = false;});
+        $scope.resource = HotelRes;
 
-        $scope.setHotelDetails = function(id_hotel){
-            ModalHandler.setHotelDetails(id_hotel);
+        HotelService.initHotelList($stateParams.city_name,function (){
+            //setting the infinite scroll after cultureService initialization through callback function
+            $scope.infiniteScroll =  HotelService.getInfinityScroll($stateParams.city_name);
+            $scope.loaderEnabled = false;
+
+        }) ;
+
+        $scope.setHotelDetails = function(hotel_item){
+            ModalHandler.setDetailsHotel($scope.resource ,hotel_item);
         } ;
-
 
         $scope.addHotelItem = function(hotel_item){
-            $scope.hotelSelection = SelectionService.addHotelItem(hotel_item);
+            $scope.foodSelection = SelectionService.addHotelItem(hotel_item,$stateParams.city_name);
         };
+
 
         $scope.removeHotelItem = function(hotel_item){
-            $scope.hotelSelection = SelectionService.removeHotelItem(hotel_item);
+            $scope.hotelSelection = SelectionService.removeHotelItem(hotel_item,$stateParams.city_name);
         };
 
-
-})
-
-.controller('FoodCtrl',function FoodCtrl($scope,FoodRes,$stateParams,SelectionService,ModalHandler,InfiniteScrollHandler){
-        $scope.loaderEnabled = true;
-        $scope.resource =   FoodRes;
-
-
-        $scope.foodList = FoodRes.list.query({city_name:$stateParams.city_name},function() {
-            $scope.loaderEnabled = false;
-            $scope.nextPageToken = $scope.foodList[0].token;
-            $scope.foodList = $scope.foodList[0].results;
-            $scope.infiniteScroll = new InfiniteScrollHandler($scope.nextPageToken,$scope.foodList);
-
-        });
-
-        $scope.setFoodDetails = function(id_food){
-            ModalHandler.setFoodDetails(id_food);
-        } ;
-
-
-        $scope.addFoodItem = function(food_item){
-            $scope.foodSelection = SelectionService.addFoodItem(food_item,$scope.foodList);
-        };
-
-        $scope.removeFoodItem = function(food_item){
-            $scope.foodSelection = SelectionService.removeFoodItem(food_item,$scope.foodList);
-        };
-
-        $scope.$watchCollection(function () { return SelectionService.getFoodSelection(); }, function (newVal, oldVal) {
-            $scope.cultureSelection = SelectionService.getFoodSelection();
+        $scope.$watchCollection(function () { return SelectionService.getHotelSelection($stateParams.city_name); }, function (newVal, oldVal) {
+            $scope.hotelSelection = SelectionService.getHotelSelection($stateParams.city_name);
             if(!$scope.$$phase) {
                 $scope.$apply();
             }
+
+        });
+})
+
+.factory('HotelService', function HotelService(HotelRes,InfiniteScrollHandler){
+        var hotelList=[];
+        //hash with key: "city" , value : InfiniteScrollHandler object of the city
+        var infiniteScroll =[];
+
+        var initHotelList = function(city,callback){
+            //check if  cultureList of city hasn't already been request
+            if (hotelList[city] === undefined) {
+
+                //first time to request so REST call to fetch data
+                HotelRes.query({city_name: city}, function (cult) {
+
+                    //code executed when data has been fetched
+                    var token =  cult[0].token;
+
+                    //initialize cultureList[city] with the data coming from the api call
+                    hotelList[city] = cult[0].results;
+
+                    //creating infinity scrollhandler for this city
+                    infiniteScroll[city] = new InfiniteScrollHandler(token,hotelList[city]);
+
+                    //calling callback function
+                    if (typeof callback == 'function'){
+                        callback();
+                    }
+                });
+            }
+            else{
+                if (typeof callback == 'function'){
+                    callback();
+                }
+            }
+
+        } ;
+        var getInfinityScroll = function(city){
+            return  infiniteScroll[city];
+        } ;
+        var getHotelList = function(city){
+            return hotelList[city];
+        } ;
+        var addItem = function(city,item){
+            hotelList[city].push(item);
+        };
+        var removeItem = function(city,item){
+            var index = hotelList[city].indexOf(item);
+            if (index != -1){
+                hotelList[city].splice(index,1);
+            }
+        };
+
+        return {
+            initHotelList : initHotelList,
+            addItem :addItem ,
+            removeItem : removeItem,
+            getHotelList:getHotelList,
+            getInfinityScroll :getInfinityScroll
+        };
+})
+
+.controller('FoodCtrl',function FoodCtrl(FoodService,$scope,FoodRes,$stateParams,SelectionService,ModalHandler){
+        $scope.loaderEnabled = true;
+        $scope.resource = FoodRes;
+
+        FoodService.initFoodList($stateParams.city_name,function (){
+            //setting the infinite scroll after cultureService initialization through callback function
+            $scope.infiniteScroll =  FoodService.getInfinityScroll($stateParams.city_name);
+            $scope.loaderEnabled = false;
+
+        }) ;
+
+        $scope.setFoodDetails = function(food_item){
+            ModalHandler.setDetailsByResource($scope.resource ,food_item);
+        } ;
+
+        $scope.addFoodItem = function(food_item){
+            $scope.foodSelection = SelectionService.addFoodItem(food_item,$stateParams.city_name);
+        };
+
+
+        $scope.removeFoodItem = function(food_item){
+            $scope.foodSelection = SelectionService.removeFoodItem(food_item,$stateParams.city_name);
+        };
+
+        $scope.$watchCollection(function () { return SelectionService.getFoodSelection($stateParams.city_name); }, function (newVal, oldVal) {
+            $scope.foodSelection = SelectionService.getFoodSelection($stateParams.city_name);
+            if(!$scope.$$phase) {
+                $scope.$apply();
+            }
+
         });
 
 })
+.factory('FoodService',function FoodService(FoodRes,InfiniteScrollHandler){
+        var foodList=[];
+        //hash with key: "city" , value : InfiniteScrollHandler object of the city
+        var infiniteScroll =[];
 
+        var initFoodList = function(city,callback){
+            //check if  cultureList of city hasn't already been request
+            if (foodList[city] === undefined) {
+
+                //first time to request so REST call to fetch data
+                FoodRes.query({city_name: city}, function (cult) {
+
+                    //code executed when data has been fetched
+                    var token =  cult[0].token;
+
+                    //initialize cultureList[city] with the data coming from the api call
+                    foodList[city] = cult[0].results;
+
+                    //creating infinity scrollhandler for this city
+                    infiniteScroll[city] = new InfiniteScrollHandler(token,foodList[city]);
+
+                    //calling callback function
+                    if (typeof callback == 'function'){
+                        callback();
+                    }
+                });
+            }
+            else{
+                if (typeof callback == 'function'){
+                    callback();
+                }
+            }
+
+        } ;
+        var getInfinityScroll = function(city){
+            return  infiniteScroll[city];
+        } ;
+        var getFoodList = function(city){
+            return foodList[city];
+        } ;
+        var addItem = function(city,item){
+            foodList[city].push(item);
+        };
+        var removeItem = function(city,item){
+            var index = foodList[city].indexOf(item);
+            if (index != -1){
+                foodList[city].splice(index,1);
+            }
+        };
+
+        return {
+            initFoodList : initFoodList,
+            addItem :addItem ,
+            removeItem : removeItem,
+            getFoodList:getFoodList,
+            getInfinityScroll :getInfinityScroll
+        };
+
+    })
+/**
+ * Handle the infinitescroll making subsequent api calls with different token
+ */
 .factory('InfiniteScrollHandler', function ($stateParams) {
 
+        //initialize the Scroll handler with a token and a list which will be used to append items
         var ScrollHandler = function(curr_token,list){
              this.itemList = list;
              this.busy = false;
              this.token =curr_token;
         };
-        ScrollHandler.prototype.nextPage = function(resource,list){
+        //ATTENTION PROBABLY list param is not correct why not use the same passed in initialize?
+        ScrollHandler.prototype.nextPage = function(resource){
             if (this.busy){return;}
             this.busy = true;
-            this.itemList = list;
 
 
 
             if(this.token != null){
-                var otherElements = resource.others.query({city_name: $stateParams.city_name, token: this.token},function(){
-                    console.log("previous token inside infinite scroll");
-                    console.log(this.token);
-                    this.token = otherElements[0].token;
-                    console.log("other elements");
-                    console.log(otherElements[0]);
+                var otherElements = resource.query({city_name: $stateParams.city_name, token: this.token},function(){
 
-                    console.log("after token inside infinite scroll");
-                    console.log(this.token);
+                    this.token = otherElements[0].token;
 
                     for(var i=0;i<otherElements[0].results.length;i++){
                         this.itemList.push(otherElements[0].results[i]);
@@ -326,165 +622,158 @@ angular.module( 'trippo.city', [
 
 
 
-    .controller( 'CityCtrl', function CityCtrl( $scope, $stateParams, $log , CityRes,ModalHandler) {
-        $scope.$log = $log;
-        $scope.intervalImages = 5000;
-        $scope.moreInfoSelection = null;
-        $scope.modalEnabled = false;
-        $scope.loaderEnabled = true;
+.controller( 'CityCtrl', function CityCtrl( $scope, $stateParams, $log , CityRes) {
+    $scope.$log = $log;
+    $scope.intervalImages = 5000;
+    $scope.moreInfoSelection = null;
+    $scope.modalEnabled = false;
+    $scope.loaderEnabled = true;
 
-        $scope.city = CityRes.details.query({city_name: $stateParams.city_name}, function () {
-            $scope.images = $scope.city[0].images;
-            $scope.city = $scope.city[0].details;
-        });
+    $scope.city = CityRes.query({city_name: $stateParams.city_name}, function () {
+        $scope.images = $scope.city[0].images;
+        $scope.city = $scope.city[0].details;
+    });
 
-    })
-/**
- * modify the value of the hour which comes from Google Api in a format of HH:mm
- */
-.filter('hourFilter', function () {
-    return function (input) {
-       if (input !==undefined) {
-           var hourFormat = input.substr(0, 2) + ":" + input.substr(2);
-           console.log(hourFormat);
-           return hourFormat;
-       }
-    };
 })
 
-.factory( 'CityRes', function ( $resource )  {
-        var listCities = $resource("../../city/");
-        var detailsCity = $resource("../../city/:city_name");
-        var getCityDetails = function(){
-            return detailsCity;
-        };
-        return{
-            list:listCities,
-            details:detailsCity,
-            getCityDetails : getCityDetails
-        };
-    })
 
-
-.service('SelectionService',function(){
-        var cultureSelection = [];
+.service('SelectionService',function(CultureService,EntertainmentService,FoodService,UtilityService,HotelService){
+        var cultureSelection= [];
         var utilitySelection = [];
         var hotelSelection = [];
         var entertainmentSelection = [];
         var foodSelection = [];
         return{
-            addCultureItem:function (culture_item,cultureList) {
-
-                if(cultureSelection.indexOf(culture_item) == -1) {
-                    cultureSelection.push(culture_item);
-                    var index = cultureList.indexOf(culture_item);
-                    cultureList.splice(index,1);
+            addCultureItem:function (culture_item,city) {
+                if (cultureSelection[city]===undefined){
+                    cultureSelection[city] =[];
                 }
-                return cultureSelection;
+                if( cultureSelection[city].indexOf(culture_item) == -1) {
+                    CultureService.removeItem(city,culture_item);
+                    cultureSelection[city].push(culture_item);
+
+                }
+                return cultureSelection[city];
 
             },
 
-            removeCultureItem:function (culture_item,cultureList) {
-                var index = cultureSelection.indexOf(culture_item);
+            removeCultureItem:function (culture_item,city) {
+                var index = cultureSelection[city].indexOf(culture_item);
                 if(index != -1) {
-                    cultureSelection.splice(index, 1);
-                    cultureList.push(culture_item);
+                    cultureSelection[city].splice(index, 1);
+                    CultureService.addItem(city,culture_item);
                 }
-                return cultureSelection;
+                return cultureSelection[city];
 
             },
 
-            getCultureSelection:function () {
-                return cultureSelection;
+            getCultureSelection:function (city) {
+                return cultureSelection[city];
             },
 
-            addUtilityItem:function (utility_item,utilityList) {
-                if(utilitySelection.indexOf(utility_item) == -1) {
-                    utilitySelection.push(utility_item);
-                    var index = utilityList.indexOf(utility_item);
-                    utilityList.splice(index,1);
+            addUtilityItem:function (utility_item,city) {
+                if (utilitySelection[city]===undefined){
+                    utilitySelection[city] =[];
                 }
-                return utilitySelection;
+                if( utilitySelection[city].indexOf(utility_item) == -1) {
+                    UtilityService.removeItem(city,utility_item);
+                    utilitySelection[city].push(utility_item);
+
+                }
+                return utilitySelection[city];
 
             },
 
-            removeUtilityItem:function (utility_item,utilityList) {
-                var index = utilitySelection.indexOf(utility_item);
+            removeUtilityItem:function (utility_item,city) {
+                var index = utilitySelection[city].indexOf(utility_item);
                 if(index != -1) {
-                    utilitySelection.splice(index, 1);
-                    utilityList.push(utility_item);
+                    utilitySelection[city].splice(index, 1);
+                    UtilityService.addItem(city,utility_item);
                 }
-                return utilitySelection;
+                return utilitySelection[city];
 
             },
 
-            getUtilitySelection:function(){
-               return utilitySelection;
+            getUtilitySelection:function(city){
+               return utilitySelection[city];
             },
 
-            addHotelItem:function (hotel_item) {
-                if(hotelSelection.indexOf(hotel_item) == -1) {
-                    hotelSelection.push(hotel_item);
+            addHotelItem:function (hotel_item,city) {
+                if (hotelSelection[city]===undefined){
+                    hotelSelection[city] =[];
                 }
-                return hotelSelection;
+                if( hotelSelection[city].indexOf(hotel_item) == -1) {
+                    HotelService.removeItem(city,hotel_item);
+                    hotelSelection[city].push(hotel_item);
+
+                }
+                return hotelSelection[city];
+
 
             },
 
-            removeHotelItem:function (hotel_item) {
-                var index = hotelSelection.indexOf(hotel_item);
+            removeHotelItem:function (hotel_item,city) {
+                var index = hotelSelection[city].indexOf(hotel_item);
                 if(index != -1) {
-                    hotelSelection.splice(index, 1);
+                    hotelSelection[city].splice(index, 1);
+                    HotelService.addItem(city,hotel_item);
                 }
-                return hotelSelection;
+                return hotelSelection[city];
 
             },
 
-            getHotelSelection:function(){
-                return hotelSelection;
+            getHotelSelection:function(city){
+                return hotelSelection[city];
             },
 
-            addEntertainmentItem:function (entertainment_item,entertainmentList) {
-                if(entertainmentSelection.indexOf(entertainment_item) == -1) {
-                    entertainmentSelection.push(entertainment_item);
-                    var index = entertainmentList.indexOf(entertainment_item);
-                    entertainmentList.splice(index,1);
+            addEntertainmentItem:function (entertainment_item,city) {
+                if (entertainmentSelection[city]===undefined){
+                    entertainmentSelection[city] =[];
                 }
-                return entertainmentSelection;
+                if( entertainmentSelection[city].indexOf(entertainment_item) == -1) {
+                    EntertainmentService.removeItem(city,entertainment_item);
+                    entertainmentSelection[city].push(entertainment_item);
 
-            },
-            removeEntertainmentItem:function (entertainment_item, entertainmentList) {
-                var index = entertainmentSelection.indexOf(entertainment_item);
-                if (index != -1) {
-                    entertainmentSelection.splice(index, 1);
-                    entertainmentList.push(entertainment_item);
                 }
-                return entertainmentSelection;
-            },
+                return entertainmentSelection[city];
 
-            getEntertainmentSelection:function(){
-                return entertainmentSelection;
             },
-
-            addFoodItem:function(food_item,foodList){
-                if(foodSelection.indexOf(food_item) == -1){
-                    foodSelection.push(food_item);
-                    var index = foodList.indexOf(food_item);
-                    foodList.splice(index,1);
+            removeEntertainmentItem:function (entertainment_item,city) {
+                var index = entertainmentSelection[city].indexOf(entertainment_item);
+                if(index != -1) {
+                    entertainmentSelection[city].splice(index, 1);
+                    EntertainmentService.addItem(city,entertainment_item);
                 }
-                return foodSelection;
+                return entertainmentSelection[city];
             },
 
-            removeFoodItem:function(food_item,foodList){
-                var index = foodSelection.indexOf(food_item);
-                if (index != -1) {
-                    foodSelection.splice(index, 1);
-                    foodList.push(food_item);
+            getEntertainmentSelection:function(city){
+                return entertainmentSelection[city];
+            },
+
+            addFoodItem:function(food_item,city){
+                if (foodSelection[city]===undefined){
+                    foodSelection[city] =[];
                 }
-                return foodSelection;
+                if( foodSelection[city].indexOf(food_item) == -1) {
+                    FoodService.removeItem(city,food_item);
+                    foodSelection[city].push(food_item);
+
+                }
+                return foodSelection[city];
             },
 
-            getFoodSelection:function(){
-                return foodSelection;
+            removeFoodItem:function(food_item,city){
+                var index = foodSelection[city].indexOf(food_item);
+                if(index != -1) {
+                    foodSelection[city].splice(index, 1);
+                    FoodService.addItem(city,food_item);
+                }
+                return foodSelection[city];
+            },
+
+            getFoodSelection:function(city){
+                return foodSelection[city];
             },
 
             getSelections:function(){

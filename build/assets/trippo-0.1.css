@@ -6624,7 +6624,7 @@ h2 {
   margin-right: auto;
 }
 .image-panel {
-  max-height: 230px;
+  max-height: 220px;
   max-width: 240px;
 }
 .icon-col-centered {
@@ -6671,6 +6671,9 @@ a.list-group-item:focus {
 */
 .btn-outlined {
   border-radius: 0;
+}
+.z-up {
+  z-index: 1;
 }
 .event-list {
   list-style: none;
@@ -6736,6 +6739,34 @@ a.list-group-item:focus {
   text-align: center;
   text-transform: uppercase;
 }
+.subtitle {
+  font-family: Capriola, sans-serif;
+}
+.selected-item {
+  display: inline-block;
+  width: 100%;
+  color: black;
+  padding: 5px;
+  text-align: center;
+  text-transform: uppercase;
+}
+.entertainment-color {
+  background-color: #face23;
+}
+.culture-color {
+  background-color: #21a9e1;
+}
+.food-color {
+  background-color: #ee4749;
+}
+.hotel-color {
+  background-color: #00a651;
+}
+.selected-color {
+  border: 9px solid rgba(250, 240, 11, 0.85);
+  border-radius: 4px;
+  background-color: #f9fce1;
+}
 /**
 *accordition properties
 */
@@ -6773,6 +6804,90 @@ a.list-group-item:focus {
 .item-name {
   font-size: 18px;
   margin: auto 5px;
+}
+/*******************************************************************************************
+/** PLANNING LIST ***************************************************************************
+/*********************************************************************************************
+*/
+.timeline-icon {
+  margin: 10px auto;
+  color: #737881;
+  display: block;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding;
+  background-clip: padding-box;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+  text-align: center;
+  line-height: 40px;
+  font-size: 15px;
+  float: none;
+}
+.icon-not-selected {
+  background-color: #383838;
+  -moz-box-shadow: 0 0 0 5px #a3a3a4;
+  -webkit-box-shadow: 0 0 0 5px #a3a3a4;
+  box-shadow: 0 0 0 5px #a3a3a4;
+}
+.icon-selected {
+  background-color: #f9fce1;
+  -moz-box-shadow: 0 0 0 7px #e7cb18;
+  -webkit-box-shadow: 0 0 0 7px #e7cb18;
+  box-shadow: 0 0 0 7px #e7cb18;
+}
+.timeline-item {
+  border: 6px solid rgba(17, 17, 27, 0.15);
+  border-radius: 4px;
+  -webkit-box-shadow: 0 10px 6px -6px #777777;
+  -moz-box-shadow: 0 10px 6px -6px #777777;
+  box-shadow: 0 10px 6px -6px #777777;
+  cursor: pointer;
+  display: inline-block;
+  width: 100%;
+  color: black;
+  padding: 5px;
+  text-align: center;
+  text-transform: uppercase;
+}
+.timeline-centered {
+  position: relative;
+  margin-bottom: 30px;
+}
+.timeline-list:before {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 6px;
+  background: #a3a3a4;
+  left: 49.5%;
+  top: 20px;
+  bottom: 20px;
+  z-index: -1;
+}
+.timeline-centered .timeline-entry {
+  position: relative;
+  /*width: 50%;
+  float: right;*/
+  margin-top: 5px;
+  margin-bottom: 10px;
+  clear: both;
+}
+.timeline-centered .timeline-entry:before,
+.timeline-centered .timeline-entry:after {
+  content: " ";
+  display: table;
+}
+.timeline-centered .timeline-entry .timeline-entry-inner {
+  position: relative;
+}
+.mapContainer {
+  -webkit-box-shadow: 0 10px 6px -6px #777777;
+  -moz-box-shadow: 0 10px 6px -6px #777777;
+  box-shadow: 0 10px 6px -6px #777777;
 }
 * {
   margin: 0;
@@ -6881,4 +6996,18 @@ a.list-group-item:focus {
   100% {
     transform: translateX(-40px);
   }
+}
+#theMap {
+  width: 100%;
+  height: 400px;
+  background: #ccc;
+  margin: 0;
+}
+.travel-selected {
+  background-color: rgba(54, 91, 238, 0.78);
+  color: white;
+}
+.travel-btn {
+  font-weight: bold;
+  font-size: 16px;
 }
