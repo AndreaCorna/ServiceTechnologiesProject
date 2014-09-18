@@ -373,12 +373,14 @@ angular.module('trippo.plan',[
              initializeCurrentDay: function(day,selectedItems){
 
                  current_schedule = DatesService.getDay(day);
-                angular.forEach(current_schedule.todo, function (value, key) {
-                     if(selectedItems.indexOf(value)==-1){
-                         var index =current_schedule.todo.indexOf(value);
-                         current_schedule.todo.splice(index, 1);
-                     }
-                });
+                 if (current_schedule !== undefined) {
+                     angular.forEach(current_schedule.todo, function (value, key) {
+                         if (selectedItems.indexOf(value) == -1) {
+                             var index = current_schedule.todo.indexOf(value);
+                             current_schedule.todo.splice(index, 1);
+                         }
+                     });
+                 }
              },
             /**
              * add item to the todo_ array of schedule
@@ -406,8 +408,11 @@ angular.module('trippo.plan',[
                 return current_schedule.todo;
             },
             getCurrentTodo:function(){
+                if (current_schedule !== undefined){
+                    return current_schedule.todo;
+                }
+                    return [] ;
 
-                return current_schedule.todo;
             } ,
             /**
              * check if item is inside current day todo_ array
