@@ -5,13 +5,13 @@ angular.module("maps/maps.tpl.html", []).run(["$templateCache", function($templa
     "<div  class=\"panel\">\n" +
     "    <div class=\"btn-group btn-group-justified\">\n" +
     "        <div class=\"btn-group\">\n" +
-    "            <button type=\"button\"  ng-click=\"setTravelMode('DRIVING');\" class=\"btn btn-default\">Driving</button>\n" +
+    "            <button type=\"button\" data-target=\"#\"  ng-click=\"setTravelMode('DRIVING');\" class=\"btn btn-default travel-btn\" data-toggle=\"pill\">Driving</button>\n" +
     "        </div>\n" +
     "        <div class=\"btn-group\">\n" +
-    "            <button type=\"button\"  ng-click=\"setTravelMode('WALKING');\" class=\"btn btn-default\">Walking</button>\n" +
+    "            <button type=\"button\" data-target=\"#\" ng-click=\"setTravelMode('WALKING');\" class=\"btn btn-default travel-btn travel-selected\"  data-toggle=\"pill\">Walking</button>\n" +
     "        </div>\n" +
     "        <div class=\"btn-group\">\n" +
-    "            <button type=\"button\" ng-click=\"setTravelMode('TRANSIT');\" class=\"btn btn-default\">Public Transport</button>\n" +
+    "            <button type=\"button\" data-target=\"#\" ng-click=\"setTravelMode('TRANSIT');\" class=\"btn btn-default travel-btn\" data-toggle=\"pill\">Public Transport</button>\n" +
     "        </div>\n" +
     "    </div>\n" +
     "\n" +

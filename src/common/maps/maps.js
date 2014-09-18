@@ -72,6 +72,22 @@ component.directive('map', function () {
 
             } ;
 
+            scope.isCurrentTravelMode = function(mode){
+                console.log("-------------- mode");
+
+                console.log("travel mode");
+                console.log(scope.travelModality);
+                console.log("passed mode");
+
+                console.log(google.maps.DirectionsTravelMode[mode]);
+
+                if( scope.travelModality == mode){
+                    return true;
+                }
+                return false;
+
+            };
+
             scope.updateDirectionMap = function () {
                 var mapOptions = {
                     zoom: scope.zoom !== undefined ? scope.zoom : 15,

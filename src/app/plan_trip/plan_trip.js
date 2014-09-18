@@ -185,7 +185,7 @@ angular.module('trippo.plan',[
             ModalHandler.setFoodDetails(id_food);
         };
         //START STUB
-        /*
+
         StubHandler.createFakeDates();
         var randomItemsc = [];
         var  randomItemse = [];
@@ -203,7 +203,7 @@ angular.module('trippo.plan',[
         $scope.entertainment = randomItemse;
         $scope.hotels =randomItemsh;
         $scope.foods =randomItemsf;
-        */
+
 
 
 
@@ -212,13 +212,13 @@ angular.module('trippo.plan',[
 
         $scope.current_day = moment($stateParams.date,"DD-MM-YYYY");
 
-
+        /*
 
         $scope.hotels =SelectionService. getHotelSelection($stateParams.city_name);
         $scope.culture =SelectionService.getCultureSelection($stateParams.city_name);
         $scope.entertainment =SelectionService.getEntertainmentSelection($stateParams.city_name);
         $scope.foods = SelectionService.getFoodSelection($stateParams.city_name);
-
+         */
 
         var selectedItems = $scope.culture.concat($scope.hotels,$scope.entertainment,$scope.foods) ;
         PlanningService.initializeCurrentDay($stateParams.date,selectedItems);
