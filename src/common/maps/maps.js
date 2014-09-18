@@ -16,35 +16,27 @@ component.directive('map', function () {
     mapObj = {
         restrict: 'EAC',
         scope: {
-            origin :'=',
-            destination: '=',
-            markerContent: '@',
+            origin :'=',       //origin of the direction request (object with lat lng field)
+            destination: '=',   //destination of the direction request  (object with lat lng field)
             zoom: '=',
-            type: '@',
-            directions: '@'
+            type: '@',          //type of map
+            directions: '@',
+            marker:'='                 //place where to put a marker (object with lat lng field)
         },
         replace: true,
         templateUrl: 'maps/maps.tpl.html',
         link: function (scope, element, attrs) {
 
 
-            scope.travelModality =google.maps.DirectionsTravelMode.WALKING;
-            scope.setTravelMode = function(value){
-                console.log(value);
-
-                scope.travelModality = google.maps.DirectionsTravelMode[value];
-                scope.getDirections();
-                console.log(scope.travelModality);
-
-            } ;
-
+            //WATCHERS
             /**
+             *
              * Making the origin value and the destination value passed to the directive syncronized with their actual value
              */
             scope.$watch('origin', function(newValue, oldValue) {
                 if (newValue) {
                     scope.origin = newValue;
-                    scope.updateMap();
+                    scope.updateDirectionMap();
                 }
             }, true);
 
@@ -52,17 +44,39 @@ component.directive('map', function () {
                 if (newValue) {
                     scope.destination = newValue;
                     console.log("updating map");
-                    
-                    scope.updateMap();
+                    scope.updateDirectionMap();
                 }
 
             }, true);
 
-            scope.updateMap = function () {
+            scope.$watch('marker', function(newValue, oldValue) {
+                if (newValue) {
+                    console.log("markerPoint changed value");
+
+                    scope.marker = newValue;
+                    scope.updateMarkerMap();
+                }
+            }, true);
+
+
+
+
+            /**
+             * When Travel mode is changed the map is recreated with the new directions
+             */
+            scope.travelModality =google.maps.DirectionsTravelMode.WALKING;
+            scope.setTravelMode = function(value){
+
+                scope.travelModality = google.maps.DirectionsTravelMode[value];
+                scope.getDirections();
+
+            } ;
+
+            scope.updateDirectionMap = function () {
                 var mapOptions = {
                     zoom: scope.zoom !== undefined ? scope.zoom : 15,
                     mapTypeId: scope.type.toLowerCase(),
-                    streetViewControl: false
+                    streetViewControl: true
                 };
                 map = new google.maps.Map(document.getElementById('theMap'), mapOptions);
 
@@ -146,10 +160,6 @@ component.directive('map', function () {
 
             };
 
-
-
-
-
             scope.getDirections = function () {
                 var request = {
                     origin: scope.startPoint,
@@ -166,7 +176,37 @@ component.directive('map', function () {
 
             };
 
+            scope.updateMarkerMap = function(){
+                console.log("updating marker map");
 
+                var mapOptions = {
+                    zoom: scope.zoom !== undefined ? scope.zoom : 15,
+                    mapTypeId: scope.type.toLowerCase(),
+                    streetViewControl: false
+                };
+                var mymap = new google.maps.Map(document.getElementById('theMap'), mapOptions);
+                console.log("inside marker map scope marker");
+                console.log(scope.marker);
+
+                var place = new google.maps.LatLng(scope.marker.lat,scope.marker.lng,true) ;
+                console.log("inside marker map scope place");
+                console.log(place);
+                mymap.setCenter(place);
+
+                var marker = new google.maps.Marker({
+                    map: mymap,
+                    position: place,
+                    animation: google.maps.Animation.DROP
+                });
+                var infowindow = new google.maps.InfoWindow({
+                    content: scope.marker.name !== undefined ? scope.marker.name : ''
+                });
+                google.maps.event.addListener(marker, 'click', function () {
+                    return infowindow.open(mymap, marker);
+                });
+                infowindow.open(mymap, marker);
+
+            } ;
 
 
 

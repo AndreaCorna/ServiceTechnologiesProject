@@ -1739,7 +1739,7 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
     "            <div class=\"timeline-list col-md-4\">\n" +
     "                <div ng-repeat=\"item in selectedItems\"  sv-element=\"opts\">\n" +
     "                    <div class=\"row\" >\n" +
-    "                            <div class=\" timeline-item {{getItemClass(item)}}\">\n" +
+    "                            <div ng-click=\"setMapsMarker(item)\" ng-class=\"isCurrentMap(item,'marker')? 'selected-color' : getItemClass(item) \" class=\" timeline-item \" >\n" +
     "                                <div class=\"row\" style=\"height: 48px;\">\n" +
     "\n" +
     "                                    <h1 class=\"item-name\">{{item.name}}</h1>\n" +
@@ -1756,7 +1756,7 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
     "                            <article class=\"timeline-entry\" >\n" +
     "                                <div class=\"timeline-entry-inner\">\n" +
     "\n" +
-    "                                    <div ng-click=\"setMapsStart(item)\"  class=\"timeline-icon \">\n" +
+    "                                    <div ng-click=\"setMapsDirections(item)\"  class=\"timeline-icon \" ng-class=\"isCurrentMap(item,'direction')? 'icon-selected' : 'icon-not-selected' \">\n" +
     "                                        <i class=\"entypo-feather\"></i>\n" +
     "                                    </div>\n" +
     "\n" +
@@ -1768,9 +1768,9 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
     "              </div>\n" +
     "          </div>\n" +
     "            </div>\n" +
-    "            <div ng-show=\"origin && destination\" id=\"scrollingMaps\" class=\"col-md-8 \" >\n" +
+    "            <div ng-show=\"(origin && destination) || currentMarker\" id=\"scrollingMaps\" class=\"col-md-8 \" >\n" +
     "\n" +
-    "               <map origin=\"origin\" destination=\"destination\" type=\"roadmap\" class=\"mapContainer\" ></map>\n" +
+    "               <map origin=\"origin\" destination=\"destination\" marker=\"currentMarker\" type=\"roadmap\" class=\"mapContainer\" ></map>\n" +
     "\n" +
     "            </div>\n" +
     "        </div>\n" +

@@ -200,7 +200,7 @@
             <div class="timeline-list col-md-4">
                 <div ng-repeat="item in selectedItems"  sv-element="opts">
                     <div class="row" >
-                            <div class=" timeline-item {{getItemClass(item)}}">
+                            <div ng-click="setMapsMarker(item)" ng-class="isCurrentMap(item,'marker')? 'selected-color' : getItemClass(item) " class=" timeline-item " >
                                 <div class="row" style="height: 48px;">
 
                                     <h1 class="item-name">{{item.name}}</h1>
@@ -217,7 +217,7 @@
                             <article class="timeline-entry" >
                                 <div class="timeline-entry-inner">
 
-                                    <div ng-click="setMapsStart(item)"  class="timeline-icon ">
+                                    <div ng-click="setMapsDirections(item)"  class="timeline-icon " ng-class="isCurrentMap(item,'direction')? 'icon-selected' : 'icon-not-selected' ">
                                         <i class="entypo-feather"></i>
                                     </div>
 
@@ -229,9 +229,9 @@
               </div>
           </div>
             </div>
-            <div ng-show="origin && destination" id="scrollingMaps" class="col-md-8 " >
+            <div ng-show="(origin && destination) || currentMarker" id="scrollingMaps" class="col-md-8 " >
 
-               <map origin="origin" destination="destination" type="roadmap" class="mapContainer" ></map>
+               <map origin="origin" destination="destination" marker="currentMarker" type="roadmap" class="mapContainer" ></map>
 
             </div>
         </div>
