@@ -146,7 +146,7 @@ component.directive('map', function () {
                 infowindowEnd.open(map, markerEnd);
 
                 //Avoid fast animation
-                setTimeout(function() {  scope.getDirections(); }, 1000);
+                setTimeout(function() {  scope.getDirections(); }, 500);
 
                 /*
                 geocoder.geocode({

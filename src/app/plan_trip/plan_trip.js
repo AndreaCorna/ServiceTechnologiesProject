@@ -185,8 +185,9 @@ angular.module('trippo.plan',[
             ModalHandler.setFoodDetails(id_food);
         };
         //START STUB
+        /*
 
-        StubHandler.createFakeDates();
+         StubHandler.createFakeDates();
         var randomItemsc = [];
         var  randomItemse = [];
         var  randomItemsh = [];
@@ -206,19 +207,18 @@ angular.module('trippo.plan',[
 
 
 
-
+            */
         //END STUB
         //get the item selected in the selectionService and set the current daySchedule removing item which has been removed from the Selection service
 
         $scope.current_day = moment($stateParams.date,"DD-MM-YYYY");
 
-        /*
 
         $scope.hotels =SelectionService. getHotelSelection($stateParams.city_name);
         $scope.culture =SelectionService.getCultureSelection($stateParams.city_name);
         $scope.entertainment =SelectionService.getEntertainmentSelection($stateParams.city_name);
         $scope.foods = SelectionService.getFoodSelection($stateParams.city_name);
-         */
+
 
         var selectedItems = $scope.culture.concat($scope.hotels,$scope.entertainment,$scope.foods) ;
         PlanningService.initializeCurrentDay($stateParams.date,selectedItems);
