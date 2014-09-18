@@ -305,20 +305,20 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "\n" +
     "\n" +
     "\n" +
-    "    <div class=\"modal fade\" ng-controller=\"ModalCtrl\" data-backdrop=\"static\" id=\"moreInfoModalPlace\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">\n" +
+    "    <div class=\"modal fade\" ng-controller=\"ModalCtrl\" id=\"moreInfoModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">\n" +
     "        <div class=\"modal-dialog\">\n" +
     "            <div class=\"modal-content\">\n" +
     "                    <div ng-show=\"modalEnabled\">\n" +
     "                        <div class=\"modal-header\">\n" +
     "                            <button type=\"button\" class=\"close\" data-dismiss=\"modal\" ng-click=\"disableModal()\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button>\n" +
-    "                            <h4 class=\"modal-title capriola\" id=\"myModalLabel\">More Information about {{moreInfoSelection.name}}</h4>\n" +
+    "                            <h4 class=\"modal-title\" id=\"myModalLabel\">More Information about {{moreInfoSelection.name}}</h4>\n" +
     "                        </div>\n" +
     "                    </div>\n" +
     "                    <div class=\"modal-body\">\n" +
     "                        <div ng-show=\"modalEnabled\">\n" +
-    "                            <div class=\"container-fluid capriola\">\n" +
+    "                            <div class=\"container-fluid\">\n" +
     "                            <div class=\"row\">\n" +
-    "                                <div class=\"col-lg-6 capriola\" >\n" +
+    "                                <div class=\"col-lg-6\" >\n" +
     "                                    <div class=\"row\">\n" +
     "                                        <b>Rating</b>\n" +
     "                                    </div>\n" +
@@ -359,119 +359,53 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                                        <b>Web Site</b>\n" +
     "                                    </div>\n" +
     "                                    <div class=\"row\">\n" +
-    "                                        <a target=\"_blank\" ng-href=\"{{moreInfoSelection.web_site}}\">{{moreInfoSelection.web_site}}</a>\n" +
+    "                                        {{moreInfoSelection.web_site}}\n" +
     "                                    </div>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
     "                            <div class=\"row\">\n" +
-    "                                <div class=\"col-lg-12\">\n" +
-    "                                    <div class=\"text-capitalize text-center\">\n" +
+    "                                <div class=\"col-lg-12\" >\n" +
+    "                                    <div class=\"row\">\n" +
     "                                        <b>Open Hours</b>\n" +
     "                                    </div>\n" +
-    "                                </div>\n" +
-    "                                <div class=\"col-lg-3\" >\n" +
-    "                                    <div class=\"panel panel-info\">\n" +
-    "                                        <div>\n" +
-    "                                            <div class=\"text-center\">Sunday</div>\n" +
-    "                                            <div class=\"text-center\" ng-repeat=\"couple in moreInfoSelection.open_hours[0].hours\">\n" +
-    "                                                {{couple.open}} - {{couple.close}}\n" +
-    "                                            </div>\n" +
-    "                                            <div ng-if=\"moreInfoSelection.open_hours[0] == null\">\n" +
-    "                                                <div class=\"text-center\">\n" +
-    "                                                    <b>Closed</b>\n" +
-    "                                                </div>\n" +
-    "                                            </div>\n" +
-    "                                        </div>\n" +
-    "                                    </div>\n" +
-    "                                </div>\n" +
-    "                                <div class=\"col-lg-3\" >\n" +
-    "                                    <div class=\"panel panel-info\">\n" +
-    "                                        <div>\n" +
-    "                                            <div class=\"text-center\">Monday</div>\n" +
-    "                                            <div class=\"text-center\" ng-repeat=\"couple in moreInfoSelection.open_hours[1].hours\">\n" +
-    "                                                {{couple.open}} - {{couple.close}}\n" +
-    "                                            </div>\n" +
-    "                                            <div ng-if=\"moreInfoSelection.open_hours[1] == null\">\n" +
-    "                                                <div class=\"text-center\">\n" +
-    "                                                    <b>Closed</b>\n" +
-    "                                                </div>\n" +
-    "                                            </div>\n" +
-    "                                        </div>\n" +
-    "                                    </div>\n" +
-    "                                </div>\n" +
-    "                                <div class=\"col-lg-3\" >\n" +
-    "                                    <div class=\"panel panel-info\">\n" +
-    "                                        <div>\n" +
-    "                                            <div class=\"text-center\">Tuesday</div>\n" +
-    "                                            <div class=\"text-center\" ng-repeat=\"couple in moreInfoSelection.open_hours[2].hours\">\n" +
-    "                                                {{couple.open}} - {{couple.close}}\n" +
-    "                                            </div>\n" +
-    "                                            <div ng-if=\"moreInfoSelection.open_hours[2] == null\">\n" +
-    "                                                <div class=\"text-center\">\n" +
-    "                                                    <b>Closed</b>\n" +
-    "                                                </div>\n" +
-    "                                            </div>\n" +
-    "                                        </div>\n" +
-    "                                    </div>\n" +
-    "                                </div>\n" +
-    "                                <div class=\"col-lg-3\" >\n" +
-    "                                    <div class=\"panel panel-info\">\n" +
-    "                                        <div>\n" +
-    "                                            <div class=\"text-center\">Wednesday</div>\n" +
-    "                                            <div class=\"text-center\" ng-repeat=\"couple in moreInfoSelection.open_hours[3].hours\">\n" +
-    "                                                {{couple.open}} - {{couple.close}}\n" +
-    "                                            </div>\n" +
-    "                                            <div ng-if=\"moreInfoSelection.open_hours[3] == null\">\n" +
-    "                                                <div class=\"text-center\">\n" +
-    "                                                    <b>Closed</b>\n" +
-    "                                                </div>\n" +
-    "                                            </div>\n" +
-    "                                        </div>\n" +
-    "                                    </div>\n" +
-    "                                </div>\n" +
-    "                                <div class=\"col-lg-3\" >\n" +
-    "                                    <div class=\"panel panel-info\">\n" +
-    "                                        <div>\n" +
-    "                                            <div class=\"text-center\">Thursday</div>\n" +
-    "                                            <div class=\"text-center\" ng-repeat=\"couple in moreInfoSelection.open_hours[4].hours\">\n" +
-    "                                                {{couple.open}} - {{couple.close}}\n" +
-    "                                            </div>\n" +
-    "                                            <div ng-if=\"moreInfoSelection.open_hours[4] == null\">\n" +
-    "                                                <div class=\"text-center\">\n" +
-    "                                                    <b>Closed</b>\n" +
-    "                                                </div>\n" +
-    "                                            </div>\n" +
-    "                                        </div>\n" +
-    "                                    </div>\n" +
-    "                                </div>\n" +
-    "                                <div class=\"col-lg-3\" >\n" +
-    "                                    <div class=\"panel panel-info\">\n" +
-    "                                        <div>\n" +
-    "                                            <div class=\"text-center\">Friday</div>\n" +
-    "                                            <div class=\"text-center\" ng-repeat=\"couple in moreInfoSelection.open_hours[5].hours\">\n" +
-    "                                                {{couple.open}} - {{couple.close}}\n" +
-    "                                            </div>\n" +
-    "                                            <div ng-if=\"moreInfoSelection.open_hours[5] == null\">\n" +
-    "                                                <div class=\"text-center\">\n" +
-    "                                                    <b>Closed</b>\n" +
-    "                                                </div>\n" +
-    "                                            </div>\n" +
-    "                                        </div>\n" +
-    "                                    </div>\n" +
-    "                                </div>\n" +
-    "                                <div class=\"col-lg-3\" >\n" +
-    "                                    <div class=\"panel panel-info\">\n" +
-    "                                        <div>\n" +
-    "                                            <div class=\"text-center\">Saturday</div>\n" +
-    "                                            <div class=\"text-center\" ng-repeat=\"couple in moreInfoSelection.open_hours[6].hours\">\n" +
-    "                                                {{couple.open}} - {{couple.close}}\n" +
-    "                                            </div>\n" +
-    "                                            <div ng-if=\"moreInfoSelection.open_hours[6] == null\">\n" +
-    "                                                <div class=\"text-center\">\n" +
-    "                                                    <b>Closed</b>\n" +
-    "                                                </div>\n" +
-    "                                            </div>\n" +
-    "                                        </div>\n" +
+    "                                    <div class=\"row\">\n" +
+    "                                        <table class=\"table table-hover\">\n" +
+    "                                            <thead>\n" +
+    "                                                <tr>\n" +
+    "                                                    <th></th>\n" +
+    "                                                    <th>Sunday</th>\n" +
+    "                                                    <th>Monday</th>\n" +
+    "                                                    <th>Tuesday</th>\n" +
+    "                                                    <th>Wednesday</th>\n" +
+    "                                                    <th>Thursday</th>\n" +
+    "                                                    <th>Friday</th>\n" +
+    "                                                    <th>Saturday</th>\n" +
+    "                                                </tr>\n" +
+    "                                            </thead>\n" +
+    "                                            <tbody>\n" +
+    "                                                <tr class=\"info\">\n" +
+    "                                                    <td>From</td>\n" +
+    "                                                    <td>{{moreInfoSelection.open_hours.periods[0].open.time}}</td>\n" +
+    "                                                    <td>{{moreInfoSelection.open_hours.periods[1].open.time}}</td>\n" +
+    "                                                    <td>{{moreInfoSelection.open_hours.periods[2].open.time}}</td>\n" +
+    "                                                    <td>{{moreInfoSelection.open_hours.periods[3].open.time}}</td>\n" +
+    "                                                    <td>{{moreInfoSelection.open_hours.periods[4].open.time}}</td>\n" +
+    "                                                    <td>{{moreInfoSelection.open_hours.periods[5].open.time}}</td>\n" +
+    "                                                    <td>{{moreInfoSelection.open_hours.periods[6].open.time}}</td>\n" +
+    "                                                </tr>\n" +
+    "                                                <tr class=\"info\">\n" +
+    "                                                    <td>To</td>\n" +
+    "                                                    <td>{{moreInfoSelection.open_hours.periods[0].close.time}}</td>\n" +
+    "                                                    <td>{{moreInfoSelection.open_hours.periods[1].close.time}}</td>\n" +
+    "                                                    <td>{{moreInfoSelection.open_hours.periods[2].close.time}}</td>\n" +
+    "                                                    <td>{{moreInfoSelection.open_hours.periods[3].close.time}}</td>\n" +
+    "                                                    <td>{{moreInfoSelection.open_hours.periods[4].close.time}}</td>\n" +
+    "                                                    <td>{{moreInfoSelection.open_hours.periods[5].close.time}}</td>\n" +
+    "                                                    <td>{{moreInfoSelection.open_hours.periods[6].close.time}}</td>\n" +
+    "                                                </tr>\n" +
+    "                                            </tbody>\n" +
+    "\n" +
+    "                                        </table>\n" +
     "                                    </div>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
@@ -534,7 +468,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                                                            </div>\n" +
     "                                                            <div class=\"row\">\n" +
     "                                                                <em>\n" +
-    "                                                                    Contact User <a target=\"_blank\" ng-href=\"{{review.author_url}}\">GooglePlus!</a>\n" +
+    "                                                                    Contact User <a href=\"{{review.author_url}}\">GooglePlus!</a>\n" +
     "                                                                </em>\n" +
     "                                                            </div>\n" +
     "                                                        </div>\n" +
@@ -574,87 +508,14 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                            </div>\n" +
     "                        </div>\n" +
     "                    </div>\n" +
-    "                    <div class=\"modal-footer capriola\">\n" +
+    "                    <div class=\"modal-footer\">\n" +
     "\n" +
-    "                        <button type=\"button\" class=\"btn btn-default \" data-dismiss=\"modal\"  ng-click=\"disableModal()\">Close</button>\n" +
+    "                        <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\"  ng-click=\"disableModal()\">Close</button>\n" +
     "                    </div>\n" +
     "            </div>\n" +
     "\n" +
     "        </div>\n" +
     "    </div>\n" +
-    "\n" +
-    "\n" +
-    "\n" +
-    "<div class=\"modal fade\" ng-controller=\"ModalCtrl\" data-backdrop=\"static\" id=\"moreInfoModalHotel\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">\n" +
-    "    <div class=\"modal-dialog\">\n" +
-    "        <div class=\"modal-content\">\n" +
-    "            <div ng-show=\"modalEnabled\">\n" +
-    "                <div class=\"modal-header\">\n" +
-    "                    <button type=\"button\" class=\"close\" data-dismiss=\"modal\" ng-click=\"disableModal()\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button>\n" +
-    "                    <h4 class=\"modal-title capriola\" id=\"myModalLabelHotel\">More Information about {{moreInfoSelection.name}}</h4>\n" +
-    "                </div>\n" +
-    "            </div>\n" +
-    "            <div class=\"modal-body\">\n" +
-    "                <div ng-show=\"modalEnabled\">\n" +
-    "                    <div class=\"container-fluid capriola\">\n" +
-    "                        <div class=\"row\">\n" +
-    "                            <div class=\"col-lg-6 capriola\" >\n" +
-    "                            <div class=\"row\">\n" +
-    "                                <b>Rating</b>\n" +
-    "                            </div>\n" +
-    "                            <div class=\"row\">\n" +
-    "                                {{moreInfoSelection.rating || 'Unknown'}}\n" +
-    "                            </div>\n" +
-    "                        </div>\n" +
-    "                            <div class=\"col-lg-6 capriola\" >\n" +
-    "                            <div class=\"row\">\n" +
-    "                                <b>Address</b>\n" +
-    "                            </div>\n" +
-    "                            <div class=\"row\">\n" +
-    "                                {{moreInfoSelection.address || 'Unknown'}}\n" +
-    "                            </div>\n" +
-    "                        </div>\n" +
-    "                        </div>\n" +
-    "                        <div class=\"row\">\n" +
-    "                            <div class=\"col-lg-12 capriola\" >\n" +
-    "                                <div class=\"panel panel-default\">\n" +
-    "                                    <div>\n" +
-    "                                        <div class=\"text-center\">Description</div>\n" +
-    "                                        <div class=\"text-justify\">\n" +
-    "                                            {{moreInfoSelection.description}}\n" +
-    "                                        </div>\n" +
-    "                                    </div>\n" +
-    "                                </div>\n" +
-    "                            </div>\n" +
-    "                        </div>\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
-    "                <div ng-show=\"loaderEnabled\">\n" +
-    "                    <div class=\"container-fluid\">\n" +
-    "                        <div class=\"panel-body\">\n" +
-    "                            <div class=\"loader\">\n" +
-    "                                <div class=\"bouncywrap\">\n" +
-    "                                    <div class=\"dotcon dc1\">\n" +
-    "                                        <div class=\"dot\"></div>\n" +
-    "                                    </div>\n" +
-    "                                    <div class=\"dotcon dc2\">\n" +
-    "                                        <div class=\"dot\"></div>\n" +
-    "                                    </div>\n" +
-    "                                    <div class=\"dotcon dc3\">\n" +
-    "                                         <div class=\"dot\"></div>\n" +
-    "                                    </div>\n" +
-    "                                </div>\n" +
-    "                            </div>\n" +
-    "                        </div>\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
-    "            </div>\n" +
-    "            <div class=\"modal-footer capriola\">\n" +
-    "                <button type=\"button\" class=\"btn btn-default \" data-dismiss=\"modal\"  ng-click=\"disableModal()\">Close</button>\n" +
-    "            </div>\n" +
-    "        </div>\n" +
-    "    </div>\n" +
-    "</div>\n" +
     "");
 }]);
 
@@ -663,7 +524,7 @@ angular.module("city/culture.tpl.html", []).run(["$templateCache", function($tem
     "\n" +
     "    <div class=\"row\">\n" +
     "        <div class=\"well\">\n" +
-    "                <h1 class=\"text-center capriola\">Culture</h1>\n" +
+    "            <h1 class=\"text-center\">Culture</h1>\n" +
     "                <div class=\"list-group\">\n" +
     "                    <div ng-show=\"loaderEnabled\">\n" +
     "                        <div class=\"panel-body\">\n" +
@@ -686,28 +547,17 @@ angular.module("city/culture.tpl.html", []).run(["$templateCache", function($tem
     "                            </div>\n" +
     "                        </div>\n" +
     "                    </div>\n" +
-    "                    <div ng-show=\"cultureSelection != undefined && cultureSelection.length != 0\">\n" +
-    "                        <div class=\"row\" style=\"display: inline\">\n" +
-    "                            <div class=\"text-capitalize item-filter\" >Name:</div>\n" +
-    "                            <input type=\"text\" class=\"capriola\" data-ng-model=\"elementSelectionName\" />\n" +
-    "                            <div class=\"text-capitalize item-filter\">Order by:</div>\n" +
-    "                            <select data-ng-model=\"elementSelectionOrder\" class=\"item-filter\">\n" +
-    "                                <option value=\"name\" selected>Name</option>\n" +
-    "                                <option value=\"rating\">Rating</option>\n" +
-    "                            </select>\n" +
-    "                        </div>\n" +
-    "                    </div>\n" +
-    "                    <span ng-repeat=\"c in cultureSelection | filter:{name:elementSelectionName} | orderBy:elementSelectionOrder\">\n" +
+    "                    <span ng-repeat=\"c in cultureSelection | orderBy:'name':false\">\n" +
     "                    <div class=\"list-group-item\">\n" +
     "                        <div class=\"col-md-3\">\n" +
     "                            <div class=\"row\">\n" +
     "                                <img class=\"icon-col-centered\" ng-src=\"{{c.icon}}\">\n" +
     "                            </div>\n" +
     "                            <div class=\"row\" style=\"padding-top: 50px\">\n" +
-    "                                <button class=\"btn btn-primary capriola\" ng-click=\"setCultureDetails(c.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">\n" +
+    "                                <button class=\"btn btn-primary\" ng-click=\"setCultureDetails(c.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">\n" +
     "                                    More Info\n" +
     "                                </button>\n" +
-    "                                <button  class=\"btn btn-primary capriola\" ng-click=\"removeCultureItem(c)\" >\n" +
+    "                                <button  class=\"btn btn-primary \" ng-click=\"removeCultureItem(c)\" >\n" +
     "                                    Remove\n" +
     "                                </button>\n" +
     "                            </div>\n" +
@@ -715,18 +565,18 @@ angular.module("city/culture.tpl.html", []).run(["$templateCache", function($tem
     "                        <div class=\"col-md-6\" style=\"height:230px\">\n" +
     "                            <p class=\"list-group-item-text\">\n" +
     "                            <div class=\"row\">\n" +
-    "                                <b class=\"text-capitalize capriola\">{{c.name}}</b>\n" +
+    "                                <b class=\"text-capitalize\">{{c.name}}</b>\n" +
     "                            </div>\n" +
     "                            <div class=\"row\">\n" +
     "                                <div class=\"col-md-3\">\n" +
-    "                                    <p class=\"capriola\">Price {{c.price || 'Free'}}</p>\n" +
+    "                                    <p>Price {{c.price || 'Free'}}</p>\n" +
     "                                </div>\n" +
-    "                                <div class=\"col-md-4 capriola\">\n" +
+    "                                <div class=\"col-md-4\">\n" +
     "                                    <p>Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
     "                            <div class=\"row scrollable\" style=\"max-height: 185px;overflow-y: auto\">\n" +
-    "                                <div class=\"text-justify capriola\">{{c.description}}</div>\n" +
+    "                                <div class=\"text-justify\">{{c.description}}</div>\n" +
     "                            </div>\n" +
     "\n" +
     "                            </p>\n" +
@@ -750,46 +600,37 @@ angular.module("city/culture.tpl.html", []).run(["$templateCache", function($tem
     "                </span>\n" +
     "                </div>\n" +
     "                <div class=\"list-group\">\n" +
-    "                    <div class=\"row\" style=\"display: inline\">\n" +
-    "                        <div class=\"text-capitalize item-filter\" >Name:</div>\n" +
-    "                        <input type=\"text\" data-ng-model=\"elementListName\" style=\"font-family: Capriola;\"/>\n" +
-    "                        <div class=\"text-capitalize item-filter\">Order by:</div>\n" +
-    "                        <select data-ng-model=\"elementListOrder\" class=\"item-filter\">\n" +
-    "                            <option value=\"name\" selected>Name</option>\n" +
-    "                            <option value=\"rating\">Rating</option>\n" +
-    "                        </select>\n" +
-    "                    </div>\n" +
-    "                    <div infinite-scroll=\"infiniteScroll.nextPage(resource)\" infinite-scroll-distance=\"2\" infinite-scroll-disabled=\"infiniteScroll.busy\">\n" +
-    "                        <span ng-repeat=\"c in infiniteScroll.itemList | filter:{name:elementListName} | orderBy:elementListOrder\">\n" +
+    "                    <div infinite-scroll=\"infiniteScroll.nextPage(resource,cultureList)\" infinite-scroll-distance=\"2\" infinite-scroll-disabled=\"infiniteScroll.busy\">\n" +
+    "                        <span ng-repeat=\"c in infiniteScroll.itemList | orderBy:'name':false\">\n" +
     "                            <div class=\"list-group-item\">\n" +
     "                               <div class=\"col-md-3\">\n" +
     "                            <div class=\"row\">\n" +
     "                                <img class=\"icon-col-centered\" ng-src=\"{{c.icon}}\">\n" +
     "                            </div>\n" +
     "                            <div class=\"row\" style=\"padding-top: 50px\">\n" +
-    "                                <button class=\"btn btn-primary capriola\" ng-click=\"setCultureDetails(c.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">\n" +
+    "                                <button class=\"btn btn-primary\" ng-click=\"setCultureDetails(c.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">\n" +
     "                                    More Info\n" +
     "                                </button>\n" +
-    "                                <button class=\"btn btn-primary capriola\" ng-click=\"addCultureItem(c)\">\n" +
+    "                                <button class=\"btn btn-primary \" ng-click=\"addCultureItem(c)\">\n" +
     "                                    Add\n" +
     "                                </button>\n" +
     "                            </div>\n" +
     "                        </div>\n" +
     "                                <div class=\"col-md-6\" style=\"height:230px\">\n" +
     "                            <p class=\"list-group-item-text\">\n" +
-    "                            <div class=\"row capriola\">\n" +
+    "                            <div class=\"row\">\n" +
     "                                <b class=\"text-capitalize\">{{c.name}}</b>\n" +
     "                            </div>\n" +
     "                            <div class=\"row\">\n" +
     "                                <div class=\"col-md-3\">\n" +
-    "                                    <p class=\"capriola\">Price {{c.price || 'Free'}}</p>\n" +
+    "                                    <p>Price {{c.price || 'Free'}}</p>\n" +
     "                                </div>\n" +
     "                                <div class=\"col-md-4\">\n" +
-    "                                    <p class=\"capriola\">Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
+    "                                    <p>Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
     "                            <div class=\"row scrollable\" style=\"max-height: 185px;overflow-y: auto\">\n" +
-    "                                 <div class=\"text-justify capriola\" >{{c.description}}</div>\n" +
+    "                                 <div class=\"text-justify\" >{{c.description}}</div>\n" +
     "                            </div>\n" +
     "\n" +
     "                            </p>\n" +
@@ -825,7 +666,7 @@ angular.module("city/entertainment.tpl.html", []).run(["$templateCache", functio
     "<div class=\"container\">\n" +
     "    <div class=\"row\">\n" +
     "        <div class=\"well\">\n" +
-    "            <h1 class=\"text-center capriola\">Entertainment</h1>\n" +
+    "            <h1 class=\"text-center\">Entertainment</h1>\n" +
     "\n" +
     "            <div class=\"list-group\">\n" +
     "                <div ng-show=\"loaderEnabled\">\n" +
@@ -849,28 +690,18 @@ angular.module("city/entertainment.tpl.html", []).run(["$templateCache", functio
     "                        </div>\n" +
     "                    </div>\n" +
     "                </div>\n" +
-    "                <div ng-show=\"entertainmentSelection != undefined && entertainmentSelection.length !=  0\">\n" +
-    "                    <div class=\"row\" style=\"display: inline\">\n" +
-    "                        <div class=\"text-capitalize item-filter\" >Name:</div>\n" +
-    "                        <input type=\"text\" data-ng-model=\"elementSelectionName\" class=\"capriola\"/>\n" +
-    "                        <div class=\"text-capitalize item-filter\">Order by:</div>\n" +
-    "                        <select data-ng-model=\"elementSelectionOrder\" class=\"item-filter\">\n" +
-    "                            <option value=\"name\" selected>Name</option>\n" +
-    "                            <option value=\"rating\">Rating</option>\n" +
-    "                        </select>\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
-    "                <span ng-repeat=\"c in entertainmentSelection | filter:{name:elementSelectionName} | orderBy:elementSelectionOrder\">\n" +
+    "\n" +
+    "                <span ng-repeat=\"c in entertainmentSelection | orderBy:'name':false\">\n" +
     "                    <div class=\"list-group-item\">\n" +
     "                        <div class=\"col-md-3\">\n" +
     "                            <div class=\"row\">\n" +
     "                                <img class=\"icon-col-centered\" ng-src=\"{{c.icon}}\">\n" +
     "                            </div>\n" +
     "                            <div class=\"row\" style=\"padding-top: 50px\">\n" +
-    "                                <button class=\"btn btn-primary capriola\" ng-click=\"setEntertainmentDetails(c.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">\n" +
+    "                                <button class=\"btn btn-primary\" ng-click=\"setEntertainmentDetails(c.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">\n" +
     "                                    More Info\n" +
     "                                </button>\n" +
-    "                                <button  class=\"btn btn-primary capriola\" ng-click=\"removeEntertainmentItem(c)\" >\n" +
+    "                                <button  class=\"btn btn-primary \" ng-click=\"removeEntertainmentItem(c)\" >\n" +
     "                                    Remove\n" +
     "                                </button>\n" +
     "                            </div>\n" +
@@ -878,18 +709,18 @@ angular.module("city/entertainment.tpl.html", []).run(["$templateCache", functio
     "                        <div class=\"col-md-6\" style=\"height:230px\">\n" +
     "                            <p class=\"list-group-item-text\">\n" +
     "                            <div class=\"row\">\n" +
-    "                                <b class=\"text-capitalize capriola\">{{c.name}}</b>\n" +
+    "                                <b class=\"text-capitalize\">{{c.name}}</b>\n" +
     "                            </div>\n" +
     "                            <div class=\"row\">\n" +
     "                                <div class=\"col-md-3\">\n" +
-    "                                    <p class=\"capriola\">Price {{c.price || 'Free'}}</p>\n" +
+    "                                    <p>Price {{c.price || 'Free'}}</p>\n" +
     "                                </div>\n" +
     "                                <div class=\"col-md-4\">\n" +
-    "                                    <p class=\"capriola\">Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
+    "                                    <p>Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
     "                            <div class=\"row scrollable\" style=\"max-height: 185px;overflow-y: auto\">\n" +
-    "                                <div class=\"text-justify capriola\">{{c.description}}</div>\n" +
+    "                                <div class=\"text-justify\">{{c.description}}</div>\n" +
     "                            </div>\n" +
     "\n" +
     "                            </p>\n" +
@@ -914,28 +745,19 @@ angular.module("city/entertainment.tpl.html", []).run(["$templateCache", functio
     "            </div>\n" +
     "\n" +
     "            <div class=\"list-group\">\n" +
-    "                <div class=\"row\" style=\"display: inline\">\n" +
-    "                    <div class=\"text-capitalize item-filter\" >Name:</div>\n" +
-    "                    <input type=\"text\" data-ng-model=\"elementListName\" class=\"capriola\"/>\n" +
-    "                    <div class=\"text-capitalize item-filter\">Order by:</div>\n" +
-    "                    <select data-ng-model=\"elementListOrder\" class=\"item-filter\">\n" +
-    "                        <option value=\"name\" selected>Name</option>\n" +
-    "                        <option value=\"rating\">Rating</option>\n" +
-    "                    </select>\n" +
-    "                </div>\n" +
-    "                <div infinite-scroll=\"infiniteScroll.nextPage(resource)\" infinite-scroll-distance=\"2\" infinite-scroll-disabled=\"infiniteScroll.busy\">\n" +
+    "                <div infinite-scroll=\"infiniteScroll.nextPage(resource,entertainmentList)\" infinite-scroll-distance=\"2\" infinite-scroll-disabled=\"infiniteScroll.busy\">\n" +
     "\n" +
-    "                    <span ng-repeat=\"c in infiniteScroll.itemList | filter:{name:elementListName} | orderBy:elementListOrder\">\n" +
+    "                    <span ng-repeat=\"c in infiniteScroll.itemList | orderBy:'name':false\">\n" +
     "                    <div class=\"list-group-item\">\n" +
     "                        <div class=\"col-md-3\">\n" +
     "                            <div class=\"row\">\n" +
     "                                <img class=\"icon-col-centered\" ng-src=\"{{c.icon}}\">\n" +
     "                            </div>\n" +
     "                            <div class=\"row\" style=\"padding-top: 50px\">\n" +
-    "                                <button class=\"btn btn-primary capriola\" ng-click=\"setEntertainmentDetails(c.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">\n" +
+    "                                <button class=\"btn btn-primary\" ng-click=\"setEntertainmentDetails(c.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">\n" +
     "                                    More Info\n" +
     "                                </button>\n" +
-    "                                <button class=\"btn btn-primary capriola\" ng-click=\"addEntertainmentItem(c)\">\n" +
+    "                                <button class=\"btn btn-primary \" ng-click=\"addEntertainmentItem(c)\">\n" +
     "                                    Add\n" +
     "                                </button>\n" +
     "                            </div>\n" +
@@ -943,18 +765,18 @@ angular.module("city/entertainment.tpl.html", []).run(["$templateCache", functio
     "                        <div class=\"col-md-6\" style=\"height:230px\">\n" +
     "                            <p class=\"list-group-item-text\">\n" +
     "                            <div class=\"row\">\n" +
-    "                                <b class=\"text-capitalize capriola\">{{c.name}}</b>\n" +
+    "                                <b class=\"text-capitalize\">{{c.name}}</b>\n" +
     "                            </div>\n" +
     "                            <div class=\"row\">\n" +
     "                                <div class=\"col-md-3\">\n" +
-    "                                    <p class=\"capriola\">Price {{c.price || 'Free'}}</p>\n" +
+    "                                    <p>Price {{c.price || 'Free'}}</p>\n" +
     "                                </div>\n" +
     "                                <div class=\"col-md-4\">\n" +
-    "                                    <p class=\"capriola\">Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
+    "                                    <p>Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
     "                            <div class=\"row scrollable\" style=\"max-height: 185px;overflow-y: auto\">\n" +
-    "                                <div class=\"text-justify capriola\">{{c.description}}</div>\n" +
+    "                                <div class=\"text-justify\">{{c.description}}</div>\n" +
     "                            </div>\n" +
     "\n" +
     "                            </p>\n" +
@@ -987,7 +809,7 @@ angular.module("city/food.tpl.html", []).run(["$templateCache", function($templa
   $templateCache.put("city/food.tpl.html",
     "    <div class=\"row\">\n" +
     "        <div class=\"well\">\n" +
-    "            <h1 class=\"text-center capriola\">Food</h1>\n" +
+    "            <h1 class=\"text-center\">Food</h1>\n" +
     "\n" +
     "            <div class=\"list-group\">\n" +
     "                <div ng-show=\"loaderEnabled\">\n" +
@@ -1011,28 +833,18 @@ angular.module("city/food.tpl.html", []).run(["$templateCache", function($templa
     "                        </div>\n" +
     "                    </div>\n" +
     "                </div>\n" +
-    "                <div ng-show=\"foodSelection != undefined && foodSelection.length != 0\">\n" +
-    "                    <div class=\"row\" style=\"display: inline\">\n" +
-    "                        <div class=\"text-capitalize item-filter\" >Name:</div>\n" +
-    "                        <input type=\"text\" data-ng-model=\"elementSelectionName\" class=\"capriola\"/>\n" +
-    "                        <div class=\"text-capitalize item-filter\">Order by:</div>\n" +
-    "                        <select data-ng-model=\"elementSelectionOrder\" class=\"item-filter\">\n" +
-    "                            <option value=\"name\" selected>Name</option>\n" +
-    "                            <option value=\"rating\">Rating</option>\n" +
-    "                        </select>\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
-    "                <span ng-repeat=\"c in foodSelection | filter:{name:elementSelectionName} | orderBy:elementSelectionOrder\">\n" +
+    "\n" +
+    "                <span ng-repeat=\"c in foodSelection | orderBy:'name':false\">\n" +
     "                    <div class=\"list-group-item\">\n" +
     "                        <div class=\"col-md-3\">\n" +
     "                            <div class=\"row\">\n" +
     "                                <img class=\"icon-col-centered\" ng-src=\"{{c.icon}}\">\n" +
     "                            </div>\n" +
     "                            <div class=\"row\" style=\"padding-top: 50px\">\n" +
-    "                                <button class=\"btn btn-primary capriola\" ng-click=\"setFoodDetails(c.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">\n" +
+    "                                <button class=\"btn btn-primary\" ng-click=\"setFoodDetails(c.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">\n" +
     "                                    More Info\n" +
     "                                </button>\n" +
-    "                                <button  class=\"btn btn-primary capriola\" ng-click=\"removeFoodItem(c)\" >\n" +
+    "                                <button  class=\"btn btn-primary \" ng-click=\"removeFoodItem(c)\" >\n" +
     "                                    Remove\n" +
     "                                </button>\n" +
     "                            </div>\n" +
@@ -1040,18 +852,18 @@ angular.module("city/food.tpl.html", []).run(["$templateCache", function($templa
     "                        <div class=\"col-md-6\" style=\"height:230px\">\n" +
     "                            <p class=\"list-group-item-text\">\n" +
     "                            <div class=\"row\">\n" +
-    "                                <b class=\"text-capitalize capriola\">{{c.name}}</b>\n" +
+    "                                <b class=\"text-capitalize\">{{c.name}}</b>\n" +
     "                            </div>\n" +
     "                            <div class=\"row\">\n" +
     "                                <div class=\"col-md-3\">\n" +
-    "                                    <p class=\"capriola\">Price {{c.price || 'Free'}}</p>\n" +
+    "                                    <p>Price {{c.price || 'Free'}}</p>\n" +
     "                                </div>\n" +
     "                                <div class=\"col-md-4\">\n" +
-    "                                    <p class=\"capriola\">Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
+    "                                    <p>Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
     "                            <div class=\"row scrollable\" style=\"max-height: 185px;overflow-y: auto\">\n" +
-    "                                <div class=\"text-justify capriola\">{{c.description}}</div>\n" +
+    "                                <div class=\"text-justify\">{{c.description}}</div>\n" +
     "                            </div>\n" +
     "\n" +
     "                            </p>\n" +
@@ -1076,28 +888,19 @@ angular.module("city/food.tpl.html", []).run(["$templateCache", function($templa
     "            </div>\n" +
     "\n" +
     "            <div class=\"list-group\">\n" +
-    "                <div class=\"row\" style=\"display: inline\">\n" +
-    "                    <div class=\"text-capitalize item-filter\" >Name:</div>\n" +
-    "                    <input type=\"text\" data-ng-model=\"elementListName\" class=\"capriola\"/>\n" +
-    "                    <div class=\"text-capitalize item-filter\">Order by:</div>\n" +
-    "                    <select data-ng-model=\"elementListOrder\" class=\"item-filter\">\n" +
-    "                        <option value=\"name\" selected>Name</option>\n" +
-    "                        <option value=\"rating\">Rating</option>\n" +
-    "                    </select>\n" +
-    "                </div>\n" +
-    "                <div infinite-scroll=\"infiniteScroll.nextPage(resource)\" infinite-scroll-distance=\"2\" infinite-scroll-disabled=\"infiniteScroll.busy\">\n" +
+    "                <div infinite-scroll=\"infiniteScroll.nextPage(resource,foodList)\" infinite-scroll-distance=\"2\" infinite-scroll-disabled=\"infiniteScroll.busy\">\n" +
     "\n" +
-    "                    <span ng-repeat=\"c in infiniteScroll.itemList | filter:{name:elementListName} | orderBy:elementListOrder\">\n" +
+    "                    <span ng-repeat=\"c in foodList | orderBy:'name':false\">\n" +
     "                    <div class=\"list-group-item\">\n" +
     "                        <div class=\"col-md-3\">\n" +
     "                            <div class=\"row\">\n" +
     "                                <img class=\"icon-col-centered\" ng-src=\"{{c.icon}}\">\n" +
     "                            </div>\n" +
     "                            <div class=\"row\" style=\"padding-top: 50px\">\n" +
-    "                                <button class=\"btn btn-primary capriola\" ng-click=\"setFoodDetails(c.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">\n" +
+    "                                <button class=\"btn btn-primary\" ng-click=\"setFoodDetails(c.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">\n" +
     "                                    More Info\n" +
     "                                </button>\n" +
-    "                                <button class=\"btn btn-primary capriola\" ng-click=\"addFoodItem(c)\">\n" +
+    "                                <button class=\"btn btn-primary \" ng-click=\"addFoodItem(c)\">\n" +
     "                                    Add\n" +
     "                                </button>\n" +
     "                            </div>\n" +
@@ -1105,18 +908,18 @@ angular.module("city/food.tpl.html", []).run(["$templateCache", function($templa
     "                        <div class=\"col-md-6\" style=\"height:230px\">\n" +
     "                            <p class=\"list-group-item-text\">\n" +
     "                            <div class=\"row\">\n" +
-    "                                <b class=\"text-capitalize capriola\">{{c.name}}</b>\n" +
+    "                                <b class=\"text-capitalize\">{{c.name}}</b>\n" +
     "                            </div>\n" +
     "                            <div class=\"row\">\n" +
     "                                <div class=\"col-md-3\">\n" +
-    "                                    <p class=\"capriola\">Price {{c.price || 'Free'}}</p>\n" +
+    "                                    <p>Price {{c.price || 'Free'}}</p>\n" +
     "                                </div>\n" +
     "                                <div class=\"col-md-4\">\n" +
-    "                                    <p class=\"capriola\">Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
+    "                                    <p>Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
     "                            <div class=\"row scrollable\" style=\"max-height: 185px;overflow-y: auto\">\n" +
-    "                                <div class=\"text-justify capriola\">{{c.description}}</div>\n" +
+    "                                <div class=\"text-justify\">{{c.description}}</div>\n" +
     "                            </div>\n" +
     "\n" +
     "                            </p>\n" +
@@ -1150,7 +953,7 @@ angular.module("city/hotel.tpl.html", []).run(["$templateCache", function($templ
     "\n" +
     "<div class=\"row\">\n" +
     "    <div class=\"well\">\n" +
-    "        <h1 class=\"text-center capriola\" >Hotel</h1>\n" +
+    "        <h1 class=\"text-center\">Hotel</h1>\n" +
     "        <div class=\"list-group\">\n" +
     "            <div ng-show=\"loaderEnabled\">\n" +
     "                <div class=\"panel-body\">\n" +
@@ -1173,18 +976,7 @@ angular.module("city/hotel.tpl.html", []).run(["$templateCache", function($templ
     "                    </div>\n" +
     "                </div>\n" +
     "            </div>\n" +
-    "            <div ng-show=\"hotelSelection != undefined && hotelSelection.length != 0\">\n" +
-    "                <div class=\"row\" style=\"display: inline\">\n" +
-    "                    <div class=\"text-capitalize item-filter\" >Name:</div>\n" +
-    "                    <input type=\"text\" class=\"capriola\" data-ng-model=\"elementSelectionName\" />\n" +
-    "                    <div class=\"text-capitalize item-filter\">Order by:</div>\n" +
-    "                    <select data-ng-model=\"elementSelectionOrder\" class=\"item-filter\">\n" +
-    "                        <option value=\"name\" selected>Name</option>\n" +
-    "                        <option value=\"rating\">Rating</option>\n" +
-    "                    </select>\n" +
-    "                </div>\n" +
-    "            </div>\n" +
-    "                    <span ng-repeat=\"c in hotelSelection | filter:{name:elementSelectionName} | orderBy:elementSelectionOrder\">\n" +
+    "                    <span ng-repeat=\"c in hotelSelection | orderBy:'name':false\">\n" +
     "                    <div class=\"list-group-item\">\n" +
     "                        <div class=\"col-md-3\">\n" +
     "\n" +
@@ -1204,27 +996,27 @@ angular.module("city/hotel.tpl.html", []).run(["$templateCache", function($templ
     "                                </div>\n" +
     "                            </div>\n" +
     "                            <div class=\"row center-block\" style=\"padding-top: 50px\">\n" +
-    "                                <button class=\"btn btn-primary capriola\" ng-click=\"setHotelDetails(c.id)\" href=\"#moreInfoModalHotel\" data-toggle=\"modal\">\n" +
+    "                                <button class=\"btn btn-primary\" ng-click=\"setHotelDetails(c.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">\n" +
     "                                    More Info\n" +
     "                                </button>\n" +
-    "                                <button class=\"btn btn-primary capriola\" ng-click=\"removeHotelItem(c)\">\n" +
-    "                                    Remove\n" +
+    "                                <button class=\"btn btn-primary \" ng-click=\"addHotelItem(c)\">\n" +
+    "                                    Add\n" +
     "                                </button>\n" +
     "                            </div>\n" +
     "                        </div>\n" +
     "                        <div class=\"col-md-6\" style=\"height:230px\">\n" +
     "                            <p class=\"list-group-item-text\">\n" +
     "                            <div class=\"row\">\n" +
-    "                                <b class=\"text-capitalize capriola\">{{c.name}}</b>\n" +
+    "                                <b class=\"text-capitalize\">{{c.name}}</b>\n" +
     "                            </div>\n" +
     "                            <div class=\"row\">\n" +
-    "                                <p class=\"capriola\">Address {{c.address}}</p>\n" +
+    "                                <p>Address {{c.address}}</p>\n" +
     "                            </div>\n" +
     "                            <div class=\"row\">\n" +
-    "                                <p class=\"capriola\">Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
+    "                                <p>Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
     "                            </div>\n" +
     "                            <div class=\"row scrollable\" style=\"max-height: 185px;overflow-y: auto\">\n" +
-    "                                <div class=\"text-justify capriola\">{{c.description}}</div>\n" +
+    "                                <div class=\"text-justify\">{{c.description}}</div>\n" +
     "                            </div>\n" +
     "\n" +
     "                            </p>\n" +
@@ -1248,17 +1040,7 @@ angular.module("city/hotel.tpl.html", []).run(["$templateCache", function($templ
     "                </span>\n" +
     "        </div>\n" +
     "        <div class=\"list-group\">\n" +
-    "            <div class=\"row\" style=\"display: inline\">\n" +
-    "                <div class=\"text-capitalize item-filter\" >Name:</div>\n" +
-    "                <input type=\"text\" data-ng-model=\"elementListName\" style=\"font-family: Capriola;\"/>\n" +
-    "                <div class=\"text-capitalize item-filter\">Order by:</div>\n" +
-    "                <select data-ng-model=\"elementListOrder\" class=\"item-filter\">\n" +
-    "                    <option value=\"name\" selected>Name</option>\n" +
-    "                    <option value=\"rating\">Rating</option>\n" +
-    "                </select>\n" +
-    "            </div>\n" +
-    "            <div infinite-scroll=\"infiniteScroll.nextPage(resource)\" infinite-scroll-distance=\"2\" infinite-scroll-disabled=\"infiniteScroll.busy\">\n" +
-    "                <span ng-repeat=\"c in infiniteScroll.itemList | filter:{name:elementListName} | orderBy:elementListOrder\">\n" +
+    "                <span ng-repeat=\"c in hotelList | orderBy:'name':false\">\n" +
     "                    <div class=\"list-group-item\">\n" +
     "                        <div class=\"col-md-3\">\n" +
     "\n" +
@@ -1278,10 +1060,10 @@ angular.module("city/hotel.tpl.html", []).run(["$templateCache", function($templ
     "                                </div>\n" +
     "                            </div>\n" +
     "                            <div class=\"row center-block\" style=\"padding-top: 50px\">\n" +
-    "                                <button class=\"btn btn-primary capriola\" ng-click=\"setHotelDetails(c.id)\" href=\"#moreInfoModalHotel\" data-toggle=\"modal\">\n" +
+    "                                <button class=\"btn btn-primary\" ng-click=\"setHotelDetails(c.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">\n" +
     "                                    More Info\n" +
     "                                </button>\n" +
-    "                                <button class=\"btn btn-primary capriola\" ng-click=\"addHotelItem(c)\">\n" +
+    "                                <button class=\"btn btn-primary \" ng-click=\"addHotelItem(c)\">\n" +
     "                                    Add\n" +
     "                                </button>\n" +
     "                            </div>\n" +
@@ -1289,16 +1071,16 @@ angular.module("city/hotel.tpl.html", []).run(["$templateCache", function($templ
     "                        <div class=\"col-md-6\" style=\"height:230px\">\n" +
     "                            <p class=\"list-group-item-text\">\n" +
     "                            <div class=\"row\">\n" +
-    "                                <b class=\"text-capitalize capriola\">{{c.name}}</b>\n" +
+    "                                <b class=\"text-capitalize\">{{c.name}}</b>\n" +
     "                            </div>\n" +
     "                            <div class=\"row\">\n" +
-    "                                <p class=\"capriola\">Address {{c.address}}</p>\n" +
+    "                                <p>Address {{c.address}}</p>\n" +
     "                            </div>\n" +
     "                            <div class=\"row\">\n" +
-    "                                <p class=\"capriola\">Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
+    "                                <p>Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
     "                            </div>\n" +
     "                            <div class=\"row scrollable\" style=\"max-height: 185px;overflow-y: auto\">\n" +
-    "                                <div class=\"text-justify capriola\" >{{c.description}}</div>\n" +
+    "                                <div class=\"text-justify\" >{{c.description}}</div>\n" +
     "                            </div>\n" +
     "\n" +
     "                            </p>\n" +
@@ -1320,7 +1102,7 @@ angular.module("city/utility.tpl.html", []).run(["$templateCache", function($tem
   $templateCache.put("city/utility.tpl.html",
     "    <div class=\"row\">\n" +
     "        <div class=\"well\">\n" +
-    "            <h1 class=\"text-center capriola\">Utility</h1>\n" +
+    "            <h1 class=\"text-center\">Utility</h1>\n" +
     "            <div class=\"list-group\">\n" +
     "                <div ng-show=\"loaderEnabled\">\n" +
     "                    <div class=\"panel-body\">\n" +
@@ -1343,28 +1125,18 @@ angular.module("city/utility.tpl.html", []).run(["$templateCache", function($tem
     "                        </div>\n" +
     "                    </div>\n" +
     "                </div>\n" +
-    "                <div ng-show=\"utilitySelection != undefined && utilitySelection.length != 0\">\n" +
-    "                    <div class=\"row\" style=\"display: inline\">\n" +
-    "                        <div class=\"text-capitalize item-filter\" >Name:</div>\n" +
-    "                        <input type=\"text\" data-ng-model=\"elementSelectionName\" class=\"capriola\"/>\n" +
-    "                        <div class=\"text-capitalize item-filter\">Order by:</div>\n" +
-    "                        <select data-ng-model=\"elementSelectionOrder\" class=\"item-filter\">\n" +
-    "                            <option value=\"name\" selected>Name</option>\n" +
-    "                            <option value=\"rating\">Rating</option>\n" +
-    "                        </select>\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
-    "                <span ng-repeat=\"c in utilitySelection | filter:{name:elementSelectionName} | orderBy:elementSelectionOrder\">\n" +
+    "\n" +
+    "                <span ng-repeat=\"c in utilitySelection | orderBy:'name':false\">\n" +
     "                    <div class=\"list-group-item\">\n" +
     "                        <div class=\"col-md-3\">\n" +
     "                            <div class=\"row\">\n" +
     "                                <img class=\"icon-col-centered\" ng-src=\"{{c.icon}}\">\n" +
     "                            </div>\n" +
     "                            <div class=\"row\" style=\"padding-top: 50px\">\n" +
-    "                                <button class=\"btn btn-primary capriola\" ng-click=\"setUtilityDetails(c.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">\n" +
+    "                                <button class=\"btn btn-primary\" ng-click=\"setUtilityDetails(c.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">\n" +
     "                                    More Info\n" +
     "                                </button>\n" +
-    "                                <button  class=\"btn btn-primary capriola\" ng-click=\"removeUtilityItem(c)\" >\n" +
+    "                                <button  class=\"btn btn-primary \" ng-click=\"removeUtilityItem(c)\" >\n" +
     "                                    Remove\n" +
     "                                </button>\n" +
     "                            </div>\n" +
@@ -1372,18 +1144,18 @@ angular.module("city/utility.tpl.html", []).run(["$templateCache", function($tem
     "                        <div class=\"col-md-6\" style=\"height:230px\">\n" +
     "                            <p class=\"list-group-item-text\">\n" +
     "                            <div class=\"row\">\n" +
-    "                                <b class=\"text-capitalize capriola\">{{c.name}}</b>\n" +
+    "                                <b class=\"text-capitalize\">{{c.name}}</b>\n" +
     "                            </div>\n" +
     "                            <div class=\"row\">\n" +
     "                                <div class=\"col-md-3\">\n" +
-    "                                    <p class=\"capriola\">Price {{c.price || 'Free'}}</p>\n" +
+    "                                    <p>Price {{c.price || 'Free'}}</p>\n" +
     "                                </div>\n" +
     "                                <div class=\"col-md-4\">\n" +
-    "                                    <p class=\"capriola\">Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
+    "                                    <p>Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
     "                            <div class=\"row scrollable\" style=\"max-height: 185px;overflow-y: auto\">\n" +
-    "                                <div class=\"text-justify capriola\">{{c.description}}</div>\n" +
+    "                                <div class=\"text-justify\">{{c.description}}</div>\n" +
     "                            </div>\n" +
     "\n" +
     "                            </p>\n" +
@@ -1408,28 +1180,19 @@ angular.module("city/utility.tpl.html", []).run(["$templateCache", function($tem
     "            </div>\n" +
     "\n" +
     "            <div class=\"list-group\">\n" +
-    "                <div class=\"row\" style=\"display: inline\">\n" +
-    "                    <div class=\"text-capitalize item-filter\" >Name:</div>\n" +
-    "                    <input type=\"text\" data-ng-model=\"elementListName\" class=\"capriola\"/>\n" +
-    "                    <div class=\"text-capitalize item-filter\">Order by:</div>\n" +
-    "                    <select data-ng-model=\"elementListOrder\" class=\"item-filter\">\n" +
-    "                        <option value=\"name\" selected>Name</option>\n" +
-    "                        <option value=\"rating\">Rating</option>\n" +
-    "                    </select>\n" +
-    "                </div>\n" +
-    "                <div infinite-scroll=\"infiniteScroll.nextPage(resource)\" infinite-scroll-distance=\"2\" infinite-scroll-disabled=\"infiniteScroll.busy\">\n" +
+    "                <div infinite-scroll=\"infiniteScroll.nextPage(resource,utilityList)\" infinite-scroll-distance=\"2\" infinite-scroll-disabled=\"infiniteScroll.busy\">\n" +
     "\n" +
-    "                    <span ng-repeat=\"c in infiniteScroll.itemList | filter:{name:elementListName} | orderBy:elementListOrder\">\n" +
+    "                    <span ng-repeat=\"c in utilityList | orderBy:'name':false\">\n" +
     "                        <div class=\"list-group-item\">\n" +
     "                            <div class=\"col-md-3\">\n" +
     "                            <div class=\"row\">\n" +
     "                                <img class=\"icon-col-centered\" ng-src=\"{{c.icon}}\">\n" +
     "                            </div>\n" +
     "                            <div class=\"row\" style=\"padding-top: 50px\">\n" +
-    "                                <button class=\"btn btn-primary capriola\" ng-click=\"setUtilityDetails(c.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">\n" +
+    "                                <button class=\"btn btn-primary\" ng-click=\"setUtilityDetails(c.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">\n" +
     "                                    More Info\n" +
     "                                </button>\n" +
-    "                                <button class=\"btn btn-primary capriola\" ng-click=\"addUtilityItem(c)\">\n" +
+    "                                <button class=\"btn btn-primary \" ng-click=\"addUtilityItem(c)\">\n" +
     "                                    Add\n" +
     "                                </button>\n" +
     "                            </div>\n" +
@@ -1437,18 +1200,18 @@ angular.module("city/utility.tpl.html", []).run(["$templateCache", function($tem
     "                            <div class=\"col-md-6\" style=\"height:230px\">\n" +
     "                            <p class=\"list-group-item-text\">\n" +
     "                            <div class=\"row\">\n" +
-    "                                <b class=\"text-capitalize capriola\">{{c.name}}</b>\n" +
+    "                                <b class=\"text-capitalize\">{{c.name}}</b>\n" +
     "                            </div>\n" +
     "                            <div class=\"row\">\n" +
     "                                <div class=\"col-md-3\">\n" +
-    "                                    <p class=\"capriola\">Price {{c.price || 'Free'}}</p>\n" +
+    "                                    <p>Price {{c.price || 'Free'}}</p>\n" +
     "                                </div>\n" +
     "                                <div class=\"col-md-4\">\n" +
-    "                                    <p class=\"capriola\">Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
+    "                                    <p>Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
     "                            <div class=\"row scrollable\" style=\"max-height: 185px;overflow-y: auto\">\n" +
-    "                                <div class=\"text-justify capriola\">{{c.description}}</div>\n" +
+    "                                <div class=\"text-justify\">{{c.description}}</div>\n" +
     "                            </div>\n" +
     "\n" +
     "                            </p>\n" +
@@ -1480,7 +1243,7 @@ angular.module("city/utility.tpl.html", []).run(["$templateCache", function($tem
 angular.module("home/home.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("home/home.tpl.html",
     "<script type=\"text/ng-template\" id=\"customTemplate.html\">\n" +
-    "    <a class=\"col-md-12 text-capitalize\">\n" +
+    "    <a class=\"col-md-12\">\n" +
     "        <span bind-html-unsafe=\"match.label| typeaheadHighlight:query\"></span>\n" +
     "       <i>({{match.model.state}})</i>\n" +
     "    </a>\n" +
@@ -1494,7 +1257,7 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "\n" +
     "\n" +
     "\n" +
-    "            <input id=\"city\" name=\"city\"  type=\"text\" placeholder=\"Search here...\" class=\"form-control col-md-12 text-capitalize typeahead\"\n" +
+    "            <input id=\"city\" name=\"city\"  type=\"text\" placeholder=\"Search here...\" class=\"form-control col-md-12 typeahead\"\n" +
     "                   ng-model=\"selected_city\"\n" +
     "                   typeahead=\"city as city.name for city in cities | filter:$viewValue | limitTo:8\"\n" +
     "                   typeahead-template-url=\"customTemplate.html\">\n" +
@@ -1537,9 +1300,9 @@ angular.module("plan_trip/calendar.tpl.html", []).run(["$templateCache", functio
 
 angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("plan_trip/planning.tpl.html",
-    "\n" +
+    "<div class=\"planning\">\n" +
     "<div class=\"page-header\">\n" +
-    "    <h1>Planning</h1>\n" +
+    "    <h1 class=\"text-center subtitle\">{{current_day.format('dddd DD  MMMM YYYY')}}</h1>\n" +
     "</div>\n" +
     "<div class=\"panel-group\" id=\"Culture\">\n" +
     "    <div class=\"panel  panel-primary no-radius\">\n" +
@@ -1553,7 +1316,7 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
     "                <ul>\n" +
     "                    <div ng-repeat=\"cult in culture\" class=\"event-list col-md-4\">\n" +
     "                        <li>\n" +
-    "                            <div ng-class=\"isScheduled(cult) ? 'selected' :'not-selected'\">\n" +
+    "                            <div ng-class=\"isScheduled(cult) ? 'selected-item culture-color' :'not-selected'\">\n" +
     "                                <div class=\"row\" style=\"height: 48px;\">\n" +
     "\n" +
     "                                    <h1 class=\"item-name\">{{cult.name}}</h1>\n" +
@@ -1601,7 +1364,7 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
     "                <ul>\n" +
     "                    <div ng-repeat=\"ent in entertainment\" class=\"event-list col-md-4\">\n" +
     "                        <li>\n" +
-    "                            <div class=\"not-selected\">\n" +
+    "                            <div ng-class=\"isScheduled(ent) ? 'selected-item  entertainment-color' :'not-selected'\">\n" +
     "                                <div class=\"row\" style=\"height: 48px;\">\n" +
     "\n" +
     "                                    <h1 class=\"item-name\">{{ent.name}}</h1>\n" +
@@ -1618,8 +1381,15 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
     "                                    </div>\n" +
     "                                </div>\n" +
     "                                <div class=\"row\">\n" +
-    "                                    <button class=\"btn btn-primary btn-outlined \">Add</button>\n" +
-    "                                    <button class=\"btn btn-primary btn-outlined \" ng-click=\"setEntertainmentDetails(ent.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">More</button>\n" +
+    "                                    <div class=\"btn-group\">\n" +
+    "\n" +
+    "                                        <button ng-show=\"isScheduled(ent)\" style=\"margin-right: 2px;\" class=\"btn btn-primary btn-outlined \" style=\"display: inline-block;\" ng-click=\"removeFromSchedule(ent)\">REMOVE</button>\n" +
+    "\n" +
+    "\n" +
+    "                                        <button ng-show=\"!isScheduled(ent)\" style=\"margin-right: 2px\"  class=\"btn btn-primary btn-outlined \" style=\"display: inline-block;\" ng-click=\"addToSchedule(ent)\">ADD</button>\n" +
+    "\n" +
+    "                                        <button class=\"btn btn-primary btn-outlined \" style=\"margin-left: 4px;margin-bottom: 5px\"  ng-click=\"setCultureDetails(ent.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">MORE</button>\n" +
+    "                                    </div>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
     "                        </li>\n" +
@@ -1642,7 +1412,7 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
     "                <ul>\n" +
     "                    <div ng-repeat=\"hot in hotels\" class=\"event-list col-md-4\">\n" +
     "                        <li>\n" +
-    "                            <div class=\"not-selected\">\n" +
+    "                            <div ng-class=\"isScheduled(hot) ? 'selected-item  hotel-color' :'not-selected'\">\n" +
     "                                <div class=\"row\" style=\"height: 48px;\">\n" +
     "\n" +
     "                                    <h1 class=\"item-name\">{{hot.name}}</h1>\n" +
@@ -1659,8 +1429,15 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
     "                                    </div>\n" +
     "                                </div>\n" +
     "                                <div class=\"row\">\n" +
-    "                                    <button class=\"btn btn-primary btn-outlined \">Add</button>\n" +
-    "                                    <button class=\"btn btn-primary btn-outlined \" ng-click=\"setHotelDetails(hot.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">More</button>\n" +
+    "                                    <div class=\"btn-group\">\n" +
+    "\n" +
+    "                                        <button ng-show=\"isScheduled(hot)\" style=\"margin-right: 2px;\" class=\"btn btn-primary btn-outlined \" style=\"display: inline-block;\" ng-click=\"removeFromSchedule(hot)\">REMOVE</button>\n" +
+    "\n" +
+    "\n" +
+    "                                        <button ng-show=\"!isScheduled(hot)\" style=\"margin-right: 2px\"  class=\"btn btn-primary btn-outlined \" style=\"display: inline-block;\" ng-click=\"addToSchedule(hot)\">ADD</button>\n" +
+    "\n" +
+    "                                        <button class=\"btn btn-primary btn-outlined \" style=\"margin-left: 4px;margin-bottom: 5px\"  ng-click=\"setCultureDetails(hot.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">MORE</button>\n" +
+    "                                    </div>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
     "                        </li>\n" +
@@ -1683,7 +1460,7 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
     "                <ul>\n" +
     "                    <div ng-repeat=\"food in foods\" class=\"event-list col-md-4\">\n" +
     "                        <li>\n" +
-    "                            <div class=\"not-selected\">\n" +
+    "                            <div ng-class=\"isScheduled(food) ? 'selected-item food-color' :'not-selected'\">\n" +
     "                                <div class=\"row\" style=\"height: 48px;\">\n" +
     "\n" +
     "                                    <h1 class=\"item-name\">{{food.name}}</h1>\n" +
@@ -1700,8 +1477,15 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
     "                                    </div>\n" +
     "                                </div>\n" +
     "                                <div class=\"row\">\n" +
-    "                                    <button class=\"btn btn-primary btn-outlined \">Add</button>\n" +
-    "                                    <button class=\"btn btn-primary btn-outlined \" ng-click=\"setFoodDetails(food.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">More</button>\n" +
+    "                                    <div class=\"btn-group\">\n" +
+    "\n" +
+    "                                        <button ng-show=\"isScheduled(food)\" style=\"margin-right: 2px;\" class=\"btn btn-primary btn-outlined \" style=\"display: inline-block;\" ng-click=\"removeFromSchedule(food)\">REMOVE</button>\n" +
+    "\n" +
+    "\n" +
+    "                                        <button ng-show=\"!isScheduled(food)\" style=\"margin-right: 2px\"  class=\"btn btn-primary btn-outlined \" style=\"display: inline-block;\" ng-click=\"addToSchedule(food)\">ADD</button>\n" +
+    "\n" +
+    "                                        <button class=\"btn btn-primary btn-outlined \" style=\"margin-left: 4px;margin-bottom: 5px\"  ng-click=\"setCultureDetails(food.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">MORE</button>\n" +
+    "                                    </div>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
     "                        </li>\n" +
@@ -1712,12 +1496,68 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
     "    </div>\n" +
     "</div>\n" +
     "\n" +
-    "</div>\n" +
-    "<div class=\"sortable-container\" sv-root sv-part=\"selectedItems\">\n" +
-    "    <div ng-repeat=\"item in selectedItems\" sv-element=\"opts\" class=\"well\">\n" +
-    "        {{item}}\n" +
+    "    <h1 id=\"planning\" class=\"text-center subtitle\">Planning</h1>\n" +
+    "    <div  class=\"sortable-container timeline-centered\" sv-root sv-part=\"selectedItems\" >\n" +
+    "        <div class=\"row\">\n" +
+    "            <div class=\"timeline-list col-md-4\">\n" +
+    "                <div ng-repeat=\"item in selectedItems\"  sv-element=\"opts\">\n" +
+    "                    <div class=\"row\" >\n" +
+    "                            <div class=\" timeline-item {{getItemClass(item)}}\">\n" +
+    "                                <div class=\"row\" style=\"height: 48px;\">\n" +
+    "\n" +
+    "                                    <h1 class=\"item-name\">{{item.name}}</h1>\n" +
+    "                                </div>\n" +
+    "\n" +
+    "                                <div class=\"row\">\n" +
+    "                                    <div class=\"btn-group\">\n" +
+    "\n" +
+    "                                        <button  style=\"margin-right: 2px;\" class=\"btn btn-primary btn-outlined z-up\" style=\"display: inline-block;\" ng-click=\"removeFromSchedule(item)\">REMOVE</button>\n" +
+    "                                        <button class=\"btn btn-primary btn-outlined z-up\" style=\";margin-left: 4px;margin-bottom: 5px\"  ng-click=\"setCultureDetails(item.id)\" href=\"#moreInfoModal\" data-toggle=\"modal\">MORE</button>\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                            <article class=\"timeline-entry\" >\n" +
+    "                                <div class=\"timeline-entry-inner\">\n" +
+    "\n" +
+    "                                    <div ng-click=\"setMapsStart(item)\"  class=\"timeline-icon \">\n" +
+    "                                        <i class=\"entypo-feather\"></i>\n" +
+    "                                    </div>\n" +
+    "\n" +
+    "\n" +
+    "                                </div>\n" +
+    "\n" +
+    "                            </article>\n" +
+    "\n" +
+    "              </div>\n" +
+    "          </div>\n" +
+    "            </div>\n" +
+    "            <div id=\"scrollingMaps\" class=\"col-md-8\">\n" +
+    "                  <div ng-show=\"origin && destination\">\n" +
+    "                    <map origin=\"origin\" destination=\"destination\" type=\"roadmap\" ></map>\n" +
+    "                  </div>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
     "    </div>\n" +
     "</div>\n" +
+    "\n" +
+    "\n" +
+    "<script>\n" +
+    "\n" +
+    "//mantaining the maps on the top of the page when scrolling\n" +
+    "$().ready(function() {\n" +
+    "        $(window).scroll(function () {\n" +
+    "            if ($(\"#planning\").offset().top!==undefined) {\n" +
+    "\n" +
+    "                if ($(window).scrollTop() > $(\"#planning\").offset().top) {\n" +
+    "                    $(\"#scrollingMaps\").stop().animate({\"marginTop\": ($(window).scrollTop() - $(\"#planning\").offset().top) + \"px\"}, \"slow\");\n" +
+    "                }\n" +
+    "            }\n" +
+    "        });\n" +
+    "\n" +
+    "});\n" +
+    "</script>\n" +
+    "\n" +
+    "\n" +
     "\n" +
     "\n" +
     "");

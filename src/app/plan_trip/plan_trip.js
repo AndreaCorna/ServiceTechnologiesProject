@@ -7,7 +7,8 @@ angular.module('trippo.plan',[
     'ngResource',
     'angular-sortable-view',
     'trippo.city',
-    'trippo.modal'
+    'trippo.modal',
+    'common.maps'
 ])
 
 
@@ -50,6 +51,7 @@ angular.module('trippo.plan',[
          * @param end   end date of range
          */
         createRange:function(start,end){
+            range = [];
             var dates =createRangeDates(start,end);
             angular.forEach(dates, function (value, index) {
                 var day_schedule = {
@@ -59,14 +61,16 @@ angular.module('trippo.plan',[
                     description:""
                 };
                 console.log("Range key:");
+
+
                 var key =   value.format(dateFormat);
                 console.log(key);
+
 
                 range[key]=day_schedule;
 
             });
-            console.log("dates schedule");
-            console.log(range);
+
 
 
         },
@@ -78,7 +82,6 @@ angular.module('trippo.plan',[
         getDay:function(day){
             console.log("days in range");
             for (var o in range) {
-                console.log(o);
 
             }
             return range[day];
@@ -89,8 +92,6 @@ angular.module('trippo.plan',[
          */
         getRangeDates:function(){
             var dateRange=[] ;
-            console.log("range indateas");
-            console.log(range);
             for (var key in range) {
                 dateRange.push(range[key].date);
             } /*
@@ -101,7 +102,6 @@ angular.module('trippo.plan',[
                 dateRange.push(value.date);
             });
             */
-            console.log(dateRange);
 
             return dateRange;
         }
@@ -164,9 +164,11 @@ angular.module('trippo.plan',[
 
 
 
+
 })
 
 .controller('PlanningCtrl', function PlanningCtrl($scope,SelectionService,ModalHandler,PlanningService,$stateParams,StubHandler) {
+
         /**
          * List of fuction which set the content of the modal when clicked More button in item
          */
@@ -182,37 +184,39 @@ angular.module('trippo.plan',[
         $scope.setFoodDetails = function(id_food){
             ModalHandler.setFoodDetails(id_food);
         };
-
+        //START STUB
+        /*
+        StubHandler.createFakeDates();
         var randomItemsc = [];
         var  randomItemse = [];
         var  randomItemsh = [];
         var  randomItemsf = [];
 
         for (var i = 0; i < 8; i++) {
-            randomItemsc.push(StubHandler.getItemRandom());
+            randomItemsc.push(StubHandler.getItemRandom("culture"));
+            randomItemse.push(StubHandler.getItemRandom("entertainment"));
+            randomItemsh.push(StubHandler.getItemRandom("hotel"));
+            randomItemsf.push(StubHandler.getItemRandom("food"));
         }
-        for (var g = 0; i < 8; i++) {
-            randomItemse.push(StubHandler.getItemRandom());
-        }
-        for (var f = 0; i < 8; i++) {
-            randomItemsh.push(StubHandler.getItemRandom());
-        }
-        for (var a = 0; i < 8; i++) {
-            randomItemsf.push(StubHandler.getItemRandom());
-        }
+
         $scope.culture =randomItemsc;
         $scope.entertainment = randomItemse;
-        $scope.hotel =randomItemsh;
-        $scope.food =randomItemsf;
+        $scope.hotels =randomItemsh;
+        $scope.foods =randomItemsf;
 
 
+        */
 
-
+        //END STUB
         //get the item selected in the selectionService and set the current daySchedule removing item which has been removed from the Selection service
-        $scope.hotels =SelectionService.getHotelSelection($stateParams.city_name);
-        $scope.culture =SelectionService.getCultureSelection($stateParams.city_name);
-        $scope.entertainment =SelectionService.getEntertainmentSelection($stateParams.city_name);
-        $scope.foods = SelectionService.getFoodSelection($stateParams.city_name);
+
+        $scope.current_day = moment($stateParams.date,"DD-MM-YYYY");
+
+        $scope.hotels =SelectionService. getHotelSelection();
+        $scope.culture =SelectionService.getCultureSelection();
+        $scope.entertainment =SelectionService.getEntertainmentSelection();
+        $scope.foods = SelectionService.getFoodSelection();
+
         var selectedItems = $scope.culture.concat($scope.hotels,$scope.entertainment,$scope.foods) ;
         PlanningService.initializeCurrentDay($stateParams.date,selectedItems);
 
@@ -220,7 +224,9 @@ angular.module('trippo.plan',[
         $scope.isScheduled = function (item) {
               return PlanningService.isScheduled(item);
         };
-
+        /**
+         * loading the previously chosen items
+         */
         $scope.selectedItems =PlanningService.getCurrentTodo();
         $scope.addToSchedule = function (item) {
             $scope.selectedItems =  PlanningService.addToSchedule(item);
@@ -230,6 +236,40 @@ angular.module('trippo.plan',[
             $scope.selectedItems =  PlanningService.removeFromSchedule(item);
 
         };
+        /**
+         * return correct class based on the item tag
+         * @param item   tag
+         * @returns {string} class
+         */
+        $scope.getItemClass = function(item){
+
+            switch (item.tag){
+                case "culture" :
+                    return "culture-color" ;
+                case "entertainment":
+                    return "entertainment-color";
+                case "hotel":
+                    return "hotel-color";
+                case "food":
+                    return "food-color";
+            }
+        };
+
+        /**
+         *MAPS HANDLING
+         * current start and destination variable for the map
+         */
+        $scope.origin=undefined;
+        $scope.destination=undefined;
+        $scope.setMapsStart = function (start) {
+            $scope.origin = start;
+            var index_dest = $scope.selectedItems.indexOf(start)+1;
+            $scope.destination = ($scope.selectedItems[index_dest] === undefined) ? $scope.selectedItems[index_dest-1] : $scope.selectedItems[index_dest];
+
+
+
+        };
+
 
 
 
@@ -295,7 +335,7 @@ angular.module('trippo.plan',[
 
 })
 
-.factory('StubHandler', function () {
+.factory('StubHandler', function (DatesService) {
     function makestring(){
         var text = "";
         var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -306,11 +346,20 @@ angular.module('trippo.plan',[
         return text;
     }
         return {
-            getItemRandom : function(){
+            createFakeDates: function(){
+                DatesService.createRange(moment(), moment());
+            } ,
+            getItemRandom : function(type){
+                var image1 = {image : "http://ilmiomappamondo.files.wordpress.com/2014/02/londra2.jpg"} ;
+                var image2 = {image : "assets/images/empty_photo.png"} ;
+
                 return {
                     id:"fdsfsd",
                     name: makestring(),
-                    photos : ["http://ilmiomappamondo.files.wordpress.com/2014/02/londra2.jpg","assets/images/empty_photo.png"]
+                    photos : [image1,image2],
+                    tag:type,
+                    lat:45,
+                    lng:23
 
                 };
             }
