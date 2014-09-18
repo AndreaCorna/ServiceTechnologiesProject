@@ -363,7 +363,8 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                                    </div>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
-    "                            <div class=\"row\">\n" +
+    "                            <div ng-show=\"moreInfoSelection.open_hours != null\">\n" +
+    "                                <div class=\"row\">\n" +
     "                                <div class=\"col-lg-12\">\n" +
     "                                    <div class=\"text-capitalize text-center\">\n" +
     "                                        <b>Open Hours</b>\n" +
@@ -475,6 +476,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                                    </div>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
+    "                            </div>\n" +
     "                            <div class=\"row\">\n" +
     "                                <div class=\"col-lg-12\">\n" +
     "                                    <div class=\"row\">\n" +
@@ -513,7 +515,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                                                                        <b class=\"text-capitalize\">{{aspect.type}}</b>\n" +
     "                                                                    </div>\n" +
     "                                                                    <div class=\"col-lg-8\">\n" +
-    "                                                                        <rating ng-model=\"aspect.rating\" readonly=\"true\"></rating>\n" +
+    "                                                                        <rating ng-model=\"aspect.rating\" readonly=\"true\" max=3></rating>\n" +
     "                                                                    </div>\n" +
     "                                                                </div>\n" +
     "                                                            </span>\n" +
@@ -529,7 +531,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                                                        <div class=\"col-lg-12\">\n" +
     "                                                            <div class=\"row\">\n" +
     "                                                                <em>\n" +
-    "                                                                    <span>{{review.time | date:'medium'}}</span>\n" +
+    "                                                                    <span>{{changeDate(review.time)}}</span>\n" +
     "                                                                </em>\n" +
     "                                                            </div>\n" +
     "                                                            <div class=\"row\">\n" +
