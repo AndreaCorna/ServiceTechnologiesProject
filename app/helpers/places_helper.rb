@@ -363,9 +363,12 @@ module PlacesHelper
     formatted_address = json['result']['formatted_address']
     phone = json['result']['international_phone_number']
     name = json['result']['name']
-    icon = json['result']['icon']
+    price = json['result']['price_level']
     web_site = json['result']['website']
-    open_hours = parse_open_hours(json['result']['opening_hours']['periods'])
+    open_hours = nil
+    if(!json['result']['opening_hours'].nil?)
+      open_hours = parse_open_hours(json['result']['opening_hours']['periods'])
+    end
     photos = []
     if(!json['result']['photos'].nil?)
       threads = []
@@ -380,8 +383,8 @@ module PlacesHelper
         thread.join
       end
     end
-    rating = json['result']['user_ratings_total']
-    details_item = DetailedItem.new(id,lat,lng,name,rating,photos,icon,reviews,formatted_address,web_site,phone,open_hours)
+    rating = json['result']['rating']
+    details_item = DetailedItem.new(id,lat,lng,name,rating,photos,price,reviews,formatted_address,web_site,phone,open_hours)
     return details_item
   end
 
@@ -409,14 +412,14 @@ module PlacesHelper
   class DetailedItem
     attr_accessor :id,:lat,:lng,:name,:rating,:photos,:icon,:reviews,:formatted_address,:web_site,:international_phone,:open_hours;
 
-    def initialize(place_id,lat,lng,name,rating,photos,icon,reviews,formatted_address,web_site,international_phone,open_hours)
+    def initialize(place_id,lat,lng,name,rating,photos,price,reviews,formatted_address,web_site,international_phone,open_hours)
       @id = place_id
       @lat = lat;
       @lng = lng;
       @name = name;
       @rating = rating
       @photos = photos;
-      @icon = icon;
+      @price = price;
       @reviews = reviews
       @formatted_address = formatted_address
       @web_site = web_site
