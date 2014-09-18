@@ -11,21 +11,32 @@ module PlacesHelper
 
     def get_utility_items(city)
       client = GooglePlaces::Client.new(ENV['API_KEY'])
-      #location = Geocoder.search(city)
       location = City.find_by_name(city)
       lat = location.lat
       lng = location.lng
       utility_items= client.spots(lat,lng,:types => ['airport','atm','bank','bus_station','doctor','fire_station','hospital','parking','pharmacy','police','subway_station','taxi_stand','train_station'],:radius => 20000)
       results = []
-      next_page_token = ''
+      next_page_token = nil
+      threads = []
+      semaphore = Mutex.new
+
       utility_items.each { |place|
-        next_page_token = place.nextpagetoken
-        photos = []
-        if(!place.photos[0].nil?)
-          photos.append(:image=>place.photos[0].fetch_url(400))
-        end
-        description = get_description(place.name,city)
-        results.append(UtilityItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'utility',description))}
+        threads << Thread.new {
+          semaphore.synchronize{
+            if(!place.nextpagetoken.nil?)
+              next_page_token = place.nextpagetoken
+            end
+          }
+          photos = []
+          if(!place.photos[0].nil?)
+            photos.append(:image=>place.photos[0].fetch_url(400))
+          end
+          description = get_description(place.name,city)
+          results.append(UtilityItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'utility',description))}
+      }
+      threads.each do |thread|
+        thread.join
+      end
       json = []
       json.append({:results=>results,:token=>next_page_token})
       return json
@@ -37,14 +48,25 @@ module PlacesHelper
       utility_items= client.spots_by_pagetoken(token)
       results = []
       next_page_token = nil
+      threads = []
+      semaphore = Mutex.new
       utility_items.each { |place|
-        next_page_token = place.nextpagetoken
-        photos = []
-        if(!place.photos[0].nil?)
-          photos.append(:image=>place.photos[0].fetch_url(400))
-        end
-        description = get_description(place.name,city)
-        results.append(UtilityItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'utility',description))}
+        threads << Thread.new{
+          semaphore.synchronize{
+            if(!place.nextpagetoken.nil?)
+              next_page_token = place.nextpagetoken
+            end
+          }
+          photos = []
+          if(!place.photos[0].nil?)
+            photos.append(:image=>place.photos[0].fetch_url(400))
+          end
+          description = get_description(place.name,city)
+          results.append(UtilityItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'utility',description))}
+      }
+      threads.each do |thread|
+        thread.join
+      end
       json = []
       json.append({:results=>results,:token=>next_page_token})
       return json
@@ -75,21 +97,32 @@ module PlacesHelper
 
     def get_culture_items(city)
       client = GooglePlaces::Client.new(ENV['API_KEY'])
-      #location = Geocoder.search(city)
       location = City.find_by_name(city)
       lat = location.lat
       lng = location.lng
       culture_items= client.spots(lat,lng,:types => ['library','book_store','museum','aquarium','art_gallery','church'],:radius => 20000)
       results = []
-      next_page_token = ''
+      next_page_token = nil
+      threads = []
+      semaphore = Mutex.new
+
       culture_items.each { |place|
-        next_page_token = place.nextpagetoken
-        photos = []
-        if(!place.photos[0].nil?)
-          photos.append(:image=>place.photos[0].fetch_url(400))
-        end
-        description = get_description(place.name,city)
-        results.append(CultureItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'culture',description))}
+        threads << Thread.new{
+          semaphore.synchronize{
+            if(!place.nextpagetoken.nil?)
+              next_page_token = place.nextpagetoken
+            end
+          }
+          photos = []
+          if(!place.photos[0].nil?)
+            photos.append(:image=>place.photos[0].fetch_url(400))
+          end
+          description = get_description(place.name,city)
+          results.append(CultureItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'culture',description))}
+      }
+      threads.each do |thread|
+        thread.join
+      end
       json = []
       json.append({:results=>results,:token=>next_page_token})
       return json
@@ -101,14 +134,26 @@ module PlacesHelper
       culture_items= client.spots_by_pagetoken(token)
       results = []
       next_page_token = nil
+      threads = []
+      semaphore = Mutex.new
+
       culture_items.each { |place|
-        next_page_token = place.nextpagetoken
-        photos = []
-        if(!place.photos[0].nil?)
-          photos.append(:image=>place.photos[0].fetch_url(400))
-        end
-        description = get_description(place.name,city)
-        results.append(CultureItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'culture',description))}
+        threads << Thread.new {
+          semaphore.synchronize{
+            if(!place.nextpagetoken.nil?)
+              next_page_token = place.nextpagetoken
+            end
+          }
+          photos = []
+          if(!place.photos[0].nil?)
+            photos.append(:image=>place.photos[0].fetch_url(400))
+          end
+          description = get_description(place.name,city)
+          results.append(CultureItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'culture',description))}
+      }
+      threads.each do |thread|
+        thread.join
+      end
       json = []
       json.append({:results=>results,:token=>next_page_token})
       return json
@@ -140,21 +185,32 @@ module PlacesHelper
 
     def get_entertainment_items(city)
       client = GooglePlaces::Client.new(ENV['API_KEY'])
-      #location = Geocoder.search(city)
       location = City.find_by_name(city)
       lat = location.lat
       lng = location.lng
       entertainment_items= client.spots(lat,lng,:types => ['amusement_park','casino','gym','zoo','spa','park'],:radius => 20000)
-      next_page_token = ''
+      next_page_token = nil
       results = []
+      threads = []
+      semaphore = Mutex.new
+
       entertainment_items.each { |place|
-        next_page_token = place.nextpagetoken
-        photos = []
-        if(!place.photos[0].nil?)
-          photos.append(:image=>place.photos[0].fetch_url(400))
-        end
-        description = get_description(place.name,city)
-        results.append(EntertainmentItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'entertainment',description))}
+        threads << Thread.new {
+          semaphore.synchronize{
+            if(!place.nextpagetoken.nil?)
+              next_page_token = place.nextpagetoken
+            end
+          }
+          photos = []
+          if(!place.photos[0].nil?)
+            photos.append(:image=>place.photos[0].fetch_url(400))
+          end
+          description = get_description(place.name,city)
+          results.append(EntertainmentItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'entertainment',description))}
+      }
+      threads.each do |thread|
+        thread.join
+      end
       json = []
       json.append({:results=>results,:token=>next_page_token})
       return json
@@ -166,14 +222,26 @@ module PlacesHelper
       entertainment_items= client.spots_by_pagetoken(token)
       results = []
       next_page_token = nil
+      threads = []
+      semaphore = Mutex.new
+
       entertainment_items.each { |place|
-        next_page_token = place.nextpagetoken
-        photos = []
-        if(!place.photos[0].nil?)
-          photos.append(:image=>place.photos[0].fetch_url(400))
-        end
-        description = get_description(place.name,city)
-        results.append(EntertainmentItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'entertainment',description))}
+        threads << Thread.new {
+          semaphore.synchronize{
+            if(!place.nextpagetoken.nil?)
+              next_page_token = place.nextpagetoken
+            end
+          }
+          photos = []
+          if(!place.photos[0].nil?)
+            photos.append(:image=>place.photos[0].fetch_url(400))
+          end
+          description = get_description(place.name,city)
+          results.append(EntertainmentItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'entertainment',description))}
+      }
+      threads.each do |thread|
+        thread.join
+      end
       json = []
       json.append({:results=>results,:token=>next_page_token})
       return json
@@ -204,21 +272,32 @@ module PlacesHelper
 
     def get_food_items(city)
       client = GooglePlaces::Client.new(ENV['API_KEY'])
-      #location = Geocoder.search(city)
       location = City.find_by_name(city)
       lat = location.lat
       lng = location.lng
       food_items = client.spots(lat,lng,:types => ['food','restaurant','cafe','bakery'],:radius => 20000)
       results = []
-      next_page_token = ''
+      next_page_token = nil
+      threads = []
+      semaphore = Mutex.new
+
       food_items.each { |place|
-        next_page_token = place.nextpagetoken
-        photos = []
-        if(!place.photos[0].nil?)
-          photos.append(:image=>place.photos[0].fetch_url(400))
-        end
-        description = get_description(place.name,city)
-        results.append(FoodItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'food',description))}
+        threads << Thread.new {
+          semaphore.synchronize{
+            if(!place.nextpagetoken.nil?)
+              next_page_token = place.nextpagetoken
+            end
+          }
+          photos = []
+          if(!place.photos[0].nil?)
+            photos.append(:image=>place.photos[0].fetch_url(400))
+          end
+          description = get_description(place.name,city)
+          results.append(FoodItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'food',description))}
+      }
+      threads.each do |thread|
+        thread.join
+      end
       json = []
       json.append({:results=>results,:token=>next_page_token})
       return json
@@ -230,14 +309,26 @@ module PlacesHelper
       food_items= client.spots_by_pagetoken(token)
       results = []
       next_page_token = nil
+      threads = []
+      semaphore = Mutex.new
+
       food_items.each { |place|
-        next_page_token = place.nextpagetoken
-        photos = []
-        if(!place.photos[0].nil?)
-          photos.append(:image=>place.photos[0].fetch_url(400))
-        end
-        description = get_description(place.name,city)
-        results.append(FoodItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'food',description))}
+        threads << Thread.new {
+          semaphore.synchronize{
+            if(!place.nextpagetoken.nil?)
+              next_page_token = place.nextpagetoken
+            end
+          }
+          photos = []
+          if(!place.photos[0].nil?)
+            photos.append(:image=>place.photos[0].fetch_url(400))
+          end
+          description = get_description(place.name,city)
+          results.append(FoodItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'food',description))}
+      }
+      threads.each do |thread|
+        thread.join
+      end
       json = []
       json.append({:results=>results,:token=>next_page_token})
       return json
@@ -277,10 +368,16 @@ module PlacesHelper
     open_hours = parse_open_hours(json['result']['opening_hours']['periods'])
     photos = []
     if(!json['result']['photos'].nil?)
+      threads = []
       json['result']['photos'].each do |photo|
-        url = 'https://maps.googleapis.com/maps/api/place/photo?maxheight=300&maxwidth=300&photoreference='+photo['photo_reference']+'&key='+ENV['API_KEY']
-        image_data = Base64.encode64(open(url).read)
-        photos.append(:image=>image_data)
+        threads << Thread.new {
+          url = 'https://maps.googleapis.com/maps/api/place/photo?maxheight=300&maxwidth=300&photoreference='+photo['photo_reference']+'&key='+ENV['API_KEY']
+          image_data = Base64.encode64(open(url).read)
+          photos.append(:image=>image_data)
+        }
+      end
+      threads.each do |thread|
+        thread.join
       end
     end
     rating = json['result']['user_ratings_total']
