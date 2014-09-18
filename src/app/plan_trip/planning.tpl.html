@@ -244,7 +244,9 @@
 //mantaining the maps on the top of the page when scrolling
 $().ready(function() {
         $(window).scroll(function () {
-            if ($("#planning")!==undefined) {
+            if ($("#planning").top!==undefined) {
+                console.log($("#planning").top);
+
 
                 if ($(window).scrollTop() > $("#planning").offset().top) {
                     $("#scrollingMaps").stop().animate({"marginTop": ($(window).scrollTop() - $("#planning").offset().top) + "px"}, "slow");

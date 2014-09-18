@@ -43,7 +43,6 @@ component.directive('map', function () {
             scope.$watch('destination', function(newValue, oldValue) {
                 if (newValue) {
                     scope.destination = newValue;
-                    console.log("updating map");
                     scope.updateDirectionMap();
                 }
 
@@ -51,8 +50,6 @@ component.directive('map', function () {
 
             scope.$watch('marker', function(newValue, oldValue) {
                 if (newValue) {
-                    console.log("markerPoint changed value");
-
                     scope.marker = newValue;
                     scope.updateMarkerMap();
                 }
@@ -73,14 +70,6 @@ component.directive('map', function () {
             } ;
 
             scope.isCurrentTravelMode = function(mode){
-                console.log("-------------- mode");
-
-                console.log("travel mode");
-                console.log(scope.travelModality);
-                console.log("passed mode");
-
-                console.log(google.maps.DirectionsTravelMode[mode]);
-
                 if( scope.travelModality == mode){
                     return true;
                 }

@@ -1783,7 +1783,9 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
     "//mantaining the maps on the top of the page when scrolling\n" +
     "$().ready(function() {\n" +
     "        $(window).scroll(function () {\n" +
-    "            if ($(\"#planning\")!==undefined) {\n" +
+    "            if ($(\"#planning\").top!==undefined) {\n" +
+    "                console.log($(\"#planning\").top);\n" +
+    "\n" +
     "\n" +
     "                if ($(window).scrollTop() > $(\"#planning\").offset().top) {\n" +
     "                    $(\"#scrollingMaps\").stop().animate({\"marginTop\": ($(window).scrollTop() - $(\"#planning\").offset().top) + \"px\"}, \"slow\");\n" +
