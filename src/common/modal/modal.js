@@ -71,6 +71,10 @@ angular.module('trippo.modal', ["trippo.resources"])
             $scope.modalEnabled = false;
             $scope.loaderEnabled = true;
         };
+
+        $scope.changeDate = function(milliseconds){
+            return moment(milliseconds).utc().format('DD/MM/YYYY');
+        };
     });
 
 
