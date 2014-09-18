@@ -4,7 +4,7 @@
 angular.module('trippo.plan',[
     'ui.router',
     'ui.bootstrap',
-    'ngResource',
+    'trippo.resources',
     'angular-sortable-view',
     'trippo.city',
     'trippo.modal',
@@ -226,22 +226,22 @@ angular.module('trippo.plan',[
 
 })
 
-.controller('PlanningCtrl', function PlanningCtrl($scope,SelectionService,ModalHandler,PlanningService,$stateParams,StubHandler) {
+.controller('PlanningCtrl', function PlanningCtrl($scope,SelectionService,ModalHandler,PlanningService,$stateParams,StubHandler,commonResources) {
 
         /**
          * List of fuction which set the content of the modal when clicked More button in item
          */
         $scope.setCultureDetails = function(id_culture){
-            ModalHandler.setCultureDetails(id_culture);
+            ModalHandler.setDetailsByResource(commonResources.CultureRes,id_culture);
         };
         $scope.setEntertainmentDetails = function(id_entertainment){
-            ModalHandler.setEntertainmentDetails(id_entertainment);
+            ModalHandler.setDetailsByResource(commonResources.EntertainmentRes,id_entertainment);
         };
         $scope.setHotelsDetails = function(id_hotel){
-            ModalHandler.setHotelsDetails(id_hotel);
+            ModalHandler.setDetailsByResource(commonResources.HotelRes,id_hotel);
         };
         $scope.setFoodDetails = function(id_food){
-            ModalHandler.setFoodDetails(id_food);
+            ModalHandler.setDetailsByResource(commonResources.FoodRes,id_food);
         };
         //START STUB
         /*
@@ -290,8 +290,11 @@ angular.module('trippo.plan',[
          * loading the previously chosen items
          */
         $scope.selectedItems =PlanningService.getCurrentTodo();
+
         $scope.addToSchedule = function (item) {
             $scope.selectedItems =  PlanningService.addToSchedule(item);
+            //open the map with the first item added
+
 
         };
         $scope.removeFromSchedule = function (item) {
