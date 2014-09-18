@@ -17,6 +17,7 @@ development:
   database: Rubyter
 
   username: rubyter
+
   password: <%= ENV["SECRET_PASSWORD_DATABASE"] %>
 
 # Warning: The database defined as "test" will be erased and
