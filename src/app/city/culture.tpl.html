@@ -101,17 +101,19 @@
                         <span ng-repeat="c in infiniteScroll.itemList | filter:{name:elementListName} | orderBy:elementListOrder">
                             <div class="list-group-item">
                                <div class="col-md-3">
-                            <div class="row">
-                                <img class="icon-col-centered" ng-src="{{c.icon}}">
-                            </div>
-                            <div class="row" style="padding-top: 50px">
-                                <button class="btn btn-primary capriola" ng-click="setCultureDetails(c.id)" href="#moreInfoModalPlace" data-toggle="modal">
-                                    More Info
-                                </button>
-                                <button class="btn btn-primary capriola" ng-click="addCultureItem(c)">
-                                    Add
-                                </button>
-                            </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-body image-panel">
+                                        <carousel interval="intervalImages">
+                                            <div ng-if="c.photos.length==0">
+                                                <img ng-src="assets/images/empty_photo.png" style="position: center">
+                                            </div>
+                                            <slide ng-repeat="image in c.photos" active="image.active">
+                                                <img class="image-item" ng-src="{{image.image}}" >
+                                            </slide>
+                                        </carousel>
+                                    </div>
+                                </div>
+
                         </div>
                                 <div class="col-md-6" style="height:230px">
                             <p class="list-group-item-text">
@@ -133,18 +135,13 @@
                             </p>
                         </div>
                                 <div class="col-md-3 text-center">
-                                    <div class="panel panel-default">
-                                        <div class="panel-body image-panel">
-                                            <carousel interval="intervalImages">
-                                        <div ng-if="c.photos.length==0">
-                                            <img ng-src="assets/images/empty_photo.png" style="position: center">
-
-                                        </div>
-                                        <slide ng-repeat="image in c.photos" active="image.active">
-                                            <img class="image-item" ng-src="{{image.image}}" >
-                                        </slide>
-                                    </carousel>
-                                        </div>
+                                    <div class="row" style="padding-top: 50px">
+                                        <button class="btn btn-primary capriola" ng-click="setCultureDetails(c.id)" href="#moreInfoModalPlace" data-toggle="modal">
+                                            More Info
+                                        </button>
+                                        <button class="btn btn-primary capriola" ng-click="addCultureItem(c)">
+                                            Add
+                                        </button>
                                     </div>
                                 </div>
                             </div>

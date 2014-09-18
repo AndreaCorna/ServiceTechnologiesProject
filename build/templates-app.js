@@ -763,17 +763,19 @@ angular.module("city/culture.tpl.html", []).run(["$templateCache", function($tem
     "                        <span ng-repeat=\"c in infiniteScroll.itemList | filter:{name:elementListName} | orderBy:elementListOrder\">\n" +
     "                            <div class=\"list-group-item\">\n" +
     "                               <div class=\"col-md-3\">\n" +
-    "                            <div class=\"row\">\n" +
-    "                                <img class=\"icon-col-centered\" ng-src=\"{{c.icon}}\">\n" +
-    "                            </div>\n" +
-    "                            <div class=\"row\" style=\"padding-top: 50px\">\n" +
-    "                                <button class=\"btn btn-primary capriola\" ng-click=\"setCultureDetails(c.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">\n" +
-    "                                    More Info\n" +
-    "                                </button>\n" +
-    "                                <button class=\"btn btn-primary capriola\" ng-click=\"addCultureItem(c)\">\n" +
-    "                                    Add\n" +
-    "                                </button>\n" +
-    "                            </div>\n" +
+    "                                <div class=\"panel panel-default\">\n" +
+    "                                    <div class=\"panel-body image-panel\">\n" +
+    "                                        <carousel interval=\"intervalImages\">\n" +
+    "                                            <div ng-if=\"c.photos.length==0\">\n" +
+    "                                                <img ng-src=\"assets/images/empty_photo.png\" style=\"position: center\">\n" +
+    "                                            </div>\n" +
+    "                                            <slide ng-repeat=\"image in c.photos\" active=\"image.active\">\n" +
+    "                                                <img class=\"image-item\" ng-src=\"{{image.image}}\" >\n" +
+    "                                            </slide>\n" +
+    "                                        </carousel>\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "\n" +
     "                        </div>\n" +
     "                                <div class=\"col-md-6\" style=\"height:230px\">\n" +
     "                            <p class=\"list-group-item-text\">\n" +
@@ -795,18 +797,13 @@ angular.module("city/culture.tpl.html", []).run(["$templateCache", function($tem
     "                            </p>\n" +
     "                        </div>\n" +
     "                                <div class=\"col-md-3 text-center\">\n" +
-    "                                    <div class=\"panel panel-default\">\n" +
-    "                                        <div class=\"panel-body image-panel\">\n" +
-    "                                            <carousel interval=\"intervalImages\">\n" +
-    "                                        <div ng-if=\"c.photos.length==0\">\n" +
-    "                                            <img ng-src=\"assets/images/empty_photo.png\" style=\"position: center\">\n" +
-    "\n" +
-    "                                        </div>\n" +
-    "                                        <slide ng-repeat=\"image in c.photos\" active=\"image.active\">\n" +
-    "                                            <img class=\"image-item\" ng-src=\"{{image.image}}\" >\n" +
-    "                                        </slide>\n" +
-    "                                    </carousel>\n" +
-    "                                        </div>\n" +
+    "                                    <div class=\"row\" style=\"padding-top: 50px\">\n" +
+    "                                        <button class=\"btn btn-primary capriola\" ng-click=\"setCultureDetails(c.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">\n" +
+    "                                            More Info\n" +
+    "                                        </button>\n" +
+    "                                        <button class=\"btn btn-primary capriola\" ng-click=\"addCultureItem(c)\">\n" +
+    "                                            Add\n" +
+    "                                        </button>\n" +
     "                                    </div>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
