@@ -38,31 +38,33 @@
                 </div>
                 <div class="col-sm-6 col-md-6" style="height:230px">
                    <p class="list-group-item-text">
-                    <div class="row">
-                        <div class="col-sm-9 col-md-9">
-                            <b class="text-capitalize">{{c.name}}</b>
+                        <div class="row">
+                            <div class="col-sm-9 col-md-9">
+                                <b class="text-capitalize">{{c.name}}</b>
+                            </div>
+                            <div class="col-sm-3 col-md-3">
+                                <button class="btn btn-primary btn-sm capriola" ng-click="setCultureDetails(c.id)" href="#moreInfoModalPlace" data-toggle="modal">
+                                    <span class="glyphicon glyphicon-info-sign "></span>
+                                </button>
+                                <button class="btn btn-danger btn-sm capriola" ng-click="removeCultureItem(c)">
+                                    <span class="glyphicon glyphicon-minus-sign "></span>
+                                </button>
+                            </div>
                         </div>
-                        <div class="col-sm-3 col-md-3">
-                            <button class="btn btn-primary btn-sm capriola" ng-click="setCultureDetails(c.id)" href="#moreInfoModalPlace" data-toggle="modal">
-                                <span class="glyphicon glyphicon-info-sign "></span>
-                            </button>
-                            <button class="btn btn-danger btn-sm capriola" ng-click="removeCultureItem(c)">
-                                <span class="glyphicon glyphicon-minus-sign "></span>
-                            </button>
+                        <div class="row">
+                            <div class="col-sm-3 col-md-3">
+                                <p class="capriola">Price {{c.price || 'Free'}}</p>
+                            </div>
+                            <div class="col-sm-4 col-md-4 capriola">
+                                <p>Rating <rating ng-model="c.rating" readonly="true" ></rating></p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3 col-md-3">
-                            <p class="capriola">Price {{c.price || 'Free'}}</p>
+                        <div ng-show="c.description != null" style="display: block">
+                            <div class="col-sm-12 col-md-12 panel panel-default scrollable" style="max-height: 165px;overflow-y: auto">
+                                <div class="text-justify capriola" >{{c.description}}</div>
+                            </div>
                         </div>
-                        <div class="col-sm-4 col-md-4 capriola">
-                            <p>Rating <rating ng-model="c.rating" readonly="true" ></rating></p>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-md-12 panel panel-default scrollable" style="max-height: 165px;overflow-y: auto">
-                       <div class="text-justify capriola">{{c.description}}</div>
-                    </div>
-                      </p>
+                   </p>
                 </div>
                 <div class="col-sm-3 col-md-3 text-center">
 
