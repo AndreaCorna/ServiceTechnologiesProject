@@ -119,6 +119,10 @@ angular.module( 'trippo.city', [
 
         }) ;
 
+        $scope.setLoader = function(value){
+          $scope.loaderEnabled = value;
+        };
+
         $scope.setCultureDetails = function(culture_item){
             ModalHandler.setDetailsByResource($scope.resource ,culture_item);
         } ;
@@ -220,6 +224,10 @@ angular.module( 'trippo.city', [
 
         }) ;
 
+        $scope.setLoader = function(value){
+            $scope.loaderEnabled = value;
+        };
+
         $scope.setEntertainmentDetails = function(entertainment_item){
             ModalHandler.setDetailsByResource($scope.resource ,entertainment_item);
         } ;
@@ -312,6 +320,10 @@ angular.module( 'trippo.city', [
             $scope.loaderEnabled = false;
 
         }) ;
+
+        $scope.setLoader = function(value){
+            $scope.loaderEnabled = value;
+        };
 
         $scope.setUtilityDetails = function(utility_item){
             ModalHandler.setDetailsByResource($scope.resource ,utility_item);
@@ -407,6 +419,10 @@ angular.module( 'trippo.city', [
 
         }) ;
 
+        $scope.setLoader = function(value){
+            $scope.loaderEnabled = value;
+        };
+
         $scope.setHotelDetails = function(hotel_item){
             ModalHandler.setDetailsHotel($scope.resource ,hotel_item);
         } ;
@@ -498,6 +514,10 @@ angular.module( 'trippo.city', [
             $scope.loaderEnabled = false;
 
         }) ;
+
+        $scope.setLoader = function(value){
+            $scope.loaderEnabled = value;
+        };
 
         $scope.setFoodDetails = function(food_item){
             ModalHandler.setDetailsByResource($scope.resource ,food_item);
@@ -592,13 +612,14 @@ angular.module( 'trippo.city', [
              this.token =curr_token;
         };
         //ATTENTION PROBABLY list param is not correct why not use the same passed in initialize?
-        ScrollHandler.prototype.nextPage = function(resource){
+        ScrollHandler.prototype.nextPage = function(resource,loaderFunction){
             if (this.busy){return;}
             this.busy = true;
 
 
-
             if(this.token != null){
+                loaderFunction(true);
+
                 var otherElements = resource.query({city_name: $stateParams.city_name, token: this.token},function(){
 
                     this.token = otherElements[0].token;
@@ -607,6 +628,7 @@ angular.module( 'trippo.city', [
                         this.itemList.push(otherElements[0].results[i]);
                     }
                     this.busy = false;
+                    loaderFunction(false);
 
                 }.bind(this));
             }

@@ -738,7 +738,7 @@ angular.module("city/culture.tpl.html", []).run(["$templateCache", function($tem
     "                    </select>\n" +
     "                </div>\n" +
     "            </div>\n" +
-    "            <div infinite-scroll=\"infiniteScroll.nextPage(resource)\" infinite-scroll-distance=\"2\" infinite-scroll-disabled=\"infiniteScroll.busy\">\n" +
+    "            <div infinite-scroll=\"infiniteScroll.nextPage(resource,setLoader)\" infinite-scroll-distance=\"2\" infinite-scroll-disabled=\"infiniteScroll.busy\">\n" +
     "                <span ng-repeat=\"c in infiniteScroll.itemList | filter:{name:elementListName} | orderBy:elementListOrder\">\n" +
     "                    <div class=\"list-group-item\">\n" +
     "                       <div class=\"col-sm-3 col-md-3\">\n" +
@@ -797,7 +797,7 @@ angular.module("city/culture.tpl.html", []).run(["$templateCache", function($tem
     "    </div>\n" +
     "</div>\n" +
     "<div ng-show=\"loaderEnabled\">\n" +
-    "    <div class=\"row\" style=\"position:absolute; left: 50%;right: 50%;bottom:-20;\">\n" +
+    "    <div class=\"row loader-wait\">\n" +
     "        <div class=\"loader\">\n" +
     "            <div class=\"bouncywrap\">\n" +
     "                <div class=\"dotcon dc1\">\n" +
