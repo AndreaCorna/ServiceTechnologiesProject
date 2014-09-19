@@ -76,8 +76,12 @@ angular.module( 'trippo.home', [
             });
         };
 
+        $scope.startsWith = function(name, viewValue) {
+            return name.substr(0, viewValue.length).toLowerCase() == viewValue.toLowerCase();
+        };
 
-})
+
+    })
 
 
 ;

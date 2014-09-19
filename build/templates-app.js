@@ -702,31 +702,33 @@ angular.module("city/culture.tpl.html", []).run(["$templateCache", function($tem
     "                </div>\n" +
     "                <div class=\"col-sm-6 col-md-6\" style=\"height:230px\">\n" +
     "                   <p class=\"list-group-item-text\">\n" +
-    "                    <div class=\"row\">\n" +
-    "                        <div class=\"col-sm-9 col-md-9\">\n" +
-    "                            <b class=\"text-capitalize\">{{c.name}}</b>\n" +
+    "                        <div class=\"row\">\n" +
+    "                            <div class=\"col-sm-9 col-md-9\">\n" +
+    "                                <b class=\"text-capitalize\">{{c.name}}</b>\n" +
+    "                            </div>\n" +
+    "                            <div class=\"col-sm-3 col-md-3\">\n" +
+    "                                <button class=\"btn btn-primary btn-sm capriola\" ng-click=\"setCultureDetails(c.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">\n" +
+    "                                    <span class=\"glyphicon glyphicon-info-sign \"></span>\n" +
+    "                                </button>\n" +
+    "                                <button class=\"btn btn-danger btn-sm capriola\" ng-click=\"removeCultureItem(c)\">\n" +
+    "                                    <span class=\"glyphicon glyphicon-minus-sign \"></span>\n" +
+    "                                </button>\n" +
+    "                            </div>\n" +
     "                        </div>\n" +
-    "                        <div class=\"col-sm-3 col-md-3\">\n" +
-    "                            <button class=\"btn btn-primary btn-sm capriola\" ng-click=\"setCultureDetails(c.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">\n" +
-    "                                <span class=\"glyphicon glyphicon-info-sign \"></span>\n" +
-    "                            </button>\n" +
-    "                            <button class=\"btn btn-danger btn-sm capriola\" ng-click=\"removeCultureItem(c)\">\n" +
-    "                                <span class=\"glyphicon glyphicon-minus-sign \"></span>\n" +
-    "                            </button>\n" +
+    "                        <div class=\"row\">\n" +
+    "                            <div class=\"col-sm-3 col-md-3\">\n" +
+    "                                <p class=\"capriola\">Price {{c.price || 'Free'}}</p>\n" +
+    "                            </div>\n" +
+    "                            <div class=\"col-sm-4 col-md-4 capriola\">\n" +
+    "                                <p>Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
+    "                            </div>\n" +
     "                        </div>\n" +
-    "                    </div>\n" +
-    "                    <div class=\"row\">\n" +
-    "                        <div class=\"col-sm-3 col-md-3\">\n" +
-    "                            <p class=\"capriola\">Price {{c.price || 'Free'}}</p>\n" +
+    "                        <div ng-show=\"c.description != null\" style=\"display: block\">\n" +
+    "                            <div class=\"col-sm-12 col-md-12 panel panel-default scrollable\" style=\"max-height: 165px;overflow-y: auto\">\n" +
+    "                                <div class=\"text-justify capriola\" >{{c.description}}</div>\n" +
+    "                            </div>\n" +
     "                        </div>\n" +
-    "                        <div class=\"col-sm-4 col-md-4 capriola\">\n" +
-    "                            <p>Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
-    "                        </div>\n" +
-    "                    </div>\n" +
-    "                    <div class=\"col-sm-12 col-md-12 panel panel-default scrollable\" style=\"max-height: 165px;overflow-y: auto\">\n" +
-    "                       <div class=\"text-justify capriola\">{{c.description}}</div>\n" +
-    "                    </div>\n" +
-    "                      </p>\n" +
+    "                   </p>\n" +
     "                </div>\n" +
     "                <div class=\"col-sm-3 col-md-3 text-center\">\n" +
     "\n" +
@@ -800,9 +802,11 @@ angular.module("city/culture.tpl.html", []).run(["$templateCache", function($tem
     "                            </div>\n" +
     "                        </p>\n" +
     "                    </div>\n" +
-    "                    <div class=\"col-sm-3 col-md-3 text-center\">\n" +
-    "                        <div class=\"row\" style=\"padding-top: 50px\">\n" +
+    "                    <div class=\"col-sm-3 col-md-3\">\n" +
+    "                        <div class=\"panel panel-default\">\n" +
+    "                            <div class=\"panel-body\">\n" +
     "\n" +
+    "                            </div>\n" +
     "                        </div>\n" +
     "                    </div>\n" +
     "                    </div>\n" +
@@ -1534,7 +1538,7 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "\n" +
     "            <input id=\"city\" name=\"city\"  type=\"text\" placeholder=\"Search here...\" class=\"form-control col-md-12 text-capitalize typeahead\"\n" +
     "                   ng-model=\"selected_city\"\n" +
-    "                   typeahead=\"city as city.name for city in cities | filter:$viewValue | limitTo:8\"\n" +
+    "                   typeahead=\"city as city.name for city in cities | filter:{name:$viewValue}:startsWith | limitTo:8\"\n" +
     "                   typeahead-template-url=\"customTemplate.html\">\n" +
     "            <button id=\"submit\" type=\"submit\" ng-click=\"search()\">Search</button>\n" +
     "        </form>\n" +
