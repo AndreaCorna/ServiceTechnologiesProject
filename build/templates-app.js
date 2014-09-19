@@ -797,7 +797,7 @@ angular.module("city/culture.tpl.html", []).run(["$templateCache", function($tem
     "    </div>\n" +
     "</div>\n" +
     "<div ng-show=\"loaderEnabled\">\n" +
-    "    <div class=\"row\" style=\"margin-bottom:0px;\">\n" +
+    "    <div class=\"row\" style=\"position:absolute; left: 50%;right: 50%;bottom:-20;\">\n" +
     "        <div class=\"loader\">\n" +
     "            <div class=\"bouncywrap\">\n" +
     "                <div class=\"dotcon dc1\">\n" +
