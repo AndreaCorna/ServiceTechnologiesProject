@@ -3,13 +3,21 @@
         <h1 class="text-center capriola">Culture</h1>
         <div class="list-group">
         <div ng-show="cultureSelection != undefined && cultureSelection.length != 0">
-            <div class="row" style="display: inline">
-                <div class="text-capitalize item-filter" >Name:</div>
-                <input type="text" class="capriola" data-ng-model="elementSelectionName" />                            <div class="text-capitalize item-filter">Order by:</div>
-                <select data-ng-model="elementSelectionOrder" class="item-filter">
-                    <option value="name" selected>Name</option>
-                    <option value="rating">Rating</option>
-                </select>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="col-sm-4 col-md-4" style="display: inline">
+                        <div class="capriola">Search
+                            <input type="text"  placeholder="Name" data-ng-model="elementSelectionName" />
+                        </div>
+                    </div>
+                    <div class="col-sm-4 col-md-4">
+                        <div class="text-capitalize item-filter">Order by:</div>
+                        <select data-ng-model="elementSelectionOrder" class="item-filter">
+                            <option value="name" selected>Name</option>
+                            <option value="rating">Rating</option>
+                        </select>
+                    </div>
+                </div>
             </div>
         </div>
         <span ng-repeat="c in cultureSelection | filter:{name:elementSelectionName} | orderBy:elementSelectionOrder">
@@ -30,31 +38,33 @@
                 </div>
                 <div class="col-sm-6 col-md-6" style="height:230px">
                    <p class="list-group-item-text">
-                    <div class="row">
-                        <div class="col-sm-9 col-md-9">
-                            <b class="text-capitalize">{{c.name}}</b>
+                        <div class="row">
+                            <div class="col-sm-9 col-md-9">
+                                <b class="text-capitalize">{{c.name}}</b>
+                            </div>
+                            <div class="col-sm-3 col-md-3">
+                                <button class="btn btn-primary btn-sm capriola" ng-click="setCultureDetails(c.id)" href="#moreInfoModalPlace" data-toggle="modal">
+                                    <span class="glyphicon glyphicon-info-sign "></span>
+                                </button>
+                                <button class="btn btn-danger btn-sm capriola" ng-click="removeCultureItem(c)">
+                                    <span class="glyphicon glyphicon-minus-sign "></span>
+                                </button>
+                            </div>
                         </div>
-                        <div class="col-sm-3 col-md-3">
-                            <button class="btn btn-primary btn-sm capriola" ng-click="setCultureDetails(c.id)" href="#moreInfoModalPlace" data-toggle="modal">
-                                <span class="glyphicon glyphicon-info-sign "></span>
-                            </button>
-                            <button class="btn btn-danger btn-sm capriola" ng-click="removeCultureItem(c)">
-                                <span class="glyphicon glyphicon-minus-sign "></span>
-                            </button>
+                        <div class="row">
+                            <div class="col-sm-3 col-md-3">
+                                <p class="capriola">Price {{c.price || 'Free'}}</p>
+                            </div>
+                            <div class="col-sm-4 col-md-4 capriola">
+                                <p>Rating <rating ng-model="c.rating" readonly="true" ></rating></p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3 col-md-3">
-                            <p class="capriola">Price {{c.price || 'Free'}}</p>
+                        <div ng-show="c.description != null" style="display: block">
+                            <div class="col-sm-12 col-md-12 panel panel-default scrollable" style="max-height: 165px;overflow-y: auto">
+                                <div class="text-justify capriola" >{{c.description}}</div>
+                            </div>
                         </div>
-                        <div class="col-sm-4 col-md-4 capriola">
-                            <p>Rating <rating ng-model="c.rating" readonly="true" ></rating></p>
-                        </div>
-                    </div>
-                    <div class="row panel panel-default scrollable" style="max-height: 165px;overflow-y: auto">
-                       <div class="text-justify capriola">{{c.description}}</div>
-                    </div>
-                      </p>
+                   </p>
                 </div>
                 <div class="col-sm-3 col-md-3 text-center">
 
@@ -64,17 +74,24 @@
         </div>
         <div class="list-group">
             <div ng-show="infiniteScroll.itemList != null && infiniteScroll.itemList.length !=0">
-                <div class="row" style="display: inline">
-                    <div class="text-capitalize item-filter" >Name:</div>
-                    <input type="text" data-ng-model="elementListName" style="font-family: Capriola;"/>
-                    <div class="text-capitalize item-filter">Order by:</div>
-                    <select data-ng-model="elementListOrder" class="item-filter">
-                        <option value="name" selected>Name</option>
-                        <option value="rating">Rating</option>
-                    </select>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="col-sm-4 col-md-4" style="display: inline">
+                            <div class="capriola">Search
+                                <input type="text"  placeholder="Name" data-ng-model="elementListName" />
+                            </div>
+                        </div>
+                        <div class="col-sm-4 col-md-4">
+                            <div class="text-capitalize item-filter">Order by:</div>
+                            <select data-ng-model="elementListOrder" class="item-filter">
+                                <option value="name" selected>Name</option>
+                                <option value="rating">Rating</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div infinite-scroll="infiniteScroll.nextPage(resource)" infinite-scroll-distance="2" infinite-scroll-disabled="infiniteScroll.busy">
+            <div infinite-scroll="infiniteScroll.nextPage(resource,setLoader)" infinite-scroll-distance="2" infinite-scroll-disabled="infiniteScroll.busy">
                 <span ng-repeat="c in infiniteScroll.itemList | filter:{name:elementListName} | orderBy:elementListOrder">
                     <div class="list-group-item">
                        <div class="col-sm-3 col-md-3">
@@ -115,15 +132,17 @@
                                 </div>
                             </div>
                             <div ng-show="c.description != null" style="display: block">
-                                <div class="row panel panel-default scrollable" style="max-height: 165px;overflow-y: auto">
+                                <div class="col-sm-12 col-md-12 panel panel-default scrollable" style="max-height: 165px;overflow-y: auto">
                                      <div class="text-justify capriola" >{{c.description}}</div>
                                 </div>
                             </div>
                         </p>
                     </div>
-                    <div class="col-sm-3 col-md-3 text-center">
-                        <div class="row" style="padding-top: 50px">
+                    <div class="col-sm-3 col-md-3">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
 
+                            </div>
                         </div>
                     </div>
                     </div>
@@ -133,7 +152,7 @@
     </div>
 </div>
 <div ng-show="loaderEnabled">
-    <div class="row" style="margin-bottom:0px;">
+    <div class="row loader-wait">
         <div class="loader">
             <div class="bouncywrap">
                 <div class="dotcon dc1">
