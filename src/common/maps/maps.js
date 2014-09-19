@@ -61,12 +61,22 @@ component.directive('map', function () {
 
             scope.$watch('markerarray', function(newValue, oldValue) {
                 if (newValue) {
-                    console.log("updating updateArrayMarkerMap");
-                    
-                    oldmarkerarray  = oldValue;
-                    scope.markerarray = newValue;
+                    console.log("newValeu");
+                    console.log(newValue);
 
-                    scope.updateArrayMarkerMap();
+
+                    console.log("oldVal");
+                    console.log(oldValue);
+
+
+                    console.log("updating toRemove");
+                    var toRemove = arrayDiff(oldValue,newValue);
+                    console.log("updating toAdd");
+
+                    var toAdd = arrayDiff(newValue, oldValue);
+                    console.log("updating updateArrayMarkerMap");
+
+                    scope.updateArrayMarkerMap(toAdd,toRemove);
                 }
             }, true);
 
@@ -230,7 +240,6 @@ component.directive('map', function () {
 
 
             var  markerarraymap;
-            var oldmarkerarray ;
             var markersarray = [];
 
 
@@ -241,11 +250,19 @@ component.directive('map', function () {
                 console.log("second");
                 console.log(second);
 
+                var onlyFirst = first.filter(function(current){
+                    return second.filter(function(current_b){
+                        return current_b.id == current.id;
+                    }).length === 0;
+                });
 
-                var result =first.filter(function(i) {return second.indexOf(i) < 0;});
+
+
+
+
                 console.log("result");
-                console.log(result);
-                return result;
+                console.log(onlyFirst);
+                return onlyFirst;
             };
 
             var addMarker=function(obj,map) {
@@ -269,7 +286,7 @@ component.directive('map', function () {
             }  ;
 
 
-            scope.updateArrayMarkerMap = function() {
+            scope.updateArrayMarkerMap = function(toAdd,toRemove) {
                 var mapOptions = {
                     zoom: scope.zoom !== undefined ? scope.zoom : 15,
                     mapTypeId: scope.type.toLowerCase(),
@@ -284,11 +301,12 @@ component.directive('map', function () {
                 }
 
 
-                var toRemove = arrayDiff(oldmarkerarray,scope.markerarray);
 
-                var toAdd = arrayDiff(scope.markerarray, oldmarkerarray);
                 console.log("to add array:");
                 console.log(toAdd);
+
+                console.log("to remove array:");
+                console.log(toRemove);
 
                 angular.forEach(toAdd, function (value, key) {
                     console.log("to add");
