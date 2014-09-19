@@ -1133,32 +1133,10 @@ angular.module("city/food.tpl.html", []).run(["$templateCache", function($templa
 
 angular.module("city/hotel.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("city/hotel.tpl.html",
-    "\n" +
     "<div class=\"row\">\n" +
     "    <div class=\"well\">\n" +
     "        <h1 class=\"text-center capriola\" >Hotel</h1>\n" +
     "        <div class=\"list-group\">\n" +
-    "            <div ng-show=\"loaderEnabled\">\n" +
-    "                <div class=\"panel-body\">\n" +
-    "                    <div class=\"loader\">\n" +
-    "                        <div class=\"bouncywrap\" style=\"margin-top: 700px;\">\n" +
-    "\n" +
-    "                            <div class=\"dotcon dc1\">\n" +
-    "                                <div class=\"dot\"></div>\n" +
-    "                            </div>\n" +
-    "\n" +
-    "                            <div class=\"dotcon dc2\">\n" +
-    "                                <div class=\"dot\"></div>\n" +
-    "                            </div>\n" +
-    "\n" +
-    "                            <div class=\"dotcon dc3\">\n" +
-    "                                <div class=\"dot\"></div>\n" +
-    "                            </div>\n" +
-    "\n" +
-    "                        </div>\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
-    "            </div>\n" +
     "            <div ng-show=\"hotelSelection != undefined && hotelSelection.length != 0\">\n" +
     "                <div class=\"row\" style=\"display: inline\">\n" +
     "                    <div class=\"text-capitalize item-filter\" >Name:</div>\n" +
@@ -1170,38 +1148,36 @@ angular.module("city/hotel.tpl.html", []).run(["$templateCache", function($templ
     "                    </select>\n" +
     "                </div>\n" +
     "            </div>\n" +
-    "                    <span ng-repeat=\"c in hotelSelection | filter:{name:elementSelectionName} | orderBy:elementSelectionOrder\">\n" +
-    "                    <div class=\"list-group-item\">\n" +
-    "                        <div class=\"col-md-3\">\n" +
-    "\n" +
-    "                            <div class=\"row\">\n" +
-    "                                <div class=\"panel-image-hotel\">\n" +
-    "                                    <div class=\"panel-body\">\n" +
-    "                                        <carousel interval=\"intervalImages\">\n" +
-    "                                            <div ng-if=\"c.photos.length==0\">\n" +
-    "                                                <img ng-src=\"assets/images/empty_photo.png\" style=\"position: center\">\n" +
-    "\n" +
-    "                                            </div>\n" +
-    "                                            <slide ng-repeat=\"image in c.photos\" active=\"image.active\">\n" +
-    "                                                <img class=\"image-item\" ng-src=\"{{image.image}}\" >\n" +
-    "                                            </slide>\n" +
-    "                                        </carousel>\n" +
+    "            <span ng-repeat=\"c in hotelSelection | filter:{name:elementSelectionName} | orderBy:elementSelectionOrder\">\n" +
+    "                <div class=\"list-group-item\">\n" +
+    "                    <div class=\"col-sm-3 col-md-3\">\n" +
+    "                        <div class=\"panel panel-default\">\n" +
+    "                            <div class=\"panel-body image-panel\">\n" +
+    "                                <carousel interval=\"intervalImages\">\n" +
+    "                                    <div ng-if=\"c.photos.length==0\">\n" +
+    "                                        <img ng-src=\"assets/images/empty_photo.png\" style=\"position: center\">\n" +
     "                                    </div>\n" +
-    "                                </div>\n" +
-    "                            </div>\n" +
-    "                            <div class=\"row center-block\" style=\"padding-top: 50px\">\n" +
-    "                                <button class=\"btn btn-primary capriola\" ng-click=\"setHotelDetails(c.id)\" href=\"#moreInfoModalHotel\" data-toggle=\"modal\">\n" +
-    "                                    More Info\n" +
-    "                                </button>\n" +
-    "                                <button class=\"btn btn-primary capriola\" ng-click=\"removeHotelItem(c)\">\n" +
-    "                                    Remove\n" +
-    "                                </button>\n" +
+    "                                    <slide ng-repeat=\"image in c.photos\" active=\"image.active\">\n" +
+    "                                        <img class=\"image-item\" ng-src=\"{{image.image}}\" >\n" +
+    "                                    </slide>\n" +
+    "                                </carousel>\n" +
     "                            </div>\n" +
     "                        </div>\n" +
-    "                        <div class=\"col-md-6\" style=\"height:230px\">\n" +
-    "                            <p class=\"list-group-item-text\">\n" +
-    "                            <div class=\"row\">\n" +
-    "                                <b class=\"text-capitalize capriola\">{{c.name}}</b>\n" +
+    "                    </div>\n" +
+    "                    <div class=\"col-sm-6 col-md-6\" style=\"height:230px\">\n" +
+    "                        <p class=\"list-group-item-text\">\n" +
+    "                            <div class=\"row capriola\">\n" +
+    "                                <div class=\"col-sm-9 col-md-9\">\n" +
+    "                                    <b class=\"text-capitalize\">{{c.name}}</b>\n" +
+    "                                </div>\n" +
+    "                                <div class=\"col-sm-3 col-md-3\">\n" +
+    "                                    <button class=\"btn btn-primary btn-sm capriola\" ng-click=\"setHotelDetails(c.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">\n" +
+    "                                        <span class=\"glyphicon glyphicon-info-sign \"></span>\n" +
+    "                                    </button>\n" +
+    "                                    <button class=\"btn btn-danger btn-sm capriola\" ng-click=\"removeHotelItem(c)\">\n" +
+    "                                        <span class=\"glyphicon glyphicon-minus-sign \"></span>\n" +
+    "                                    </button>\n" +
+    "                                </div>\n" +
     "                            </div>\n" +
     "                            <div class=\"row\">\n" +
     "                                <p class=\"capriola\">Address {{c.address}}</p>\n" +
@@ -1209,73 +1185,60 @@ angular.module("city/hotel.tpl.html", []).run(["$templateCache", function($templ
     "                            <div class=\"row\">\n" +
     "                                <p class=\"capriola\">Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
     "                            </div>\n" +
-    "                            <div class=\"row scrollable\" style=\"max-height: 185px;overflow-y: auto\">\n" +
-    "                                <div class=\"text-justify capriola\">{{c.description}}</div>\n" +
-    "                            </div>\n" +
-    "\n" +
-    "                            </p>\n" +
-    "                        </div>\n" +
-    "                        <div class=\"col-md-3 text-center\">\n" +
-    "                            <div class=\"panel panel-default\">\n" +
-    "                                <div class=\"panel-body image-panel\">\n" +
-    "                                    <carousel interval=\"intervalImages\">\n" +
-    "                                        <div ng-if=\"c.photos.length==0\">\n" +
-    "                                            <img ng-src=\"assets/images/empty_photo.png\" style=\"position: center\">\n" +
-    "\n" +
-    "                                        </div>\n" +
-    "                                        <slide ng-repeat=\"image in c.photos\" active=\"image.active\">\n" +
-    "                                            <img class=\"image-item\" ng-src=\"{{image.image}}\" >\n" +
-    "                                        </slide>\n" +
-    "                                    </carousel>\n" +
+    "                            <div ng-show=\"c.description != null\" style=\"display: block\">\n" +
+    "                                <div class=\"col-sm-12 col-md-12 panel panel-default scrollable\" style=\"max-height: 165px;overflow-y: auto\">\n" +
+    "                                    <div class=\"text-justify capriola\" >{{c.description}}</div>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
-    "                        </div>\n" +
+    "                        </p>\n" +
     "                    </div>\n" +
-    "                </span>\n" +
+    "                    <div class=\"col-sm-3 col-md-3 text-center\">\n" +
+    "\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "            </span>\n" +
+    "    </div>\n" +
+    "    <div class=\"list-group\">\n" +
+    "        <div class=\"row\" style=\"display: inline\">\n" +
+    "            <div class=\"text-capitalize item-filter\" >Name:</div>\n" +
+    "            <input type=\"text\" data-ng-model=\"elementListName\" style=\"font-family: Capriola;\"/>\n" +
+    "            <div class=\"text-capitalize item-filter\">Order by:</div>\n" +
+    "            <select data-ng-model=\"elementListOrder\" class=\"item-filter\">\n" +
+    "                <option value=\"name\" selected>Name</option>\n" +
+    "                <option value=\"rating\">Rating</option>\n" +
+    "            </select>\n" +
     "        </div>\n" +
-    "        <div class=\"list-group\">\n" +
-    "            <div class=\"row\" style=\"display: inline\">\n" +
-    "                <div class=\"text-capitalize item-filter\" >Name:</div>\n" +
-    "                <input type=\"text\" data-ng-model=\"elementListName\" style=\"font-family: Capriola;\"/>\n" +
-    "                <div class=\"text-capitalize item-filter\">Order by:</div>\n" +
-    "                <select data-ng-model=\"elementListOrder\" class=\"item-filter\">\n" +
-    "                    <option value=\"name\" selected>Name</option>\n" +
-    "                    <option value=\"rating\">Rating</option>\n" +
-    "                </select>\n" +
-    "            </div>\n" +
-    "            <div infinite-scroll=\"infiniteScroll.nextPage(resource,setLoader)\" infinite-scroll-distance=\"2\" infinite-scroll-disabled=\"infiniteScroll.busy\">\n" +
-    "                <span ng-repeat=\"c in infiniteScroll.itemList | filter:{name:elementListName} | orderBy:elementListOrder\">\n" +
-    "                    <div class=\"list-group-item\">\n" +
-    "                        <div class=\"col-md-3\">\n" +
-    "\n" +
-    "                            <div class=\"row\">\n" +
-    "                                <div class=\"panel-image-hotel\">\n" +
-    "                                    <div class=\"panel-body\">\n" +
-    "                                        <carousel interval=\"intervalImages\">\n" +
-    "                                            <div ng-if=\"c.photos.length==0\">\n" +
-    "                                                <img ng-src=\"assets/images/empty_photo.png\" style=\"position: center\">\n" +
-    "\n" +
-    "                                            </div>\n" +
-    "                                            <slide ng-repeat=\"image in c.photos\" active=\"image.active\">\n" +
-    "                                                <img class=\"image-item\" ng-src=\"{{image.image}}\" >\n" +
-    "                                            </slide>\n" +
-    "                                        </carousel>\n" +
+    "        <div infinite-scroll=\"infiniteScroll.nextPage(resource,setLoader)\" infinite-scroll-distance=\"2\" infinite-scroll-disabled=\"infiniteScroll.busy\">\n" +
+    "            <span ng-repeat=\"c in infiniteScroll.itemList | filter:{name:elementListName} | orderBy:elementListOrder\">\n" +
+    "                <div class=\"list-group-item\">\n" +
+    "                    <div class=\"col-sm-3 col-md-3\">\n" +
+    "                        <div class=\"panel panel-default\">\n" +
+    "                            <div class=\"panel-body image-panel\">\n" +
+    "                                <carousel interval=\"intervalImages\">\n" +
+    "                                    <div ng-if=\"c.photos.length==0\">\n" +
+    "                                        <img ng-src=\"assets/images/empty_photo.png\" style=\"position: center\">\n" +
     "                                    </div>\n" +
-    "                                </div>\n" +
-    "                            </div>\n" +
-    "                            <div class=\"row center-block\" style=\"padding-top: 50px\">\n" +
-    "                                <button class=\"btn btn-primary capriola\" ng-click=\"setHotelDetails(c.id)\" href=\"#moreInfoModalHotel\" data-toggle=\"modal\">\n" +
-    "                                    More Info\n" +
-    "                                </button>\n" +
-    "                                <button class=\"btn btn-primary capriola\" ng-click=\"addHotelItem(c)\">\n" +
-    "                                    Add\n" +
-    "                                </button>\n" +
+    "                                    <slide ng-repeat=\"image in c.photos\" active=\"image.active\">\n" +
+    "                                        <img class=\"image-item\" ng-src=\"{{image.image}}\" >\n" +
+    "                                    </slide>\n" +
+    "                                </carousel>\n" +
     "                            </div>\n" +
     "                        </div>\n" +
-    "                        <div class=\"col-md-6\" style=\"height:230px\">\n" +
-    "                            <p class=\"list-group-item-text\">\n" +
-    "                            <div class=\"row\">\n" +
-    "                                <b class=\"text-capitalize capriola\">{{c.name}}</b>\n" +
+    "                    </div>\n" +
+    "                    <div class=\"col-sm-6 col-md-6\" style=\"height:230px\">\n" +
+    "                        <p class=\"list-group-item-text\">\n" +
+    "                            <div class=\"row capriola\">\n" +
+    "                                <div class=\"col-sm-9 col-md-9\">\n" +
+    "                                    <b class=\"text-capitalize\">{{c.name}}</b>\n" +
+    "                                </div>\n" +
+    "                                <div class=\"col-sm-3 col-md-3\">\n" +
+    "                                    <button class=\"btn btn-primary btn-sm capriola\" ng-click=\"setHotelDetails(c.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">\n" +
+    "                                        <span class=\"glyphicon glyphicon-info-sign \"></span>\n" +
+    "                                    </button>\n" +
+    "                                    <button class=\"btn btn-success btn-sm capriola\" ng-click=\"addHotelItem(c)\">\n" +
+    "                                        <span class=\"glyphicon glyphicon-plus-sign \"></span>\n" +
+    "                                    </button>\n" +
+    "                                </div>\n" +
     "                            </div>\n" +
     "                            <div class=\"row\">\n" +
     "                                <p class=\"capriola\">Address {{c.address}}</p>\n" +
@@ -1283,169 +1246,128 @@ angular.module("city/hotel.tpl.html", []).run(["$templateCache", function($templ
     "                            <div class=\"row\">\n" +
     "                                <p class=\"capriola\">Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
     "                            </div>\n" +
-    "                            <div class=\"row scrollable\" style=\"max-height: 185px;overflow-y: auto\">\n" +
-    "                                <div class=\"text-justify capriola\" >{{c.description}}</div>\n" +
+    "                            <div ng-show=\"c.description != null\" style=\"display: block\">\n" +
+    "                                <div class=\"col-sm-12 col-md-12 panel panel-default scrollable\" style=\"max-height: 165px;overflow-y: auto\">\n" +
+    "                                    <div class=\"text-justify capriola\" >{{c.description}}</div>\n" +
+    "                                </div>\n" +
     "                            </div>\n" +
-    "\n" +
-    "                            </p>\n" +
-    "                        </div>\n" +
-    "                        <div class=\"col-md-3 text-center\">\n" +
-    "\n" +
-    "                        </div>\n" +
+    "                        </p>\n" +
     "                    </div>\n" +
-    "                </span>\n" +
+    "                    <div class=\"col-sm-3 col-md-3 text-center\">\n" +
+    "\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "            </span>\n" +
     "        </div>\n" +
     "    </div>\n" +
     "</div>\n" +
-    "\n" +
-    "\n" +
-    "");
+    "<div ng-show=\"loaderEnabled\">\n" +
+    "    <div class=\"row loader-wait\">\n" +
+    "        <div class=\"loader\">\n" +
+    "            <div class=\"bouncywrap\">\n" +
+    "                <div class=\"dotcon dc1\">\n" +
+    "                    <div class=\"dot\"></div>\n" +
+    "                </div>\n" +
+    "                <div class=\"dotcon dc2\">\n" +
+    "                    <div class=\"dot\"></div>\n" +
+    "                </div>\n" +
+    "                <div class=\"dotcon dc3\">\n" +
+    "                    <div class=\"dot\"></div>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>");
 }]);
 
 angular.module("city/utility.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("city/utility.tpl.html",
-    "    <div class=\"row\">\n" +
-    "        <div class=\"well\">\n" +
-    "            <h1 class=\"text-center capriola\">Utility</h1>\n" +
-    "            <div class=\"list-group\">\n" +
-    "                <div ng-show=\"loaderEnabled\">\n" +
-    "                    <div class=\"panel-body\">\n" +
-    "                        <div class=\"loader\">\n" +
-    "                            <div class=\"bouncywrap\" style=\"margin-top: 700px;\">\n" +
-    "\n" +
-    "                                <div class=\"dotcon dc1\">\n" +
-    "                                    <div class=\"dot\"></div>\n" +
-    "                                </div>\n" +
-    "\n" +
-    "                                <div class=\"dotcon dc2\">\n" +
-    "                                    <div class=\"dot\"></div>\n" +
-    "                                </div>\n" +
-    "\n" +
-    "                                <div class=\"dotcon dc3\">\n" +
-    "                                    <div class=\"dot\"></div>\n" +
-    "                                </div>\n" +
-    "\n" +
+    "<div class=\"row\">\n" +
+    "    <div class=\"well\">\n" +
+    "        <h1 class=\"text-center capriola\">Utility</h1>\n" +
+    "        <div class=\"list-group\">\n" +
+    "            <div ng-show=\"utilitySelection != undefined && utilitySelection.length != 0\">\n" +
+    "                <div class=\"row\" style=\"display: inline\">\n" +
+    "                    <div class=\"text-capitalize item-filter\" >Name:</div>\n" +
+    "                    <input type=\"text\" data-ng-model=\"elementSelectionName\" class=\"capriola\"/>\n" +
+    "                    <div class=\"text-capitalize item-filter\">Order by:</div>\n" +
+    "                    <select data-ng-model=\"elementSelectionOrder\" class=\"item-filter\">\n" +
+    "                        <option value=\"name\" selected>Name</option>\n" +
+    "                        <option value=\"rating\">Rating</option>\n" +
+    "                    </select>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "            <span ng-repeat=\"c in utilitySelection | filter:{name:elementSelectionName} | orderBy:elementSelectionOrder\">\n" +
+    "                <div class=\"list-group-item\">\n" +
+    "                    <div class=\"col-sm-3 col-md-3\">\n" +
+    "                        <div class=\"panel panel-default\">\n" +
+    "                            <div class=\"panel-body image-panel\">\n" +
+    "                                <carousel interval=\"intervalImages\">\n" +
+    "                                    <div ng-if=\"c.photos.length==0\">\n" +
+    "                                        <img ng-src=\"assets/images/empty_photo.png\" style=\"position: center\">\n" +
+    "                                    </div>\n" +
+    "                                    <slide ng-repeat=\"image in c.photos\" active=\"image.active\">\n" +
+    "                                        <img class=\"image-item\" ng-src=\"{{image.image}}\" >\n" +
+    "                                    </slide>\n" +
+    "                                </carousel>\n" +
     "                            </div>\n" +
     "                        </div>\n" +
     "                    </div>\n" +
-    "                </div>\n" +
-    "                <div ng-show=\"utilitySelection != undefined && utilitySelection.length != 0\">\n" +
-    "                    <div class=\"row\" style=\"display: inline\">\n" +
-    "                        <div class=\"text-capitalize item-filter\" >Name:</div>\n" +
-    "                        <input type=\"text\" data-ng-model=\"elementSelectionName\" class=\"capriola\"/>\n" +
-    "                        <div class=\"text-capitalize item-filter\">Order by:</div>\n" +
-    "                        <select data-ng-model=\"elementSelectionOrder\" class=\"item-filter\">\n" +
-    "                            <option value=\"name\" selected>Name</option>\n" +
-    "                            <option value=\"rating\">Rating</option>\n" +
-    "                        </select>\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
-    "                <span ng-repeat=\"c in utilitySelection | filter:{name:elementSelectionName} | orderBy:elementSelectionOrder\">\n" +
-    "                    <div class=\"list-group-item\">\n" +
-    "                        <div class=\"col-md-3\">\n" +
-    "                            <div class=\"row\">\n" +
-    "                                <img class=\"icon-col-centered\" ng-src=\"{{c.icon}}\">\n" +
-    "                            </div>\n" +
-    "                            <div class=\"row\" style=\"padding-top: 50px\">\n" +
-    "                                <button class=\"btn btn-primary capriola\" ng-click=\"setUtilityDetails(c.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">\n" +
-    "                                    More Info\n" +
-    "                                </button>\n" +
-    "                                <button  class=\"btn btn-primary capriola\" ng-click=\"removeUtilityItem(c)\" >\n" +
-    "                                    Remove\n" +
-    "                                </button>\n" +
-    "                            </div>\n" +
-    "                        </div>\n" +
-    "                        <div class=\"col-md-6\" style=\"height:230px\">\n" +
-    "                            <p class=\"list-group-item-text\">\n" +
-    "                            <div class=\"row\">\n" +
-    "                                <b class=\"text-capitalize capriola\">{{c.name}}</b>\n" +
+    "                    <div class=\"col-sm-6 col-md-6\" style=\"height:230px\">\n" +
+    "                        <p class=\"list-group-item-text\">\n" +
+    "                            <div class=\"row capriola\">\n" +
+    "                                <div class=\"col-sm-9 col-md-9\">\n" +
+    "                                    <b class=\"text-capitalize\">{{c.name}}</b>\n" +
+    "                                </div>\n" +
+    "                                <div class=\"col-sm-3 col-md-3\">\n" +
+    "                                    <button class=\"btn btn-primary btn-sm capriola\" ng-click=\"setUtilityDetails(c.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">\n" +
+    "                                        <span class=\"glyphicon glyphicon-info-sign \"></span>\n" +
+    "                                    </button>\n" +
+    "                                    <button class=\"btn btn-danger btn-sm capriola\" ng-click=\"removeUtilityItem(c)\">\n" +
+    "                                        <span class=\"glyphicon glyphicon-minus-sign \"></span>\n" +
+    "                                    </button>\n" +
+    "                                </div>\n" +
     "                            </div>\n" +
     "                            <div class=\"row\">\n" +
-    "                                <div class=\"col-md-3\">\n" +
+    "                                <div class=\"col-sm-3 col-md-3\">\n" +
     "                                    <p class=\"capriola\">Price {{c.price || 'Free'}}</p>\n" +
     "                                </div>\n" +
-    "                                <div class=\"col-md-4\">\n" +
+    "                                <div class=\"col-sm-4 col-md-4\">\n" +
     "                                    <p class=\"capriola\">Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
-    "                            <div class=\"row scrollable\" style=\"max-height: 185px;overflow-y: auto\">\n" +
-    "                                <div class=\"text-justify capriola\">{{c.description}}</div>\n" +
-    "                            </div>\n" +
-    "\n" +
-    "                            </p>\n" +
-    "                        </div>\n" +
-    "                        <div class=\"col-md-3 text-center\">\n" +
-    "                            <div class=\"panel panel-default\">\n" +
-    "                                <div class=\"panel-body image-panel\">\n" +
-    "                                    <carousel interval=\"intervalImages\">\n" +
-    "                                        <div ng-if=\"c.photos.length==0\">\n" +
-    "                                            <img ng-src=\"assets/images/empty_photo.png\" style=\"position: center\">\n" +
-    "\n" +
-    "                                        </div>\n" +
-    "                                        <slide ng-repeat=\"image in c.photos\" active=\"image.active\">\n" +
-    "                                            <img class=\"image-item\" ng-src=\"{{image.image}}\" >\n" +
-    "                                        </slide>\n" +
-    "                                    </carousel>\n" +
+    "                            <div ng-show=\"c.description != null\" style=\"display: block\">\n" +
+    "                                <div class=\"col-sm-12 col-md-12 panel panel-default scrollable\" style=\"max-height: 165px;overflow-y: auto\">\n" +
+    "                                    <div class=\"text-justify capriola\" >{{c.description}}</div>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
-    "                        </div>\n" +
+    "                        </p>\n" +
     "                    </div>\n" +
-    "                </span>\n" +
-    "            </div>\n" +
+    "                    <div class=\"col-sm-3 col-md-3 text-center\">\n" +
     "\n" +
-    "            <div class=\"list-group\">\n" +
-    "                <div class=\"row\" style=\"display: inline\">\n" +
-    "                    <div class=\"text-capitalize item-filter\" >Name:</div>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "            </span>\n" +
+    "        </div>\n" +
+    "        <div class=\"list-group\">\n" +
+    "            <div class=\"row\" style=\"display: inline\">\n" +
+    "                <div class=\"text-capitalize item-filter\" >Name:</div>\n" +
     "                    <input type=\"text\" data-ng-model=\"elementListName\" class=\"capriola\"/>\n" +
     "                    <div class=\"text-capitalize item-filter\">Order by:</div>\n" +
     "                    <select data-ng-model=\"elementListOrder\" class=\"item-filter\">\n" +
     "                        <option value=\"name\" selected>Name</option>\n" +
     "                        <option value=\"rating\">Rating</option>\n" +
     "                    </select>\n" +
-    "                </div>\n" +
-    "                <div infinite-scroll=\"infiniteScroll.nextPage(resource,setLoader)\" infinite-scroll-distance=\"2\" infinite-scroll-disabled=\"infiniteScroll.busy\">\n" +
-    "\n" +
-    "                    <span ng-repeat=\"c in infiniteScroll.itemList | filter:{name:elementListName} | orderBy:elementListOrder\">\n" +
-    "                        <div class=\"list-group-item\">\n" +
-    "                            <div class=\"col-md-3\">\n" +
-    "                            <div class=\"row\">\n" +
-    "                                <img class=\"icon-col-centered\" ng-src=\"{{c.icon}}\">\n" +
-    "                            </div>\n" +
-    "                            <div class=\"row\" style=\"padding-top: 50px\">\n" +
-    "                                <button class=\"btn btn-primary capriola\" ng-click=\"setUtilityDetails(c.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">\n" +
-    "                                    More Info\n" +
-    "                                </button>\n" +
-    "                                <button class=\"btn btn-primary capriola\" ng-click=\"addUtilityItem(c)\">\n" +
-    "                                    Add\n" +
-    "                                </button>\n" +
-    "                            </div>\n" +
-    "                        </div>\n" +
-    "                            <div class=\"col-md-6\" style=\"height:230px\">\n" +
-    "                            <p class=\"list-group-item-text\">\n" +
-    "                            <div class=\"row\">\n" +
-    "                                <b class=\"text-capitalize capriola\">{{c.name}}</b>\n" +
-    "                            </div>\n" +
-    "                            <div class=\"row\">\n" +
-    "                                <div class=\"col-md-3\">\n" +
-    "                                    <p class=\"capriola\">Price {{c.price || 'Free'}}</p>\n" +
-    "                                </div>\n" +
-    "                                <div class=\"col-md-4\">\n" +
-    "                                    <p class=\"capriola\">Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
-    "                                </div>\n" +
-    "                            </div>\n" +
-    "                            <div class=\"row scrollable\" style=\"max-height: 185px;overflow-y: auto\">\n" +
-    "                                <div class=\"text-justify capriola\">{{c.description}}</div>\n" +
-    "                            </div>\n" +
-    "\n" +
-    "                            </p>\n" +
-    "                        </div>\n" +
-    "                            <div class=\"col-md-3 text-center\">\n" +
+    "            </div>\n" +
+    "            <div infinite-scroll=\"infiniteScroll.nextPage(resource,setLoader)\" infinite-scroll-distance=\"2\" infinite-scroll-disabled=\"infiniteScroll.busy\">\n" +
+    "                <span ng-repeat=\"c in infiniteScroll.itemList | filter:{name:elementListName} | orderBy:elementListOrder\">\n" +
+    "                    <div class=\"list-group-item\">\n" +
+    "                        <div class=\"col-sm-3 col-md-3\">\n" +
     "                            <div class=\"panel panel-default\">\n" +
     "                                <div class=\"panel-body image-panel\">\n" +
     "                                    <carousel interval=\"intervalImages\">\n" +
     "                                        <div ng-if=\"c.photos.length==0\">\n" +
     "                                            <img ng-src=\"assets/images/empty_photo.png\" style=\"position: center\">\n" +
-    "\n" +
     "                                        </div>\n" +
     "                                        <slide ng-repeat=\"image in c.photos\" active=\"image.active\">\n" +
     "                                            <img class=\"image-item\" ng-src=\"{{image.image}}\" >\n" +
@@ -1454,12 +1376,62 @@ angular.module("city/utility.tpl.html", []).run(["$templateCache", function($tem
     "                                </div>\n" +
     "                            </div>\n" +
     "                        </div>\n" +
+    "                        <div class=\"col-sm-6 col-md-6\" style=\"height:230px\">\n" +
+    "                            <p class=\"list-group-item-text\">\n" +
+    "                                <div class=\"row capriola\">\n" +
+    "                                    <div class=\"col-sm-9 col-md-9\">\n" +
+    "                                        <b class=\"text-capitalize\">{{c.name}}</b>\n" +
+    "                                    </div>\n" +
+    "                                    <div class=\"col-sm-3 col-md-3\">\n" +
+    "                                        <button class=\"btn btn-primary btn-sm capriola\" ng-click=\"setUtilityDetails(c.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">\n" +
+    "                                            <span class=\"glyphicon glyphicon-info-sign \"></span>\n" +
+    "                                        </button>\n" +
+    "                                        <button class=\"btn btn-success btn-sm capriola\" ng-click=\"addUtilityItem(c)\">\n" +
+    "                                            <span class=\"glyphicon glyphicon-plus-sign \"></span>\n" +
+    "                                        </button>\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                                <div class=\"row\">\n" +
+    "                                    <div class=\"col-sm-3 col-md-3\">\n" +
+    "                                        <p class=\"capriola\">Price {{c.price || 'Free'}}</p>\n" +
+    "                                    </div>\n" +
+    "                                    <div class=\"col-sm-4 col-md-4\">\n" +
+    "                                        <p class=\"capriola\">Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                                <div ng-show=\"c.description != null\" style=\"display: block\">\n" +
+    "                                    <div class=\"col-sm-12 col-md-12 panel panel-default scrollable\" style=\"max-height: 165px;overflow-y: auto\">\n" +
+    "                                        <div class=\"text-justify capriola\" >{{c.description}}</div>\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                            </p>\n" +
+    "                        </div>\n" +
+    "                        <div class=\"col-sm-3 col-md-3 text-center\">\n" +
+    "\n" +
+    "                        </div>\n" +
     "                    </div>\n" +
-    "                    </span>\n" +
+    "                </span>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "<div ng-show=\"loaderEnabled\">\n" +
+    "    <div class=\"row loader-wait\">\n" +
+    "        <div class=\"loader\">\n" +
+    "            <div class=\"bouncywrap\">\n" +
+    "                <div class=\"dotcon dc1\">\n" +
+    "                    <div class=\"dot\"></div>\n" +
+    "                </div>\n" +
+    "                <div class=\"dotcon dc2\">\n" +
+    "                    <div class=\"dot\"></div>\n" +
+    "                </div>\n" +
+    "                <div class=\"dotcon dc3\">\n" +
+    "                    <div class=\"dot\"></div>\n" +
     "                </div>\n" +
     "            </div>\n" +
     "        </div>\n" +
     "    </div>\n" +
+    "</div>\n" +
     "");
 }]);
 
