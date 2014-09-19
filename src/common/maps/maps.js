@@ -11,17 +11,21 @@ component.directive('map', function () {
         directionsService = new google.maps.DirectionsService(),
         geocoder = new google.maps.Geocoder(),
         map,
+
         mapObj;
 
     mapObj = {
         restrict: 'EAC',
         scope: {
+
             origin :'=',       //origin of the direction request (object with lat lng field)
             destination: '=',   //destination of the direction request  (object with lat lng field)
             zoom: '=',
             type: '@',          //type of map
             directions: '@',
-            marker:'='                 //place where to put a marker (object with lat lng field)
+            marker:'=',
+            markerarray:'=',   //place where to put a marker (object with lat lng field)
+            initposition:'='
         },
         replace: true,
         templateUrl: 'maps/maps.tpl.html',
@@ -52,6 +56,17 @@ component.directive('map', function () {
                 if (newValue) {
                     scope.marker = newValue;
                     scope.updateMarkerMap();
+                }
+            }, true);
+
+            scope.$watch('markerarray', function(newValue, oldValue) {
+                if (newValue) {
+                    console.log("updating updateArrayMarkerMap");
+                    
+                    oldmarkerarray  = oldValue;
+                    scope.markerarray = newValue;
+
+                    scope.updateArrayMarkerMap();
                 }
             }, true);
 
@@ -210,6 +225,83 @@ component.directive('map', function () {
                     return infowindow.open(mymap, marker);
                 });
                 infowindow.open(mymap, marker);
+
+            } ;
+
+
+            var  markerarraymap;
+            var oldmarkerarray ;
+            var markersarray = [];
+
+
+            var arrayDiff = function(first,second) {
+                console.log("in array diff");
+                console.log("first");
+                console.log(first);
+                console.log("second");
+                console.log(second);
+
+
+                var result =first.filter(function(i) {return second.indexOf(i) < 0;});
+                console.log("result");
+                console.log(result);
+                return result;
+            };
+
+            var addMarker=function(obj,map) {
+                var place = new google.maps.LatLng(obj.lat,obj.lng,true) ;
+                console.log("inside marker map scope place");
+                console.log(place);
+
+                var marker = new google.maps.Marker({
+                    map: map,
+                    position: place,
+                    animation: google.maps.Animation.DROP
+                });
+                var infowindow = new google.maps.InfoWindow({
+                    content: obj.name !== undefined ? obj.name : ''
+                });
+                google.maps.event.addListener(marker, 'click', function () {
+                    return infowindow.open(map, marker);
+                });
+                infowindow.open(map, marker);
+                return marker;
+            }  ;
+
+
+            scope.updateArrayMarkerMap = function() {
+                var mapOptions = {
+                    zoom: scope.zoom !== undefined ? scope.zoom : 15,
+                    mapTypeId: scope.type.toLowerCase(),
+                    streetViewControl: false
+                };
+                if (markerarraymap === undefined) {
+
+                    markerarraymap = new google.maps.Map(document.getElementById('theMap'), mapOptions);
+                    var place = new google.maps.LatLng(45.46,9.18,true) ;
+
+                    markerarraymap.setCenter(place);
+                }
+
+
+                var toRemove = arrayDiff(oldmarkerarray,scope.markerarray);
+
+                var toAdd = arrayDiff(scope.markerarray, oldmarkerarray);
+                console.log("to add array:");
+                console.log(toAdd);
+
+                angular.forEach(toAdd, function (value, key) {
+                    console.log("to add");
+                    console.log(value);
+
+                    markersarray[value] = addMarker(value,markerarraymap) ;
+
+                });
+
+                angular.forEach(toRemove, function (value, key) {
+                    markersarray[value].setMap(null);
+                    delete markersarray[value];
+                });
 
             } ;
 

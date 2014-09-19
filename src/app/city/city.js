@@ -644,12 +644,23 @@ angular.module( 'trippo.city', [
 
 
 
-.controller( 'CityCtrl', function CityCtrl( $scope, $stateParams, $log , CityRes) {
+.controller( 'CityCtrl', function CityCtrl( $scope, $stateParams, $log , CityRes,SelectionService) {
     $scope.$log = $log;
     $scope.intervalImages = 5000;
     $scope.moreInfoSelection = null;
     $scope.modalEnabled = false;
     $scope.loaderEnabled = true;
+    $scope.markerarray = [];
+
+
+    $scope.$watchCollection(function () { return SelectionService.getSelections($stateParams.city_name); }, function (newVal, oldVal) {
+            $scope.markerarray = SelectionService.getSelections($stateParams.city_name);
+            if(!$scope.$$phase) {
+                $scope.$apply();
+            }
+
+        });
+
 
     $scope.city = CityRes.query({city_name: $stateParams.city_name}, function () {
         $scope.images = $scope.city[0].images;
@@ -798,14 +809,8 @@ angular.module( 'trippo.city', [
                 return foodSelection[city];
             },
 
-            getSelections:function(){
-                return{
-                    listCulture:cultureSelection,
-                    listUtility:utilitySelection,
-                    listHotel:hotelSelection,
-                    listEntertainment:entertainmentSelection,
-                    listFood:foodSelection
-                };
+            getSelections:function(city){
+                return [].concat(cultureSelection[city],entertainmentSelection[city],hotelSelection[city],utilitySelection[city],foodSelection[city]);
             }
          };
     })

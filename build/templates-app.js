@@ -282,6 +282,8 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "            </slide>\n" +
     "        </carousel>\n" +
     "        </div>\n" +
+    "        <map markerarray=\"markerarray\" initposition=\"city\" type=\"roadmap\" class=\"mapContainer\" ></map>\n" +
+    "\n" +
     "    </div>\n" +
     "</div>\n" +
     "\n" +
