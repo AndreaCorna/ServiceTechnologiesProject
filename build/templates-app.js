@@ -282,7 +282,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "            </slide>\n" +
     "        </carousel>\n" +
     "        </div>\n" +
-    "        <map markerarray=\"markerarray\" initposition=\"city\" type=\"roadmap\" class=\"mapContainer\" ></map>\n" +
+    "        <map marker-array=\"markerArray\" map-id=\"cityMap\" initposition=\"city\" type=\"roadmap\" class=\"mapContainer\" ></map>\n" +
     "\n" +
     "    </div>\n" +
     "</div>\n" +
@@ -1814,7 +1814,7 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
     "            </div>\n" +
     "            <div ng-show=\"(origin && destination) || currentMarker\" id=\"scrollingMaps\" class=\"col-md-8 \" >\n" +
     "\n" +
-    "               <map origin=\"origin\" destination=\"destination\" marker=\"currentMarker\" type=\"roadmap\" class=\"mapContainer\" ></map>\n" +
+    "               <map origin=\"origin\" map-id=\"planningMap\" destination=\"destination\" marker=\"currentMarker\" type=\"roadmap\" class=\"mapContainer\" ></map>\n" +
     "\n" +
     "            </div>\n" +
     "        </div>\n" +

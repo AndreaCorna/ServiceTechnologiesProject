@@ -650,11 +650,11 @@ angular.module( 'trippo.city', [
     $scope.moreInfoSelection = null;
     $scope.modalEnabled = false;
     $scope.loaderEnabled = true;
-    $scope.markerarray = undefined;
+    $scope.markerArray = undefined;
 
 
     $scope.$watchCollection(function () { return SelectionService.getSelections($stateParams.city_name); }, function (newVal, oldVal) {
-            $scope.markerarray = SelectionService.getSelections($stateParams.city_name);
+            $scope.markerArray= SelectionService.getSelections($stateParams.city_name);
             if(!$scope.$$phase) {
                 $scope.$apply();
             }
