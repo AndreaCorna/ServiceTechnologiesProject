@@ -63,66 +63,67 @@
                 </div>
             </span>
     </div>
-    <div class="list-group">
-        <div class="row" style="display: inline">
-            <div class="text-capitalize item-filter" >Name:</div>
-            <input type="text" data-ng-model="elementListName" style="font-family: Capriola;"/>
-            <div class="text-capitalize item-filter">Order by:</div>
-            <select data-ng-model="elementListOrder" class="item-filter">
-                <option value="name" selected>Name</option>
-                <option value="rating">Rating</option>
-            </select>
-        </div>
-        <div infinite-scroll="infiniteScroll.nextPage(resource,setLoader)" infinite-scroll-distance="2" infinite-scroll-disabled="infiniteScroll.busy">
-            <span ng-repeat="c in infiniteScroll.itemList | filter:{name:elementListName} | orderBy:elementListOrder">
-                <div class="list-group-item">
-                    <div class="col-sm-3 col-md-3">
-                        <div class="panel panel-default">
-                            <div class="panel-body image-panel">
-                                <carousel interval="intervalImages">
-                                    <div ng-if="c.photos.length==0">
-                                        <img ng-src="assets/images/empty_photo.png" style="position: center">
-                                    </div>
-                                    <slide ng-repeat="image in c.photos" active="image.active">
-                                        <img class="image-item" ng-src="{{image.image}}" >
-                                    </slide>
-                                </carousel>
+        <div class="list-group">
+            <div class="row" style="display: inline">
+                <div class="text-capitalize item-filter" >Name:</div>
+                <input type="text" data-ng-model="elementListName" style="font-family: Capriola;"/>
+                <div class="text-capitalize item-filter">Order by:</div>
+                <select data-ng-model="elementListOrder" class="item-filter">
+                    <option value="name" selected>Name</option>
+                    <option value="rating">Rating</option>
+                </select>
+            </div>
+            <div infinite-scroll="infiniteScroll.nextPage(resource,setLoader)" infinite-scroll-distance="2" infinite-scroll-disabled="infiniteScroll.busy">
+                <span ng-repeat="c in infiniteScroll.itemList | filter:{name:elementListName} | orderBy:elementListOrder">
+                    <div class="list-group-item">
+                        <div class="col-sm-3 col-md-3">
+                            <div class="panel panel-default">
+                                <div class="panel-body image-panel">
+                                    <carousel interval="intervalImages">
+                                        <div ng-if="c.photos.length==0">
+                                            <img ng-src="assets/images/empty_photo.png" style="position: center">
+                                        </div>
+                                        <slide ng-repeat="image in c.photos" active="image.active">
+                                            <img class="image-item" ng-src="{{image.image}}" >
+                                        </slide>
+                                    </carousel>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-sm-6 col-md-6" style="height:230px">
-                        <p class="list-group-item-text">
-                            <div class="row capriola">
-                                <div class="col-sm-9 col-md-9">
-                                    <b class="text-capitalize">{{c.name}}</b>
+                        <div class="col-sm-6 col-md-6" style="height:230px">
+                            <p class="list-group-item-text">
+                                <div class="row capriola">
+                                    <div class="col-sm-9 col-md-9">
+                                        <b class="text-capitalize">{{c.name}}</b>
+                                    </div>
+                                    <div class="col-sm-3 col-md-3">
+                                        <button class="btn btn-primary btn-sm capriola" ng-click="setHotelDetails(c.id)" href="#moreInfoModalPlace" data-toggle="modal">
+                                            <span class="glyphicon glyphicon-info-sign "></span>
+                                        </button>
+                                        <button class="btn btn-success btn-sm capriola" ng-click="addHotelItem(c)">
+                                            <span class="glyphicon glyphicon-plus-sign "></span>
+                                        </button>
+                                    </div>
                                 </div>
-                                <div class="col-sm-3 col-md-3">
-                                    <button class="btn btn-primary btn-sm capriola" ng-click="setHotelDetails(c.id)" href="#moreInfoModalPlace" data-toggle="modal">
-                                        <span class="glyphicon glyphicon-info-sign "></span>
-                                    </button>
-                                    <button class="btn btn-success btn-sm capriola" ng-click="addHotelItem(c)">
-                                        <span class="glyphicon glyphicon-plus-sign "></span>
-                                    </button>
+                                <div class="row">
+                                    <p class="capriola">Address {{c.address}}</p>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <p class="capriola">Address {{c.address}}</p>
-                            </div>
-                            <div class="row">
-                                <p class="capriola">Rating <rating ng-model="c.rating" readonly="true" ></rating></p>
-                            </div>
-                            <div ng-show="c.description != null" style="display: block">
-                                <div class="col-sm-12 col-md-12 panel panel-default scrollable" style="max-height: 165px;overflow-y: auto">
-                                    <div class="text-justify capriola" >{{c.description}}</div>
+                                <div class="row">
+                                    <p class="capriola">Rating <rating ng-model="c.rating" readonly="true" ></rating></p>
                                 </div>
-                            </div>
-                        </p>
-                    </div>
-                    <div class="col-sm-3 col-md-3 text-center">
+                                <div ng-show="c.description != null" style="display: block">
+                                    <div class="col-sm-12 col-md-12 panel panel-default scrollable" style="max-height: 165px;overflow-y: auto">
+                                        <div class="text-justify capriola" >{{c.description}}</div>
+                                    </div>
+                                </div>
+                            </p>
+                        </div>
+                        <div class="col-sm-3 col-md-3 text-center">
 
+                        </div>
                     </div>
-                </div>
-            </span>
+                </span>
+            </div>
         </div>
     </div>
 </div>
