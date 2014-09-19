@@ -3,13 +3,21 @@
         <h1 class="text-center capriola">Culture</h1>
         <div class="list-group">
         <div ng-show="cultureSelection != undefined && cultureSelection.length != 0">
-            <div class="row" style="display: inline">
-                <div class="text-capitalize item-filter" >Name:</div>
-                <input type="text" class="capriola" data-ng-model="elementSelectionName" />                            <div class="text-capitalize item-filter">Order by:</div>
-                <select data-ng-model="elementSelectionOrder" class="item-filter">
-                    <option value="name" selected>Name</option>
-                    <option value="rating">Rating</option>
-                </select>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="col-sm-4 col-md-4" style="display: inline">
+                        <div class="capriola">Search
+                            <input type="text"  placeholder="Name" data-ng-model="elementSelectionName" />
+                        </div>
+                    </div>
+                    <div class="col-sm-4 col-md-4">
+                        <div class="text-capitalize item-filter">Order by:</div>
+                        <select data-ng-model="elementSelectionOrder" class="item-filter">
+                            <option value="name" selected>Name</option>
+                            <option value="rating">Rating</option>
+                        </select>
+                    </div>
+                </div>
             </div>
         </div>
         <span ng-repeat="c in cultureSelection | filter:{name:elementSelectionName} | orderBy:elementSelectionOrder">
@@ -64,14 +72,21 @@
         </div>
         <div class="list-group">
             <div ng-show="infiniteScroll.itemList != null && infiniteScroll.itemList.length !=0">
-                <div class="row" style="display: inline">
-                    <div class="text-capitalize item-filter" >Name:</div>
-                    <input type="text" data-ng-model="elementListName" style="font-family: Capriola;"/>
-                    <div class="text-capitalize item-filter">Order by:</div>
-                    <select data-ng-model="elementListOrder" class="item-filter">
-                        <option value="name" selected>Name</option>
-                        <option value="rating">Rating</option>
-                    </select>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="col-sm-4 col-md-4" style="display: inline">
+                            <div class="capriola">Search
+                                <input type="text"  placeholder="Name" data-ng-model="elementListName" />
+                            </div>
+                        </div>
+                        <div class="col-sm-4 col-md-4">
+                            <div class="text-capitalize item-filter">Order by:</div>
+                            <select data-ng-model="elementListOrder" class="item-filter">
+                                <option value="name" selected>Name</option>
+                                <option value="rating">Rating</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div infinite-scroll="infiniteScroll.nextPage(resource,setLoader)" infinite-scroll-distance="2" infinite-scroll-disabled="infiniteScroll.busy">
