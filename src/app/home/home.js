@@ -50,7 +50,7 @@ angular.module( 'trippo.home', [
             if ($scope.selected_city !== undefined) {
 
                 if ($scope.selected_city.name === undefined) {
-                    $location.path('/city/' + $scope.selected_city + "/culture");
+                    $location.path('/city/' + $scope.selected_city.toLowerCase() + "/culture");
                 }
                 else {
                     $location.path('/city/' + $scope.selected_city.name + "/culture");
