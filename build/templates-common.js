@@ -17,7 +17,7 @@ angular.module("maps/maps.tpl.html", []).run(["$templateCache", function($templa
     "\n" +
     "\n" +
     "\n" +
-    "    <div id=\"theMap\">\n" +
+    "    <div id=\"{{mapId}}\" class=\"theMap\">\n" +
     "    </div>\n" +
     "    <div class=\"directions\" ng-show=\"directions || directions==undefined\">\n" +
     "    </div>\n" +

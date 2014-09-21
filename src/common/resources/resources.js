@@ -45,5 +45,14 @@ angular.module('trippo.resources', [
     var food = $resource("../../city/:city_name/food/:id");
 
     return food;
-}) ;
+})
 
+
+.factory('commonResources',function(FoodRes,HotelRes,EntertainmentRes,CultureRes){
+      return{
+          FoodRes : FoodRes,
+          HotelRes : HotelRes ,
+          EntertainmentRes : EntertainmentRes ,
+          CultureRes : CultureRes
+      } ;
+})  ;

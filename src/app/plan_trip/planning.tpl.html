@@ -231,7 +231,7 @@
             </div>
             <div ng-show="(origin && destination) || currentMarker" id="scrollingMaps" class="col-md-8 " >
 
-               <map origin="origin" destination="destination" marker="currentMarker" type="roadmap" class="mapContainer" ></map>
+               <map origin="origin" map-id="planningMap" destination="destination" marker="currentMarker" type="roadmap" class="mapContainer" ></map>
 
             </div>
         </div>
@@ -244,9 +244,8 @@
 //mantaining the maps on the top of the page when scrolling
 $().ready(function() {
         $(window).scroll(function () {
-            if ($("#planning").top!==undefined) {
-                console.log($("#planning").top);
 
+            if ($("#planning").offset() !==undefined) {
 
                 if ($(window).scrollTop() > $("#planning").offset().top) {
                     $("#scrollingMaps").stop().animate({"marginTop": ($(window).scrollTop() - $("#planning").offset().top) + "px"}, "slow");

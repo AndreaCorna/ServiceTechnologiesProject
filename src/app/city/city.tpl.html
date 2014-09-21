@@ -1,12 +1,17 @@
 <div class="top-view">
     <div class="container " >
         <h3 class="text-capitalize text-center" style="font-family: Capriola;">Welcome to {{city.name}}</h3>
-        <div class="row background-carousel">
-        <carousel interval="intervalImages" class="carousel-fixed-height col-md-8 col-md-offset-2" style="padding: 0px">
-            <slide ng-repeat="image in images" active="image.active" style=" height:100%;width:100%;">
-                <img ng-src="{{image.url}}" style=" height:100%;width:100%;" >
-            </slide>
-        </carousel>
+        <div ng-if="location.path() == '/guides'">
+            <div class="row background-carousel">
+                <carousel interval="intervalImages" class="carousel-fixed-height col-md-8 col-md-offset-2" style="padding: 0px">
+                    <slide ng-repeat="image in images" active="image.active" style=" height:100%;width:100%;">
+                        <img ng-src="{{image.url}}" style=" height:100%;width:100%;" >
+                    </slide>
+                </carousel>
+            </div>
+        </div>
+        <div ng-if="location.path() != '/guides'">
+            <map marker-array="markerArray" map-id="cityMap" initposition="city" type="roadmap" class="mapContainer" ></map>
         </div>
     </div>
 </div>

@@ -275,12 +275,17 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "<div class=\"top-view\">\n" +
     "    <div class=\"container \" >\n" +
     "        <h3 class=\"text-capitalize text-center\" style=\"font-family: Capriola;\">Welcome to {{city.name}}</h3>\n" +
-    "        <div class=\"row background-carousel\">\n" +
-    "        <carousel interval=\"intervalImages\" class=\"carousel-fixed-height col-md-8 col-md-offset-2\" style=\"padding: 0px\">\n" +
-    "            <slide ng-repeat=\"image in images\" active=\"image.active\" style=\" height:100%;width:100%;\">\n" +
-    "                <img ng-src=\"{{image.url}}\" style=\" height:100%;width:100%;\" >\n" +
-    "            </slide>\n" +
-    "        </carousel>\n" +
+    "        <div ng-if=\"location.path() == '/guides'\">\n" +
+    "            <div class=\"row background-carousel\">\n" +
+    "                <carousel interval=\"intervalImages\" class=\"carousel-fixed-height col-md-8 col-md-offset-2\" style=\"padding: 0px\">\n" +
+    "                    <slide ng-repeat=\"image in images\" active=\"image.active\" style=\" height:100%;width:100%;\">\n" +
+    "                        <img ng-src=\"{{image.url}}\" style=\" height:100%;width:100%;\" >\n" +
+    "                    </slide>\n" +
+    "                </carousel>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "        <div ng-if=\"location.path() != '/guides'\">\n" +
+    "            <map marker-array=\"markerArray\" map-id=\"cityMap\" initposition=\"city\" type=\"roadmap\" class=\"mapContainer\" ></map>\n" +
     "        </div>\n" +
     "    </div>\n" +
     "</div>\n" +
@@ -1812,7 +1817,7 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
     "            </div>\n" +
     "            <div ng-show=\"(origin && destination) || currentMarker\" id=\"scrollingMaps\" class=\"col-md-8 \" >\n" +
     "\n" +
-    "               <map origin=\"origin\" destination=\"destination\" marker=\"currentMarker\" type=\"roadmap\" class=\"mapContainer\" ></map>\n" +
+    "               <map origin=\"origin\" map-id=\"planningMap\" destination=\"destination\" marker=\"currentMarker\" type=\"roadmap\" class=\"mapContainer\" ></map>\n" +
     "\n" +
     "            </div>\n" +
     "        </div>\n" +
@@ -1825,9 +1830,8 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
     "//mantaining the maps on the top of the page when scrolling\n" +
     "$().ready(function() {\n" +
     "        $(window).scroll(function () {\n" +
-    "            if ($(\"#planning\").top!==undefined) {\n" +
-    "                console.log($(\"#planning\").top);\n" +
     "\n" +
+    "            if ($(\"#planning\").offset() !==undefined) {\n" +
     "\n" +
     "                if ($(window).scrollTop() > $(\"#planning\").offset().top) {\n" +
     "                    $(\"#scrollingMaps\").stop().animate({\"marginTop\": ($(window).scrollTop() - $(\"#planning\").offset().top) + \"px\"}, \"slow\");\n" +

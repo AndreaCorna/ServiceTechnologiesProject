@@ -644,12 +644,23 @@ angular.module( 'trippo.city', [
 
 
 
-.controller( 'CityCtrl', function CityCtrl( $scope, $stateParams, $log , CityRes) {
+.controller( 'CityCtrl', function CityCtrl( $scope, $stateParams, $log , CityRes,SelectionService) {
     $scope.$log = $log;
     $scope.intervalImages = 5000;
     $scope.moreInfoSelection = null;
     $scope.modalEnabled = false;
     $scope.loaderEnabled = true;
+    $scope.markerArray = undefined;
+
+
+    $scope.$watchCollection(function () { return SelectionService.getSelections($stateParams.city_name); }, function (newVal, oldVal) {
+            $scope.markerArray= SelectionService.getSelections($stateParams.city_name);
+            if(!$scope.$$phase) {
+                $scope.$apply();
+            }
+
+        });
+
 
     $scope.city = CityRes.query({city_name: $stateParams.city_name}, function () {
         $scope.images = $scope.city[0].images;
@@ -690,6 +701,9 @@ angular.module( 'trippo.city', [
             },
 
             getCultureSelection:function (city) {
+                if (cultureSelection[city]=== undefined){
+                    cultureSelection[city] = [];
+                }
                 return cultureSelection[city];
             },
 
@@ -717,6 +731,9 @@ angular.module( 'trippo.city', [
             },
 
             getUtilitySelection:function(city){
+                if (utilitySelection[city]=== undefined){
+                    utilitySelection[city] = [];
+                }
                return utilitySelection[city];
             },
 
@@ -745,6 +762,9 @@ angular.module( 'trippo.city', [
             },
 
             getHotelSelection:function(city){
+                if (hotelSelection[city]=== undefined){
+                    hotelSelection[city] = [];
+                }
                 return hotelSelection[city];
             },
 
@@ -770,6 +790,9 @@ angular.module( 'trippo.city', [
             },
 
             getEntertainmentSelection:function(city){
+                if (entertainmentSelection[city]=== undefined){
+                    entertainmentSelection[city] = [];
+                }
                 return entertainmentSelection[city];
             },
 
@@ -795,17 +818,14 @@ angular.module( 'trippo.city', [
             },
 
             getFoodSelection:function(city){
+                if (foodSelection[city]=== undefined){
+                    foodSelection[city] = [];
+                }
                 return foodSelection[city];
             },
 
-            getSelections:function(){
-                return{
-                    listCulture:cultureSelection,
-                    listUtility:utilitySelection,
-                    listHotel:hotelSelection,
-                    listEntertainment:entertainmentSelection,
-                    listFood:foodSelection
-                };
+            getSelections:function(city){
+                return [].concat(this.getFoodSelection(city),this.getEntertainmentSelection(city),this.getHotelSelection(city),this.getUtilitySelection(city),this.getCultureSelection(city));
             }
          };
     })
