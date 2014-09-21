@@ -6193,12 +6193,6 @@ button.close {
 /**
  * Typography
  */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Roboto Regular'), local('Roboto-Regular'), url(fonts/Roboto-Regular.woff) format('woff');
-}
 html,
 body {
   height: 100%;
@@ -7003,7 +6997,7 @@ a.list-group-item:focus {
     transform: translateX(-40px);
   }
 }
-#theMap {
+.theMap {
   width: 100%;
   height: 400px;
   background: #ccc;
