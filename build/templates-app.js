@@ -285,7 +285,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "            </div>\n" +
     "        </div>\n" +
     "        <div ng-if=\"location.path() != '/guides'\">\n" +
-    "            <map marker-array=\"markerArray\" map-id=\"cityMap\" initposition=\"city\" type=\"roadmap\" class=\"mapContainer\" ></map>\n" +
+    "            <map marker-array-selected=\"markerArraySelected\" map-id=\"cityMap\" initposition=\"city\" type=\"roadmap\" class=\"mapContainer\" ></map>\n" +
     "        </div>\n" +
     "    </div>\n" +
     "</div>\n" +

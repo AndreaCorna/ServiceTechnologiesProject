@@ -24,8 +24,7 @@ component.directive('map', function () {
             type: '@',          //type of map
             directions: '@',
             marker:'=',
-            markerArray:'=',   //place where to put a marker (object with lat lng field)
-            initposition:'=',
+            markerArraySelected:'=',   //place where to put a marker (object with lat lng field)
             mapId:'@'
         },
         replace: true,
@@ -60,7 +59,7 @@ component.directive('map', function () {
                 }
             }, true);
 
-            scope.$watch('markerArray', function(newValue, oldValue) {
+            scope.$watch('markerArraySelected', function(newValue, oldValue) {
                 if (newValue) {
 
                     console.log("updating toRemove");
@@ -200,7 +199,7 @@ component.directive('map', function () {
 
             scope.updateArrayMarkerMap = function(toAdd,toRemove) {
                 var mapOptions = {
-                    zoom: scope.zoom !== undefined ? scope.zoom : 15,
+                    zoom: 13,
                     mapTypeId: scope.type.toLowerCase(),
                     streetViewControl: false
                 };
@@ -220,6 +219,9 @@ component.directive('map', function () {
                 angular.forEach(toAdd, function (value, key) {
 
                     markersarray[value.id] = addMarker(value,markerarraymap) ;
+                    var place = new google.maps.LatLng(value.lat,value.lng,true) ;
+                    markerarraymap.setCenter(place);
+
 
                 });
 
