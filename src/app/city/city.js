@@ -149,7 +149,7 @@ angular.module( 'trippo.city', [
 /**
  * Handle the state of the culture list items of different cities
  */
-.factory("CultureService",function CultureService(CultureRes,InfiniteScrollHandler){
+.factory("CultureService",function CultureService(CultureRes,InfiniteScrollHandler,CityService){
     //hash with  key: "city",  value : array of culture item
     var cultureList=[];
     //hash with key: "city" , value : InfiniteScrollHandler object of the city
@@ -182,8 +182,10 @@ angular.module( 'trippo.city', [
                 callback();
             }
         }
+        CityService.setCultureList(cultureList[city]);
 
-    } ;
+
+        } ;
     var getInfinityScroll = function(city){
         return  infiniteScroll[city];
     } ;
@@ -250,7 +252,7 @@ angular.module( 'trippo.city', [
         });
 })
 
-.factory('EntertainmentService', function EntertainmentService(EntertainmentRes,InfiniteScrollHandler){
+.factory('EntertainmentService', function EntertainmentService(EntertainmentRes,InfiniteScrollHandler,CityService){
         var entertainmentList=[];
         //hash with key: "city" , value : InfiniteScrollHandler object of the city
         var infiniteScroll =[];
@@ -282,6 +284,8 @@ angular.module( 'trippo.city', [
                     callback();
                 }
             }
+            CityService.setEntertainmentList(entertainmentList[city]);
+
 
         } ;
         var getInfinityScroll = function(city){
@@ -347,7 +351,7 @@ angular.module( 'trippo.city', [
         });
 })
 
-.factory('UtilityService', function UtilityService(UtilityRes,InfiniteScrollHandler){
+.factory('UtilityService', function UtilityService(UtilityRes,InfiniteScrollHandler,CityService){
         var utilityList=[];
         //hash with key: "city" , value : InfiniteScrollHandler object of the city
         var infiniteScroll =[];
@@ -379,6 +383,7 @@ angular.module( 'trippo.city', [
                     callback();
                 }
             }
+            CityService.setUtilityList(utilityList[city]);
 
         } ;
         var getInfinityScroll = function(city){
@@ -445,7 +450,7 @@ angular.module( 'trippo.city', [
         });
 })
 
-.factory('HotelService', function HotelService(HotelRes,InfiniteScrollHandler){
+.factory('HotelService', function HotelService(HotelRes,InfiniteScrollHandler,CityService){
         var hotelList=[];
         //hash with key: "city" , value : InfiniteScrollHandler object of the city
         var infiniteScroll =[];
@@ -477,6 +482,7 @@ angular.module( 'trippo.city', [
                     callback();
                 }
             }
+            CityService.setHotelList(hotelList[city]);
 
         } ;
         var getInfinityScroll = function(city){
@@ -541,7 +547,7 @@ angular.module( 'trippo.city', [
         });
 
 })
-.factory('FoodService',function FoodService(FoodRes,InfiniteScrollHandler){
+.factory('FoodService',function FoodService(FoodRes,InfiniteScrollHandler,CityService){
         var foodList=[];
         //hash with key: "city" , value : InfiniteScrollHandler object of the city
         var infiniteScroll =[];
@@ -573,6 +579,7 @@ angular.module( 'trippo.city', [
                     callback();
                 }
             }
+            CityService.setFoodList(foodList[city]);
 
         } ;
         var getInfinityScroll = function(city){
@@ -644,8 +651,7 @@ angular.module( 'trippo.city', [
 
 
 
-.controller( 'CityCtrl', function CityCtrl( $scope, $stateParams, $log , CityRes,SelectionService) {
-    $scope.$log = $log;
+.controller( 'CityCtrl', function CityCtrl($scope,$stateParams,$log,CityRes,SelectionService,CityService) {
     $scope.intervalImages = 5000;
     $scope.moreInfoSelection = null;
     $scope.modalEnabled = false;
@@ -666,6 +672,10 @@ angular.module( 'trippo.city', [
         $scope.images = $scope.city[0].images;
         $scope.city = $scope.city[0].details;
     });
+
+    $scope.setCurrentList = function(data){
+        CityService.setCurrentList(data);
+    };
 
 })
 
