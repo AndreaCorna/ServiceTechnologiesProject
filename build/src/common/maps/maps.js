@@ -159,7 +159,12 @@ component.directive('map', function () {
 
             };
 
+            //Variable to show panel in the map
+            scope.planTripSelected = false;
+
             scope.getDirections = function () {
+                scope.planTripSelected = true;
+
                 var request = {
                     origin: scope.startPoint,
                     destination: scope.endPoint,
@@ -178,6 +183,7 @@ component.directive('map', function () {
 
             scope.updateMarkerMap = function(){
                 console.log("updating marker map");
+                scope.planTripSelected = true;
 
                 var mapOptions = {
                     zoom: scope.zoom !== undefined ? scope.zoom : 15,
@@ -199,9 +205,12 @@ component.directive('map', function () {
              * Handle a list of dinamically added places to the map
              */
             var  markerarraymap;
-            var  markersarray = [];
+            var  markersArraySelection = [];
+            var  markerList = [];
 
             scope.updateArrayMarkerListMap = function() {
+                scope.planTripSelected = false;
+
                 var mapOptions = {
                     zoom: 13,
                     mapTypeId: scope.type.toLowerCase(),
@@ -212,23 +221,28 @@ component.directive('map', function () {
                     markerarraymap = new google.maps.Map(document.getElementById(scope.mapId), mapOptions);
 
                 }
+                angular.forEach(markerList, function (value, key) {
+                    value.setMap(null);
+                    delete markerList[value];
+                });
+
                 console.log("updating updateArrayMarkerListMap markerArrayList:");
-                console.log( scope.markerArrayList     );
+                console.log(scope.markerArrayList);
                 angular.forEach(scope.markerArrayList, function (value, key) {
-                      addMarker(value,markerarraymap,false);
-                        var place = new google.maps.LatLng(value.lat,value.lng,true) ;
-                        markerarraymap.setCenter(place);
+                    markerList.push(addMarker(value,markerarraymap));
+                    var place = new google.maps.LatLng(value.lat,value.lng,true) ;
+                    markerarraymap.setCenter(place);
                 });
 
             } ;
 
             scope.updateArrayMarkerSelectedMap = function(toAdd,toRemove) {
 
-
+                scope.planTripSelected = false;
 
                 angular.forEach(toAdd, function (value, key) {
                     value["selected"] = true;
-                    markersarray[value.id] = addMarker(value,markerarraymap) ;
+                    markersArraySelection[value.id] = addMarker(value,markerarraymap) ;
 
 
 
@@ -236,8 +250,8 @@ component.directive('map', function () {
 
                 angular.forEach(toRemove, function (value, key) {
                     value["selected"] = false;
-                    markersarray[value.id].setMap(null);
-                    delete markersarray[value.id];
+                    markersArraySelection[value.id].setMap(null);
+                    delete markersArraySelection[value.id];
                 });
 
             } ;
