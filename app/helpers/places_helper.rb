@@ -130,7 +130,6 @@ The result is an object with two elements:
       semaphore = Mutex.new
 
       culture_items.each { |place|
-        puts place.to_json
         threads << Thread.new{
           semaphore.synchronize{
             if(!place.nextpagetoken.nil?)
@@ -233,8 +232,6 @@ The result is an object with two elements:
       semaphore = Mutex.new
 
       entertainment_items.each { |place|
-        puts place.to_json
-
         threads << Thread.new {
           semaphore.synchronize{
             if(!place.nextpagetoken.nil?)
