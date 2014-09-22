@@ -14,7 +14,7 @@ module HotelsHelper
       url = 'http://images.travelnow.com'+hotel['thumbNailUrl']
       photos.append(:image=>url)
       description = parse_description(hotel['shortDescription'])
-      hotels_list.append(HotelItem.new(hotel['hotelId'],hotel['latitudine'],hotel['longitudine'],hotel['name'],hotel['hotelRating'],address,photos,'','hotel',description))
+      hotels_list.append(HotelItem.new(hotel['hotelId'],hotel['latitude'],hotel['longitude'],hotel['name'],hotel['hotelRating'],address,photos,'','hotel',description))
       count = count + 1
       if(count == 20)
         count = 0
