@@ -285,18 +285,18 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "            </div>\n" +
     "        </div>\n" +
     "        <div ng-if=\"location.path() != '/guides'\">\n" +
-    "            <map marker-array=\"markerArray\" map-id=\"cityMap\" initposition=\"city\" type=\"roadmap\" class=\"mapContainer\" ></map>\n" +
+    "            <map marker-array-selected=\"markerArraySelected\" marker-array-list=\"markerArrayList\" map-id=\"cityMap\" initposition=\"city\" type=\"roadmap\" class=\"mapContainer\" ></map>\n" +
     "        </div>\n" +
     "    </div>\n" +
     "</div>\n" +
     "\n" +
     "<div id='cssmenu'>\n" +
     "    <ul>\n" +
-    "        <li class='active'><a ui-sref=\"culture\" data-target=\"#\" data-toggle=\"pill\"><span>Culture</span></a></li>\n" +
-    "        <li><a ui-sref=\"entertainment\" data-target=\"#\" data-toggle=\"pill\"><span>Entertainment</span></a></li>\n" +
-    "        <li><a ui-sref=\"hotel\" data-target=\"#\" data-toggle=\"pill\"><span>Hotel</span></a></li>\n" +
-    "        <li><a ui-sref=\"utility\" data-target=\"#\" data-toggle=\"pill\"><span>Utility</span></a></li>\n" +
-    "        <li><a ui-sref=\"food\" data-target=\"#\" data-toggle=\"pill\"><span>Food</span></a></li>\n" +
+    "        <li class='active'><a ui-sref=\"culture\" ng-click=\"setCurrentList('culture')\" data-target=\"#\" data-toggle=\"pill\"><span>Culture</span></a></li>\n" +
+    "        <li><a ui-sref=\"entertainment\" ng-click=\"setCurrentList('entertainment')\" data-target=\"#\" data-toggle=\"pill\"><span>Entertainment</span></a></li>\n" +
+    "        <li><a ui-sref=\"hotel\" ng-click=\"setCurrentList('hotel')\" data-target=\"#\" data-toggle=\"pill\"><span>Hotel</span></a></li>\n" +
+    "        <li><a ui-sref=\"utility\" ng-click=\"setCurrentList('utility')\" data-target=\"#\" data-toggle=\"pill\"><span>Utility</span></a></li>\n" +
+    "        <li><a ui-sref=\"food\" ng-click=\"setCurrentList('food')\" data-target=\"#\" data-toggle=\"pill\"><span>Food</span></a></li>\n" +
     "\n" +
     "\n" +
     "        <li class='last'><a ui-sref=\"dates\" data-target=\"#\" data-toggle=\"pill\"><span>Plan Trip</span></a></li>\n" +

@@ -11,18 +11,18 @@
             </div>
         </div>
         <div ng-if="location.path() != '/guides'">
-            <map marker-array="markerArray" map-id="cityMap" initposition="city" type="roadmap" class="mapContainer" ></map>
+            <map marker-array-selected="markerArraySelected" marker-array-list="markerArrayList" map-id="cityMap" initposition="city" type="roadmap" class="mapContainer" ></map>
         </div>
     </div>
 </div>
 
 <div id='cssmenu'>
     <ul>
-        <li class='active'><a ui-sref="culture" data-target="#" data-toggle="pill"><span>Culture</span></a></li>
-        <li><a ui-sref="entertainment" data-target="#" data-toggle="pill"><span>Entertainment</span></a></li>
-        <li><a ui-sref="hotel" data-target="#" data-toggle="pill"><span>Hotel</span></a></li>
-        <li><a ui-sref="utility" data-target="#" data-toggle="pill"><span>Utility</span></a></li>
-        <li><a ui-sref="food" data-target="#" data-toggle="pill"><span>Food</span></a></li>
+        <li class='active'><a ui-sref="culture" ng-click="setCurrentList('culture')" data-target="#" data-toggle="pill"><span>Culture</span></a></li>
+        <li><a ui-sref="entertainment" ng-click="setCurrentList('entertainment')" data-target="#" data-toggle="pill"><span>Entertainment</span></a></li>
+        <li><a ui-sref="hotel" ng-click="setCurrentList('hotel')" data-target="#" data-toggle="pill"><span>Hotel</span></a></li>
+        <li><a ui-sref="utility" ng-click="setCurrentList('utility')" data-target="#" data-toggle="pill"><span>Utility</span></a></li>
+        <li><a ui-sref="food" ng-click="setCurrentList('food')" data-target="#" data-toggle="pill"><span>Food</span></a></li>
 
 
         <li class='last'><a ui-sref="dates" data-target="#" data-toggle="pill"><span>Plan Trip</span></a></li>
