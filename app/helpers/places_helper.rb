@@ -9,6 +9,14 @@ module PlacesHelper
 
   module UtilityHelperCity
 
+=begin
+The method returns the utility items of the city passed as param.
+The items' types are:
+airport','atm','bank','bus_station','doctor','fire_station','hospital','parking','pharmacy','police','subway_station','taxi_stand','train_station','embassy'.
+The result is an object with two elements:
+-results → contains the list of items;
+-token → contains the token to be used to load more result.
+=end
     def get_utility_items(city)
       client = GooglePlaces::Client.new(ENV['API_KEY'])
       location = City.find_by_name(city)
@@ -43,6 +51,13 @@ module PlacesHelper
 
     end
 
+=begin
+The method returns more item related to utility category of the city, using the
+token passed as param.
+The result is an object with two elements:
+-results → contains the list of items;
+-token → contains the token to be used to load more result.
+=end
     def get_utility_others(token,city)
       client = GooglePlaces::Client.new(ENV['API_KEY'])
       utility_items= client.spots_by_pagetoken(token)
@@ -95,6 +110,14 @@ module PlacesHelper
   module CultureHelperCity
     include FreebaseHelper
 
+=begin
+The method returns the culture items of the city passed as param.
+The items' types are:
+'library','book_store','museum','aquarium','art_gallery','church'.
+The result is an object with two elements:
+-results → contains the list of items;
+-token → contains the token to be used to load more result.
+=end
     def get_culture_items(city)
       client = GooglePlaces::Client.new(ENV['API_KEY'])
       location = City.find_by_name(city)
@@ -130,6 +153,13 @@ module PlacesHelper
 
     end
 
+=begin
+The method returns more item related to culture category of the city, using the
+token passed as param.
+The result is an object with two elements:
+-results → contains the list of items;
+-token → contains the token to be used to load more result.
+=end
     def get_culture_others(token,city)
       client = GooglePlaces::Client.new(ENV['API_KEY'])
       culture_items= client.spots_by_pagetoken(token)
@@ -183,7 +213,14 @@ module PlacesHelper
   end
 
   module EntertainmentHelperCity
-
+=begin
+The method returns the entertainment items of the city passed as param.
+The items' types are:
+'amusement_park','casino','gym','zoo','spa','park','movie_theater'.
+The result is an object with two elements:
+-results → contains the list of items;
+-token → contains the token to be used to load more result.
+=end
     def get_entertainment_items(city)
       client = GooglePlaces::Client.new(ENV['API_KEY'])
       location = City.find_by_name(city)
@@ -220,6 +257,13 @@ module PlacesHelper
 
     end
 
+=begin
+The method returns more item related to entertainment category of the city, using the
+token passed as param.
+The result is an object with two elements:
+-results → contains the list of items;
+-token → contains the token to be used to load more result.
+=end
     def get_entertainment_others(token,city)
       client = GooglePlaces::Client.new(ENV['API_KEY'])
       entertainment_items= client.spots_by_pagetoken(token)
@@ -272,7 +316,13 @@ module PlacesHelper
   end
 
   module FoodHelperCity
-
+=begin
+The method returns the food items of the city passed as param.
+The items' types are:
+'food','restaurant','cafe','bakery'The result is an object with two elements:
+-results → contains the list of items;
+-token → contains the token to be used to load more result.
+=end
     def get_food_items(city)
       client = GooglePlaces::Client.new(ENV['API_KEY'])
       location = City.find_by_name(city)
@@ -307,6 +357,13 @@ module PlacesHelper
 
     end
 
+=begin
+The method returns more item related to food category of the city, using the
+token passed as param.
+The result is an object with two elements:
+-results → contains the list of items;
+-token → contains the token to be used to load more result.
+=end
     def get_food_others(token,city)
       client = GooglePlaces::Client.new(ENV['API_KEY'])
       food_items= client.spots_by_pagetoken(token)
@@ -391,6 +448,7 @@ module PlacesHelper
     return details_item
   end
 
+  private
   def parse_open_hours(data)
     open_hours = Array.new(7)
     open_hours.each do |object|
