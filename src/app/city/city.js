@@ -651,16 +651,30 @@ angular.module( 'trippo.city', [
 
 
 
-.controller( 'CityCtrl', function CityCtrl($scope,$stateParams,$log,CityRes,SelectionService,CityService) {
+.controller( 'CityCtrl', function CityCtrl( $scope, $stateParams, $log , CityRes,SelectionService, CityService) {
     $scope.intervalImages = 5000;
     $scope.moreInfoSelection = null;
     $scope.modalEnabled = false;
     $scope.loaderEnabled = true;
-    $scope.markerArray = undefined;
+    $scope.markerArraySelected = undefined;
+    $scope.markerArrayList = CityService.getCurrentList();
+
+    $scope.$watchCollection(function () { return CityService.getCurrentList(); }, function (newVal, oldVal) {
+        $scope.markerArraySelected= CityService.getCurrentList();
+        console.log("updating");
+        console.log($scope.markerArraySelected);
+
+
+        if(!$scope.$$phase) {
+            $scope.$apply();
+        }
+
+    });
+        
 
 
     $scope.$watchCollection(function () { return SelectionService.getSelections($stateParams.city_name); }, function (newVal, oldVal) {
-            $scope.markerArray= SelectionService.getSelections($stateParams.city_name);
+            $scope.markerArrayList= SelectionService.getSelections($stateParams.city_name);
             if(!$scope.$$phase) {
                 $scope.$apply();
             }
@@ -677,7 +691,89 @@ angular.module( 'trippo.city', [
         CityService.setCurrentList(data);
     };
 
+
+
 })
+
+.factory('CityService', function ($state) {
+        var current_list = [];
+
+        var culture_list;
+        var utility_list;
+        var food_list;
+        var hotel_list;
+        var entertainment_list;
+
+
+        var setEntertainmentList = function(list){
+            entertainment_list = list;
+            setCurrentList('entertainment');
+        } ;
+        var setUtilityList = function(list){
+            utility_list = list;
+            setCurrentList('utility');
+
+        } ;
+        var setHotelList = function(list){
+            hotel_list = list;
+            setCurrentList('hotel');
+
+        } ;
+        var setFoodList = function(list){
+            food_list = list;
+            setCurrentList('food');
+
+        } ;
+        var setCultureList = function(list){
+            culture_list =list;
+            setCurrentList('culture');
+
+        } ;
+        var getStringAfterLastSlash=function(string){
+            var parts = string.split("/");
+            return parts.pop() ;
+        } ;
+        var setCurrentList= function(mylocation){
+            console.log("href di culture");
+            console.log(getStringAfterLastSlash($state.href("culture")));
+            console.log("location path");
+            console.log(mylocation);
+
+            switch (mylocation){
+                 case getStringAfterLastSlash($state.href("culture")):
+                    current_list = culture_list;
+                     console.log(current_list);
+
+                    break;
+                case getStringAfterLastSlash($state.href("entertainment")):
+                    current_list = entertainment_list;
+                    break;
+                case getStringAfterLastSlash($state.href("utility")):
+                    current_list = utility_list;
+                    break;
+                case getStringAfterLastSlash($state.href("hotel")):
+                    current_list = hotel_list;
+                    break;
+                case getStringAfterLastSlash($state.href("food")):
+                    current_list = food_list;
+                    break;
+
+            }
+
+        }  ;
+        var getCurrentList = function(){
+            return current_list;
+        } ;
+        return {
+            getCurrentList :getCurrentList,
+            setCurrentList : setCurrentList,
+            setCultureList : setCultureList,
+            setEntertainmentList : setEntertainmentList,
+            setUtilityList :setUtilityList,
+            setHotelList : setHotelList,
+            setFoodList : setFoodList
+        }  ;
+    })
 
 
 .service('SelectionService',function(CultureService,EntertainmentService,FoodService,UtilityService,HotelService){
