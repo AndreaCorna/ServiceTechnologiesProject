@@ -69,7 +69,7 @@ component.directive('map', function () {
                     var toAdd = arrayDiff(newValue, oldValue);
                     console.log("updating updateArrayMarkerMap");
 
-                    scope.updateArrayMarkerMap(toAdd,toRemove);
+                    scope.updateArrayMarkerSelectedMap(toAdd,toRemove);
                 }
             }, true);
 
@@ -191,23 +191,32 @@ component.directive('map', function () {
             } ;
 
 
+
             /**
              * Handle a list of dinamically added places to the map
              */
             var  markerarraymap;
             var  markersarray = [];
 
-            scope.updateArrayMarkerMap = function(toAdd,toRemove) {
+            scope.updateArrayMarkerListMap = function() {
+                if (markerarraymap === undefined) {
+
+
+                    markerarraymap = new google.maps.Map(document.getElementById(scope.mapId), mapOptions);
+                    var place = new google.maps.LatLng(45.46,9.18,true) ;
+
+                    markerarraymap.setCenter(place);
+                }
+            }
+
+            scope.updateArrayMarkerSelectedMap = function(toAdd,toRemove) {
                 var mapOptions = {
                     zoom: 13,
                     mapTypeId: scope.type.toLowerCase(),
                     streetViewControl: false
                 };
                 if (markerarraymap === undefined) {
-                    console.log("mapid");
 
-                    console.log(scope.mapId);
-                    console.log(document.getElementById(scope.mapId));
 
                     markerarraymap = new google.maps.Map(document.getElementById(scope.mapId), mapOptions);
                     var place = new google.maps.LatLng(45.46,9.18,true) ;

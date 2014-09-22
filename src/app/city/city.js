@@ -170,8 +170,9 @@ angular.module( 'trippo.city', [
 
                //creating infinity scrollhandler for this city
                 infiniteScroll[city] = new InfiniteScrollHandler(token,cultureList[city]);
+                CityService.setCultureList(cultureList[city]);
 
-                 //calling callback function
+                //calling callback function
                 if (typeof callback == 'function'){
                     callback();
                 }
@@ -181,8 +182,9 @@ angular.module( 'trippo.city', [
             if (typeof callback == 'function'){
                 callback();
             }
+            CityService.setCultureList(cultureList[city]);
+
         }
-        CityService.setCultureList(cultureList[city]);
 
 
         } ;
@@ -656,12 +658,15 @@ angular.module( 'trippo.city', [
     $scope.moreInfoSelection = null;
     $scope.modalEnabled = false;
     $scope.loaderEnabled = true;
-    $scope.markerArraySelected = undefined;
-    $scope.markerArrayList = CityService.getCurrentList();
+    $scope.markerArraySelected = CityService.getCurrentList();
+    $scope.markerArrayList = undefined;
+        console.log("markerArraySelected");
+        console.log( $scope.markerArraySelected);
+
 
     $scope.$watchCollection(function () { return CityService.getCurrentList(); }, function (newVal, oldVal) {
         $scope.markerArraySelected= CityService.getCurrentList();
-        console.log("updating");
+        console.log("updating in city");
         console.log($scope.markerArraySelected);
 
 
@@ -725,6 +730,9 @@ angular.module( 'trippo.city', [
 
         } ;
         var setCultureList = function(list){
+            console.log("set culture list in city Service");
+            console.log(list);
+
             culture_list =list;
             setCurrentList('culture');
 
@@ -734,14 +742,16 @@ angular.module( 'trippo.city', [
             return parts.pop() ;
         } ;
         var setCurrentList= function(mylocation){
-            console.log("href di culture");
+
             console.log(getStringAfterLastSlash($state.href("culture")));
-            console.log("location path");
-            console.log(mylocation);
+            console.log("setting current list "+mylocation);
+
 
             switch (mylocation){
                  case getStringAfterLastSlash($state.href("culture")):
                     current_list = culture_list;
+                     console.log("settinc culture list in Setcurrent list");
+                     
                      console.log(current_list);
 
                     break;
