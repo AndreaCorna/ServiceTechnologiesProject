@@ -171,6 +171,7 @@ angular.module( 'trippo.city', [
                //creating infinity scrollhandler for this city
                 infiniteScroll[city] = new InfiniteScrollHandler(token,cultureList[city]);
 
+                CityService.setCultureList(cultureList[city]);
                  //calling callback function
                 if (typeof callback == 'function'){
                     callback();
@@ -181,8 +182,9 @@ angular.module( 'trippo.city', [
             if (typeof callback == 'function'){
                 callback();
             }
+            CityService.setCultureList(cultureList[city]);
         }
-        CityService.setCultureList(cultureList[city]);
+
 
 
         } ;
@@ -672,6 +674,9 @@ angular.module( 'trippo.city', [
 
     $scope.$watchCollection(function () { return CityService.getCurrentList(); }, function (newVal, oldVal) {
         $scope.markerArrayList= CityService.getCurrentList();
+        console.log("updating markerArrayList");
+
+
         if(!$scope.$$phase) {
             $scope.$apply();
         }

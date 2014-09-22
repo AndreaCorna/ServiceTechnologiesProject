@@ -25,6 +25,7 @@ component.directive('map', function () {
             directions: '@',
             marker:'=',
             markerArraySelected:'=',   //place where to put a marker (object with lat lng field)
+            markerArrayList : '=',
             mapId:'@'
         },
         replace: true,
@@ -62,14 +63,16 @@ component.directive('map', function () {
             scope.$watch('markerArraySelected', function(newValue, oldValue) {
                 if (newValue) {
 
-                    console.log("updating toRemove");
                     var toRemove = arrayDiff(oldValue,newValue);
-                    console.log("updating toAdd");
-
                     var toAdd = arrayDiff(newValue, oldValue);
-                    console.log("updating updateArrayMarkerMap");
-
                     scope.updateArrayMarkerSelectedMap(toAdd,toRemove);
+                }
+            }, true);
+
+            scope.$watch('markerArrayList', function(newValue, oldValue) {
+                if (newValue) {
+                    scope.markerArrayList = newValue;
+                    scope.updateArrayMarkerListMap();
                 }
             }, true);
 
@@ -199,17 +202,6 @@ component.directive('map', function () {
             var  markersarray = [];
 
             scope.updateArrayMarkerListMap = function() {
-                if (markerarraymap === undefined) {
-
-
-                    markerarraymap = new google.maps.Map(document.getElementById(scope.mapId), mapOptions);
-                    var place = new google.maps.LatLng(45.46,9.18,true) ;
-
-                    markerarraymap.setCenter(place);
-                }
-            }
-
-            scope.updateArrayMarkerSelectedMap = function(toAdd,toRemove) {
                 var mapOptions = {
                     zoom: 13,
                     mapTypeId: scope.type.toLowerCase(),
@@ -217,24 +209,33 @@ component.directive('map', function () {
                 };
                 if (markerarraymap === undefined) {
 
-
                     markerarraymap = new google.maps.Map(document.getElementById(scope.mapId), mapOptions);
-                    var place = new google.maps.LatLng(45.46,9.18,true) ;
 
-                    markerarraymap.setCenter(place);
                 }
+                console.log("updating updateArrayMarkerListMap markerArrayList:");
+                console.log( scope.markerArrayList     );
+                angular.forEach(scope.markerArrayList, function (value, key) {
+                      addMarker(value,markerarraymap,false);
+                        var place = new google.maps.LatLng(value.lat,value.lng,true) ;
+                        markerarraymap.setCenter(place);
+                });
+
+            } ;
+
+            scope.updateArrayMarkerSelectedMap = function(toAdd,toRemove) {
+
 
 
                 angular.forEach(toAdd, function (value, key) {
-
+                    value["selected"] = true;
                     markersarray[value.id] = addMarker(value,markerarraymap) ;
-                    var place = new google.maps.LatLng(value.lat,value.lng,true) ;
-                    markerarraymap.setCenter(place);
+
 
 
                 });
 
                 angular.forEach(toRemove, function (value, key) {
+                    value["selected"] = false;
                     markersarray[value.id].setMap(null);
                     delete markersarray[value.id];
                 });
@@ -254,10 +255,43 @@ component.directive('map', function () {
                 console.log("inside marker map scope place");
                 console.log(place);
 
+                //changing icon based on attribute
+                var iconBase = 'assets/images/maps/';
+                var icons = {
+                    notselected: {
+                        icon: iconBase + 'notselectedmarker.png'
+                    },
+                    food: {
+                        icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+                    },
+                    utility: {
+                        icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+                    } ,
+                    entertainment: {
+                        icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+                    },
+                    hotel: {
+                        icon:  'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+                    },
+                    culture: {
+                        icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+                    }
+                };
+
+               var markerIcon;
+                if (!obj.selected) {
+                    markerIcon = icons.notselected.icon;
+                }
+                else {
+                    markerIcon = icons[obj.tag].icon  ;
+                }
+
+
                 var marker = new google.maps.Marker({
                     map: map,
                     position: place,
-                    animation: google.maps.Animation.DROP
+                    animation: google.maps.Animation.DROP ,
+                    icon :markerIcon
                 });
                 var infowindow = new google.maps.InfoWindow({
                     content: obj.name !== undefined ? obj.name : ''
