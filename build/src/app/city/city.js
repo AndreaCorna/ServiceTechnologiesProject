@@ -149,7 +149,7 @@ angular.module( 'trippo.city', [
 /**
  * Handle the state of the culture list items of different cities
  */
-.factory("CultureService",function CultureService(CultureRes,InfiniteScrollHandler){
+.factory("CultureService",function CultureService(CultureRes,InfiniteScrollHandler,CityService){
     //hash with  key: "city",  value : array of culture item
     var cultureList=[];
     //hash with key: "city" , value : InfiniteScrollHandler object of the city
@@ -171,6 +171,7 @@ angular.module( 'trippo.city', [
                //creating infinity scrollhandler for this city
                 infiniteScroll[city] = new InfiniteScrollHandler(token,cultureList[city]);
 
+                CityService.setCultureList(cultureList[city]);
                  //calling callback function
                 if (typeof callback == 'function'){
                     callback();
@@ -181,9 +182,12 @@ angular.module( 'trippo.city', [
             if (typeof callback == 'function'){
                 callback();
             }
+            CityService.setCultureList(cultureList[city]);
         }
 
-    } ;
+
+
+        } ;
     var getInfinityScroll = function(city){
         return  infiniteScroll[city];
     } ;
@@ -250,7 +254,7 @@ angular.module( 'trippo.city', [
         });
 })
 
-.factory('EntertainmentService', function EntertainmentService(EntertainmentRes,InfiniteScrollHandler){
+.factory('EntertainmentService', function EntertainmentService(EntertainmentRes,InfiniteScrollHandler,CityService){
         var entertainmentList=[];
         //hash with key: "city" , value : InfiniteScrollHandler object of the city
         var infiniteScroll =[];
@@ -268,6 +272,8 @@ angular.module( 'trippo.city', [
                     //initialize cultureList[city] with the data coming from the api call
                     entertainmentList[city] = cult[0].results;
 
+                    CityService.setEntertainmentList(entertainmentList[city]);
+
                     //creating infinity scrollhandler for this city
                     infiniteScroll[city] = new InfiniteScrollHandler(token,entertainmentList[city]);
 
@@ -281,7 +287,10 @@ angular.module( 'trippo.city', [
                 if (typeof callback == 'function'){
                     callback();
                 }
+                CityService.setEntertainmentList(entertainmentList[city]);
+
             }
+
 
         } ;
         var getInfinityScroll = function(city){
@@ -347,7 +356,7 @@ angular.module( 'trippo.city', [
         });
 })
 
-.factory('UtilityService', function UtilityService(UtilityRes,InfiniteScrollHandler){
+.factory('UtilityService', function UtilityService(UtilityRes,InfiniteScrollHandler,CityService){
         var utilityList=[];
         //hash with key: "city" , value : InfiniteScrollHandler object of the city
         var infiniteScroll =[];
@@ -365,6 +374,8 @@ angular.module( 'trippo.city', [
                     //initialize cultureList[city] with the data coming from the api call
                     utilityList[city] = cult[0].results;
 
+                    CityService.setUtilityList(utilityList[city]);
+
                     //creating infinity scrollhandler for this city
                     infiniteScroll[city] = new InfiniteScrollHandler(token,utilityList[city]);
 
@@ -378,6 +389,8 @@ angular.module( 'trippo.city', [
                 if (typeof callback == 'function'){
                     callback();
                 }
+                CityService.setUtilityList(utilityList[city]);
+
             }
 
         } ;
@@ -445,7 +458,7 @@ angular.module( 'trippo.city', [
         });
 })
 
-.factory('HotelService', function HotelService(HotelRes,InfiniteScrollHandler){
+.factory('HotelService', function HotelService(HotelRes,InfiniteScrollHandler,CityService){
         var hotelList=[];
         //hash with key: "city" , value : InfiniteScrollHandler object of the city
         var infiniteScroll =[];
@@ -463,6 +476,8 @@ angular.module( 'trippo.city', [
                     //initialize cultureList[city] with the data coming from the api call
                     hotelList[city] = cult[0].results;
 
+                    CityService.setHotelList(hotelList[city]);
+
                     //creating infinity scrollhandler for this city
                     infiniteScroll[city] = new InfiniteScrollHandler(token,hotelList[city]);
 
@@ -476,6 +491,8 @@ angular.module( 'trippo.city', [
                 if (typeof callback == 'function'){
                     callback();
                 }
+                CityService.setHotelList(hotelList[city]);
+
             }
 
         } ;
@@ -541,7 +558,7 @@ angular.module( 'trippo.city', [
         });
 
 })
-.factory('FoodService',function FoodService(FoodRes,InfiniteScrollHandler){
+.factory('FoodService',function FoodService(FoodRes,InfiniteScrollHandler,CityService){
         var foodList=[];
         //hash with key: "city" , value : InfiniteScrollHandler object of the city
         var infiniteScroll =[];
@@ -559,6 +576,8 @@ angular.module( 'trippo.city', [
                     //initialize cultureList[city] with the data coming from the api call
                     foodList[city] = cult[0].results;
 
+                    CityService.setFoodList(foodList[city]);
+
                     //creating infinity scrollhandler for this city
                     infiniteScroll[city] = new InfiniteScrollHandler(token,foodList[city]);
 
@@ -572,6 +591,8 @@ angular.module( 'trippo.city', [
                 if (typeof callback == 'function'){
                     callback();
                 }
+                CityService.setFoodList(foodList[city]);
+
             }
 
         } ;
@@ -644,22 +665,31 @@ angular.module( 'trippo.city', [
 
 
 
-.controller( 'CityCtrl', function CityCtrl( $scope, $stateParams, $log , CityRes,SelectionService) {
-    $scope.$log = $log;
+.controller( 'CityCtrl', function CityCtrl( $scope, $stateParams, CityRes,SelectionService, CityService) {
     $scope.intervalImages = 5000;
-    $scope.moreInfoSelection = null;
     $scope.modalEnabled = false;
     $scope.loaderEnabled = true;
-    $scope.markerArray = undefined;
+    $scope.markerArraySelected = [];
+    $scope.markerArrayList = CityService.getCurrentList();
 
+    $scope.$watchCollection(function () { return CityService.getCurrentList(); }, function (newVal, oldVal) {
+        $scope.markerArrayList= CityService.getCurrentList();
+        console.log("updating markerArrayList");
+
+
+        if(!$scope.$$phase) {
+            $scope.$apply();
+        }
+
+    });
 
     $scope.$watchCollection(function () { return SelectionService.getSelections($stateParams.city_name); }, function (newVal, oldVal) {
-            $scope.markerArray= SelectionService.getSelections($stateParams.city_name);
+            $scope.markerArraySelected= SelectionService.getSelections($stateParams.city_name);
             if(!$scope.$$phase) {
                 $scope.$apply();
             }
 
-        });
+    });
 
 
     $scope.city = CityRes.query({city_name: $stateParams.city_name}, function () {
@@ -667,7 +697,91 @@ angular.module( 'trippo.city', [
         $scope.city = $scope.city[0].details;
     });
 
+    $scope.setCurrentList = function(data){
+        CityService.setCurrentList(data);
+    };
+
+
+
 })
+
+.factory('CityService', function ($state) {
+        var current_list = [];
+
+        var culture_list = [];
+        var utility_list = [];
+        var food_list = [];
+        var hotel_list = [];
+        var entertainment_list = [];
+
+
+        var setEntertainmentList = function(list){
+            entertainment_list = list;
+            setCurrentList('entertainment');
+        } ;
+        var setUtilityList = function(list){
+            utility_list = list;
+            setCurrentList('utility');
+
+        } ;
+        var setHotelList = function(list){
+            hotel_list = list;
+            setCurrentList('hotel');
+
+        } ;
+        var setFoodList = function(list){
+            food_list = list;
+            setCurrentList('food');
+
+        } ;
+        var setCultureList = function(list){
+            culture_list =list;
+            setCurrentList('culture');
+
+        } ;
+        var getStringAfterLastSlash=function(string){
+            var parts = string.split("/");
+            return parts.pop() ;
+        } ;
+        var setCurrentList= function(mylocation){
+            console.log("href di culture");
+            console.log(getStringAfterLastSlash($state.href("culture")));
+            console.log("location path");
+            console.log(mylocation);
+
+            switch (mylocation){
+                 case getStringAfterLastSlash($state.href("culture")):
+                    current_list = culture_list;
+                    break;
+                case getStringAfterLastSlash($state.href("entertainment")):
+                    current_list = entertainment_list;
+                    break;
+                case getStringAfterLastSlash($state.href("utility")):
+                    current_list = utility_list;
+                    break;
+                case getStringAfterLastSlash($state.href("hotel")):
+                    current_list = hotel_list;
+                    break;
+                case getStringAfterLastSlash($state.href("food")):
+                    current_list = food_list;
+                    break;
+
+            }
+
+        }  ;
+        var getCurrentList = function(){
+            return current_list;
+        } ;
+        return {
+            getCurrentList :getCurrentList,
+            setCurrentList : setCurrentList,
+            setCultureList : setCultureList,
+            setEntertainmentList : setEntertainmentList,
+            setUtilityList :setUtilityList,
+            setHotelList : setHotelList,
+            setFoodList : setFoodList
+        }  ;
+    })
 
 
 .service('SelectionService',function(CultureService,EntertainmentService,FoodService,UtilityService,HotelService){
