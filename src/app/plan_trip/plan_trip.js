@@ -474,6 +474,8 @@ angular.module('trippo.plan',[
 
             return PlanningService.getItemClass(item);
         };
+        $scope.dateFormat = DatesService.dateFormat;
+
 
     })
 

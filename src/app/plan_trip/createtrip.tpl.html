@@ -50,6 +50,7 @@
                     <div class="panel-heading no-radius  bigger-accordition" data-toggle="collapse" data-parent="#{{date.format('DD-MM-YYYY')}}" data-target="#{{date.format('DD-MM-YYYY')}}List">
                         <h4 class="panel-title bigger-title">
                             <a class="accordion-toggle bigger-title" >{{date.format('dddd DD  MMMM YYYY')}}</a>
+                            <button class="btn btn-primary btn-outlined z-up" style="float: right;font-size: 17px;margin-right: 5px;" ui-sref="planning({date:date.format(dateFormat)})">EDIT</button>
                         </h4>
                     </div>
                     <div id="{{date.format('DD-MM-YYYY')}}List" class="panel-collapse collapse">

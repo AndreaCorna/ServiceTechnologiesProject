@@ -1614,11 +1614,12 @@ angular.module("plan_trip/createtrip.tpl.html", []).run(["$templateCache", funct
     "                    <div class=\"panel-heading no-radius  bigger-accordition\" data-toggle=\"collapse\" data-parent=\"#{{date.format('DD-MM-YYYY')}}\" data-target=\"#{{date.format('DD-MM-YYYY')}}List\">\n" +
     "                        <h4 class=\"panel-title bigger-title\">\n" +
     "                            <a class=\"accordion-toggle bigger-title\" >{{date.format('dddd DD  MMMM YYYY')}}</a>\n" +
+    "                            <button class=\"btn btn-primary btn-outlined z-up\" style=\"float: right;font-size: 17px;margin-right: 5px;\" ui-sref=\"planning({date:date.format(dateFormat)})\">EDIT</button>\n" +
     "                        </h4>\n" +
     "                    </div>\n" +
     "                    <div id=\"{{date.format('DD-MM-YYYY')}}List\" class=\"panel-collapse collapse\">\n" +
     "                        <div class=\"panel-body\">\n" +
-    "                            <div  class=\"timeline-centered\"  >\n" +
+    "                            <div  class=\"timeline-centered\"  style=\"margin-bottom: 0px\">\n" +
     "                                <div class=\"row\">\n" +
     "                                    <div class=\"timeline-list col-md-4 col-md-offset-4\">\n" +
     "                                        <div class=\"row\" ng-repeat=\"item in getDayProgram(date)\">\n" +
@@ -2000,7 +2001,7 @@ angular.module("plan_trip/trip_dates.tpl.html", []).run(["$templateCache", funct
     "\n" +
     "</div>\n" +
     "<div class=\"col-md-12 text-center\" ng-show=\"dates.length\">\n" +
-    "    <button name=\"createbutton\" ui-sref=\"createtrip\" class=\"btn btn-primary btn-outlined big-button\">Create my Trip</button>\n" +
+    "    <button name=\"createbutton\" ui-sref=\"createtrip\" class=\"btn btn-primary btn-outlined big-button\" style=\"margin-bottom: 30px\">CREATE MY TRIP</button>\n" +
     "</div>\n" +
     "\n" +
     "\n" +
