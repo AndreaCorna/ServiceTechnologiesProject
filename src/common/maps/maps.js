@@ -62,9 +62,20 @@ component.directive('map', function () {
 
             scope.$watch('markerArraySelected', function(newValue, oldValue) {
                 if (newValue) {
+                    console.log('odl');
 
+                    console.log(oldValue);
+
+                    console.log(newValue);
+                    console.log('change');
+                    console.log(scope.markerArraySelected);
                     var toRemove = arrayDiff(oldValue,newValue);
                     var toAdd = arrayDiff(newValue, oldValue);
+                    console.log('to remove');
+                    console.log(toRemove);
+                    console.log('to add');
+                    console.log(toAdd);
+
                     scope.updateArrayMarkerSelectedMap(toAdd,toRemove);
                 }
             }, true);
@@ -182,7 +193,7 @@ component.directive('map', function () {
             };
 
             scope.updateMarkerMap = function(){
-                console.log("updating marker map");
+                //console.log("updating marker map");
                 scope.planTripSelected = false;
 
 
@@ -227,8 +238,8 @@ component.directive('map', function () {
                     delete markerList[value];
                 });
 
-                console.log("updating updateArrayMarkerListMap markerArrayList:");
-                console.log(scope.markerArrayList);
+                //console.log("updating updateArrayMarkerListMap markerArrayList:");
+                //console.log(scope.markerArrayList);
                 angular.forEach(scope.markerArrayList, function (value, key) {
                     markerList.push(addMarker(value,markerarraymap));
                     var place = new google.maps.LatLng(value.lat,value.lng,true) ;
@@ -242,18 +253,18 @@ component.directive('map', function () {
                 scope.planTripSelected = false;
 
                 angular.forEach(toAdd, function (value, key) {
-                    value["selected"] = true;
-                    markersArraySelection[value.id] = addMarker(value,markerarraymap) ;
+                    markersArraySelection[value.id] = addMarker(value,markerarraymap,true) ;
 
 
 
                 });
 
                 angular.forEach(toRemove, function (value, key) {
-                    value["selected"] = false;
                     markersArraySelection[value.id].setMap(null);
                     delete markersArraySelection[value.id];
                 });
+                console.log(markersArraySelection);
+
 
             } ;
 
@@ -265,10 +276,10 @@ component.directive('map', function () {
              * @param showInfo   boolean value to show infoWindow at initialization of map
              * @returns {google.maps.Marker}
              */
-            var addMarker=function(obj,map,showInfo) {
+            var addMarker=function(obj,map,selected,showInfo) {
                 var place = new google.maps.LatLng(obj.lat,obj.lng,true) ;
-                console.log("inside marker map scope place");
-                console.log(place);
+                //console.log("inside marker map scope place");
+                //console.log(place);
 
                 //changing icon based on attribute
                 var iconBase = 'assets/images/maps/';
@@ -294,7 +305,7 @@ component.directive('map', function () {
                 };
 
                var markerIcon;
-                if (!obj.selected) {
+                if (!selected) {
                     markerIcon = icons.notselected.icon;
                 }
                 else {
