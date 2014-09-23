@@ -244,7 +244,7 @@ angular.module('trippo.plan',[
             ModalHandler.setDetailsByResource(commonResources.FoodRes,id_food);
         };
         //START STUB
-        /*
+
 
          StubHandler.createFakeDates();
         var randomItemsc = [];
@@ -266,18 +266,18 @@ angular.module('trippo.plan',[
 
 
 
-            */
+
         //END STUB
         //get the item selected in the selectionService and set the current daySchedule removing item which has been removed from the Selection service
 
         $scope.current_day = moment($stateParams.date,"DD-MM-YYYY");
 
-
+        /*
         $scope.hotels =SelectionService. getHotelSelection($stateParams.city_name);
         $scope.culture =SelectionService.getCultureSelection($stateParams.city_name);
         $scope.entertainment =SelectionService.getEntertainmentSelection($stateParams.city_name);
         $scope.foods = SelectionService.getFoodSelection($stateParams.city_name);
-
+         */
 
         var selectedItems = [].concat($scope.culture,$scope.hotels,$scope.entertainment,$scope.foods) ;
         PlanningService.initializeCurrentDay($stateParams.date);
@@ -308,17 +308,7 @@ angular.module('trippo.plan',[
          * @returns {string} class
          */
         $scope.getItemClass = function(item){
-
-            switch (item.tag){
-                case "culture" :
-                    return "culture-color" ;
-                case "entertainment":
-                    return "entertainment-color";
-                case "hotel":
-                    return "hotel-color";
-                case "food":
-                    return "food-color";
-            }
+            return PlanningService.getItemClass(item)  ;
         };
 
         /**
@@ -434,8 +424,27 @@ angular.module('trippo.plan',[
              */
             isScheduled:function(item){
                 return current_schedule.todo.indexOf(item)>-1 ;
+            } ,
+            /**
+             * return correct class based on the item tag
+             * @param item   tag
+             * @returns {string} class
+             */
+            getItemClass : function(item){
+
+            switch (item.tag){
+                case "culture" :
+                    return "culture-color" ;
+                case "entertainment":
+                    return "entertainment-color";
+                case "hotel":
+                    return "hotel-color";
+                case "food":
+                    return "food-color";
+                }
             }
-        };
+
+    };
 
 
 })
@@ -450,6 +459,20 @@ angular.module('trippo.plan',[
             console.log(PlanningService.getCurrentTodo());
 
             return PlanningService.getCurrentTodo();
+        };
+
+        $scope.setCultureDetails = function(id_culture){
+            ModalHandler.setDetailsByResource(commonResources.CultureRes,id_culture);
+        };
+
+        /**
+         * return correct class based on the item tag
+         * @param item   tag
+         * @returns {string} class
+         */
+        $scope.getItemClass = function(item){
+
+            return PlanningService.getItemClass(item);
         };
 
     })

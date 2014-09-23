@@ -1566,7 +1566,7 @@ angular.module("plan_trip/createtrip.tpl.html", []).run(["$templateCache", funct
     "    <div class=\"vertical-container\">\n" +
     "        <div class=\"row\">\n" +
     "            <div class=\"col-md-2\">\n" +
-    "                <a ui-sref=\"dates\" class=\"btn btn-success btn-large btn-outlined big-button back-button\"><i class=\"glyphicon glyphicon-chevron-left\"></i> Dates</a>\n" +
+    "                <a ui-sref=\"dates\" class=\"btn btn-primary btn-large btn-outlined big-button back-button\"><i class=\"glyphicon glyphicon-chevron-left\"></i> Dates</a>\n" +
     "            </div>\n" +
     "            <div class=\"col-md-8\">\n" +
     "                <h1 class=\"text-center subtitle\">Create your Trip</h1>\n" +
@@ -1618,9 +1618,40 @@ angular.module("plan_trip/createtrip.tpl.html", []).run(["$templateCache", funct
     "                    </div>\n" +
     "                    <div id=\"{{date.format('DD-MM-YYYY')}}List\" class=\"panel-collapse collapse\">\n" +
     "                        <div class=\"panel-body\">\n" +
-    "                            <p ng-repeat=\"item in getDayProgram(date)\">\n" +
-    "                                {{item.name}}\n" +
-    "                            </p>\n" +
+    "                            <div  class=\"timeline-centered\"  >\n" +
+    "                                <div class=\"row\">\n" +
+    "                                    <div class=\"timeline-list col-md-4 col-md-offset-4\">\n" +
+    "                                        <div class=\"row\" ng-repeat=\"item in getDayProgram(date)\">\n" +
+    "                                            <div  ng-class=\"getItemClass(item)\" class=\" timeline-item z-up \" style=\"cursor:default;\" >\n" +
+    "                                                <div class=\"row\" style=\"height: 48px;\">\n" +
+    "\n" +
+    "                                                    <h1 class=\"item-name\">{{item.name}}</h1>\n" +
+    "                                                </div>\n" +
+    "\n" +
+    "                                                <div class=\"row\">\n" +
+    "                                                    <div class=\"btn-group\">\n" +
+    "\n" +
+    "                                                        <button class=\"btn btn-primary btn-outlined z-up\" style=\";margin-left: 4px;margin-bottom: 5px\"  ng-click=\"setCultureDetails(item.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">MORE INFO</button>\n" +
+    "                                                    </div>\n" +
+    "                                                </div>\n" +
+    "                                            </div>\n" +
+    "                                            <article class=\"timeline-entry\" >\n" +
+    "                                                <div class=\"timeline-entry-inner\">\n" +
+    "\n" +
+    "                                                    <div   class=\"timeline-icon icon-not-selected\"  style=\"cursor:default\">\n" +
+    "                                                        <i class=\"entypo-feather\"></i>\n" +
+    "                                                    </div>\n" +
+    "\n" +
+    "\n" +
+    "                                                </div>\n" +
+    "\n" +
+    "                                            </article>\n" +
+    "\n" +
+    "\n" +
+    "                                        </div>\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
     "                        </div>\n" +
     "                    </div>\n" +
     "                </div>\n" +
@@ -1637,7 +1668,7 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
     "<div class=\"page-header\">\n" +
     "    <div class=\"row\">\n" +
     "        <div class=\"col-md-2\">\n" +
-    "            <a ui-sref=\"dates\" class=\"btn btn-success btn-large btn-outlined big-button back-button\"><i class=\"glyphicon glyphicon-chevron-left\"></i> Dates</a>\n" +
+    "            <a ui-sref=\"dates\" class=\"btn btn-primary btn-large btn-outlined big-button back-button\"><i class=\"glyphicon glyphicon-chevron-left\"></i> Dates</a>\n" +
     "        </div>\n" +
     "        <div class=\"col-md-8\">\n" +
     "            <h1 class=\"text-center subtitle\">{{current_day.format('dddd DD  MMMM YYYY')}}</h1>\n" +
@@ -1872,7 +1903,7 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
     "                            </article>\n" +
     "\n" +
     "              </div>\n" +
-    "          </div>\n" +
+    "                </div>\n" +
     "            </div>\n" +
     "            <div ng-show=\"(origin && destination) || currentMarker\" id=\"scrollingMaps\" class=\"col-md-8 \" >\n" +
     "\n" +
@@ -1889,11 +1920,13 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
     "//mantaining the maps on the top of the page when scrolling\n" +
     "$().ready(function() {\n" +
     "        $(window).scroll(function () {\n" +
+    "            if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {\n" +
     "\n" +
-    "            if ($(\"#planning\").offset() !==undefined) {\n" +
+    "                if ($(\"#planning\").offset() !== undefined) {\n" +
     "\n" +
-    "                if ($(window).scrollTop() > $(\"#planning\").offset().top) {\n" +
-    "                    $(\"#scrollingMaps\").stop().animate({\"marginTop\": ($(window).scrollTop() - $(\"#planning\").offset().top) + \"px\"}, \"slow\");\n" +
+    "                    if ($(window).scrollTop() > $(\"#planning\").offset().top) {\n" +
+    "                        $(\"#scrollingMaps\").stop().animate({\"marginTop\": ($(window).scrollTop() - $(\"#planning\").offset().top) + \"px\"}, \"slow\");\n" +
+    "                    }\n" +
     "                }\n" +
     "            }\n" +
     "        });\n" +

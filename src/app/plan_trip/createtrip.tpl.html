@@ -2,7 +2,7 @@
     <div class="vertical-container">
         <div class="row">
             <div class="col-md-2">
-                <a ui-sref="dates" class="btn btn-success btn-large btn-outlined big-button back-button"><i class="glyphicon glyphicon-chevron-left"></i> Dates</a>
+                <a ui-sref="dates" class="btn btn-primary btn-large btn-outlined big-button back-button"><i class="glyphicon glyphicon-chevron-left"></i> Dates</a>
             </div>
             <div class="col-md-8">
                 <h1 class="text-center subtitle">Create your Trip</h1>
@@ -54,9 +54,40 @@
                     </div>
                     <div id="{{date.format('DD-MM-YYYY')}}List" class="panel-collapse collapse">
                         <div class="panel-body">
-                            <p ng-repeat="item in getDayProgram(date)">
-                                {{item.name}}
-                            </p>
+                            <div  class="timeline-centered"  style="margin-bottom: 0px">
+                                <div class="row">
+                                    <div class="timeline-list col-md-4 col-md-offset-4">
+                                        <div class="row" ng-repeat="item in getDayProgram(date)">
+                                            <div  ng-class="getItemClass(item)" class=" timeline-item z-up " style="cursor:default;" >
+                                                <div class="row" style="height: 48px;">
+
+                                                    <h1 class="item-name">{{item.name}}</h1>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="btn-group">
+
+                                                        <button class="btn btn-primary btn-outlined z-up" style=";margin-left: 4px;margin-bottom: 5px"  ng-click="setCultureDetails(item.id)" href="#moreInfoModalPlace" data-toggle="modal">MORE INFO</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <article class="timeline-entry" >
+                                                <div class="timeline-entry-inner">
+
+                                                    <div   class="timeline-icon icon-not-selected"  style="cursor:default">
+                                                        <i class="entypo-feather"></i>
+                                                    </div>
+
+
+                                                </div>
+
+                                            </article>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
