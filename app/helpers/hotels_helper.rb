@@ -57,6 +57,7 @@ module HotelsHelper
     return response.body
   end
 
+  private
   def parse_description(description)
     output = Nokogiri::HTML.fragment(description)
     descr = output.text.gsub(/<[^>]*>/ui,'')
