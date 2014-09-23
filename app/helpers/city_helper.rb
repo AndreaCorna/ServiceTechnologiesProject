@@ -3,6 +3,9 @@ require 'httparty'
 
 module CityHelper
 
+=begin
+The method creates the list of cities to be added to the database of the application
+=end
    def populate_database(cities)
     results = []
     response = JSON.parse(cities)
@@ -18,6 +21,9 @@ module CityHelper
 
   end
 
+=begin
+The method returns an array contains 4 images url around the coordinates passed as parameters.
+=end
   def get_images_url(lat,lng)
     photos = []
     latitude = (lat+0.01).to_s

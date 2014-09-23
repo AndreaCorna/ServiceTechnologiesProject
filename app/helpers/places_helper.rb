@@ -30,11 +30,11 @@ The result is an object with two elements:
 
       utility_items.each { |place|
         threads << Thread.new {
-          semaphore.synchronize{
-            if(!place.nextpagetoken.nil?)
+          if(!place.nextpagetoken.nil?)
+            semaphore.synchronize{
               next_page_token = place.nextpagetoken
-            end
-          }
+            }
+          end
           photos = []
           if(!place.photos[0].nil?)
             photos.append(:image=>place.photos[0].fetch_url(400))
@@ -67,11 +67,11 @@ The result is an object with two elements:
       semaphore = Mutex.new
       utility_items.each { |place|
         threads << Thread.new{
-          semaphore.synchronize{
-            if(!place.nextpagetoken.nil?)
+          if(!place.nextpagetoken.nil?)
+            semaphore.synchronize{
               next_page_token = place.nextpagetoken
-            end
-          }
+            }
+          end
           photos = []
           if(!place.photos[0].nil?)
             photos.append(:image=>place.photos[0].fetch_url(400))
@@ -131,11 +131,12 @@ The result is an object with two elements:
 
       culture_items.each { |place|
         threads << Thread.new{
-          semaphore.synchronize{
-            if(!place.nextpagetoken.nil?)
+          if(!place.nextpagetoken.nil?)
+            semaphore.synchronize{
               next_page_token = place.nextpagetoken
-            end
-          }
+            }
+          end
+
           photos = []
           if(!place.photos[0].nil?)
             photos.append(:image=>place.photos[0].fetch_url(400))
@@ -169,11 +170,11 @@ The result is an object with two elements:
 
       culture_items.each { |place|
         threads << Thread.new {
-          semaphore.synchronize{
-            if(!place.nextpagetoken.nil?)
+          if(!place.nextpagetoken.nil?)
+            semaphore.synchronize{
               next_page_token = place.nextpagetoken
-            end
-          }
+            }
+          end
           photos = []
           if(!place.photos[0].nil?)
             photos.append(:image=>place.photos[0].fetch_url(400))
@@ -233,11 +234,11 @@ The result is an object with two elements:
 
       entertainment_items.each { |place|
         threads << Thread.new {
-          semaphore.synchronize{
-            if(!place.nextpagetoken.nil?)
+          if(!place.nextpagetoken.nil?)
+            semaphore.synchronize{
               next_page_token = place.nextpagetoken
-            end
-          }
+            }
+          end
           photos = []
           if(!place.photos[0].nil?)
             photos.append(:image=>place.photos[0].fetch_url(400))
@@ -271,11 +272,11 @@ The result is an object with two elements:
 
       entertainment_items.each { |place|
         threads << Thread.new {
-          semaphore.synchronize{
-            if(!place.nextpagetoken.nil?)
+          if(!place.nextpagetoken.nil?)
+            semaphore.synchronize{
               next_page_token = place.nextpagetoken
-            end
-          }
+            }
+          end
           photos = []
           if(!place.photos[0].nil?)
             photos.append(:image=>place.photos[0].fetch_url(400))
@@ -333,11 +334,11 @@ The items' types are:
 
       food_items.each { |place|
         threads << Thread.new {
-          semaphore.synchronize{
-            if(!place.nextpagetoken.nil?)
+          if(!place.nextpagetoken.nil?)
+            semaphore.synchronize{
               next_page_token = place.nextpagetoken
-            end
-          }
+            }
+          end
           photos = []
           if(!place.photos[0].nil?)
             photos.append(:image=>place.photos[0].fetch_url(400))
@@ -371,11 +372,11 @@ The result is an object with two elements:
 
       food_items.each { |place|
         threads << Thread.new {
-          semaphore.synchronize{
-            if(!place.nextpagetoken.nil?)
+          if(!place.nextpagetoken.nil?)
+            semaphore.synchronize{
               next_page_token = place.nextpagetoken
-            end
-          }
+            }
+          end
           photos = []
           if(!place.photos[0].nil?)
             photos.append(:image=>place.photos[0].fetch_url(400))

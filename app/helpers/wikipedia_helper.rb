@@ -3,6 +3,10 @@ require 'httparty'
 require 'uri'
 module WikipediaHelper
 
+=begin
+The method returns the wikipedia description related to the name of the place in the city specified as
+parameters.
+=end
   def get_wikipedia_description(name,city)
     url = URI.encode('http://en.wikipedia.org/w/api.php?action=query&format=json&list=search&srsearch='+name+' '+city+'&prop=timestamp')
     response = HTTParty.get(url)
