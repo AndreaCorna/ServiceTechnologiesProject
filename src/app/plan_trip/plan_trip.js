@@ -375,6 +375,8 @@ angular.module('trippo.plan',[
              * @param day
              */
              initializeCurrentDay: function(day){
+                console.log("initiliaze current day");
+                console.log(day);
 
                  current_schedule = DatesService.getDay(day);
 
@@ -443,8 +445,11 @@ angular.module('trippo.plan',[
         CityPlanningService.setRangeDatesCity($stateParams.city_name) ;
         $scope.dates = DatesService.getRangeDates();
         $scope.getDayProgram = function(day){
-            PlanningService.initializeCurrentDay(day);
-            return PlanningService.getCurrentTodo;
+            PlanningService.initializeCurrentDay(day.format(DatesService.dateFormat));
+            console.log("current todo");
+            console.log(PlanningService.getCurrentTodo());
+
+            return PlanningService.getCurrentTodo();
         };
 
     })

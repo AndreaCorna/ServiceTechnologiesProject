@@ -183,7 +183,8 @@ component.directive('map', function () {
 
             scope.updateMarkerMap = function(){
                 console.log("updating marker map");
-                scope.planTripSelected = true;
+                scope.planTripSelected = false;
+
 
                 var mapOptions = {
                     zoom: scope.zoom !== undefined ? scope.zoom : 15,

@@ -52,6 +52,13 @@
                             <a class="accordion-toggle bigger-title" >{{date.format('dddd DD  MMMM YYYY')}}</a>
                         </h4>
                     </div>
+                    <div id="{{date.format('DD-MM-YYYY')}}List" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <p ng-repeat="item in getDayProgram(date)">
+                                {{item.name}}
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

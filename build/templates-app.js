@@ -1616,6 +1616,13 @@ angular.module("plan_trip/createtrip.tpl.html", []).run(["$templateCache", funct
     "                            <a class=\"accordion-toggle bigger-title\" >{{date.format('dddd DD  MMMM YYYY')}}</a>\n" +
     "                        </h4>\n" +
     "                    </div>\n" +
+    "                    <div id=\"{{date.format('DD-MM-YYYY')}}List\" class=\"panel-collapse collapse\">\n" +
+    "                        <div class=\"panel-body\">\n" +
+    "                            <p ng-repeat=\"item in getDayProgram(date)\">\n" +
+    "                                {{item.name}}\n" +
+    "                            </p>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
     "                </div>\n" +
     "            </div>\n" +
     "        </div>\n" +
@@ -1630,7 +1637,7 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
     "<div class=\"page-header\">\n" +
     "    <div class=\"row\">\n" +
     "        <div class=\"col-md-2\">\n" +
-    "            <a ui-sref=\"dates\" class=\"btn btn-success btn-large btn-outlined big-button\"><i class=\"glyphicon glyphicon-chevron-left\"></i> Dates</a>\n" +
+    "            <a ui-sref=\"dates\" class=\"btn btn-success btn-large btn-outlined big-button back-button\"><i class=\"glyphicon glyphicon-chevron-left\"></i> Dates</a>\n" +
     "        </div>\n" +
     "        <div class=\"col-md-8\">\n" +
     "            <h1 class=\"text-center subtitle\">{{current_day.format('dddd DD  MMMM YYYY')}}</h1>\n" +
