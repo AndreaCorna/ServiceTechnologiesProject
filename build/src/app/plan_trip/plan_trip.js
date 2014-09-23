@@ -280,7 +280,8 @@ angular.module('trippo.plan',[
 
 
         var selectedItems = [].concat($scope.culture,$scope.hotels,$scope.entertainment,$scope.foods) ;
-        PlanningService.initializeCurrentDay($stateParams.date,selectedItems);
+        PlanningService.initializeCurrentDay($stateParams.date);
+        PlanningService.removeUnselectedItems(selectedItems)  ;
 
 
         $scope.isScheduled = function (item) {
@@ -370,21 +371,30 @@ angular.module('trippo.plan',[
 
         return {
             /**
-             * set the current day of the schedule removing item which were removed from the selectedItem in city page
+             * set the current day of the schedule
              * @param day
              */
-             initializeCurrentDay: function(day,selectedItems){
+             initializeCurrentDay: function(day){
+                console.log("initiliaze current day");
+                console.log(day);
 
                  current_schedule = DatesService.getDay(day);
-                 if (current_schedule !== undefined) {
-                     angular.forEach(current_schedule.todo, function (value, key) {
-                         if (selectedItems.indexOf(value) == -1) {
-                             var index = current_schedule.todo.indexOf(value);
-                             current_schedule.todo.splice(index, 1);
-                         }
-                     });
-                 }
+
              },
+            /**
+             * remove items which were removed from the selectedItem in city page
+             * @param selectedItems
+             */
+            removeUnselectedItems: function(selectedItems){
+                if (current_schedule !== undefined) {
+                    angular.forEach(current_schedule.todo, function (value, key) {
+                        if (selectedItems.indexOf(value) == -1) {
+                            var index = current_schedule.todo.indexOf(value);
+                            current_schedule.todo.splice(index, 1);
+                        }
+                    });
+                }
+            } ,
             /**
              * add item to the todo_ array of schedule
              * @param item
@@ -429,6 +439,20 @@ angular.module('trippo.plan',[
 
 
 })
+
+.controller('CreateTripCtrl',function CreateTripCtrl($stateParams,$scope,DatesService,CityPlanningService,PlanningService){
+
+        CityPlanningService.setRangeDatesCity($stateParams.city_name) ;
+        $scope.dates = DatesService.getRangeDates();
+        $scope.getDayProgram = function(day){
+            PlanningService.initializeCurrentDay(day.format(DatesService.dateFormat));
+            console.log("current todo");
+            console.log(PlanningService.getCurrentTodo());
+
+            return PlanningService.getCurrentTodo();
+        };
+
+    })
 
 .factory('StubHandler', function (DatesService) {
     function makestring(){

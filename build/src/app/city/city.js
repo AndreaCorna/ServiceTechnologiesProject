@@ -104,6 +104,17 @@ angular.module( 'trippo.city', [
               }
           }
 
+      })
+      .state('createtrip', {
+          url: '/createtrip',
+          parent:"city",
+          views: {
+              "content@city": {
+                  controller: 'CreateTripCtrl',
+                  templateUrl: 'plan_trip/createtrip.tpl.html'
+              }
+          }
+
       });
 
 })
