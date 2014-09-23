@@ -1,4 +1,4 @@
-angular.module('templates-app', ['about/about.tpl.html', 'city/city.tpl.html', 'city/culture.tpl.html', 'city/entertainment.tpl.html', 'city/food.tpl.html', 'city/hotel.tpl.html', 'city/utility.tpl.html', 'home/home.tpl.html', 'plan_trip/calendar.tpl.html', 'plan_trip/planning.tpl.html', 'plan_trip/trip_dates.tpl.html']);
+angular.module('templates-app', ['about/about.tpl.html', 'city/city.tpl.html', 'city/culture.tpl.html', 'city/entertainment.tpl.html', 'city/food.tpl.html', 'city/hotel.tpl.html', 'city/utility.tpl.html', 'home/home.tpl.html', 'plan_trip/createtrip.tpl.html', 'plan_trip/planning.tpl.html', 'plan_trip/trip_dates.tpl.html']);
 
 angular.module("about/about.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("about/about.tpl.html",
@@ -1560,27 +1560,67 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "");
 }]);
 
-angular.module("plan_trip/calendar.tpl.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("plan_trip/calendar.tpl.html",
-    "    <div class=\"row\">\n" +
-    "        <form novalidate name=\"form\" ng-submit=\"next(form)\">\n" +
-    "            <h1 class=\"text-center\">Choose the period</h1>\n" +
-    "            <div ng-show=\"submitted  && (form.end.$error.required || form.start.$error.required)\" class=\"alert alert-danger\">\n" +
-    "                Field <strong>start date</strong> and <strong>end date</strong> are required\n" +
+angular.module("plan_trip/createtrip.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("plan_trip/createtrip.tpl.html",
+    "<div class=\"page-header\">\n" +
+    "    <div class=\"vertical-container\">\n" +
+    "        <div class=\"row\">\n" +
+    "            <div class=\"col-md-2\">\n" +
+    "                <a ui-sref=\"dates\" class=\"btn btn-success btn-large btn-outlined big-button back-button\"><i class=\"glyphicon glyphicon-chevron-left\"></i> Dates</a>\n" +
     "            </div>\n" +
-    "            <div class=\"col-md-6\">\n" +
-    "                <h2>Start date:<span ng-show=\"dtstart\">{{dtstart | date:'dd/MM/yyyy'}}</span></h2>\n" +
-    "                <datepicker ng-model=\"dtstart\" max-date=\"dtend\"  show-weeks=\"false\" name=\"start\" class=\"well well-sm\" required></datepicker>\n" +
+    "            <div class=\"col-md-8\">\n" +
+    "                <h1 class=\"text-center subtitle\">Create your Trip</h1>\n" +
     "            </div>\n" +
-    "\n" +
-    "            <div class=\"col-md-6\">\n" +
-    "                <h2>End date:<span ng-show=\"dtend\">{{dtend | date:'dd/MM/yyyy'}}</span></h2>\n" +
-    "                <datepicker ng-model=\"dtend\" min-date=\"dtstart\" show-weeks=\"false\" name=\"end\" class=\"well well-sm\" required></datepicker>\n" +
-    "\n" +
+    "            <div class=\"col-md-2\">\n" +
     "            </div>\n" +
-    "            <button class=\"btn btn-primary pull-right\"   >Next</button>\n" +
-    "        </form>\n" +
+    "        </div>\n" +
     "    </div>\n" +
+    "</div>\n" +
+    "<div class=\"row\">\n" +
+    "    <div class=\"col-md-8 col-md-offset-2\">\n" +
+    "        <div class=\"well well-sm\">\n" +
+    "            <form class=\"form-horizontal\" action=\"\" method=\"post\">\n" +
+    "                <fieldset>\n" +
+    "                    <legend>Trip Details</legend>\n" +
+    "                    <!-- Name input-->\n" +
+    "                    <div class=\"form-group\">\n" +
+    "                        <label class=\"col-md-2 control-label \" for=\"name\" style=\"font-size: 18px\">Trip Name</label>\n" +
+    "                        <div class=\"col-md-10\">\n" +
+    "                            <input id=\"name\" name=\"name\" type=\"text\" placeholder=\"Holiday 2014\" class=\"form-control\">\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "\n" +
+    "                    <!-- Message body -->\n" +
+    "                    <div class=\"form-group\">\n" +
+    "                        <label class=\"col-md-2 control-label\" for=\"message\" style=\"font-size: 18px\">Description</label>\n" +
+    "                        <div class=\"col-md-10\">\n" +
+    "                            <textarea class=\"form-control\" id=\"message\" name=\"message\" placeholder=\"Please enter your description here...\" rows=\"5\"></textarea>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "\n" +
+    "\n" +
+    "\n" +
+    "                    <!-- Form actions -->\n" +
+    "                    <div class=\"form-group\">\n" +
+    "                        <div class=\"col-md-12 text-right\">\n" +
+    "                            <button type=\"submit\" class=\"btn btn-primary btn-lg btn-outlined\">Submit</button>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                </fieldset>\n" +
+    "            </form>\n" +
+    "            <legend>Trip Summary</legend>\n" +
+    "            <div id=\"{{date.format('DD-MM-YYYY')}}\" class=\"panel-group\" ng-repeat=\"date in dates\">\n" +
+    "                <div class=\"panel  panel-primary no-radius\">\n" +
+    "                    <div class=\"panel-heading no-radius  bigger-accordition\" data-toggle=\"collapse\" data-parent=\"#{{date.format('DD-MM-YYYY')}}\" data-target=\"#{{date.format('DD-MM-YYYY')}}List\">\n" +
+    "                        <h4 class=\"panel-title bigger-title\">\n" +
+    "                            <a class=\"accordion-toggle bigger-title\" >{{date.format('dddd DD  MMMM YYYY')}}</a>\n" +
+    "                        </h4>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>\n" +
     "");
 }]);
 
@@ -1588,8 +1628,18 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
   $templateCache.put("plan_trip/planning.tpl.html",
     "<div class=\"planning\">\n" +
     "<div class=\"page-header\">\n" +
-    "    <h1 class=\"text-center subtitle\">{{current_day.format('dddd DD  MMMM YYYY')}}</h1>\n" +
+    "    <div class=\"row\">\n" +
+    "        <div class=\"col-md-2\">\n" +
+    "            <a ui-sref=\"dates\" class=\"btn btn-success btn-large btn-outlined big-button\"><i class=\"glyphicon glyphicon-chevron-left\"></i> Dates</a>\n" +
+    "        </div>\n" +
+    "        <div class=\"col-md-8\">\n" +
+    "            <h1 class=\"text-center subtitle\">{{current_day.format('dddd DD  MMMM YYYY')}}</h1>\n" +
+    "        </div>\n" +
+    "        <div class=\"col-md-2\">\n" +
+    "        </div>\n" +
+    "    </div>\n" +
     "</div>\n" +
+    "\n" +
     "<div class=\"panel-group\" id=\"Culture\">\n" +
     "    <div class=\"panel  panel-primary no-radius\">\n" +
     "        <div class=\"panel-heading no-radius  bigger-accordition\" data-toggle=\"collapse\" data-parent=\"#Culture\" data-target=\"#cultureList\">\n" +
@@ -1884,7 +1934,7 @@ angular.module("plan_trip/trip_dates.tpl.html", []).run(["$templateCache", funct
     "\n" +
     "        <div class=\"row\">\n" +
     "            <div class=\"col-md-12 text-center\">\n" +
-    "                <button id=\"singlefrfbutton\" name=\"singlebutton\" class=\"btn btn-primary\">Confirm</button>\n" +
+    "                <button id=\"singlefrfbutton\" name=\"singlebutton\" class=\"btn btn-primary btn-outlined\">Confirm</button>\n" +
     "            </div>\n" +
     "        </div>\n" +
     "    </form>\n" +
@@ -1908,6 +1958,9 @@ angular.module("plan_trip/trip_dates.tpl.html", []).run(["$templateCache", funct
     "        </div>\n" +
     "    </ul>\n" +
     "\n" +
+    "</div>\n" +
+    "<div class=\"col-md-12 text-center\" ng-show=\"dates.length\">\n" +
+    "    <button name=\"createbutton\" ui-sref=\"createtrip\" class=\"btn btn-primary btn-outlined big-button\">Create my Trip</button>\n" +
     "</div>\n" +
     "\n" +
     "\n" +

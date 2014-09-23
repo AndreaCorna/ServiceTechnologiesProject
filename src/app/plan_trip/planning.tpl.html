@@ -1,7 +1,17 @@
 <div class="planning">
 <div class="page-header">
-    <h1 class="text-center subtitle">{{current_day.format('dddd DD  MMMM YYYY')}}</h1>
+    <div class="row">
+        <div class="col-md-2">
+            <a ui-sref="dates" class="btn btn-success btn-large btn-outlined big-button"><i class="glyphicon glyphicon-chevron-left"></i> Dates</a>
+        </div>
+        <div class="col-md-8">
+            <h1 class="text-center subtitle">{{current_day.format('dddd DD  MMMM YYYY')}}</h1>
+        </div>
+        <div class="col-md-2">
+        </div>
+    </div>
 </div>
+
 <div class="panel-group" id="Culture">
     <div class="panel  panel-primary no-radius">
         <div class="panel-heading no-radius  bigger-accordition" data-toggle="collapse" data-parent="#Culture" data-target="#cultureList">
