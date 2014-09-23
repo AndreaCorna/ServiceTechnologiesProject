@@ -276,19 +276,19 @@ component.directive('map', function () {
                         icon: iconBase + 'notselectedmarker.png'
                     },
                     food: {
-                        icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+                        icon: iconBase + 'foodmarker.png'
                     },
                     utility: {
-                        icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+                        icon: iconBase + 'utilitymarker.png'
                     } ,
                     entertainment: {
-                        icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+                        icon: iconBase + 'entertainmentmarker.png'
                     },
                     hotel: {
-                        icon:  'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+                        icon:  iconBase + 'hotelmarker.png'
                     },
                     culture: {
-                        icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+                        icon: iconBase + 'culturemarker.png'
                     }
                 };
 
