@@ -1,0 +1,59 @@
+<div class="page-header">
+    <div class="vertical-container">
+        <div class="row">
+            <div class="col-md-2">
+                <a ui-sref="dates" class="btn btn-success btn-large btn-outlined big-button back-button"><i class="glyphicon glyphicon-chevron-left"></i> Dates</a>
+            </div>
+            <div class="col-md-8">
+                <h1 class="text-center subtitle">Create your Trip</h1>
+            </div>
+            <div class="col-md-2">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <div class="well well-sm">
+            <form class="form-horizontal" action="" method="post">
+                <fieldset>
+                    <legend>Trip Details</legend>
+                    <!-- Name input-->
+                    <div class="form-group">
+                        <label class="col-md-2 control-label " for="name" style="font-size: 18px">Trip Name</label>
+                        <div class="col-md-10">
+                            <input id="name" name="name" type="text" placeholder="Holiday 2014" class="form-control">
+                        </div>
+                    </div>
+
+                    <!-- Message body -->
+                    <div class="form-group">
+                        <label class="col-md-2 control-label" for="message" style="font-size: 18px">Description</label>
+                        <div class="col-md-10">
+                            <textarea class="form-control" id="message" name="message" placeholder="Please enter your description here..." rows="5"></textarea>
+                        </div>
+                    </div>
+
+
+
+                    <!-- Form actions -->
+                    <div class="form-group">
+                        <div class="col-md-12 text-right">
+                            <button type="submit" class="btn btn-primary btn-lg btn-outlined">Submit</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+            <legend>Trip Summary</legend>
+            <div id="{{date.format('DD-MM-YYYY')}}" class="panel-group" ng-repeat="date in dates">
+                <div class="panel  panel-primary no-radius">
+                    <div class="panel-heading no-radius  bigger-accordition" data-toggle="collapse" data-parent="#{{date.format('DD-MM-YYYY')}}" data-target="#{{date.format('DD-MM-YYYY')}}List">
+                        <h4 class="panel-title bigger-title">
+                            <a class="accordion-toggle bigger-title" >{{date.format('dddd DD  MMMM YYYY')}}</a>
+                        </h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
