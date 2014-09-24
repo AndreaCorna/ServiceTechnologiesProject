@@ -2,7 +2,7 @@
 <div class="page-header">
     <div class="row">
         <div class="col-md-2">
-            <a ui-sref="dates" class="btn btn-success btn-large btn-outlined big-button back-button"><i class="glyphicon glyphicon-chevron-left"></i> Dates</a>
+            <a ui-sref="dates" class="btn btn-primary btn-large btn-outlined big-button back-button"><i class="glyphicon glyphicon-chevron-left"></i> Dates</a>
         </div>
         <div class="col-md-8">
             <h1 class="text-center subtitle">{{current_day.format('dddd DD  MMMM YYYY')}}</h1>
@@ -237,7 +237,7 @@
                             </article>
 
               </div>
-          </div>
+                </div>
             </div>
             <div ng-show="(origin && destination) || currentMarker" id="scrollingMaps" class="col-md-8 " >
 
@@ -254,11 +254,13 @@
 //mantaining the maps on the top of the page when scrolling
 $().ready(function() {
         $(window).scroll(function () {
+            if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
 
-            if ($("#planning").offset() !==undefined) {
+                if ($("#planning").offset() !== undefined) {
 
-                if ($(window).scrollTop() > $("#planning").offset().top) {
-                    $("#scrollingMaps").stop().animate({"marginTop": ($(window).scrollTop() - $("#planning").offset().top) + "px"}, "slow");
+                    if ($(window).scrollTop() > $("#planning").offset().top) {
+                        $("#scrollingMaps").stop().animate({"marginTop": ($(window).scrollTop() - $("#planning").offset().top) + "px"}, "slow");
+                    }
                 }
             }
         });

@@ -2,7 +2,7 @@
     <div class="vertical-container">
         <div class="row">
             <div class="col-md-2">
-                <a ui-sref="dates" class="btn btn-success btn-large btn-outlined big-button back-button"><i class="glyphicon glyphicon-chevron-left"></i> Dates</a>
+                <a ui-sref="dates" class="btn btn-primary btn-large btn-outlined big-button back-button"><i class="glyphicon glyphicon-chevron-left"></i> Dates</a>
             </div>
             <div class="col-md-8">
                 <h1 class="text-center subtitle">Create your Trip</h1>
@@ -13,16 +13,19 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-md-8 col-md-offset-2">
+    <div class="col-md-10 col-md-offset-1">
         <div class="well well-sm">
-            <form class="form-horizontal" action="" method="post">
+            <form  novalidate class="form-horizontal" name="form" ng-submit="createTrip(form)" method="post">
+            <div ng-show="submitted  && (form.name.$error.required )" class="alert alert-danger">
+                The field <strong>Trip Name</strong> is required
+            </div>
                 <fieldset>
                     <legend>Trip Details</legend>
                     <!-- Name input-->
                     <div class="form-group">
                         <label class="col-md-2 control-label " for="name" style="font-size: 18px">Trip Name</label>
                         <div class="col-md-10">
-                            <input id="name" name="name" type="text" placeholder="Holiday 2014" class="form-control">
+                            <input id="name" name="name" ng-model="name" type="text" placeholder="Holiday 2014" class="form-control" required>
                         </div>
                     </div>
 
@@ -30,7 +33,7 @@
                     <div class="form-group">
                         <label class="col-md-2 control-label" for="message" style="font-size: 18px">Description</label>
                         <div class="col-md-10">
-                            <textarea class="form-control" id="message" name="message" placeholder="Please enter your description here..." rows="5"></textarea>
+                            <textarea class="form-control" ng-model="description" id="message" name="message" placeholder="Please enter your description here..." rows="5"></textarea>
                         </div>
                     </div>
 
@@ -50,13 +53,68 @@
                     <div class="panel-heading no-radius  bigger-accordition" data-toggle="collapse" data-parent="#{{date.format('DD-MM-YYYY')}}" data-target="#{{date.format('DD-MM-YYYY')}}List">
                         <h4 class="panel-title bigger-title">
                             <a class="accordion-toggle bigger-title" >{{date.format('dddd DD  MMMM YYYY')}}</a>
+                            <button class="btn btn-primary btn-outlined z-up" style="float: right;font-size: 17px;margin-right: 5px;" ui-sref="planning({date:date.format(dateFormat)})">EDIT</button>
                         </h4>
                     </div>
                     <div id="{{date.format('DD-MM-YYYY')}}List" class="panel-collapse collapse">
-                        <div class="panel-body">
-                            <p ng-repeat="item in getDayProgram(date)">
-                                {{item.name}}
-                            </p>
+                        <div class="panel-body" style="background-color:#e8e8e8">
+                            <div class="row" ng-repeat="item in getDayProgram(date)" >
+
+                                         <div class="col-md-12" >
+                                             <div class="row" style="margin-left: 4px;margin-right: 4px">
+
+                                                    <div class="brdr bgc-fff pad-10 box-shad property-listing">
+                                                         <div class="media">
+                                                             <div class="col-md-4">
+                                                                 <div ng-if="item.photos.length==0">
+                                                                     <img style="height: 220px;  width:100%;" ng-src="assets/images/empty_photo.png">
+                                                                 </div>
+                                                                 <div ng-if="item.photos.length>0">
+                                                                     <img style="height: 220px;  width:100%;" ng-src="{{item.photos[0].image}}" >
+                                                                 </div>
+
+                                                             </div>
+                                                             <div class="clearfix visible-sm"></div>
+
+                                                             <div class="col-md-8">
+                                                                <div class="media-body fnt-smaller">
+
+                                                                 <h4 class="media-heading">
+                                                                     <a href="#" target="_parent">{{item.name}} </a>
+                                                                     <button class="btn btn-primary btn-outlined pull-right" style="margin-top: 3px"  ng-click="setCultureDetails(item.id)" href="#moreInfoModalPlace" data-toggle="modal">MORE INFO</button>
+
+                                                                 </h4>
+
+
+                                                                 <div ng-if="!item.description">
+                                                                     <p class="hidden-xs">No description available</p>
+                                                                  </div>
+                                                                    <div ng-if="item.description">
+                                                                        <div class="panel panel-default scrollable" style="max-height: 165px;overflow-y: auto;margin-top: 13px;">
+                                                                            <div class="hidden-xs text-justify " >{{item.description}}</div>
+                                                                        </div>
+                                                                    </div>
+
+
+                                                                </div>
+                                                            </div>
+
+                                                         </div>
+                                                     </div>
+                                                 </div>
+
+                                         </div>
+
+
+                                    <div class="clearfix"></div>
+                                    <br><br>
+
+
+
+
+                            </div>
+
+
                         </div>
                     </div>
                 </div>

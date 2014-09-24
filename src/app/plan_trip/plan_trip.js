@@ -265,8 +265,8 @@ angular.module('trippo.plan',[
         $scope.foods =randomItemsf;
 
 
+        */
 
-            */
         //END STUB
         //get the item selected in the selectionService and set the current daySchedule removing item which has been removed from the Selection service
 
@@ -308,17 +308,7 @@ angular.module('trippo.plan',[
          * @returns {string} class
          */
         $scope.getItemClass = function(item){
-
-            switch (item.tag){
-                case "culture" :
-                    return "culture-color" ;
-                case "entertainment":
-                    return "entertainment-color";
-                case "hotel":
-                    return "hotel-color";
-                case "food":
-                    return "food-color";
-            }
+            return PlanningService.getItemClass(item)  ;
         };
 
         /**
@@ -434,27 +424,93 @@ angular.module('trippo.plan',[
              */
             isScheduled:function(item){
                 return current_schedule.todo.indexOf(item)>-1 ;
+            } ,
+            /**
+             * return correct class based on the item tag
+             * @param item   tag
+             * @returns {string} class
+             */
+            getItemClass : function(item){
+
+            switch (item.tag){
+                case "culture" :
+                    return "culture-color" ;
+                case "entertainment":
+                    return "entertainment-color";
+                case "hotel":
+                    return "hotel-color";
+                case "food":
+                    return "food-color";
+                }
             }
-        };
+
+    };
 
 
 })
 
-.controller('CreateTripCtrl',function CreateTripCtrl($stateParams,$scope,DatesService,CityPlanningService,PlanningService){
+.controller('CreateTripCtrl',function CreateTripCtrl($stateParams,$scope,DatesService,CityPlanningService,PlanningService, StubHandler,ModalHandler,commonResources,GuideRes){
+        $scope.dateFormat = DatesService.dateFormat;
+
+
+        $scope.setCultureDetails = function(id_culture){
+            ModalHandler.setDetailsByResource(commonResources.CultureRes,id_culture);
+        };
+
+        //STUB START
+         /*
+        StubHandler.createFakeDates();
+        var randomItemsc = [];
+        var  randomItemse = [];
+        var  randomItemsh = [];
+        var  randomItemsf = [];
+
+        for (var i = 0; i < 8; i++) {
+            randomItemsc.push(StubHandler.getItemRandom("culture"));
+            randomItemse.push(StubHandler.getItemRandom("entertainment"));
+            randomItemsh.push(StubHandler.getItemRandom("hotel"));
+            randomItemsf.push(StubHandler.getItemRandom("food"));
+        }
+         */
+        //STUB END
+
 
         CityPlanningService.setRangeDatesCity($stateParams.city_name) ;
         $scope.dates = DatesService.getRangeDates();
-        $scope.getDayProgram = function(day){
-            PlanningService.initializeCurrentDay(day.format(DatesService.dateFormat));
-            console.log("current todo");
-            console.log(PlanningService.getCurrentTodo());
 
-            return PlanningService.getCurrentTodo();
+        $scope.getDayProgram = function(day){
+
+            PlanningService.initializeCurrentDay(day.format(DatesService.dateFormat));
+            return PlanningService.getCurrentTodo();  // CHANGE THIS TO    PlanningService.getCurrentTodo()
         };
+
+        $scope.createTrip = function (form) {
+            $scope.submitted = true;
+            if   (form.$valid){
+                console.log("submitted");
+
+
+            }
+
+        };
+
+
+
+        /**
+         * return correct class based on the item tag
+         * @param item   tag
+         * @returns {string} class
+         */
+        $scope.getItemClass = function(item){
+
+            return PlanningService.getItemClass(item);
+        };
+
+
 
     })
 
-.factory('StubHandler', function (DatesService) {
+.factory('StubHandler', function (DatesService,$stateParams,CityPlanningService) {
     function makestring(){
         var text = "";
         var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -466,6 +522,7 @@ angular.module('trippo.plan',[
     }
         return {
             createFakeDates: function(){
+                CityPlanningService.setRangeDatesCity($stateParams.city_name) ;
                 DatesService.createRange(moment(), moment());
             } ,
             getItemRandom : function(type){

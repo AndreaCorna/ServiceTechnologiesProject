@@ -1567,7 +1567,7 @@ angular.module("plan_trip/createtrip.tpl.html", []).run(["$templateCache", funct
     "    <div class=\"vertical-container\">\n" +
     "        <div class=\"row\">\n" +
     "            <div class=\"col-md-2\">\n" +
-    "                <a ui-sref=\"dates\" class=\"btn btn-success btn-large btn-outlined big-button back-button\"><i class=\"glyphicon glyphicon-chevron-left\"></i> Dates</a>\n" +
+    "                <a ui-sref=\"dates\" class=\"btn btn-primary btn-large btn-outlined big-button back-button\"><i class=\"glyphicon glyphicon-chevron-left\"></i> Dates</a>\n" +
     "            </div>\n" +
     "            <div class=\"col-md-8\">\n" +
     "                <h1 class=\"text-center subtitle\">Create your Trip</h1>\n" +
@@ -1578,16 +1578,19 @@ angular.module("plan_trip/createtrip.tpl.html", []).run(["$templateCache", funct
     "    </div>\n" +
     "</div>\n" +
     "<div class=\"row\">\n" +
-    "    <div class=\"col-md-8 col-md-offset-2\">\n" +
+    "    <div class=\"col-md-10 col-md-offset-1\">\n" +
     "        <div class=\"well well-sm\">\n" +
-    "            <form class=\"form-horizontal\" action=\"\" method=\"post\">\n" +
+    "            <form  novalidate class=\"form-horizontal\" name=\"form\" ng-submit=\"createTrip(form)\" method=\"post\">\n" +
+    "            <div ng-show=\"submitted  && (form.name.$error.required )\" class=\"alert alert-danger\">\n" +
+    "                Field <strong>name</strong> is required\n" +
+    "            </div>\n" +
     "                <fieldset>\n" +
     "                    <legend>Trip Details</legend>\n" +
     "                    <!-- Name input-->\n" +
     "                    <div class=\"form-group\">\n" +
     "                        <label class=\"col-md-2 control-label \" for=\"name\" style=\"font-size: 18px\">Trip Name</label>\n" +
     "                        <div class=\"col-md-10\">\n" +
-    "                            <input id=\"name\" name=\"name\" type=\"text\" placeholder=\"Holiday 2014\" class=\"form-control\">\n" +
+    "                            <input id=\"name\" name=\"name\" ng-model=\"name\" type=\"text\" placeholder=\"Holiday 2014\" class=\"form-control\" required>\n" +
     "                        </div>\n" +
     "                    </div>\n" +
     "\n" +
@@ -1595,7 +1598,7 @@ angular.module("plan_trip/createtrip.tpl.html", []).run(["$templateCache", funct
     "                    <div class=\"form-group\">\n" +
     "                        <label class=\"col-md-2 control-label\" for=\"message\" style=\"font-size: 18px\">Description</label>\n" +
     "                        <div class=\"col-md-10\">\n" +
-    "                            <textarea class=\"form-control\" id=\"message\" name=\"message\" placeholder=\"Please enter your description here...\" rows=\"5\"></textarea>\n" +
+    "                            <textarea class=\"form-control\" ng-model=\"description\" id=\"message\" name=\"message\" placeholder=\"Please enter your description here...\" rows=\"5\"></textarea>\n" +
     "                        </div>\n" +
     "                    </div>\n" +
     "\n" +
@@ -1615,13 +1618,68 @@ angular.module("plan_trip/createtrip.tpl.html", []).run(["$templateCache", funct
     "                    <div class=\"panel-heading no-radius  bigger-accordition\" data-toggle=\"collapse\" data-parent=\"#{{date.format('DD-MM-YYYY')}}\" data-target=\"#{{date.format('DD-MM-YYYY')}}List\">\n" +
     "                        <h4 class=\"panel-title bigger-title\">\n" +
     "                            <a class=\"accordion-toggle bigger-title\" >{{date.format('dddd DD  MMMM YYYY')}}</a>\n" +
+    "                            <button class=\"btn btn-primary btn-outlined z-up\" style=\"float: right;font-size: 17px;margin-right: 5px;\" ui-sref=\"planning({date:date.format(dateFormat)})\">EDIT</button>\n" +
     "                        </h4>\n" +
     "                    </div>\n" +
     "                    <div id=\"{{date.format('DD-MM-YYYY')}}List\" class=\"panel-collapse collapse\">\n" +
-    "                        <div class=\"panel-body\">\n" +
-    "                            <p ng-repeat=\"item in getDayProgram(date)\">\n" +
-    "                                {{item.name}}\n" +
-    "                            </p>\n" +
+    "                        <div class=\"panel-body\" style=\"background-color:#e8e8e8\">\n" +
+    "                            <div class=\"row\" ng-repeat=\"item in getDayProgram(date)\" >\n" +
+    "\n" +
+    "                                         <div class=\"col-md-12\" >\n" +
+    "                                             <div class=\"row\" style=\"margin-left: 4px;margin-right: 4px\">\n" +
+    "\n" +
+    "                                                    <div class=\"brdr bgc-fff pad-10 box-shad property-listing\">\n" +
+    "                                                         <div class=\"media\">\n" +
+    "                                                             <div class=\"col-md-4\">\n" +
+    "                                                                 <div ng-if=\"item.photos.length==0\">\n" +
+    "                                                                     <img style=\"height: 220px;  width:100%;\" ng-src=\"assets/images/empty_photo.png\">\n" +
+    "                                                                 </div>\n" +
+    "                                                                 <div ng-if=\"item.photos.length>0\">\n" +
+    "                                                                     <img style=\"height: 220px;  width:100%;\" ng-src=\"{{item.photos[0].image}}\" >\n" +
+    "                                                                 </div>\n" +
+    "\n" +
+    "                                                             </div>\n" +
+    "                                                             <div class=\"clearfix visible-sm\"></div>\n" +
+    "\n" +
+    "                                                             <div class=\"col-md-8\">\n" +
+    "                                                                <div class=\"media-body fnt-smaller\">\n" +
+    "\n" +
+    "                                                                 <h4 class=\"media-heading\">\n" +
+    "                                                                     <a href=\"#\" target=\"_parent\">{{item.name}} </a>\n" +
+    "                                                                     <button class=\"btn btn-primary btn-outlined pull-right\" style=\"margin-top: 3px\"  ng-click=\"setCultureDetails(item.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">MORE INFO</button>\n" +
+    "\n" +
+    "                                                                 </h4>\n" +
+    "\n" +
+    "\n" +
+    "                                                                 <div ng-if=\"!item.description\">\n" +
+    "                                                                     <p class=\"hidden-xs\">No description available</p>\n" +
+    "                                                                  </div>\n" +
+    "                                                                    <div ng-if=\"item.description\">\n" +
+    "                                                                        <div class=\"panel panel-default scrollable\" style=\"max-height: 165px;overflow-y: auto;margin-top: 13px;\">\n" +
+    "                                                                            <div class=\"hidden-xs text-justify \" >{{item.description}}</div>\n" +
+    "                                                                        </div>\n" +
+    "                                                                    </div>\n" +
+    "\n" +
+    "\n" +
+    "                                                                </div>\n" +
+    "                                                            </div>\n" +
+    "\n" +
+    "                                                         </div>\n" +
+    "                                                     </div>\n" +
+    "                                                 </div>\n" +
+    "\n" +
+    "                                         </div>\n" +
+    "\n" +
+    "\n" +
+    "                                    <div class=\"clearfix\"></div>\n" +
+    "                                    <br><br>\n" +
+    "\n" +
+    "\n" +
+    "\n" +
+    "\n" +
+    "                            </div>\n" +
+    "\n" +
+    "\n" +
     "                        </div>\n" +
     "                    </div>\n" +
     "                </div>\n" +
@@ -1638,7 +1696,7 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
     "<div class=\"page-header\">\n" +
     "    <div class=\"row\">\n" +
     "        <div class=\"col-md-2\">\n" +
-    "            <a ui-sref=\"dates\" class=\"btn btn-success btn-large btn-outlined big-button back-button\"><i class=\"glyphicon glyphicon-chevron-left\"></i> Dates</a>\n" +
+    "            <a ui-sref=\"dates\" class=\"btn btn-primary btn-large btn-outlined big-button back-button\"><i class=\"glyphicon glyphicon-chevron-left\"></i> Dates</a>\n" +
     "        </div>\n" +
     "        <div class=\"col-md-8\">\n" +
     "            <h1 class=\"text-center subtitle\">{{current_day.format('dddd DD  MMMM YYYY')}}</h1>\n" +
@@ -1873,7 +1931,7 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
     "                            </article>\n" +
     "\n" +
     "              </div>\n" +
-    "          </div>\n" +
+    "                </div>\n" +
     "            </div>\n" +
     "            <div ng-show=\"(origin && destination) || currentMarker\" id=\"scrollingMaps\" class=\"col-md-8 \" >\n" +
     "\n" +
@@ -1890,11 +1948,13 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
     "//mantaining the maps on the top of the page when scrolling\n" +
     "$().ready(function() {\n" +
     "        $(window).scroll(function () {\n" +
+    "            if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {\n" +
     "\n" +
-    "            if ($(\"#planning\").offset() !==undefined) {\n" +
+    "                if ($(\"#planning\").offset() !== undefined) {\n" +
     "\n" +
-    "                if ($(window).scrollTop() > $(\"#planning\").offset().top) {\n" +
-    "                    $(\"#scrollingMaps\").stop().animate({\"marginTop\": ($(window).scrollTop() - $(\"#planning\").offset().top) + \"px\"}, \"slow\");\n" +
+    "                    if ($(window).scrollTop() > $(\"#planning\").offset().top) {\n" +
+    "                        $(\"#scrollingMaps\").stop().animate({\"marginTop\": ($(window).scrollTop() - $(\"#planning\").offset().top) + \"px\"}, \"slow\");\n" +
+    "                    }\n" +
     "                }\n" +
     "            }\n" +
     "        });\n" +
@@ -1968,7 +2028,7 @@ angular.module("plan_trip/trip_dates.tpl.html", []).run(["$templateCache", funct
     "\n" +
     "</div>\n" +
     "<div class=\"col-md-12 text-center\" ng-show=\"dates.length\">\n" +
-    "    <button name=\"createbutton\" ui-sref=\"createtrip\" class=\"btn btn-primary btn-outlined big-button\">Create my Trip</button>\n" +
+    "    <button name=\"createbutton\" ui-sref=\"createtrip\" class=\"btn btn-primary btn-outlined big-button\" style=\"margin-bottom: 30px\">CREATE MY TRIP</button>\n" +
     "</div>\n" +
     "\n" +
     "\n" +

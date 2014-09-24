@@ -16,7 +16,7 @@
   border-radius: 0;
 }
 .z-up{
-  z-index: 1;
+  z-index: 2;
 }
 
 .event-list {
@@ -210,6 +210,8 @@
 }
 
 .timeline-item {
+  z-index: 1;
+  position:relative;
   border: 6px solid  rgba(17, 17, 27, 0.15);
   border-radius: 4px;
   -webkit-box-shadow: 0 10px 6px -6px #777;
@@ -242,7 +244,7 @@
   left: 49.5%;
   top: 20px;
   bottom: 20px;
-  z-index: -1;
+  z-index: 0;
 
 }
 
@@ -282,3 +284,53 @@
 
 }
 
+
+
+//create trip
+
+.list-inline>li {
+  padding: 0 10px 0 0;
+}
+.container-pad {
+  padding: 30px 15px;
+}
+
+
+/**** MODULE ****/
+.bgc-fff {
+  background-color: #fff!important;
+}
+.box-shad {
+  -webkit-box-shadow: 1px 1px 0 rgba(0,0,0,.2);
+  box-shadow: 1px 1px 0 rgba(0,0,0,.2);
+}
+.brdr {
+  border: 1px solid #ededed;
+}
+
+/* Font changes */
+.fnt-smaller {
+  font-size: .9em;
+}
+.fnt-lighter {
+  color: #bbb;
+}
+
+/* Padding - Margins */
+.pad-10 {
+  padding: 10px!important;
+}
+.mrg-0 {
+  margin: 0!important;
+}
+.btm-mrg-10 {
+  margin-bottom: 10px!important;
+}
+.btm-mrg-20 {
+  margin-bottom: 20px!important;
+}
+
+/* Color  */
+.clr-535353 {
+  color: #535353;
+}
