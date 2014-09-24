@@ -323,7 +323,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                        <div ng-show=\"modalEnabled\">\n" +
     "                            <div class=\"container-fluid capriola\">\n" +
     "                            <div class=\"row\">\n" +
-    "                                <div class=\"col-lg-6 capriola\" >\n" +
+    "                                <div class=\"col-md-6 capriola\" >\n" +
     "                                    <div class=\"row\">\n" +
     "                                        <b>Rating</b>\n" +
     "                                    </div>\n" +
@@ -331,7 +331,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                                        {{moreInfoSelection.rating || 'Unknown'}}\n" +
     "                                    </div>\n" +
     "                                </div>\n" +
-    "                                <div class=\"col-lg-6\">\n" +
+    "                                <div class=\"col-md-6\">\n" +
     "                                    <div class=\"row\">\n" +
     "                                        <b>Price</b>\n" +
     "                                    </div>\n" +
@@ -341,7 +341,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                                </div>\n" +
     "                            </div>\n" +
     "                            <div class=\"row\">\n" +
-    "                                <div class=\"col-lg-6\" >\n" +
+    "                                <div class=\"col-md-6\" >\n" +
     "                                    <div class=\"row\">\n" +
     "                                        <b>Phone</b>\n" +
     "                                    </div>\n" +
@@ -349,7 +349,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                                        {{moreInfoSelection.international_phone}}\n" +
     "                                    </div>\n" +
     "                                </div>\n" +
-    "                                <div class=\"col-lg-6\">\n" +
+    "                                <div class=\"col-md-6\">\n" +
     "                                    <div class=\"row\">\n" +
     "                                        <b>Address</b>\n" +
     "                                    </div>\n" +
@@ -359,23 +359,23 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                                </div>\n" +
     "                            </div>\n" +
     "                            <div class=\"row\">\n" +
-    "                                <div class=\"col-lg-12\" >\n" +
+    "                                <div class=\"col-md-12\" >\n" +
     "                                    <div class=\"row\">\n" +
     "                                        <b>Web Site</b>\n" +
     "                                    </div>\n" +
-    "                                    <div class=\"row\">\n" +
+    "                                    <div class=\"row\" style=\"word-wrap: break-word;\">\n" +
     "                                        <a target=\"_blank\" ng-href=\"{{moreInfoSelection.web_site}}\">{{moreInfoSelection.web_site}}</a>\n" +
     "                                    </div>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
     "                            <div ng-show=\"moreInfoSelection.open_hours != null\">\n" +
     "                                <div class=\"row\">\n" +
-    "                                <div class=\"col-lg-12\">\n" +
+    "                                <div class=\"col-md-12\">\n" +
     "                                    <div class=\"text-capitalize text-center\">\n" +
     "                                        <b>Open Hours</b>\n" +
     "                                    </div>\n" +
     "                                </div>\n" +
-    "                                <div class=\"col-lg-3\" >\n" +
+    "                                <div class=\"col-md-3\" >\n" +
     "                                    <div class=\"panel panel-info\">\n" +
     "                                        <div>\n" +
     "                                            <div class=\"text-center\">Sunday</div>\n" +
@@ -390,7 +390,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                                        </div>\n" +
     "                                    </div>\n" +
     "                                </div>\n" +
-    "                                <div class=\"col-lg-3\" >\n" +
+    "                                <div class=\"col-md-3\" >\n" +
     "                                    <div class=\"panel panel-info\">\n" +
     "                                        <div>\n" +
     "                                            <div class=\"text-center\">Monday</div>\n" +
@@ -405,7 +405,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                                        </div>\n" +
     "                                    </div>\n" +
     "                                </div>\n" +
-    "                                <div class=\"col-lg-3\" >\n" +
+    "                                <div class=\"col-md-3\" >\n" +
     "                                    <div class=\"panel panel-info\">\n" +
     "                                        <div>\n" +
     "                                            <div class=\"text-center\">Tuesday</div>\n" +
@@ -420,7 +420,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                                        </div>\n" +
     "                                    </div>\n" +
     "                                </div>\n" +
-    "                                <div class=\"col-lg-3\" >\n" +
+    "                                <div class=\"col-md-3\" >\n" +
     "                                    <div class=\"panel panel-info\">\n" +
     "                                        <div>\n" +
     "                                            <div class=\"text-center\">Wednesday</div>\n" +
@@ -435,7 +435,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                                        </div>\n" +
     "                                    </div>\n" +
     "                                </div>\n" +
-    "                                <div class=\"col-lg-3\" >\n" +
+    "                                <div class=\"col-md-3\" >\n" +
     "                                    <div class=\"panel panel-info\">\n" +
     "                                        <div>\n" +
     "                                            <div class=\"text-center\">Thursday</div>\n" +
@@ -450,7 +450,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                                        </div>\n" +
     "                                    </div>\n" +
     "                                </div>\n" +
-    "                                <div class=\"col-lg-3\" >\n" +
+    "                                <div class=\"col-md-3\" >\n" +
     "                                    <div class=\"panel panel-info\">\n" +
     "                                        <div>\n" +
     "                                            <div class=\"text-center\">Friday</div>\n" +
@@ -465,7 +465,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                                        </div>\n" +
     "                                    </div>\n" +
     "                                </div>\n" +
-    "                                <div class=\"col-lg-3\" >\n" +
+    "                                <div class=\"col-md-3\" >\n" +
     "                                    <div class=\"panel panel-info\">\n" +
     "                                        <div>\n" +
     "                                            <div class=\"text-center\">Saturday</div>\n" +
@@ -483,7 +483,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                            </div>\n" +
     "                            </div>\n" +
     "                            <div class=\"row\">\n" +
-    "                                <div class=\"col-lg-12\">\n" +
+    "                                <div class=\"col-md-12\">\n" +
     "                                    <div class=\"row\">\n" +
     "                                        <div class=\"panel-image-modal\">\n" +
     "                                            <carousel interval=\"intervalImages\" >\n" +
@@ -496,7 +496,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                                </div>\n" +
     "                            </div>\n" +
     "                            <div class=\"row\">\n" +
-    "                                <div class=\"col-lg-12\">\n" +
+    "                                <div class=\"col-md-12\">\n" +
     "                                    <p class=\"text-center\">\n" +
     "                                        <b>Reviews</b>\n" +
     "                                    </p>\n" +
@@ -516,24 +516,24 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                                                        <div class=\"star-rating\">\n" +
     "                                                            <span ng-repeat=\"aspect in review.aspects\">\n" +
     "                                                                <div class=\"row\">\n" +
-    "                                                                    <div class=\"col-lg-3\">\n" +
+    "                                                                    <div class=\"col-md-3\">\n" +
     "                                                                        <b class=\"text-capitalize\">{{aspect.type}}</b>\n" +
     "                                                                    </div>\n" +
-    "                                                                    <div class=\"col-lg-8\">\n" +
+    "                                                                    <div class=\"col-md-8\">\n" +
     "                                                                        <rating ng-model=\"aspect.rating\" readonly=\"true\" max=3></rating>\n" +
     "                                                                    </div>\n" +
     "                                                                </div>\n" +
     "                                                            </span>\n" +
     "                                                        </div>\n" +
     "                                                        <div class=\"row\">\n" +
-    "                                                            <div class=\"col-lg-12\">\n" +
+    "                                                            <div class=\"col-md-12\">\n" +
     "                                                                <p class=\"text-left\">\n" +
     "                                                                    <b>Comment</b>\n" +
     "                                                                </p>\n" +
     "                                                                {{review.text}}\n" +
     "                                                            </div>\n" +
     "                                                        </div>\n" +
-    "                                                        <div class=\"col-lg-12\">\n" +
+    "                                                        <div class=\"col-md-12\">\n" +
     "                                                            <div class=\"row\">\n" +
     "                                                                <em>\n" +
     "                                                                    <span>{{changeDate(review.time)}}</span>\n" +
