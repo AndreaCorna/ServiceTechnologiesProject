@@ -509,16 +509,16 @@ angular.module('trippo.plan',[
         $scope.generatePdf = function() {
 
             $('.substitute').each(function(index){
-                console.log(index);
+                console.log($(this).attr('ng-src'));
                var url = $(this).attr('ng-src');
                $http({method:'GET',url:url}).
                    success(function(data,status,headers,config){
                        console.log(headers);
-                   var imgData = btoa(data);
+                   var imgData = 'data:image/jpeg;base64,/9j/'+btoa(encodeURIComponent(data));
                        console.log(imgData);
                    $(this).removeAttr('ng-src');
                    $(this).attr('src',imgData);
-                   })
+                   });
             });
 
             var myDocument = $document[0];
