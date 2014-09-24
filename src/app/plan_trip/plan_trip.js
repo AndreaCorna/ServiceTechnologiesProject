@@ -244,7 +244,7 @@ angular.module('trippo.plan',[
             ModalHandler.setDetailsByResource(commonResources.FoodRes,id_food);
         };
         //START STUB
-
+        /*
 
          StubHandler.createFakeDates();
         var randomItemsc = [];
@@ -265,19 +265,19 @@ angular.module('trippo.plan',[
         $scope.foods =randomItemsf;
 
 
-
+        */
 
         //END STUB
         //get the item selected in the selectionService and set the current daySchedule removing item which has been removed from the Selection service
 
         $scope.current_day = moment($stateParams.date,"DD-MM-YYYY");
 
-        /*
+
         $scope.hotels =SelectionService. getHotelSelection($stateParams.city_name);
         $scope.culture =SelectionService.getCultureSelection($stateParams.city_name);
         $scope.entertainment =SelectionService.getEntertainmentSelection($stateParams.city_name);
         $scope.foods = SelectionService.getFoodSelection($stateParams.city_name);
-         */
+
 
         var selectedItems = [].concat($scope.culture,$scope.hotels,$scope.entertainment,$scope.foods) ;
         PlanningService.initializeCurrentDay($stateParams.date);
@@ -449,7 +449,25 @@ angular.module('trippo.plan',[
 
 })
 
-.controller('CreateTripCtrl',function CreateTripCtrl($stateParams,$scope,DatesService,CityPlanningService,PlanningService){
+.controller('CreateTripCtrl',function CreateTripCtrl($stateParams,$scope,DatesService,CityPlanningService,PlanningService, StubHandler,ModalHandler){
+
+        //STUB START
+         /*
+        StubHandler.createFakeDates();
+        var randomItemsc = [];
+        var  randomItemse = [];
+        var  randomItemsh = [];
+        var  randomItemsf = [];
+
+        for (var i = 0; i < 8; i++) {
+            randomItemsc.push(StubHandler.getItemRandom("culture"));
+            randomItemse.push(StubHandler.getItemRandom("entertainment"));
+            randomItemsh.push(StubHandler.getItemRandom("hotel"));
+            randomItemsf.push(StubHandler.getItemRandom("food"));
+        }
+         */
+        //STUB END
+
 
         CityPlanningService.setRangeDatesCity($stateParams.city_name) ;
         $scope.dates = DatesService.getRangeDates();
@@ -458,7 +476,7 @@ angular.module('trippo.plan',[
             console.log("current todo");
             console.log(PlanningService.getCurrentTodo());
 
-            return PlanningService.getCurrentTodo();
+            return PlanningService.getCurrentTodo();  // CHANGE THIS TO    PlanningService.getCurrentTodo()
         };
 
         $scope.setCultureDetails = function(id_culture){
@@ -479,7 +497,7 @@ angular.module('trippo.plan',[
 
     })
 
-.factory('StubHandler', function (DatesService) {
+.factory('StubHandler', function (DatesService,$stateParams,CityPlanningService) {
     function makestring(){
         var text = "";
         var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -491,6 +509,7 @@ angular.module('trippo.plan',[
     }
         return {
             createFakeDates: function(){
+                CityPlanningService.setRangeDatesCity($stateParams.city_name) ;
                 DatesService.createRange(moment(), moment());
             } ,
             getItemRandom : function(type){

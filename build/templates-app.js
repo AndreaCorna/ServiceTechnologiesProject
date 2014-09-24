@@ -1577,7 +1577,7 @@ angular.module("plan_trip/createtrip.tpl.html", []).run(["$templateCache", funct
     "    </div>\n" +
     "</div>\n" +
     "<div class=\"row\">\n" +
-    "    <div class=\"col-md-8 col-md-offset-2\">\n" +
+    "    <div class=\"col-md-10 col-md-offset-1\">\n" +
     "        <div class=\"well well-sm\">\n" +
     "            <form class=\"form-horizontal\" action=\"\" method=\"post\">\n" +
     "                <fieldset>\n" +
@@ -1618,41 +1618,64 @@ angular.module("plan_trip/createtrip.tpl.html", []).run(["$templateCache", funct
     "                        </h4>\n" +
     "                    </div>\n" +
     "                    <div id=\"{{date.format('DD-MM-YYYY')}}List\" class=\"panel-collapse collapse\">\n" +
-    "                        <div class=\"panel-body\">\n" +
-    "                            <div  class=\"timeline-centered\"  style=\"margin-bottom: 0px\">\n" +
-    "                                <div class=\"row\">\n" +
-    "                                    <div class=\"timeline-list col-md-4 col-md-offset-4\">\n" +
-    "                                        <div class=\"row\" ng-repeat=\"item in getDayProgram(date)\">\n" +
-    "                                            <div  ng-class=\"getItemClass(item)\" class=\" timeline-item z-up \" style=\"cursor:default;\" >\n" +
-    "                                                <div class=\"row\" style=\"height: 48px;\">\n" +
+    "                        <div class=\"panel-body\" style=\"background-color:#e8e8e8\">\n" +
+    "                            <div class=\"row\" ng-repeat=\"item in getDayProgram(date)\" >\n" +
     "\n" +
-    "                                                    <h1 class=\"item-name\">{{item.name}}</h1>\n" +
-    "                                                </div>\n" +
+    "                                         <div class=\"col-md-12\" >\n" +
+    "                                             <div class=\"row\" style=\"margin-left: 4px;margin-right: 4px\">\n" +
     "\n" +
-    "                                                <div class=\"row\">\n" +
-    "                                                    <div class=\"btn-group\">\n" +
+    "                                                    <div class=\"brdr bgc-fff pad-10 box-shad property-listing\">\n" +
+    "                                                         <div class=\"media\">\n" +
+    "                                                             <div class=\"col-md-4\">\n" +
+    "                                                                 <div ng-if=\"item.photos.length==0\">\n" +
+    "                                                                     <img style=\"height: 220px;  width:100%;\" ng-src=\"assets/images/empty_photo.png\">\n" +
+    "                                                                 </div>\n" +
+    "                                                                 <div ng-if=\"item.photos.length>0\">\n" +
+    "                                                                     <img style=\"height: 220px;  width:100%;\" ng-src=\"{{item.photos[0].image}}\" >\n" +
+    "                                                                 </div>\n" +
     "\n" +
-    "                                                        <button class=\"btn btn-primary btn-outlined z-up\" style=\";margin-left: 4px;margin-bottom: 5px\"  ng-click=\"setCultureDetails(item.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">MORE INFO</button>\n" +
-    "                                                    </div>\n" +
-    "                                                </div>\n" +
-    "                                            </div>\n" +
-    "                                            <article class=\"timeline-entry\" >\n" +
-    "                                                <div class=\"timeline-entry-inner\">\n" +
+    "                                                             </div>\n" +
+    "                                                             <div class=\"clearfix visible-sm\"></div>\n" +
     "\n" +
-    "                                                    <div   class=\"timeline-icon icon-not-selected\"  style=\"cursor:default\">\n" +
-    "                                                        <i class=\"entypo-feather\"></i>\n" +
-    "                                                    </div>\n" +
+    "                                                             <div class=\"col-md-8\">\n" +
+    "                                                                <div class=\"media-body fnt-smaller\">\n" +
     "\n" +
+    "                                                                 <h4 class=\"media-heading\">\n" +
+    "                                                                     <a href=\"#\" target=\"_parent\">{{item.name}} </a>\n" +
+    "                                                                     <button class=\"btn btn-primary btn-outlined pull-right\" style=\"margin-top: 3px\"  ng-click=\"setCultureDetails(item.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">MORE INFO</button>\n" +
     "\n" +
-    "                                                </div>\n" +
-    "\n" +
-    "                                            </article>\n" +
+    "                                                                 </h4>\n" +
     "\n" +
     "\n" +
-    "                                        </div>\n" +
-    "                                    </div>\n" +
-    "                                </div>\n" +
+    "                                                                 <div ng-if=\"!item.description\">\n" +
+    "                                                                     <p class=\"hidden-xs\">No description available</p>\n" +
+    "                                                                  </div>\n" +
+    "                                                                    <div ng-if=\"item.description\">\n" +
+    "                                                                        <div class=\"panel panel-default scrollable\" style=\"max-height: 165px;overflow-y: auto;margin-top: 13px;\">\n" +
+    "                                                                            <div class=\"hidden-xs text-justify \" >{{item.description}}</div>\n" +
+    "                                                                        </div>\n" +
+    "                                                                    </div>\n" +
+    "\n" +
+    "\n" +
+    "                                                                </div>\n" +
+    "                                                            </div>\n" +
+    "\n" +
+    "                                                         </div>\n" +
+    "                                                     </div>\n" +
+    "                                                 </div>\n" +
+    "\n" +
+    "                                         </div>\n" +
+    "\n" +
+    "\n" +
+    "                                    <div class=\"clearfix\"></div>\n" +
+    "                                    <br><br>\n" +
+    "\n" +
+    "\n" +
+    "\n" +
+    "\n" +
     "                            </div>\n" +
+    "\n" +
+    "\n" +
     "                        </div>\n" +
     "                    </div>\n" +
     "                </div>\n" +
