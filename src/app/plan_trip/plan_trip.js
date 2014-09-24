@@ -513,6 +513,7 @@ angular.module('trippo.plan',[
                var url = $(this).attr('ng-src');
                $http({method:'GET',url:url}).
                    success(function(data,status,headers,config){
+                       console.log(headers);
                    var imgData = btoa(data);
                        console.log(imgData);
                    $(this).removeAttr('ng-src');
@@ -521,7 +522,8 @@ angular.module('trippo.plan',[
             });
 
             var myDocument = $document[0];
-            var doc = new jsPDF('p','pt','a4');
+            var JSPDF = jsPDF;
+            var doc = new JSPDF('p','pt','a4');
             console.log($document[0].all);
             console.log('jquery');
             console.log($('.prova').attr('ng-src'));
