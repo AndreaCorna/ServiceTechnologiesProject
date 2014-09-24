@@ -449,7 +449,7 @@ angular.module('trippo.plan',[
 
 })
 
-.controller('CreateTripCtrl',function CreateTripCtrl($stateParams,$scope,DatesService,CityPlanningService,PlanningService, StubHandler,ModalHandler,commonResources,GuideRes){
+.controller('CreateTripCtrl',function CreateTripCtrl($stateParams,$scope,DatesService,CityPlanningService,PlanningService, StubHandler,ModalHandler,commonResources,GuideRes,$document,$http){
         $scope.dateFormat = DatesService.dateFormat;
 
 
@@ -506,7 +506,36 @@ angular.module('trippo.plan',[
             return PlanningService.getItemClass(item);
         };
 
+        $scope.generatePdf = function() {
 
+            $('.substitute').each(function(index){
+                console.log(index);
+               var url = $(this).attr('ng-src');
+               $http({method:'GET',url:url}).
+                   success(function(data,status,headers,config){
+                   var imgData = btoa(data);
+                       console.log(imgData);
+                   $(this).removeAttr('ng-src');
+                   $(this).attr('src',imgData);
+                   })
+            });
+
+            var myDocument = $document[0];
+            var doc = new jsPDF('p','pt','a4');
+            console.log($document[0].all);
+            console.log('jquery');
+            console.log($('.prova').attr('ng-src'));
+            //myDocument.all.cityMap = imgData;
+
+
+            doc.addHTML(myDocument.all,function() {
+
+                var string = doc.output('datauristring');
+                console.log(string);
+                $('.preview-pane').attr('src', string);
+            });
+            //console.log(doc);
+        };
 
     })
 
