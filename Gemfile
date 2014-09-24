@@ -68,3 +68,6 @@ gem 'wikipedia-client'
 gem 'geocoder'
 
 gem 'numbers_and_words'
+
+#google+ authentication
+gem 'omniauth-google-oauth2'
