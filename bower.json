@@ -9,7 +9,9 @@
     "angular-ui-router": "~0.2",
     "angular-resource": "~1.2.21",
     "moment": "~2.8.2",
-    "angular-sortable-view": "0.0.8"
+    "angular-sortable-view": "0.0.8",
+    "jspdf": "git://github.com/MrRio/jsPDF#~1.0.178",
+    "html2canvas": "git://github.com/niklasvh/html2canvas#~0.4.1"
   },
   "dependencies": {
     "ngInfiniteScroll": "1.0.0"

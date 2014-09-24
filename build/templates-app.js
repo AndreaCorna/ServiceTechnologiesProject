@@ -300,6 +300,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "\n" +
     "\n" +
     "        <li class='last'><a ui-sref=\"dates\" data-target=\"#\" data-toggle=\"pill\"><span>Plan Trip</span></a></li>\n" +
+    "        <button id=\"aaaa\" ng-click=\"generate()\">press</button>\n" +
     "    </ul>\n" +
     "\n" +
     "</div>\n" +
