@@ -449,7 +449,13 @@ angular.module('trippo.plan',[
 
 })
 
-.controller('CreateTripCtrl',function CreateTripCtrl($stateParams,$scope,DatesService,CityPlanningService,PlanningService, StubHandler,ModalHandler){
+.controller('CreateTripCtrl',function CreateTripCtrl($stateParams,$scope,DatesService,CityPlanningService,PlanningService, StubHandler,ModalHandler,commonResources,GuideRes){
+        $scope.dateFormat = DatesService.dateFormat;
+
+
+        $scope.setCultureDetails = function(id_culture){
+            ModalHandler.setDetailsByResource(commonResources.CultureRes,id_culture);
+        };
 
         //STUB START
          /*
@@ -471,17 +477,24 @@ angular.module('trippo.plan',[
 
         CityPlanningService.setRangeDatesCity($stateParams.city_name) ;
         $scope.dates = DatesService.getRangeDates();
-        $scope.getDayProgram = function(day){
-            PlanningService.initializeCurrentDay(day.format(DatesService.dateFormat));
-            console.log("current todo");
-            console.log(PlanningService.getCurrentTodo());
 
+        $scope.getDayProgram = function(day){
+
+            PlanningService.initializeCurrentDay(day.format(DatesService.dateFormat));
             return PlanningService.getCurrentTodo();  // CHANGE THIS TO    PlanningService.getCurrentTodo()
         };
 
-        $scope.setCultureDetails = function(id_culture){
-            ModalHandler.setDetailsByResource(commonResources.CultureRes,id_culture);
+        $scope.createTrip = function (form) {
+            $scope.submitted = true;
+            if   (form.$valid){
+                console.log("submitted");
+
+
+            }
+
         };
+
+
 
         /**
          * return correct class based on the item tag
@@ -492,7 +505,7 @@ angular.module('trippo.plan',[
 
             return PlanningService.getItemClass(item);
         };
-        $scope.dateFormat = DatesService.dateFormat;
+
 
 
     })

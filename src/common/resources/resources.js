@@ -8,20 +8,21 @@
 angular.module('trippo.resources', [
     'ngResource'
 ])
+.value('ResourceBaseUrl', {val:'../../city/'})
 
-.factory('CityRes', function ($resource){
-     var city = $resource ("../../city/:city_name");
+.factory('CityRes', function ($resource,ResourceBaseUrl){
+     var city = $resource (ResourceBaseUrl.val+":city_name");
      return city;
 })
 
-.factory( 'CultureRes', function ($resource) {
-    var culture = $resource("../../city/:city_name/culture/:id");
+.factory( 'CultureRes', function ($resource,ResourceBaseUrl) {
+    var culture = $resource(ResourceBaseUrl.val+":city_name/culture/:id");
     return culture;
 })
 
-.factory('UtilityRes',function($resource){
+.factory('UtilityRes',function($resource,ResourceBaseUrl){
 
-    var utility = $resource("../../city/:city_name/utility/:id");
+    var utility = $resource(ResourceBaseUrl.val+":city_name/utility/:id");
 
 
     return utility;
@@ -29,23 +30,27 @@ angular.module('trippo.resources', [
 
 })
 
-.factory('EntertainmentRes',function($resource){
-    var entertainment = $resource("../../city/:city_name/entertainment/:id");
+.factory('EntertainmentRes',function($resource,ResourceBaseUrl){
+    var entertainment = $resource(ResourceBaseUrl.val+":city_name/entertainment/:id");
 
     return entertainment;
 })
 
-.factory('HotelRes',function($resource){
-    var hotel = $resource("../../city/:city_name/hotels/:id");
+.factory('HotelRes',function($resource,ResourceBaseUrl){
+    var hotel = $resource(ResourceBaseUrl.val+":city_name/hotels/:id");
     return hotel;
 
 })
 
-.factory('FoodRes',function($resource){
-    var food = $resource("../../city/:city_name/food/:id");
+.factory('FoodRes',function($resource,ResourceBaseUrl){
+    var food = $resource(ResourceBaseUrl.val+":city_name/food/:id");
 
     return food;
 })
+    .factory('GuideRes', function ($resource,ResourceBaseUrl) {
+       var  guide = $resource(ResourceBaseUrl.val+"guides/:id")  ;
+        return  guide;
+    })
 
 
 .factory('commonResources',function(FoodRes,HotelRes,EntertainmentRes,CultureRes){

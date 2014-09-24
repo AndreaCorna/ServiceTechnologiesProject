@@ -1579,14 +1579,17 @@ angular.module("plan_trip/createtrip.tpl.html", []).run(["$templateCache", funct
     "<div class=\"row\">\n" +
     "    <div class=\"col-md-10 col-md-offset-1\">\n" +
     "        <div class=\"well well-sm\">\n" +
-    "            <form class=\"form-horizontal\" action=\"\" method=\"post\">\n" +
+    "            <form  novalidate class=\"form-horizontal\" name=\"form\" ng-submit=\"createTrip(form)\" method=\"post\">\n" +
+    "            <div ng-show=\"submitted  && (form.name.$error.required )\" class=\"alert alert-danger\">\n" +
+    "                Field <strong>name</strong> is required\n" +
+    "            </div>\n" +
     "                <fieldset>\n" +
     "                    <legend>Trip Details</legend>\n" +
     "                    <!-- Name input-->\n" +
     "                    <div class=\"form-group\">\n" +
     "                        <label class=\"col-md-2 control-label \" for=\"name\" style=\"font-size: 18px\">Trip Name</label>\n" +
     "                        <div class=\"col-md-10\">\n" +
-    "                            <input id=\"name\" name=\"name\" type=\"text\" placeholder=\"Holiday 2014\" class=\"form-control\">\n" +
+    "                            <input id=\"name\" name=\"name\" ng-model=\"name\" type=\"text\" placeholder=\"Holiday 2014\" class=\"form-control\" required>\n" +
     "                        </div>\n" +
     "                    </div>\n" +
     "\n" +
@@ -1594,7 +1597,7 @@ angular.module("plan_trip/createtrip.tpl.html", []).run(["$templateCache", funct
     "                    <div class=\"form-group\">\n" +
     "                        <label class=\"col-md-2 control-label\" for=\"message\" style=\"font-size: 18px\">Description</label>\n" +
     "                        <div class=\"col-md-10\">\n" +
-    "                            <textarea class=\"form-control\" id=\"message\" name=\"message\" placeholder=\"Please enter your description here...\" rows=\"5\"></textarea>\n" +
+    "                            <textarea class=\"form-control\" ng-model=\"description\" id=\"message\" name=\"message\" placeholder=\"Please enter your description here...\" rows=\"5\"></textarea>\n" +
     "                        </div>\n" +
     "                    </div>\n" +
     "\n" +
