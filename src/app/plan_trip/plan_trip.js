@@ -457,8 +457,16 @@ angular.module('trippo.plan',[
             ModalHandler.setDetailsByResource(commonResources.CultureRes,id_culture);
         };
 
+        CityPlanningService.setRangeDatesCity($stateParams.city_name) ;
+        $scope.dates = DatesService.getRangeDates();
+
+        $scope.getDayProgram = function(day){
+            PlanningService.initializeCurrentDay(day.format(DatesService.dateFormat));
+            return PlanningService.getCurrentTodo();  // CHANGE THIS TO    PlanningService.getCurrentTodo()
+        };
+
         //STUB START
-         /*
+        /*
         StubHandler.createFakeDates();
         var randomItemsc = [];
         var  randomItemse = [];
@@ -471,22 +479,48 @@ angular.module('trippo.plan',[
             randomItemsh.push(StubHandler.getItemRandom("hotel"));
             randomItemsf.push(StubHandler.getItemRandom("food"));
         }
+
+         $scope.getDayProgram = function(day){
+         PlanningService.initializeCurrentDay(day.format(DatesService.dateFormat));
+         return randomItemsc;  // CHANGE THIS TO    PlanningService.getCurrentTodo()
+         };
          */
+
         //STUB END
 
 
-        CityPlanningService.setRangeDatesCity($stateParams.city_name) ;
-        $scope.dates = DatesService.getRangeDates();
 
-        $scope.getDayProgram = function(day){
-
-            PlanningService.initializeCurrentDay(day.format(DatesService.dateFormat));
-            return PlanningService.getCurrentTodo();  // CHANGE THIS TO    PlanningService.getCurrentTodo()
-        };
 
         $scope.createTrip = function (form) {
             $scope.submitted = true;
             if   (form.$valid){
+                var guide =  new GuideRes();
+                guide.name = $scope.name ;
+                guide.description = $scope.description ;
+                //hash key : day in dateFormat format value: array of activities in that day
+                /**
+                 * Adding all the day and their respective activities to  schedule hash
+                 */
+                var schedule = [];
+                angular.forEach($scope.dates, function (value, key) {
+                    var current_day =value;
+                    var current_schedule = [] ;
+
+                    angular.forEach($scope.getDayProgram(current_day), function (value, key) {
+                          current_schedule.push(value);
+                    });
+                    var current_object ={
+                        day :  current_day.format($scope.dateFormat),
+                        schedule :  current_schedule
+                    } ;
+                    schedule.push(current_object);
+                });
+
+                guide.schedule = schedule;
+                console.log("guide schedule");
+                console.log(guide.schedule);
+
+                guide.$save();
                 console.log("submitted");
 
 

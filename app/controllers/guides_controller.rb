@@ -2,8 +2,11 @@ class GuidesController < ApplicationController
   def index
   end
 
-  def new
+  def create
+    puts params
+    render json:  params
   end
+
 
   def edit
   end
