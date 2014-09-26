@@ -15,7 +15,8 @@
 angular.module( 'trippo.home', [
   'ui.router',
   'trippo.city',
-  'trippo.plan'
+  'trippo.plan',
+  'trippo.navModule'
 ])
 
 /**
@@ -23,18 +24,7 @@ angular.module( 'trippo.home', [
  * will handle ensuring they are all available at run-time, but splitting it
  * this way makes each module more "self-contained".
  */
-.config(function config( $stateProvider ) {
-  $stateProvider.state( 'home', {
-    url: '/home',
-    views: {
-      "main": {
-        controller: 'HomeCtrl',
-        templateUrl: 'home/home.tpl.html'
-      }
-    },
-    data:{ pageTitle: 'Home' }
-  });
-})
+
 
 /**
  *Home controller implements search and get the list of cities from a rest call to the cityResource

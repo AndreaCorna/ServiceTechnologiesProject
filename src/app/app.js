@@ -5,10 +5,11 @@ angular.module( 'trippo', [
   'trippo.city',
   'trippo.plan',
   'ui.router',
-  'trippo.navModule'
+  'trippo.navModule',
+  'trippo.login'
 ])
 
-.config( function myAppConfig ( $stateProvider, $urlRouterProvider ) {
+.config(function  myAppConfig($urlRouterProvider){
     $urlRouterProvider.otherwise( '/home' );
 })
 
@@ -21,6 +22,7 @@ angular.module( 'trippo', [
       $scope.pageTitle = toState.data.pageTitle + ' | ngBoilerplate' ;
     }
   });
+
 })
 
 ;

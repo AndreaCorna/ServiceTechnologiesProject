@@ -1,4 +1,4 @@
-angular.module('templates-app', ['about/about.tpl.html', 'city/city.tpl.html', 'city/culture.tpl.html', 'city/entertainment.tpl.html', 'city/food.tpl.html', 'city/hotel.tpl.html', 'city/utility.tpl.html', 'home/home.tpl.html', 'plan_trip/calendar.tpl.html', 'plan_trip/planning.tpl.html', 'plan_trip/trip_dates.tpl.html']);
+angular.module('templates-app', ['about/about.tpl.html', 'city/city.tpl.html', 'city/culture.tpl.html', 'city/entertainment.tpl.html', 'city/food.tpl.html', 'city/hotel.tpl.html', 'city/utility.tpl.html', 'home/home.tpl.html', 'log_in/log_in.tpl.html', 'plan_trip/calendar.tpl.html', 'plan_trip/planning.tpl.html', 'plan_trip/trip_dates.tpl.html']);
 
 angular.module("about/about.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("about/about.tpl.html",
@@ -1556,6 +1556,57 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "\n" +
     "\n" +
     "");
+}]);
+
+angular.module("log_in/log_in.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("log_in/log_in.tpl.html",
+    "<div class=\"container\">\n" +
+    "    <div class=\"row\">\n" +
+    "        <div class=\"center-form panel\">\n" +
+    "            <div class=\"panel-body\">\n" +
+    "                <h2 class=\"text-center\">Log in</h2>\n" +
+    "                <form method=\"post\" ng-submit=\"login()\" name=\"loginForm\">\n" +
+    "                    <div class=\"form-group has-feedback\">\n" +
+    "                        <input class=\"form-control input-lg\" type=\"text\" name=\"email\" ng-model=\"email\" placeholder=\"Email\" required autofocus>\n" +
+    "                        <i class=\"fa fa-envelope form-control-feedback\"></i>\n" +
+    "                    </div>\n" +
+    "\n" +
+    "                    <div class=\"form-group has-feedback\">\n" +
+    "                        <input class=\"form-control input-lg\" type=\"password\" name=\"password\" ng-model=\"password\" placeholder=\"Password\" required>\n" +
+    "                        <i class=\"fa fa-key form-control-feedback\"></i>\n" +
+    "                    </div>\n" +
+    "\n" +
+    "                    <button type=\"submit\" ng-disabled=\"loginForm.$invalid\" class=\"btn btn-lg  btn-block btn-success\">Log in</button>\n" +
+    "\n" +
+    "                    <br/>\n" +
+    "\n" +
+    "                    <p class=\"text-center\">\n" +
+    "                        <a href=\"#\">Forgot your password?</a>\n" +
+    "                    </p>\n" +
+    "\n" +
+    "                    <p class=\"text-center text-muted\">\n" +
+    "                        <small>Don't have an account yet? <a href=\"/#/signup\">Sign up</a></small>\n" +
+    "                    </p>\n" +
+    "\n" +
+    "                    <div class=\"signup-or-separator\">\n" +
+    "                        <h6 class=\"text\">or</h6>\n" +
+    "                        <hr>\n" +
+    "                    </div>\n" +
+    "                </form>\n" +
+    "\n" +
+    "                <button class=\"btn btn-block btn-facebook\" ng-click=\"authenticate('facebook')\">\n" +
+    "                    <i class=\"fa fa-facebook\"></i> Sign in with Facebook\n" +
+    "                </button>\n" +
+    "                <button class=\"btn btn-block btn-google-plus\" ng-click=\"authenticate('google')\">\n" +
+    "                    <i class=\"fa fa-google-plus\"></i>Sign in with Google\n" +
+    "                </button>\n" +
+    "\n" +
+    "                </button>\n" +
+    "\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>");
 }]);
 
 angular.module("plan_trip/calendar.tpl.html", []).run(["$templateCache", function($templateCache) {

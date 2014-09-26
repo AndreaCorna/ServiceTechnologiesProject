@@ -82,10 +82,36 @@ pre {
 .no_margin{
   margin: 0px 0px 0px 0px;
 }
+
+.navbar {
+  margin-bottom: 0;
+}
+
+.navbar-nav > li > a {
+  padding: 15px;
+}
+
 .navbar-item{
   font-size: 18px;
   margin-right: 20px;
 }
+
+.navbar-default {
+  color: #fff;
+  background: #fff;
+}
+
+.navbar-default .navbar-brand {
+  color: #ffffff;
+  background-color: #ff1722;
+}
+
+.navbar-default .navbar-brand:hover {
+  color: #ff1722;
+  background-color: #ffffff;
+}
+
+
 
 .page-header {
   margin-top: 60px;
@@ -157,4 +183,5 @@ h2 {
 @import '../app/plan_trip/plan_trip.less';
 @import '../app/city/loader.less';
 @import '../common/maps/maps.less';
+@import '../app/log_in/log_in.less';
 

@@ -4,7 +4,7 @@
 
 angular.module("trippo.navModule", [
 ])
-.controller( "navCtrl",[  "$scope","$location","$log",
+.controller( "NavBarCtrl",[  "$scope","$location","$log",
     function($scope, $location, $log)
     {
         $scope.isActive = function (viewLocation) {
@@ -22,5 +22,36 @@ angular.module("trippo.navModule", [
             return "/home" === $location.path();
         };
     }
-    ]
-);
+    ])
+
+.config(function config( $stateProvider ) {
+    $stateProvider.state( 'login', {
+        url: '/login',
+        views: {
+            "main": {
+                controller: 'LoginCtrl',
+                templateUrl: 'log_in/log_in.tpl.html'
+            }
+        },
+        data:{ pageTitle: 'Log In' }
+    });
+})
+
+.config(function config( $stateProvider ) {
+    $stateProvider.state( 'home', {
+        url: '/home',
+        views: {
+            "main": {
+                controller: 'HomeCtrl',
+                templateUrl: 'home/home.tpl.html'
+            }
+        },
+        data:{ pageTitle: 'Home' }
+    });
+});
+
+
+
+
+
+
