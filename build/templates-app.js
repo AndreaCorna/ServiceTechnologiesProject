@@ -1581,7 +1581,7 @@ angular.module("plan_trip/createtrip.tpl.html", []).run(["$templateCache", funct
     "        <div class=\"well well-sm\">\n" +
     "            <form  novalidate class=\"form-horizontal\" name=\"form\" ng-submit=\"createTrip(form)\" method=\"post\">\n" +
     "            <div ng-show=\"submitted  && (form.name.$error.required )\" class=\"alert alert-danger\">\n" +
-    "                Field <strong>name</strong> is required\n" +
+    "                The field <strong>Trip Name</strong> is required\n" +
     "            </div>\n" +
     "                <fieldset>\n" +
     "                    <legend>Trip Details</legend>\n" +
