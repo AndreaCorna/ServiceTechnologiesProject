@@ -22,7 +22,7 @@ The result is an object with two elements:
       location = City.find_by_name(city)
       lat = location.lat
       lng = location.lng
-      utility_items= client.spots(lat,lng,:types => ['airport','atm','bank','bus_station','doctor','fire_station','hospital','parking','pharmacy','police','subway_station','taxi_stand','train_station','embassy'],:exclude => ['hotel'],:radius => 20000)
+      utility_items= client.spots(lat,lng,:types => ['airport','atm','bank','bus_station','doctor','fire_station','hospital','parking','pharmacy','police','subway_station','taxi_stand','train_station','embassy'],:exclude => ['hotel'],:radius => 15000)
       results = []
       next_page_token = nil
       threads = []
@@ -123,7 +123,7 @@ The result is an object with two elements:
       location = City.find_by_name(city)
       lat = location.lat
       lng = location.lng
-      culture_items= client.spots(lat,lng,:types => ['library','book_store','museum','aquarium','art_gallery','church'],:exclude => ['hotel'],:radius => 20000)
+      culture_items= client.spots(lat,lng,:types => ['library','book_store','museum','aquarium','art_gallery','church'],:exclude => ['hotel'],:radius => 15000)
       results = []
       next_page_token = nil
       threads = []
@@ -226,7 +226,7 @@ The result is an object with two elements:
       location = City.find_by_name(city)
       lat = location.lat
       lng = location.lng
-      entertainment_items= client.spots(lat,lng,:types => ['amusement_park','casino','gym','zoo','spa','park','movie_theater'],:exclude => ['hotel'],:radius => 20000)
+      entertainment_items= client.spots(lat,lng,:types => ['amusement_park','casino','gym','zoo','spa','park','movie_theater'],:exclude => ['hotel'],:radius => 15000)
       next_page_token = nil
       results = []
       threads = []
@@ -326,7 +326,7 @@ The items' types are:
       location = City.find_by_name(city)
       lat = location.lat
       lng = location.lng
-      food_items = client.spots(lat,lng,:types => ['food','restaurant','cafe','bakery'],:exclude => ['hotel'],:radius => 20000)
+      food_items = client.spots(lat,lng,:types => ['food','restaurant','cafe','bakery'],:exclude => ['hotel'],:radius => 15000)
       results = []
       next_page_token = nil
       threads = []
