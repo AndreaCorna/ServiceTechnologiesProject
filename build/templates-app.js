@@ -671,6 +671,15 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "            scope.disableModal();\n" +
     "        });\n" +
     "    });\n" +
+    "</script>\n" +
+    "<script>\n" +
+    "    $(function () {\n" +
+    "        $('#moreInfoModalHotel').on('hidden.bs.modal', function () {\n" +
+    "            var scope = angular.element(document.querySelector('#moreInfoModalHotel')).scope();\n" +
+    "\n" +
+    "            scope.disableModal();\n" +
+    "        });\n" +
+    "    });\n" +
     "</script>");
 }]);
 

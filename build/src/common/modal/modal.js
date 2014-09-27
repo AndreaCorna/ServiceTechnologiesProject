@@ -59,12 +59,14 @@ angular.module('trippo.modal', ["trippo.resources"])
          * Added a watch to update scope.moreInfoSelection which is set every time a moreInfo button is pushed
          */
         $scope.$watchCollection(function () { return ModalHandler.getDetails(); }, function (newVal, oldVal) {
-            $scope.loaderEnabled = true;
             if (typeof newVal !== 'undefined') {
+                $scope.loaderEnabled = true;
+
                 $scope.moreInfoSelection = ModalHandler.getDetails();
                 $scope.modalEnabled = true;
+                $scope.loaderEnabled = false;
+
             }
-            $scope.loaderEnabled = false;
 
         });
         $scope.disableModal = function(){
