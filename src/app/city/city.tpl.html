@@ -36,7 +36,7 @@
 
 
 
-    <div class="modal fade" ng-controller="ModalCtrl" data-backdrop="static" id="moreInfoModalPlace" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade" ng-controller="ModalCtrl" id="moreInfoModalPlace" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                     <div ng-show="modalEnabled">
@@ -388,3 +388,22 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(function () {
+        $('#moreInfoModalPlace').on('hidden.bs.modal', function () {
+            var scope = angular.element(document.querySelector('#moreInfoModalPlace')).scope();
+
+            scope.disableModal();
+        });
+    });
+</script>
+<script>
+    $(function () {
+        $('#moreInfoModalHotel').on('hidden.bs.modal', function () {
+            var scope = angular.element(document.querySelector('#moreInfoModalHotel')).scope();
+
+            scope.disableModal();
+        });
+    });
+</script>

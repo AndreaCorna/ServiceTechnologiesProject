@@ -310,7 +310,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "\n" +
     "\n" +
     "\n" +
-    "    <div class=\"modal fade\" ng-controller=\"ModalCtrl\" data-backdrop=\"static\" id=\"moreInfoModalPlace\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">\n" +
+    "    <div class=\"modal fade\" ng-controller=\"ModalCtrl\" id=\"moreInfoModalPlace\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">\n" +
     "        <div class=\"modal-dialog\">\n" +
     "            <div class=\"modal-content\">\n" +
     "                    <div ng-show=\"modalEnabled\">\n" +
@@ -662,7 +662,16 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "        </div>\n" +
     "    </div>\n" +
     "</div>\n" +
-    "");
+    "\n" +
+    "<script>\n" +
+    "    $(function () {\n" +
+    "        $('#moreInfoModalPlace').on('hidden.bs.modal', function () {\n" +
+    "            var scope = angular.element(document.querySelector('#moreInfoModalPlace')).scope();\n" +
+    "\n" +
+    "            scope.disableModal();\n" +
+    "        });\n" +
+    "    });\n" +
+    "</script>");
 }]);
 
 angular.module("city/culture.tpl.html", []).run(["$templateCache", function($templateCache) {
