@@ -1,10 +1,6 @@
 Rails.application.routes.draw do
 
 
-
-
-
-
  get 'sessions/create'
  get 'sessions/destroy'
 
@@ -85,6 +81,13 @@ Rails.application.routes.draw do
 
   get 'populate', :to => 'city#populate'
 
+   get '/api/me', :to => 'users#me'
+   get '/auth/login',:to =>'auth#login'
+   get '/auth/signup', :to => 'auth#signup'
+   get '/auth/facebook', :to => 'auth#facebook'
+   get '/auth/google', :to => 'auth#google'
+   get '/auth/linkedin', :to => 'auth#linkedin'
+   get '/auth/twitter', :to => 'auth#twitter'
 
 
 

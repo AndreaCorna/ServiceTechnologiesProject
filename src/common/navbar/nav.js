@@ -4,7 +4,8 @@
 
 angular.module("trippo.navModule", [
 ])
-.controller( "NavBarCtrl",[  "$scope","$location","$log",
+
+    .controller( "NavBarCtrl",
     function($scope, $location, $log)
     {
         $scope.isActive = function (viewLocation) {
@@ -21,8 +22,13 @@ angular.module("trippo.navModule", [
 
             return "/home" === $location.path();
         };
-    }
-    ])
+    },
+    function($scope, $auth) {
+        $scope.isAuthenticated = function() {
+            return $auth.isAuthenticated();
+            };
+        }
+)
 
 .config(function config( $stateProvider ) {
     $stateProvider.state( 'login', {
@@ -48,7 +54,22 @@ angular.module("trippo.navModule", [
         },
         data:{ pageTitle: 'Home' }
     });
-});
+})
+
+    .config(function config( $stateProvider ) {
+        $stateProvider.state( 'logout', {
+            url: '/logout',
+            views: {
+                "main": {
+                    controller: 'LogoutCtrl',
+                    templateUrl: null
+                }
+            },
+            data:{ pageTitle: 'Logout' }
+        });
+    });
+
+
 
 
 
