@@ -328,7 +328,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                                        <b>Rating</b>\n" +
     "                                    </div>\n" +
     "                                    <div class=\"row\">\n" +
-    "                                        {{moreInfoSelection.rating || 'Unknown'}}\n" +
+    "                                        <rating ng-model=\"moreInfoSelection.rating\" readonly=\"true\" max=5></rating>\n" +
     "                                    </div>\n" +
     "                                </div>\n" +
     "                                <div class=\"col-md-6\">\n" +
@@ -511,7 +511,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                                                <div id=\"{{$index}}\" class=\"panel-collapse collapse\">\n" +
     "                                                    <div class=\"panel-body\">\n" +
     "                                                        <p class=\"text-left\">\n" +
-    "                                                            <b>Ratings</b>\n" +
+    "                                                            <b>Aspects</b>\n" +
     "                                                        </p>\n" +
     "                                                        <div class=\"star-rating\">\n" +
     "                                                            <span ng-repeat=\"aspect in review.aspects\">\n" +
@@ -533,12 +533,22 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                                                                {{review.text}}\n" +
     "                                                            </div>\n" +
     "                                                        </div>\n" +
+    "                                                        <div class=\"row\">\n" +
+    "                                                            <div class=\"col-md-3\">\n" +
+    "                                                                <b class=\"text-capitalize\">Rating</b>\n" +
+    "                                                            </div>\n" +
+    "                                                            <div class=\"col-md-8\">\n" +
+    "                                                                <rating ng-model=\"review.rating\" readonly=\"true\" max=5></rating>\n" +
+    "                                                            </div>\n" +
+    "                                                        </div>\n" +
     "                                                        <div class=\"col-md-12\">\n" +
+    "                                                            <!-- Name\n" +
     "                                                            <div class=\"row\">\n" +
     "                                                                <em>\n" +
     "                                                                    <span>{{changeDate(review.time)}}</span>\n" +
     "                                                                </em>\n" +
     "                                                            </div>\n" +
+    "                                                            -->\n" +
     "                                                            <div class=\"row\">\n" +
     "                                                                <em>\n" +
     "                                                                    Contact User <a target=\"_blank\" ng-href=\"{{review.author_url}}\">GooglePlus!</a>\n" +
@@ -592,7 +602,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "\n" +
     "\n" +
     "\n" +
-    "<div class=\"modal fade\" ng-controller=\"ModalCtrl\" data-backdrop=\"static\" id=\"moreInfoModalHotel\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">\n" +
+    "<div class=\"modal fade\" ng-controller=\"ModalCtrl\" id=\"moreInfoModalHotel\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">\n" +
     "    <div class=\"modal-dialog\">\n" +
     "        <div class=\"modal-content\">\n" +
     "            <div ng-show=\"modalEnabled\">\n" +
@@ -610,28 +620,65 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                                <b>Rating</b>\n" +
     "                            </div>\n" +
     "                            <div class=\"row\">\n" +
-    "                                {{moreInfoSelection.rating || 'Unknown'}}\n" +
+    "                                <img ng-src=\"{{moreInfoSelection.rating}}\" >\n" +
     "                            </div>\n" +
     "                        </div>\n" +
     "                            <div class=\"col-lg-6 capriola\" >\n" +
-    "                            <div class=\"row\">\n" +
-    "                                <b>Address</b>\n" +
+    "                                <div ng-show=\"moreInfoSelection.address != null\">\n" +
+    "                                    <div class=\"row\">\n" +
+    "                                        <b>Address</b>\n" +
+    "                                    </div>\n" +
+    "                                    <div class=\"row\">\n" +
+    "                                        {{moreInfoSelection.address}}\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
     "                            </div>\n" +
-    "                            <div class=\"row\">\n" +
-    "                                {{moreInfoSelection.address || 'Unknown'}}\n" +
-    "                            </div>\n" +
-    "                        </div>\n" +
     "                        </div>\n" +
     "                        <div class=\"row\">\n" +
-    "                            <div class=\"col-lg-12 capriola\" >\n" +
-    "                                <div class=\"panel panel-default\">\n" +
-    "                                    <div>\n" +
-    "                                        <div class=\"text-center\">Description</div>\n" +
-    "                                        <div class=\"text-justify\">\n" +
-    "                                            {{moreInfoSelection.description}}\n" +
+    "                            <div class=\"col-md-11 capriola\" >\n" +
+    "                                <div class=\"panel  panel-info\">\n" +
+    "                                    <div class=\"panel-heading\">\n" +
+    "                                        <h4 class=\"panel-title\">\n" +
+    "                                            <a class=\"accordion-toggle\" data-toggle=\"collapse\" data-target=\"#descriptionInfo\">Information</a>\n" +
+    "                                        </h4>\n" +
+    "                                    </div>\n" +
+    "                                    <div id=\"descriptionInfo\" class=\"panel-collapse collapse\">\n" +
+    "                                        <div class=\"panel-body\">\n" +
+    "                                            <div class=\"text-justify\">\n" +
+    "                                                {{moreInfoSelection.info}}\n" +
+    "                                            </div>\n" +
     "                                        </div>\n" +
     "                                    </div>\n" +
     "                                </div>\n" +
+    "                                <div class=\"panel  panel-info\">\n" +
+    "                                    <div class=\"panel-heading\">\n" +
+    "                                        <h4 class=\"panel-title\">\n" +
+    "                                            <a class=\"accordion-toggle\" data-toggle=\"collapse\" data-target=\"#descriptionTab\">Description</a>\n" +
+    "                                        </h4>\n" +
+    "                                    </div>\n" +
+    "                                    <div id=\"descriptionTab\" class=\"panel-collapse collapse\">\n" +
+    "                                        <div class=\"panel-body\">\n" +
+    "                                            <div class=\"text-justify\">\n" +
+    "                                                {{moreInfoSelection.description}}\n" +
+    "                                            </div>\n" +
+    "                                        </div>\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                                <div class=\"panel  panel-info\">\n" +
+    "                                    <div class=\"panel-heading\">\n" +
+    "                                        <h4 class=\"panel-title\">\n" +
+    "                                            <a class=\"accordion-toggle\" data-toggle=\"collapse\" data-target=\"#descriptionPolicy\">Policy</a>\n" +
+    "                                        </h4>\n" +
+    "                                    </div>\n" +
+    "                                    <div id=\"descriptionPolicy\" class=\"panel-collapse collapse\">\n" +
+    "                                        <div class=\"panel-body\">\n" +
+    "                                            <div class=\"text-justify\">\n" +
+    "                                                {{moreInfoSelection.policy}}\n" +
+    "                                            </div>\n" +
+    "                                        </div>\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "\n" +
     "                            </div>\n" +
     "                        </div>\n" +
     "                    </div>\n" +
@@ -1254,7 +1301,7 @@ angular.module("city/hotel.tpl.html", []).run(["$templateCache", function($templ
     "                                    <b class=\"text-capitalize\">{{c.name}}</b>\n" +
     "                                </div>\n" +
     "                                <div class=\"col-sm-3 col-md-3\">\n" +
-    "                                    <button class=\"btn btn-primary btn-sm capriola\" ng-click=\"setHotelDetails(c.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">\n" +
+    "                                    <button class=\"btn btn-primary btn-sm capriola\" ng-click=\"setHotelDetails(c.id)\" href=\"#moreInfoModalHotel\" data-toggle=\"modal\">\n" +
     "                                        <span class=\"glyphicon glyphicon-info-sign \"></span>\n" +
     "                                    </button>\n" +
     "                                    <button class=\"btn btn-danger btn-sm capriola\" ng-click=\"removeHotelItem(c)\">\n" +
@@ -1323,7 +1370,7 @@ angular.module("city/hotel.tpl.html", []).run(["$templateCache", function($templ
     "                                            <b class=\"text-capitalize\">{{c.name}}</b>\n" +
     "                                        </div>\n" +
     "                                        <div class=\"col-sm-3 col-md-3\">\n" +
-    "                                            <button class=\"btn btn-primary btn-sm capriola\" ng-click=\"setHotelDetails(c.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">\n" +
+    "                                            <button class=\"btn btn-primary btn-sm capriola\" ng-click=\"setHotelDetails(c.id)\" href=\"#moreInfoModalHotel\" data-toggle=\"modal\">\n" +
     "                                                <span class=\"glyphicon glyphicon-info-sign \"></span>\n" +
     "                                            </button>\n" +
     "                                            <button class=\"btn btn-success btn-sm capriola\" ng-click=\"addHotelItem(c)\">\n" +

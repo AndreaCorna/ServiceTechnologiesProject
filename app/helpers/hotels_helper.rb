@@ -39,15 +39,18 @@ module HotelsHelper
   def get_hotel_details(id)
     api = Expedia::Api.new
     response = api.get_information({ :hotelId => id})
+    #puts response.to_json
     hotel = response.body['HotelInformationResponse']['HotelSummary']
     hotel_id = hotel['hotelId']
     name = hotel['name']
     address = hotel['address1']+' '+hotel['city']
-    rating = hotel['hotelRating']
+    rating = hotel['tripAdvisorRatingUrl']
     lat = hotel['latitude']
     lng = hotel['longitude']
+    info = eliminate_tags(response.body['HotelInformationResponse']['HotelDetails']['propertyInformation'])
+    policy = eliminate_tags(response.body['HotelInformationResponse']['HotelDetails']['hotelPolicy'])
     descr = parse_description(response.body['HotelInformationResponse']['HotelDetails']['propertyDescription'])
-    hotel_details = HotelDetails.new(hotel_id,name,address,rating,lat,lng,descr)
+    hotel_details = HotelDetails.new(hotel_id,name,address,rating,lat,lng,descr,info,policy)
     return hotel_details
   end
 
@@ -59,12 +62,17 @@ module HotelsHelper
 
   private
   def parse_description(description)
-    output = Nokogiri::HTML.fragment(description)
-    descr = output.text.gsub(/<[^>]*>/ui,'')
+    descr = eliminate_tags(description)
     value, match, suffix = descr.rpartition('.')
     value.slice! 'Property Location '
     return value+'.'
 
+  end
+
+  private
+  def eliminate_tags(string)
+    output = Nokogiri::HTML.fragment(string)
+    return output.text.gsub(/<[^>]*>/ui,'')
   end
 
   class HotelItem
@@ -86,9 +94,9 @@ module HotelsHelper
   end
 
   class HotelDetails
-    attr_accessor :id,:name,:address,:rating,:lat,:lng,:description
+    attr_accessor :id,:name,:address,:rating,:lat,:lng,:description,:info,:policy
 
-    def initialize(id,name,address,rating,lat,lng,description)
+    def initialize(id,name,address,rating,lat,lng,description,info,policy)
       @id = id;
       @name = name;
       @address = address;
@@ -96,6 +104,8 @@ module HotelsHelper
       @lat = lat;
       @lng = lng;
       @description = description;
+      @info = info;
+      @policy = policy;
     end
 
   end

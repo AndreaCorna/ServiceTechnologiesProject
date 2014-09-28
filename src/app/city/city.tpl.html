@@ -54,7 +54,7 @@
                                         <b>Rating</b>
                                     </div>
                                     <div class="row">
-                                        {{moreInfoSelection.rating || 'Unknown'}}
+                                        <rating ng-model="moreInfoSelection.rating" readonly="true" max=5></rating>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -237,7 +237,7 @@
                                                 <div id="{{$index}}" class="panel-collapse collapse">
                                                     <div class="panel-body">
                                                         <p class="text-left">
-                                                            <b>Ratings</b>
+                                                            <b>Aspects</b>
                                                         </p>
                                                         <div class="star-rating">
                                                             <span ng-repeat="aspect in review.aspects">
@@ -259,12 +259,22 @@
                                                                 {{review.text}}
                                                             </div>
                                                         </div>
+                                                        <div class="row">
+                                                            <div class="col-md-3">
+                                                                <b class="text-capitalize">Rating</b>
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                <rating ng-model="review.rating" readonly="true" max=5></rating>
+                                                            </div>
+                                                        </div>
                                                         <div class="col-md-12">
+                                                            <!-- Name
                                                             <div class="row">
                                                                 <em>
                                                                     <span>{{changeDate(review.time)}}</span>
                                                                 </em>
                                                             </div>
+                                                            -->
                                                             <div class="row">
                                                                 <em>
                                                                     Contact User <a target="_blank" ng-href="{{review.author_url}}">GooglePlus!</a>
@@ -318,7 +328,7 @@
 
 
 
-<div class="modal fade" ng-controller="ModalCtrl" data-backdrop="static" id="moreInfoModalHotel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" ng-controller="ModalCtrl" id="moreInfoModalHotel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div ng-show="modalEnabled">
@@ -336,28 +346,65 @@
                                 <b>Rating</b>
                             </div>
                             <div class="row">
-                                {{moreInfoSelection.rating || 'Unknown'}}
+                                <img ng-src="{{moreInfoSelection.rating}}" >
                             </div>
                         </div>
                             <div class="col-lg-6 capriola" >
-                            <div class="row">
-                                <b>Address</b>
+                                <div ng-show="moreInfoSelection.address != null">
+                                    <div class="row">
+                                        <b>Address</b>
+                                    </div>
+                                    <div class="row">
+                                        {{moreInfoSelection.address}}
+                                    </div>
+                                </div>
                             </div>
-                            <div class="row">
-                                {{moreInfoSelection.address || 'Unknown'}}
-                            </div>
-                        </div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-12 capriola" >
-                                <div class="panel panel-default">
-                                    <div>
-                                        <div class="text-center">Description</div>
-                                        <div class="text-justify">
-                                            {{moreInfoSelection.description}}
+                            <div class="col-md-11 capriola" >
+                                <div class="panel  panel-info">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a class="accordion-toggle" data-toggle="collapse" data-target="#descriptionInfo">Information</a>
+                                        </h4>
+                                    </div>
+                                    <div id="descriptionInfo" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <div class="text-justify">
+                                                {{moreInfoSelection.info}}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                                <div class="panel  panel-info">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a class="accordion-toggle" data-toggle="collapse" data-target="#descriptionTab">Description</a>
+                                        </h4>
+                                    </div>
+                                    <div id="descriptionTab" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <div class="text-justify">
+                                                {{moreInfoSelection.description}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel  panel-info">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a class="accordion-toggle" data-toggle="collapse" data-target="#descriptionPolicy">Policy</a>
+                                        </h4>
+                                    </div>
+                                    <div id="descriptionPolicy" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <div class="text-justify">
+                                                {{moreInfoSelection.policy}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>
