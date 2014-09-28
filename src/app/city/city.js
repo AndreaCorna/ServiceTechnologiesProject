@@ -18,6 +18,18 @@ angular.module( 'trippo.city', [
     },
     data:{ pageTitle: 'What is It?' }
   })
+      .state('guides', {
+          url: '/guides',
+          parent:"city",
+          views: {
+              "content@city": {
+                  controller: 'GuideCtrl',
+                  templateUrl: 'city/guides.tpl.html'
+
+              }
+          }
+
+      })
       .state('culture', {
           url: '/culture',
           parent:"city",
@@ -955,5 +967,45 @@ angular.module( 'trippo.city', [
          };
     })
 
-;
+.controller('GuideCtrl', function GuideCtrl($scope,GuideService,$stateParams) {
+        $scope.guides =[];
+        GuideService.initGuides($stateParams.city_name,function(){
+            $scope.guides = GuideService.getGuides($stateParams.city_name);
+            console.log('in controller');
+
+            console.log($scope.guides);
+
+        }) ;
+
+
+
+
+
+})
+
+.factory('GuideService', function (SharedGuideRes,$stateParams) {
+        var guides = [] ;
+
+        var initGuides=function(city,callback){
+                SharedGuideRes.query({city_name : $stateParams.city_name},function(data){
+                guides[city] = data;
+
+                if (typeof callback == 'function'){
+                    callback();
+                    }
+
+                });
+
+        };
+
+        var getGuides = function(city){
+            return guides[city];
+        };
+        return{
+            initGuides :initGuides,
+            getGuides : getGuides
+        }  ;
+
+    });
+
 

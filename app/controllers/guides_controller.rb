@@ -1,5 +1,7 @@
 class GuidesController < ApplicationController
   def index
+    guides = Guide.all
+    render json: guides
   end
 
   def create
@@ -7,31 +9,46 @@ class GuidesController < ApplicationController
     guide = Guide.new
     guide.name= params['name']
     guide.description=params['description']
+    guide.city = params['city']
 
     params['days'].each { |day|
+      if not day['schedule'].nil?
+        day['schedule'].each { |curr_place|
+          #check if exist a place in db with same name and google id if not create a new object
+          test = PlaceSummary.where(:google_id => curr_place['id'] , :name => curr_place['name'])
+          puts 'id and name'
+          puts curr_place['id']
+          puts curr_place['name']
+          if not test.nil?
+            puts 'found'
+            puts test
+          end
+          place =  PlaceSummary.where(:google_id => curr_place['id'] , :name => curr_place['name']).first_or_initialize do |place|
+            puts 'current place'
+            puts curr_place
+            place.name = curr_place['name']
+            place.lat = curr_place['lat']
+            place.lng = curr_place['lng']
+            place.rating = curr_place['rating']
+            place.price = curr_place['price']
+            place.image = curr_place['photos'][0]['image']
+            place.icon = curr_place['icon']
+            place.tag = curr_place['tag']
+            place.description = curr_place['description']
+            place.city = params['city']
+            place.google_id = curr_place['id']
 
-      day['schedule'].each { |curr_place|
-        place =  PlaceSummary.new
-        puts 'current place'
-        puts curr_place
-        place.name = curr_place['name']
-        place.lat = curr_place['lat']
-        place.lng = curr_place['lng']
-        place.rating = curr_place['rating']
-        place.price = curr_place['price']
-        place.image = curr_place['photos']['image']
-        place.icon = curr_place['icon']
-        place.tag = curr_place['tag']
-        place.description = curr_place['description']
-        place.city = params['city']
-        place.google_id = curr_place['id']
+            place.save
+          end
 
-        guide.place_summaries << place
-        guide.guide_place_summaries.last.date = day['day']
+          guide.place_summaries << place
+          guide.guide_place_summaries.last.date = day['day']
 
 
 
-      }
+        }
+      end
+
 
     }
 
@@ -97,5 +114,12 @@ class GuidesController < ApplicationController
   end
 
   def destroy
+    id = params['id']
+    guide = Guide.all
+    if guide.nil?
+      render json: ''
+      return
+    end
+
   end
 end

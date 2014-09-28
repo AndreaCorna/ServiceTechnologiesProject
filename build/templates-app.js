@@ -1,4 +1,4 @@
-angular.module('templates-app', ['about/about.tpl.html', 'city/city.tpl.html', 'city/culture.tpl.html', 'city/entertainment.tpl.html', 'city/food.tpl.html', 'city/hotel.tpl.html', 'city/utility.tpl.html', 'home/home.tpl.html', 'plan_trip/createtrip.tpl.html', 'plan_trip/planning.tpl.html', 'plan_trip/trip_dates.tpl.html']);
+angular.module('templates-app', ['about/about.tpl.html', 'city/city.tpl.html', 'city/culture.tpl.html', 'city/entertainment.tpl.html', 'city/food.tpl.html', 'city/guides.tpl.html', 'city/hotel.tpl.html', 'city/utility.tpl.html', 'home/home.tpl.html', 'plan_trip/createtrip.tpl.html', 'plan_trip/planning.tpl.html', 'plan_trip/trip_dates.tpl.html']);
 
 angular.module("about/about.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("about/about.tpl.html",
@@ -292,7 +292,8 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "\n" +
     "<div id='cssmenu'>\n" +
     "    <ul>\n" +
-    "        <li class='active'><a ui-sref=\"culture\" ng-click=\"setCurrentList('culture')\" data-target=\"#\" data-toggle=\"pill\"><span>Culture</span></a></li>\n" +
+    "        <li class='active'><a ui-sref=\"guides\"  data-target=\"#\" data-toggle=\"pill\"><span>Guides</span></a></li>\n" +
+    "        <li><a ui-sref=\"culture\" ng-click=\"setCurrentList('culture')\" data-target=\"#\" data-toggle=\"pill\"><span>Culture</span></a></li>\n" +
     "        <li><a ui-sref=\"entertainment\" ng-click=\"setCurrentList('entertainment')\" data-target=\"#\" data-toggle=\"pill\"><span>Entertainment</span></a></li>\n" +
     "        <li><a ui-sref=\"hotel\" ng-click=\"setCurrentList('hotel')\" data-target=\"#\" data-toggle=\"pill\"><span>Hotel</span></a></li>\n" +
     "        <li><a ui-sref=\"utility\" ng-click=\"setCurrentList('utility')\" data-target=\"#\" data-toggle=\"pill\"><span>Utility</span></a></li>\n" +
@@ -1186,6 +1187,67 @@ angular.module("city/food.tpl.html", []).run(["$templateCache", function($templa
     "    </div>\n" +
     "</div>\n" +
     "\n" +
+    "");
+}]);
+
+angular.module("city/guides.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("city/guides.tpl.html",
+    "guides\n" +
+    "<div class=\"row\" ng-repeat=\"item in guides\" >\n" +
+    "\n" +
+    "    <div class=\"col-md-12\" >\n" +
+    "        <div class=\"row\" style=\"margin-left: 4px;margin-right: 4px\">\n" +
+    "\n" +
+    "            <div class=\"brdr bgc-fff pad-10 box-shad property-listing\">\n" +
+    "                <div class=\"media\">\n" +
+    "                    <div class=\"col-md-4\">\n" +
+    "                        <div ng-if=\"!item.photos\">\n" +
+    "                            <img style=\"height: 220px;  width:100%;\" ng-src=\"assets/images/empty_photo.png\">\n" +
+    "                        </div>\n" +
+    "                        <div ng-if=\"item.photos.length>0\">\n" +
+    "                            <img style=\"height: 220px;  width:100%;\" ng-src=\"{{item.photos[0].image}}\" >\n" +
+    "                        </div>\n" +
+    "\n" +
+    "                    </div>\n" +
+    "                    <div class=\"clearfix visible-sm\"></div>\n" +
+    "\n" +
+    "                    <div class=\"col-md-8\">\n" +
+    "                        <div class=\"media-body fnt-smaller\">\n" +
+    "\n" +
+    "                            <h4 class=\"media-heading\">\n" +
+    "                                <a href=\"#\" target=\"_parent\">{{item.name}} </a>\n" +
+    "                                <button class=\"btn btn-primary btn-outlined pull-right\" style=\"margin-top: 3px\"  ng-click=\"setCultureDetails(item.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">MORE INFO</button>\n" +
+    "\n" +
+    "                            </h4>\n" +
+    "\n" +
+    "\n" +
+    "                            <div ng-if=\"!item.description\">\n" +
+    "                                <p class=\"hidden-xs\">No description available</p>\n" +
+    "                            </div>\n" +
+    "                            <div ng-if=\"item.description\">\n" +
+    "                                <div class=\"panel panel-default scrollable\" style=\"max-height: 165px;overflow-y: auto;margin-top: 13px;\">\n" +
+    "                                    <div class=\"hidden-xs text-justify \" >{{item.description}}</div>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "\n" +
+    "\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "\n" +
+    "    </div>\n" +
+    "\n" +
+    "\n" +
+    "    <div class=\"clearfix\"></div>\n" +
+    "    <br><br>\n" +
+    "\n" +
+    "\n" +
+    "\n" +
+    "\n" +
+    "</div>\n" +
     "");
 }]);
 

@@ -497,7 +497,7 @@ angular.module('trippo.plan',[
                 var guide =  new GuideRes();
                 guide.name = $scope.name ;
                 guide.description = $scope.description ;
-                guide.city = $stateParams.city_name
+                guide.city = $stateParams.city_name   ;
                 //hash key : day in dateFormat format value: array of activities in that day
                 /**
                  * Adding all the day and their respective activities to  schedule hash
@@ -521,10 +521,10 @@ angular.module('trippo.plan',[
                 console.log("guide schedule");
                 console.log(guide.schedule);
 
-                guide.$save()
-                    .success(function(data){
-                        console.log(data);
-                    });
+                guide.$save(function(data){
+                    console.log(data);
+                });
+
                 console.log("submitted");
 
 
