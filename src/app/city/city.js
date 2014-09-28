@@ -16,20 +16,32 @@ angular.module( 'trippo.city', [
         templateUrl: 'city/city.tpl.html'
       }
     },
-    data:{ pageTitle: 'What is It?' }
+    data:{ pageTitle: 'Trippo' }
   })
+      .state('guide', {
+          url: '/guide/:id',
+          views: {
+              "main": {
+                  controller: 'GuideCtrl',
+                  templateUrl: 'city/guide.tpl.html'
+
+              }
+          },
+          data:{ pageTitle: 'Trippo' }
+      })
       .state('guides', {
           url: '/guides',
           parent:"city",
           views: {
               "content@city": {
-                  controller: 'GuideCtrl',
+                  controller: 'GuidesCtrl',
                   templateUrl: 'city/guides.tpl.html'
 
               }
           }
 
       })
+
       .state('culture', {
           url: '/culture',
           parent:"city",
@@ -967,7 +979,7 @@ angular.module( 'trippo.city', [
          };
     })
 
-.controller('GuideCtrl', function GuideCtrl($scope,GuideService,$stateParams) {
+.controller('GuidesCtrl', function GuideCtrl($scope,$location,GuideService,$stateParams) {
         $scope.guides =[];
         GuideService.initGuides($stateParams.city_name,function(){
             $scope.guides = GuideService.getGuides($stateParams.city_name);
@@ -977,15 +989,35 @@ angular.module( 'trippo.city', [
 
         }) ;
 
+        $scope.moreInfo = function(id){
+            $location.path('guide/'+id);
+        } ;
+
 
 
 
 
 })
 
-.factory('GuideService', function (SharedGuideRes,$stateParams) {
-        var guides = [] ;
+.controller('GuideCtrl', function GuideCtrl($scope,GuideService,$stateParams) {
 
+        GuideService.initGuide($stateParams.id,function(){
+            $scope.guide = GuideService.getGuide($stateParams.id);
+            console.log('in controller');
+
+            console.log($scope.guide);
+
+        }) ;
+
+})
+
+.factory('GuideService', function (SharedGuideRes,GuideRes,$stateParams) {
+        var guides = [] ;
+        /**
+         * Handle list of guides which are used by the guides.html view
+         * @param city
+         * @param callback
+         */
         var initGuides=function(city,callback){
                 SharedGuideRes.query({city_name : $stateParams.city_name},function(data){
                 guides[city] = data;
@@ -1001,9 +1033,33 @@ angular.module( 'trippo.city', [
         var getGuides = function(city){
             return guides[city];
         };
+
+
+        var guide;
+        var initGuide=function(id,callback){
+            GuideRes.get({id : id},function(data){
+                guide = data;
+
+                if (typeof callback == 'function'){
+                    callback();
+                }
+
+            });
+
+        };
+
+
+
+        var getGuide =function(id){
+            return guide;
+
+        }  ;
         return{
             initGuides :initGuides,
-            getGuides : getGuides
+            getGuides : getGuides ,
+
+            initGuide : initGuide,
+            getGuide : getGuide
         }  ;
 
     });

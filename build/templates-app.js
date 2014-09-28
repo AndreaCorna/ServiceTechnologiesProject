@@ -1,4 +1,4 @@
-angular.module('templates-app', ['about/about.tpl.html', 'city/city.tpl.html', 'city/culture.tpl.html', 'city/entertainment.tpl.html', 'city/food.tpl.html', 'city/guides.tpl.html', 'city/hotel.tpl.html', 'city/utility.tpl.html', 'home/home.tpl.html', 'plan_trip/createtrip.tpl.html', 'plan_trip/planning.tpl.html', 'plan_trip/trip_dates.tpl.html']);
+angular.module('templates-app', ['about/about.tpl.html', 'city/city.tpl.html', 'city/culture.tpl.html', 'city/entertainment.tpl.html', 'city/food.tpl.html', 'city/guide.tpl.html', 'city/guides.tpl.html', 'city/hotel.tpl.html', 'city/utility.tpl.html', 'home/home.tpl.html', 'plan_trip/createtrip.tpl.html', 'plan_trip/planning.tpl.html', 'plan_trip/trip_dates.tpl.html']);
 
 angular.module("about/about.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("about/about.tpl.html",
@@ -1190,9 +1190,33 @@ angular.module("city/food.tpl.html", []).run(["$templateCache", function($templa
     "");
 }]);
 
+angular.module("city/guide.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("city/guide.tpl.html",
+    "<!DOCTYPE html>\n" +
+    "<html>\n" +
+    "<head lang=\"en\">\n" +
+    "    <meta charset=\"UTF-8\">\n" +
+    "    <title></title>\n" +
+    "</head>\n" +
+    "<body>\n" +
+    "\n" +
+    "</body>\n" +
+    "</html>");
+}]);
+
 angular.module("city/guides.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("city/guides.tpl.html",
-    "guides\n" +
+    "<div class=\"page-header\">\n" +
+    "    <div class=\"vertical-container\">\n" +
+    "        <div class=\"row\">\n" +
+    "\n" +
+    "            <div class=\"col-md-12\">\n" +
+    "                <h1 class=\"text-center subtitle\">Shared Guides</h1>\n" +
+    "            </div>\n" +
+    "\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>\n" +
     "<div class=\"row\" ng-repeat=\"item in guides\" >\n" +
     "\n" +
     "    <div class=\"col-md-12\" >\n" +
@@ -1216,7 +1240,7 @@ angular.module("city/guides.tpl.html", []).run(["$templateCache", function($temp
     "\n" +
     "                            <h4 class=\"media-heading\">\n" +
     "                                <a href=\"#\" target=\"_parent\">{{item.name}} </a>\n" +
-    "                                <button class=\"btn btn-primary btn-outlined pull-right\" style=\"margin-top: 3px\"  ng-click=\"setCultureDetails(item.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">MORE INFO</button>\n" +
+    "                                <button class=\"btn btn-primary btn-outlined pull-right\" style=\"margin-top: 3px\"  ng-click=\"moreInfo(item.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">MORE INFO</button>\n" +
     "\n" +
     "                            </h4>\n" +
     "\n" +
