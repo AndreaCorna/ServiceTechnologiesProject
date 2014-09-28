@@ -635,6 +635,19 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                            </div>\n" +
     "                        </div>\n" +
     "                        <div class=\"row\">\n" +
+    "                            <div class=\"col-md-12\">\n" +
+    "                                <div class=\"row\" style=\"padding-top: 20px\">\n" +
+    "                                    <div class=\"panel-image-modal\">\n" +
+    "                                        <carousel interval=\"intervalImages\" >\n" +
+    "                                            <slide ng-repeat=\"image in moreInfoSelection.photos\" active=\"image.active\">\n" +
+    "                                                <img class=\"image-modal\" style=\"height: 400px\" ng-src=\"data:image/JPEG;base64,{{image.image}}\" >\n" +
+    "                                            </slide>\n" +
+    "                                        </carousel>\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "                        <div class=\"row\" style=\"padding-top: 20px\">\n" +
     "                            <div class=\"col-md-11 capriola\" >\n" +
     "                                <div class=\"panel  panel-info\">\n" +
     "                                    <div class=\"panel-heading\">\n" +
@@ -1379,16 +1392,19 @@ angular.module("city/hotel.tpl.html", []).run(["$templateCache", function($templ
     "                                        </div>\n" +
     "                                    </div>\n" +
     "                                    <div class=\"row\">\n" +
-    "                                        <p class=\"capriola\">Address {{c.address}}</p>\n" +
-    "                                    </div>\n" +
-    "                                    <div class=\"row\">\n" +
-    "                                        <p class=\"capriola\">Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
+    "                                        <div class=\"col-sm-12 col-md-12\">\n" +
+    "                                            <p class=\"capriola\">Address {{c.address}}</p>\n" +
+    "                                        </div>\n" +
+    "                                        <div class=\"col-sm-12 col-md-12 capriola\">\n" +
+    "                                            <p>Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
+    "                                        </div>\n" +
     "                                    </div>\n" +
     "                                    <div ng-show=\"c.description != null\" style=\"display: block\">\n" +
     "                                        <div class=\"col-sm-12 col-md-12 panel panel-default scrollable\" style=\"max-height: 165px;overflow-y: auto\">\n" +
     "                                            <div class=\"text-justify capriola\" >{{c.description}}</div>\n" +
     "                                        </div>\n" +
     "                                    </div>\n" +
+    "\n" +
     "                                </p>\n" +
     "                            </div>\n" +
     "                            <div class=\"col-sm-3 col-md-3 text-center\">\n" +

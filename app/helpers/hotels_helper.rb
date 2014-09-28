@@ -1,5 +1,7 @@
 require 'numbers_and_words'
-
+require 'base64'
+require 'net/http'
+require 'httparty'
 module HotelsHelper
 
   def get_hotels_list(city)
@@ -39,7 +41,6 @@ module HotelsHelper
   def get_hotel_details(id)
     api = Expedia::Api.new
     response = api.get_information({ :hotelId => id})
-    #puts response.to_json
     hotel = response.body['HotelInformationResponse']['HotelSummary']
     hotel_id = hotel['hotelId']
     name = hotel['name']
@@ -50,7 +51,26 @@ module HotelsHelper
     info = eliminate_tags(response.body['HotelInformationResponse']['HotelDetails']['propertyInformation'])
     policy = eliminate_tags(response.body['HotelInformationResponse']['HotelDetails']['hotelPolicy'])
     descr = parse_description(response.body['HotelInformationResponse']['HotelDetails']['propertyDescription'])
-    hotel_details = HotelDetails.new(hotel_id,name,address,rating,lat,lng,descr,info,policy)
+    photos = []
+    if(!response.body['HotelInformationResponse']['HotelImages']['HotelImage'].nil?)
+      count = 0
+      threads = []
+      response.body['HotelInformationResponse']['HotelImages']['HotelImage'].each do |photo|
+        count = count + 1
+        threads << Thread.new {
+          url = photo['url']
+          image_data = Base64.encode64(open(url).read)
+          photos.append(:image=>image_data)
+        }
+        if(count == 5)
+          break
+        end
+      end
+      threads.each do |thread|
+        thread.join
+      end
+    end
+    hotel_details = HotelDetails.new(hotel_id,name,address,rating,lat,lng,descr,info,policy,photos)
     return hotel_details
   end
 
@@ -94,9 +114,9 @@ module HotelsHelper
   end
 
   class HotelDetails
-    attr_accessor :id,:name,:address,:rating,:lat,:lng,:description,:info,:policy
+    attr_accessor :id,:name,:address,:rating,:lat,:lng,:description,:info,:policy,:photos
 
-    def initialize(id,name,address,rating,lat,lng,description,info,policy)
+    def initialize(id,name,address,rating,lat,lng,description,info,policy,photos)
       @id = id;
       @name = name;
       @address = address;
@@ -106,6 +126,7 @@ module HotelsHelper
       @description = description;
       @info = info;
       @policy = policy;
+      @photos = photos;
     end
 
   end

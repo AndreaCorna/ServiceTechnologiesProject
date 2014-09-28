@@ -361,6 +361,19 @@
                             </div>
                         </div>
                         <div class="row">
+                            <div class="col-md-12">
+                                <div class="row" style="padding-top: 20px">
+                                    <div class="panel-image-modal">
+                                        <carousel interval="intervalImages" >
+                                            <slide ng-repeat="image in moreInfoSelection.photos" active="image.active">
+                                                <img class="image-modal" style="height: 400px" ng-src="data:image/JPEG;base64,{{image.image}}" >
+                                            </slide>
+                                        </carousel>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 20px">
                             <div class="col-md-11 capriola" >
                                 <div class="panel  panel-info">
                                     <div class="panel-heading">
