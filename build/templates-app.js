@@ -799,11 +799,13 @@ angular.module("city/culture.tpl.html", []).run(["$templateCache", function($tem
     "                            </div>\n" +
     "                        </div>\n" +
     "                        <div class=\"row\">\n" +
-    "                            <div class=\"col-sm-3 col-md-3\">\n" +
-    "                                <p class=\"capriola\">Price {{c.price || 'Free'}}</p>\n" +
+    "                            <div class=\"col-sm-4 col-md-4\">\n" +
+    "                                <p class=\"capriola\">Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
     "                            </div>\n" +
-    "                            <div class=\"col-sm-4 col-md-4 capriola\">\n" +
-    "                                <p>Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
+    "                            <div class=\"col-sm-3 col-md-3\">\n" +
+    "                                <div ng-show=\"c.price != null\">\n" +
+    "                                    <p class=\"capriola\">Price {{c.price}}</p>\n" +
+    "                                </div>\n" +
     "                            </div>\n" +
     "                        </div>\n" +
     "                        <div ng-show=\"c.description != null\" style=\"display: block\">\n" +
@@ -876,7 +878,7 @@ angular.module("city/culture.tpl.html", []).run(["$templateCache", function($tem
     "                                </div>\n" +
     "                                <div class=\"col-sm-3 col-md-3\">\n" +
     "                                    <div ng-show=\"c.price != null\">\n" +
-    "                                        <p class=\"capriola\">Price {{c.price || 'Free'}}</p>\n" +
+    "                                        <p class=\"capriola\">Price {{c.price}}</p>\n" +
     "                                    </div>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
@@ -979,11 +981,13 @@ angular.module("city/entertainment.tpl.html", []).run(["$templateCache", functio
     "                                </div>\n" +
     "                            </div>\n" +
     "                            <div class=\"row\">\n" +
-    "                                <div class=\"col-sm-3 col-md-3\">\n" +
-    "                                    <p class=\"capriola\">Price {{c.price || 'Free'}}</p>\n" +
-    "                                </div>\n" +
     "                                <div class=\"col-sm-4 col-md-4\">\n" +
     "                                    <p class=\"capriola\">Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
+    "                                </div>\n" +
+    "                                <div class=\"col-sm-3 col-md-3\">\n" +
+    "                                    <div ng-show=\"c.price != null\">\n" +
+    "                                        <p class=\"capriola\">Price {{c.price}}</p>\n" +
+    "                                    </div>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
     "                            <div ng-show=\"c.description != null\" style=\"display: block\">\n" +
@@ -1052,11 +1056,13 @@ angular.module("city/entertainment.tpl.html", []).run(["$templateCache", functio
     "                                        </div>\n" +
     "                                    </div>\n" +
     "                                    <div class=\"row\">\n" +
-    "                                        <div class=\"col-sm-3 col-md-3\">\n" +
-    "                                            <p class=\"capriola\">Price {{c.price || 'Free'}}</p>\n" +
-    "                                        </div>\n" +
     "                                        <div class=\"col-sm-4 col-md-4\">\n" +
     "                                            <p class=\"capriola\">Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
+    "                                        </div>\n" +
+    "                                        <div class=\"col-sm-3 col-md-3\">\n" +
+    "                                            <div ng-show=\"c.price != null\">\n" +
+    "                                                <p class=\"capriola\">Price {{c.price}}</p>\n" +
+    "                                            </div>\n" +
     "                                        </div>\n" +
     "                                    </div>\n" +
     "                                    <div ng-show=\"c.description != null\" style=\"display: block\">\n" +
@@ -1150,12 +1156,14 @@ angular.module("city/food.tpl.html", []).run(["$templateCache", function($templa
     "                                    </button>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
-    "                           <div class=\"row\">\n" +
-    "                                <div class=\"col-sm-3 col-md-3\">\n" +
-    "                                    <p class=\"capriola\">Price {{c.price || 'Free'}}</p>\n" +
-    "                                </div>\n" +
+    "                            <div class=\"row\">\n" +
     "                                <div class=\"col-sm-4 col-md-4\">\n" +
     "                                    <p class=\"capriola\">Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
+    "                                </div>\n" +
+    "                                <div class=\"col-sm-3 col-md-3\">\n" +
+    "                                    <div ng-show=\"c.price != null\">\n" +
+    "                                        <p class=\"capriola\">Price {{c.price}}</p>\n" +
+    "                                    </div>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
     "                            <div ng-show=\"c.description != null\" style=\"display: block\">\n" +
@@ -1222,11 +1230,13 @@ angular.module("city/food.tpl.html", []).run(["$templateCache", function($templa
     "                                        </div>\n" +
     "                                    </div>\n" +
     "                                    <div class=\"row\">\n" +
-    "                                        <div class=\"col-sm-3 col-md-3\">\n" +
-    "                                            <p class=\"capriola\">Price {{c.price || 'Free'}}</p>\n" +
-    "                                        </div>\n" +
     "                                        <div class=\"col-sm-4 col-md-4\">\n" +
     "                                            <p class=\"capriola\">Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
+    "                                        </div>\n" +
+    "                                        <div class=\"col-sm-3 col-md-3\">\n" +
+    "                                            <div ng-show=\"c.price != null\">\n" +
+    "                                                <p class=\"capriola\">Price {{c.price}}</p>\n" +
+    "                                            </div>\n" +
     "                                        </div>\n" +
     "                                    </div>\n" +
     "                                    <div ng-show=\"c.description != null\" style=\"display: block\">\n" +
@@ -1492,11 +1502,13 @@ angular.module("city/utility.tpl.html", []).run(["$templateCache", function($tem
     "                                </div>\n" +
     "                            </div>\n" +
     "                            <div class=\"row\">\n" +
-    "                                <div class=\"col-sm-3 col-md-3\">\n" +
-    "                                    <p class=\"capriola\">Price {{c.price || 'Free'}}</p>\n" +
-    "                                </div>\n" +
     "                                <div class=\"col-sm-4 col-md-4\">\n" +
     "                                    <p class=\"capriola\">Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
+    "                                </div>\n" +
+    "                                <div class=\"col-sm-3 col-md-3\">\n" +
+    "                                    <div ng-show=\"c.price != null\">\n" +
+    "                                        <p class=\"capriola\">Price {{c.price}}</p>\n" +
+    "                                    </div>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
     "                            <div ng-show=\"c.description != null\" style=\"display: block\">\n" +
@@ -1563,11 +1575,13 @@ angular.module("city/utility.tpl.html", []).run(["$templateCache", function($tem
     "                                        </div>\n" +
     "                                    </div>\n" +
     "                                    <div class=\"row\">\n" +
-    "                                        <div class=\"col-sm-3 col-md-3\">\n" +
-    "                                            <p class=\"capriola\">Price {{c.price || 'Free'}}</p>\n" +
-    "                                        </div>\n" +
     "                                        <div class=\"col-sm-4 col-md-4\">\n" +
     "                                            <p class=\"capriola\">Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
+    "                                        </div>\n" +
+    "                                        <div class=\"col-sm-3 col-md-3\">\n" +
+    "                                            <div ng-show=\"c.price != null\">\n" +
+    "                                                <p class=\"capriola\">Price {{c.price}}</p>\n" +
+    "                                            </div>\n" +
     "                                        </div>\n" +
     "                                    </div>\n" +
     "                                    <div ng-show=\"c.description != null\" style=\"display: block\">\n" +
