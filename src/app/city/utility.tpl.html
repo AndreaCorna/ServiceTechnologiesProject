@@ -52,11 +52,13 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-sm-3 col-md-3">
-                                    <p class="capriola">Price {{c.price || 'Free'}}</p>
-                                </div>
                                 <div class="col-sm-4 col-md-4">
                                     <p class="capriola">Rating <rating ng-model="c.rating" readonly="true" ></rating></p>
+                                </div>
+                                <div class="col-sm-3 col-md-3">
+                                    <div ng-show="c.price != null">
+                                        <p class="capriola">Price {{c.price}}</p>
+                                    </div>
                                 </div>
                             </div>
                             <div ng-show="c.description != null" style="display: block">
@@ -123,11 +125,13 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-sm-3 col-md-3">
-                                            <p class="capriola">Price {{c.price || 'Free'}}</p>
-                                        </div>
                                         <div class="col-sm-4 col-md-4">
                                             <p class="capriola">Rating <rating ng-model="c.rating" readonly="true" ></rating></p>
+                                        </div>
+                                        <div class="col-sm-3 col-md-3">
+                                            <div ng-show="c.price != null">
+                                                <p class="capriola">Price {{c.price}}</p>
+                                            </div>
                                         </div>
                                     </div>
                                     <div ng-show="c.description != null" style="display: block">
