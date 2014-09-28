@@ -1616,7 +1616,7 @@ angular.module("plan_trip/createtrip.tpl.html", []).run(["$templateCache", funct
     "                <div class=\"panel  panel-primary no-radius\">\n" +
     "                    <div class=\"panel-heading no-radius  bigger-accordition\" data-toggle=\"collapse\" data-parent=\"#{{date.format('DD-MM-YYYY')}}\" data-target=\"#{{date.format('DD-MM-YYYY')}}List\">\n" +
     "                        <h4 class=\"panel-title bigger-title\">\n" +
-    "                            <a class=\"accordion-toggle bigger-title\" >{{date.format('dddd DD  MMMM YYYY')}}</a>\n" +
+    "                            <a class=\"accordion-toggle bigger-title\" >{{date.format('DD  MMMM YYYY')}}</a>\n" +
     "                            <button class=\"btn btn-primary btn-outlined z-up\" style=\"float: right;font-size: 17px;margin-right: 5px;\" ui-sref=\"planning({date:date.format(dateFormat)})\">EDIT</button>\n" +
     "                        </h4>\n" +
     "                    </div>\n" +

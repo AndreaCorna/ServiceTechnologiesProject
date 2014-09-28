@@ -24,7 +24,6 @@ class CityController < ApplicationController
         }
       end
     }
-
     render json: cities.to_json
   end
 

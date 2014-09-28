@@ -34,10 +34,7 @@ ActiveRecord::Schema.define(version: 20140926213302) do
     t.string  "name"
     t.text    "description"
     t.integer "rating"
-    t.integer "place_summaries_id"
   end
-
-  add_index "guides", ["place_summaries_id"], name: "index_guides_on_place_summaries_id", using: :btree
 
   create_table "place_summaries", force: true do |t|
     t.string  "google_id"
@@ -51,11 +48,9 @@ ActiveRecord::Schema.define(version: 20140926213302) do
     t.string  "tag"
     t.text    "description"
     t.string  "city"
-    t.integer "guide_id"
   end
 
   add_index "place_summaries", ["google_id"], name: "index_place_summaries_on_google_id", using: :btree
-  add_index "place_summaries", ["guide_id"], name: "index_place_summaries_on_guide_id", using: :btree
 
   create_table "places_to_guides", force: true do |t|
     t.integer  "guide_id"
