@@ -121,16 +121,19 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <p class="capriola">Address {{c.address}}</p>
-                                    </div>
-                                    <div class="row">
-                                        <p class="capriola">Rating <rating ng-model="c.rating" readonly="true" ></rating></p>
+                                        <div class="col-sm-12 col-md-12">
+                                            <p class="capriola">Address {{c.address}}</p>
+                                        </div>
+                                        <div class="col-sm-12 col-md-12 capriola">
+                                            <p>Rating <rating ng-model="c.rating" readonly="true" ></rating></p>
+                                        </div>
                                     </div>
                                     <div ng-show="c.description != null" style="display: block">
                                         <div class="col-sm-12 col-md-12 panel panel-default scrollable" style="max-height: 165px;overflow-y: auto">
                                             <div class="text-justify capriola" >{{c.description}}</div>
                                         </div>
                                     </div>
+
                                 </p>
                             </div>
                             <div class="col-sm-3 col-md-3 text-center">
