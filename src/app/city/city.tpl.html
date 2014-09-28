@@ -54,7 +54,7 @@
                                         <b>Rating</b>
                                     </div>
                                     <div class="row">
-                                        {{moreInfoSelection.rating || 'Unknown'}}
+                                        <rating ng-model="moreInfoSelection.rating" readonly="true" max=5></rating>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
