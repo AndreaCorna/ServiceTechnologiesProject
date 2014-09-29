@@ -353,12 +353,14 @@
                     <div class="container-fluid capriola">
                         <div class="row">
                             <div class="col-sm-6 col-md-6 capriola" >
-                            <div class="row">
-                                <b>Rating</b>
-                            </div>
-                            <div class="row">
-                                <img ng-src="{{moreInfoSelection.rating}}" >
-                            </div>
+                                <div ng-if="hotelShow">
+                                    <div class="row">
+                                        <b>Rating</b>
+                                    </div>
+                                    <div class="row">
+                                        <img ng-src="{{moreInfoSelection.rating}}" >
+                                    </div>
+                                </div>
                         </div>
                             <div class="col-sm-6 col-md-6 capriola" >
                                 <div ng-show="moreInfoSelection.address != null">
@@ -475,6 +477,15 @@
             var scope = angular.element(document.querySelector('#moreInfoModalHotel')).scope();
 
             scope.disableModal();
+        });
+    });
+</script>
+<script>
+    $(function(){
+        $('#moreInfoModalHotel').on('shown.bs.modal', function () {
+            var scope = angular.element(document.querySelector('#moreInfoModalHotel')).scope();
+            scope.hotelShow = true;
+            console.log(scope.hotelShow);
         });
     });
 </script>

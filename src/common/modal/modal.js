@@ -58,6 +58,7 @@ angular.module('trippo.modal', ["trippo.resources"])
         $scope.moreInfoSelection = null;
         $scope.modalEnabled = false;
         $scope.loaderEnabled = true;
+        $scope.hotelShow = false;
 
         /**
          * Added a watch to update scope.moreInfoSelection which is set every time a moreInfo button is pushed
@@ -76,6 +77,8 @@ angular.module('trippo.modal', ["trippo.resources"])
         $scope.disableModal = function(){
             $scope.modalEnabled = false;
             $scope.loaderEnabled = true;
+            $scope.hotelShow = false;
+
         };
 
         $scope.changeDate = function(milliseconds){

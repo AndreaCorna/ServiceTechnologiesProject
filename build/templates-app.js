@@ -627,11 +627,14 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                    <div class=\"container-fluid capriola\">\n" +
     "                        <div class=\"row\">\n" +
     "                            <div class=\"col-sm-6 col-md-6 capriola\" >\n" +
-    "                            <div class=\"row\">\n" +
-    "                                <b>Rating</b>\n" +
-    "                            </div>\n" +
-    "                            <div class=\"row\">\n" +
-    "                            </div>\n" +
+    "                                <div ng-if=\"hotelShow\">\n" +
+    "                                    <div class=\"row\">\n" +
+    "                                        <b>Rating</b>\n" +
+    "                                    </div>\n" +
+    "                                    <div class=\"row\">\n" +
+    "                                        <img ng-src=\"{{moreInfoSelection.rating}}\" >\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
     "                        </div>\n" +
     "                            <div class=\"col-sm-6 col-md-6 capriola\" >\n" +
     "                                <div ng-show=\"moreInfoSelection.address != null\">\n" +
@@ -750,7 +753,18 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "            scope.disableModal();\n" +
     "        });\n" +
     "    });\n" +
-    "</script>");
+    "</script>\n" +
+    "<script>\n" +
+    "    $(function(){\n" +
+    "        $('#moreInfoModalHotel').on('shown.bs.modal', function () {\n" +
+    "            alert('hi');\n" +
+    "            var scope = angular.element(document.querySelector('#moreInfoModalHotel')).scope();\n" +
+    "            scope.hotelShow = true;\n" +
+    "            console.log(scope.hotelShow);\n" +
+    "        });\n" +
+    "    });\n" +
+    "</script>\n" +
+    "");
 }]);
 
 angular.module("city/culture.tpl.html", []).run(["$templateCache", function($templateCache) {
