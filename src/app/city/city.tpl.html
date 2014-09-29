@@ -58,11 +58,13 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-md-6">
-                                    <div class="row">
-                                        <b>Price</b>
-                                    </div>
-                                    <div class="row">
-                                        {{moreInfoSelection.price || 'Unknown'}}
+                                    <div ng-show="moreInfoSelection.price != null">
+                                        <div class="row">
+                                            <b>Price</b>
+                                        </div>
+                                        <div class="row">
+                                            {{moreInfoSelection.price}}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
