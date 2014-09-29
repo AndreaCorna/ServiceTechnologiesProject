@@ -87,11 +87,11 @@ class GuidesController < ApplicationController
     result['days'] = []
 
     # get all the element of the join modele matching the guide id
-    guide_places = GuidePlaceSummary.where(:guide_id => id )
-
+    guide_places = GuidePlaceSummary.where(:guide_id => id ).order('date ASC')
     #select distinct dates in guide_places which will be the dates of the guide
     days = guide_places.uniq.pluck(:date)
     days.each { |day|
+
       result_day = Hash.new
       #for each day create hashmap with day and a schedule field
       result_day['day'] = day
