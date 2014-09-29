@@ -484,8 +484,8 @@ angular.module('trippo.plan',[
          PlanningService.initializeCurrentDay(day.format(DatesService.dateFormat));
          return randomItemsc;  // CHANGE THIS TO    PlanningService.getCurrentTodo()
          };
-         */
 
+         */
         //STUB END
 
 
@@ -497,6 +497,7 @@ angular.module('trippo.plan',[
                 var guide =  new GuideRes();
                 guide.name = $scope.name ;
                 guide.description = $scope.description ;
+                guide.city = $stateParams.city_name   ;
                 //hash key : day in dateFormat format value: array of activities in that day
                 /**
                  * Adding all the day and their respective activities to  schedule hash
@@ -516,11 +517,14 @@ angular.module('trippo.plan',[
                     schedule.push(current_object);
                 });
 
-                guide.schedule = schedule;
+                guide.days = schedule;
                 console.log("guide schedule");
                 console.log(guide.schedule);
 
-                guide.$save();
+                guide.$save(function(data){
+                    console.log(data);
+                });
+
                 console.log("submitted");
 
 

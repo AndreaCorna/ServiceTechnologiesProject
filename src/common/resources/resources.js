@@ -47,15 +47,20 @@ angular.module('trippo.resources', [
 
     return food;
 })
-    .factory('GuideRes', function ($resource,ResourceBaseUrl) {
-       var  guide = $resource(ResourceBaseUrl.val+"guides/:id"/*,{id: '@id'},
-           {
-               inutile: {
-                   method: 'POST', url: ResourceBaseUrl.val+"guides/new"
-               }
-           }*/);
-        return  guide;
-    })
+.factory('GuideRes', function ($resource,ResourceBaseUrl) {
+   var  guide = $resource(ResourceBaseUrl.val+"guides/:id"/*,{id: '@id'},
+       {
+           inutile: {
+               method: 'POST', url: ResourceBaseUrl.val+"guides/new"
+           }
+       }*/);
+    return  guide;
+})
+
+.factory('SharedGuideRes', function ($resource,ResourceBaseUrl) {
+    var  shared_guide = $resource(ResourceBaseUrl.val+"city/:city_name/shared_guide" );
+    return shared_guide;
+})
 
 
 .factory('commonResources',function(FoodRes,HotelRes,EntertainmentRes,CultureRes){
