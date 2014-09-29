@@ -112,6 +112,7 @@ component.directive('map', function () {
 
 
             scope.updateDirectionMap = function () {
+                scope.planTripSelected = true;
                 var mapOptions = {
                     zoom: scope.zoom !== undefined ? scope.zoom : 15,
                     mapTypeId: scope.type.toLowerCase(),
@@ -174,7 +175,7 @@ component.directive('map', function () {
             scope.planTripSelected = false;
 
             scope.getDirections = function () {
-                scope.planTripSelected = true;
+
 
                 var request = {
                     origin: scope.startPoint,

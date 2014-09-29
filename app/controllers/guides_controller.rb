@@ -31,7 +31,14 @@ class GuidesController < ApplicationController
             place.lng = curr_place['lng']
             place.rating = curr_place['rating']
             place.price = curr_place['price']
-            place.image = curr_place['photos'][0]['image']
+            if not curr_place['photos'].nil?
+              place.image = curr_place['photos'][0]['image']
+            else
+              place.image = 'assets/images/empty_photo.png'
+            end
+
+
+
             place.icon = curr_place['icon']
             place.tag = curr_place['tag']
             place.description = curr_place['description']
