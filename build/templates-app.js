@@ -806,40 +806,44 @@ angular.module("city/culture.tpl.html", []).run(["$templateCache", function($tem
     "                        </div>\n" +
     "                    </div>\n" +
     "                </div>\n" +
-    "                <div class=\"col-sm-6 col-md-6\" style=\"height:230px\">\n" +
-    "                   <p class=\"list-group-item-text\">\n" +
-    "                        <div class=\"row\">\n" +
-    "                            <div class=\"col-sm-9 col-md-9\">\n" +
-    "                                <b class=\"text-capitalize\">{{c.name}}</b>\n" +
-    "                            </div>\n" +
-    "                            <div class=\"col-sm-3 col-md-3\">\n" +
-    "                                <button class=\"btn btn-primary btn-sm capriola\" ng-click=\"setCultureDetails(c.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">\n" +
-    "                                    <span class=\"glyphicon glyphicon-info-sign \"></span>\n" +
-    "                                </button>\n" +
-    "                                <button class=\"btn btn-danger btn-sm capriola\" ng-click=\"removeCultureItem(c)\">\n" +
-    "                                    <span class=\"glyphicon glyphicon-minus-sign \"></span>\n" +
-    "                                </button>\n" +
-    "                            </div>\n" +
+    "                <div class=\"col-sm-7 col-md-7\" style=\"height:230px\">\n" +
+    "                    <p class=\"list-group-item-text\">\n" +
+    "                    <div class=\"row capriola\">\n" +
+    "                        <div class=\"col-sm-9 col-md-9\">\n" +
+    "                            <b class=\"text-capitalize\">{{c.name}}</b>\n" +
     "                        </div>\n" +
-    "                        <div class=\"row\">\n" +
-    "                            <div class=\"col-sm-4 col-md-4\">\n" +
-    "                                <p class=\"capriola\">Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
-    "                            </div>\n" +
-    "                            <div class=\"col-sm-3 col-md-3\">\n" +
-    "                                <div ng-show=\"c.price != null\">\n" +
-    "                                    <p class=\"capriola\">Price {{c.price}}</p>\n" +
-    "                                </div>\n" +
-    "                            </div>\n" +
-    "                        </div>\n" +
-    "                        <div ng-show=\"c.description != null\" style=\"display: block\">\n" +
-    "                            <div class=\"col-sm-12 col-md-12 panel panel-default scrollable\" style=\"max-height: 165px;overflow-y: auto\">\n" +
-    "                                <div class=\"text-justify capriola\" >{{c.description}}</div>\n" +
-    "                            </div>\n" +
-    "                        </div>\n" +
-    "                   </p>\n" +
-    "                </div>\n" +
-    "                <div class=\"col-sm-3 col-md-3 text-center\">\n" +
     "\n" +
+    "                    </div>\n" +
+    "                    <div class=\"row\">\n" +
+    "                        <div class=\"col-sm-4 col-md-4\">\n" +
+    "                            <p class=\"capriola\">Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
+    "                        </div>\n" +
+    "                        <div class=\"col-sm-3 col-md-3\">\n" +
+    "                            <div ng-show=\"c.price != null\">\n" +
+    "                                <p class=\"capriola\">Price {{c.price}}</p>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                    <div ng-show=\"c.description != null\" style=\"display: block\">\n" +
+    "                        <div class=\"col-sm-12 col-md-12 panel panel-default scrollable\" style=\"max-height: 165px;overflow-y: auto\">\n" +
+    "                            <div class=\"text-justify capriola\" >{{c.description}}</div>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                    </p>\n" +
+    "                </div>\n" +
+    "                <div class=\"col-sm-2 col-md-2\">\n" +
+    "                    <div class=\"row text-center\" style=\"padding-top: 50%;padding-bottom: 50%\">\n" +
+    "                        <div class=\"col-md-12\">\n" +
+    "                            <button class=\"btn btn-primary btn-sm capriola\" ng-click=\"setCultureDetails(c.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">\n" +
+    "                                Details <span class=\"glyphicon glyphicon-info-sign \"></span>\n" +
+    "                            </button>\n" +
+    "                        </div>\n" +
+    "                        <div class=\"col-md-12\" style=\"padding-top: 10px\">\n" +
+    "                            <button class=\"btn btn-danger btn-sm capriola\" ng-click=\"removeCultureItem(c)\">\n" +
+    "                                Remove <span class=\"glyphicon glyphicon-minus-sign \"></span>\n" +
+    "                            </button>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
     "                </div>\n" +
     "            </div>\n" +
     "        </span>\n" +
@@ -880,20 +884,13 @@ angular.module("city/culture.tpl.html", []).run(["$templateCache", function($tem
     "                                </div>\n" +
     "                            </div>\n" +
     "                       </div>\n" +
-    "                    <div class=\"col-sm-6 col-md-6\" style=\"height:230px\">\n" +
+    "                    <div class=\"col-sm-7 col-md-7\" style=\"height:230px\">\n" +
     "                        <p class=\"list-group-item-text\">\n" +
     "                            <div class=\"row capriola\">\n" +
     "                                <div class=\"col-sm-9 col-md-9\">\n" +
     "                                    <b class=\"text-capitalize\">{{c.name}}</b>\n" +
     "                                </div>\n" +
-    "                                <div class=\"col-sm-3 col-md-3\">\n" +
-    "                                    <button class=\"btn btn-primary btn-sm capriola\" ng-click=\"setCultureDetails(c.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">\n" +
-    "                                        <span class=\"glyphicon glyphicon-info-sign \"></span>\n" +
-    "                                    </button>\n" +
-    "                                    <button class=\"btn btn-success btn-sm capriola\" ng-click=\"addCultureItem(c)\">\n" +
-    "                                        <span class=\"glyphicon glyphicon-plus-sign \"></span>\n" +
-    "                                    </button>\n" +
-    "                                </div>\n" +
+    "\n" +
     "                            </div>\n" +
     "                            <div class=\"row\">\n" +
     "                                <div class=\"col-sm-4 col-md-4\">\n" +
@@ -912,10 +909,17 @@ angular.module("city/culture.tpl.html", []).run(["$templateCache", function($tem
     "                            </div>\n" +
     "                        </p>\n" +
     "                    </div>\n" +
-    "                    <div class=\"col-sm-3 col-md-3\">\n" +
-    "                        <div class=\"panel panel-default\">\n" +
-    "                            <div class=\"panel-body\">\n" +
-    "\n" +
+    "                    <div class=\"col-sm-2 col-md-2\">\n" +
+    "                        <div class=\"row text-center\" style=\"padding-top: 50%;padding-bottom: 50%\">\n" +
+    "                            <div class=\"col-md-12\">\n" +
+    "                                <button class=\"btn btn-primary btn-sm capriola\" ng-click=\"setCultureDetails(c.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">\n" +
+    "                                   Details <span class=\"glyphicon glyphicon-info-sign \"></span>\n" +
+    "                                </button>\n" +
+    "                            </div>\n" +
+    "                            <div class=\"col-md-12\" style=\"padding-top: 10px\">\n" +
+    "                                <button class=\"btn btn-success btn-sm capriola\" ng-click=\"addCultureItem(c)\">\n" +
+    "                                   Add <span class=\"glyphicon glyphicon-plus-sign \"></span>\n" +
+    "                                </button>\n" +
     "                            </div>\n" +
     "                        </div>\n" +
     "                    </div>\n" +
@@ -988,20 +992,13 @@ angular.module("city/entertainment.tpl.html", []).run(["$templateCache", functio
     "                                </div>\n" +
     "                            </div>\n" +
     "                        </div>\n" +
-    "                        <div class=\"col-sm-6 col-md-6\" style=\"height:230px\">\n" +
+    "                        <div class=\"col-sm-7 col-md-7\" style=\"height:230px\">\n" +
     "                            <p class=\"list-group-item-text\">\n" +
     "                            <div class=\"row capriola\">\n" +
     "                                <div class=\"col-sm-9 col-md-9\">\n" +
     "                                    <b class=\"text-capitalize\">{{c.name}}</b>\n" +
     "                                </div>\n" +
-    "                                <div class=\"col-sm-3 col-md-3\">\n" +
-    "                                    <button class=\"btn btn-primary btn-sm capriola\" ng-click=\"setEntertainmentDetails(c.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">\n" +
-    "                                        <span class=\"glyphicon glyphicon-info-sign \"></span>\n" +
-    "                                    </button>\n" +
-    "                                    <button class=\"btn btn-danger btn-sm capriola\" ng-click=\"removeEntertainmentItem(c)\">\n" +
-    "                                        <span class=\"glyphicon glyphicon-minus-sign \"></span>\n" +
-    "                                    </button>\n" +
-    "                                </div>\n" +
+    "\n" +
     "                            </div>\n" +
     "                            <div class=\"row\">\n" +
     "                                <div class=\"col-sm-4 col-md-4\">\n" +
@@ -1018,11 +1015,21 @@ angular.module("city/entertainment.tpl.html", []).run(["$templateCache", functio
     "                                    <div class=\"text-justify capriola\" >{{c.description}}</div>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
-    "\n" +
     "                            </p>\n" +
     "                        </div>\n" +
-    "                        <div class=\"col-sm-3 col-md-3 text-center\">\n" +
-    "\n" +
+    "                        <div class=\"col-sm-2 col-md-2\">\n" +
+    "                            <div class=\"row text-center\" style=\"padding-top: 50%;padding-bottom: 50%\">\n" +
+    "                                <div class=\"col-md-12\">\n" +
+    "                                    <button class=\"btn btn-primary btn-sm capriola\" ng-click=\"setEntertainmentDetails(c.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">\n" +
+    "                                        Details <span class=\"glyphicon glyphicon-info-sign \"></span>\n" +
+    "                                    </button>\n" +
+    "                                </div>\n" +
+    "                                <div class=\"col-md-12\" style=\"padding-top: 10px\">\n" +
+    "                                    <button class=\"btn btn-danger btn-sm capriola\" ng-click=\"removeEntertainmentItem(c)\">\n" +
+    "                                        Remove <span class=\"glyphicon glyphicon-minus-sign \"></span>\n" +
+    "                                    </button>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
     "                        </div>\n" +
     "                    </div>\n" +
     "                </span>\n" +
@@ -1063,40 +1070,44 @@ angular.module("city/entertainment.tpl.html", []).run(["$templateCache", functio
     "                                    </div>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
-    "                            <div class=\"col-sm-6 col-md-6\" style=\"height:230px\">\n" +
+    "                            <div class=\"col-sm-7 col-md-7\" style=\"height:230px\">\n" +
     "                                <p class=\"list-group-item-text\">\n" +
-    "                                    <div class=\"row capriola\">\n" +
-    "                                        <div class=\"col-sm-9 col-md-9\">\n" +
-    "                                            <b class=\"text-capitalize\">{{c.name}}</b>\n" +
-    "                                        </div>\n" +
-    "                                        <div class=\"col-sm-3 col-md-3\">\n" +
-    "                                            <button class=\"btn btn-primary btn-sm capriola\" ng-click=\"setEntertainmentDetails(c.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">\n" +
-    "                                                <span class=\"glyphicon glyphicon-info-sign \"></span>\n" +
-    "                                            </button>\n" +
-    "                                            <button class=\"btn btn-success btn-sm capriola\" ng-click=\"addEntertainmentItem(c)\">\n" +
-    "                                                <span class=\"glyphicon glyphicon-plus-sign \"></span>\n" +
-    "                                            </button>\n" +
+    "                                <div class=\"row capriola\">\n" +
+    "                                    <div class=\"col-sm-9 col-md-9\">\n" +
+    "                                        <b class=\"text-capitalize\">{{c.name}}</b>\n" +
+    "                                    </div>\n" +
+    "\n" +
+    "                                </div>\n" +
+    "                                <div class=\"row\">\n" +
+    "                                    <div class=\"col-sm-4 col-md-4\">\n" +
+    "                                        <p class=\"capriola\">Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
+    "                                    </div>\n" +
+    "                                    <div class=\"col-sm-3 col-md-3\">\n" +
+    "                                        <div ng-show=\"c.price != null\">\n" +
+    "                                            <p class=\"capriola\">Price {{c.price}}</p>\n" +
     "                                        </div>\n" +
     "                                    </div>\n" +
-    "                                    <div class=\"row\">\n" +
-    "                                        <div class=\"col-sm-4 col-md-4\">\n" +
-    "                                            <p class=\"capriola\">Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
-    "                                        </div>\n" +
-    "                                        <div class=\"col-sm-3 col-md-3\">\n" +
-    "                                            <div ng-show=\"c.price != null\">\n" +
-    "                                                <p class=\"capriola\">Price {{c.price}}</p>\n" +
-    "                                            </div>\n" +
-    "                                        </div>\n" +
+    "                                </div>\n" +
+    "                                <div ng-show=\"c.description != null\" style=\"display: block\">\n" +
+    "                                    <div class=\"col-sm-12 col-md-12 panel panel-default scrollable\" style=\"max-height: 165px;overflow-y: auto\">\n" +
+    "                                        <div class=\"text-justify capriola\" >{{c.description}}</div>\n" +
     "                                    </div>\n" +
-    "                                    <div ng-show=\"c.description != null\" style=\"display: block\">\n" +
-    "                                        <div class=\"col-sm-12 col-md-12 panel panel-default scrollable\" style=\"max-height: 165px;overflow-y: auto\">\n" +
-    "                                            <div class=\"text-justify capriola\" >{{c.description}}</div>\n" +
-    "                                        </div>\n" +
-    "                                    </div>\n" +
+    "                                </div>\n" +
     "                                </p>\n" +
     "                            </div>\n" +
-    "                            <div class=\"col-sm-3 col-md-3 text-center\">\n" +
-    "\n" +
+    "                            <div class=\"col-sm-2 col-md-2\">\n" +
+    "                                <div class=\"row text-center\" style=\"padding-top: 50%;padding-bottom: 50%\">\n" +
+    "                                    <div class=\"col-md-12\">\n" +
+    "                                        <button class=\"btn btn-primary btn-sm capriola\" ng-click=\"setEntertainmentDetails(c.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">\n" +
+    "                                            Details <span class=\"glyphicon glyphicon-info-sign \"></span>\n" +
+    "                                        </button>\n" +
+    "                                    </div>\n" +
+    "                                    <div class=\"col-md-12\" style=\"padding-top: 10px\">\n" +
+    "                                        <button class=\"btn btn-success btn-sm capriola\" ng-click=\"addEntertainmentItem(c)\">\n" +
+    "                                            Add <span class=\"glyphicon glyphicon-plus-sign \"></span>\n" +
+    "                                        </button>\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
     "                            </div>\n" +
     "                        </div>\n" +
     "                    </span>\n" +
@@ -1164,40 +1175,44 @@ angular.module("city/food.tpl.html", []).run(["$templateCache", function($templa
     "                            </div>\n" +
     "                        </div>\n" +
     "                    </div>\n" +
-    "                    <div class=\"col-sm-6 col-md-6\" style=\"height:230px\">\n" +
+    "                    <div class=\"col-sm-7 col-md-7\" style=\"height:230px\">\n" +
     "                        <p class=\"list-group-item-text\">\n" +
-    "                            <div class=\"row capriola\">\n" +
-    "                                <div class=\"col-sm-9 col-md-9\">\n" +
-    "                                    <b class=\"text-capitalize\">{{c.name}}</b>\n" +
-    "                                </div>\n" +
-    "                                <div class=\"col-sm-3 col-md-3\">\n" +
-    "                                    <button class=\"btn btn-primary btn-sm capriola\" ng-click=\"setFoodDetails(c.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">\n" +
-    "                                        <span class=\"glyphicon glyphicon-info-sign \"></span>\n" +
-    "                                    </button>\n" +
-    "                                    <button class=\"btn btn-danger btn-sm capriola\" ng-click=\"removeFoodItem(c)\">\n" +
-    "                                        <span class=\"glyphicon glyphicon-minus-sign \"></span>\n" +
-    "                                    </button>\n" +
+    "                        <div class=\"row capriola\">\n" +
+    "                            <div class=\"col-sm-9 col-md-9\">\n" +
+    "                                <b class=\"text-capitalize\">{{c.name}}</b>\n" +
+    "                            </div>\n" +
+    "\n" +
+    "                        </div>\n" +
+    "                        <div class=\"row\">\n" +
+    "                            <div class=\"col-sm-4 col-md-4\">\n" +
+    "                                <p class=\"capriola\">Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
+    "                            </div>\n" +
+    "                            <div class=\"col-sm-3 col-md-3\">\n" +
+    "                                <div ng-show=\"c.price != null\">\n" +
+    "                                    <p class=\"capriola\">Price {{c.price}}</p>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
-    "                            <div class=\"row\">\n" +
-    "                                <div class=\"col-sm-4 col-md-4\">\n" +
-    "                                    <p class=\"capriola\">Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
-    "                                </div>\n" +
-    "                                <div class=\"col-sm-3 col-md-3\">\n" +
-    "                                    <div ng-show=\"c.price != null\">\n" +
-    "                                        <p class=\"capriola\">Price {{c.price}}</p>\n" +
-    "                                    </div>\n" +
-    "                                </div>\n" +
+    "                        </div>\n" +
+    "                        <div ng-show=\"c.description != null\" style=\"display: block\">\n" +
+    "                            <div class=\"col-sm-12 col-md-12 panel panel-default scrollable\" style=\"max-height: 165px;overflow-y: auto\">\n" +
+    "                                <div class=\"text-justify capriola\" >{{c.description}}</div>\n" +
     "                            </div>\n" +
-    "                            <div ng-show=\"c.description != null\" style=\"display: block\">\n" +
-    "                                <div class=\"col-sm-12 col-md-12 panel panel-default scrollable\" style=\"max-height: 165px;overflow-y: auto\">\n" +
-    "                                    <div class=\"text-justify capriola\" >{{c.description}}</div>\n" +
-    "                                </div>\n" +
-    "                            </div>\n" +
+    "                        </div>\n" +
     "                        </p>\n" +
     "                    </div>\n" +
-    "                    <div class=\"col-sm-3 col-md-3 text-center\">\n" +
-    "\n" +
+    "                    <div class=\"col-sm-2 col-md-2\">\n" +
+    "                        <div class=\"row text-center\" style=\"padding-top: 50%;padding-bottom: 50%\">\n" +
+    "                            <div class=\"col-md-12\">\n" +
+    "                                <button class=\"btn btn-primary btn-sm capriola\" ng-click=\"setFoodDetails(c.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">\n" +
+    "                                    Details <span class=\"glyphicon glyphicon-info-sign \"></span>\n" +
+    "                                </button>\n" +
+    "                            </div>\n" +
+    "                            <div class=\"col-md-12\" style=\"padding-top: 10px\">\n" +
+    "                                <button class=\"btn btn-danger btn-sm capriola\" ng-click=\"removeFoodItem(c)\">\n" +
+    "                                    Remove <span class=\"glyphicon glyphicon-minus-sign \"></span>\n" +
+    "                                </button>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
     "                    </div>\n" +
     "                </div>\n" +
     "            </span>\n" +
@@ -1237,40 +1252,44 @@ angular.module("city/food.tpl.html", []).run(["$templateCache", function($templa
     "                                    </div>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
-    "                            <div class=\"col-sm-6 col-md-6\" style=\"height:230px\">\n" +
+    "                            <div class=\"col-sm-7 col-md-7\" style=\"height:230px\">\n" +
     "                                <p class=\"list-group-item-text\">\n" +
-    "                                    <div class=\"row capriola\">\n" +
-    "                                        <div class=\"col-sm-9 col-md-9\">\n" +
-    "                                            <b class=\"text-capitalize\">{{c.name}}</b>\n" +
-    "                                        </div>\n" +
-    "                                        <div class=\"col-sm-3 col-md-3\">\n" +
-    "                                            <button class=\"btn btn-primary btn-sm capriola\" ng-click=\"setFoodDetails(c.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">\n" +
-    "                                                <span class=\"glyphicon glyphicon-info-sign \"></span>\n" +
-    "                                            </button>\n" +
-    "                                            <button class=\"btn btn-success btn-sm capriola\" ng-click=\"addFoodItem(c)\">\n" +
-    "                                                <span class=\"glyphicon glyphicon-plus-sign \"></span>\n" +
-    "                                            </button>\n" +
+    "                                <div class=\"row capriola\">\n" +
+    "                                    <div class=\"col-sm-9 col-md-9\">\n" +
+    "                                        <b class=\"text-capitalize\">{{c.name}}</b>\n" +
+    "                                    </div>\n" +
+    "\n" +
+    "                                </div>\n" +
+    "                                <div class=\"row\">\n" +
+    "                                    <div class=\"col-sm-4 col-md-4\">\n" +
+    "                                        <p class=\"capriola\">Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
+    "                                    </div>\n" +
+    "                                    <div class=\"col-sm-3 col-md-3\">\n" +
+    "                                        <div ng-show=\"c.price != null\">\n" +
+    "                                            <p class=\"capriola\">Price {{c.price}}</p>\n" +
     "                                        </div>\n" +
     "                                    </div>\n" +
-    "                                    <div class=\"row\">\n" +
-    "                                        <div class=\"col-sm-4 col-md-4\">\n" +
-    "                                            <p class=\"capriola\">Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
-    "                                        </div>\n" +
-    "                                        <div class=\"col-sm-3 col-md-3\">\n" +
-    "                                            <div ng-show=\"c.price != null\">\n" +
-    "                                                <p class=\"capriola\">Price {{c.price}}</p>\n" +
-    "                                            </div>\n" +
-    "                                        </div>\n" +
+    "                                </div>\n" +
+    "                                <div ng-show=\"c.description != null\" style=\"display: block\">\n" +
+    "                                    <div class=\"col-sm-12 col-md-12 panel panel-default scrollable\" style=\"max-height: 165px;overflow-y: auto\">\n" +
+    "                                        <div class=\"text-justify capriola\" >{{c.description}}</div>\n" +
     "                                    </div>\n" +
-    "                                    <div ng-show=\"c.description != null\" style=\"display: block\">\n" +
-    "                                        <div class=\"col-sm-12 col-md-12 panel panel-default scrollable\" style=\"max-height: 165px;overflow-y: auto\">\n" +
-    "                                            <div class=\"text-justify capriola\" >{{c.description}}</div>\n" +
-    "                                        </div>\n" +
-    "                                    </div>\n" +
+    "                                </div>\n" +
     "                                </p>\n" +
     "                            </div>\n" +
-    "                            <div class=\"col-sm-3 col-md-3 text-center\">\n" +
-    "\n" +
+    "                            <div class=\"col-sm-2 col-md-2\">\n" +
+    "                                <div class=\"row text-center\" style=\"padding-top: 50%;padding-bottom: 50%\">\n" +
+    "                                    <div class=\"col-md-12\">\n" +
+    "                                        <button class=\"btn btn-primary btn-sm capriola\" ng-click=\"setFoodDetails(c.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">\n" +
+    "                                            Details <span class=\"glyphicon glyphicon-info-sign \"></span>\n" +
+    "                                        </button>\n" +
+    "                                    </div>\n" +
+    "                                    <div class=\"col-md-12\" style=\"padding-top: 10px\">\n" +
+    "                                        <button class=\"btn btn-success btn-sm capriola\" ng-click=\"addFoodItem(c)\">\n" +
+    "                                            Add <span class=\"glyphicon glyphicon-plus-sign \"></span>\n" +
+    "                                        </button>\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
     "                            </div>\n" +
     "                        </div>\n" +
     "                    </span>\n" +
@@ -1340,36 +1359,44 @@ angular.module("city/hotel.tpl.html", []).run(["$templateCache", function($templ
     "                            </div>\n" +
     "                        </div>\n" +
     "                    </div>\n" +
-    "                    <div class=\"col-sm-6 col-md-6\" style=\"height:230px\">\n" +
+    "                    <div class=\"col-sm-7 col-md-7\" style=\"height:230px\">\n" +
     "                        <p class=\"list-group-item-text\">\n" +
-    "                            <div class=\"row capriola\">\n" +
-    "                                <div class=\"col-sm-9 col-md-9\">\n" +
-    "                                    <b class=\"text-capitalize\">{{c.name}}</b>\n" +
-    "                                </div>\n" +
-    "                                <div class=\"col-sm-3 col-md-3\">\n" +
-    "                                    <button class=\"btn btn-primary btn-sm capriola\" ng-click=\"setHotelDetails(c.id)\" href=\"#moreInfoModalHotel\" data-toggle=\"modal\">\n" +
-    "                                        <span class=\"glyphicon glyphicon-info-sign \"></span>\n" +
-    "                                    </button>\n" +
-    "                                    <button class=\"btn btn-danger btn-sm capriola\" ng-click=\"removeHotelItem(c)\">\n" +
-    "                                        <span class=\"glyphicon glyphicon-minus-sign \"></span>\n" +
-    "                                    </button>\n" +
-    "                                </div>\n" +
+    "                        <div class=\"row capriola\">\n" +
+    "                            <div class=\"col-sm-9 col-md-9\">\n" +
+    "                                <b class=\"text-capitalize\">{{c.name}}</b>\n" +
     "                            </div>\n" +
-    "                            <div class=\"row\">\n" +
-    "                                <p class=\"capriola\">Address {{c.address}}</p>\n" +
-    "                            </div>\n" +
-    "                            <div class=\"row\">\n" +
+    "\n" +
+    "                        </div>\n" +
+    "                        <div class=\"row\">\n" +
+    "                            <div class=\"col-sm-4 col-md-4\">\n" +
     "                                <p class=\"capriola\">Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
     "                            </div>\n" +
-    "                            <div ng-show=\"c.description != null\" style=\"display: block\">\n" +
-    "                                <div class=\"col-sm-12 col-md-12 panel panel-default scrollable\" style=\"max-height: 165px;overflow-y: auto\">\n" +
-    "                                    <div class=\"text-justify capriola\" >{{c.description}}</div>\n" +
+    "                            <div class=\"col-sm-3 col-md-3\">\n" +
+    "                                <div ng-show=\"c.price != null\">\n" +
+    "                                    <p class=\"capriola\">Price {{c.price}}</p>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
+    "                        </div>\n" +
+    "                        <div ng-show=\"c.description != null\" style=\"display: block\">\n" +
+    "                            <div class=\"col-sm-12 col-md-12 panel panel-default scrollable\" style=\"max-height: 165px;overflow-y: auto\">\n" +
+    "                                <div class=\"text-justify capriola\" >{{c.description}}</div>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
     "                        </p>\n" +
     "                    </div>\n" +
-    "                    <div class=\"col-sm-3 col-md-3 text-center\">\n" +
-    "\n" +
+    "                    <div class=\"col-sm-2 col-md-2\">\n" +
+    "                        <div class=\"row text-center\" style=\"padding-top: 50%;padding-bottom: 50%\">\n" +
+    "                            <div class=\"col-md-12\">\n" +
+    "                                <button class=\"btn btn-primary btn-sm capriola\" ng-click=\"setHotelDetails(c.id)\" href=\"#moreInfoModalHotel\" data-toggle=\"modal\">\n" +
+    "                                    Details <span class=\"glyphicon glyphicon-info-sign \"></span>\n" +
+    "                                </button>\n" +
+    "                            </div>\n" +
+    "                            <div class=\"col-md-12\" style=\"padding-top: 10px\">\n" +
+    "                                <button class=\"btn btn-danger btn-sm capriola\" ng-click=\"removeHotelItem(c)\">\n" +
+    "                                    Remove <span class=\"glyphicon glyphicon-minus-sign \"></span>\n" +
+    "                                </button>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
     "                    </div>\n" +
     "                </div>\n" +
     "            </span>\n" +
@@ -1409,39 +1436,44 @@ angular.module("city/hotel.tpl.html", []).run(["$templateCache", function($templ
     "                                    </div>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
-    "                            <div class=\"col-sm-6 col-md-6\" style=\"height:230px\">\n" +
+    "                            <div class=\"col-sm-7 col-md-7\" style=\"height:230px\">\n" +
     "                                <p class=\"list-group-item-text\">\n" +
-    "                                    <div class=\"row capriola\">\n" +
-    "                                        <div class=\"col-sm-9 col-md-9\">\n" +
-    "                                            <b class=\"text-capitalize\">{{c.name}}</b>\n" +
-    "                                        </div>\n" +
-    "                                        <div class=\"col-sm-3 col-md-3\">\n" +
-    "                                            <button class=\"btn btn-primary btn-sm capriola\" ng-click=\"setHotelDetails(c.id)\" href=\"#moreInfoModalHotel\" data-toggle=\"modal\">\n" +
-    "                                                <span class=\"glyphicon glyphicon-info-sign \"></span>\n" +
-    "                                            </button>\n" +
-    "                                            <button class=\"btn btn-success btn-sm capriola\" ng-click=\"addHotelItem(c)\">\n" +
-    "                                                <span class=\"glyphicon glyphicon-plus-sign \"></span>\n" +
-    "                                            </button>\n" +
-    "                                        </div>\n" +
-    "                                    </div>\n" +
-    "                                    <div class=\"row\">\n" +
-    "                                        <div class=\"col-sm-12 col-md-12\">\n" +
-    "                                            <p class=\"capriola\">Address {{c.address}}</p>\n" +
-    "                                        </div>\n" +
-    "                                        <div class=\"col-sm-12 col-md-12 capriola\">\n" +
-    "                                            <p>Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
-    "                                        </div>\n" +
-    "                                    </div>\n" +
-    "                                    <div ng-show=\"c.description != null\" style=\"display: block\">\n" +
-    "                                        <div class=\"col-sm-12 col-md-12 panel panel-default scrollable\" style=\"max-height: 165px;overflow-y: auto\">\n" +
-    "                                            <div class=\"text-justify capriola\" >{{c.description}}</div>\n" +
-    "                                        </div>\n" +
+    "                                <div class=\"row capriola\">\n" +
+    "                                    <div class=\"col-sm-9 col-md-9\">\n" +
+    "                                        <b class=\"text-capitalize\">{{c.name}}</b>\n" +
     "                                    </div>\n" +
     "\n" +
+    "                                </div>\n" +
+    "                                <div class=\"row\">\n" +
+    "                                    <div class=\"col-sm-4 col-md-4\">\n" +
+    "                                        <p class=\"capriola\">Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
+    "                                    </div>\n" +
+    "                                    <div class=\"col-sm-3 col-md-3\">\n" +
+    "                                        <div ng-show=\"c.price != null\">\n" +
+    "                                            <p class=\"capriola\">Price {{c.price}}</p>\n" +
+    "                                        </div>\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                                <div ng-show=\"c.description != null\" style=\"display: block\">\n" +
+    "                                    <div class=\"col-sm-12 col-md-12 panel panel-default scrollable\" style=\"max-height: 165px;overflow-y: auto\">\n" +
+    "                                        <div class=\"text-justify capriola\" >{{c.description}}</div>\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
     "                                </p>\n" +
     "                            </div>\n" +
-    "                            <div class=\"col-sm-3 col-md-3 text-center\">\n" +
-    "\n" +
+    "                            <div class=\"col-sm-2 col-md-2\">\n" +
+    "                                <div class=\"row text-center\" style=\"padding-top: 50%;padding-bottom: 50%\">\n" +
+    "                                    <div class=\"col-md-12\">\n" +
+    "                                        <button class=\"btn btn-primary btn-sm capriola\" ng-click=\"setHotelDetails(c.id)\" href=\"#moreInfoModalHotel\" data-toggle=\"modal\">\n" +
+    "                                            Details <span class=\"glyphicon glyphicon-info-sign \"></span>\n" +
+    "                                        </button>\n" +
+    "                                    </div>\n" +
+    "                                    <div class=\"col-md-12\" style=\"padding-top: 10px\">\n" +
+    "                                        <button class=\"btn btn-success btn-sm capriola\" ng-click=\"addHotelItem(c)\">\n" +
+    "                                            Add <span class=\"glyphicon glyphicon-plus-sign \"></span>\n" +
+    "                                        </button>\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
     "                            </div>\n" +
     "                        </div>\n" +
     "                    </span>\n" +
@@ -1509,40 +1541,44 @@ angular.module("city/utility.tpl.html", []).run(["$templateCache", function($tem
     "                            </div>\n" +
     "                        </div>\n" +
     "                    </div>\n" +
-    "                    <div class=\"col-sm-6 col-md-6\" style=\"height:230px\">\n" +
+    "                    <div class=\"col-sm-7 col-md-7\" style=\"height:230px\">\n" +
     "                        <p class=\"list-group-item-text\">\n" +
-    "                            <div class=\"row capriola\">\n" +
-    "                                <div class=\"col-sm-9 col-md-9\">\n" +
-    "                                    <b class=\"text-capitalize\">{{c.name}}</b>\n" +
-    "                                </div>\n" +
-    "                                <div class=\"col-sm-3 col-md-3\">\n" +
-    "                                    <button class=\"btn btn-primary btn-sm capriola\" ng-click=\"setUtilityDetails(c.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">\n" +
-    "                                        <span class=\"glyphicon glyphicon-info-sign \"></span>\n" +
-    "                                    </button>\n" +
-    "                                    <button class=\"btn btn-danger btn-sm capriola\" ng-click=\"removeUtilityItem(c)\">\n" +
-    "                                        <span class=\"glyphicon glyphicon-minus-sign \"></span>\n" +
-    "                                    </button>\n" +
+    "                        <div class=\"row capriola\">\n" +
+    "                            <div class=\"col-sm-9 col-md-9\">\n" +
+    "                                <b class=\"text-capitalize\">{{c.name}}</b>\n" +
+    "                            </div>\n" +
+    "\n" +
+    "                        </div>\n" +
+    "                        <div class=\"row\">\n" +
+    "                            <div class=\"col-sm-4 col-md-4\">\n" +
+    "                                <p class=\"capriola\">Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
+    "                            </div>\n" +
+    "                            <div class=\"col-sm-3 col-md-3\">\n" +
+    "                                <div ng-show=\"c.price != null\">\n" +
+    "                                    <p class=\"capriola\">Price {{c.price}}</p>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
-    "                            <div class=\"row\">\n" +
-    "                                <div class=\"col-sm-4 col-md-4\">\n" +
-    "                                    <p class=\"capriola\">Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
-    "                                </div>\n" +
-    "                                <div class=\"col-sm-3 col-md-3\">\n" +
-    "                                    <div ng-show=\"c.price != null\">\n" +
-    "                                        <p class=\"capriola\">Price {{c.price}}</p>\n" +
-    "                                    </div>\n" +
-    "                                </div>\n" +
+    "                        </div>\n" +
+    "                        <div ng-show=\"c.description != null\" style=\"display: block\">\n" +
+    "                            <div class=\"col-sm-12 col-md-12 panel panel-default scrollable\" style=\"max-height: 165px;overflow-y: auto\">\n" +
+    "                                <div class=\"text-justify capriola\" >{{c.description}}</div>\n" +
     "                            </div>\n" +
-    "                            <div ng-show=\"c.description != null\" style=\"display: block\">\n" +
-    "                                <div class=\"col-sm-12 col-md-12 panel panel-default scrollable\" style=\"max-height: 165px;overflow-y: auto\">\n" +
-    "                                    <div class=\"text-justify capriola\" >{{c.description}}</div>\n" +
-    "                                </div>\n" +
-    "                            </div>\n" +
+    "                        </div>\n" +
     "                        </p>\n" +
     "                    </div>\n" +
-    "                    <div class=\"col-sm-3 col-md-3 text-center\">\n" +
-    "\n" +
+    "                    <div class=\"col-sm-2 col-md-2\">\n" +
+    "                        <div class=\"row text-center\" style=\"padding-top: 50%;padding-bottom: 50%\">\n" +
+    "                            <div class=\"col-md-12\">\n" +
+    "                                <button class=\"btn btn-primary btn-sm capriola\" ng-click=\"setUtilityDetails(c.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">\n" +
+    "                                    Details <span class=\"glyphicon glyphicon-info-sign \"></span>\n" +
+    "                                </button>\n" +
+    "                            </div>\n" +
+    "                            <div class=\"col-md-12\" style=\"padding-top: 10px\">\n" +
+    "                                <button class=\"btn btn-danger btn-sm capriola\" ng-click=\"removeUtilityItem(c)\">\n" +
+    "                                    Remove <span class=\"glyphicon glyphicon-minus-sign \"></span>\n" +
+    "                                </button>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
     "                    </div>\n" +
     "                </div>\n" +
     "            </span>\n" +
@@ -1582,40 +1618,44 @@ angular.module("city/utility.tpl.html", []).run(["$templateCache", function($tem
     "                                    </div>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
-    "                            <div class=\"col-sm-6 col-md-6\" style=\"height:230px\">\n" +
+    "                            <div class=\"col-sm-7 col-md-7\" style=\"height:230px\">\n" +
     "                                <p class=\"list-group-item-text\">\n" +
-    "                                    <div class=\"row capriola\">\n" +
-    "                                        <div class=\"col-sm-9 col-md-9\">\n" +
-    "                                            <b class=\"text-capitalize\">{{c.name}}</b>\n" +
-    "                                        </div>\n" +
-    "                                        <div class=\"col-sm-3 col-md-3\">\n" +
-    "                                            <button class=\"btn btn-primary btn-sm capriola\" ng-click=\"setUtilityDetails(c.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">\n" +
-    "                                                <span class=\"glyphicon glyphicon-info-sign \"></span>\n" +
-    "                                            </button>\n" +
-    "                                            <button class=\"btn btn-success btn-sm capriola\" ng-click=\"addUtilityItem(c)\">\n" +
-    "                                                <span class=\"glyphicon glyphicon-plus-sign \"></span>\n" +
-    "                                            </button>\n" +
+    "                                <div class=\"row capriola\">\n" +
+    "                                    <div class=\"col-sm-9 col-md-9\">\n" +
+    "                                        <b class=\"text-capitalize\">{{c.name}}</b>\n" +
+    "                                    </div>\n" +
+    "\n" +
+    "                                </div>\n" +
+    "                                <div class=\"row\">\n" +
+    "                                    <div class=\"col-sm-4 col-md-4\">\n" +
+    "                                        <p class=\"capriola\">Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
+    "                                    </div>\n" +
+    "                                    <div class=\"col-sm-3 col-md-3\">\n" +
+    "                                        <div ng-show=\"c.price != null\">\n" +
+    "                                            <p class=\"capriola\">Price {{c.price}}</p>\n" +
     "                                        </div>\n" +
     "                                    </div>\n" +
-    "                                    <div class=\"row\">\n" +
-    "                                        <div class=\"col-sm-4 col-md-4\">\n" +
-    "                                            <p class=\"capriola\">Rating <rating ng-model=\"c.rating\" readonly=\"true\" ></rating></p>\n" +
-    "                                        </div>\n" +
-    "                                        <div class=\"col-sm-3 col-md-3\">\n" +
-    "                                            <div ng-show=\"c.price != null\">\n" +
-    "                                                <p class=\"capriola\">Price {{c.price}}</p>\n" +
-    "                                            </div>\n" +
-    "                                        </div>\n" +
+    "                                </div>\n" +
+    "                                <div ng-show=\"c.description != null\" style=\"display: block\">\n" +
+    "                                    <div class=\"col-sm-12 col-md-12 panel panel-default scrollable\" style=\"max-height: 165px;overflow-y: auto\">\n" +
+    "                                        <div class=\"text-justify capriola\" >{{c.description}}</div>\n" +
     "                                    </div>\n" +
-    "                                    <div ng-show=\"c.description != null\" style=\"display: block\">\n" +
-    "                                        <div class=\"col-sm-12 col-md-12 panel panel-default scrollable\" style=\"max-height: 165px;overflow-y: auto\">\n" +
-    "                                            <div class=\"text-justify capriola\" >{{c.description}}</div>\n" +
-    "                                        </div>\n" +
-    "                                    </div>\n" +
+    "                                </div>\n" +
     "                                </p>\n" +
     "                            </div>\n" +
-    "                            <div class=\"col-sm-3 col-md-3 text-center\">\n" +
-    "\n" +
+    "                            <div class=\"col-sm-2 col-md-2\">\n" +
+    "                                <div class=\"row text-center\" style=\"padding-top: 50%;padding-bottom: 50%\">\n" +
+    "                                    <div class=\"col-md-12\">\n" +
+    "                                        <button class=\"btn btn-primary btn-sm capriola\" ng-click=\"setUtilityDetails(c.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">\n" +
+    "                                            Details <span class=\"glyphicon glyphicon-info-sign \"></span>\n" +
+    "                                        </button>\n" +
+    "                                    </div>\n" +
+    "                                    <div class=\"col-md-12\" style=\"padding-top: 10px\">\n" +
+    "                                        <button class=\"btn btn-success btn-sm capriola\" ng-click=\"addUtilityItem(c)\">\n" +
+    "                                            Add <span class=\"glyphicon glyphicon-plus-sign \"></span>\n" +
+    "                                        </button>\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
     "                            </div>\n" +
     "                        </div>\n" +
     "                    </span>\n" +

@@ -36,40 +36,44 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-6 col-md-6" style="height:230px">
+                    <div class="col-sm-7 col-md-7" style="height:230px">
                         <p class="list-group-item-text">
-                            <div class="row capriola">
-                                <div class="col-sm-9 col-md-9">
-                                    <b class="text-capitalize">{{c.name}}</b>
-                                </div>
-                                <div class="col-sm-3 col-md-3">
-                                    <button class="btn btn-primary btn-sm capriola" ng-click="setFoodDetails(c.id)" href="#moreInfoModalPlace" data-toggle="modal">
-                                        <span class="glyphicon glyphicon-info-sign "></span>
-                                    </button>
-                                    <button class="btn btn-danger btn-sm capriola" ng-click="removeFoodItem(c)">
-                                        <span class="glyphicon glyphicon-minus-sign "></span>
-                                    </button>
+                        <div class="row capriola">
+                            <div class="col-sm-9 col-md-9">
+                                <b class="text-capitalize">{{c.name}}</b>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4 col-md-4">
+                                <p class="capriola">Rating <rating ng-model="c.rating" readonly="true" ></rating></p>
+                            </div>
+                            <div class="col-sm-3 col-md-3">
+                                <div ng-show="c.price != null">
+                                    <p class="capriola">Price {{c.price}}</p>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-sm-4 col-md-4">
-                                    <p class="capriola">Rating <rating ng-model="c.rating" readonly="true" ></rating></p>
-                                </div>
-                                <div class="col-sm-3 col-md-3">
-                                    <div ng-show="c.price != null">
-                                        <p class="capriola">Price {{c.price}}</p>
-                                    </div>
-                                </div>
+                        </div>
+                        <div ng-show="c.description != null" style="display: block">
+                            <div class="col-sm-12 col-md-12 panel panel-default scrollable" style="max-height: 165px;overflow-y: auto">
+                                <div class="text-justify capriola" >{{c.description}}</div>
                             </div>
-                            <div ng-show="c.description != null" style="display: block">
-                                <div class="col-sm-12 col-md-12 panel panel-default scrollable" style="max-height: 165px;overflow-y: auto">
-                                    <div class="text-justify capriola" >{{c.description}}</div>
-                                </div>
-                            </div>
+                        </div>
                         </p>
                     </div>
-                    <div class="col-sm-3 col-md-3 text-center">
-
+                    <div class="col-sm-2 col-md-2">
+                        <div class="row text-center" style="padding-top: 50%;padding-bottom: 50%">
+                            <div class="col-md-12">
+                                <button class="btn btn-primary btn-sm capriola" ng-click="setFoodDetails(c.id)" href="#moreInfoModalPlace" data-toggle="modal">
+                                    Details <span class="glyphicon glyphicon-info-sign "></span>
+                                </button>
+                            </div>
+                            <div class="col-md-12" style="padding-top: 10px">
+                                <button class="btn btn-danger btn-sm capriola" ng-click="removeFoodItem(c)">
+                                    Remove <span class="glyphicon glyphicon-minus-sign "></span>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </span>
@@ -109,40 +113,44 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-6 col-md-6" style="height:230px">
+                            <div class="col-sm-7 col-md-7" style="height:230px">
                                 <p class="list-group-item-text">
-                                    <div class="row capriola">
-                                        <div class="col-sm-9 col-md-9">
-                                            <b class="text-capitalize">{{c.name}}</b>
-                                        </div>
-                                        <div class="col-sm-3 col-md-3">
-                                            <button class="btn btn-primary btn-sm capriola" ng-click="setFoodDetails(c.id)" href="#moreInfoModalPlace" data-toggle="modal">
-                                                <span class="glyphicon glyphicon-info-sign "></span>
-                                            </button>
-                                            <button class="btn btn-success btn-sm capriola" ng-click="addFoodItem(c)">
-                                                <span class="glyphicon glyphicon-plus-sign "></span>
-                                            </button>
+                                <div class="row capriola">
+                                    <div class="col-sm-9 col-md-9">
+                                        <b class="text-capitalize">{{c.name}}</b>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4 col-md-4">
+                                        <p class="capriola">Rating <rating ng-model="c.rating" readonly="true" ></rating></p>
+                                    </div>
+                                    <div class="col-sm-3 col-md-3">
+                                        <div ng-show="c.price != null">
+                                            <p class="capriola">Price {{c.price}}</p>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-sm-4 col-md-4">
-                                            <p class="capriola">Rating <rating ng-model="c.rating" readonly="true" ></rating></p>
-                                        </div>
-                                        <div class="col-sm-3 col-md-3">
-                                            <div ng-show="c.price != null">
-                                                <p class="capriola">Price {{c.price}}</p>
-                                            </div>
-                                        </div>
+                                </div>
+                                <div ng-show="c.description != null" style="display: block">
+                                    <div class="col-sm-12 col-md-12 panel panel-default scrollable" style="max-height: 165px;overflow-y: auto">
+                                        <div class="text-justify capriola" >{{c.description}}</div>
                                     </div>
-                                    <div ng-show="c.description != null" style="display: block">
-                                        <div class="col-sm-12 col-md-12 panel panel-default scrollable" style="max-height: 165px;overflow-y: auto">
-                                            <div class="text-justify capriola" >{{c.description}}</div>
-                                        </div>
-                                    </div>
+                                </div>
                                 </p>
                             </div>
-                            <div class="col-sm-3 col-md-3 text-center">
-
+                            <div class="col-sm-2 col-md-2">
+                                <div class="row text-center" style="padding-top: 50%;padding-bottom: 50%">
+                                    <div class="col-md-12">
+                                        <button class="btn btn-primary btn-sm capriola" ng-click="setFoodDetails(c.id)" href="#moreInfoModalPlace" data-toggle="modal">
+                                            Details <span class="glyphicon glyphicon-info-sign "></span>
+                                        </button>
+                                    </div>
+                                    <div class="col-md-12" style="padding-top: 10px">
+                                        <button class="btn btn-success btn-sm capriola" ng-click="addFoodItem(c)">
+                                            Add <span class="glyphicon glyphicon-plus-sign "></span>
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </span>
