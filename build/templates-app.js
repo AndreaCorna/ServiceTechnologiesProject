@@ -1192,16 +1192,144 @@ angular.module("city/food.tpl.html", []).run(["$templateCache", function($templa
 
 angular.module("city/guide.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("city/guide.tpl.html",
-    "<!DOCTYPE html>\n" +
-    "<html>\n" +
-    "<head lang=\"en\">\n" +
-    "    <meta charset=\"UTF-8\">\n" +
-    "    <title></title>\n" +
-    "</head>\n" +
-    "<body>\n" +
+    "<div class=\"page-header\">\n" +
+    "    <div class=\"vertical-container\">\n" +
+    "        <div class=\"row\">\n" +
     "\n" +
-    "</body>\n" +
-    "</html>");
+    "            <div class=\"col-md-12\">\n" +
+    "                <h1 class=\"text-center subtitle\">{{guide.name}}</h1>\n" +
+    "            </div>\n" +
+    "\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "<div class=\"row\">\n" +
+    "    <div class=\"col-md-10 col-md-offset-1\">\n" +
+    "        <div class=\"well well-sm\">\n" +
+    "            <legend>Trip Summary</legend>\n" +
+    "            <div id=\"{{makeMoment(date.day).format('DD-MM-YYYY')}}\" class=\"panel-group\" ng-repeat=\"date in guide.days\">\n" +
+    "                <div class=\"panel  panel-primary no-radius\">\n" +
+    "                    <div class=\"panel-heading no-radius  bigger-accordition\" data-toggle=\"collapse\" data-parent=\"#{{makeMoment(date.day).format('DD-MM-YYYY')}}\" data-target=\"#{{makeMoment(date.day).format('DD-MM-YYYY')}}List\">\n" +
+    "                        <h4 class=\"panel-title bigger-title\">\n" +
+    "                            <a class=\"accordion-toggle bigger-title\" >{{makeMoment(date.day).format('DD  MMMM YYYY')}}</a>\n" +
+    "                        </h4>\n" +
+    "                    </div>\n" +
+    "                    <div id=\"{{makeMoment(date.day).format('DD-MM-YYYY')}}List\" class=\"panel-collapse collapse\">\n" +
+    "                        <div class=\"panel-body\" style=\"background-color:#e8e8e8\">\n" +
+    "                            <div class=\"row\" ng-repeat=\"item in getPlaces(date)\" >\n" +
+    "\n" +
+    "                                <div class=\"col-md-12\" >\n" +
+    "                                    <div class=\"row\" style=\"margin-left: 4px;margin-right: 4px\">\n" +
+    "\n" +
+    "                                        <div class=\"brdr bgc-fff pad-10 box-shad property-listing\">\n" +
+    "                                            <div class=\"media\">\n" +
+    "                                                <div class=\"col-md-4\">\n" +
+    "                                                    <div ng-if=\"item.image==undefined\">\n" +
+    "                                                        <img style=\"height: 220px;  width:100%;\" ng-src=\"assets/images/empty_photo.png\">\n" +
+    "                                                    </div>\n" +
+    "                                                    <div ng-if=\"item.image !== undefined\">\n" +
+    "                                                        <img style=\"height: 220px;  width:100%;\" ng-src=\"{{item.image}}\" >\n" +
+    "                                                    </div>\n" +
+    "\n" +
+    "                                                </div>\n" +
+    "                                                <div class=\"clearfix visible-sm\"></div>\n" +
+    "\n" +
+    "                                                <div class=\"col-md-8\">\n" +
+    "                                                    <div class=\"media-body fnt-smaller\">\n" +
+    "\n" +
+    "                                                        <h4 class=\"media-heading\">\n" +
+    "                                                            <a href=\"#\" target=\"_parent\">{{item.name}} </a>\n" +
+    "                                                            <button class=\"btn btn-primary btn-outlined pull-right\" style=\"margin-top: 3px\"  ng-click=\"setCultureDetails(item.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">MORE INFO</button>\n" +
+    "\n" +
+    "                                                        </h4>\n" +
+    "\n" +
+    "\n" +
+    "                                                        <div ng-if=\"!item.description\">\n" +
+    "                                                            <p class=\"hidden-xs\">No description available</p>\n" +
+    "                                                        </div>\n" +
+    "                                                        <div ng-if=\"item.description\">\n" +
+    "                                                            <div class=\"panel panel-default scrollable\" style=\"max-height: 165px;overflow-y: auto;margin-top: 13px;\">\n" +
+    "                                                                <div class=\"hidden-xs text-justify \" >{{item.description}}</div>\n" +
+    "                                                            </div>\n" +
+    "                                                        </div>\n" +
+    "\n" +
+    "\n" +
+    "                                                    </div>\n" +
+    "                                                </div>\n" +
+    "\n" +
+    "                                            </div>\n" +
+    "                                        </div>\n" +
+    "                                    </div>\n" +
+    "\n" +
+    "                                </div>\n" +
+    "\n" +
+    "\n" +
+    "                                <div class=\"clearfix\"></div>\n" +
+    "                                <br><br>\n" +
+    "\n" +
+    "\n" +
+    "\n" +
+    "\n" +
+    "                            </div>\n" +
+    "\n" +
+    "\n" +
+    "                        </div>\n" +
+    "\n" +
+    "                        <div  class=\" timeline-centered\"  >\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <div class=\"timeline-list col-md-4\">\n" +
+    "                                    <div ng-repeat=\"item in getPlaces(date)\"  >\n" +
+    "                                        <div class=\"row\" >\n" +
+    "                                            <div ng-click=\"setMapsMarker(item)\" ng-class=\"isCurrentMap(item,'marker')? 'selected-color' : getItemClass(item) \" class=\" timeline-item \" >\n" +
+    "                                                <div class=\"row\" style=\"height: 48px;\">\n" +
+    "\n" +
+    "                                                    <h1 class=\"item-name\">{{item.name}}</h1>\n" +
+    "                                                </div>\n" +
+    "\n" +
+    "                                                <div class=\"row\">\n" +
+    "                                                    <div class=\"btn-group\">\n" +
+    "\n" +
+    "                                                        <button class=\"btn btn-primary btn-outlined z-up\" style=\";margin-left: 4px;margin-bottom: 5px\"  ng-click=\"setCultureDetails(item.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">MORE</button>\n" +
+    "                                                    </div>\n" +
+    "                                                </div>\n" +
+    "                                            </div>\n" +
+    "                                            <article class=\"timeline-entry\" >\n" +
+    "                                                <div class=\"timeline-entry-inner\">\n" +
+    "\n" +
+    "                                                    <div ng-click=\"setMapsDirections(item,date)\"  class=\"timeline-icon \" ng-class=\"isCurrentMap(item,'direction')? 'icon-selected' : 'icon-not-selected' \">\n" +
+    "                                                        <i class=\"entypo-feather\"></i>\n" +
+    "                                                    </div>\n" +
+    "\n" +
+    "\n" +
+    "                                                </div>\n" +
+    "\n" +
+    "                                            </article>\n" +
+    "\n" +
+    "                                        </div>\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                                <div ng-show=\"(origin && destination) || currentMarker\" id=\"scrollingMaps\" class=\"col-md-8 \" >\n" +
+    "\n" +
+    "                                    <map origin=\"origin\" map-id=\"guideMap\" destination=\"destination\" marker=\"currentMarker\" type=\"roadmap\" class=\"mapContainer\" ></map>\n" +
+    "\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "\n" +
+    "\n" +
+    "\n" +
+    "                    </div>\n" +
+    "\n" +
+    "\n" +
+    "\n" +
+    "\n" +
+    "                </div>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "");
 }]);
 
 angular.module("city/guides.tpl.html", []).run(["$templateCache", function($templateCache) {

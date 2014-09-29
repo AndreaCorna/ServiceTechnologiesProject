@@ -6,7 +6,8 @@ angular.module( 'trippo.guide', [
     'placeholders',
     'ui.bootstrap' ,
     'trippo.resources',
-    'trippo.modal'
+    'trippo.modal',
+    'trippo.plan'
 ])
 .config(function config( $stateProvider ) {
         $stateProvider.state('guide', {
@@ -44,7 +45,7 @@ angular.module( 'trippo.guide', [
 
 })
 
-.controller('GuideCtrl', function GuideCtrl($scope,GuideService,$stateParams) {
+.controller('GuideCtrl', function GuideCtrl($scope,GuideService,$stateParams,DatesService) {
 
     GuideService.initGuide($stateParams.id,function(){
         $scope.guide = GuideService.getGuide($stateParams.id);
@@ -54,7 +55,55 @@ angular.module( 'trippo.guide', [
 
     }) ;
 
-})
+
+    $scope.makeMoment=function(day){
+        return moment(day,DatesService.dateFormat) ;
+    } ;
+
+    $scope.getPlaces = function(day){
+            return day.schedule;
+        } ;
+
+        /**
+         *MAPS HANDLING
+         * current start and destination variable for the map
+         */
+
+        $scope.origin=undefined;
+        $scope.destination=undefined;
+        $scope.setMapsDirections = function (start,day) {
+            $scope.selectedItems = $scope.getPlaces(day)  ;
+            $scope.origin = start;
+            var index_dest = $scope.selectedItems.indexOf(start)+1;
+            $scope.destination = ($scope.selectedItems[index_dest] === undefined) ? $scope.selectedItems[index_dest-1] : $scope.selectedItems[index_dest];
+
+            $scope.currentMarker =undefined;
+            $scope.currentSelectedMap  = {place :$scope.origin, type:"direction"};
+        };
+
+        $scope.currentMarker = undefined;
+        $scope.setMapsMarker = function (item) {
+            $scope.currentMarker = item  ;
+            //making undefined origin and destination because no more available in map.. Important to allow update of the value
+            $scope.origin = undefined;
+            $scope.destination =undefined;
+            $scope.currentSelectedMap  = {place :$scope.currentMarker, type:"marker"};
+
+
+        };
+
+        //keep track of which is the last item pressed which is linked to origin and destination of the map (used to highline this item)
+        $scope.currentSelectedMap = undefined;
+        $scope.isCurrentMap= function(value,type){
+
+            if ( $scope.currentSelectedMap!== undefined  && value == $scope.currentSelectedMap.place && type == $scope.currentSelectedMap.type) {
+                return true;
+            }
+            return false;
+        } ;
+
+
+    })
 
 .factory('GuideService', function (SharedGuideRes,GuideRes,$stateParams) {
     var guides = [] ;
