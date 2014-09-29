@@ -2,8 +2,16 @@ require 'numbers_and_words'
 require 'base64'
 require 'net/http'
 require 'httparty'
+
 module HotelsHelper
 
+=begin
+The method returns the entire list of hotels nearby in the city passed as
+parameter.
+The result is an object with two elements:
+-results → contains the list of almost 20 items;
+-token → contains the token to be used to load more result.
+=end
   def get_hotels_list(city)
     json = hotels(city)
     hotels_list = []
@@ -38,6 +46,9 @@ module HotelsHelper
 
   end
 
+=begin
+The method returns the details of the hotel identified with the id.
+=end
   def get_hotel_details(id)
     api = Expedia::Api.new
     response = api.get_information({ :hotelId => id})
@@ -74,12 +85,20 @@ module HotelsHelper
     return hotel_details
   end
 
+=begin
+The methods returns the list of hotels.
+=end
+  private
   def hotels(city)
     api = Expedia::Api.new
     response = api.get_list({ :destinationString => city})
     return response.body
   end
 
+=begin
+The method returns the string passed as parameter purified by all html tags and
+unnecessary parts.
+=end
   private
   def parse_description(description)
     descr = eliminate_tags(description)
@@ -89,6 +108,9 @@ module HotelsHelper
 
   end
 
+=begin
+The method returns the string passed as parameter purified by all html tags.
+=end
   private
   def eliminate_tags(string)
     output = Nokogiri::HTML.fragment(string)
