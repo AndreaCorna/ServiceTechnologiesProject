@@ -834,12 +834,12 @@ angular.module("city/culture.tpl.html", []).run(["$templateCache", function($tem
     "                <div class=\"col-sm-2 col-md-2\">\n" +
     "                    <div class=\"row text-center\" style=\"padding-top: 50%;padding-bottom: 50%\">\n" +
     "                        <div class=\"col-md-12\">\n" +
-    "                            <button class=\"btn btn-primary btn-sm capriola\" ng-click=\"setCultureDetails(c.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">\n" +
+    "                            <button class=\"btn btn-primary btn-sm capriola button-item\" ng-click=\"setCultureDetails(c.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">\n" +
     "                                Details <span class=\"glyphicon glyphicon-info-sign \"></span>\n" +
     "                            </button>\n" +
     "                        </div>\n" +
     "                        <div class=\"col-md-12\" style=\"padding-top: 10px\">\n" +
-    "                            <button class=\"btn btn-danger btn-sm capriola\" ng-click=\"removeCultureItem(c)\">\n" +
+    "                            <button class=\"btn btn-danger btn-sm capriola button-item\" ng-click=\"removeCultureItem(c)\">\n" +
     "                                Remove <span class=\"glyphicon glyphicon-minus-sign \"></span>\n" +
     "                            </button>\n" +
     "                        </div>\n" +
@@ -912,12 +912,12 @@ angular.module("city/culture.tpl.html", []).run(["$templateCache", function($tem
     "                    <div class=\"col-sm-2 col-md-2\">\n" +
     "                        <div class=\"row text-center\" style=\"padding-top: 50%;padding-bottom: 50%\">\n" +
     "                            <div class=\"col-md-12\">\n" +
-    "                                <button class=\"btn btn-primary btn-sm capriola\" ng-click=\"setCultureDetails(c.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">\n" +
+    "                                <button class=\"btn btn-primary btn-sm capriola button-item\" ng-click=\"setCultureDetails(c.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">\n" +
     "                                   Details <span class=\"glyphicon glyphicon-info-sign \"></span>\n" +
     "                                </button>\n" +
     "                            </div>\n" +
     "                            <div class=\"col-md-12\" style=\"padding-top: 10px\">\n" +
-    "                                <button class=\"btn btn-success btn-sm capriola\" ng-click=\"addCultureItem(c)\">\n" +
+    "                                <button class=\"btn btn-success btn-sm capriola button-item\" ng-click=\"addCultureItem(c)\">\n" +
     "                                   Add <span class=\"glyphicon glyphicon-plus-sign \"></span>\n" +
     "                                </button>\n" +
     "                            </div>\n" +
@@ -1020,12 +1020,12 @@ angular.module("city/entertainment.tpl.html", []).run(["$templateCache", functio
     "                        <div class=\"col-sm-2 col-md-2\">\n" +
     "                            <div class=\"row text-center\" style=\"padding-top: 50%;padding-bottom: 50%\">\n" +
     "                                <div class=\"col-md-12\">\n" +
-    "                                    <button class=\"btn btn-primary btn-sm capriola\" ng-click=\"setEntertainmentDetails(c.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">\n" +
+    "                                    <button class=\"btn btn-primary btn-sm capriola button-item\" ng-click=\"setEntertainmentDetails(c.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">\n" +
     "                                        Details <span class=\"glyphicon glyphicon-info-sign \"></span>\n" +
     "                                    </button>\n" +
     "                                </div>\n" +
     "                                <div class=\"col-md-12\" style=\"padding-top: 10px\">\n" +
-    "                                    <button class=\"btn btn-danger btn-sm capriola\" ng-click=\"removeEntertainmentItem(c)\">\n" +
+    "                                    <button class=\"btn btn-danger btn-sm capriola button-item\" ng-click=\"removeEntertainmentItem(c)\">\n" +
     "                                        Remove <span class=\"glyphicon glyphicon-minus-sign \"></span>\n" +
     "                                    </button>\n" +
     "                                </div>\n" +
@@ -1098,12 +1098,12 @@ angular.module("city/entertainment.tpl.html", []).run(["$templateCache", functio
     "                            <div class=\"col-sm-2 col-md-2\">\n" +
     "                                <div class=\"row text-center\" style=\"padding-top: 50%;padding-bottom: 50%\">\n" +
     "                                    <div class=\"col-md-12\">\n" +
-    "                                        <button class=\"btn btn-primary btn-sm capriola\" ng-click=\"setEntertainmentDetails(c.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">\n" +
+    "                                        <button class=\"btn btn-primary btn-sm capriola button-item\" ng-click=\"setEntertainmentDetails(c.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">\n" +
     "                                            Details <span class=\"glyphicon glyphicon-info-sign \"></span>\n" +
     "                                        </button>\n" +
     "                                    </div>\n" +
     "                                    <div class=\"col-md-12\" style=\"padding-top: 10px\">\n" +
-    "                                        <button class=\"btn btn-success btn-sm capriola\" ng-click=\"addEntertainmentItem(c)\">\n" +
+    "                                        <button class=\"btn btn-success btn-sm capriola button-item\" ng-click=\"addEntertainmentItem(c)\">\n" +
     "                                            Add <span class=\"glyphicon glyphicon-plus-sign \"></span>\n" +
     "                                        </button>\n" +
     "                                    </div>\n" +
@@ -1203,12 +1203,12 @@ angular.module("city/food.tpl.html", []).run(["$templateCache", function($templa
     "                    <div class=\"col-sm-2 col-md-2\">\n" +
     "                        <div class=\"row text-center\" style=\"padding-top: 50%;padding-bottom: 50%\">\n" +
     "                            <div class=\"col-md-12\">\n" +
-    "                                <button class=\"btn btn-primary btn-sm capriola\" ng-click=\"setFoodDetails(c.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">\n" +
+    "                                <button class=\"btn btn-primary btn-sm capriola button-item\" ng-click=\"setFoodDetails(c.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">\n" +
     "                                    Details <span class=\"glyphicon glyphicon-info-sign \"></span>\n" +
     "                                </button>\n" +
     "                            </div>\n" +
     "                            <div class=\"col-md-12\" style=\"padding-top: 10px\">\n" +
-    "                                <button class=\"btn btn-danger btn-sm capriola\" ng-click=\"removeFoodItem(c)\">\n" +
+    "                                <button class=\"btn btn-danger btn-sm capriola button-item\" ng-click=\"removeFoodItem(c)\">\n" +
     "                                    Remove <span class=\"glyphicon glyphicon-minus-sign \"></span>\n" +
     "                                </button>\n" +
     "                            </div>\n" +
@@ -1280,12 +1280,12 @@ angular.module("city/food.tpl.html", []).run(["$templateCache", function($templa
     "                            <div class=\"col-sm-2 col-md-2\">\n" +
     "                                <div class=\"row text-center\" style=\"padding-top: 50%;padding-bottom: 50%\">\n" +
     "                                    <div class=\"col-md-12\">\n" +
-    "                                        <button class=\"btn btn-primary btn-sm capriola\" ng-click=\"setFoodDetails(c.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">\n" +
+    "                                        <button class=\"btn btn-primary btn-sm capriola button-item\" ng-click=\"setFoodDetails(c.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">\n" +
     "                                            Details <span class=\"glyphicon glyphicon-info-sign \"></span>\n" +
     "                                        </button>\n" +
     "                                    </div>\n" +
     "                                    <div class=\"col-md-12\" style=\"padding-top: 10px\">\n" +
-    "                                        <button class=\"btn btn-success btn-sm capriola\" ng-click=\"addFoodItem(c)\">\n" +
+    "                                        <button class=\"btn btn-success btn-sm capriola button-item\" ng-click=\"addFoodItem(c)\">\n" +
     "                                            Add <span class=\"glyphicon glyphicon-plus-sign \"></span>\n" +
     "                                        </button>\n" +
     "                                    </div>\n" +
@@ -1387,12 +1387,12 @@ angular.module("city/hotel.tpl.html", []).run(["$templateCache", function($templ
     "                    <div class=\"col-sm-2 col-md-2\">\n" +
     "                        <div class=\"row text-center\" style=\"padding-top: 50%;padding-bottom: 50%\">\n" +
     "                            <div class=\"col-md-12\">\n" +
-    "                                <button class=\"btn btn-primary btn-sm capriola\" ng-click=\"setHotelDetails(c.id)\" href=\"#moreInfoModalHotel\" data-toggle=\"modal\">\n" +
+    "                                <button class=\"btn btn-primary btn-sm capriola button-item\" ng-click=\"setHotelDetails(c.id)\" href=\"#moreInfoModalHotel\" data-toggle=\"modal\">\n" +
     "                                    Details <span class=\"glyphicon glyphicon-info-sign \"></span>\n" +
     "                                </button>\n" +
     "                            </div>\n" +
     "                            <div class=\"col-md-12\" style=\"padding-top: 10px\">\n" +
-    "                                <button class=\"btn btn-danger btn-sm capriola\" ng-click=\"removeHotelItem(c)\">\n" +
+    "                                <button class=\"btn btn-danger btn-sm capriola button-item\" ng-click=\"removeHotelItem(c)\">\n" +
     "                                    Remove <span class=\"glyphicon glyphicon-minus-sign \"></span>\n" +
     "                                </button>\n" +
     "                            </div>\n" +
@@ -1464,12 +1464,12 @@ angular.module("city/hotel.tpl.html", []).run(["$templateCache", function($templ
     "                            <div class=\"col-sm-2 col-md-2\">\n" +
     "                                <div class=\"row text-center\" style=\"padding-top: 50%;padding-bottom: 50%\">\n" +
     "                                    <div class=\"col-md-12\">\n" +
-    "                                        <button class=\"btn btn-primary btn-sm capriola\" ng-click=\"setHotelDetails(c.id)\" href=\"#moreInfoModalHotel\" data-toggle=\"modal\">\n" +
+    "                                        <button class=\"btn btn-primary btn-sm capriola button-item\" ng-click=\"setHotelDetails(c.id)\" href=\"#moreInfoModalHotel\" data-toggle=\"modal\">\n" +
     "                                            Details <span class=\"glyphicon glyphicon-info-sign \"></span>\n" +
     "                                        </button>\n" +
     "                                    </div>\n" +
     "                                    <div class=\"col-md-12\" style=\"padding-top: 10px\">\n" +
-    "                                        <button class=\"btn btn-success btn-sm capriola\" ng-click=\"addHotelItem(c)\">\n" +
+    "                                        <button class=\"btn btn-success btn-sm capriola button-item\" ng-click=\"addHotelItem(c)\">\n" +
     "                                            Add <span class=\"glyphicon glyphicon-plus-sign \"></span>\n" +
     "                                        </button>\n" +
     "                                    </div>\n" +
@@ -1569,12 +1569,12 @@ angular.module("city/utility.tpl.html", []).run(["$templateCache", function($tem
     "                    <div class=\"col-sm-2 col-md-2\">\n" +
     "                        <div class=\"row text-center\" style=\"padding-top: 50%;padding-bottom: 50%\">\n" +
     "                            <div class=\"col-md-12\">\n" +
-    "                                <button class=\"btn btn-primary btn-sm capriola\" ng-click=\"setUtilityDetails(c.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">\n" +
+    "                                <button class=\"btn btn-primary btn-sm capriola button-item\" ng-click=\"setUtilityDetails(c.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">\n" +
     "                                    Details <span class=\"glyphicon glyphicon-info-sign \"></span>\n" +
     "                                </button>\n" +
     "                            </div>\n" +
     "                            <div class=\"col-md-12\" style=\"padding-top: 10px\">\n" +
-    "                                <button class=\"btn btn-danger btn-sm capriola\" ng-click=\"removeUtilityItem(c)\">\n" +
+    "                                <button class=\"btn btn-danger btn-sm capriola button-item\" ng-click=\"removeUtilityItem(c)\">\n" +
     "                                    Remove <span class=\"glyphicon glyphicon-minus-sign \"></span>\n" +
     "                                </button>\n" +
     "                            </div>\n" +
@@ -1646,12 +1646,12 @@ angular.module("city/utility.tpl.html", []).run(["$templateCache", function($tem
     "                            <div class=\"col-sm-2 col-md-2\">\n" +
     "                                <div class=\"row text-center\" style=\"padding-top: 50%;padding-bottom: 50%\">\n" +
     "                                    <div class=\"col-md-12\">\n" +
-    "                                        <button class=\"btn btn-primary btn-sm capriola\" ng-click=\"setUtilityDetails(c.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">\n" +
+    "                                        <button class=\"btn btn-primary btn-sm capriola button-item\" ng-click=\"setUtilityDetails(c.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">\n" +
     "                                            Details <span class=\"glyphicon glyphicon-info-sign \"></span>\n" +
     "                                        </button>\n" +
     "                                    </div>\n" +
     "                                    <div class=\"col-md-12\" style=\"padding-top: 10px\">\n" +
-    "                                        <button class=\"btn btn-success btn-sm capriola\" ng-click=\"addUtilityItem(c)\">\n" +
+    "                                        <button class=\"btn btn-success btn-sm capriola button-item\" ng-click=\"addUtilityItem(c)\">\n" +
     "                                            Add <span class=\"glyphicon glyphicon-plus-sign \"></span>\n" +
     "                                        </button>\n" +
     "                                    </div>\n" +
