@@ -21,7 +21,19 @@ angular.module( 'trippo.guide', [
                 }
             },
             data: { pageTitle: 'Trippo' }
-        });
+        })
+            .state('guides', {
+                url: '/guides',
+                parent:"city",
+                views: {
+                    "content@city": {
+                        controller: 'GuidesCtrl',
+                        templateUrl: 'city/guides.tpl.html'
+
+                    }
+                }
+
+            });
     }
 )
 
@@ -30,13 +42,19 @@ angular.module( 'trippo.guide', [
     $scope.guides =[];
     GuideService.initGuides($stateParams.city_name,function(){
         $scope.guides = GuideService.getGuides($stateParams.city_name);
-        console.log('in controller');
 
-        console.log($scope.guides);
 
     }) ;
+        console.log("guides different");
+        console.log($location.path().split('/').pop() != 'guides');
+        console.log("guides equal");
+        console.log($location.path().split('/').pop() == 'guides');
 
-    $scope.moreInfo = function(id){
+        
+        console.log($location.path().split('/').pop() );
+
+
+        $scope.moreInfo = function(id){
         $location.path('guide/'+id);
     } ;
 
@@ -46,13 +64,11 @@ angular.module( 'trippo.guide', [
 
 })
 
-.controller('GuideCtrl', function GuideCtrl($scope,GuideService,$stateParams,DatesService) {
+.controller('GuideCtrl', function GuideCtrl($location,$scope,GuideService,$stateParams,DatesService) {
 
     GuideService.initGuide($stateParams.id,function(){
         $scope.guide = GuideService.getGuide($stateParams.id);
-        console.log('in controller');
 
-        console.log($scope.guide);
 
     }) ;
 
@@ -62,10 +78,8 @@ angular.module( 'trippo.guide', [
     } ;
 
     $scope.getPlaces = function(day){
-        console.log("get<Places");
-        console.log(day.schedule);
 
-            return day.schedule;
+        return day.schedule;
         } ;
 
     $scope.placeViews = ["MAPS VIEW","DETAILS VIEW"]   ;

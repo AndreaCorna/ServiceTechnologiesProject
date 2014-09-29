@@ -20,18 +20,7 @@ angular.module( 'trippo.city', [
     data:{ pageTitle: 'Trippo' }
   })
 
-      .state('guides', {
-          url: '/guides',
-          parent:"city",
-          views: {
-              "content@city": {
-                  controller: 'GuidesCtrl',
-                  templateUrl: 'city/guides.tpl.html'
 
-              }
-          }
-
-      })
 
       .state('culture', {
           url: '/culture',
@@ -691,7 +680,7 @@ angular.module( 'trippo.city', [
 
 
 
-.controller( 'CityCtrl', function CityCtrl( $scope, $stateParams, CityRes,SelectionService, CityService) {
+.controller( 'CityCtrl', function CityCtrl( $scope, $stateParams, CityRes,SelectionService, CityService,$location) {
     $scope.intervalImages = 5000;
     $scope.modalEnabled = false;
     $scope.loaderEnabled = true;
@@ -726,6 +715,10 @@ angular.module( 'trippo.city', [
     $scope.setCurrentList = function(data){
         CityService.setCurrentList(data);
     };
+
+    $scope.isGuides =function(){
+        return $location.path().split('/').pop() == 'guides';
+    }   ;
 
 
 
