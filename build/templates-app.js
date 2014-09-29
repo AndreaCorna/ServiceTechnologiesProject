@@ -332,11 +332,13 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                                    </div>\n" +
     "                                </div>\n" +
     "                                <div class=\"col-sm-6 col-md-6\">\n" +
-    "                                    <div class=\"row\">\n" +
-    "                                        <b>Price</b>\n" +
-    "                                    </div>\n" +
-    "                                    <div class=\"row\">\n" +
-    "                                        {{moreInfoSelection.price || 'Unknown'}}\n" +
+    "                                    <div ng-show=\"moreInfoSelection.price != null\">\n" +
+    "                                        <div class=\"row\">\n" +
+    "                                            <b>Price</b>\n" +
+    "                                        </div>\n" +
+    "                                        <div class=\"row\">\n" +
+    "                                            {{moreInfoSelection.price}}\n" +
+    "                                        </div>\n" +
     "                                    </div>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
