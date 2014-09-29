@@ -16,6 +16,8 @@ angular.module('trippo.modal', ["trippo.resources"])
                             if( details.open_hours[i].hours[0].close != null){
                                 details.open_hours[i].hours[j].open = couple.open.substr(0, 2) + ":" + couple.open.substr(2);
                                 details.open_hours[i].hours[j].close = couple.close.substr(0, 2) + ":" + couple.close.substr(2);
+                            }else{
+                                break;
                             }
 
                         }
