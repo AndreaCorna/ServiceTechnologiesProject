@@ -34,7 +34,6 @@ This method must be used to add cities to the database using as url
         }
       end
     }
-
     render json: cities.to_json
   end
 
