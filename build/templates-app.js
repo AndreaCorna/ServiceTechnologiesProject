@@ -492,6 +492,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                                        </div>\n" +
     "                                    </div>\n" +
     "                                </div>\n" +
+    "                            </div>\n" +
     "                            <div class=\"row\">\n" +
     "                                <div class=\"col-sm-12 col-md-12\">\n" +
     "                                    <div class=\"row\">\n" +
@@ -630,7 +631,6 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                                <b>Rating</b>\n" +
     "                            </div>\n" +
     "                            <div class=\"row\">\n" +
-    "                                <img ng-src=\"{{moreInfoSelection.rating}}\" >\n" +
     "                            </div>\n" +
     "                        </div>\n" +
     "                            <div class=\"col-sm-6 col-md-6 capriola\" >\n" +
