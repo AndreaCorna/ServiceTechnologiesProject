@@ -6666,6 +6666,10 @@ a.list-group-item:focus {
   right: 50%;
   bottom: -10;
 }
+.button-item {
+  width: 87px;
+  height: 30px;
+}
 /**
 *list of dates in trip dates
 */
