@@ -13,12 +13,11 @@ angular.module('trippo.modal', ["trippo.resources"])
                     if(day !== null) {
                         for (var j = 0; j < day.hours.length; j++) {
                             couple = day.hours[j];
-                            if( details.open_hours[i].hours[j].close != null){
+                            if( details.open_hours[i].hours[0].close != null){
                                 details.open_hours[i].hours[j].open = couple.open.substr(0, 2) + ":" + couple.open.substr(2);
                                 details.open_hours[i].hours[j].close = couple.close.substr(0, 2) + ":" + couple.close.substr(2);
                             }else{
-                                details.open_hours[i].hours[j].open = 'always';
-                                details.open_hours[i].hours[j].close = 'open';
+                                break;
                             }
 
                         }
@@ -59,6 +58,7 @@ angular.module('trippo.modal', ["trippo.resources"])
         $scope.moreInfoSelection = null;
         $scope.modalEnabled = false;
         $scope.loaderEnabled = true;
+        $scope.hotelShow = false;
 
         /**
          * Added a watch to update scope.moreInfoSelection which is set every time a moreInfo button is pushed
@@ -77,6 +77,8 @@ angular.module('trippo.modal', ["trippo.resources"])
         $scope.disableModal = function(){
             $scope.modalEnabled = false;
             $scope.loaderEnabled = true;
+            $scope.hotelShow = false;
+
         };
 
         $scope.changeDate = function(milliseconds){

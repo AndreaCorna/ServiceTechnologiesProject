@@ -757,7 +757,6 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "<script>\n" +
     "    $(function(){\n" +
     "        $('#moreInfoModalHotel').on('shown.bs.modal', function () {\n" +
-    "            alert('hi');\n" +
     "            var scope = angular.element(document.querySelector('#moreInfoModalHotel')).scope();\n" +
     "            scope.hotelShow = true;\n" +
     "            console.log(scope.hotelShow);\n" +
