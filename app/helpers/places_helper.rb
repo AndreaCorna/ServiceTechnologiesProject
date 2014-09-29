@@ -452,6 +452,7 @@ The result is an object with two elements:
     open_hours.each do |object|
       object = nil
     end
+    puts data.to_json
     if(!data.nil?)
       data.each do |couple|
         day = couple['open']['day']

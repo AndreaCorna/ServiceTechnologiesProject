@@ -13,12 +13,9 @@ angular.module('trippo.modal', ["trippo.resources"])
                     if(day !== null) {
                         for (var j = 0; j < day.hours.length; j++) {
                             couple = day.hours[j];
-                            if( details.open_hours[i].hours[j].close != null){
+                            if( details.open_hours[i].hours[0].close != null){
                                 details.open_hours[i].hours[j].open = couple.open.substr(0, 2) + ":" + couple.open.substr(2);
                                 details.open_hours[i].hours[j].close = couple.close.substr(0, 2) + ":" + couple.close.substr(2);
-                            }else{
-                                details.open_hours[i].hours[j].open = 'always';
-                                details.open_hours[i].hours[j].close = 'open';
                             }
 
                         }
