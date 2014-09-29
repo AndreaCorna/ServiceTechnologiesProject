@@ -454,13 +454,17 @@ The result is an object with two elements:
     end
     if(!data.nil?)
       data.each do |couple|
-        day = couple['close']['day']
+        day = couple['open']['day']
+        close = nil
+        if(!couple['close'].nil?)
+          close = couple['close']['time']
+        end
         if(open_hours[day].nil?)
           time = []
-          time.append({:open => couple['open']['time'],:close => couple['close']['time'] })
+          time.append({:open => couple['open']['time'],:close => close })
           open_hours[day] = {:day => day, :hours => time}
         else
-          hash = {:open => couple['open']['time'],:close => couple['close']['time']}
+          hash = {:open => couple['open']['time'],:close => close}
           open_hours[day]['hours'.to_sym].append(hash)
         end
       end
