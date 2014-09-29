@@ -329,7 +329,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                                        <b>Rating</b>\n" +
     "                                    </div>\n" +
     "                                    <div class=\"row\">\n" +
-    "                                        {{moreInfoSelection.rating || 'Unknown'}}\n" +
+    "                                        <rating ng-model =\"moreInfoSelection.rating\" ></rating>\n" +
     "                                    </div>\n" +
     "                                </div>\n" +
     "                                <div class=\"col-md-6\">\n" +
@@ -611,7 +611,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                                <b>Rating</b>\n" +
     "                            </div>\n" +
     "                            <div class=\"row\">\n" +
-    "                                {{moreInfoSelection.rating || 'Unknown'}}\n" +
+    "                               <rating ng-model =\"moreInfoSelection.rating\" ></rating>\n" +
     "                            </div>\n" +
     "                        </div>\n" +
     "                            <div class=\"col-lg-6 capriola\" >\n" +
@@ -1206,6 +1206,30 @@ angular.module("city/guide.tpl.html", []).run(["$templateCache", function($templ
     "<div class=\"row\">\n" +
     "    <div class=\"col-md-10 col-md-offset-1\">\n" +
     "        <div class=\"well well-sm\">\n" +
+    "            <fieldset>\n" +
+    "                <legend>Trip Details</legend>\n" +
+    "\n" +
+    "\n" +
+    "                <!-- Message body -->\n" +
+    "                <div class=\"form-group\">\n" +
+    "                    <label class=\"col-md-2 control-label\" for=\"message\" style=\"font-size: 18px\">Description</label>\n" +
+    "                    <div class=\"col-md-10\">\n" +
+    "                        <p class=\"form-control\"  id=\"message\" >{{guide.description}}</p>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "\n" +
+    "\n" +
+    "\n" +
+    "                <!-- Form actions -->\n" +
+    "                <div class=\"form-group\">\n" +
+    "\n" +
+    "                    <label class=\"col-md-2 control-label\" for=\"message\" style=\"font-size: 18px\">Rating</label>\n" +
+    "\n" +
+    "                    <div class=\"col-md-10\">\n" +
+    "                        <rating ng-model=\"guide.rating\" readonly=\"true\" ></rating>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "            </fieldset>\n" +
     "            <legend>Trip Summary</legend>\n" +
     "            <div id=\"{{makeMoment(date.day).format('DD-MM-YYYY')}}\" class=\"panel-group\" ng-repeat=\"date in guide.days\">\n" +
     "                <div class=\"panel  panel-primary no-radius\">\n" +
@@ -1215,8 +1239,12 @@ angular.module("city/guide.tpl.html", []).run(["$templateCache", function($templ
     "                        </h4>\n" +
     "                    </div>\n" +
     "                    <div id=\"{{makeMoment(date.day).format('DD-MM-YYYY')}}List\" class=\"panel-collapse collapse\">\n" +
+    "\n" +
     "                        <div class=\"panel-body\" style=\"background-color:#e8e8e8\">\n" +
-    "                            <div class=\"row\" ng-repeat=\"item in getPlaces(date)\" >\n" +
+    "                            <div class=\"row\" style=\"margin-bottom: 6px\">\n" +
+    "                                <button class=\"btn btn-primary btn-outlined z-up\" style=\"float: right;font-size: 17px;margin-right: 5px;\" ng-click=\"changeView()\">{{currentView}}</button>\n" +
+    "                            </div>\n" +
+    "                            <div ng-show=\"currentView == 'MAPS VIEW'\" class=\"row\" ng-repeat=\"item in getPlaces(date)\" >\n" +
     "\n" +
     "                                <div class=\"col-md-12\" >\n" +
     "                                    <div class=\"row\" style=\"margin-left: 4px;margin-right: 4px\">\n" +
@@ -1273,48 +1301,10 @@ angular.module("city/guide.tpl.html", []).run(["$templateCache", function($templ
     "                            </div>\n" +
     "\n" +
     "\n" +
+    "                            <place-list ng-show=\"currentView == 'DETAILS VIEW'\" selected-items=\"getPlaces(date)\" map-id=\"date.day\"></place-list>\n" +
     "                        </div>\n" +
     "\n" +
-    "                        <div  class=\" timeline-centered\"  >\n" +
-    "                            <div class=\"row\">\n" +
-    "                                <div class=\"timeline-list col-md-4\">\n" +
-    "                                    <div ng-repeat=\"item in getPlaces(date)\"  >\n" +
-    "                                        <div class=\"row\" >\n" +
-    "                                            <div ng-click=\"setMapsMarker(item)\" ng-class=\"isCurrentMap(item,'marker')? 'selected-color' : getItemClass(item) \" class=\" timeline-item \" >\n" +
-    "                                                <div class=\"row\" style=\"height: 48px;\">\n" +
     "\n" +
-    "                                                    <h1 class=\"item-name\">{{item.name}}</h1>\n" +
-    "                                                </div>\n" +
-    "\n" +
-    "                                                <div class=\"row\">\n" +
-    "                                                    <div class=\"btn-group\">\n" +
-    "\n" +
-    "                                                        <button class=\"btn btn-primary btn-outlined z-up\" style=\";margin-left: 4px;margin-bottom: 5px\"  ng-click=\"setCultureDetails(item.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">MORE</button>\n" +
-    "                                                    </div>\n" +
-    "                                                </div>\n" +
-    "                                            </div>\n" +
-    "                                            <article class=\"timeline-entry\" >\n" +
-    "                                                <div class=\"timeline-entry-inner\">\n" +
-    "\n" +
-    "                                                    <div ng-click=\"setMapsDirections(item,date)\"  class=\"timeline-icon \" ng-class=\"isCurrentMap(item,'direction')? 'icon-selected' : 'icon-not-selected' \">\n" +
-    "                                                        <i class=\"entypo-feather\"></i>\n" +
-    "                                                    </div>\n" +
-    "\n" +
-    "\n" +
-    "                                                </div>\n" +
-    "\n" +
-    "                                            </article>\n" +
-    "\n" +
-    "                                        </div>\n" +
-    "                                    </div>\n" +
-    "                                </div>\n" +
-    "                                <div ng-show=\"(origin && destination) || currentMarker\" id=\"scrollingMaps\" class=\"col-md-8 \" >\n" +
-    "\n" +
-    "                                    <map origin=\"origin\" map-id=\"guideMap\" destination=\"destination\" marker=\"currentMarker\" type=\"roadmap\" class=\"mapContainer\" ></map>\n" +
-    "\n" +
-    "                                </div>\n" +
-    "                            </div>\n" +
-    "                        </div>\n" +
     "\n" +
     "\n" +
     "\n" +

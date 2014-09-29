@@ -55,7 +55,7 @@
                                         <b>Rating</b>
                                     </div>
                                     <div class="row">
-                                        {{moreInfoSelection.rating || 'Unknown'}}
+                                        <rating ng-model ="moreInfoSelection.rating" ></rating>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -337,7 +337,7 @@
                                 <b>Rating</b>
                             </div>
                             <div class="row">
-                                {{moreInfoSelection.rating || 'Unknown'}}
+                               <rating ng-model ="moreInfoSelection.rating" ></rating>
                             </div>
                         </div>
                             <div class="col-lg-6 capriola" >

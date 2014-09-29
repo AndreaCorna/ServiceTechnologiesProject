@@ -12,6 +12,30 @@
 <div class="row">
     <div class="col-md-10 col-md-offset-1">
         <div class="well well-sm">
+            <fieldset>
+                <legend>Trip Details</legend>
+
+
+                <!-- Message body -->
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="message" style="font-size: 18px">Description</label>
+                    <div class="col-md-10">
+                        <p class="form-control"  id="message" >{{guide.description}}</p>
+                    </div>
+                </div>
+
+
+
+                <!-- Form actions -->
+                <div class="form-group">
+
+                    <label class="col-md-2 control-label" for="message" style="font-size: 18px">Rating</label>
+
+                    <div class="col-md-10">
+                        <rating ng-model="guide.rating" readonly="true" ></rating>
+                    </div>
+                </div>
+            </fieldset>
             <legend>Trip Summary</legend>
             <div id="{{makeMoment(date.day).format('DD-MM-YYYY')}}" class="panel-group" ng-repeat="date in guide.days">
                 <div class="panel  panel-primary no-radius">
@@ -21,8 +45,12 @@
                         </h4>
                     </div>
                     <div id="{{makeMoment(date.day).format('DD-MM-YYYY')}}List" class="panel-collapse collapse">
+
                         <div class="panel-body" style="background-color:#e8e8e8">
-                            <div class="row" ng-repeat="item in getPlaces(date)" >
+                            <div class="row" style="margin-bottom: 6px">
+                                <button class="btn btn-primary btn-outlined z-up" style="float: right;font-size: 17px;margin-right: 5px;" ng-click="changeView()">{{currentView}}</button>
+                            </div>
+                            <div ng-show="currentView == 'MAPS VIEW'" class="row" ng-repeat="item in getPlaces(date)" >
 
                                 <div class="col-md-12" >
                                     <div class="row" style="margin-left: 4px;margin-right: 4px">
@@ -79,48 +107,10 @@
                             </div>
 
 
+                            <place-list ng-show="currentView == 'DETAILS VIEW'" selected-items="getPlaces(date)" map-id="date.day"></place-list>
                         </div>
 
-                        <div  class=" timeline-centered"  >
-                            <div class="row">
-                                <div class="timeline-list col-md-4">
-                                    <div ng-repeat="item in getPlaces(date)"  >
-                                        <div class="row" >
-                                            <div ng-click="setMapsMarker(item)" ng-class="isCurrentMap(item,'marker')? 'selected-color' : getItemClass(item) " class=" timeline-item " >
-                                                <div class="row" style="height: 48px;">
 
-                                                    <h1 class="item-name">{{item.name}}</h1>
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="btn-group">
-
-                                                        <button class="btn btn-primary btn-outlined z-up" style=";margin-left: 4px;margin-bottom: 5px"  ng-click="setCultureDetails(item.id)" href="#moreInfoModalPlace" data-toggle="modal">MORE</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <article class="timeline-entry" >
-                                                <div class="timeline-entry-inner">
-
-                                                    <div ng-click="setMapsDirections(item,date)"  class="timeline-icon " ng-class="isCurrentMap(item,'direction')? 'icon-selected' : 'icon-not-selected' ">
-                                                        <i class="entypo-feather"></i>
-                                                    </div>
-
-
-                                                </div>
-
-                                            </article>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div ng-show="(origin && destination) || currentMarker" id="scrollingMaps" class="col-md-8 " >
-
-                                    <map origin="origin" map-id="guideMap" destination="destination" marker="currentMarker" type="roadmap" class="mapContainer" ></map>
-
-                                </div>
-                            </div>
-                        </div>
 
 
 
