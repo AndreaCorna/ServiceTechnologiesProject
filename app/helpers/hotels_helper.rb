@@ -1,7 +1,17 @@
 require 'numbers_and_words'
+require 'base64'
+require 'net/http'
+require 'httparty'
 
 module HotelsHelper
 
+=begin
+The method returns the entire list of hotels nearby in the city passed as
+parameter.
+The result is an object with two elements:
+-results → contains the list of almost 20 items;
+-token → contains the token to be used to load more result.
+=end
   def get_hotels_list(city)
     json = hotels(city)
     hotels_list = []
@@ -36,6 +46,9 @@ module HotelsHelper
 
   end
 
+=begin
+The method returns the details of the hotel identified with the id.
+=end
   def get_hotel_details(id)
     api = Expedia::Api.new
     response = api.get_information({ :hotelId => id})
@@ -43,28 +56,65 @@ module HotelsHelper
     hotel_id = hotel['hotelId']
     name = hotel['name']
     address = hotel['address1']+' '+hotel['city']
-    rating = hotel['hotelRating']
+    rating = hotel['tripAdvisorRatingUrl']
     lat = hotel['latitude']
     lng = hotel['longitude']
+    info = eliminate_tags(response.body['HotelInformationResponse']['HotelDetails']['propertyInformation'])
+    policy = eliminate_tags(response.body['HotelInformationResponse']['HotelDetails']['hotelPolicy'])
     descr = parse_description(response.body['HotelInformationResponse']['HotelDetails']['propertyDescription'])
-    hotel_details = HotelDetails.new(hotel_id,name,address,rating,lat,lng,descr)
+    photos = []
+    if(!response.body['HotelInformationResponse']['HotelImages']['HotelImage'].nil?)
+      count = 0
+      threads = []
+      response.body['HotelInformationResponse']['HotelImages']['HotelImage'].each do |photo|
+        count = count + 1
+        threads << Thread.new {
+          url = photo['url']
+          image_data = Base64.encode64(open(url).read)
+          photos.append(:image=>image_data)
+        }
+        if(count == 5)
+          break
+        end
+      end
+      threads.each do |thread|
+        thread.join
+      end
+    end
+    hotel_details = HotelDetails.new(hotel_id,name,address,rating,lat,lng,descr,info,policy,photos)
     return hotel_details
   end
 
+=begin
+The methods returns the list of hotels.
+=end
+  private
   def hotels(city)
     api = Expedia::Api.new
     response = api.get_list({ :destinationString => city})
     return response.body
   end
 
+=begin
+The method returns the string passed as parameter purified by all html tags and
+unnecessary parts.
+=end
   private
   def parse_description(description)
-    output = Nokogiri::HTML.fragment(description)
-    descr = output.text.gsub(/<[^>]*>/ui,'')
+    descr = eliminate_tags(description)
     value, match, suffix = descr.rpartition('.')
     value.slice! 'Property Location '
     return value+'.'
 
+  end
+
+=begin
+The method returns the string passed as parameter purified by all html tags.
+=end
+  private
+  def eliminate_tags(string)
+    output = Nokogiri::HTML.fragment(string)
+    return output.text.gsub(/<[^>]*>/ui,'')
   end
 
   class HotelItem
@@ -86,9 +136,9 @@ module HotelsHelper
   end
 
   class HotelDetails
-    attr_accessor :id,:name,:address,:rating,:lat,:lng,:description
+    attr_accessor :id,:name,:address,:rating,:lat,:lng,:description,:info,:policy,:photos
 
-    def initialize(id,name,address,rating,lat,lng,description)
+    def initialize(id,name,address,rating,lat,lng,description,info,policy,photos)
       @id = id;
       @name = name;
       @address = address;
@@ -96,6 +146,9 @@ module HotelsHelper
       @lat = lat;
       @lng = lng;
       @description = description;
+      @info = info;
+      @policy = policy;
+      @photos = photos;
     end
 
   end

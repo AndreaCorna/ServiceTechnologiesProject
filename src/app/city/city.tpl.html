@@ -36,7 +36,7 @@
 
 
 
-    <div class="modal fade" ng-controller="ModalCtrl" data-backdrop="static" id="moreInfoModalPlace" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade" ng-controller="ModalCtrl" id="moreInfoModalPlace" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                     <div ng-show="modalEnabled">
@@ -49,25 +49,27 @@
                         <div ng-show="modalEnabled">
                             <div class="container-fluid capriola">
                             <div class="row">
-                                <div class="col-md-6 capriola" >
+                                <div class="col-sm-6 col-md-6 capriola" >
                                     <div class="row">
                                         <b>Rating</b>
                                     </div>
                                     <div class="row">
-                                        {{moreInfoSelection.rating || 'Unknown'}}
+                                        <rating ng-model="moreInfoSelection.rating" readonly="true" max=5></rating>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="row">
-                                        <b>Price</b>
-                                    </div>
-                                    <div class="row">
-                                        {{moreInfoSelection.price || 'Unknown'}}
+                                <div class="col-sm-6 col-md-6">
+                                    <div ng-show="moreInfoSelection.price != null">
+                                        <div class="row">
+                                            <b>Price</b>
+                                        </div>
+                                        <div class="row">
+                                            {{moreInfoSelection.price}}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6" >
+                                <div class="col-sm-6 col-md-6" >
                                     <div class="row">
                                         <b>Phone</b>
                                     </div>
@@ -75,7 +77,7 @@
                                         {{moreInfoSelection.international_phone}}
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-sm-6 col-md-6">
                                     <div class="row">
                                         <b>Address</b>
                                     </div>
@@ -85,7 +87,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-12" >
+                                <div class="col-sm-12 col-md-12" >
                                     <div class="row">
                                         <b>Web Site</b>
                                     </div>
@@ -96,12 +98,12 @@
                             </div>
                             <div ng-show="moreInfoSelection.open_hours != null">
                                 <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-sm-12 col-md-12">
                                     <div class="text-capitalize text-center">
                                         <b>Open Hours</b>
                                     </div>
                                 </div>
-                                <div class="col-md-3" >
+                                <div class="col-sm-3 col-md-3" >
                                     <div class="panel panel-info">
                                         <div>
                                             <div class="text-center">Sunday</div>
@@ -116,7 +118,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3" >
+                                <div class="col-sm-3 col-md-3" >
                                     <div class="panel panel-info">
                                         <div>
                                             <div class="text-center">Monday</div>
@@ -131,7 +133,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3" >
+                                <div class="col-sm-3 col-md-3" >
                                     <div class="panel panel-info">
                                         <div>
                                             <div class="text-center">Tuesday</div>
@@ -146,7 +148,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3" >
+                                <div class="col-sm-3 col-md-3" >
                                     <div class="panel panel-info">
                                         <div>
                                             <div class="text-center">Wednesday</div>
@@ -161,7 +163,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3" >
+                                <div class="col-sm-3 col-md-3" >
                                     <div class="panel panel-info">
                                         <div>
                                             <div class="text-center">Thursday</div>
@@ -176,7 +178,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3" >
+                                <div class="col-sm-3 col-md-3" >
                                     <div class="panel panel-info">
                                         <div>
                                             <div class="text-center">Friday</div>
@@ -191,7 +193,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3" >
+                                <div class="col-sm-3 col-md-3" >
                                     <div class="panel panel-info">
                                         <div>
                                             <div class="text-center">Saturday</div>
@@ -209,7 +211,7 @@
                             </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-sm-12 col-md-12">
                                     <div class="row">
                                         <div class="panel-image-modal">
                                             <carousel interval="intervalImages" >
@@ -222,7 +224,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-sm-12 col-md-12">
                                     <p class="text-center">
                                         <b>Reviews</b>
                                     </p>
@@ -237,7 +239,7 @@
                                                 <div id="{{$index}}" class="panel-collapse collapse">
                                                     <div class="panel-body">
                                                         <p class="text-left">
-                                                            <b>Ratings</b>
+                                                            <b>Aspects</b>
                                                         </p>
                                                         <div class="star-rating">
                                                             <span ng-repeat="aspect in review.aspects">
@@ -259,12 +261,22 @@
                                                                 {{review.text}}
                                                             </div>
                                                         </div>
+                                                        <div class="row">
+                                                            <div class="col-md-3">
+                                                                <b class="text-capitalize">Rating</b>
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                <rating ng-model="review.rating" readonly="true" max=5></rating>
+                                                            </div>
+                                                        </div>
                                                         <div class="col-md-12">
+                                                            <!-- Name
                                                             <div class="row">
                                                                 <em>
                                                                     <span>{{changeDate(review.time)}}</span>
                                                                 </em>
                                                             </div>
+                                                            -->
                                                             <div class="row">
                                                                 <em>
                                                                     Contact User <a target="_blank" ng-href="{{review.author_url}}">GooglePlus!</a>
@@ -318,7 +330,7 @@
 
 
 
-<div class="modal fade" ng-controller="ModalCtrl" data-backdrop="static" id="moreInfoModalHotel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" ng-controller="ModalCtrl" id="moreInfoModalHotel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div ng-show="modalEnabled">
@@ -331,33 +343,83 @@
                 <div ng-show="modalEnabled">
                     <div class="container-fluid capriola">
                         <div class="row">
-                            <div class="col-lg-6 capriola" >
+                            <div class="col-sm-6 col-md-6 capriola" >
                             <div class="row">
                                 <b>Rating</b>
                             </div>
                             <div class="row">
-                                {{moreInfoSelection.rating || 'Unknown'}}
+                                <img ng-src="{{moreInfoSelection.rating}}" >
                             </div>
                         </div>
-                            <div class="col-lg-6 capriola" >
-                            <div class="row">
-                                <b>Address</b>
+                            <div class="col-sm-6 col-md-6 capriola" >
+                                <div ng-show="moreInfoSelection.address != null">
+                                    <div class="row">
+                                        <b>Address</b>
+                                    </div>
+                                    <div class="row">
+                                        {{moreInfoSelection.address}}
+                                    </div>
+                                </div>
                             </div>
-                            <div class="row">
-                                {{moreInfoSelection.address || 'Unknown'}}
-                            </div>
-                        </div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-12 capriola" >
-                                <div class="panel panel-default">
-                                    <div>
-                                        <div class="text-center">Description</div>
-                                        <div class="text-justify">
-                                            {{moreInfoSelection.description}}
+                            <div class="col-sm-12 col-md-12">
+                                <div class="row" style="padding-top: 20px">
+                                    <div class="panel-image-modal">
+                                        <carousel interval="intervalImages" >
+                                            <slide ng-repeat="image in moreInfoSelection.photos" active="image.active">
+                                                <img class="image-modal" style="height: 400px" ng-src="data:image/JPEG;base64,{{image.image}}" >
+                                            </slide>
+                                        </carousel>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 20px">
+                            <div class="col-sm-11 col-md-11 capriola" >
+                                <div class="panel  panel-info">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a class="accordion-toggle" data-toggle="collapse" data-target="#descriptionInfo">Information</a>
+                                        </h4>
+                                    </div>
+                                    <div id="descriptionInfo" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <div class="text-justify">
+                                                {{moreInfoSelection.info}}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                                <div class="panel  panel-info">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a class="accordion-toggle" data-toggle="collapse" data-target="#descriptionTab">Description</a>
+                                        </h4>
+                                    </div>
+                                    <div id="descriptionTab" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <div class="text-justify">
+                                                {{moreInfoSelection.description}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel  panel-info">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a class="accordion-toggle" data-toggle="collapse" data-target="#descriptionPolicy">Policy</a>
+                                        </h4>
+                                    </div>
+                                    <div id="descriptionPolicy" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <div class="text-justify">
+                                                {{moreInfoSelection.policy}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -388,3 +450,22 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(function () {
+        $('#moreInfoModalPlace').on('hidden.bs.modal', function () {
+            var scope = angular.element(document.querySelector('#moreInfoModalPlace')).scope();
+
+            scope.disableModal();
+        });
+    });
+</script>
+<script>
+    $(function () {
+        $('#moreInfoModalHotel').on('hidden.bs.modal', function () {
+            var scope = angular.element(document.querySelector('#moreInfoModalHotel')).scope();
+
+            scope.disableModal();
+        });
+    });
+</script>

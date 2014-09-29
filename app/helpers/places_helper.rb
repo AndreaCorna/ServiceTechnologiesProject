@@ -14,7 +14,7 @@ The method returns the utility items of the city passed as param.
 The items' types are:
 airport','atm','bank','bus_station','doctor','fire_station','hospital','parking','pharmacy','police','subway_station','taxi_stand','train_station','embassy'.
 The result is an object with two elements:
--results → contains the list of items;
+-results → contains the list of almost 20 items;
 -token → contains the token to be used to load more result.
 =end
     def get_utility_items(city)
@@ -22,7 +22,7 @@ The result is an object with two elements:
       location = City.find_by_name(city)
       lat = location.lat
       lng = location.lng
-      utility_items= client.spots(lat,lng,:types => ['airport','atm','bank','bus_station','doctor','fire_station','hospital','parking','pharmacy','police','subway_station','taxi_stand','train_station','embassy'],:exclude => ['hotel'],:radius => 20000)
+      utility_items= client.spots(lat,lng,:types => ['airport','atm','bank','bus_station','doctor','fire_station','hospital','parking','pharmacy','police','subway_station','taxi_stand','train_station','embassy'],:exclude => ['hotel'],:radius => 15000)
       results = []
       next_page_token = nil
       threads = []
@@ -55,7 +55,7 @@ The result is an object with two elements:
 The method returns more item related to utility category of the city, using the
 token passed as param.
 The result is an object with two elements:
--results → contains the list of items;
+-results → contains the list of almost 20 items;
 -token → contains the token to be used to load more result.
 =end
     def get_utility_others(token,city)
@@ -115,7 +115,7 @@ The method returns the culture items of the city passed as param.
 The items' types are:
 'library','book_store','museum','aquarium','art_gallery','church'.
 The result is an object with two elements:
--results → contains the list of items;
+-results → contains the list of almost 20 items;
 -token → contains the token to be used to load more result.
 =end
     def get_culture_items(city)
@@ -123,7 +123,7 @@ The result is an object with two elements:
       location = City.find_by_name(city)
       lat = location.lat
       lng = location.lng
-      culture_items= client.spots(lat,lng,:types => ['library','book_store','museum','aquarium','art_gallery','church'],:exclude => ['hotel'],:radius => 20000)
+      culture_items= client.spots(lat,lng,:types => ['library','book_store','museum','aquarium','art_gallery','church'],:exclude => ['hotel'],:radius => 15000)
       results = []
       next_page_token = nil
       threads = []
@@ -157,7 +157,7 @@ The result is an object with two elements:
 The method returns more item related to culture category of the city, using the
 token passed as param.
 The result is an object with two elements:
--results → contains the list of items;
+-results → contains the list of almost 20 items;
 -token → contains the token to be used to load more result.
 =end
     def get_culture_others(token,city)
@@ -218,7 +218,7 @@ The method returns the entertainment items of the city passed as param.
 The items' types are:
 'amusement_park','casino','gym','zoo','spa','park','movie_theater'.
 The result is an object with two elements:
--results → contains the list of items;
+-results → contains the list of almost 20 items;
 -token → contains the token to be used to load more result.
 =end
     def get_entertainment_items(city)
@@ -226,7 +226,7 @@ The result is an object with two elements:
       location = City.find_by_name(city)
       lat = location.lat
       lng = location.lng
-      entertainment_items= client.spots(lat,lng,:types => ['amusement_park','casino','gym','zoo','spa','park','movie_theater'],:exclude => ['hotel'],:radius => 20000)
+      entertainment_items= client.spots(lat,lng,:types => ['amusement_park','casino','gym','zoo','spa','park','movie_theater'],:exclude => ['hotel'],:radius => 15000)
       next_page_token = nil
       results = []
       threads = []
@@ -259,7 +259,7 @@ The result is an object with two elements:
 The method returns more item related to entertainment category of the city, using the
 token passed as param.
 The result is an object with two elements:
--results → contains the list of items;
+-results → contains the list of almost 20 items;
 -token → contains the token to be used to load more result.
 =end
     def get_entertainment_others(token,city)
@@ -318,7 +318,7 @@ The result is an object with two elements:
 The method returns the food items of the city passed as param.
 The items' types are:
 'food','restaurant','cafe','bakery'The result is an object with two elements:
--results → contains the list of items;
+-results → contains the list of almost 20 items;
 -token → contains the token to be used to load more result.
 =end
     def get_food_items(city)
@@ -326,7 +326,7 @@ The items' types are:
       location = City.find_by_name(city)
       lat = location.lat
       lng = location.lng
-      food_items = client.spots(lat,lng,:types => ['food','restaurant','cafe','bakery'],:exclude => ['hotel'],:radius => 20000)
+      food_items = client.spots(lat,lng,:types => ['food','restaurant','cafe','bakery'],:exclude => ['hotel'],:radius => 15000)
       results = []
       next_page_token = nil
       threads = []
@@ -359,7 +359,7 @@ The items' types are:
 The method returns more item related to food category of the city, using the
 token passed as param.
 The result is an object with two elements:
--results → contains the list of items;
+-results → contains the list of almost 20 items;
 -token → contains the token to be used to load more result.
 =end
     def get_food_others(token,city)
@@ -452,15 +452,20 @@ The result is an object with two elements:
     open_hours.each do |object|
       object = nil
     end
+    puts data.to_json
     if(!data.nil?)
       data.each do |couple|
-        day = couple['close']['day']
+        day = couple['open']['day']
+        close = nil
+        if(!couple['close'].nil?)
+          close = couple['close']['time']
+        end
         if(open_hours[day].nil?)
           time = []
-          time.append({:open => couple['open']['time'],:close => couple['close']['time'] })
+          time.append({:open => couple['open']['time'],:close => close })
           open_hours[day] = {:day => day, :hours => time}
         else
-          hash = {:open => couple['open']['time'],:close => couple['close']['time']}
+          hash = {:open => couple['open']['time'],:close => close}
           open_hours[day]['hours'.to_sym].append(hash)
         end
       end

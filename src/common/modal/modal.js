@@ -13,8 +13,10 @@ angular.module('trippo.modal', ["trippo.resources"])
                     if(day !== null) {
                         for (var j = 0; j < day.hours.length; j++) {
                             couple = day.hours[j];
-                            details.open_hours[i].hours[j].open = couple.open.substr(0, 2) + ":" + couple.open.substr(2);
-                            details.open_hours[i].hours[j].close = couple.close.substr(0, 2) + ":" + couple.close.substr(2);
+                            if( details.open_hours[i].hours[0].close != null){
+                                details.open_hours[i].hours[j].open = couple.open.substr(0, 2) + ":" + couple.open.substr(2);
+                                details.open_hours[i].hours[j].close = couple.close.substr(0, 2) + ":" + couple.close.substr(2);
+                            }
 
                         }
                     }
@@ -59,12 +61,14 @@ angular.module('trippo.modal', ["trippo.resources"])
          * Added a watch to update scope.moreInfoSelection which is set every time a moreInfo button is pushed
          */
         $scope.$watchCollection(function () { return ModalHandler.getDetails(); }, function (newVal, oldVal) {
-            $scope.loaderEnabled = true;
             if (typeof newVal !== 'undefined') {
+                $scope.loaderEnabled = true;
+
                 $scope.moreInfoSelection = ModalHandler.getDetails();
                 $scope.modalEnabled = true;
+                $scope.loaderEnabled = false;
+
             }
-            $scope.loaderEnabled = false;
 
         });
         $scope.disableModal = function(){
