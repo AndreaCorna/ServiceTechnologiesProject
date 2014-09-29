@@ -718,7 +718,11 @@ angular.module( 'trippo.city', [
 
     $scope.isGuides =function(){
         return $location.path().split('/').pop() == 'guides';
-    }   ;
+    }  ;
+
+    $scope.getCityName = function(){
+        return $stateParams.city_name;
+    };
 
 
 

@@ -7,12 +7,9 @@ var component = angular.module('common.maps', []);
 component.directive('map', function () {
     'use strict';
 
-    var directionsDisplay = new google.maps.DirectionsRenderer(),
-        directionsService = new google.maps.DirectionsService(),
-        geocoder = new google.maps.Geocoder(),
-        map,
 
-        mapObj;
+     var  geocoder = new google.maps.Geocoder(),
+          mapObj;
 
     mapObj = {
         restrict: 'EAC',
@@ -26,13 +23,75 @@ component.directive('map', function () {
             marker:'=',
             markerArraySelected:'=',   //place where to put a marker (object with lat lng field)
             markerArrayList : '=',
-            mapId:'@'
+            mapId:'@',
+            initPosition : '='  //start position if string will be used geocoding to find lat and lng if object with lat and lng this will be used
         },
         replace: true,
         templateUrl: 'maps/maps.tpl.html',
         link: function (scope, element, attrs) {
 
 
+
+
+
+
+
+
+
+            /**
+             * When Travel mode is changed the map is recreated with the new directions
+             */
+            scope.travelModality =google.maps.DirectionsTravelMode.WALKING;
+            scope.setTravelMode = function(value){
+
+                scope.travelModality = google.maps.DirectionsTravelMode[value];
+                scope.getDirections();
+
+            } ;
+
+            scope.isCurrentTravelMode = function(mode){
+                if( scope.travelModality == mode){
+                    return true;
+                }
+                return false;
+
+            };
+
+             scope.initializeMapCenter= function(center, map){
+                 console.log("initialize center");
+                 console.log(center);
+
+                 //checking if passed object with lat and lng field
+                if (center.hasOwnProperty('lat') && center.hasOwnProperty('lng')){
+                    map.setCenter(location);
+                }
+                else{  //try to geocode the object (presumebly a string)
+                    geocoder.geocode({
+                        address: center
+                    }, function (results, status) {
+                        var location = results[0].geometry.location;
+                        if (status === google.maps.GeocoderStatus.OK) {
+                            map.setCenter(location);
+
+
+
+
+                        } else {
+                            console.log('Cannot Geocode');
+                        }
+
+                    });
+                }
+             } ;
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            /**
+             * Hanle the map where are shown directions and single markers (Planning)
+             * @type {google.maps.DirectionsRenderer}
+             */
+            var directionsDisplay = new google.maps.DirectionsRenderer(),
+                directionsService = new google.maps.DirectionsService(),
+                map;
             //WATCHERS
             /**
              *
@@ -60,56 +119,21 @@ component.directive('map', function () {
                 }
             }, true);
 
-            scope.$watch('markerArraySelected', function(newValue, oldValue) {
-                if (newValue) {
-                    console.log('odl');
+            scope.initMap= function(){
+                var mapOptions = {
+                    zoom: scope.zoom !== undefined ? scope.zoom : 15,
+                    mapTypeId: scope.type.toLowerCase(),
+                    streetViewControl: false
+                };
+                console.log("map");
+                console.log(document.getElementById(scope.mapId));
 
-                    console.log(oldValue);
-
-                    console.log(newValue);
-                    console.log('change');
-                    console.log(scope.markerArraySelected);
-                    var toRemove = arrayDiff(oldValue,newValue);
-                    var toAdd = arrayDiff(newValue, oldValue);
-                    console.log('to remove');
-                    console.log(toRemove);
-                    console.log('to add');
-                    console.log(toAdd);
-
-                    scope.updateArrayMarkerSelectedMap(toAdd,toRemove);
-                }
-            }, true);
-
-            scope.$watch('markerArrayList', function(newValue, oldValue) {
-                if (newValue) {
-                    scope.markerArrayList = newValue;
-                    scope.updateArrayMarkerListMap();
-                }
-            }, true);
-
-
-
-
-            /**
-             * When Travel mode is changed the map is recreated with the new directions
-             */
-            scope.travelModality =google.maps.DirectionsTravelMode.WALKING;
-            scope.setTravelMode = function(value){
-
-                scope.travelModality = google.maps.DirectionsTravelMode[value];
-                scope.getDirections();
+                map = new google.maps.Map(document.getElementById(scope.mapId), mapOptions);
+                scope.initializeMapCenter(scope.initPosition, map)    ;
 
             } ;
 
-            scope.isCurrentTravelMode = function(mode){
-                if( scope.travelModality == mode){
-                    return true;
-                }
-                return false;
-
-            };
-
-
+            //scope.initMap();
 
             scope.updateDirectionMap = function () {
                 scope.planTripSelected = true;
@@ -143,30 +167,8 @@ component.directive('map', function () {
                 //Avoid fast animation
                 setTimeout(function() {  scope.getDirections(); }, 500);
 
-                /*
-                geocoder.geocode({
-                    address: scope.endPoint
-                }, function (results, status) {
-                    var location = results[0].geometry.location;
-                    if (status === google.maps.GeocoderStatus.OK) {
-                        map.setCenter(location);
-                        marker = new google.maps.Marker({
-                            map: map,
-                            position: location,
-                            animation: google.maps.Animation.DROP
-                        });
-                        infowindow = new google.maps.InfoWindow({
-                            content: scope.markerContent !== undefined ? scope.markerContent : 'Google HQ'
-                        });
-                        google.maps.event.addListener(marker, 'click', function () {
-                            return infowindow.open(map, marker);
-                        });
 
-                    } else {
-                        alert('Cannot Geocode');
-                    }
 
-                });*/
 
 
             };
@@ -212,14 +214,37 @@ component.directive('map', function () {
 
             } ;
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 
             /**
-             * Handle a list of dinamically added places to the map
+             * Handle a list of dinamically added places to the map  used in City
              */
             var  markerarraymap;
             var  markersArraySelection = [];
             var  markerList = [];
+
+            scope.$watch('markerArraySelected', function(newValue, oldValue) {
+                if (newValue) {
+
+                    var toRemove = arrayDiff(oldValue,newValue);
+                    var toAdd = arrayDiff(newValue, oldValue);
+
+
+                    scope.updateArrayMarkerSelectedMap(toAdd,toRemove);
+                }
+            }, true);
+
+            scope.$watch('markerArrayList', function(newValue, oldValue) {
+                if (newValue) {
+                    scope.markerArrayList = newValue;
+                    scope.updateArrayMarkerListMap();
+                }
+            }, true);
+
+
+
 
             scope.updateArrayMarkerListMap = function() {
                 scope.planTripSelected = false;
@@ -232,6 +257,10 @@ component.directive('map', function () {
                 if (markerarraymap === undefined) {
 
                     markerarraymap = new google.maps.Map(document.getElementById(scope.mapId), mapOptions);
+                    scope.initializeMapCenter(scope.initPosition,markerarraymap)  ;
+
+                    console.log("arraymarker map");
+                    console.log(document.getElementById(scope.mapId));
 
                 }
                 angular.forEach(markerList, function (value, key) {
@@ -244,7 +273,6 @@ component.directive('map', function () {
                 angular.forEach(scope.markerArrayList, function (value, key) {
                     markerList.push(addMarker(value,markerarraymap));
                     var place = new google.maps.LatLng(value.lat,value.lng,true) ;
-                    markerarraymap.setCenter(place);
                 });
 
             } ;

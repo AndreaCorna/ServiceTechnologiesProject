@@ -285,7 +285,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "            </div>\n" +
     "        </div>\n" +
     "        <div ng-if=\"!isGuides()\"  >\n" +
-    "            <map marker-array-selected=\"markerArraySelected\" marker-array-list=\"markerArrayList\" map-id=\"cityMap\" initposition=\"city\" type=\"roadmap\" class=\"mapContainer\" ></map>\n" +
+    "            <map marker-array-selected=\"markerArraySelected\" init-position=\"getCityName()\" marker-array-list=\"markerArrayList\" map-id=\"cityMap\" initposition=\"city\" type=\"roadmap\" class=\"mapContainer\" ></map>\n" +
     "        </div>\n" +
     "    </div>\n" +
     "</div>\n" +
@@ -329,11 +329,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                                        <b>Rating</b>\n" +
     "                                    </div>\n" +
     "                                    <div class=\"row\">\n" +
-    "<<<<<<< HEAD\n" +
     "                                        <rating ng-model=\"moreInfoSelection.rating\" readonly=\"true\" max=5></rating>\n" +
-    "=======\n" +
-    "                                        <rating ng-model =\"moreInfoSelection.rating\" ></rating>\n" +
-    ">>>>>>> create_trip\n" +
     "                                    </div>\n" +
     "                                </div>\n" +
     "                                <div class=\"col-sm-6 col-md-6\">\n" +
@@ -631,7 +627,6 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                <div ng-show=\"modalEnabled\">\n" +
     "                    <div class=\"container-fluid capriola\">\n" +
     "                        <div class=\"row\">\n" +
-    "<<<<<<< HEAD\n" +
     "                            <div class=\"col-sm-6 col-md-6 capriola\" >\n" +
     "                                <div ng-if=\"hotelShow\">\n" +
     "                                    <div class=\"row\">\n" +
@@ -2300,9 +2295,9 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
     "              </div>\n" +
     "                </div>\n" +
     "            </div>\n" +
-    "            <div ng-show=\"(origin && destination) || currentMarker\" id=\"scrollingMaps\" class=\"col-md-8 \" >\n" +
+    "            <div  id=\"scrollingMaps\" class=\"col-md-8 \" >\n" +
     "\n" +
-    "               <map origin=\"origin\" map-id=\"planningMap\" destination=\"destination\" marker=\"currentMarker\" type=\"roadmap\" class=\"mapContainer\" ></map>\n" +
+    "               <map origin=\"origin\" map-id=\"planningMap\" init-position=\"getCityName()\" destination=\"destination\" marker=\"currentMarker\" type=\"roadmap\" class=\"mapContainer\" ></map>\n" +
     "\n" +
     "            </div>\n" +
     "        </div>\n" +

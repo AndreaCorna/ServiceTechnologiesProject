@@ -11,7 +11,7 @@
             </div>
         </div>
         <div ng-if="!isGuides()"  >
-            <map marker-array-selected="markerArraySelected" marker-array-list="markerArrayList" map-id="cityMap" initposition="city" type="roadmap" class="mapContainer" ></map>
+            <map marker-array-selected="markerArraySelected" init-position="getCityName()" marker-array-list="markerArrayList" map-id="cityMap" initposition="city" type="roadmap" class="mapContainer" ></map>
         </div>
     </div>
 </div>

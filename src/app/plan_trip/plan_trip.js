@@ -311,6 +311,10 @@ angular.module('trippo.plan',[
             return PlanningService.getItemClass(item)  ;
         };
 
+        $scope.getCityName = function(){
+            return $stateParams.city_name;
+        } ;
+
         /**
          *MAPS HANDLING
          * current start and destination variable for the map
