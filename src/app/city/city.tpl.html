@@ -98,117 +98,126 @@
                             </div>
                             <div ng-show="moreInfoSelection.open_hours != null">
                                 <div class="row">
-                                <div class="col-sm-12 col-md-12">
-                                    <div class="text-capitalize text-center">
-                                        <b>Open Hours</b>
+                                    <div class="col-sm-12 col-md-12">
+                                        <div class="text-capitalize text-center">
+                                            <b>Open Hours</b>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-sm-3 col-md-3" >
-                                    <div class="panel panel-info">
-                                        <div>
-                                            <div class="text-center">Sunday</div>
-                                            <div class="text-center" ng-repeat="couple in moreInfoSelection.open_hours[0].hours">
-                                                {{couple.open}} - {{couple.close}}
+                                    <div ng-show="moreInfoSelection.open_hours[0].hours[0].close != null">
+                                        <div class="col-sm-3 col-md-3" >
+                                            <div class="panel panel-info">
+                                                <div>
+                                                    <div class="text-center">Sunday</div>
+                                                    <div class="text-center" ng-repeat="couple in moreInfoSelection.open_hours[0].hours">
+                                                        {{couple.open}} - {{couple.close}}
+                                                    </div>
+                                                    <div ng-if="moreInfoSelection.open_hours[0] == null">
+                                                        <div class="text-center">
+                                                            <b>Closed</b>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div ng-if="moreInfoSelection.open_hours[0] == null">
-                                                <div class="text-center">
-                                                    <b>Closed</b>
+                                        </div>
+                                        <div class="col-sm-3 col-md-3" >
+                                            <div class="panel panel-info">
+                                                <div>
+                                                    <div class="text-center">Monday</div>
+                                                    <div class="text-center" ng-repeat="couple in moreInfoSelection.open_hours[1].hours">
+                                                        {{couple.open}} - {{couple.close}}
+                                                    </div>
+                                                    <div ng-if="moreInfoSelection.open_hours[1] == null">
+                                                        <div class="text-center">
+                                                            <b>Closed</b>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3 col-md-3" >
+                                            <div class="panel panel-info">
+                                                <div>
+                                                    <div class="text-center">Tuesday</div>
+                                                    <div class="text-center" ng-repeat="couple in moreInfoSelection.open_hours[2].hours">
+                                                        {{couple.open}} - {{couple.close}}
+                                                    </div>
+                                                    <div ng-if="moreInfoSelection.open_hours[2] == null">
+                                                        <div class="text-center">
+                                                            <b>Closed</b>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3 col-md-3" >
+                                            <div class="panel panel-info">
+                                                <div>
+                                                    <div class="text-center">Wednesday</div>
+                                                    <div class="text-center" ng-repeat="couple in moreInfoSelection.open_hours[3].hours">
+                                                        {{couple.open}} - {{couple.close}}
+                                                    </div>
+                                                    <div ng-if="moreInfoSelection.open_hours[3] == null">
+                                                        <div class="text-center">
+                                                            <b>Closed</b>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3 col-md-3" >
+                                            <div class="panel panel-info">
+                                                <div>
+                                                    <div class="text-center">Thursday</div>
+                                                    <div class="text-center" ng-repeat="couple in moreInfoSelection.open_hours[4].hours">
+                                                        {{couple.open}} - {{couple.close}}
+                                                    </div>
+                                                    <div ng-if="moreInfoSelection.open_hours[4] == null">
+                                                        <div class="text-center">
+                                                            <b>Closed</b>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3 col-md-3" >
+                                            <div class="panel panel-info">
+                                                <div>
+                                                    <div class="text-center">Friday</div>
+                                                    <div class="text-center" ng-repeat="couple in moreInfoSelection.open_hours[5].hours">
+                                                        {{couple.open}} - {{couple.close}}
+                                                    </div>
+                                                    <div ng-if="moreInfoSelection.open_hours[5] == null">
+                                                        <div class="text-center">
+                                                            <b>Closed</b>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3 col-md-3" >
+                                            <div class="panel panel-info">
+                                                <div>
+                                                    <div class="text-center">Saturday</div>
+                                                    <div class="text-center" ng-repeat="couple in moreInfoSelection.open_hours[6].hours">
+                                                        {{couple.open}} - {{couple.close}}
+                                                    </div>
+                                                    <div ng-if="moreInfoSelection.open_hours[6] == null">
+                                                        <div class="text-center">
+                                                            <b>Closed</b>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-sm-3 col-md-3" >
-                                    <div class="panel panel-info">
-                                        <div>
-                                            <div class="text-center">Monday</div>
-                                            <div class="text-center" ng-repeat="couple in moreInfoSelection.open_hours[1].hours">
-                                                {{couple.open}} - {{couple.close}}
-                                            </div>
-                                            <div ng-if="moreInfoSelection.open_hours[1] == null">
-                                                <div class="text-center">
-                                                    <b>Closed</b>
-                                                </div>
+                                    <div ng-show="moreInfoSelection.open_hours[0].hours[0].close == null">
+                                        <div class="col-md-12">
+                                            <div class="panel panel-info">
+                                                <h5 class="text-center text-capitalize capriola">Always Open</h5>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-3 col-md-3" >
-                                    <div class="panel panel-info">
-                                        <div>
-                                            <div class="text-center">Tuesday</div>
-                                            <div class="text-center" ng-repeat="couple in moreInfoSelection.open_hours[2].hours">
-                                                {{couple.open}} - {{couple.close}}
-                                            </div>
-                                            <div ng-if="moreInfoSelection.open_hours[2] == null">
-                                                <div class="text-center">
-                                                    <b>Closed</b>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-3 col-md-3" >
-                                    <div class="panel panel-info">
-                                        <div>
-                                            <div class="text-center">Wednesday</div>
-                                            <div class="text-center" ng-repeat="couple in moreInfoSelection.open_hours[3].hours">
-                                                {{couple.open}} - {{couple.close}}
-                                            </div>
-                                            <div ng-if="moreInfoSelection.open_hours[3] == null">
-                                                <div class="text-center">
-                                                    <b>Closed</b>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-3 col-md-3" >
-                                    <div class="panel panel-info">
-                                        <div>
-                                            <div class="text-center">Thursday</div>
-                                            <div class="text-center" ng-repeat="couple in moreInfoSelection.open_hours[4].hours">
-                                                {{couple.open}} - {{couple.close}}
-                                            </div>
-                                            <div ng-if="moreInfoSelection.open_hours[4] == null">
-                                                <div class="text-center">
-                                                    <b>Closed</b>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-3 col-md-3" >
-                                    <div class="panel panel-info">
-                                        <div>
-                                            <div class="text-center">Friday</div>
-                                            <div class="text-center" ng-repeat="couple in moreInfoSelection.open_hours[5].hours">
-                                                {{couple.open}} - {{couple.close}}
-                                            </div>
-                                            <div ng-if="moreInfoSelection.open_hours[5] == null">
-                                                <div class="text-center">
-                                                    <b>Closed</b>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-3 col-md-3" >
-                                    <div class="panel panel-info">
-                                        <div>
-                                            <div class="text-center">Saturday</div>
-                                            <div class="text-center" ng-repeat="couple in moreInfoSelection.open_hours[6].hours">
-                                                {{couple.open}} - {{couple.close}}
-                                            </div>
-                                            <div ng-if="moreInfoSelection.open_hours[6] == null">
-                                                <div class="text-center">
-                                                    <b>Closed</b>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-12 col-md-12">
@@ -344,12 +353,14 @@
                     <div class="container-fluid capriola">
                         <div class="row">
                             <div class="col-sm-6 col-md-6 capriola" >
-                            <div class="row">
-                                <b>Rating</b>
-                            </div>
-                            <div class="row">
-                                <img ng-src="{{moreInfoSelection.rating}}" >
-                            </div>
+                                <div ng-if="hotelShow">
+                                    <div class="row">
+                                        <b>Rating</b>
+                                    </div>
+                                    <div class="row">
+                                        <img ng-src="{{moreInfoSelection.rating}}" >
+                                    </div>
+                                </div>
                         </div>
                             <div class="col-sm-6 col-md-6 capriola" >
                                 <div ng-show="moreInfoSelection.address != null">
@@ -466,6 +477,15 @@
             var scope = angular.element(document.querySelector('#moreInfoModalHotel')).scope();
 
             scope.disableModal();
+        });
+    });
+</script>
+<script>
+    $(function(){
+        $('#moreInfoModalHotel').on('shown.bs.modal', function () {
+            var scope = angular.element(document.querySelector('#moreInfoModalHotel')).scope();
+            scope.hotelShow = true;
+            console.log(scope.hotelShow);
         });
     });
 </script>
