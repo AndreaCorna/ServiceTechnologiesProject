@@ -329,11 +329,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                                        <b>Rating</b>\n" +
     "                                    </div>\n" +
     "                                    <div class=\"row\">\n" +
-    "<<<<<<< HEAD\n" +
     "                                        <rating ng-model=\"moreInfoSelection.rating\" readonly=\"true\" max=5></rating>\n" +
-    "=======\n" +
-    "                                        <rating ng-model =\"moreInfoSelection.rating\" ></rating>\n" +
-    ">>>>>>> create_trip\n" +
     "                                    </div>\n" +
     "                                </div>\n" +
     "                                <div class=\"col-sm-6 col-md-6\">\n" +
@@ -631,7 +627,6 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                <div ng-show=\"modalEnabled\">\n" +
     "                    <div class=\"container-fluid capriola\">\n" +
     "                        <div class=\"row\">\n" +
-    "<<<<<<< HEAD\n" +
     "                            <div class=\"col-sm-6 col-md-6 capriola\" >\n" +
     "                                <div ng-if=\"hotelShow\">\n" +
     "                                    <div class=\"row\">\n" +
@@ -641,15 +636,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                                        <img ng-src=\"{{moreInfoSelection.rating}}\" >\n" +
     "                                    </div>\n" +
     "                                </div>\n" +
-    "=======\n" +
-    "                            <div class=\"col-lg-6 capriola\" >\n" +
-    "                            <div class=\"row\">\n" +
-    "                                <b>Rating</b>\n" +
-    "                            </div>\n" +
-    "                            <div class=\"row\">\n" +
-    "                               <rating ng-model =\"moreInfoSelection.rating\" ></rating>\n" +
-    "                            </div>\n" +
-    ">>>>>>> create_trip\n" +
+    "\n" +
     "                        </div>\n" +
     "                            <div class=\"col-sm-6 col-md-6 capriola\" >\n" +
     "                                <div ng-show=\"moreInfoSelection.address != null\">\n" +
