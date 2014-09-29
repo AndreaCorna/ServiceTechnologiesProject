@@ -1,4 +1,4 @@
-angular.module('templates-app', ['about/about.tpl.html', 'city/city.tpl.html', 'city/culture.tpl.html', 'city/entertainment.tpl.html', 'city/food.tpl.html', 'city/hotel.tpl.html', 'city/utility.tpl.html', 'home/home.tpl.html', 'log_in/log_in.tpl.html', 'plan_trip/calendar.tpl.html', 'plan_trip/planning.tpl.html', 'plan_trip/trip_dates.tpl.html']);
+angular.module('templates-app', ['about/about.tpl.html', 'city/city.tpl.html', 'city/culture.tpl.html', 'city/entertainment.tpl.html', 'city/food.tpl.html', 'city/hotel.tpl.html', 'city/utility.tpl.html', 'home/home.tpl.html', 'log_in/log_in.tpl.html', 'plan_trip/calendar.tpl.html', 'plan_trip/planning.tpl.html', 'plan_trip/trip_dates.tpl.html', 'sign_up/sign_up.tpl.html']);
 
 angular.module("about/about.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("about/about.tpl.html",
@@ -1987,6 +1987,53 @@ angular.module("plan_trip/trip_dates.tpl.html", []).run(["$templateCache", funct
     "            </div>\n" +
     "        </div>\n" +
     "\n" +
+    "    </div>\n" +
+    "</div>");
+}]);
+
+angular.module("sign_up/sign_up.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("sign_up/sign_up.tpl.html",
+    "<div class=\"container\">\n" +
+    "    <div class=\"row\">\n" +
+    "        <div class=\"center-form panel\">\n" +
+    "            <div class=\"panel-body\">\n" +
+    "                <h2 class=\"text-center\">Sign up</h2>\n" +
+    "                <form method=\"post\" ng-submit=\"signup()\" name=\"signupForm\">\n" +
+    "                    <div class=\"form-group has-feedback\" ng-class=\"{ 'has-error' : signupForm.fullName.$invalid && signupForm.fullName.$dirty }\">\n" +
+    "                        <input class=\"form-control input-lg\" type=\"text\" name=\"displayName\" ng-model=\"displayName\" placeholder=\"Name\" required autofocus>\n" +
+    "                        <span class=\"ion-person form-control-feedback\"></span>\n" +
+    "                        <div class=\"help-block text-danger\" ng-if=\"signupForm.fullName.$dirty\" ng-messages=\"signupForm.fullName.$error\">\n" +
+    "                            <div ng-message=\"required\">You must enter your name.</div>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "\n" +
+    "                    <div class=\"form-group has-feedback\" ng-class=\"{ 'has-error' : signupForm.email.$invalid && signupForm.email.$dirty }\">\n" +
+    "                        <input class=\"form-control input-lg\" type=\"email\" id=\"email\" name=\"email\" ng-model=\"email\" placeholder=\"Email\" required\n" +
+    "                               ng-pattern=\"/^[A-z]+[a-z0-9._]+@[a-z]+\\.[a-z.]{2,5}$/\">\n" +
+    "                        <span class=\"ion-at form-control-feedback\"></span>\n" +
+    "                        <div class=\"help-block text-danger\" ng-if=\"signupForm.email.$dirty\" ng-messages=\"signupForm.email.$error\">\n" +
+    "                            <div ng-message=\"required\">Your email address is required.</div>\n" +
+    "                            <div ng-message=\"pattern\">Your email address is invalid.</div>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "\n" +
+    "                    <div class=\"form-group has-feedback\" ng-class=\"{ 'has-error' : signupForm.password.$invalid && signupForm.password.$dirty }\">\n" +
+    "                        <input password-strength class=\"form-control input-lg\" type=\"password\" name=\"password\" ng-model=\"password\" placeholder=\"Password\" required>\n" +
+    "                        <span class=\"ion-key form-control-feedback\"></span>\n" +
+    "                        <div class=\"help-block text-danger\" ng-if=\"signupForm.password.$dirty\" ng-messages=\"signupForm.password.$error\">\n" +
+    "                            <div ng-message=\"required\">Password is required.</div>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "\n" +
+    "                    <p class=\"text-center text-muted\"><small>By clicking on Sign up, you agree to <a href=\"#\">terms & conditions</a> and <a href=\"#\">privacy policy</a></small></p>\n" +
+    "\n" +
+    "                    <button type=\"submit\" ng-disabled=\"signupForm.$invalid\" class=\"btn btn-lg btn-block btn-primary\">Sign up</button>\n" +
+    "                    <br/>\n" +
+    "\n" +
+    "                    <p class=\"text-center text-muted\">Already have an account? <a href=\"/#/login\">Log in now</a></p>\n" +
+    "                </form>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
     "    </div>\n" +
     "</div>");
 }]);

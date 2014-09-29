@@ -2,7 +2,7 @@
  * Created by motric on 25/09/14.
  */
 angular.module('trippo.login', [
-    'satellizer'
+    'trippo.navModule'
 ])
 
     .controller('LoginCtrl', function($scope, $auth) {

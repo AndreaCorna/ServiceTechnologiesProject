@@ -3,10 +3,11 @@
  */
 
 angular.module("trippo.navModule", [
+    'satellizer'
 ])
 
     .controller( "NavBarCtrl",
-    function($scope, $location, $log)
+    /*function($scope, $location, $log)
     {
         $scope.isActive = function (viewLocation) {
            /*
@@ -14,7 +15,7 @@ angular.module("trippo.navModule", [
             $log.log("location  "+$location.path());
             $log.log("viewLocation  "+viewLocation);
             */
-
+            /*
             return viewLocation === $location.path();
         };
         $scope.isHidden = function(){
@@ -22,13 +23,14 @@ angular.module("trippo.navModule", [
 
             return "/home" === $location.path();
         };
-    },
+    }, */
     function($scope, $auth) {
         $scope.isAuthenticated = function() {
             return $auth.isAuthenticated();
             };
         }
 )
+
 
 .config(function config( $stateProvider ) {
     $stateProvider.state( 'login', {
@@ -56,18 +58,31 @@ angular.module("trippo.navModule", [
     });
 })
 
-    .config(function config( $stateProvider ) {
-        $stateProvider.state( 'logout', {
-            url: '/logout',
-            views: {
-                "main": {
-                    controller: 'LogoutCtrl',
-                    templateUrl: null
-                }
-            },
-            data:{ pageTitle: 'Logout' }
-        });
+.config(function config( $stateProvider ) {
+    $stateProvider.state( 'logout', {
+        url: '/logout',
+        views: {
+            "main": {
+                controller: 'LogoutCtrl',
+                templateUrl: null
+            }
+        },
+        data:{ pageTitle: 'Logout' }
     });
+})
+
+.config(function config( $stateProvider ) {
+    $stateProvider.state( 'signup', {
+        url: '/signup',
+        views: {
+            "main": {
+                controller: 'SignUpCtrl',
+                templateUrl: 'sign_up/sign_up.tpl.html'
+            }
+        },
+        data:{ pageTitle: 'signup' }
+    });
+});
 
 
 

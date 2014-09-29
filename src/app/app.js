@@ -6,8 +6,11 @@ angular.module( 'trippo', [
   'trippo.plan',
   'ui.router',
   'trippo.navModule',
-  'trippo.login'
+  'trippo.login',
+  'trippo.signup',
+  'satellizer'
 ])
+
 
 .config(function  myAppConfig($urlRouterProvider){
     $urlRouterProvider.otherwise( '/home' );

@@ -28,6 +28,7 @@ angular.module("maps/maps.tpl.html", []).run(["$templateCache", function($templa
 
 angular.module("navbar/nav.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("navbar/nav.tpl.html",
+    "<!--\n" +
     "<div ng-controller=\"NavBarCtrl\" class=\"navbar navbar-default navbar-static-top\">\n" +
     "    <div class=\"navbar-header\">\n" +
     "        <a class=\"navbar-brand\" href=\"/\"><i class=\"ion-ios7-pulse-strong\"></i> Trippo</a>\n" +
@@ -43,5 +44,6 @@ angular.module("navbar/nav.tpl.html", []).run(["$templateCache", function($templ
     "    <ul ng-if=\"isAuthenticated()\" class=\"nav navbar-nav pull-right\">\n" +
     "        <li><a href=\"/#/logout\">Logout</a></li>\n" +
     "    </ul>\n" +
-    "</div>");
+    "</div>\n" +
+    "-->");
 }]);

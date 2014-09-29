@@ -16,12 +16,4 @@ class AuthController < ApplicationController
 
     end
 
-  def linkedin
-
-    end
-
-  def twitter
-
-    end
-
  end

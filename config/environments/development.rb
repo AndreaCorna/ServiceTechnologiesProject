@@ -37,4 +37,7 @@ Rails.application.configure do
 
   #added in order to be compatible with angularjs
   config.assets.js_compressor = Uglifier.new(mangle: false)
+
+  config.use_ssl = true
+  config.ssl_port = 3000
 end
