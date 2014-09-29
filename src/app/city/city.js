@@ -4,7 +4,8 @@ angular.module( 'trippo.city', [
   'ui.bootstrap' ,
   'trippo.resources',
   'trippo.modal',
-  'infinite-scroll'
+  'infinite-scroll',
+    'trippo.guide'
 ])
 
 .config(function config( $stateProvider ) {
@@ -16,8 +17,11 @@ angular.module( 'trippo.city', [
         templateUrl: 'city/city.tpl.html'
       }
     },
-    data:{ pageTitle: 'What is It?' }
+    data:{ pageTitle: 'Trippo' }
   })
+
+
+
       .state('culture', {
           url: '/culture',
           parent:"city",
@@ -676,7 +680,7 @@ angular.module( 'trippo.city', [
 
 
 
-.controller( 'CityCtrl', function CityCtrl( $scope, $stateParams, CityRes,SelectionService, CityService) {
+.controller( 'CityCtrl', function CityCtrl( $scope, $stateParams, CityRes,SelectionService, CityService,$location) {
     $scope.intervalImages = 5000;
     $scope.modalEnabled = false;
     $scope.loaderEnabled = true;
@@ -711,6 +715,10 @@ angular.module( 'trippo.city', [
     $scope.setCurrentList = function(data){
         CityService.setCurrentList(data);
     };
+
+    $scope.isGuides =function(){
+        return $location.path().split('/').pop() == 'guides';
+    }   ;
 
 
 
@@ -953,7 +961,8 @@ angular.module( 'trippo.city', [
                 return [].concat(this.getFoodSelection(city),this.getEntertainmentSelection(city),this.getHotelSelection(city),this.getUtilitySelection(city),this.getCultureSelection(city));
             }
          };
-    })
+    }) ;
 
-;
+
+
 

@@ -1,0 +1,127 @@
+<div class="page-header">
+    <div class="vertical-container">
+        <div class="row">
+
+            <div class="col-md-12">
+                <h1 class="text-center subtitle">{{guide.name}}</h1>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-10 col-md-offset-1">
+        <div class="well well-sm">
+            <fieldset>
+                <legend>Trip Details</legend>
+
+
+                <!-- Message body -->
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="message" style="font-size: 18px">Description</label>
+                    <div class="col-md-10">
+                        <p class="form-control"  id="message" >{{guide.description}}</p>
+                    </div>
+                </div>
+
+
+
+                <!-- Form actions -->
+                <div class="form-group">
+
+                    <label class="col-md-2 control-label" for="message" style="font-size: 18px">Rating</label>
+
+                    <div class="col-md-10">
+                        <rating ng-model="guide.rating" readonly="true" ></rating>
+                    </div>
+                </div>
+            </fieldset>
+            <legend>Trip Summary</legend>
+            <div id="{{makeMoment(date.day).format('DD-MM-YYYY')}}" class="panel-group" ng-repeat="date in guide.days">
+                <div class="panel  panel-primary no-radius">
+                    <div class="panel-heading no-radius  bigger-accordition" data-toggle="collapse" data-parent="#{{makeMoment(date.day).format('DD-MM-YYYY')}}" data-target="#{{makeMoment(date.day).format('DD-MM-YYYY')}}List">
+                        <h4 class="panel-title bigger-title">
+                            <a class="accordion-toggle bigger-title" >{{makeMoment(date.day).format('DD  MMMM YYYY')}}</a>
+                        </h4>
+                    </div>
+                    <div id="{{makeMoment(date.day).format('DD-MM-YYYY')}}List" class="panel-collapse collapse">
+
+                        <div class="panel-body" style="background-color:#e8e8e8">
+                            <div class="row" style="margin-bottom: 6px">
+                                <button class="btn btn-primary btn-outlined z-up" style="float: right;font-size: 17px;margin-right: 5px;" ng-click="changeView()">{{currentView}}</button>
+                            </div>
+                            <div ng-show="currentView == 'MAPS VIEW'" class="row" ng-repeat="item in getPlaces(date)" >
+
+                                <div class="col-md-12" >
+                                    <div class="row" style="margin-left: 4px;margin-right: 4px">
+
+                                        <div class="brdr bgc-fff pad-10 box-shad property-listing">
+                                            <div class="media">
+                                                <div class="col-md-4">
+                                                    <div ng-if="item.image==undefined">
+                                                        <img style="height: 220px;  width:100%;" ng-src="assets/images/empty_photo.png">
+                                                    </div>
+                                                    <div ng-if="item.image !== undefined">
+                                                        <img style="height: 220px;  width:100%;" ng-src="{{item.image}}" >
+                                                    </div>
+
+                                                </div>
+                                                <div class="clearfix visible-sm"></div>
+
+                                                <div class="col-md-8">
+                                                    <div class="media-body fnt-smaller">
+
+                                                        <h4 class="media-heading">
+                                                            <a href="#" target="_parent">{{item.name}} </a>
+                                                            <button class="btn btn-primary btn-outlined pull-right" style="margin-top: 3px"  ng-click="setCultureDetails(item.id)" href="#moreInfoModalPlace" data-toggle="modal">MORE INFO</button>
+
+                                                        </h4>
+
+
+                                                        <div ng-if="!item.description">
+                                                            <p class="hidden-xs">No description available</p>
+                                                        </div>
+                                                        <div ng-if="item.description">
+                                                            <div class="panel panel-default scrollable" style="max-height: 165px;overflow-y: auto;margin-top: 13px;">
+                                                                <div class="hidden-xs text-justify " >{{item.description}}</div>
+                                                            </div>
+                                                        </div>
+
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="clearfix"></div>
+                                <br><br>
+
+
+
+
+                            </div>
+
+
+                            <place-list ng-show="currentView == 'DETAILS VIEW'" selected-items="getPlaces(date)" map-id="date.day"></place-list>
+                        </div>
+
+
+
+
+
+                    </div>
+
+
+
+
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

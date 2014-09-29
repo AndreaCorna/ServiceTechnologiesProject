@@ -1,7 +1,7 @@
 <div class="top-view">
     <div class="container " >
         <h3 class="text-capitalize text-center" style="font-family: Capriola;">Welcome to {{city.name}}</h3>
-        <div ng-if="location.path() == '/guides'">
+        <div ng-if="isGuides()">
             <div class="row background-carousel">
                 <carousel interval="intervalImages" class="carousel-fixed-height col-md-8 col-md-offset-2" style="padding: 0px">
                     <slide ng-repeat="image in images" active="image.active" style=" height:100%;width:100%;">
@@ -10,7 +10,7 @@
                 </carousel>
             </div>
         </div>
-        <div ng-if="location.path() != '/guides'">
+        <div ng-if="!isGuides()"  >
             <map marker-array-selected="markerArraySelected" marker-array-list="markerArrayList" map-id="cityMap" initposition="city" type="roadmap" class="mapContainer" ></map>
         </div>
     </div>
@@ -18,7 +18,8 @@
 
 <div id='cssmenu'>
     <ul>
-        <li class='active'><a ui-sref="culture" ng-click="setCurrentList('culture')" data-target="#" data-toggle="pill"><span>Culture</span></a></li>
+        <li class='active'><a ui-sref="guides"  data-target="#" data-toggle="pill"><span>Guides</span></a></li>
+        <li><a ui-sref="culture" ng-click="setCurrentList('culture')" data-target="#" data-toggle="pill"><span>Culture</span></a></li>
         <li><a ui-sref="entertainment" ng-click="setCurrentList('entertainment')" data-target="#" data-toggle="pill"><span>Entertainment</span></a></li>
         <li><a ui-sref="hotel" ng-click="setCurrentList('hotel')" data-target="#" data-toggle="pill"><span>Hotel</span></a></li>
         <li><a ui-sref="utility" ng-click="setCurrentList('utility')" data-target="#" data-toggle="pill"><span>Utility</span></a></li>
@@ -361,6 +362,7 @@
                                         <img ng-src="{{moreInfoSelection.rating}}" >
                                     </div>
                                 </div>
+
                         </div>
                             <div class="col-sm-6 col-md-6 capriola" >
                                 <div ng-show="moreInfoSelection.address != null">
