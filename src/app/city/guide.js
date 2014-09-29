@@ -68,6 +68,8 @@ angular.module( 'trippo.guide', [
 
     GuideService.initGuide($stateParams.id,function(){
         $scope.guide = GuideService.getGuide($stateParams.id);
+        console.log( $scope.guide.city);
+
 
 
     }) ;

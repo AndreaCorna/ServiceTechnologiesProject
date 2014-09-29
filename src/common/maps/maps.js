@@ -9,7 +9,8 @@ component.directive('map', function () {
 
 
      var  geocoder = new google.maps.Geocoder(),
-          mapObj;
+          mapObj,
+          map ;
 
     mapObj = {
         restrict: 'EAC',
@@ -28,9 +29,62 @@ component.directive('map', function () {
         },
         replace: true,
         templateUrl: 'maps/maps.tpl.html',
+
+
+
         link: function (scope, element, attrs) {
 
+            scope.$watch('initPosition', function(newValue, oldValue) {
+                console.log(newValue);
+                if (newValue) {
+                    console.log("keiow");
 
+
+                    var mapOptions = {
+                        zoom: 13,
+                        mapTypeId: scope.type.toLowerCase(),
+                        streetViewControl: false
+                    };
+
+                    map = new google.maps.Map(document.getElementById(scope.mapId), mapOptions);
+                    scope.initializeMapCenter(scope.initPosition, map);
+                }
+            });
+
+
+            scope.initializeMapCenter= function(center, map){
+                console.log("initialize center");
+                console.log(center);
+
+                //checking if passed object with lat and lng field
+                if (center.hasOwnProperty('lat') && center.hasOwnProperty('lng')){
+                    console.log(center);
+
+                    var location = new google.maps.LatLng(center.lat,center.lng,true) ;
+
+                    map.setCenter(location);
+                }
+                else{  //try to geocode the object (presumebly a string)
+                    geocoder.geocode({
+                        address: center
+                    }, function (results, status) {
+                        var location = results[0].geometry.location;
+                        if (status === google.maps.GeocoderStatus.OK) {
+                            console.log('geocoding center');
+                            console.log(location);
+
+                            map.setCenter(location);
+
+
+
+
+                        } else {
+                            console.log('Cannot Geocode');
+                        }
+
+                    });
+                }
+            } ;
 
 
 
@@ -57,32 +111,7 @@ component.directive('map', function () {
 
             };
 
-             scope.initializeMapCenter= function(center, map){
-                 console.log("initialize center");
-                 console.log(center);
 
-                 //checking if passed object with lat and lng field
-                if (center.hasOwnProperty('lat') && center.hasOwnProperty('lng')){
-                    map.setCenter(location);
-                }
-                else{  //try to geocode the object (presumebly a string)
-                    geocoder.geocode({
-                        address: center
-                    }, function (results, status) {
-                        var location = results[0].geometry.location;
-                        if (status === google.maps.GeocoderStatus.OK) {
-                            map.setCenter(location);
-
-
-
-
-                        } else {
-                            console.log('Cannot Geocode');
-                        }
-
-                    });
-                }
-             } ;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             /**
@@ -90,8 +119,8 @@ component.directive('map', function () {
              * @type {google.maps.DirectionsRenderer}
              */
             var directionsDisplay = new google.maps.DirectionsRenderer(),
-                directionsService = new google.maps.DirectionsService(),
-                map;
+                directionsService = new google.maps.DirectionsService();
+
             //WATCHERS
             /**
              *
@@ -102,7 +131,7 @@ component.directive('map', function () {
                     scope.origin = newValue;
                     scope.updateDirectionMap();
                 }
-            }, true);
+            });
 
             scope.$watch('destination', function(newValue, oldValue) {
                 if (newValue) {
@@ -110,30 +139,16 @@ component.directive('map', function () {
                     scope.updateDirectionMap();
                 }
 
-            }, true);
+            });
 
             scope.$watch('marker', function(newValue, oldValue) {
                 if (newValue) {
                     scope.marker = newValue;
                     scope.updateMarkerMap();
                 }
-            }, true);
+            });
 
-            scope.initMap= function(){
-                var mapOptions = {
-                    zoom: scope.zoom !== undefined ? scope.zoom : 15,
-                    mapTypeId: scope.type.toLowerCase(),
-                    streetViewControl: false
-                };
-                console.log("map");
-                console.log(document.getElementById(scope.mapId));
 
-                map = new google.maps.Map(document.getElementById(scope.mapId), mapOptions);
-                scope.initializeMapCenter(scope.initPosition, map)    ;
-
-            } ;
-
-            //scope.initMap();
 
             scope.updateDirectionMap = function () {
                 scope.planTripSelected = true;
@@ -221,7 +236,6 @@ component.directive('map', function () {
             /**
              * Handle a list of dinamically added places to the map  used in City
              */
-            var  markerarraymap;
             var  markersArraySelection = [];
             var  markerList = [];
 
@@ -254,10 +268,10 @@ component.directive('map', function () {
                     mapTypeId: scope.type.toLowerCase(),
                     streetViewControl: false
                 };
-                if (markerarraymap === undefined) {
+                if (map === undefined) {
 
-                    markerarraymap = new google.maps.Map(document.getElementById(scope.mapId), mapOptions);
-                    scope.initializeMapCenter(scope.initPosition,markerarraymap)  ;
+                    map = new google.maps.Map(document.getElementById(scope.mapId), mapOptions);
+                    scope.initializeMapCenter(scope.initPosition,map)  ;
 
                     console.log("arraymarker map");
                     console.log(document.getElementById(scope.mapId));
@@ -271,8 +285,7 @@ component.directive('map', function () {
                 //console.log("updating updateArrayMarkerListMap markerArrayList:");
                 //console.log(scope.markerArrayList);
                 angular.forEach(scope.markerArrayList, function (value, key) {
-                    markerList.push(addMarker(value,markerarraymap));
-                    var place = new google.maps.LatLng(value.lat,value.lng,true) ;
+                    markerList.push(addMarker(value,map));
                 });
 
             } ;
@@ -282,7 +295,7 @@ component.directive('map', function () {
                 scope.planTripSelected = false;
 
                 angular.forEach(toAdd, function (value, key) {
-                    markersArraySelection[value.id] = addMarker(value,markerarraymap,true) ;
+                    markersArraySelection[value.id] = addMarker(value,map,true) ;
 
 
 
@@ -297,15 +310,17 @@ component.directive('map', function () {
 
             } ;
 
+            //external variable so that whe clicked outside or to another marker the old infowindow disappear
+            var infowindow;
 
             /**
              * add a marker to the map
              * @param obj   object with a lat and a  lng  which represents its latitude and logitude and a name field used in infoWindow
              * @param map    map to attach the marker
-             * @param showInfo   boolean value to show infoWindow at initialization of map
+             *
              * @returns {google.maps.Marker}
              */
-            var addMarker=function(obj,map,selected,showInfo) {
+            var addMarker=function(obj,map,selected) {
                 var place = new google.maps.LatLng(obj.lat,obj.lng,true) ;
                 //console.log("inside marker map scope place");
                 //console.log(place);
@@ -348,15 +363,17 @@ component.directive('map', function () {
                     animation: google.maps.Animation.DROP ,
                     icon :markerIcon
                 });
-                var infowindow = new google.maps.InfoWindow({
-                    content: obj.name !== undefined ? obj.name : ''
-                });
+
                 google.maps.event.addListener(marker, 'click', function () {
+                    if (infowindow){
+                        infowindow.close();
+                    }
+                    infowindow = new google.maps.InfoWindow({
+                        content: obj.name !== undefined ? obj.name : ''
+                    });
                     return infowindow.open(map, marker);
                 });
-                if(showInfo) {
-                    infowindow.open(map, marker);
-                }
+
 
                 return marker;
             }  ;

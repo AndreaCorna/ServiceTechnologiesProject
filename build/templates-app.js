@@ -292,7 +292,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "\n" +
     "<div id='cssmenu'>\n" +
     "    <ul>\n" +
-    "        <li class='active'><a ui-sref=\"guides\"  data-target=\"#\" data-toggle=\"pill\"><span>Guides</span></a></li>\n" +
+    "        <li><a ui-sref=\"guides\"  data-target=\"#\" data-toggle=\"pill\"><span>Guides</span></a></li>\n" +
     "        <li><a ui-sref=\"culture\" ng-click=\"setCurrentList('culture')\" data-target=\"#\" data-toggle=\"pill\"><span>Culture</span></a></li>\n" +
     "        <li><a ui-sref=\"entertainment\" ng-click=\"setCurrentList('entertainment')\" data-target=\"#\" data-toggle=\"pill\"><span>Entertainment</span></a></li>\n" +
     "        <li><a ui-sref=\"hotel\" ng-click=\"setCurrentList('hotel')\" data-target=\"#\" data-toggle=\"pill\"><span>Hotel</span></a></li>\n" +

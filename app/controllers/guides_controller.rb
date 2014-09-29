@@ -89,6 +89,7 @@ class GuidesController < ApplicationController
     end
 
     result['name'] = guide.name
+    result['city'] = guide.city
     result['description']  = guide.description
     result['rating']  = guide.rating
     result['days'] = []

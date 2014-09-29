@@ -227,7 +227,6 @@ angular.module('trippo.plan',[
 })
 
 .controller('PlanningCtrl', function PlanningCtrl($scope,SelectionService,ModalHandler,PlanningService,$stateParams,StubHandler,commonResources) {
-
         /**
          * List of fuction which set the content of the modal when clicked More button in item
          */
@@ -319,6 +318,7 @@ angular.module('trippo.plan',[
          *MAPS HANDLING
          * current start and destination variable for the map
          */
+
 
         $scope.origin=undefined;
         $scope.destination=undefined;
