@@ -559,13 +559,6 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                                                                </div>\n" +
     "                                                            </div>\n" +
     "                                                            <div class=\"col-md-12\">\n" +
-    "                                                                <!-- Name\n" +
-    "                                                                <div class=\"row\">\n" +
-    "                                                                    <em>\n" +
-    "                                                                        <span>{{changeDate(review.time)}}</span>\n" +
-    "                                                                    </em>\n" +
-    "                                                                </div>\n" +
-    "                                                                -->\n" +
     "                                                                <div class=\"row\">\n" +
     "                                                                    <em>\n" +
     "                                                                        Contact User <a target=\"_blank\" ng-href=\"{{review.author_url}}\">GooglePlus!</a>\n" +
