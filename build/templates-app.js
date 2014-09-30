@@ -542,7 +542,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                                                            </div>\n" +
     "                                                            <div class=\"row\">\n" +
     "                                                                <div class=\"col-sm-12 col-md-12\">\n" +
-    "                                                                    <div ng-show=\"review.text != null\">\n" +
+    "                                                                    <div ng-show=\"review.text != ''\">\n" +
     "                                                                        <p class=\"text-left\">\n" +
     "                                                                            <b>Comment</b>\n" +
     "                                                                        </p>\n" +
