@@ -345,11 +345,13 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                            </div>\n" +
     "                            <div class=\"row\">\n" +
     "                                <div class=\"col-sm-6 col-md-6\" >\n" +
-    "                                    <div class=\"row\">\n" +
-    "                                        <b>Phone</b>\n" +
-    "                                    </div>\n" +
-    "                                    <div class=\"row\">\n" +
-    "                                        {{moreInfoSelection.international_phone}}\n" +
+    "                                    <div ng-show=\"moreInfoSelection.international_phone != null\">\n" +
+    "                                        <div class=\"row\">\n" +
+    "                                            <b>Phone</b>\n" +
+    "                                        </div>\n" +
+    "                                        <div class=\"row\">\n" +
+    "                                            {{moreInfoSelection.international_phone}}\n" +
+    "                                        </div>\n" +
     "                                    </div>\n" +
     "                                </div>\n" +
     "                                <div class=\"col-sm-6 col-md-6\">\n" +
@@ -540,10 +542,12 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                                                            </div>\n" +
     "                                                            <div class=\"row\">\n" +
     "                                                                <div class=\"col-md-12\">\n" +
-    "                                                                    <p class=\"text-left\">\n" +
-    "                                                                        <b>Comment</b>\n" +
-    "                                                                    </p>\n" +
-    "                                                                    {{review.text}}\n" +
+    "                                                                    <div ng-show=\"review.text != null\">\n" +
+    "                                                                        <p class=\"text-left\">\n" +
+    "                                                                            <b>Comment</b>\n" +
+    "                                                                        </p>\n" +
+    "                                                                        {{review.text}}\n" +
+    "                                                                    </div>\n" +
     "                                                                </div>\n" +
     "                                                            </div>\n" +
     "                                                            <div class=\"row\">\n" +
