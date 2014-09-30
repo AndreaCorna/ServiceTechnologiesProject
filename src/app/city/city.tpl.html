@@ -71,11 +71,13 @@
                             </div>
                             <div class="row">
                                 <div class="col-sm-6 col-md-6" >
-                                    <div class="row">
-                                        <b>Phone</b>
-                                    </div>
-                                    <div class="row">
-                                        {{moreInfoSelection.international_phone}}
+                                    <div ng-show="moreInfoSelection.international_phone != null">
+                                        <div class="row">
+                                            <b>Phone</b>
+                                        </div>
+                                        <div class="row">
+                                            {{moreInfoSelection.international_phone}}
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-md-6">
@@ -266,10 +268,12 @@
                                                             </div>
                                                             <div class="row">
                                                                 <div class="col-md-12">
-                                                                    <p class="text-left">
-                                                                        <b>Comment</b>
-                                                                    </p>
-                                                                    {{review.text}}
+                                                                    <div ng-show="review.text != null">
+                                                                        <p class="text-left">
+                                                                            <b>Comment</b>
+                                                                        </p>
+                                                                        {{review.text}}
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                             <div class="row">
@@ -281,13 +285,6 @@
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-12">
-                                                                <!-- Name
-                                                                <div class="row">
-                                                                    <em>
-                                                                        <span>{{changeDate(review.time)}}</span>
-                                                                    </em>
-                                                                </div>
-                                                                -->
                                                                 <div class="row">
                                                                     <em>
                                                                         Contact User <a target="_blank" ng-href="{{review.author_url}}">GooglePlus!</a>
