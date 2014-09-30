@@ -235,72 +235,73 @@
                             </div>
                             <div class="row">
                                 <div class="col-sm-12 col-md-12">
-                                    <p class="text-center">
-                                        <b>Reviews</b>
-                                    </p>
-                                    <span ng-repeat="review in moreInfoSelection.reviews">
-                                        <div class="panel-group" id="{{review.author_name}}">
-                                            <div class="panel  panel-info">
-                                                <div class="panel-heading">
-                                                    <h4 class="panel-title">
-                                                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#{{review.author_name}}" data-target="#{{$index}}">{{review.author_name}}</a>
-                                                    </h4>
-                                                </div>
-                                                <div id="{{$index}}" class="panel-collapse collapse">
-                                                    <div class="panel-body">
-                                                        <p class="text-left">
-                                                            <b>Aspects</b>
-                                                        </p>
-                                                        <div class="star-rating">
-                                                            <span ng-repeat="aspect in review.aspects">
-                                                                <div class="row">
-                                                                    <div class="col-md-3">
-                                                                        <b class="text-capitalize">{{aspect.type}}</b>
-                                                                    </div>
-                                                                    <div class="col-md-8">
-                                                                        <rating ng-model="aspect.rating" readonly="true" max=3></rating>
-                                                                    </div>
-                                                                </div>
-                                                            </span>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-md-12">
-                                                                <p class="text-left">
-                                                                    <b>Comment</b>
-                                                                </p>
-                                                                {{review.text}}
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-md-3">
-                                                                <b class="text-capitalize">Rating</b>
-                                                            </div>
-                                                            <div class="col-md-8">
-                                                                <rating ng-model="review.rating" readonly="true" max=5></rating>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-12">
-                                                            <!-- Name
-                                                            <div class="row">
-                                                                <em>
-                                                                    <span>{{changeDate(review.time)}}</span>
-                                                                </em>
-                                                            </div>
-                                                            -->
-                                                            <div class="row">
-                                                                <em>
-                                                                    Contact User <a target="_blank" ng-href="{{review.author_url}}">GooglePlus!</a>
-                                                                </em>
-                                                            </div>
-                                                        </div>
+                                    <div ng-show="moreInfoSelection.reviews != null">
+                                        <p class="text-center">
+                                            <b>Reviews</b>
+                                        </p>
+                                        <span ng-repeat="review in moreInfoSelection.reviews">
+                                            <div class="panel-group" id="{{review.author_name}}">
+                                                <div class="panel  panel-info">
+                                                    <div class="panel-heading">
+                                                        <h4 class="panel-title">
+                                                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#{{review.author_name}}" data-target="#{{$index}}">{{review.author_name}}</a>
+                                                        </h4>
                                                     </div>
+                                                    <div id="{{$index}}" class="panel-collapse collapse">
+                                                        <div class="panel-body">
+                                                            <p class="text-left">
+                                                                <b>Aspects</b>
+                                                            </p>
+                                                            <div class="star-rating">
+                                                                <span ng-repeat="aspect in review.aspects">
+                                                                    <div class="row">
+                                                                        <div class="col-md-3">
+                                                                            <b class="text-capitalize">{{aspect.type}}</b>
+                                                                        </div>
+                                                                        <div class="col-md-8">
+                                                                            <rating ng-model="aspect.rating" readonly="true" max=3></rating>
+                                                                        </div>
+                                                                    </div>
+                                                                </span>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <p class="text-left">
+                                                                        <b>Comment</b>
+                                                                    </p>
+                                                                    {{review.text}}
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-3">
+                                                                    <b class="text-capitalize">Rating</b>
+                                                                </div>
+                                                                <div class="col-md-8">
+                                                                    <rating ng-model="review.rating" readonly="true" max=5></rating>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <!-- Name
+                                                                <div class="row">
+                                                                    <em>
+                                                                        <span>{{changeDate(review.time)}}</span>
+                                                                    </em>
+                                                                </div>
+                                                                -->
+                                                                <div class="row">
+                                                                    <em>
+                                                                        Contact User <a target="_blank" ng-href="{{review.author_url}}">GooglePlus!</a>
+                                                                    </em>
+                                                                </div>
+                                                            </div>
+                                                        </div>
 
+                                                    </div>
                                                 </div>
-                                            </div>
 
-                                   </div>
-                                  </span>
-
+                                       </div>
+                                      </span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
