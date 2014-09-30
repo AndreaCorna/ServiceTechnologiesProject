@@ -488,7 +488,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                                        </div>\n" +
     "                                    </div>\n" +
     "                                    <div ng-show=\"moreInfoSelection.open_hours[0].hours[0].close == null\">\n" +
-    "                                        <div class=\"col-md-12\">\n" +
+    "                                        <div class=\"col-sm-12 col-md-12\">\n" +
     "                                            <div class=\"panel panel-info\">\n" +
     "                                                <h5 class=\"text-center text-capitalize capriola\">Always Open</h5>\n" +
     "                                            </div>\n" +
@@ -531,17 +531,17 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                                                            <div class=\"star-rating\">\n" +
     "                                                                <span ng-repeat=\"aspect in review.aspects\">\n" +
     "                                                                    <div class=\"row\">\n" +
-    "                                                                        <div class=\"col-md-3\">\n" +
+    "                                                                        <div class=\"col-sm-3 col-md-3\">\n" +
     "                                                                            <b class=\"text-capitalize\">{{aspect.type}}</b>\n" +
     "                                                                        </div>\n" +
-    "                                                                        <div class=\"col-md-8\">\n" +
+    "                                                                        <div class=\"col-sm-8 col-md-8\">\n" +
     "                                                                            <rating ng-model=\"aspect.rating\" readonly=\"true\" max=3></rating>\n" +
     "                                                                        </div>\n" +
     "                                                                    </div>\n" +
     "                                                                </span>\n" +
     "                                                            </div>\n" +
     "                                                            <div class=\"row\">\n" +
-    "                                                                <div class=\"col-md-12\">\n" +
+    "                                                                <div class=\"col-sm-12 col-md-12\">\n" +
     "                                                                    <div ng-show=\"review.text != null\">\n" +
     "                                                                        <p class=\"text-left\">\n" +
     "                                                                            <b>Comment</b>\n" +
@@ -551,21 +551,14 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                                                                </div>\n" +
     "                                                            </div>\n" +
     "                                                            <div class=\"row\">\n" +
-    "                                                                <div class=\"col-md-3\">\n" +
+    "                                                                <div class=\"col-sm-3 col-md-3\">\n" +
     "                                                                    <b class=\"text-capitalize\">Rating</b>\n" +
     "                                                                </div>\n" +
-    "                                                                <div class=\"col-md-8\">\n" +
+    "                                                                <div class=\"col-sm-8 col-md-8\">\n" +
     "                                                                    <rating ng-model=\"review.rating\" readonly=\"true\" max=5></rating>\n" +
     "                                                                </div>\n" +
     "                                                            </div>\n" +
-    "                                                            <div class=\"col-md-12\">\n" +
-    "                                                                <!-- Name\n" +
-    "                                                                <div class=\"row\">\n" +
-    "                                                                    <em>\n" +
-    "                                                                        <span>{{changeDate(review.time)}}</span>\n" +
-    "                                                                    </em>\n" +
-    "                                                                </div>\n" +
-    "                                                                -->\n" +
+    "                                                            <div class=\"col-sm-12 col-md-12\">\n" +
     "                                                                <div class=\"row\">\n" +
     "                                                                    <em>\n" +
     "                                                                        Contact User <a target=\"_blank\" ng-href=\"{{review.author_url}}\">GooglePlus!</a>\n" +
@@ -747,7 +740,6 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "    $(function () {\n" +
     "        $('#moreInfoModalPlace').on('hidden.bs.modal', function () {\n" +
     "            var scope = angular.element(document.querySelector('#moreInfoModalPlace')).scope();\n" +
-    "\n" +
     "            scope.disableModal();\n" +
     "        });\n" +
     "    });\n" +
@@ -756,7 +748,6 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "    $(function () {\n" +
     "        $('#moreInfoModalHotel').on('hidden.bs.modal', function () {\n" +
     "            var scope = angular.element(document.querySelector('#moreInfoModalHotel')).scope();\n" +
-    "\n" +
     "            scope.disableModal();\n" +
     "        });\n" +
     "    });\n" +
@@ -766,7 +757,6 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "        $('#moreInfoModalHotel').on('shown.bs.modal', function () {\n" +
     "            var scope = angular.element(document.querySelector('#moreInfoModalHotel')).scope();\n" +
     "            scope.hotelShow = true;\n" +
-    "            console.log(scope.hotelShow);\n" +
     "        });\n" +
     "    });\n" +
     "</script>\n" +
