@@ -12,7 +12,7 @@ parameters.
   def get_wikipedia_description(name,city)
     url = URI.encode('http://en.wikipedia.org/w/api.php?action=query&format=json&list=search&srsearch='+name+' '+city+'&prop=timestamp')
     description = nil
-    status = Timeout::timeout(60) {
+    status = Timeout::timeout(30) {
       response = HTTParty.get(url)
       json = JSON.parse(response.body)
       if(!json.nil? && !json['query']['search'][0].nil?)
