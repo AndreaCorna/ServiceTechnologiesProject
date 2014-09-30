@@ -2,6 +2,7 @@ require 'numbers_and_words'
 require 'base64'
 require 'net/http'
 require 'httparty'
+require 'timeout'
 
 module HotelsHelper
 
@@ -90,9 +91,13 @@ The methods returns the list of hotels.
 =end
   private
   def hotels(city)
-    api = Expedia::Api.new
-    response = api.get_list({ :destinationString => city})
-    return response.body
+    data = nil
+    status = Timeout::timeout(30) {
+      api = Expedia::Api.new
+      data = api.get_list({ :destinationString => city})
+    }
+
+    return data.body
   end
 
 =begin
