@@ -71,8 +71,10 @@ The method returns the details of the hotel identified with the id.
         count = count + 1
         threads << Thread.new {
           url = photo['url']
-          image_data = Base64.encode64(open(url).read)
-          photos.append(:image=>image_data)
+          status = Timeout::timeout(30) {
+            image_data = Base64.encode64(open(url).read)
+            photos.append(:image=>image_data)
+          }
         }
         if(count == 5)
           break
@@ -94,11 +96,12 @@ The methods returns the list of hotels.
     data = nil
     status = Timeout::timeout(30) {
       api = Expedia::Api.new
-      data = api.get_list({ :destinationString => city})
-      puts data
-      return data.body
+      response = api.get_list({ :destinationString => city})
+      if(!response.exception?)
+        data = response.body
+      end
+      return data
     }
-
     return data
   end
 
