@@ -95,9 +95,11 @@ The methods returns the list of hotels.
     status = Timeout::timeout(30) {
       api = Expedia::Api.new
       data = api.get_list({ :destinationString => city})
+      puts data
+      return data.body
     }
 
-    return data.body
+    return data
   end
 
 =begin
