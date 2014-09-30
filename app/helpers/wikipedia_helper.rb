@@ -1,6 +1,8 @@
 require 'net/http'
 require 'httparty'
 require 'uri'
+require 'timeout'
+
 module WikipediaHelper
 
 =begin
@@ -9,10 +11,11 @@ parameters.
 =end
   def get_wikipedia_description(name,city)
     url = URI.encode('http://en.wikipedia.org/w/api.php?action=query&format=json&list=search&srsearch='+name+' '+city+'&prop=timestamp')
-    response = HTTParty.get(url)
     description = nil
-    json = JSON.parse(response.body)
-    if(!json.nil? && !json['query']['search'][0].nil?)
+    status = Timeout::timeout(60) {
+      response = HTTParty.get(url)
+      json = JSON.parse(response.body)
+      if(!json.nil? && !json['query']['search'][0].nil?)
         title = json['query']['search'][0]['title']
         url_page = URI.encode('http://en.wikipedia.org/w/api.php?action=query&prop=extracts&format=json&exintro=&titles='+title)
         data = HTTParty.get(url_page).body
@@ -21,7 +24,8 @@ parameters.
         string =  data_json['query']['pages'][key.to_param]['extract']
         description  = string.strip_tags
 
-    end
+      end
+    }
     return description
   end
 
