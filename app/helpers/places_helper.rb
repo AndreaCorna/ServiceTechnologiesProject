@@ -429,38 +429,42 @@ The result is an object with two elements:
 
 
   def get_details_item(id)
-    response = HTTParty.get('https://maps.googleapis.com/maps/api/place/details/json?placeid='+id+'&key='+ENV['API_KEY'])
-    json = JSON.parse(response.body)
-    lat = json['result']['geometry']['location']['lat']
-    lng = json['result']['geometry']['location']['lng']
-    reviews = json['result']['reviews']
-    formatted_address = json['result']['formatted_address']
-    phone = json['result']['international_phone_number']
-    name = json['result']['name']
-    price = json['result']['price_level']
-    web_site = json['result']['website']
-    open_hours = nil
-    if(!json['result']['opening_hours'].nil?)
-      open_hours = parse_open_hours(json['result']['opening_hours']['periods'])
-    end
-    photos = []
-    if(!json['result']['photos'].nil?)
-      threads = []
-      json['result']['photos'].each do |photo|
-        threads << Thread.new {
-          url = 'https://maps.googleapis.com/maps/api/place/photo?maxheight=300&maxwidth=300&photoreference='+photo['photo_reference']+'&key='+ENV['API_KEY']
-          status = Timeout::timeout(15){
-            image_data = Base64.encode64(open(url).read)
-            photos.append(:image=>image_data)
+    details_item = nil
+    status = Timeout::timeout(45){
+      response = HTTParty.get('https://maps.googleapis.com/maps/api/place/details/json?placeid='+id+'&key='+ENV['API_KEY'])
+      json = JSON.parse(response.body)
+      lat = json['result']['geometry']['location']['lat']
+      lng = json['result']['geometry']['location']['lng']
+      reviews = json['result']['reviews']
+      formatted_address = json['result']['formatted_address']
+      phone = json['result']['international_phone_number']
+      name = json['result']['name']
+      price = json['result']['price_level']
+      web_site = json['result']['website']
+      open_hours = nil
+      if(!json['result']['opening_hours'].nil?)
+        open_hours = parse_open_hours(json['result']['opening_hours']['periods'])
+      end
+      photos = []
+      if(!json['result']['photos'].nil?)
+        threads = []
+        json['result']['photos'].each do |photo|
+          threads << Thread.new {
+            url = 'https://maps.googleapis.com/maps/api/place/photo?maxheight=300&maxwidth=300&photoreference='+photo['photo_reference']+'&key='+ENV['API_KEY']
+            status = Timeout::timeout(15){
+              image_data = Base64.encode64(open(url).read)
+              photos.append(:image=>image_data)
+            }
           }
-        }
+        end
+        threads.each do |thread|
+          thread.join
+        end
       end
-      threads.each do |thread|
-        thread.join
-      end
-    end
-    rating = json['result']['rating']
-    details_item = DetailedItem.new(id,lat,lng,name,rating,photos,price,reviews,formatted_address,web_site,phone,open_hours)
+      rating = json['result']['rating']
+      details_item = DetailedItem.new(id,lat,lng,name,rating,photos,price,reviews,formatted_address,web_site,phone,open_hours)
+    }
+
     return details_item
   end
 
