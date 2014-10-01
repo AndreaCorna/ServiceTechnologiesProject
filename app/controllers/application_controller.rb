@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
-  force_ssl
-
+  #force ssl
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
