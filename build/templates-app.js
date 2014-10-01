@@ -788,7 +788,7 @@ angular.module("city/culture.tpl.html", []).run(["$templateCache", function($tem
     "            </div>\n" +
     "        </div>\n" +
     "        <span ng-repeat=\"c in cultureSelection | filter:{name:elementSelectionName} | orderBy:elementSelectionOrder\">\n" +
-    "            <div class=\"list-group-item\">\n" +
+    "            <div class=\"list-group-item list-culture\">\n" +
     "                <div class=\"col-sm-3 col-md-3\">\n" +
     "                    <div class=\"panel panel-default\">\n" +
     "                        <div class=\"panel-body image-panel\">\n" +
@@ -866,7 +866,7 @@ angular.module("city/culture.tpl.html", []).run(["$templateCache", function($tem
     "            </div>\n" +
     "            <div infinite-scroll=\"infiniteScroll.nextPage(resource,setLoader)\" infinite-scroll-distance=\"2\" infinite-scroll-disabled=\"infiniteScroll.busy\">\n" +
     "                <span ng-repeat=\"c in infiniteScroll.itemList | filter:{name:elementListName} | orderBy:elementListOrder\">\n" +
-    "                    <div class=\"list-group-item\">\n" +
+    "                    <div class=\"list-group-item list-culture\">\n" +
     "                       <div class=\"col-sm-3 col-md-3\">\n" +
     "                            <div class=\"panel panel-default\">\n" +
     "                                <div class=\"panel-body image-panel\">\n" +
@@ -974,7 +974,7 @@ angular.module("city/entertainment.tpl.html", []).run(["$templateCache", functio
     "                    </div>\n" +
     "                </div>\n" +
     "                <span ng-repeat=\"c in entertainmentSelection | filter:{name:elementSelectionName} | orderBy:elementSelectionOrder\">\n" +
-    "                    <div class=\"list-group-item\">\n" +
+    "                    <div class=\"list-group-item list-entertainment\">\n" +
     "                        <div class=\"col-sm-3 col-md-3\">\n" +
     "                            <div class=\"panel panel-default\">\n" +
     "                                <div class=\"panel-body image-panel\">\n" +
@@ -1052,7 +1052,7 @@ angular.module("city/entertainment.tpl.html", []).run(["$templateCache", functio
     "                </div>\n" +
     "                <div infinite-scroll=\"infiniteScroll.nextPage(resource,setLoader)\" infinite-scroll-distance=\"2\" infinite-scroll-disabled=\"infiniteScroll.busy\">\n" +
     "                    <span ng-repeat=\"c in infiniteScroll.itemList | filter:{name:elementListName} | orderBy:elementListOrder\">\n" +
-    "                        <div class=\"list-group-item\">\n" +
+    "                        <div class=\"list-group-item list-entertainment\">\n" +
     "                            <div class=\"col-sm-3 col-md-3\">\n" +
     "                                <div class=\"panel panel-default\">\n" +
     "                                    <div class=\"panel-body image-panel\">\n" +
@@ -1157,7 +1157,7 @@ angular.module("city/food.tpl.html", []).run(["$templateCache", function($templa
     "                </div>\n" +
     "            </div>\n" +
     "            <span ng-repeat=\"c in foodSelection | filter:{name:elementSelectionName} | orderBy:elementSelectionOrder\">\n" +
-    "                <div class=\"list-group-item\">\n" +
+    "                <div class=\"list-group-item list-food\">\n" +
     "                    <div class=\"col-sm-3 col-md-3\">\n" +
     "                        <div class=\"panel panel-default\">\n" +
     "                            <div class=\"panel-body image-panel\">\n" +
@@ -1234,7 +1234,7 @@ angular.module("city/food.tpl.html", []).run(["$templateCache", function($templa
     "                </div>\n" +
     "                <div infinite-scroll=\"infiniteScroll.nextPage(resource,setLoader)\" infinite-scroll-distance=\"2\" infinite-scroll-disabled=\"infiniteScroll.busy\">\n" +
     "                    <span ng-repeat=\"c in infiniteScroll.itemList | filter:{name:elementListName} | orderBy:elementListOrder\">\n" +
-    "                        <div class=\"list-group-item\">\n" +
+    "                        <div class=\"list-group-item list-food\">\n" +
     "                            <div class=\"col-sm-3 col-md-3\">\n" +
     "                                <div class=\"panel panel-default\">\n" +
     "                                    <div class=\"panel-body image-panel\">\n" +
@@ -1544,7 +1544,7 @@ angular.module("city/hotel.tpl.html", []).run(["$templateCache", function($templ
     "                </div>\n" +
     "            </div>\n" +
     "            <span ng-repeat=\"c in hotelSelection | filter:{name:elementSelectionName} | orderBy:elementSelectionOrder\">\n" +
-    "                <div class=\"list-group-item\">\n" +
+    "                <div class=\"list-group-item list-hotel\">\n" +
     "                    <div class=\"col-sm-3 col-md-3\">\n" +
     "                        <div class=\"panel panel-default\">\n" +
     "                            <div class=\"panel-body image-panel\">\n" +
@@ -1621,7 +1621,7 @@ angular.module("city/hotel.tpl.html", []).run(["$templateCache", function($templ
     "                </div>\n" +
     "                <div infinite-scroll=\"infiniteScroll.nextPage(resource,setLoader)\" infinite-scroll-distance=\"2\" infinite-scroll-disabled=\"infiniteScroll.busy\">\n" +
     "                    <span ng-repeat=\"c in infiniteScroll.itemList | filter:{name:elementListName} | orderBy:elementListOrder\">\n" +
-    "                        <div class=\"list-group-item\">\n" +
+    "                        <div class=\"list-group-item list-hotel\">\n" +
     "                            <div class=\"col-sm-3 col-md-3\">\n" +
     "                                <div class=\"panel panel-default\">\n" +
     "                                    <div class=\"panel-body image-panel\">\n" +
@@ -1726,7 +1726,7 @@ angular.module("city/utility.tpl.html", []).run(["$templateCache", function($tem
     "                </div>\n" +
     "            </div>\n" +
     "            <span ng-repeat=\"c in utilitySelection | filter:{name:elementSelectionName} | orderBy:elementSelectionOrder\">\n" +
-    "                <div class=\"list-group-item\">\n" +
+    "                <div class=\"list-group-item list-utility\">\n" +
     "                    <div class=\"col-sm-3 col-md-3\">\n" +
     "                        <div class=\"panel panel-default\">\n" +
     "                            <div class=\"panel-body image-panel\">\n" +
@@ -1803,7 +1803,7 @@ angular.module("city/utility.tpl.html", []).run(["$templateCache", function($tem
     "                </div>\n" +
     "                <div infinite-scroll=\"infiniteScroll.nextPage(resource,setLoader)\" infinite-scroll-distance=\"2\" infinite-scroll-disabled=\"infiniteScroll.busy\">\n" +
     "                    <span ng-repeat=\"c in infiniteScroll.itemList | filter:{name:elementListName} | orderBy:elementListOrder\">\n" +
-    "                        <div class=\"list-group-item\">\n" +
+    "                        <div class=\"list-group-item list-utility\">\n" +
     "                            <div class=\"col-sm-3 col-md-3\">\n" +
     "                                <div class=\"panel panel-default\">\n" +
     "                                    <div class=\"panel-body image-panel\">\n" +
