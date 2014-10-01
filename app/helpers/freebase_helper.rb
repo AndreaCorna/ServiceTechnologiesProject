@@ -3,8 +3,8 @@ module FreebaseHelper
   include WikipediaHelper
 
 =begin
-The method returns the description of a place using freebase api. If the result of this
-search is null, it looks for information using the wikipedia api.
+The method returns the description of a place. It searches for information using both freebase and wikipedia api.
+If the result of freebase isn't null it's returned, otherwise the method returns the wikipedia information.
 =end
   def get_description(name,city)
     threads = []
