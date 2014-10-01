@@ -1594,9 +1594,9 @@ angular.module("log_in/log_in.tpl.html", []).run(["$templateCache", function($te
     "                    </div>\n" +
     "                </form>\n" +
     "\n" +
-    "                <a ng-controller=\"NavBarCtrl\" type=\"button\" class=\"btn btn-block btn-facebook\" href=\"/auth/facebook\">\n" +
+    "                <button ng-controller=\"NavBarCtrl\" class=\"btn btn-block btn-facebook\" ng-click=\"autenticato()\" ng-href=\"/auth/facebook\">\n" +
     "                    <i class=\"fa fa-facebook\"></i> Sign in with Facebook\n" +
-    "                </a>\n" +
+    "                </button>\n" +
     "                <a ng-controller=\"NavBarCtrl\" type=\"button\" class=\"btn btn-block btn-google-plus\" href=\"/auth/google_oauth2\" ng-click=\"aut = true\">\n" +
     "                    <i class=\"fa fa-google-plus\"></i>Sign in with Google\n" +
     "                </a>\n" +
