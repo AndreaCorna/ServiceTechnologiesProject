@@ -1,5 +1,6 @@
 require 'net/http'
 require 'httparty'
+require 'timeout'
 
 module CityHelper
 
@@ -29,11 +30,14 @@ The method returns an array contains 4 images url around the coordinates passed 
     latitude = (lat+0.01).to_s
     longitude =(lng+0.01).to_s
     url = 'http://www.panoramio.com/map/get_panoramas.php?set=public&from=0&to=4&minx='+lng.to_s+'&miny='+lat.to_s+'&maxx='+longitude+'&maxy='+latitude+'&size=medium&mapfilter=true'
-    response = HTTParty.get(url)
-    json = JSON.parse(response.body)
-    json['photos'].each do |photo|
-      photos.append(photo)
-    end
+    status = Timeout::timeout(30){
+      response = HTTParty.get(url)
+      json = JSON.parse(response.body)
+      json['photos'].each do |photo|
+        photos.append(photo)
+      end
+    }
+
   end
 
 
