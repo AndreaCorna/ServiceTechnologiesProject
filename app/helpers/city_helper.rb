@@ -21,6 +21,9 @@ The method creates the list of cities to be added to the database of the applica
         results.append(item)
       }
     end
+    threads.each do |thread|
+      thread.join
+    end
     return results
 
   end
