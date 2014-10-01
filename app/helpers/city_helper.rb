@@ -9,14 +9,17 @@ The method creates the list of cities to be added to the database of the applica
 =end
    def populate_database(cities)
     results = []
+    threads = []
     response = JSON.parse(cities)
     response.each do |city|
+      threads << Thread.new{
         location = Geocoder.search(city)
         lat = location[0].latitude
         lng = location[0].longitude
         country = location[0].country
         item = CityItem.new(city.downcase,country,lat,lng)
         results.append(item)
+      }
     end
     return results
 
