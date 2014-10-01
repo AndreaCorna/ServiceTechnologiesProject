@@ -1,5 +1,6 @@
 require 'net/http'
 require 'httparty'
+require 'timeout'
 
 module CityHelper
 
@@ -8,14 +9,22 @@ The method creates the list of cities to be added to the database of the applica
 =end
    def populate_database(cities)
     results = []
+    threads = []
     response = JSON.parse(cities)
     response.each do |city|
-        location = Geocoder.search(city)
-        lat = location[0].latitude
-        lng = location[0].longitude
-        country = location[0].country
-        item = CityItem.new(city.downcase,country,lat,lng)
-        results.append(item)
+      threads << Thread.new{
+        status = Timeout::timeout(30){
+          location = Geocoder.search(city)
+          lat = location[0].latitude
+          lng = location[0].longitude
+          country = location[0].country
+          item = CityItem.new(city.downcase,country,lat,lng)
+          results.append(item)
+        }
+      }
+    end
+    threads.each do |thread|
+      thread.join
     end
     return results
 
@@ -29,11 +38,14 @@ The method returns an array contains 4 images url around the coordinates passed 
     latitude = (lat+0.01).to_s
     longitude =(lng+0.01).to_s
     url = 'http://www.panoramio.com/map/get_panoramas.php?set=public&from=0&to=4&minx='+lng.to_s+'&miny='+lat.to_s+'&maxx='+longitude+'&maxy='+latitude+'&size=medium&mapfilter=true'
-    response = HTTParty.get(url)
-    json = JSON.parse(response.body)
-    json['photos'].each do |photo|
-      photos.append(photo)
-    end
+    status = Timeout::timeout(30){
+      response = HTTParty.get(url)
+      json = JSON.parse(response.body)
+      json['photos'].each do |photo|
+        photos.append(photo)
+      end
+    }
+
   end
 
 
