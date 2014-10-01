@@ -3,7 +3,7 @@ require 'httparty'
 require 'json'
 require 'rubygems'
 require 'base64'
-
+require 'timeout'
 
 module PlacesHelper
 
@@ -37,7 +37,9 @@ The result is an object with two elements:
           end
           photos = []
           if(!place.photos[0].nil?)
-            photos.append(:image=>place.photos[0].fetch_url(400))
+             status = Timeout::timeout(15) {
+              photos.append(:image=>place.photos[0].fetch_url(400))
+            }
           end
           description = get_description(place.name,city)
           results.append(UtilityItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'utility',description))}
@@ -74,7 +76,9 @@ The result is an object with two elements:
           end
           photos = []
           if(!place.photos[0].nil?)
-            photos.append(:image=>place.photos[0].fetch_url(400))
+            status = Timeout::timeout(15) {
+              photos.append(:image=>place.photos[0].fetch_url(400))
+            }
           end
           description = get_description(place.name,city)
           results.append(UtilityItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'utility',description))}
@@ -139,7 +143,9 @@ The result is an object with two elements:
 
           photos = []
           if(!place.photos[0].nil?)
-            photos.append(:image=>place.photos[0].fetch_url(400))
+            status = Timeout::timeout(15) {
+              photos.append(:image=>place.photos[0].fetch_url(400))
+            }
           end
           description = get_description(place.name,city)
           results.append(CultureItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'culture',description))}
@@ -177,7 +183,9 @@ The result is an object with two elements:
           end
           photos = []
           if(!place.photos[0].nil?)
-            photos.append(:image=>place.photos[0].fetch_url(400))
+            status = Timeout::timeout(15) {
+              photos.append(:image=>place.photos[0].fetch_url(400))
+            }
           end
           description = get_description(place.name,city)
           results.append(CultureItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'culture',description))}
@@ -241,7 +249,9 @@ The result is an object with two elements:
           end
           photos = []
           if(!place.photos[0].nil?)
-            photos.append(:image=>place.photos[0].fetch_url(400))
+            status = Timeout::timeout(15) {
+              photos.append(:image=>place.photos[0].fetch_url(400))
+            }
           end
           description = get_description(place.name,city)
           results.append(EntertainmentItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'entertainment',description))}
@@ -279,7 +289,9 @@ The result is an object with two elements:
           end
           photos = []
           if(!place.photos[0].nil?)
-            photos.append(:image=>place.photos[0].fetch_url(400))
+            status = Timeout::timeout(15) {
+              photos.append(:image=>place.photos[0].fetch_url(400))
+            }
           end
           description = get_description(place.name,city)
           results.append(EntertainmentItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'entertainment',description))}
@@ -341,7 +353,9 @@ The items' types are:
           end
           photos = []
           if(!place.photos[0].nil?)
-            photos.append(:image=>place.photos[0].fetch_url(400))
+            status = Timeout::timeout(15) {
+              photos.append(:image=>place.photos[0].fetch_url(400))
+            }
           end
           description = get_description(place.name,city)
           results.append(FoodItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'food',description))}
@@ -379,7 +393,9 @@ The result is an object with two elements:
           end
           photos = []
           if(!place.photos[0].nil?)
-            photos.append(:image=>place.photos[0].fetch_url(400))
+            status = Timeout::timeout(15) {
+              photos.append(:image=>place.photos[0].fetch_url(400))
+            }
           end
           description = get_description(place.name,city)
           results.append(FoodItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'food',description))}
@@ -433,8 +449,10 @@ The result is an object with two elements:
       json['result']['photos'].each do |photo|
         threads << Thread.new {
           url = 'https://maps.googleapis.com/maps/api/place/photo?maxheight=300&maxwidth=300&photoreference='+photo['photo_reference']+'&key='+ENV['API_KEY']
-          image_data = Base64.encode64(open(url).read)
-          photos.append(:image=>image_data)
+          status = Timeout::timeout(15){
+            image_data = Base64.encode64(open(url).read)
+            photos.append(:image=>image_data)
+          }
         }
       end
       threads.each do |thread|
