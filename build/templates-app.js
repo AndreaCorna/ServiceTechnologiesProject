@@ -1585,7 +1585,7 @@ angular.module("log_in/log_in.tpl.html", []).run(["$templateCache", function($te
     "                    </p>\n" +
     "\n" +
     "                    <p class=\"text-center text-muted\">\n" +
-    "                        <small>Don't have an account yet? <a href=\"/#/signup\">Sign up</a></small>\n" +
+    "                        <small>Don't have an account yet? <a ui-sref=\"signup\">Sign up</a></small>\n" +
     "                    </p>\n" +
     "\n" +
     "                    <div class=\"signup-or-separator\">\n" +
@@ -1594,12 +1594,12 @@ angular.module("log_in/log_in.tpl.html", []).run(["$templateCache", function($te
     "                    </div>\n" +
     "                </form>\n" +
     "\n" +
-    "                <button class=\"btn btn-block btn-facebook\" ng-click=\"authenticate('facebook')\">\n" +
+    "                <a ng-controller=\"NavBarCtrl\" type=\"button\" class=\"btn btn-block btn-facebook\" href=\"/auth/facebook\">\n" +
     "                    <i class=\"fa fa-facebook\"></i> Sign in with Facebook\n" +
-    "                </button>\n" +
-    "                <button class=\"btn btn-block btn-google-plus\" ng-click=\"authenticate('google')\">\n" +
+    "                </a>\n" +
+    "                <a ng-controller=\"NavBarCtrl\" type=\"button\" class=\"btn btn-block btn-google-plus\" href=\"/auth/google_oauth2\" ng-click=\"aut = true\">\n" +
     "                    <i class=\"fa fa-google-plus\"></i>Sign in with Google\n" +
-    "                </button>\n" +
+    "                </a>\n" +
     "\n" +
     "                </button>\n" +
     "\n" +
@@ -2030,7 +2030,7 @@ angular.module("sign_up/sign_up.tpl.html", []).run(["$templateCache", function($
     "                    <button type=\"submit\" ng-disabled=\"signupForm.$invalid\" class=\"btn btn-lg btn-block btn-primary\">Sign up</button>\n" +
     "                    <br/>\n" +
     "\n" +
-    "                    <p class=\"text-center text-muted\">Already have an account? <a href=\"/#/login\">Log in now</a></p>\n" +
+    "                    <p class=\"text-center text-muted\">Already have an account? <a ui-sref=\"login\">Log in now</a></p>\n" +
     "                </form>\n" +
     "            </div>\n" +
     "        </div>\n" +

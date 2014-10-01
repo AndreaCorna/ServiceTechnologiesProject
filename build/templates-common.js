@@ -1,4 +1,4 @@
-angular.module('templates-common', ['maps/maps.tpl.html', 'navbar/nav.tpl.html']);
+angular.module('templates-common', ['maps/maps.tpl.html']);
 
 angular.module("maps/maps.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("maps/maps.tpl.html",
@@ -24,26 +24,4 @@ angular.module("maps/maps.tpl.html", []).run(["$templateCache", function($templa
     "\n" +
     "</div>\n" +
     "");
-}]);
-
-angular.module("navbar/nav.tpl.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("navbar/nav.tpl.html",
-    "<!--\n" +
-    "<div ng-controller=\"NavBarCtrl\" class=\"navbar navbar-default navbar-static-top\">\n" +
-    "    <div class=\"navbar-header\">\n" +
-    "        <a class=\"navbar-brand\" href=\"/\"><i class=\"ion-ios7-pulse-strong\"></i> Trippo</a>\n" +
-    "    </div>\n" +
-    "    <ul class=\"nav navbar-nav\">\n" +
-    "        <li><a href=\"/\">Home</a></li>\n" +
-    "        <li ng-if=\"isAuthenticated()\"><a href=\"/#/profile\">Profile</a></li>\n" +
-    "    </ul>\n" +
-    "    <ul ng-if=\"!isAuthenticated()\" class=\"nav navbar-nav pull-right\">\n" +
-    "        <li><a href=\"/#/login\">Login</a></li>\n" +
-    "        <li><a href=\"/#/signup\">Sign up</a></li>\n" +
-    "    </ul>\n" +
-    "    <ul ng-if=\"isAuthenticated()\" class=\"nav navbar-nav pull-right\">\n" +
-    "        <li><a href=\"/#/logout\">Logout</a></li>\n" +
-    "    </ul>\n" +
-    "</div>\n" +
-    "-->");
 }]);
