@@ -5,11 +5,16 @@ angular.module('trippo.login', [
     'trippo.navModule'
 ])
 
-    .controller('LoginCtrl', function($scope, $auth) {
+    .controller('LoginCtrl',
+
+   /* function($scope, $auth) {
 
         $scope.authenticate = function(provider) {
             $auth.authenticate(provider);
         };
+    } */
+    function($scope) {
+        $scope.aut = false;
     })
 
     .config(function($authProvider) {

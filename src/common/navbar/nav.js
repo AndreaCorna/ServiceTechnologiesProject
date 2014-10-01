@@ -3,10 +3,25 @@
  */
 
 angular.module("trippo.navModule", [
-    'satellizer'
+    'satellizer',
+    'trippo.login'
 ])
 
-    .controller( "NavBarCtrl",
+    .controller( "NavBarCtrl", ['$rootScope','$scope', '$location', function($rootScope,$scope, $location){
+
+        $rootScope.autenticato = function(){
+            $rootScope.aut = true;
+        };
+
+        $rootScope.noautenticato = function(){
+            $rootScope.aut = false;
+        };
+
+        $scope.go = function ( hash ) {
+            $location.path( hash);
+        };
+    }]
+)
     /*function($scope, $location, $log)
     {
         $scope.isActive = function (viewLocation) {
@@ -23,13 +38,14 @@ angular.module("trippo.navModule", [
 
             return "/home" === $location.path();
         };
-    }, */
+    },
     function($scope, $auth) {
         $scope.isAuthenticated = function() {
             return $auth.isAuthenticated();
             };
-        }
-)
+        }*/
+
+
 
 
 .config(function config( $stateProvider ) {

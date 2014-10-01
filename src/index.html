@@ -3,7 +3,7 @@
   <head>
     <title ng-bind="pageTitle"></title>
 
-      <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+      <script src="http://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
       <!--
       <script src="js/angular-ui-router.min.js"></script>
       <script src="app/app.js"></script>
@@ -12,8 +12,8 @@
       <script src="app/log_in/log_in.js"></script>
       -->
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link href='https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,400italic' rel='stylesheet' type='text/css'>
-      <link href='https://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css' rel='stylesheet' type='text/css'>
+      <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,400italic' rel='stylesheet' type='text/css'>
+      <link href='http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css' rel='stylesheet' type='text/css'>
 
 
 
@@ -40,19 +40,16 @@
       </div>
       <ul class="nav navbar-nav">
           <li><a ui-sref="home">Home</a></li>
-          <li ng-if="isAuthenticated()"><a href="/#/profile">Profile</a></li>
+          <li ng-show="aut"><a href="/#/profile">Profile</a></li>
       </ul>
-      <ul ng-if="!isAuthenticated()" class="nav navbar-nav pull-right">
+      <ul ng-show="!aut" class="nav navbar-nav pull-right">
           <li><a ui-sref="login">Login</a></li>
           <li><a ui-sref="signup">Sign up</a></li>
       </ul>
-      <ul ng-if="isAuthenticated()" class="nav navbar-nav pull-right">
-          <li><a href="/#/logout">Logout</a></li>
-      </ul>
+      <ul ng-show="aut" class="nav navbar-nav pull-right">
+          <li><a href="/signout">Log Out</a></li></ul>
   </div>
   <div ui-view="main" class="fill"></div>
-
-
 
   </body>
 </html>

@@ -60,6 +60,5 @@ gem 'numbers_and_words'
 
 #google+ authentication
 gem 'omniauth-google-oauth2'
-
-#ssl server
-gem 'thin'
+#facebook authentication
+gem 'omniauth-facebook'
