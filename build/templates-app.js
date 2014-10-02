@@ -1362,19 +1362,20 @@ angular.module("city/guide.tpl.html", []).run(["$templateCache", function($templ
     "                </div>\n" +
     "            </fieldset>\n" +
     "            <legend>Trip Summary</legend>\n" +
+    "            <div class=\"row\" style=\"margin-bottom: 6px\">\n" +
+    "                <button class=\"btn btn-primary btn-outlined z-up\" style=\"font-size: 17px;margin-left: 15px;\" ng-click=\"changeView()\">{{currentView}}</button>\n" +
+    "            </div>\n" +
     "            <div id=\"{{makeMoment(date.day).format('DD-MM-YYYY')}}\" class=\"panel-group\" ng-repeat=\"date in guide.days\">\n" +
     "                <div class=\"panel  panel-primary no-radius\">\n" +
-    "                    <div class=\"panel-heading no-radius  bigger-accordition\" data-toggle=\"collapse\" data-parent=\"#{{makeMoment(date.day).format('DD-MM-YYYY')}}\" data-target=\"#{{makeMoment(date.day).format('DD-MM-YYYY')}}List\">\n" +
+    "                    <div class=\"panel-heading no-radius  bigger-accordition \" data-toggle=\"collapse\" data-parent=\"#{{makeMoment(date.day).format('DD-MM-YYYY')}}\" data-target=\"#{{makeMoment(date.day).format('DD-MM-YYYY')}}List\">\n" +
     "                        <h4 class=\"panel-title bigger-title\">\n" +
     "                            <a class=\"accordion-toggle bigger-title\" >{{makeMoment(date.day).format('DD  MMMM YYYY')}}</a>\n" +
     "                        </h4>\n" +
     "                    </div>\n" +
-    "                    <div id=\"{{makeMoment(date.day).format('DD-MM-YYYY')}}List\" class=\"panel-collapse collapse\">\n" +
+    "                    <div id=\"{{makeMoment(date.day).format('DD-MM-YYYY')}}List\" class=\"panel-collapse in\">\n" +
     "\n" +
     "                        <div class=\"panel-body\" style=\"background-color:#e8e8e8\">\n" +
-    "                            <div class=\"row\" style=\"margin-bottom: 6px\">\n" +
-    "                                <button class=\"btn btn-primary btn-outlined z-up\" style=\"float: right;font-size: 17px;margin-right: 5px;\" ng-click=\"changeView()\">{{currentView}}</button>\n" +
-    "                            </div>\n" +
+    "\n" +
     "                            <div ng-show=\"currentView == 'MAPS VIEW'\" class=\"row\" ng-repeat=\"item in getPlaces(date)\" >\n" +
     "\n" +
     "                                <div class=\"col-md-12\" >\n" +
@@ -1432,7 +1433,7 @@ angular.module("city/guide.tpl.html", []).run(["$templateCache", function($templ
     "                            </div>\n" +
     "\n" +
     "\n" +
-    "                            <place-list ng-show=\"currentView == 'DETAILS VIEW'\"  selected-items=\"getPlaces(date)\" map-id=\"date.day\"></place-list>\n" +
+    "                            <place-list ng-show=\"currentView == 'DETAILS VIEW'\" init-position=\"guide.city\" selected-items=\"getPlaces(date)\" map-id=\"date.day\"></place-list>\n" +
     "                        </div>\n" +
     "\n" +
     "\n" +

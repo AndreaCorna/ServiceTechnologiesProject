@@ -37,15 +37,14 @@ component.directive('map', function ($timeout) {
             /**
              * Trick in order to be sure that the element MapId has already been rendered (like onload but is triggered every time a directive is created)
              */
-            $timeout(function () {
-                console.log("init map called by timeout");
 
-
-
-
-            });
             $timeout(function(){
-                map = scope.initMap(map);
+
+                //check I am not in the markerMap case because in this case markerMap is setted
+                if(markerMap === undefined) {
+                    map = scope.initMap(map);
+                }
+
 
             }) ;
 
@@ -287,19 +286,7 @@ component.directive('map', function ($timeout) {
 
             scope.updateArrayMarkerListMap = function () {
                 scope.planTripSelected = false;
-                console.log("inside method updateArrayMarkerListMap");
-                console.log("old marker list");
 
-
-                console.log(markerList);
-
-                console.log("new marker list");
-                
-                console.log(scope.markerArrayList);
-                
-
-                console.log("current map");
-                console.log(markerMap);
 
                 var mapOptions = {
                     zoom: scope.zoom !== undefined ? scope.zoom : 15,
@@ -310,10 +297,15 @@ component.directive('map', function ($timeout) {
 
                 //first time is rendered so the map initilazed by the timeout is the current one
                 if (markerMap === undefined){
+                    console.log("markerMap");
+
                    // markerMap = new google.maps.Map(document.getElementById(scope.mapId), mapOptions);
                    // scope.initializeMapCenter(scope.initPosition,markerMap);
-                   // markerMap = scope.initMap(markerMap) ;
-                    markerMap = map;
+                    markerMap = scope.initMap(markerMap) ;
+                    console.log("marker"+markerMap);
+                    console.log("map"+map);
+
+
                 }
 
 

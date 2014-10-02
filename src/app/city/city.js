@@ -680,7 +680,7 @@ angular.module( 'trippo.city', [
 
 
 
-.controller( 'CityCtrl', function CityCtrl( $scope, $stateParams, CityRes,SelectionService, CityService,$location) {
+.controller( 'CityCtrl', function CityCtrl($state, $scope, $stateParams, CityRes,SelectionService, CityService,$location) {
     $scope.intervalImages = 5000;
     $scope.modalEnabled = false;
     $scope.loaderEnabled = true;
@@ -720,9 +720,30 @@ angular.module( 'trippo.city', [
         return $location.path().split('/').pop() == 'guides';
     }  ;
 
-    $scope.getCityName = function(){
+    $scope.isPlanning = function(){
+        console.log("------------");
+        
+        console.log($location.path().split('/').pop());
+        var current = $location.path().split('/').pop();
+
+        var  planning =   $state.href("planning").split('/')[$state.href("planning").split('/').length - 2];
+        var  dates =   $state.href("dates").split('/').pop() ;
+        var  createtrip =   $state.href("createtrip").split('/').pop() ;
+        var myplanning = [planning,dates,createtrip];
+        console.log(myplanning);
+
+        if (myplanning.indexOf(current)){
+            return true  ;
+        }
+        return false;
+
+    }   ;
+
+
+        $scope.getCityName = function(){
         return $stateParams.city_name;
     };
+
 
 
 

@@ -84,7 +84,7 @@ angular.module( 'trippo.guide', [
         return day.schedule;
         } ;
 
-    $scope.placeViews = ["MAPS VIEW","DETAILS VIEW"]   ;
+    $scope.placeViews = ["DETAILS VIEW","MAPS VIEW"]   ;
     $scope.currentView =  $scope.placeViews[0];
     $scope.changeView = function() {
         var index =   $scope.placeViews.indexOf($scope.currentView);
@@ -101,6 +101,7 @@ angular.module( 'trippo.guide', [
 
 
     }  ;
+
 
 
 

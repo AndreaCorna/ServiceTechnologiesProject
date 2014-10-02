@@ -63,9 +63,9 @@ angular.module("place-list/place-list.tpl.html", []).run(["$templateCache", func
     "                </div>\n" +
     "            </div>\n" +
     "        </div>\n" +
-    "        <div ng-show=\"(origin && destination) || currentMarker\" id=\"scrollingMaps\" class=\"col-md-8 \" >\n" +
+    "        <div  id=\"scrollingMaps\" class=\"col-md-8 \" >\n" +
     "\n" +
-    "            <map origin=\"origin\" map-id=\"{{mymapid}}\"  destination=\"destination\" marker=\"currentMarker\" type=\"roadmap\" class=\"mapContainer\" ></map>\n" +
+    "            <map origin=\"origin\" map-id=\"{{mymapid}}\" init-position=\"initPosition\"  destination=\"destination\" marker=\"currentMarker\" type=\"roadmap\" class=\"mapContainer\" ></map>\n" +
     "\n" +
     "        </div>\n" +
     "    </div>\n" +

@@ -14,7 +14,8 @@ component.directive('placeList', function () {
         scope: {
 
             selectedItems :'=' ,      //list of place to show
-            mapId : '='
+            mapId : '=' ,
+            initPosition : '='
 
         },
         replace: true,
@@ -34,6 +35,8 @@ component.directive('placeList', function () {
              *MAPS HANDLING
              * current start and destination variable for the map
              */
+            console.log(scope.initPosition);
+
             console.log("map id");
             console.log(scope.mapId);
             scope.mymapid =  "map"+scope.mapId ;
