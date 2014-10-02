@@ -1432,7 +1432,7 @@ angular.module("city/guide.tpl.html", []).run(["$templateCache", function($templ
     "                            </div>\n" +
     "\n" +
     "\n" +
-    "                            <place-list ng-show=\"currentView == 'DETAILS VIEW'\" selected-items=\"getPlaces(date)\" map-id=\"date.day\"></place-list>\n" +
+    "                            <place-list ng-show=\"currentView == 'DETAILS VIEW'\"  selected-items=\"getPlaces(date)\" map-id=\"date.day\"></place-list>\n" +
     "                        </div>\n" +
     "\n" +
     "\n" +

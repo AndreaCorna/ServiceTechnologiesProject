@@ -311,6 +311,8 @@ angular.module('trippo.plan',[
         };
 
         $scope.getCityName = function(){
+            console.log("returning city name");
+            
             return $stateParams.city_name;
         } ;
 
