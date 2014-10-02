@@ -38,32 +38,49 @@ component.directive('map', function ($timeout) {
              * Trick in order to be sure that the element MapId has already been rendered (like onload but is triggered every time a directive is created)
              */
             $timeout(function () {
-                console.log("dom rendered");
+                console.log("init map called by timeout");
 
-                scope.initMap();
+
+
 
             });
+            $timeout(function(){
+                map = scope.initMap(map);
+
+            }) ;
 
 
-            scope.initMap= function(){
+
+            scope.initMap= function(map){
                 console.log("init position ");
                 console.log(scope.initPosition);
+                console.log(map);
+                console.log(scope.mapId);
+
+
                 var mapOptions = {
-                    zoom: 13,
+                    zoom: scope.zoom !== undefined ? scope.zoom : 15,
+
                     mapTypeId: scope.type.toLowerCase(),
                     streetViewControl: false
                 };
-
                 map = new google.maps.Map(document.getElementById(scope.mapId), mapOptions);
 
+
+
                 if  (scope.initPosition){
+                    console.log('init position is defined');
+
                     scope.initializeMapCenter(scope.initPosition, map);
                 }
                 else{
                     //set on
+                    console.log('init position is undefined');
                     var location = new google.maps.LatLng(51.27, 0.11, true);
                     map.setCenter(location);
+                    map.setZoom(5);
                 }
+                return map ;
             }  ;
 
             scope.initializeMapCenter = function (center, map) {
@@ -239,6 +256,11 @@ component.directive('map', function ($timeout) {
             /**
              * Handle a list of dinamically added places to the map  used in City
              */
+            //need to keep track of the added and removed markers
+            //though the timeout the initMap function is call just when directive is redered so
+            //one time for the map of city but when the planning map is rendered the variable map is change and will refer to this map
+            //and the change to the map variable will be applied to this map and not to the city one
+            var markerMap ;
             var markersArraySelection = [];
             var markerList = [];
 
@@ -255,6 +277,8 @@ component.directive('map', function ($timeout) {
 
             scope.$watch('markerArrayList', function (newValue, oldValue) {
                 if (newValue) {
+                    console.log("called watch arrayLisk ");
+                    
                     scope.markerArrayList = newValue;
                     scope.updateArrayMarkerListMap();
                 }
@@ -263,31 +287,59 @@ component.directive('map', function ($timeout) {
 
             scope.updateArrayMarkerListMap = function () {
                 scope.planTripSelected = false;
+                console.log("inside method updateArrayMarkerListMap");
+                console.log("old marker list");
+
+
+                console.log(markerList);
+
+                console.log("new marker list");
+                
+                console.log(scope.markerArrayList);
+                
+
+                console.log("current map");
+                console.log(markerMap);
 
                 var mapOptions = {
-                    zoom: 13,
+                    zoom: scope.zoom !== undefined ? scope.zoom : 15,
+
                     mapTypeId: scope.type.toLowerCase(),
                     streetViewControl: false
                 };
-                if (map === undefined) {
 
-                    map = new google.maps.Map(document.getElementById(scope.mapId), mapOptions);
-                    scope.initializeMapCenter(scope.initPosition, map);
-
-                    console.log("arraymarker map");
-                    console.log(document.getElementById(scope.mapId));
-
+                //first time is rendered so the map initilazed by the timeout is the current one
+                if (markerMap === undefined){
+                   // markerMap = new google.maps.Map(document.getElementById(scope.mapId), mapOptions);
+                   // scope.initializeMapCenter(scope.initPosition,markerMap);
+                   // markerMap = scope.initMap(markerMap) ;
+                    markerMap = map;
                 }
+
+
+
                 angular.forEach(markerList, function (value, key) {
                     value.setMap(null);
-                    delete markerList[value];
+
                 });
+                markerList = []; //all marker have been cleaned up by the function before
+                console.log(" marker list after deletion");
+                console.log(markerList);
+
 
                 //console.log("updating updateArrayMarkerListMap markerArrayList:");
                 //console.log(scope.markerArrayList);
                 angular.forEach(scope.markerArrayList, function (value, key) {
-                    markerList.push(addMarker(value, map));
+                    console.log("addin marker");
+                    console.log(value);
+                    console.log(scope.mapId);
+
+
+                    markerList.push(addMarker(value, markerMap,false));
                 });
+                console.log(" marker list after addingMarkers");
+                console.log(markerList);
+
 
             };
 
@@ -296,7 +348,7 @@ component.directive('map', function ($timeout) {
                 scope.planTripSelected = false;
 
                 angular.forEach(toAdd, function (value, key) {
-                    markersArraySelection[value.id] = addMarker(value, map, true);
+                    markersArraySelection[value.id] = addMarker(value, markerMap, true);
 
 
                 });
