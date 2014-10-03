@@ -8,7 +8,8 @@ angular.module( 'trippo.guide', [
     'trippo.resources',
     'trippo.modal',
     'trippo.plan',
-    'common.placeList'
+    'common.placeList' ,
+    'common.mapsMarkers'
 ])
 .config(function config( $stateProvider ) {
         $stateProvider.state('guide', {
@@ -68,12 +69,47 @@ angular.module( 'trippo.guide', [
 
     GuideService.initGuide($stateParams.id,function(){
         $scope.guide = GuideService.getGuide($stateParams.id);
-        console.log( $scope.guide.city);
+        console.log( $scope.guide);
+        initMarkersInMap($scope.guide);
 
 
 
     }) ;
+    $scope.markerArraySelected= [];
+    var initMarkersInMap = function (guide){
 
+         guide.days.map(function(day){
+             console.log("day");
+
+             console.log(day);
+
+             var toAdd = day.schedule.filter(function(place){
+                 console.log(place);
+
+
+                 return $scope.markerArraySelected.filter(function(item){
+                     return item.google_id == place.google_id;
+                 }).length === 0;
+                 
+
+             }) ;
+             console.log(" to add marker list");
+
+             console.log(toAdd);
+             console.log(" before concat");
+             console.log($scope.markerArraySelected);
+
+             $scope.markerArraySelected = $scope.markerArraySelected.concat(toAdd);
+             console.log(" after concat");
+             console.log($scope.markerArraySelected);
+
+
+         }) ;
+
+
+
+
+    } ;
 
     $scope.makeMoment=function(day){
         return moment(day,DatesService.dateFormat) ;

@@ -1,9 +1,8 @@
-angular.module('templates-common', ['maps/maps.tpl.html', 'place-list/place-list.tpl.html']);
+angular.module('templates-common', ['maps/maps-directions.tpl.html', 'maps/maps-markers.tpl.html', 'place-list/place-list.tpl.html']);
 
-angular.module("maps/maps.tpl.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("maps/maps.tpl.html",
+angular.module("maps/maps-directions.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("maps/maps-directions.tpl.html",
     "<div  class=\"panel\">\n" +
-    "    <div ng-show=\"planTripSelected\">\n" +
     "        <div class=\"btn-group btn-group-justified\">\n" +
     "            <div class=\"btn-group\">\n" +
     "                <button type=\"button\"   ng-click=\"setTravelMode('DRIVING');\" class=\"btn btn-primary travel-btn\" ng-class=\"isCurrentTravelMode('DRIVING')? 'active': ''\">Driving</button>\n" +
@@ -15,7 +14,6 @@ angular.module("maps/maps.tpl.html", []).run(["$templateCache", function($templa
     "                <button type=\"button\"  ng-click=\"setTravelMode('TRANSIT');\" class=\"btn btn-primary travel-btn\" ng-class=\"isCurrentTravelMode('TRANSIT')? 'active': ''\">Public Transport</button>\n" +
     "            </div>\n" +
     "        </div>\n" +
-    "    </div>\n" +
     "\n" +
     "\n" +
     "    <div id=\"{{mapId}}\" class=\"theMap\">\n" +
@@ -25,6 +23,20 @@ angular.module("maps/maps.tpl.html", []).run(["$templateCache", function($templa
     "\n" +
     "</div>\n" +
     "");
+}]);
+
+angular.module("maps/maps-markers.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("maps/maps-markers.tpl.html",
+    "<div  class=\"panel\">\n" +
+    "\n" +
+    "\n" +
+    "\n" +
+    "    <div id=\"{{mapId}}\" class=\"theMap\">\n" +
+    "    </div>\n" +
+    "    <div class=\"directions\" ng-show=\"directions || directions==undefined\">\n" +
+    "    </div>\n" +
+    "\n" +
+    "</div>");
 }]);
 
 angular.module("place-list/place-list.tpl.html", []).run(["$templateCache", function($templateCache) {
@@ -65,7 +77,7 @@ angular.module("place-list/place-list.tpl.html", []).run(["$templateCache", func
     "        </div>\n" +
     "        <div  id=\"scrollingMaps\" class=\"col-md-8 \" >\n" +
     "\n" +
-    "            <map origin=\"origin\" map-id=\"{{mymapid}}\" init-position=\"initPosition\"  destination=\"destination\" marker=\"currentMarker\" type=\"roadmap\" class=\"mapContainer\" ></map>\n" +
+    "            <map-directions origin=\"origin\" map-id=\"{{mymapid}}\" init-position=\"initPosition\"  destination=\"destination\" marker=\"currentMarker\" type=\"roadmap\" class=\"mapContainer\" ></map-directions>\n" +
     "\n" +
     "        </div>\n" +
     "    </div>\n" +

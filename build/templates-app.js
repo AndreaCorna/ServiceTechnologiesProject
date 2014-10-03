@@ -284,8 +284,8 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                </carousel>\n" +
     "            </div>\n" +
     "        </div>\n" +
-    "        <div ng-show=\"!isGuides()\"  >\n" +
-    "            <map marker-array-selected=\"markerArraySelected\" init-position=\"getCityName()\" marker-array-list=\"markerArrayList\" map-id=\"cityMap\" initposition=\"city\" type=\"roadmap\" class=\"mapContainer\" ></map>\n" +
+    "        <div ng-if=\"!isGuides()\"  >\n" +
+    "            <map-markers marker-array-selected=\"markerArraySelected\" init-position=\"getCityName()\" marker-array-list=\"markerArrayList\" map-id=\"cityMap\"  type=\"roadmap\" class=\"mapContainer\" ></map-markers>\n" +
     "        </div>\n" +
     "    </div>\n" +
     "</div>\n" +
@@ -1318,17 +1318,30 @@ angular.module("city/food.tpl.html", []).run(["$templateCache", function($templa
 
 angular.module("city/guide.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("city/guide.tpl.html",
-    "<div class=\"page-header\">\n" +
-    "    <div class=\"vertical-container\">\n" +
-    "        <div class=\"row\">\n" +
+    "<div class=\"top-view\">\n" +
+    "    <div class=\"page-header\" style=\"margin-top: 0px\">\n" +
+    "        <div class=\"vertical-container\">\n" +
+    "            <div class=\"row\">\n" +
     "\n" +
-    "            <div class=\"col-md-12\">\n" +
-    "                <h1 class=\"text-center subtitle\">{{guide.name}}</h1>\n" +
+    "                <div class=\"col-md-12\">\n" +
+    "                    <h1 class=\"text-center subtitle\">{{guide.name}}</h1>\n" +
+    "                </div>\n" +
+    "\n" +
     "            </div>\n" +
-    "\n" +
     "        </div>\n" +
     "    </div>\n" +
-    "</div>\n" +
+    "\n" +
+    "    <div class=\"container \" >\n" +
+    "        <div class=\"row\">\n" +
+    "            <a ui-sref=\"guides\" class=\"btn btn-primary btn-large btn-outlined big-button back-button col-md-2\"><i class=\"glyphicon glyphicon-chevron-left pull-left\"></i>Guides</a>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <map-markers  marker-array-selected=\"markerArraySelected\" init-position=\"guide.city\" map-id=\"guideMap\"  type=\"roadmap\" class=\"mapContainer\" style=\"margin-top: 20px\" ></map-markers>\n" +
+    "\n" +
+    "    </div>\n" +
+    "\n" +
+    "\n" +
+    "\n" +
     "<div class=\"row\">\n" +
     "    <div class=\"col-md-10 col-md-offset-1\">\n" +
     "        <div class=\"well well-sm\">\n" +
@@ -1445,6 +1458,7 @@ angular.module("city/guide.tpl.html", []).run(["$templateCache", function($templ
     "            </div>\n" +
     "        </div>\n" +
     "    </div>\n" +
+    "</div>\n" +
     "</div>\n" +
     "");
 }]);
@@ -2293,7 +2307,7 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
     "            </div>\n" +
     "            <div  id=\"scrollingMaps\" class=\"col-md-8 \" >\n" +
     "\n" +
-    "               <map origin=\"origin\" map-id=\"planningMap\" init-position=\"getCityName()\" destination=\"destination\" marker=\"currentMarker\" type=\"roadmap\" class=\"mapContainer\" ></map>\n" +
+    "               <map-directions origin=\"origin\" map-id=\"planningMap\" init-position=\"getCityName()\" destination=\"destination\" marker=\"currentMarker\" type=\"roadmap\" class=\"mapContainer\" ></map-directions>\n" +
     "\n" +
     "            </div>\n" +
     "        </div>\n" +

@@ -8,7 +8,8 @@ angular.module('trippo.plan',[
     'angular-sortable-view',
     'trippo.city',
     'trippo.modal',
-    'common.maps'
+    'common.mapDirections'
+
 ])
 
 

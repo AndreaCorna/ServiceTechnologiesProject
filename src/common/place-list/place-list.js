@@ -3,7 +3,7 @@
  */
 
 var component = angular.module('common.placeList', [
-    'common.maps'
+    'common.mapDirections'
 ]);
 
 component.directive('placeList', function () {

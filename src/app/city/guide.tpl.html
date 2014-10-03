@@ -1,14 +1,27 @@
-<div class="page-header">
-    <div class="vertical-container">
-        <div class="row">
+<div class="top-view">
+    <div class="page-header" style="margin-top: 0px">
+        <div class="vertical-container">
+            <div class="row">
 
-            <div class="col-md-12">
-                <h1 class="text-center subtitle">{{guide.name}}</h1>
+                <div class="col-md-12">
+                    <h1 class="text-center subtitle">{{guide.name}}</h1>
+                </div>
+
             </div>
-
         </div>
     </div>
-</div>
+
+    <div class="container " >
+        <div class="row">
+            <a ui-sref="guides" class="btn btn-primary btn-large btn-outlined big-button back-button col-md-2"><i class="glyphicon glyphicon-chevron-left pull-left"></i>Guides</a>
+        </div>
+
+        <map-markers  marker-array-selected="markerArraySelected" init-position="guide.city" map-id="guideMap"  type="roadmap" class="mapContainer" style="margin-top: 20px" ></map-markers>
+
+    </div>
+
+
+
 <div class="row">
     <div class="col-md-10 col-md-offset-1">
         <div class="well well-sm">
@@ -125,4 +138,5 @@
             </div>
         </div>
     </div>
+</div>
 </div>

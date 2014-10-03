@@ -10,8 +10,8 @@
                 </carousel>
             </div>
         </div>
-        <div ng-show="!isGuides()"  >
-            <map marker-array-selected="markerArraySelected" init-position="getCityName()" marker-array-list="markerArrayList" map-id="cityMap" initposition="city" type="roadmap" class="mapContainer" ></map>
+        <div ng-if="!isGuides()"  >
+            <map-markers marker-array-selected="markerArraySelected" init-position="getCityName()" marker-array-list="markerArrayList" map-id="cityMap"  type="roadmap" class="mapContainer" ></map-markers>
         </div>
     </div>
 </div>

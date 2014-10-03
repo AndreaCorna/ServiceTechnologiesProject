@@ -5,7 +5,8 @@ angular.module( 'trippo.city', [
   'trippo.resources',
   'trippo.modal',
   'infinite-scroll',
-    'trippo.guide'
+   'trippo.guide' ,
+    'common.mapsMarkers'
 ])
 
 .config(function config( $stateProvider ) {
