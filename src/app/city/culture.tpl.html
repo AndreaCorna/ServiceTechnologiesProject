@@ -21,7 +21,7 @@
             </div>
         </div>
         <span ng-repeat="c in cultureSelection | filter:{name:elementSelectionName} | orderBy:elementSelectionOrder">
-            <div class="list-group-item">
+            <div class="list-group-item list-culture" style="background-color: #ffeeaa">
                 <div class="col-sm-3 col-md-3">
                     <div class="panel panel-default">
                         <div class="panel-body image-panel">
@@ -99,7 +99,7 @@
             </div>
             <div infinite-scroll="infiniteScroll.nextPage(resource,setLoader)" infinite-scroll-distance="2" infinite-scroll-disabled="infiniteScroll.busy">
                 <span ng-repeat="c in infiniteScroll.itemList | filter:{name:elementListName} | orderBy:elementListOrder">
-                    <div class="list-group-item">
+                    <div class="list-group-item list-culture">
                        <div class="col-sm-3 col-md-3">
                             <div class="panel panel-default">
                                 <div class="panel-body image-panel">

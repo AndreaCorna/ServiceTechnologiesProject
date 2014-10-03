@@ -345,11 +345,13 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                            </div>\n" +
     "                            <div class=\"row\">\n" +
     "                                <div class=\"col-sm-6 col-md-6\" >\n" +
-    "                                    <div class=\"row\">\n" +
-    "                                        <b>Phone</b>\n" +
-    "                                    </div>\n" +
-    "                                    <div class=\"row\">\n" +
-    "                                        {{moreInfoSelection.international_phone}}\n" +
+    "                                    <div ng-show=\"moreInfoSelection.international_phone != null\">\n" +
+    "                                        <div class=\"row\">\n" +
+    "                                            <b>Phone</b>\n" +
+    "                                        </div>\n" +
+    "                                        <div class=\"row\">\n" +
+    "                                            {{moreInfoSelection.international_phone}}\n" +
+    "                                        </div>\n" +
     "                                    </div>\n" +
     "                                </div>\n" +
     "                                <div class=\"col-sm-6 col-md-6\">\n" +
@@ -486,7 +488,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                                        </div>\n" +
     "                                    </div>\n" +
     "                                    <div ng-show=\"moreInfoSelection.open_hours[0].hours[0].close == null\">\n" +
-    "                                        <div class=\"col-md-12\">\n" +
+    "                                        <div class=\"col-sm-12 col-md-12\">\n" +
     "                                            <div class=\"panel panel-info\">\n" +
     "                                                <h5 class=\"text-center text-capitalize capriola\">Always Open</h5>\n" +
     "                                            </div>\n" +
@@ -509,72 +511,68 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "                            </div>\n" +
     "                            <div class=\"row\">\n" +
     "                                <div class=\"col-sm-12 col-md-12\">\n" +
-    "                                    <p class=\"text-center\">\n" +
-    "                                        <b>Reviews</b>\n" +
-    "                                    </p>\n" +
-    "                                    <span ng-repeat=\"review in moreInfoSelection.reviews\">\n" +
-    "                                        <div class=\"panel-group\" id=\"{{review.author_name}}\">\n" +
-    "                                            <div class=\"panel  panel-info\">\n" +
-    "                                                <div class=\"panel-heading\">\n" +
-    "                                                    <h4 class=\"panel-title\">\n" +
-    "                                                        <a class=\"accordion-toggle\" data-toggle=\"collapse\" data-parent=\"#{{review.author_name}}\" data-target=\"#{{$index}}\">{{review.author_name}}</a>\n" +
-    "                                                    </h4>\n" +
-    "                                                </div>\n" +
-    "                                                <div id=\"{{$index}}\" class=\"panel-collapse collapse\">\n" +
-    "                                                    <div class=\"panel-body\">\n" +
-    "                                                        <p class=\"text-left\">\n" +
-    "                                                            <b>Aspects</b>\n" +
-    "                                                        </p>\n" +
-    "                                                        <div class=\"star-rating\">\n" +
-    "                                                            <span ng-repeat=\"aspect in review.aspects\">\n" +
-    "                                                                <div class=\"row\">\n" +
-    "                                                                    <div class=\"col-md-3\">\n" +
-    "                                                                        <b class=\"text-capitalize\">{{aspect.type}}</b>\n" +
+    "                                    <div ng-show=\"moreInfoSelection.reviews != null\">\n" +
+    "                                        <p class=\"text-center\">\n" +
+    "                                            <b>Reviews</b>\n" +
+    "                                        </p>\n" +
+    "                                        <span ng-repeat=\"review in moreInfoSelection.reviews\">\n" +
+    "                                            <div class=\"panel-group\" id=\"{{review.author_name}}\">\n" +
+    "                                                <div class=\"panel  panel-info\">\n" +
+    "                                                    <div class=\"panel-heading\">\n" +
+    "                                                        <h4 class=\"panel-title\">\n" +
+    "                                                            <a class=\"accordion-toggle\" data-toggle=\"collapse\" data-parent=\"#{{review.author_name}}\" data-target=\"#{{$index}}\">{{review.author_name}}</a>\n" +
+    "                                                        </h4>\n" +
+    "                                                    </div>\n" +
+    "                                                    <div id=\"{{$index}}\" class=\"panel-collapse collapse\">\n" +
+    "                                                        <div class=\"panel-body\">\n" +
+    "                                                            <p class=\"text-left\">\n" +
+    "                                                                <b>Aspects</b>\n" +
+    "                                                            </p>\n" +
+    "                                                            <div class=\"star-rating\">\n" +
+    "                                                                <span ng-repeat=\"aspect in review.aspects\">\n" +
+    "                                                                    <div class=\"row\">\n" +
+    "                                                                        <div class=\"col-sm-3 col-md-3\">\n" +
+    "                                                                            <b class=\"text-capitalize\">{{aspect.type}}</b>\n" +
+    "                                                                        </div>\n" +
+    "                                                                        <div class=\"col-sm-8 col-md-8\">\n" +
+    "                                                                            <rating ng-model=\"aspect.rating\" readonly=\"true\" max=3></rating>\n" +
+    "                                                                        </div>\n" +
     "                                                                    </div>\n" +
-    "                                                                    <div class=\"col-md-8\">\n" +
-    "                                                                        <rating ng-model=\"aspect.rating\" readonly=\"true\" max=3></rating>\n" +
+    "                                                                </span>\n" +
+    "                                                            </div>\n" +
+    "                                                            <div class=\"row\">\n" +
+    "                                                                <div class=\"col-sm-12 col-md-12\">\n" +
+    "                                                                    <div ng-show=\"review.text != ''\">\n" +
+    "                                                                        <p class=\"text-left\">\n" +
+    "                                                                            <b>Comment</b>\n" +
+    "                                                                        </p>\n" +
+    "                                                                        {{review.text}}\n" +
     "                                                                    </div>\n" +
     "                                                                </div>\n" +
-    "                                                            </span>\n" +
-    "                                                        </div>\n" +
-    "                                                        <div class=\"row\">\n" +
-    "                                                            <div class=\"col-md-12\">\n" +
-    "                                                                <p class=\"text-left\">\n" +
-    "                                                                    <b>Comment</b>\n" +
-    "                                                                </p>\n" +
-    "                                                                {{review.text}}\n" +
     "                                                            </div>\n" +
-    "                                                        </div>\n" +
-    "                                                        <div class=\"row\">\n" +
-    "                                                            <div class=\"col-md-3\">\n" +
-    "                                                                <b class=\"text-capitalize\">Rating</b>\n" +
-    "                                                            </div>\n" +
-    "                                                            <div class=\"col-md-8\">\n" +
-    "                                                                <rating ng-model=\"review.rating\" readonly=\"true\" max=5></rating>\n" +
-    "                                                            </div>\n" +
-    "                                                        </div>\n" +
-    "                                                        <div class=\"col-md-12\">\n" +
-    "                                                            <!-- Name\n" +
     "                                                            <div class=\"row\">\n" +
-    "                                                                <em>\n" +
-    "                                                                    <span>{{changeDate(review.time)}}</span>\n" +
-    "                                                                </em>\n" +
+    "                                                                <div class=\"col-sm-3 col-md-3\">\n" +
+    "                                                                    <b class=\"text-capitalize\">Rating</b>\n" +
+    "                                                                </div>\n" +
+    "                                                                <div class=\"col-sm-8 col-md-8\">\n" +
+    "                                                                    <rating ng-model=\"review.rating\" readonly=\"true\" max=5></rating>\n" +
+    "                                                                </div>\n" +
     "                                                            </div>\n" +
-    "                                                            -->\n" +
-    "                                                            <div class=\"row\">\n" +
-    "                                                                <em>\n" +
-    "                                                                    Contact User <a target=\"_blank\" ng-href=\"{{review.author_url}}\">GooglePlus!</a>\n" +
-    "                                                                </em>\n" +
+    "                                                            <div class=\"col-sm-12 col-md-12\">\n" +
+    "                                                                <div class=\"row\">\n" +
+    "                                                                    <em>\n" +
+    "                                                                        Contact User <a target=\"_blank\" ng-href=\"{{review.author_url}}\">GooglePlus!</a>\n" +
+    "                                                                    </em>\n" +
+    "                                                                </div>\n" +
     "                                                            </div>\n" +
     "                                                        </div>\n" +
+    "\n" +
     "                                                    </div>\n" +
-    "\n" +
     "                                                </div>\n" +
-    "                                            </div>\n" +
     "\n" +
-    "                                   </div>\n" +
-    "                                  </span>\n" +
-    "\n" +
+    "                                       </div>\n" +
+    "                                      </span>\n" +
+    "                                    </div>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
     "                        </div>\n" +
@@ -742,7 +740,6 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "    $(function () {\n" +
     "        $('#moreInfoModalPlace').on('hidden.bs.modal', function () {\n" +
     "            var scope = angular.element(document.querySelector('#moreInfoModalPlace')).scope();\n" +
-    "\n" +
     "            scope.disableModal();\n" +
     "        });\n" +
     "    });\n" +
@@ -751,7 +748,6 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "    $(function () {\n" +
     "        $('#moreInfoModalHotel').on('hidden.bs.modal', function () {\n" +
     "            var scope = angular.element(document.querySelector('#moreInfoModalHotel')).scope();\n" +
-    "\n" +
     "            scope.disableModal();\n" +
     "        });\n" +
     "    });\n" +
@@ -761,7 +757,6 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "        $('#moreInfoModalHotel').on('shown.bs.modal', function () {\n" +
     "            var scope = angular.element(document.querySelector('#moreInfoModalHotel')).scope();\n" +
     "            scope.hotelShow = true;\n" +
-    "            console.log(scope.hotelShow);\n" +
     "        });\n" +
     "    });\n" +
     "</script>\n" +
@@ -793,7 +788,7 @@ angular.module("city/culture.tpl.html", []).run(["$templateCache", function($tem
     "            </div>\n" +
     "        </div>\n" +
     "        <span ng-repeat=\"c in cultureSelection | filter:{name:elementSelectionName} | orderBy:elementSelectionOrder\">\n" +
-    "            <div class=\"list-group-item\">\n" +
+    "            <div class=\"list-group-item list-culture\" style=\"background-color: #ffeeaa\">\n" +
     "                <div class=\"col-sm-3 col-md-3\">\n" +
     "                    <div class=\"panel panel-default\">\n" +
     "                        <div class=\"panel-body image-panel\">\n" +
@@ -871,7 +866,7 @@ angular.module("city/culture.tpl.html", []).run(["$templateCache", function($tem
     "            </div>\n" +
     "            <div infinite-scroll=\"infiniteScroll.nextPage(resource,setLoader)\" infinite-scroll-distance=\"2\" infinite-scroll-disabled=\"infiniteScroll.busy\">\n" +
     "                <span ng-repeat=\"c in infiniteScroll.itemList | filter:{name:elementListName} | orderBy:elementListOrder\">\n" +
-    "                    <div class=\"list-group-item\">\n" +
+    "                    <div class=\"list-group-item list-culture\">\n" +
     "                       <div class=\"col-sm-3 col-md-3\">\n" +
     "                            <div class=\"panel panel-default\">\n" +
     "                                <div class=\"panel-body image-panel\">\n" +
@@ -979,7 +974,7 @@ angular.module("city/entertainment.tpl.html", []).run(["$templateCache", functio
     "                    </div>\n" +
     "                </div>\n" +
     "                <span ng-repeat=\"c in entertainmentSelection | filter:{name:elementSelectionName} | orderBy:elementSelectionOrder\">\n" +
-    "                    <div class=\"list-group-item\">\n" +
+    "                    <div class=\"list-group-item list-entertainment\" style=\"background-color: #ffeeaa\">\n" +
     "                        <div class=\"col-sm-3 col-md-3\">\n" +
     "                            <div class=\"panel panel-default\">\n" +
     "                                <div class=\"panel-body image-panel\">\n" +
@@ -1057,7 +1052,7 @@ angular.module("city/entertainment.tpl.html", []).run(["$templateCache", functio
     "                </div>\n" +
     "                <div infinite-scroll=\"infiniteScroll.nextPage(resource,setLoader)\" infinite-scroll-distance=\"2\" infinite-scroll-disabled=\"infiniteScroll.busy\">\n" +
     "                    <span ng-repeat=\"c in infiniteScroll.itemList | filter:{name:elementListName} | orderBy:elementListOrder\">\n" +
-    "                        <div class=\"list-group-item\">\n" +
+    "                        <div class=\"list-group-item list-entertainment\">\n" +
     "                            <div class=\"col-sm-3 col-md-3\">\n" +
     "                                <div class=\"panel panel-default\">\n" +
     "                                    <div class=\"panel-body image-panel\">\n" +
@@ -1162,7 +1157,7 @@ angular.module("city/food.tpl.html", []).run(["$templateCache", function($templa
     "                </div>\n" +
     "            </div>\n" +
     "            <span ng-repeat=\"c in foodSelection | filter:{name:elementSelectionName} | orderBy:elementSelectionOrder\">\n" +
-    "                <div class=\"list-group-item\">\n" +
+    "                <div class=\"list-group-item list-food\" style=\"background-color: #ffeeaa\">\n" +
     "                    <div class=\"col-sm-3 col-md-3\">\n" +
     "                        <div class=\"panel panel-default\">\n" +
     "                            <div class=\"panel-body image-panel\">\n" +
@@ -1239,7 +1234,7 @@ angular.module("city/food.tpl.html", []).run(["$templateCache", function($templa
     "                </div>\n" +
     "                <div infinite-scroll=\"infiniteScroll.nextPage(resource,setLoader)\" infinite-scroll-distance=\"2\" infinite-scroll-disabled=\"infiniteScroll.busy\">\n" +
     "                    <span ng-repeat=\"c in infiniteScroll.itemList | filter:{name:elementListName} | orderBy:elementListOrder\">\n" +
-    "                        <div class=\"list-group-item\">\n" +
+    "                        <div class=\"list-group-item list-food\">\n" +
     "                            <div class=\"col-sm-3 col-md-3\">\n" +
     "                                <div class=\"panel panel-default\">\n" +
     "                                    <div class=\"panel-body image-panel\">\n" +
@@ -1550,7 +1545,7 @@ angular.module("city/hotel.tpl.html", []).run(["$templateCache", function($templ
     "                </div>\n" +
     "            </div>\n" +
     "            <span ng-repeat=\"c in hotelSelection | filter:{name:elementSelectionName} | orderBy:elementSelectionOrder\">\n" +
-    "                <div class=\"list-group-item\">\n" +
+    "                <div class=\"list-group-item list-hotel\" style=\"background-color: #ffeeaa\">\n" +
     "                    <div class=\"col-sm-3 col-md-3\">\n" +
     "                        <div class=\"panel panel-default\">\n" +
     "                            <div class=\"panel-body image-panel\">\n" +
@@ -1627,7 +1622,7 @@ angular.module("city/hotel.tpl.html", []).run(["$templateCache", function($templ
     "                </div>\n" +
     "                <div infinite-scroll=\"infiniteScroll.nextPage(resource,setLoader)\" infinite-scroll-distance=\"2\" infinite-scroll-disabled=\"infiniteScroll.busy\">\n" +
     "                    <span ng-repeat=\"c in infiniteScroll.itemList | filter:{name:elementListName} | orderBy:elementListOrder\">\n" +
-    "                        <div class=\"list-group-item\">\n" +
+    "                        <div class=\"list-group-item list-hotel\">\n" +
     "                            <div class=\"col-sm-3 col-md-3\">\n" +
     "                                <div class=\"panel panel-default\">\n" +
     "                                    <div class=\"panel-body image-panel\">\n" +
@@ -1732,7 +1727,7 @@ angular.module("city/utility.tpl.html", []).run(["$templateCache", function($tem
     "                </div>\n" +
     "            </div>\n" +
     "            <span ng-repeat=\"c in utilitySelection | filter:{name:elementSelectionName} | orderBy:elementSelectionOrder\">\n" +
-    "                <div class=\"list-group-item\">\n" +
+    "                <div class=\"list-group-item list-utility\" style=\"background-color: #ffeeaa\">\n" +
     "                    <div class=\"col-sm-3 col-md-3\">\n" +
     "                        <div class=\"panel panel-default\">\n" +
     "                            <div class=\"panel-body image-panel\">\n" +
@@ -1809,7 +1804,7 @@ angular.module("city/utility.tpl.html", []).run(["$templateCache", function($tem
     "                </div>\n" +
     "                <div infinite-scroll=\"infiniteScroll.nextPage(resource,setLoader)\" infinite-scroll-distance=\"2\" infinite-scroll-disabled=\"infiniteScroll.busy\">\n" +
     "                    <span ng-repeat=\"c in infiniteScroll.itemList | filter:{name:elementListName} | orderBy:elementListOrder\">\n" +
-    "                        <div class=\"list-group-item\">\n" +
+    "                        <div class=\"list-group-item list-utility\">\n" +
     "                            <div class=\"col-sm-3 col-md-3\">\n" +
     "                                <div class=\"panel panel-default\">\n" +
     "                                    <div class=\"panel-body image-panel\">\n" +
