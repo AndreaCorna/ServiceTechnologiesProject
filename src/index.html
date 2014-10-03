@@ -51,7 +51,8 @@
               </li>
 
               <li><a ui-sref="signup" class="navbar-item">Sign Up</a></li>
-              <li><a ui-sref="login">Log In</a></li>
+              <li><a ui-sref="login" class="navbar-item">Log In</a></li>
+              <li ng-if="Auth.isAuthenticated()"><a href="" ng-controller="LoginCtrl" class="navbar-item" ng-click="logout()">Log Out</a></li>
           </ul>
       </div>
   </nav>

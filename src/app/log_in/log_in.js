@@ -17,7 +17,7 @@ angular.module( 'trippo.login', [
     })
 
 
-    .controller( 'LoginCtrl', function LoginController( $scope, $http ) {
+    .controller( 'LoginCtrl', function LoginController( $scope, $http, $location ) {
         $scope.login_user = {email: null, password: null};
         $scope.login_error = {message: null, errors: {}};
 
@@ -28,11 +28,8 @@ angular.module( 'trippo.login', [
                 success_message: "You have been logged in.",
                 error_entity: $scope.login_error});
         };
-        $scope.facebook = function(){
-            $scope.submit({method: 'POST',
-                url: '../users/auth/facebook.json',
-                success_message:"Bene Bene",
-                error_entity: $scope.login_error});
+        $scope.go = function(path){
+            $location.path(path);
         };
 
         $scope.logout = function() {

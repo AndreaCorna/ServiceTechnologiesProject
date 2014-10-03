@@ -1948,10 +1948,9 @@ angular.module("log_in/log_in.tpl.html", []).run(["$templateCache", function($te
     "    <button ng-click=\"confirm()\" class=\"btn btn-primary\" >Confirm</button>\n" +
     "\n" +
     "    <div>\n" +
-    "        <button ng-click=\"facebook()\" class=\"btn btn-primary\">Facebook</button>\n" +
-    "        <script>\n" +
-    "            <%= link_to \"Sign in with Facebook\", user_omniauth_authorize_path(:facebook) %>\n" +
-    "        </script>\n" +
+    "        <button ng-click=\"go('/users/auth/facebook')\" class=\"btn btn-primary\">Facebook</button>\n" +
+    "        <a class=\"btn btn-default\" href=\"http://localhost:3000/users/auth/facebook\">face</a>\n" +
+    "        <a class=\"btn btn-default\" href=\"http://localhost:3000/users/auth/google_oauth2\">google</a>\n" +
     "    </div>\n" +
     "</div>\n" +
     "");
