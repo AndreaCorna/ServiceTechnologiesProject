@@ -58,7 +58,7 @@ component.directive('map', function ($timeout) {
 
 
                 var mapOptions = {
-                    zoom: scope.zoom !== undefined ? scope.zoom : 15,
+                    zoom: scope.zoom !== undefined ? scope.zoom : 12,
 
                     mapTypeId: scope.type.toLowerCase(),
                     streetViewControl: false
@@ -176,7 +176,7 @@ component.directive('map', function ($timeout) {
             scope.updateDirectionMap = function () {
                 scope.planTripSelected = true;
                 var mapOptions = {
-                    zoom: scope.zoom !== undefined ? scope.zoom : 15,
+                    zoom: scope.zoom !== undefined ? scope.zoom : 13,
                     mapTypeId: scope.type.toLowerCase(),
                     streetViewControl: true
                 };
@@ -236,7 +236,7 @@ component.directive('map', function ($timeout) {
 
 
                 var mapOptions = {
-                    zoom: scope.zoom !== undefined ? scope.zoom : 15,
+                    zoom: scope.zoom !== undefined ? scope.zoom : 13,
                     mapTypeId: scope.type.toLowerCase(),
                     streetViewControl: false
                 };
