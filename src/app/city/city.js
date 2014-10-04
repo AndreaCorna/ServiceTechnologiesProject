@@ -681,16 +681,30 @@ angular.module( 'trippo.city', [
 
 
 
-.controller( 'CityCtrl', function CityCtrl($state, $scope, $stateParams, CityRes,SelectionService, CityService,$location) {
+.controller( 'CityCtrl', function CityCtrl($rootScope, $scope, $stateParams, CityRes,SelectionService, CityService,$location) {
     $scope.intervalImages = 5000;
     $scope.modalEnabled = false;
     $scope.loaderEnabled = true;
     $scope.markerArraySelected = [];
-    $scope.markerArrayList = CityService.getCurrentList();
+
+        // delete the List of marker when in certain states so to leave only the selected ones
+    $rootScope.$on('$stateChangeSuccess',function(event, toState, toParams, fromState, fromParams){
+        var planningStates = ['planning','dates','createtrip'] ;
+        if ( planningStates.indexOf(toState.name) < 0){
+            console.log("non sono in planning");
+            $scope.markerArrayList = CityService.getCurrentList();
+        }
+        else{
+            $scope.markerArrayList = [];
+        }
+
+    });
+
+
+
 
     $scope.$watchCollection(function () { return CityService.getCurrentList(); }, function (newVal, oldVal) {
         $scope.markerArrayList= CityService.getCurrentList();
-        console.log("updating markerArrayList");
 
 
         if(!$scope.$$phase) {
@@ -721,24 +735,8 @@ angular.module( 'trippo.city', [
         return $location.path().split('/').pop() == 'guides';
     }  ;
 
-    $scope.isPlanning = function(){
-        console.log("------------");
-        
-        console.log($location.path().split('/').pop());
-        var current = $location.path().split('/').pop();
 
-        var  planning =   $state.href("planning").split('/')[$state.href("planning").split('/').length - 2];
-        var  dates =   $state.href("dates").split('/').pop() ;
-        var  createtrip =   $state.href("createtrip").split('/').pop() ;
-        var myplanning = [planning,dates,createtrip];
-        console.log(myplanning);
 
-        if (myplanning.indexOf(current)){
-            return true  ;
-        }
-        return false;
-
-    }   ;
 
 
         $scope.getCityName = function(){
@@ -789,10 +787,7 @@ angular.module( 'trippo.city', [
             return parts.pop() ;
         } ;
         var setCurrentList= function(mylocation){
-            console.log("href di culture");
-            console.log(getStringAfterLastSlash($state.href("culture")));
-            console.log("location path");
-            console.log(mylocation);
+
 
             switch (mylocation){
                  case getStringAfterLastSlash($state.href("culture")):

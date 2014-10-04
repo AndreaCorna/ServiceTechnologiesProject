@@ -2,11 +2,12 @@
  * Created by Lorenzo on 29/09/14.
  */
 
-var component = angular.module('common.placeList', [
-    'common.mapDirections'
+var component = angular.module('common.placeListMaps', [
+    'common.mapDirections',
+    'trippo.modal'
 ]);
 
-component.directive('placeList', function () {
+component.directive('placeListMaps', function (ModalHandler) {
     'use strict';
 
     var placeList = {
@@ -19,7 +20,7 @@ component.directive('placeList', function () {
 
         },
         replace: true,
-        templateUrl: 'place-list/place-list.tpl.html',
+        templateUrl: 'place-list/place-list-maps.tpl.html',
         link: function (scope, element, attrs) {
 
             scope.$watch('selectedItems', function(newValue, oldValue) {
@@ -30,6 +31,10 @@ component.directive('placeList', function () {
                     scope.selectedItems = newValue;
                 }
             }, true);
+
+            scope.setDetails = function(item) {
+                ModalHandler.setDetailsItem(item);
+            };
 
             /**
              *MAPS HANDLING

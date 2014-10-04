@@ -13,7 +13,7 @@
 
     <div class="container " >
         <div class="row">
-            <a ui-sref="guides" class="btn btn-primary btn-large btn-outlined big-button back-button col-md-2"><i class="glyphicon glyphicon-chevron-left pull-left"></i>Guides</a>
+            <a ui-sref="guides({city_name:guide.city})" class="btn btn-primary btn-large btn-outlined big-button back-button col-md-2"><i class="glyphicon glyphicon-chevron-left pull-left"></i>Guides</a>
         </div>
 
         <map-markers  marker-array-selected="markerArraySelected" init-position="guide.city" map-id="guideMap"  type="roadmap" class="mapContainer" style="margin-top: 20px" ></map-markers>
@@ -121,7 +121,7 @@
                             </div>
 
 
-                            <place-list ng-show="currentView == 'DETAILS VIEW'" init-position="guide.city" selected-items="getPlaces(date)" map-id="date.day"></place-list>
+                            <place-list-maps ng-show="currentView == 'DETAILS VIEW'" init-position="guide.city" selected-items="getPlaces(date)" map-id="date.day"></place-list-maps>
                         </div>
 
 

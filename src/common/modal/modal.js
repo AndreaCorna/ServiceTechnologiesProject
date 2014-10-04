@@ -49,6 +49,27 @@ angular.module('trippo.modal', ["trippo.resources"])
                     data =response;
                     details = data;
                 });
+            } ,
+            /**
+             * wrapper    method which set the modal details through an object which has a field tag
+             * representing the resource and a filed id representing th object to be retrived
+             */
+            setDetailsItem :  function(item) {
+                switch (item.tag) {
+                    case 'culture' :
+                        this.setDetailsByResource(CultureRes, item.id);
+                        break;
+                    case 'entertainment' :
+                        this.setDetailsByResource(EntertainmentRes, item.id);
+                        break;
+                    case 'food' :
+                        this.setDetailsByResource(FoodRes, item.id);
+                        break;
+                    case 'hotel' :
+                        this.setDetailsHotel(HotelRes, item.id);
+                        break;
+
+                }
             }
 
 

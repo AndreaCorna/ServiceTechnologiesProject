@@ -48,7 +48,7 @@ component.directive('mapDirections', function ($timeout,MapsService) {
 
 
 
-
+             scope.directionsMode =false;
             /**
              * When Travel mode is changed the map is recreated with the new directions
              */
@@ -106,6 +106,8 @@ component.directive('mapDirections', function ($timeout,MapsService) {
 
 
             scope.updateDirectionMap = function () {
+                scope.directionsMode =true;
+
                 var mapOptions = {
                     zoom: scope.zoom !== undefined ? scope.zoom : 13,
                     mapTypeId: scope.type.toLowerCase(),
@@ -140,7 +142,6 @@ component.directive('mapDirections', function ($timeout,MapsService) {
 
             };
 
-            //Variable to show panel in the map
 
 
             scope.getDirections = function () {
@@ -162,11 +163,13 @@ component.directive('mapDirections', function ($timeout,MapsService) {
             };
 
             scope.updateMarkerMap = function () {
+                scope.directionsMode =false;
+
                 //console.log("updating marker map");
 
 
                 var mapOptions = {
-                    zoom: scope.zoom !== undefined ? scope.zoom : 13,
+                    zoom: scope.zoom !== undefined ? scope.zoom : 12,
                     mapTypeId: scope.type.toLowerCase(),
                     streetViewControl: false
                 };

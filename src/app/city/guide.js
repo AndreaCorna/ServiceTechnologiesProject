@@ -8,7 +8,7 @@ angular.module( 'trippo.guide', [
     'trippo.resources',
     'trippo.modal',
     'trippo.plan',
-    'common.placeList' ,
+    'common.placeListMaps' ,
     'common.mapsMarkers'
 ])
 .config(function config( $stateProvider ) {

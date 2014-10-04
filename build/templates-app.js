@@ -1333,7 +1333,7 @@ angular.module("city/guide.tpl.html", []).run(["$templateCache", function($templ
     "\n" +
     "    <div class=\"container \" >\n" +
     "        <div class=\"row\">\n" +
-    "            <a ui-sref=\"guides\" class=\"btn btn-primary btn-large btn-outlined big-button back-button col-md-2\"><i class=\"glyphicon glyphicon-chevron-left pull-left\"></i>Guides</a>\n" +
+    "            <a ui-sref=\"guides({city_name:guide.city})\" class=\"btn btn-primary btn-large btn-outlined big-button back-button col-md-2\"><i class=\"glyphicon glyphicon-chevron-left pull-left\"></i>Guides</a>\n" +
     "        </div>\n" +
     "\n" +
     "        <map-markers  marker-array-selected=\"markerArraySelected\" init-position=\"guide.city\" map-id=\"guideMap\"  type=\"roadmap\" class=\"mapContainer\" style=\"margin-top: 20px\" ></map-markers>\n" +
@@ -1441,7 +1441,7 @@ angular.module("city/guide.tpl.html", []).run(["$templateCache", function($templ
     "                            </div>\n" +
     "\n" +
     "\n" +
-    "                            <place-list ng-show=\"currentView == 'DETAILS VIEW'\" init-position=\"guide.city\" selected-items=\"getPlaces(date)\" map-id=\"date.day\"></place-list>\n" +
+    "                            <place-list-maps ng-show=\"currentView == 'DETAILS VIEW'\" init-position=\"guide.city\" selected-items=\"getPlaces(date)\" map-id=\"date.day\"></place-list-maps>\n" +
     "                        </div>\n" +
     "\n" +
     "\n" +
@@ -1995,62 +1995,8 @@ angular.module("plan_trip/createtrip.tpl.html", []).run(["$templateCache", funct
     "                    </div>\n" +
     "                    <div id=\"{{date.format('DD-MM-YYYY')}}List\" class=\"panel-collapse collapse\">\n" +
     "                        <div class=\"panel-body\" style=\"background-color:#e8e8e8\">\n" +
-    "                            <div class=\"row\" ng-repeat=\"item in getDayProgram(date)\" >\n" +
     "\n" +
-    "                                         <div class=\"col-md-12\" >\n" +
-    "                                             <div class=\"row\" style=\"margin-left: 4px;margin-right: 4px\">\n" +
-    "\n" +
-    "                                                    <div class=\"brdr bgc-fff pad-10 box-shad property-listing\">\n" +
-    "                                                         <div class=\"media\">\n" +
-    "                                                             <div class=\"col-md-4\">\n" +
-    "                                                                 <div ng-if=\"item.photos.length==0\">\n" +
-    "                                                                     <img style=\"height: 220px;  width:100%;\" ng-src=\"assets/images/empty_photo.png\">\n" +
-    "                                                                 </div>\n" +
-    "                                                                 <div ng-if=\"item.photos.length>0\">\n" +
-    "                                                                     <img style=\"height: 220px;  width:100%;\" ng-src=\"{{item.photos[0].image}}\" >\n" +
-    "                                                                 </div>\n" +
-    "\n" +
-    "                                                             </div>\n" +
-    "                                                             <div class=\"clearfix visible-sm\"></div>\n" +
-    "\n" +
-    "                                                             <div class=\"col-md-8\">\n" +
-    "                                                                <div class=\"media-body fnt-smaller\">\n" +
-    "\n" +
-    "                                                                 <h4 class=\"media-heading\">\n" +
-    "                                                                     <a href=\"#\" target=\"_parent\">{{item.name}} </a>\n" +
-    "                                                                     <button class=\"btn btn-primary btn-outlined pull-right\" style=\"margin-top: 3px\"  ng-click=\"setCultureDetails(item.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">MORE INFO</button>\n" +
-    "\n" +
-    "                                                                 </h4>\n" +
-    "\n" +
-    "\n" +
-    "                                                                 <div ng-if=\"!item.description\">\n" +
-    "                                                                     <p class=\"hidden-xs\">No description available</p>\n" +
-    "                                                                  </div>\n" +
-    "                                                                    <div ng-if=\"item.description\">\n" +
-    "                                                                        <div class=\"panel panel-default scrollable\" style=\"max-height: 165px;overflow-y: auto;margin-top: 13px;\">\n" +
-    "                                                                            <div class=\"hidden-xs text-justify \" >{{item.description}}</div>\n" +
-    "                                                                        </div>\n" +
-    "                                                                    </div>\n" +
-    "\n" +
-    "\n" +
-    "                                                                </div>\n" +
-    "                                                            </div>\n" +
-    "\n" +
-    "                                                         </div>\n" +
-    "                                                     </div>\n" +
-    "                                                 </div>\n" +
-    "\n" +
-    "                                         </div>\n" +
-    "\n" +
-    "\n" +
-    "                                    <div class=\"clearfix\"></div>\n" +
-    "                                    <br><br>\n" +
-    "\n" +
-    "\n" +
-    "\n" +
-    "\n" +
-    "                            </div>\n" +
-    "\n" +
+    "                            <place-list-details item-list=\"getDayProgram(date)\"  ></place-list-details>\n" +
     "\n" +
     "                        </div>\n" +
     "                    </div>\n" +
@@ -2114,7 +2060,7 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
     "\n" +
     "                                        <button ng-show=\"!isScheduled(cult)\" style=\"margin-right: 2px\"  class=\"btn btn-primary btn-outlined \" style=\"display: inline-block;\" ng-click=\"addToSchedule(cult)\">ADD</button>\n" +
     "\n" +
-    "                                        <button class=\"btn btn-primary btn-outlined \" style=\"margin-left: 4px;margin-bottom: 5px\"  ng-click=\"setCultureDetails(cult.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">MORE</button>\n" +
+    "                                        <button class=\"btn btn-primary btn-outlined \" style=\"margin-left: 4px;margin-bottom: 5px\"  ng-click=\"setDetails(cult)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">MORE</button>\n" +
     "                                    </div>\n" +
     "                                  </div>\n" +
     "                            </div>\n" +
@@ -2162,7 +2108,7 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
     "\n" +
     "                                        <button ng-show=\"!isScheduled(ent)\" style=\"margin-right: 2px\"  class=\"btn btn-primary btn-outlined \" style=\"display: inline-block;\" ng-click=\"addToSchedule(ent)\">ADD</button>\n" +
     "\n" +
-    "                                        <button class=\"btn btn-primary btn-outlined \" style=\"margin-left: 4px;margin-bottom: 5px\"  ng-click=\"setCultureDetails(ent.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">MORE</button>\n" +
+    "                                        <button class=\"btn btn-primary btn-outlined \" style=\"margin-left: 4px;margin-bottom: 5px\"  ng-click=\"setDetails(ent)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">MORE</button>\n" +
     "                                    </div>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
@@ -2210,7 +2156,7 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
     "\n" +
     "                                        <button ng-show=\"!isScheduled(hot)\" style=\"margin-right: 2px\"  class=\"btn btn-primary btn-outlined \" style=\"display: inline-block;\" ng-click=\"addToSchedule(hot)\">ADD</button>\n" +
     "\n" +
-    "                                        <button class=\"btn btn-primary btn-outlined \" style=\"margin-left: 4px;margin-bottom: 5px\"  ng-click=\"setCultureDetails(hot.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">MORE</button>\n" +
+    "                                        <button class=\"btn btn-primary btn-outlined \" style=\"margin-left: 4px;margin-bottom: 5px\"  ng-click=\"setDetails(hot)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">MORE</button>\n" +
     "                                    </div>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
@@ -2258,7 +2204,7 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
     "\n" +
     "                                        <button ng-show=\"!isScheduled(food)\" style=\"margin-right: 2px\"  class=\"btn btn-primary btn-outlined \" style=\"display: inline-block;\" ng-click=\"addToSchedule(food)\">ADD</button>\n" +
     "\n" +
-    "                                        <button class=\"btn btn-primary btn-outlined \" style=\"margin-left: 4px;margin-bottom: 5px\"  ng-click=\"setCultureDetails(food.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">MORE</button>\n" +
+    "                                        <button class=\"btn btn-primary btn-outlined \" style=\"margin-left: 4px;margin-bottom: 5px\"  ng-click=\"setDetails(food)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">MORE</button>\n" +
     "                                    </div>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
@@ -2286,7 +2232,7 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
     "                                    <div class=\"btn-group\">\n" +
     "\n" +
     "                                        <button  style=\"margin-right: 2px;\" class=\"btn btn-primary btn-outlined z-up\" style=\"display: inline-block;\" ng-click=\"removeFromSchedule(item)\">REMOVE</button>\n" +
-    "                                        <button class=\"btn btn-primary btn-outlined z-up\" style=\";margin-left: 4px;margin-bottom: 5px\"  ng-click=\"setCultureDetails(item.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">MORE</button>\n" +
+    "                                        <button class=\"btn btn-primary btn-outlined z-up\" style=\";margin-left: 4px;margin-bottom: 5px\"  ng-click=\"setDetails(item)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">MORE</button>\n" +
     "                                    </div>\n" +
     "                                </div>\n" +
     "                            </div>\n" +

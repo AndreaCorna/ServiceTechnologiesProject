@@ -55,6 +55,8 @@ component.directive('mapMarkers', function ($timeout,MapsService) {
             //one time for the map of city but when the planning map is rendered the variable map is change and will refer to this map
             //and the change to the map variable will be applied to this map and not to the city one
             var markerMap ;
+            //usefull to know which are the places selected before
+            var initialArraySelection = []   ;
             var markersArraySelection = [];
             var markerList = [];
 
@@ -65,7 +67,7 @@ component.directive('mapMarkers', function ($timeout,MapsService) {
 
                     var toRemove = arrayDiff(oldValue, newValue);
                     var toAdd = arrayDiff(newValue, oldValue);
-
+                    initialArraySelection = newValue;
 
                     scope.updateArrayMarkerSelectedMap(toAdd, toRemove);
                 }
@@ -83,14 +85,14 @@ component.directive('mapMarkers', function ($timeout,MapsService) {
 
             scope.updateArrayMarkerListMap = function () {
 
-                //first time is rendered so the map initilazed by the timeout is the current one
-                if (markerMap === undefined){
-                    console.log("markerMap");
+                //inizializzazione caso in cui ho solo la markerList ma non ho markerArraySelected
+                if (markerMap === undefined && scope.markerArraySelected === undefined){
+                    console.log("updateArrayMarkerListMap");
 
                     // markerMap = new google.maps.Map(document.getElementById(scope.mapId), mapOptions);
                     // scope.initializeMapCenter(scope.initPosition,markerMap);
                     markerMap = MapsService.initMap(markerMap,scope.initPosition,scope.mapId,scope.zoom,scope.type) ;
-                    console.log("marker"+markerMap);
+                    console.log('selsction '+markersArraySelection);
 
 
                 }
@@ -103,37 +105,31 @@ component.directive('mapMarkers', function ($timeout,MapsService) {
 
                 });
                 markerList = []; //all marker have been cleaned up by the function before
-                console.log(" marker list after deletion");
-                console.log(markerList);
 
 
-                //console.log("updating updateArrayMarkerListMap markerArrayList:");
-                //console.log(scope.markerArrayList);
                 angular.forEach(scope.markerArrayList, function (value, key) {
-                    console.log("addin marker");
-                    console.log(value);
-                    console.log(scope.mapId);
-
-
                     markerList.push(MapsService.addMarker(value, markerMap,false));
                 });
-                console.log(" marker list after addingMarkers");
-                console.log(markerList);
+
 
 
 
             };
 
+            /**
+             * Add to the map marker dinamically finding difference between current set of markers and the new one
+             * @param toAdd     markers to add
+             * @param toRemove    markers to remove
+             */
             scope.updateArrayMarkerSelectedMap = function (toAdd, toRemove) {
 
-                //first time is rendered so the map initilazed by the timeout is the current one
                 if (markerMap === undefined){
-                    console.log("markerMap");
-
+                    console.log("updateArrayMarkerSelectedMap");
+                    toAdd = initialArraySelection;
                     // markerMap = new google.maps.Map(document.getElementById(scope.mapId), mapOptions);
                     // scope.initializeMapCenter(scope.initPosition,markerMap);
                     markerMap = MapsService.initMap(markerMap,scope.initPosition,scope.mapId,scope.zoom,scope.type) ;
-                    console.log("marker"+markerMap);
+                    console.log('selsction'+markersArraySelection);
 
 
                 }

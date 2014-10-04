@@ -8,7 +8,8 @@ angular.module('trippo.plan',[
     'angular-sortable-view',
     'trippo.city',
     'trippo.modal',
-    'common.mapDirections'
+    'common.mapDirections',
+    'common.placeListDetails'
 
 ])
 
@@ -231,18 +232,12 @@ angular.module('trippo.plan',[
         /**
          * List of fuction which set the content of the modal when clicked More button in item
          */
-        $scope.setCultureDetails = function(id_culture){
-            ModalHandler.setDetailsByResource(commonResources.CultureRes,id_culture);
+        $scope.setDetails = function(item) {
+           ModalHandler.setDetailsItem(item);
         };
-        $scope.setEntertainmentDetails = function(id_entertainment){
-            ModalHandler.setDetailsByResource(commonResources.EntertainmentRes,id_entertainment);
-        };
-        $scope.setHotelsDetails = function(id_hotel){
-            ModalHandler.setDetailsByResource(commonResources.HotelRes,id_hotel);
-        };
-        $scope.setFoodDetails = function(id_food){
-            ModalHandler.setDetailsByResource(commonResources.FoodRes,id_food);
-        };
+
+
+
         //START STUB
         /*
 
@@ -460,8 +455,11 @@ angular.module('trippo.plan',[
         $scope.dateFormat = DatesService.dateFormat;
 
 
-        $scope.setCultureDetails = function(id_culture){
-            ModalHandler.setDetailsByResource(commonResources.CultureRes,id_culture);
+        $scope.setDetails = function(item) {
+            console.log("item in set details");
+            console.log(item);
+
+            ModalHandler.setDetailsItem(item);
         };
 
         CityPlanningService.setRangeDatesCity($stateParams.city_name) ;
