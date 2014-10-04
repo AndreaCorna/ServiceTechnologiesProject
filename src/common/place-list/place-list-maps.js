@@ -7,7 +7,7 @@ var component = angular.module('common.placeListMaps', [
     'trippo.modal'
 ]);
 
-component.directive('placeListMaps', function (ModalHandler) {
+component.directive('placeListMaps', function (ModalHandler,$stateParams) {
     'use strict';
 
     var placeList = {
@@ -33,7 +33,15 @@ component.directive('placeListMaps', function (ModalHandler) {
             }, true);
 
             scope.setDetails = function(item) {
-                ModalHandler.setDetailsItem(item);
+                //check if is defined the field city inside the item useful to retrive the data othewise check the stateParameter in the URL
+                var city;
+                if(item.city !==undefined){
+                    city =  item.city     ;
+                }
+                else{
+                    city = $stateParams.city_name   ;
+                }
+                ModalHandler.setDetailsItem(item,city);
             };
 
             /**

@@ -21,21 +21,16 @@ component.directive('placeListDetails', function (ModalHandler,$stateParams) {
         replace: true,
         templateUrl: 'place-list/place-list-details.tpl.html',
         link: function (scope, element, attrs) {
-
+            //set the details of the modal
             scope.setDetails = function(item) {
+                //check if is defined the field city inside the item useful to retrive the data othewise check the stateParameter in the URL
                 var city;
                 if(item.city !==undefined){
-                    console.log("item city defined");
-
                   city =  item.city     ;
                 }
                 else{
-                    console.log("stateparamcity city defined");
-
                     city = $stateParams.city_name   ;
                 }
-                console.log(city);
-
                 ModalHandler.setDetailsItem(item,city);
             };
         }

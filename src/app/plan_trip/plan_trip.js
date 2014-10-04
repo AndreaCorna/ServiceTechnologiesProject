@@ -9,7 +9,8 @@ angular.module('trippo.plan',[
     'trippo.city',
     'trippo.modal',
     'common.mapDirections',
-    'common.placeListDetails'
+    'common.placeListDetails',
+    'common.placeListMaps'
 
 ])
 
@@ -455,12 +456,22 @@ angular.module('trippo.plan',[
         $scope.dateFormat = DatesService.dateFormat;
 
 
-        $scope.setDetails = function(item) {
-            console.log("item in set details");
-            console.log(item);
-
-            ModalHandler.setDetailsItem(item);
+        $scope.getCityName= function(){
+            return $stateParams.city_name;
         };
+        $scope.placeViews = ["DETAILS VIEW","MAPS VIEW"]   ;
+        $scope.currentView =  $scope.placeViews[0];
+        $scope.changeView = function() {
+            var index =   $scope.placeViews.indexOf($scope.currentView);
+            index++;
+
+            if (index == $scope.placeViews.length){
+                index = 0;
+            }
+            $scope.currentView = $scope.placeViews[index];
+        }  ;
+
+
 
         CityPlanningService.setRangeDatesCity($stateParams.city_name) ;
         $scope.dates = DatesService.getRangeDates();
@@ -497,7 +508,10 @@ angular.module('trippo.plan',[
 
 
         $scope.createTrip = function (form) {
+
+
             $scope.submitted = true;
+
             if   (form.$valid){
                 var guide =  new GuideRes();
                 guide.name = $scope.name ;

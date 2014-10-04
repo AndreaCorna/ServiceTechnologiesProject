@@ -48,6 +48,9 @@
                 </fieldset>
             </form>
             <legend>Trip Summary</legend>
+            <div class="row" style="margin-bottom: 6px">
+                <button class="btn btn-primary btn-outlined z-up" style="font-size: 17px;margin-left: 15px;" ng-click="changeView()">{{currentView}}</button>
+            </div>
             <div id="{{date.format('DD-MM-YYYY')}}" class="panel-group" ng-repeat="date in dates">
                 <div class="panel  panel-primary no-radius">
                     <div class="panel-heading no-radius  bigger-accordition" data-toggle="collapse" data-parent="#{{date.format('DD-MM-YYYY')}}" data-target="#{{date.format('DD-MM-YYYY')}}List">
@@ -56,10 +59,12 @@
                             <button class="btn btn-primary btn-outlined z-up" style="float: right;font-size: 17px;margin-right: 5px;" ui-sref="planning({date:date.format(dateFormat)})">EDIT</button>
                         </h4>
                     </div>
-                    <div id="{{date.format('DD-MM-YYYY')}}List" class="panel-collapse collapse">
+                    <div id="{{date.format('DD-MM-YYYY')}}List" class="panel-collapse in">
                         <div class="panel-body" style="background-color:#e8e8e8">
-
-                            <place-list-details item-list="getDayProgram(date)"  ></place-list-details>
+                            <div ng-show="currentView == 'MAPS VIEW'">
+                                <place-list-details item-list="getDayProgram(date)"  ></place-list-details>
+                            </div>
+                            <place-list-maps ng-show="currentView == 'DETAILS VIEW'" init-position="getCityName()" selected-items="getDayProgram(date)" map-id="date"></place-list-maps>
 
                         </div>
                     </div>
