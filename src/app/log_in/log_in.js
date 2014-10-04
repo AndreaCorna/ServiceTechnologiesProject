@@ -1,5 +1,6 @@
 
 angular.module( 'trippo.login', [
+    'Devise'
 ])
 
 
@@ -17,7 +18,7 @@ angular.module( 'trippo.login', [
     })
 
 
-    .controller( 'LoginCtrl', function LoginController( $scope, $http, $location ) {
+    .controller( 'LoginCtrl', function LoginController( $scope, $http, $location, Auth ) {
         $scope.login_user = {email: null, password: null};
         $scope.login_error = {message: null, errors: {}};
 
@@ -30,6 +31,18 @@ angular.module( 'trippo.login', [
         };
         $scope.go = function(path){
             $location.path(path);
+        };
+
+        $scope.showCurrentUser = function(){
+            Auth.currentUser().then(function(user){
+               console.log(user);
+            }, function(error) {
+                }
+            );
+        };
+
+        $scope.showAuth = function(){
+            console.log(Auth.isAuthenticated());
         };
 
         $scope.logout = function() {

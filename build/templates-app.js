@@ -1946,6 +1946,8 @@ angular.module("log_in/log_in.tpl.html", []).run(["$templateCache", function($te
     "    <button ng-click=\"password_reset()\" class=\"btn btn-primary\" >Reset Password</button>\n" +
     "    <button ng-click=\"unlock()\" class=\"btn btn-primary\" >Unlock</button>\n" +
     "    <button ng-click=\"confirm()\" class=\"btn btn-primary\" >Confirm</button>\n" +
+    "    <button ng-click=\"showCurrentUser()\" class=\"btn btn-primary\" >Show</button>\n" +
+    "\n" +
     "\n" +
     "    <div>\n" +
     "        <button ng-click=\"go('/users/auth/facebook')\" class=\"btn btn-primary\">Facebook</button>\n" +
