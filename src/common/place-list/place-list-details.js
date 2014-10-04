@@ -6,7 +6,7 @@ var component = angular.module('common.placeListDetails', [
     'trippo.modal'
 ]);
 
-component.directive('placeListDetails', function (ModalHandler) {
+component.directive('placeListDetails', function (ModalHandler,$stateParams) {
     'use strict';
 
     var placeList = {
@@ -23,7 +23,20 @@ component.directive('placeListDetails', function (ModalHandler) {
         link: function (scope, element, attrs) {
 
             scope.setDetails = function(item) {
-                ModalHandler.setDetailsItem(item);
+                var city;
+                if(item.city !==undefined){
+                    console.log("item city defined");
+
+                  city =  item.city     ;
+                }
+                else{
+                    console.log("stateparamcity city defined");
+
+                    city = $stateParams.city_name   ;
+                }
+                console.log(city);
+
+                ModalHandler.setDetailsItem(item,city);
             };
         }
 

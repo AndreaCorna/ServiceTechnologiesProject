@@ -233,7 +233,7 @@ angular.module('trippo.plan',[
          * List of fuction which set the content of the modal when clicked More button in item
          */
         $scope.setDetails = function(item) {
-           ModalHandler.setDetailsItem(item);
+           ModalHandler.setDetailsItem(item,$stateParams.city_name);
         };
 
 

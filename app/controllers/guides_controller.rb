@@ -109,6 +109,7 @@ class GuidesController < ApplicationController
       cur_day_places.each { |place|
         #add place to the current day schedule
         my_place = PlaceSummary.find_by_id place.place_summary_id
+
         result_day['schedule'] << my_place
       }
       result['days'] << result_day

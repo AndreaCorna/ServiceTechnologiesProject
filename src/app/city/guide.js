@@ -9,6 +9,7 @@ angular.module( 'trippo.guide', [
     'trippo.modal',
     'trippo.plan',
     'common.placeListMaps' ,
+    'common.placeListDetails' ,
     'common.mapsMarkers'
 ])
 .config(function config( $stateProvider ) {

@@ -140,7 +140,7 @@ angular.module( 'trippo.city', [
         };
 
         $scope.setCultureDetails = function(culture_item){
-            ModalHandler.setDetailsByResource($scope.resource ,culture_item);
+            ModalHandler.setDetailsByResource($scope.resource ,culture_item,$stateParams.city_name);
         } ;
 
         $scope.addCultureItem = function(culture_item){
@@ -249,7 +249,7 @@ angular.module( 'trippo.city', [
         };
 
         $scope.setEntertainmentDetails = function(entertainment_item){
-            ModalHandler.setDetailsByResource($scope.resource ,entertainment_item);
+            ModalHandler.setDetailsByResource($scope.resource ,entertainment_item,$stateParams.city_name);
         } ;
 
         $scope.addEntertainmentItem = function(entertainment_item){
@@ -351,7 +351,7 @@ angular.module( 'trippo.city', [
         };
 
         $scope.setUtilityDetails = function(utility_item){
-            ModalHandler.setDetailsByResource($scope.resource ,utility_item);
+            ModalHandler.setDetailsByResource($scope.resource ,utility_item,$stateParams.city_name);
         } ;
 
         $scope.addUtilityItem = function(utility_item){
@@ -453,7 +453,7 @@ angular.module( 'trippo.city', [
         };
 
         $scope.setHotelDetails = function(hotel_item){
-            ModalHandler.setDetailsHotel($scope.resource ,hotel_item);
+            ModalHandler.setDetailsHotel($scope.resource ,hotel_item,$stateParams.city_name);
         } ;
 
         $scope.addHotelItem = function(hotel_item){
@@ -553,7 +553,7 @@ angular.module( 'trippo.city', [
         };
 
         $scope.setFoodDetails = function(food_item){
-            ModalHandler.setDetailsByResource($scope.resource ,food_item);
+            ModalHandler.setDetailsByResource($scope.resource ,food_item,$stateParams.city_name);
         } ;
 
         $scope.addFoodItem = function(food_item){

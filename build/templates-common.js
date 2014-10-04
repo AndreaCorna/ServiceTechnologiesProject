@@ -50,11 +50,15 @@ angular.module("place-list/place-list-details.tpl.html", []).run(["$templateCach
     "            <div class=\"brdr bgc-fff pad-10 box-shad property-listing\">\n" +
     "                <div class=\"media\">\n" +
     "                    <div class=\"col-md-4\">\n" +
-    "                        <div ng-if=\"item.photos.length==0\">\n" +
-    "                            <img style=\"height: 220px;  width:100%;\" ng-src=\"assets/images/empty_photo.png\">\n" +
-    "                        </div>\n" +
-    "                        <div ng-if=\"item.photos.length>0\">\n" +
+    "\n" +
+    "                        <div ng-if=\"item.photos !== undefined\">\n" +
     "                            <img style=\"height: 220px;  width:100%;\" ng-src=\"{{item.photos[0].image}}\" >\n" +
+    "                        </div>\n" +
+    "                        <div ng-if=\"item.image !== undefined && item.photos === undefined\">\n" +
+    "                            <img style=\"height: 220px;  width:100%;\" ng-src=\"{{item.image}}\" >\n" +
+    "                        </div>\n" +
+    "                        <div ng-if=\"item.image === undefined && item.photos === undefined\">\n" +
+    "                            <img style=\"height: 220px;  width:100%;\" ng-src=\"assets/images/empty_photo.png\">\n" +
     "                        </div>\n" +
     "\n" +
     "                    </div>\n" +
