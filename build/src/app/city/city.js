@@ -5,7 +5,8 @@ angular.module( 'trippo.city', [
   'trippo.resources',
   'trippo.modal',
   'infinite-scroll',
-    'trippo.guide'
+   'trippo.guide' ,
+    'common.mapsMarkers'
 ])
 
 .config(function config( $stateProvider ) {
@@ -139,7 +140,7 @@ angular.module( 'trippo.city', [
         };
 
         $scope.setCultureDetails = function(culture_item){
-            ModalHandler.setDetailsByResource($scope.resource ,culture_item);
+            ModalHandler.setDetailsByResource($scope.resource ,culture_item,$stateParams.city_name);
         } ;
 
         $scope.addCultureItem = function(culture_item){
@@ -248,7 +249,7 @@ angular.module( 'trippo.city', [
         };
 
         $scope.setEntertainmentDetails = function(entertainment_item){
-            ModalHandler.setDetailsByResource($scope.resource ,entertainment_item);
+            ModalHandler.setDetailsByResource($scope.resource ,entertainment_item,$stateParams.city_name);
         } ;
 
         $scope.addEntertainmentItem = function(entertainment_item){
@@ -350,7 +351,7 @@ angular.module( 'trippo.city', [
         };
 
         $scope.setUtilityDetails = function(utility_item){
-            ModalHandler.setDetailsByResource($scope.resource ,utility_item);
+            ModalHandler.setDetailsByResource($scope.resource ,utility_item,$stateParams.city_name);
         } ;
 
         $scope.addUtilityItem = function(utility_item){
@@ -452,7 +453,7 @@ angular.module( 'trippo.city', [
         };
 
         $scope.setHotelDetails = function(hotel_item){
-            ModalHandler.setDetailsHotel($scope.resource ,hotel_item);
+            ModalHandler.setDetailsHotel($scope.resource ,hotel_item,$stateParams.city_name);
         } ;
 
         $scope.addHotelItem = function(hotel_item){
@@ -552,7 +553,7 @@ angular.module( 'trippo.city', [
         };
 
         $scope.setFoodDetails = function(food_item){
-            ModalHandler.setDetailsByResource($scope.resource ,food_item);
+            ModalHandler.setDetailsByResource($scope.resource ,food_item,$stateParams.city_name);
         } ;
 
         $scope.addFoodItem = function(food_item){
@@ -680,16 +681,30 @@ angular.module( 'trippo.city', [
 
 
 
-.controller( 'CityCtrl', function CityCtrl( $scope, $stateParams, CityRes,SelectionService, CityService,$location) {
+.controller( 'CityCtrl', function CityCtrl($rootScope, $scope, $stateParams, CityRes,SelectionService, CityService,$location) {
     $scope.intervalImages = 5000;
     $scope.modalEnabled = false;
     $scope.loaderEnabled = true;
     $scope.markerArraySelected = [];
-    $scope.markerArrayList = CityService.getCurrentList();
+
+        // delete the List of marker when in certain states so to leave only the selected ones
+    $rootScope.$on('$stateChangeSuccess',function(event, toState, toParams, fromState, fromParams){
+        var planningStates = ['planning','dates','createtrip'] ;
+        if ( planningStates.indexOf(toState.name) < 0){
+            console.log("non sono in planning");
+            $scope.markerArrayList = CityService.getCurrentList();
+        }
+        else{
+            $scope.markerArrayList = [];
+        }
+
+    });
+
+
+
 
     $scope.$watchCollection(function () { return CityService.getCurrentList(); }, function (newVal, oldVal) {
         $scope.markerArrayList= CityService.getCurrentList();
-        console.log("updating markerArrayList");
 
 
         if(!$scope.$$phase) {
@@ -718,7 +733,16 @@ angular.module( 'trippo.city', [
 
     $scope.isGuides =function(){
         return $location.path().split('/').pop() == 'guides';
-    }   ;
+    }  ;
+
+
+
+
+
+        $scope.getCityName = function(){
+        return $stateParams.city_name;
+    };
+
 
 
 
@@ -763,10 +787,7 @@ angular.module( 'trippo.city', [
             return parts.pop() ;
         } ;
         var setCurrentList= function(mylocation){
-            console.log("href di culture");
-            console.log(getStringAfterLastSlash($state.href("culture")));
-            console.log("location path");
-            console.log(mylocation);
+
 
             switch (mylocation){
                  case getStringAfterLastSlash($state.href("culture")):

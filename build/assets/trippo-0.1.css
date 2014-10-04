@@ -6669,6 +6669,11 @@ a.list-group-item:focus {
   border-left: 10px solid #00b3ee;
   border-right: 10px solid #00b3ee;
 }
+.list-guides:hover,
+a.list-group-item:focus {
+  border-left: 10px solid #a6b779;
+  border-right: 10px solid #a6b779;
+}
 .panel-image-hotel {
   background-color: #ffffff;
   border: 1px solid transparent;
@@ -6787,16 +6792,16 @@ a.list-group-item:focus {
   text-transform: uppercase;
 }
 .entertainment-color {
-  background-color: #face23;
-}
-.culture-color {
   background-color: #21a9e1;
 }
-.food-color {
+.culture-color {
   background-color: #ee4749;
 }
-.hotel-color {
+.food-color {
   background-color: #00a651;
+}
+.hotel-color {
+  background-color: #face23;
 }
 .selected-color {
   border: 9px solid rgba(250, 240, 11, 0.85);

@@ -35,20 +35,49 @@ angular.module('trippo.modal', ["trippo.resources"])
             getDetails: function () {
                 return details;
             },
-            setDetailsByResource: function(resource,id) {
+            setDetailsByResource: function(resource,id,city) {
                 var data;
-                resource.get({city_name: $stateParams.city_name, id: id},function(response){
+                resource.get({city_name: city, id: id},function(response){
                     data =response;
                     setDetails(data);
                 });
             },
 
-            setDetailsHotel: function(resource,id){
+            setDetailsHotel: function(resource,id,city){
                 var data;
-                resource.get({city_name: $stateParams.city_name, id: id},function(response){
+                resource.get({city_name: city, id: id},function(response){
                     data =response;
                     details = data;
                 });
+            } ,
+            /**
+             * wrapper    method which set the modal details through an object which has a field tag
+             * representing the resource and a filed id representing th object to be retrived
+             */
+            setDetailsItem :  function(item,city) {
+                //choose the field which identify the place
+                var id;
+                if (item.google_id !==undefined){
+                    id =  item.google_id ;
+                }
+                else{
+                    id = item.id;
+                }
+                switch (item.tag) {
+                    case 'culture' :
+                        this.setDetailsByResource(CultureRes, id,city);
+                        break;
+                    case 'entertainment' :
+                        this.setDetailsByResource(EntertainmentRes, id,city);
+                        break;
+                    case 'food' :
+                        this.setDetailsByResource(FoodRes,id,city);
+                        break;
+                    case 'hotel' :
+                        this.setDetailsHotel(HotelRes, id,city);
+                        break;
+
+                }
             }
 
 
