@@ -22,56 +22,60 @@
         </div>
         <span ng-repeat="c in cultureSelection | filter:{name:elementSelectionName} | orderBy:elementSelectionOrder">
             <div class="list-group-item list-culture" style="background-color: #ffeeaa">
-                <div class="col-sm-3 col-md-3">
-                    <div class="panel panel-default">
-                        <div class="panel-body image-panel">
-                            <carousel interval="intervalImages">
-                                <div ng-if="c.photos.length==0">
-                                    <img ng-src="assets/images/empty_photo.png" style="position: center">
-                                </div>
-                                <slide ng-repeat="image in c.photos" active="image.active">
-                                    <img class="image-item" ng-src="{{image.image}}" >
-                                </slide>
-                            </carousel>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-7 col-md-7" style="height:230px">
-                    <p class="list-group-item-text">
-                    <div class="row capriola">
-                        <div class="col-sm-9 col-md-9">
-                            <b class="text-capitalize">{{c.name}}</b>
-                        </div>
-
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4 col-md-4">
-                            <p class="capriola">Rating <rating ng-model="c.rating" readonly="true" ></rating></p>
-                        </div>
+                <div class=" bgc-fff pad-10 property-listing">
+                    <div class="media">
                         <div class="col-sm-3 col-md-3">
-                            <div ng-show="c.price != null">
-                                <p class="capriola">Price {{c.price}}</p>
+                            <div class="panel panel-default">
+                                <div class="panel-body image-panel">
+                                    <carousel interval="intervalImages">
+                                        <div ng-if="c.photos.length==0">
+                                            <img class="image-item" ng-src="assets/images/empty_photo.png" >
+                                        </div>
+                                        <slide ng-repeat="image in c.photos" active="image.active">
+                                            <img class="image-item" ng-src="{{image.image}}" >
+                                        </slide>
+                                    </carousel>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div ng-show="c.description != null" style="display: block">
-                        <div class="col-sm-12 col-md-12 panel panel-default scrollable" style="max-height: 165px;overflow-y: auto">
-                            <div class="text-justify capriola" >{{c.description}}</div>
+                        <div class="col-sm-7 col-md-7" style="height:230px">
+                            <p class="list-group-item-text">
+                            <div class="row capriola">
+                                <div class="col-sm-9 col-md-9">
+                                    <b class="text-capitalize">{{c.name}}</b>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4 col-md-4">
+                                    <p class="capriola">Rating <rating ng-model="c.rating" readonly="true" ></rating></p>
+                                </div>
+                                <div class="col-sm-3 col-md-3">
+                                    <div ng-show="c.price != null">
+                                        <p class="capriola">Price {{c.price}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-show="c.description != null" style="display: block">
+                                <div class="col-sm-12 col-md-12 panel panel-default scrollable" style="max-height: 165px;overflow-y: auto">
+                                    <div class="text-justify capriola" >{{c.description}}</div>
+                                </div>
+                            </div>
+                            </p>
                         </div>
-                    </div>
-                    </p>
-                </div>
-                <div class="col-sm-2 col-md-2">
-                    <div class="row text-center" style="padding-top: 50%;padding-bottom: 50%">
-                        <div class="col-md-12">
-                            <button class="btn btn-primary btn-sm capriola button-item" ng-click="setCultureDetails(c.id)" href="#moreInfoModalPlace" data-toggle="modal">
-                                Details <span class="glyphicon glyphicon-info-sign "></span>
-                            </button>
-                        </div>
-                        <div class="col-md-12" style="padding-top: 10px">
-                            <button class="btn btn-danger btn-sm capriola button-item" ng-click="removeCultureItem(c)">
-                                Remove <span class="glyphicon glyphicon-minus-sign "></span>
-                            </button>
+                        <div class="col-sm-2 col-md-2">
+                            <div class="row text-center" style="padding-top: 50%;padding-bottom: 50%">
+                                <div class="col-md-12">
+                                    <button class="btn btn-primary btn-sm capriola button-item" ng-click="setCultureDetails(c.id)" href="#moreInfoModalPlace" data-toggle="modal">
+                                        Details <span class="glyphicon glyphicon-info-sign "></span>
+                                    </button>
+                                </div>
+                                <div class="col-md-12" style="padding-top: 10px">
+                                    <button class="btn btn-danger btn-sm capriola button-item" ng-click="removeCultureItem(c)">
+                                        Remove <span class="glyphicon glyphicon-minus-sign "></span>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
