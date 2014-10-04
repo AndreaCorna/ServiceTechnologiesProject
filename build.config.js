@@ -72,7 +72,9 @@ module.exports = {
       'vendor/angular-ui-router/release/angular-ui-router.js',
       'vendor/angular-ui-utils/modules/route/route.js' ,
       'vendor/angular-resource/angular-resource.js',
-      'vendor/ngInfiniteScroll/build/ng-infinite-scroll.min.js'
+      'vendor/ngInfiniteScroll/build/ng-infinite-scroll.min.js',
+      'vendor/angular-devise/lib/devise-min.js'
+
     ],
     css: [
     ],
