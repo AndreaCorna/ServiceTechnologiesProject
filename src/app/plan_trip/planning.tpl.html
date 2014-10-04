@@ -48,7 +48,7 @@
 
                                         <button ng-show="!isScheduled(cult)" style="margin-right: 2px"  class="btn btn-primary btn-outlined " style="display: inline-block;" ng-click="addToSchedule(cult)">ADD</button>
 
-                                        <button class="btn btn-primary btn-outlined " style="margin-left: 4px;margin-bottom: 5px"  ng-click="setCultureDetails(cult.id)" href="#moreInfoModalPlace" data-toggle="modal">MORE</button>
+                                        <button class="btn btn-primary btn-outlined " style="margin-left: 4px;margin-bottom: 5px"  ng-click="setDetails(cult)" href="#moreInfoModalPlace" data-toggle="modal">MORE</button>
                                     </div>
                                   </div>
                             </div>
@@ -96,7 +96,7 @@
 
                                         <button ng-show="!isScheduled(ent)" style="margin-right: 2px"  class="btn btn-primary btn-outlined " style="display: inline-block;" ng-click="addToSchedule(ent)">ADD</button>
 
-                                        <button class="btn btn-primary btn-outlined " style="margin-left: 4px;margin-bottom: 5px"  ng-click="setCultureDetails(ent.id)" href="#moreInfoModalPlace" data-toggle="modal">MORE</button>
+                                        <button class="btn btn-primary btn-outlined " style="margin-left: 4px;margin-bottom: 5px"  ng-click="setDetails(ent)" href="#moreInfoModalPlace" data-toggle="modal">MORE</button>
                                     </div>
                                 </div>
                             </div>
@@ -144,7 +144,7 @@
 
                                         <button ng-show="!isScheduled(hot)" style="margin-right: 2px"  class="btn btn-primary btn-outlined " style="display: inline-block;" ng-click="addToSchedule(hot)">ADD</button>
 
-                                        <button class="btn btn-primary btn-outlined " style="margin-left: 4px;margin-bottom: 5px"  ng-click="setCultureDetails(hot.id)" href="#moreInfoModalPlace" data-toggle="modal">MORE</button>
+                                        <button class="btn btn-primary btn-outlined " style="margin-left: 4px;margin-bottom: 5px"  ng-click="setDetails(hot)" href="#moreInfoModalPlace" data-toggle="modal">MORE</button>
                                     </div>
                                 </div>
                             </div>
@@ -192,7 +192,7 @@
 
                                         <button ng-show="!isScheduled(food)" style="margin-right: 2px"  class="btn btn-primary btn-outlined " style="display: inline-block;" ng-click="addToSchedule(food)">ADD</button>
 
-                                        <button class="btn btn-primary btn-outlined " style="margin-left: 4px;margin-bottom: 5px"  ng-click="setCultureDetails(food.id)" href="#moreInfoModalPlace" data-toggle="modal">MORE</button>
+                                        <button class="btn btn-primary btn-outlined " style="margin-left: 4px;margin-bottom: 5px"  ng-click="setDetails(food)" href="#moreInfoModalPlace" data-toggle="modal">MORE</button>
                                     </div>
                                 </div>
                             </div>
@@ -220,7 +220,7 @@
                                     <div class="btn-group">
 
                                         <button  style="margin-right: 2px;" class="btn btn-primary btn-outlined z-up" style="display: inline-block;" ng-click="removeFromSchedule(item)">REMOVE</button>
-                                        <button class="btn btn-primary btn-outlined z-up" style=";margin-left: 4px;margin-bottom: 5px"  ng-click="setCultureDetails(item.id)" href="#moreInfoModalPlace" data-toggle="modal">MORE</button>
+                                        <button class="btn btn-primary btn-outlined z-up" style=";margin-left: 4px;margin-bottom: 5px"  ng-click="setDetails(item)" href="#moreInfoModalPlace" data-toggle="modal">MORE</button>
                                     </div>
                                 </div>
                             </div>
@@ -239,9 +239,9 @@
               </div>
                 </div>
             </div>
-            <div ng-show="(origin && destination) || currentMarker" id="scrollingMaps" class="col-md-8 " >
+            <div  id="scrollingMaps" class="col-md-8 " >
 
-               <map origin="origin" map-id="planningMap" destination="destination" marker="currentMarker" type="roadmap" class="mapContainer" ></map>
+               <map-directions origin="origin" map-id="planningMap" init-position="getCityName()" destination="destination" marker="currentMarker" type="roadmap" class="mapContainer" ></map-directions>
 
             </div>
         </div>

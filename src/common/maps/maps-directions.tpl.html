@@ -1,5 +1,5 @@
 <div  class="panel">
-    <div ng-show="planTripSelected">
+    <div ng-if="directionsMode">
         <div class="btn-group btn-group-justified">
             <div class="btn-group">
                 <button type="button"   ng-click="setTravelMode('DRIVING');" class="btn btn-primary travel-btn" ng-class="isCurrentTravelMode('DRIVING')? 'active': ''">Driving</button>
@@ -11,9 +11,8 @@
                 <button type="button"  ng-click="setTravelMode('TRANSIT');" class="btn btn-primary travel-btn" ng-class="isCurrentTravelMode('TRANSIT')? 'active': ''">Public Transport</button>
             </div>
         </div>
+
     </div>
-
-
     <div id="{{mapId}}" class="theMap">
     </div>
     <div class="directions" ng-show="directions || directions==undefined">

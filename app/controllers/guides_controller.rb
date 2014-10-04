@@ -31,7 +31,14 @@ class GuidesController < ApplicationController
             place.lng = curr_place['lng']
             place.rating = curr_place['rating']
             place.price = curr_place['price']
-            place.image = curr_place['photos'][0]['image']
+            if not curr_place['photos'].nil?
+              place.image = curr_place['photos'][0]['image']
+            else
+              place.image = 'assets/images/empty_photo.png'
+            end
+
+
+
             place.icon = curr_place['icon']
             place.tag = curr_place['tag']
             place.description = curr_place['description']
@@ -82,6 +89,7 @@ class GuidesController < ApplicationController
     end
 
     result['name'] = guide.name
+    result['city'] = guide.city
     result['description']  = guide.description
     result['rating']  = guide.rating
     result['days'] = []
@@ -101,6 +109,7 @@ class GuidesController < ApplicationController
       cur_day_places.each { |place|
         #add place to the current day schedule
         my_place = PlaceSummary.find_by_id place.place_summary_id
+
         result_day['schedule'] << my_place
       }
       result['days'] << result_day

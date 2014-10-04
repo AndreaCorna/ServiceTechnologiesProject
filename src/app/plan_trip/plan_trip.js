@@ -8,7 +8,10 @@ angular.module('trippo.plan',[
     'angular-sortable-view',
     'trippo.city',
     'trippo.modal',
-    'common.maps'
+    'common.mapDirections',
+    'common.placeListDetails',
+    'common.placeListMaps'
+
 ])
 
 
@@ -227,22 +230,15 @@ angular.module('trippo.plan',[
 })
 
 .controller('PlanningCtrl', function PlanningCtrl($scope,SelectionService,ModalHandler,PlanningService,$stateParams,StubHandler,commonResources) {
-
         /**
          * List of fuction which set the content of the modal when clicked More button in item
          */
-        $scope.setCultureDetails = function(id_culture){
-            ModalHandler.setDetailsByResource(commonResources.CultureRes,id_culture);
+        $scope.setDetails = function(item) {
+           ModalHandler.setDetailsItem(item,$stateParams.city_name);
         };
-        $scope.setEntertainmentDetails = function(id_entertainment){
-            ModalHandler.setDetailsByResource(commonResources.EntertainmentRes,id_entertainment);
-        };
-        $scope.setHotelsDetails = function(id_hotel){
-            ModalHandler.setDetailsByResource(commonResources.HotelRes,id_hotel);
-        };
-        $scope.setFoodDetails = function(id_food){
-            ModalHandler.setDetailsByResource(commonResources.FoodRes,id_food);
-        };
+
+
+
         //START STUB
         /*
 
@@ -311,10 +307,17 @@ angular.module('trippo.plan',[
             return PlanningService.getItemClass(item)  ;
         };
 
+        $scope.getCityName = function(){
+            console.log("returning city name");
+            
+            return $stateParams.city_name;
+        } ;
+
         /**
          *MAPS HANDLING
          * current start and destination variable for the map
          */
+
 
         $scope.origin=undefined;
         $scope.destination=undefined;
@@ -453,9 +456,22 @@ angular.module('trippo.plan',[
         $scope.dateFormat = DatesService.dateFormat;
 
 
-        $scope.setCultureDetails = function(id_culture){
-            ModalHandler.setDetailsByResource(commonResources.CultureRes,id_culture);
+        $scope.getCityName= function(){
+            return $stateParams.city_name;
         };
+        $scope.placeViews = ["DETAILS VIEW","MAPS VIEW"]   ;
+        $scope.currentView =  $scope.placeViews[0];
+        $scope.changeView = function() {
+            var index =   $scope.placeViews.indexOf($scope.currentView);
+            index++;
+
+            if (index == $scope.placeViews.length){
+                index = 0;
+            }
+            $scope.currentView = $scope.placeViews[index];
+        }  ;
+
+
 
         CityPlanningService.setRangeDatesCity($stateParams.city_name) ;
         $scope.dates = DatesService.getRangeDates();
@@ -492,7 +508,10 @@ angular.module('trippo.plan',[
 
 
         $scope.createTrip = function (form) {
+
+
             $scope.submitted = true;
+
             if   (form.$valid){
                 var guide =  new GuideRes();
                 guide.name = $scope.name ;
