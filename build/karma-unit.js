@@ -19,6 +19,7 @@ module.exports = function ( karma ) {
       'vendor/angular-ui-router/release/angular-ui-router.js',
       'vendor/angular-resource/angular-resource.js',
       'vendor/ngInfiniteScroll/build/ng-infinite-scroll.min.js',
+      'vendor/angular-devise/lib/devise-min.js',
       'build/templates-app.js',
       'build/templates-common.js',
       'vendor/angular-mocks/angular-mocks.js',
