@@ -68,3 +68,9 @@ gem 'wikipedia-client'
 gem 'geocoder'
 
 gem 'numbers_and_words'
+
+gem 'devise'
+
+gem 'omniauth-facebook'
+
+gem 'omniauth-google-oauth2'
