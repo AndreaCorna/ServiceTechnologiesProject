@@ -1,4 +1,4 @@
-angular.module('templates-app', ['about/about.tpl.html', 'city/city.tpl.html', 'city/culture.tpl.html', 'city/entertainment.tpl.html', 'city/food.tpl.html', 'city/guide.tpl.html', 'city/guides.tpl.html', 'city/hotel.tpl.html', 'city/utility.tpl.html', 'home/home.tpl.html', 'plan_trip/createtrip.tpl.html', 'plan_trip/planning.tpl.html', 'plan_trip/trip_dates.tpl.html']);
+angular.module('templates-app', ['about/about.tpl.html', 'city/city.tpl.html', 'city/culture.tpl.html', 'city/entertainment.tpl.html', 'city/food.tpl.html', 'city/guide.tpl.html', 'city/guides.tpl.html', 'city/hotel.tpl.html', 'city/utility.tpl.html', 'home/home.tpl.html', 'log_in/log_in.tpl.html', 'plan_trip/createtrip.tpl.html', 'plan_trip/planning.tpl.html', 'plan_trip/trip_dates.tpl.html', 'sign_up/sign_up.tpl.html']);
 
 angular.module("about/about.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("about/about.tpl.html",
@@ -2334,6 +2334,46 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "");
 }]);
 
+angular.module("log_in/log_in.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("log_in/log_in.tpl.html",
+    "<div>\n" +
+    "    <h1>Login</h1>\n" +
+    "</div>\n" +
+    "\n" +
+    "<div ng-show=\"login_error.message\" class=\"error\">\n" +
+    "    <p>{{login_error.message}}</p>\n" +
+    "</div>\n" +
+    "\n" +
+    "<div class=\"body\">\n" +
+    "    <div ng-class=\"{error: login_error.errors.email}\">Email: <input ng-model=\"login_user.email\" />\n" +
+    "        <div ng-show=\"login_error.errors.email\">\n" +
+    "            <div ng-repeat=\"field_error in login_error.errors.email\">{{field_error}}</div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <div ng-class=\"{error: login_error.errors.password}\">Password: <input type=\"password\" ng-model=\"login_user.password\" />\n" +
+    "        <div ng-show=\"login_error.errors.password\">\n" +
+    "            <div ng-repeat=\"field_error in login_error.errors.password\">{{field_error}}</div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <button ng-click=\"login()\" class=\"btn btn-primary\" >Login</button>\n" +
+    "    <button ng-click=\"logout()\" class=\"btn btn-primary\" >Logout</button>\n" +
+    "    <button ng-click=\"password_reset()\" class=\"btn btn-primary\" >Reset Password</button>\n" +
+    "    <button ng-click=\"unlock()\" class=\"btn btn-primary\" >Unlock</button>\n" +
+    "    <button ng-click=\"confirm()\" class=\"btn btn-primary\" >Confirm</button>\n" +
+    "    <button ng-click=\"showCurrentUser()\" class=\"btn btn-primary\" >Show</button>\n" +
+    "\n" +
+    "\n" +
+    "    <div>\n" +
+    "        <button ng-click=\"go('/users/auth/facebook')\" class=\"btn btn-primary\">Facebook</button>\n" +
+    "        <a class=\"btn btn-default\" href=\"http://localhost:3000/users/auth/facebook\">face</a>\n" +
+    "        <a class=\"btn btn-default\" href=\"http://localhost:3000/users/auth/google_oauth2\">google</a>\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
 angular.module("plan_trip/createtrip.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("plan_trip/createtrip.tpl.html",
     "<div class=\"page-header\">\n" +
@@ -2784,5 +2824,39 @@ angular.module("plan_trip/trip_dates.tpl.html", []).run(["$templateCache", funct
     "        </div>\n" +
     "\n" +
     "    </div>\n" +
+    "</div>");
+}]);
+
+angular.module("sign_up/sign_up.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("sign_up/sign_up.tpl.html",
+    "<div>\n" +
+    "    <h1>Register / Password Change</h1>\n" +
+    "</div>\n" +
+    "\n" +
+    "<div ng-show=\"register_error.message\" class=\"error\">\n" +
+    "    <p>{{register_error.message}}</p>\n" +
+    "</div>\n" +
+    "\n" +
+    "<div class=\"body\">\n" +
+    "    <div ng-class=\"{error: register_error.errors.email}\">Email: <input ng-model=\"register_user.email\" />\n" +
+    "        <div ng-show=\"register_error.errors.email\">\n" +
+    "            <div ng-repeat=\"field_error in register_error.errors.email\">{{field_error}}</div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <div ng-class=\"{error: register_error.errors.password}\">Password: <input type=\"password\" ng-model=\"register_user.password\" />\n" +
+    "        <div ng-show=\"register_error.errors.password\">\n" +
+    "            <div ng-repeat=\"field_error in register_error.errors.password\">{{field_error}}</div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <div ng-class=\"{error: register_error.errors.password_confirmation}\">Confirm password: <input type=\"password\" ng-model=\"register_user.password_confirmation\" />\n" +
+    "        <div ng-show=\"register_error.errors.password_confirmation\">\n" +
+    "            <div ng-repeat=\"field_error in register_error.errors.password_confirmation\">{{field_error}}</div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <button ng-click=\"register()\" class=\"btn btn-primary\" >Register</button>\n" +
+    "    <button ng-click=\"change_password()\" class=\"btn btn-primary\" >Change Password</button>\n" +
     "</div>");
 }]);
