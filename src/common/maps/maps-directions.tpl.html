@@ -10,12 +10,34 @@
             <div class="btn-group">
                 <button type="button"  ng-click="setTravelMode('TRANSIT');" class="btn btn-primary travel-btn" ng-class="isCurrentTravelMode('TRANSIT')? 'active': ''">Public Transport</button>
             </div>
+
+
+
+
         </div>
 
+        <!-- Message body -->
+        <div class="form-group">
+            <label class="col-md-2 control-label" for="distance" style="font-size: 18px">Distance</label>
+            <div class="col-md-10">
+                <p class="form-control"  id="distance" >{{distance}}</p>
+            </div>
+        </div>
+
+
+
+        <!-- Form actions -->
+        <div class="form-group">
+
+            <label class="col-md-2 control-label" for="duration" style="font-size: 18px">Duration</label>
+
+            <div class="col-md-10">
+                <p class="form-control"  id="duration" >{{duration}}</p>
+            </div>
+        </div>
     </div>
-    <div id="{{mapId}}" class="theMap">
-    </div>
-    <div class="directions" ng-show="directions || directions==undefined">
-    </div>
+
+    <div id="{{mapId}}" class="theMap"> </div>
+
 
 </div>

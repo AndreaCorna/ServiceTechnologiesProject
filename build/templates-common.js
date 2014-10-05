@@ -14,13 +14,35 @@ angular.module("maps/maps-directions.tpl.html", []).run(["$templateCache", funct
     "            <div class=\"btn-group\">\n" +
     "                <button type=\"button\"  ng-click=\"setTravelMode('TRANSIT');\" class=\"btn btn-primary travel-btn\" ng-class=\"isCurrentTravelMode('TRANSIT')? 'active': ''\">Public Transport</button>\n" +
     "            </div>\n" +
+    "\n" +
+    "\n" +
+    "\n" +
+    "\n" +
     "        </div>\n" +
     "\n" +
+    "        <!-- Message body -->\n" +
+    "        <div class=\"form-group\">\n" +
+    "            <label class=\"col-md-2 control-label\" for=\"distance\" style=\"font-size: 18px\">Distance</label>\n" +
+    "            <div class=\"col-md-10\">\n" +
+    "                <p class=\"form-control\"  id=\"distance\" >{{distance}}</p>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "\n" +
+    "\n" +
+    "\n" +
+    "        <!-- Form actions -->\n" +
+    "        <div class=\"form-group\">\n" +
+    "\n" +
+    "            <label class=\"col-md-2 control-label\" for=\"duration\" style=\"font-size: 18px\">Duration</label>\n" +
+    "\n" +
+    "            <div class=\"col-md-10\">\n" +
+    "                <p class=\"form-control\"  id=\"duration\" >{{duration}}</p>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
     "    </div>\n" +
-    "    <div id=\"{{mapId}}\" class=\"theMap\">\n" +
-    "    </div>\n" +
-    "    <div class=\"directions\" ng-show=\"directions || directions==undefined\">\n" +
-    "    </div>\n" +
+    "\n" +
+    "    <div id=\"{{mapId}}\" class=\"theMap\"> </div>\n" +
+    "\n" +
     "\n" +
     "</div>\n" +
     "");
@@ -51,13 +73,13 @@ angular.module("place-list/place-list-details.tpl.html", []).run(["$templateCach
     "                <div class=\"media\">\n" +
     "                    <div class=\"col-md-4\">\n" +
     "\n" +
-    "                        <div ng-if=\"item.photos !== undefined\">\n" +
+    "                        <div ng-if=\"item.photos[0] !== undefined\">\n" +
     "                            <img style=\"height: 220px;  width:100%;\" ng-src=\"{{item.photos[0].image}}\" >\n" +
     "                        </div>\n" +
-    "                        <div ng-if=\"item.image !== undefined && item.photos === undefined\">\n" +
+    "                        <div ng-if=\"item.image !== undefined && item.photos[0] === undefined\">\n" +
     "                            <img style=\"height: 220px;  width:100%;\" ng-src=\"{{item.image}}\" >\n" +
     "                        </div>\n" +
-    "                        <div ng-if=\"item.image === undefined && item.photos === undefined\">\n" +
+    "                        <div ng-if=\"item.image === undefined && item.photos[0] === undefined\">\n" +
     "                            <img style=\"height: 220px;  width:100%;\" ng-src=\"assets/images/empty_photo.png\">\n" +
     "                        </div>\n" +
     "\n" +
@@ -121,7 +143,7 @@ angular.module("place-list/place-list-maps.tpl.html", []).run(["$templateCache",
     "                        <div class=\"row\">\n" +
     "                            <div class=\"btn-group\">\n" +
     "\n" +
-    "                                <button class=\"btn btn-primary btn-outlined z-up\" style=\";margin-left: 4px;margin-bottom: 5px\"  ng-click=\"setCultureDetails(item.id)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">MORE</button>\n" +
+    "                                <button class=\"btn btn-primary btn-outlined z-up\" style=\";margin-left: 4px;margin-bottom: 5px\"  ng-click=\"setDetails(item)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">MORE</button>\n" +
     "                            </div>\n" +
     "                        </div>\n" +
     "                    </div>\n" +

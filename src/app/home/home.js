@@ -15,7 +15,9 @@
 angular.module( 'trippo.home', [
   'ui.router',
   'trippo.city',
-  'trippo.plan'
+  'trippo.plan',
+    'trippo.login',
+    'trippo.signup'
 ])
 
 /**

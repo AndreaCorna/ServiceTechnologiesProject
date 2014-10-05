@@ -34,6 +34,9 @@ component.directive('placeListMaps', function (ModalHandler,$stateParams) {
 
             scope.setDetails = function(item) {
                 //check if is defined the field city inside the item useful to retrive the data othewise check the stateParameter in the URL
+                console.log(item);
+                console.log("fdsklnflkds fnsdlnfalskn");
+                
                 var city;
                 if(item.city !==undefined){
                     city =  item.city     ;
