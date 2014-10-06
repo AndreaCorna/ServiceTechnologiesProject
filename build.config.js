@@ -73,6 +73,8 @@ module.exports = {
        'vendor/blueimp-file-upload/js/jquery.iframe-transport.js',
        'vendor/blueimp-file-upload/js/jquery.fileupload.js',
         'vendor/blueimp-file-upload/js/jquery.fileupload-process.js',
+        'vendor/blueimp-file-upload/js/jquery.fileupload-validate.js',
+        'vendor/blueimp-file-upload/js/jquery.fileupload-ui.js',
         'vendor/blueimp-file-upload/js/jquery.fileupload-angular.js',
       'vendor/angular-ui-router/release/angular-ui-router.js',
       'vendor/angular-ui-utils/modules/route/route.js' ,

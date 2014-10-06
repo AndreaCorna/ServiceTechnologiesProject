@@ -11,11 +11,11 @@ angular.module( 'trippo.guide', [
     'common.placeListMaps' ,
     'common.placeListDetails' ,
     'common.mapsMarkers' ,
-    'blueimp.fileupload'
+    'demo'
 
 
 ])
-.config(function config( $stateProvider ) {
+.config(function config( $stateProvider,fileUploadProvider ) {
         $stateProvider.state('guide', {
             url: '/guide/:id',
             views: {
@@ -39,8 +39,10 @@ angular.module( 'trippo.guide', [
                 }
 
             });
+
     }
 )
+
 
 
 .controller('GuidesCtrl', function GuideCtrl($http,$scope,$location,GuideService,$stateParams) {
@@ -124,12 +126,8 @@ angular.module( 'trippo.guide', [
                                 });
           */
 
-        $scope.$on('fileuploadadd', function(event, files){
-            console.log(files);
 
-
-        });
-
+        /*
 
         $scope.$on('fileuploadadd', function(event, file){
 
@@ -137,7 +135,7 @@ angular.module( 'trippo.guide', [
 
 
 
-
+          /*
 
             $http({method: 'GET', url: '../guides/s3'}).
                     success(function (result, status, headers, config) {
@@ -164,7 +162,8 @@ angular.module( 'trippo.guide', [
                             },
                             paramName: 'file', // S3 does not like nested name fields i.e. name="user[avatar_url]"
                             dataType: 'XML'  // S3 returns XML if success_action_status is set to 201
-                            };
+
+                        };
 
 
                         });
@@ -174,6 +173,7 @@ angular.module( 'trippo.guide', [
 
         } ) ;
 
+*/
 
 
         console.log("guides different");

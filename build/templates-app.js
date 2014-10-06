@@ -1882,17 +1882,17 @@ angular.module("city/guides.tpl.html", []).run(["$templateCache", function($temp
     "    </form>\n" +
     "\n" +
     "\n" +
-    "    <form id=\"fileupload\" action=\"\" method=\"POST\" enctype=\"multipart/form-data\"  data-ng-controller=\"GuidesCtrl\" data-file-upload=\"options\" data-ng-class=\"{'fileupload-processing': processing() || loadingFiles}\">\n" +
+    "    <form id=\"fileupload\" action=\"//jquery-file-upload.appspot.com/\" method=\"POST\" enctype=\"multipart/form-data\" data-ng-app=\"demo\" data-ng-controller=\"DemoFileUploadController\" data-file-upload=\"options\" data-ng-class=\"{'fileupload-processing': processing() || loadingFiles}\">\n" +
     "        <!-- Redirect browsers with JavaScript disabled to the origin page -->\n" +
     "        <noscript><input type=\"hidden\" name=\"redirect\" value=\"https://blueimp.github.io/jQuery-File-Upload/\"></noscript>\n" +
     "        <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->\n" +
     "        <div class=\"row fileupload-buttonbar\">\n" +
     "            <div class=\"col-lg-7\">\n" +
     "                <!-- The fileinput-button span is used to style the file input field as button -->\n" +
-    "                <span class=\"btn btn-success fileinput-button\">\n" +
+    "                <span class=\"btn btn-success fileinput-button\" ng-class=\"{disabled: disabled}\">\n" +
     "                    <i class=\"glyphicon glyphicon-plus\"></i>\n" +
     "                    <span>Add files...</span>\n" +
-    "                    <input type=\"file\" name=\"file\" id=\"file\"  />\n" +
+    "                    <input type=\"file\" name=\"files[]\" multiple ng-disabled=\"disabled\">\n" +
     "                </span>\n" +
     "                <button type=\"button\" class=\"btn btn-primary start\" data-ng-click=\"submit()\">\n" +
     "                    <i class=\"glyphicon glyphicon-upload\"></i>\n" +
@@ -1945,7 +1945,10 @@ angular.module("city/guides.tpl.html", []).run(["$templateCache", function($temp
     "                        <i class=\"glyphicon glyphicon-ban-circle\"></i>\n" +
     "                        <span>Cancel</span>\n" +
     "                    </button>\n" +
-    "\n" +
+    "                    <button data-ng-controller=\"FileDestroyController\" type=\"button\" class=\"btn btn-danger destroy\" data-ng-click=\"file.$destroy()\" data-ng-hide=\"!file.$destroy\">\n" +
+    "                        <i class=\"glyphicon glyphicon-trash\"></i>\n" +
+    "                        <span>Delete</span>\n" +
+    "                    </button>\n" +
     "                </td>\n" +
     "            </tr>\n" +
     "        </table>\n" +
