@@ -1873,6 +1873,83 @@ angular.module("city/guide.tpl.html", []).run(["$templateCache", function($templ
 angular.module("city/guides.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("city/guides.tpl.html",
     "<div class=\"page-header\">\n" +
+    "    <form class=\"directUpload\">\n" +
+    "         <div class=\"field\">\n" +
+    "             <label for=\"filefield\">file</label>\n" +
+    "             <input type=\"file\" name=\"file\" id=\"filefield\" />\n" +
+    "\n" +
+    "         </div>\n" +
+    "    </form>\n" +
+    "\n" +
+    "\n" +
+    "    <form id=\"fileupload\"  method=\"POST\" enctype=\"multipart/form-data\"  data-ng-controller=\"GuidesCtrl\" data-file-upload=\"options\" data-ng-class=\"{'fileupload-processing': processing() || loadingFiles}\">\n" +
+    "        <!-- Redirect browsers with JavaScript disabled to the origin page -->\n" +
+    "        <noscript><input type=\"hidden\" name=\"redirect\" value=\"https://blueimp.github.io/jQuery-File-Upload/\"></noscript>\n" +
+    "        <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->\n" +
+    "        <div class=\"row fileupload-buttonbar\">\n" +
+    "            <div class=\"col-lg-7\">\n" +
+    "                <!-- The fileinput-button span is used to style the file input field as button -->\n" +
+    "                <span class=\"btn btn-success fileinput-button\">\n" +
+    "                    <i class=\"glyphicon glyphicon-plus\"></i>\n" +
+    "                    <span>Add files...</span>\n" +
+    "                    <input type=\"file\" name=\"file\" id=\"file\" />\n" +
+    "                </span>\n" +
+    "                <button type=\"button\" class=\"btn btn-primary start\" data-ng-click=\"submit()\">\n" +
+    "                    <i class=\"glyphicon glyphicon-upload\"></i>\n" +
+    "                    <span>Start upload</span>\n" +
+    "                </button>\n" +
+    "                <button type=\"button\" class=\"btn btn-warning cancel\" data-ng-click=\"cancel()\">\n" +
+    "                    <i class=\"glyphicon glyphicon-ban-circle\"></i>\n" +
+    "                    <span>Cancel upload</span>\n" +
+    "                </button>\n" +
+    "                <!-- The global file processing state -->\n" +
+    "                <span class=\"fileupload-process\"></span>\n" +
+    "            </div>\n" +
+    "            <!-- The global progress state -->\n" +
+    "            <div class=\"col-lg-5 fade\" data-ng-class=\"{in: active()}\">\n" +
+    "                <!-- The global progress bar -->\n" +
+    "                <div class=\"progress progress-striped active\" data-file-upload-progress=\"progress()\"><div class=\"progress-bar progress-bar-success\" data-ng-style=\"{width: num + '%'}\"></div></div>\n" +
+    "                <!-- The extended global progress state -->\n" +
+    "                <div class=\"progress-extended\">&nbsp;</div>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "        <!-- The table listing the files available for upload/download -->\n" +
+    "        <table class=\"table table-striped files ng-cloak\">\n" +
+    "            <tr data-ng-repeat=\"file in queue\" data-ng-class=\"{'processing': file.$processing()}\">\n" +
+    "                <td data-ng-switch data-on=\"!!file.thumbnailUrl\">\n" +
+    "                    <div class=\"preview\" data-ng-switch-when=\"true\">\n" +
+    "                        <a data-ng-href=\"{{file.url}}\" title=\"{{file.name}}\" download=\"{{file.name}}\" data-gallery><img data-ng-src=\"{{file.thumbnailUrl}}\" alt=\"\"></a>\n" +
+    "                    </div>\n" +
+    "                    <div class=\"preview\" data-ng-switch-default data-file-upload-preview=\"file\"></div>\n" +
+    "                </td>\n" +
+    "                <td>\n" +
+    "                    <p class=\"name\" data-ng-switch data-on=\"!!file.url\">\n" +
+    "                        <span data-ng-switch-when=\"true\" data-ng-switch data-on=\"!!file.thumbnailUrl\">\n" +
+    "                            <a data-ng-switch-when=\"true\" data-ng-href=\"{{file.url}}\" title=\"{{file.name}}\" download=\"{{file.name}}\" data-gallery>{{file.name}}</a>\n" +
+    "                            <a data-ng-switch-default data-ng-href=\"{{file.url}}\" title=\"{{file.name}}\" download=\"{{file.name}}\">{{file.name}}</a>\n" +
+    "                        </span>\n" +
+    "                        <span data-ng-switch-default>{{file.name}}</span>\n" +
+    "                    </p>\n" +
+    "                    <strong data-ng-show=\"file.error\" class=\"error text-danger\">{{file.error}}</strong>\n" +
+    "                </td>\n" +
+    "                <td>\n" +
+    "                    <p class=\"size\">{{file.size | formatFileSize}}</p>\n" +
+    "                    <div class=\"progress progress-striped active fade\" data-ng-class=\"{pending: 'in'}[file.$state()]\" data-file-upload-progress=\"file.$progress()\"><div class=\"progress-bar progress-bar-success\" data-ng-style=\"{width: num + '%'}\"></div></div>\n" +
+    "                </td>\n" +
+    "                <td>\n" +
+    "                    <button type=\"button\" class=\"btn btn-primary start\" data-ng-click=\"file.$submit()\" data-ng-hide=\"!file.$submit || options.autoUpload\" data-ng-disabled=\"file.$state() == 'pending' || file.$state() == 'rejected'\">\n" +
+    "                        <i class=\"glyphicon glyphicon-upload\"></i>\n" +
+    "                        <span>Start</span>\n" +
+    "                    </button>\n" +
+    "                    <button type=\"button\" class=\"btn btn-warning cancel\" data-ng-click=\"file.$cancel()\" data-ng-hide=\"!file.$cancel\">\n" +
+    "                        <i class=\"glyphicon glyphicon-ban-circle\"></i>\n" +
+    "                        <span>Cancel</span>\n" +
+    "                    </button>\n" +
+    "\n" +
+    "                </td>\n" +
+    "            </tr>\n" +
+    "        </table>\n" +
+    "    </form>\n" +
     "\n" +
     "</div>\n" +
     "<div class=\"row\">\n" +

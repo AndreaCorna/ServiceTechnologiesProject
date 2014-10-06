@@ -7,6 +7,25 @@ class GuidesController < ApplicationController
     render json: guides
   end
 
+  def s3_direct_post
+      s3_direct_post = S3_BUCKET.presigned_post(key: "uploads/#{SecureRandom.uuid}/${filename}", success_action_status: 201, acl: :public_read)
+      puts  's3_direct_mkmjmjkmkmjjkmkjmjkpost'
+      puts  s3_direct_post.fields.to_json.html_safe
+      puts s3_direct_post.fields['AWSAccessKeyId']
+
+     result = Hash.new
+      result['url'] =  "#{s3_direct_post.url}"
+      result['AWSAccessKeyId'] = s3_direct_post.fields['AWSAccessKeyId']
+      result['key'] =  "#{s3_direct_post.fields['key']}"
+      result['policy'] =  "#{s3_direct_post.fields['policy']}"
+      result['signature'] =  "#{s3_direct_post.fields['signature']}"
+      result['success_action_status'] =  "#{s3_direct_post.fields['success_action_status']}"
+      result['acl'] =  "#{s3_direct_post.fields['acl']}"
+
+      render json: result
+     # render template:  "shared_guide/show"  ,:locals => { :s3 => @s3_direct_post }
+  end
+
   def create
     puts params
     guide = Guide.new
