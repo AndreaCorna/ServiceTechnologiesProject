@@ -46,39 +46,12 @@ angular.module( 'trippo.guide', [
 .controller('GuidesCtrl', function GuideCtrl($http,$scope,$location,GuideService,$stateParams) {
     $scope.guides =[];
 
-    GuideService.initGuides($stateParams.city_name,function(){
+    GuideService.initGuides($stateParams.city_name,function() {
         $scope.guides = GuideService.getGuides($stateParams.city_name);
-       /*
-        $(document).ready(function(){
-            var fileInput  = $('#file');
-            $http({method: 'GET', url: '../guides/s3'}).
-                success(function(data, status, headers, config) {
-                    console.log(data);
-                    console.log("success post s3");
-                    $scope.url = data.url;
-                    $scope.fields = data.fields;
-                    fileInput.fileupload({
-                        fileInput:       fileInput,
-                        url:             data.url,
-                        type:            'POST',
-                        autoUpload:       true,
-                        formData:         data.fields,
-                        paramName:        'file', // S3 does not like nested name fields i.e. name="user[avatar_url]"
-                        dataType:         'XML',  // S3 returns XML if success_action_status is set to 201
-                        replaceFileInput: false});
-                    console.log("fileInput");
-                    console.log(fileInput.fileupload);
+    });
 
 
-
-                }).
-                error(function(data, status, headers, config) {
-                    console.log("failed post s3");
-                    // or server returns response with an error status.
-                });
-
-        });
-         */
+        /*
         $(function() {
             $('.directUpload').find("input:file").each(function(i, elem) {
                 var fileInput    = $(elem);
@@ -149,6 +122,7 @@ angular.module( 'trippo.guide', [
                             });
                             });
                                 });
+          */
 
         $scope.$on('fileuploadadd', function(event, files){
             console.log(files);
@@ -156,12 +130,49 @@ angular.module( 'trippo.guide', [
 
         });
 
-    }) ;
-        $scope.$on('fileuploadsubmit', function(event, file){
-            console.log("submitnknknkj");
+
+        $scope.$on('fileuploadadd', function(event, file){
 
 
-        });
+
+
+
+
+
+            $http({method: 'GET', url: '../guides/s3'}).
+                    success(function (result, status, headers, config) {
+
+                    console.log("file");
+                    console.log(file);
+
+
+                    file.form.get(0).setAttribute('action', result.url);
+
+                    console.log("file input");
+                    console.log(file.fileInput);
+                    $.each(file.files, function (index, file) {
+                        $scope.options = {
+                            //  fileInput:  file.fileInput,
+                            url: result.url,
+                            type: 'POST',
+                            formData: {AWSAccessKeyId: result['AWSAccessKeyId'],
+                                key : result['key'],
+                                policy: result['policy'],
+                                signature: result['signature'],
+                                success_action_status: result['success_action_status'],
+                                acl: result['acl']
+                            },
+                            paramName: 'file', // S3 does not like nested name fields i.e. name="user[avatar_url]"
+                            dataType: 'XML'  // S3 returns XML if success_action_status is set to 201
+                            };
+
+
+                        });
+                    });
+
+
+
+        } ) ;
 
 
 

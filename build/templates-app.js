@@ -1882,7 +1882,7 @@ angular.module("city/guides.tpl.html", []).run(["$templateCache", function($temp
     "    </form>\n" +
     "\n" +
     "\n" +
-    "    <form id=\"fileupload\"  method=\"POST\" enctype=\"multipart/form-data\"  data-ng-controller=\"GuidesCtrl\" data-file-upload=\"options\" data-ng-class=\"{'fileupload-processing': processing() || loadingFiles}\">\n" +
+    "    <form id=\"fileupload\" action=\"\" method=\"POST\" enctype=\"multipart/form-data\"  data-ng-controller=\"GuidesCtrl\" data-file-upload=\"options\" data-ng-class=\"{'fileupload-processing': processing() || loadingFiles}\">\n" +
     "        <!-- Redirect browsers with JavaScript disabled to the origin page -->\n" +
     "        <noscript><input type=\"hidden\" name=\"redirect\" value=\"https://blueimp.github.io/jQuery-File-Upload/\"></noscript>\n" +
     "        <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->\n" +
@@ -1892,7 +1892,7 @@ angular.module("city/guides.tpl.html", []).run(["$templateCache", function($temp
     "                <span class=\"btn btn-success fileinput-button\">\n" +
     "                    <i class=\"glyphicon glyphicon-plus\"></i>\n" +
     "                    <span>Add files...</span>\n" +
-    "                    <input type=\"file\" name=\"file\" id=\"file\" />\n" +
+    "                    <input type=\"file\" name=\"file\" id=\"file\"  />\n" +
     "                </span>\n" +
     "                <button type=\"button\" class=\"btn btn-primary start\" data-ng-click=\"submit()\">\n" +
     "                    <i class=\"glyphicon glyphicon-upload\"></i>\n" +
