@@ -1918,7 +1918,7 @@ angular.module("city/guides.tpl.html", []).run(["$templateCache", function($temp
     "            <tr data-ng-repeat=\"file in queue\" data-ng-class=\"{'processing': file.$processing()}\">\n" +
     "                <td data-ng-switch data-on=\"!!file.thumbnailUrl\">\n" +
     "                    <div class=\"preview\" data-ng-switch-when=\"true\">\n" +
-    "                        <a data-ng-href=\"{{file.url}}\" title=\"{{file.name}}\" download=\"{{file.name}}\" data-gallery><img data-ng-src=\"{{file.thumbnailUrl}}\" alt=\"\"></a>\n" +
+    "                        <a data-ng-href=\"{{file.url}}\" title=\"{{file.name}}\" download=\"{{file.name}}\" data-gallery><img style=\"height: 100px\" data-ng-src=\"{{file.thumbnailUrl}}\" alt=\"\"></a>\n" +
     "                    </div>\n" +
     "                    <div class=\"preview\" data-ng-switch-default data-file-upload-preview=\"file\"></div>\n" +
     "                </td>\n" +

@@ -46,28 +46,79 @@
                     });
                 fileUploadProvider.defaults.handleResponse = function (e,data){
                     console.log("response data");
+                    console.log(data);
+                    console.log("result data");
                     console.log(data.result);
                     console.log("files");
                     console.log(data.result.files);
-                    var files = data.result && data.result.files;
-                    if (files) {
-                        data.scope.replace(data.files, files);
+
+
+
+                    var location = $(data.result).find("Location").text();
+                    var key = $(data.result).find("Key").text();
+                    console.log("loacation");
+
+                    console.log(location);
+
+                    console.log("name");
+                    console.log(key.split('/').pop());
+                    console.log(key.split('/').pop());
+
+
+                     var file = {
+                        deleteType : 'DELETE',
+                        deleteUrl : location ,
+                        name : key.split('/').pop() ,
+                        size :137651,
+                        thumbnailUrl : location,
+                        type : 'image/jpeg' ,
+                        url : location
+                    }
+                           ;
+                    console.log("data.files before");
+                    console.log(data.files);
+
+
+
+
+                    if (file) {
+                        console.log("repalcing data files");
+                        data.scope.queue = data.scope.queue.filter(function(item){
+
+                            console.log("item");
+                            console.log(item.name);
+                            console.log("file");
+                            console.log(file.name);
+
+
+                            return item.name !==  file.name;
+                        });
+                        data.scope.queue.push(file);
+                        console.log(data.files);
+                        console.log("data");
+                        console.log(data);
+                     console.log("data queue");
+                     console.log(data.scope.queue);
+
+
                     } else if (data.errorThrown ||
                         data.textStatus === 'error') {
                         data.files[0].error = data.errorThrown ||
                             data.textStatus;
                     }
 
-                     /*
+                    /*
                     var files = data.result && data.result.files;
                     if (files) {
-                        data.scope().replace(data.files, files);
+                        data.scope.replace(data.files, files);
+                        console.log("data queue");
+                        console.log(data.scope.queue);
                         // do what you want...
                     } else if (data.errorThrown || data.textStatus === 'error') {
                         data.files[0].error = data.errorThrown ||
                             data.textStatus;
-                    }
-                    */
+                    }   */
+
                 };
 
 
@@ -107,7 +158,11 @@
 
                     });
 
+
+
             }
+
+
         ])
 
         .controller('FileDestroyController', [
