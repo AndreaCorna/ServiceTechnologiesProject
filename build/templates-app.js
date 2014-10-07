@@ -2345,13 +2345,13 @@ angular.module("log_in/log_in.tpl.html", []).run(["$templateCache", function($te
     "</div>\n" +
     "\n" +
     "<div class=\"body\">\n" +
-    "    <div ng-class=\"{error: login_error.errors.email}\">Email: <input ng-model=\"login_user.email\" />\n" +
+    "    <div ng-class=\"{error: login_error.errors.email}\">Email: <input ng-model=\"credentials.email\" />\n" +
     "        <div ng-show=\"login_error.errors.email\">\n" +
     "            <div ng-repeat=\"field_error in login_error.errors.email\">{{field_error}}</div>\n" +
     "        </div>\n" +
     "    </div>\n" +
     "\n" +
-    "    <div ng-class=\"{error: login_error.errors.password}\">Password: <input type=\"password\" ng-model=\"login_user.password\" />\n" +
+    "    <div ng-class=\"{error: login_error.errors.password}\">Password: <input type=\"password\" ng-model=\"credentials.password\" />\n" +
     "        <div ng-show=\"login_error.errors.password\">\n" +
     "            <div ng-repeat=\"field_error in login_error.errors.password\">{{field_error}}</div>\n" +
     "        </div>\n" +
@@ -2359,14 +2359,15 @@ angular.module("log_in/log_in.tpl.html", []).run(["$templateCache", function($te
     "\n" +
     "    <button ng-click=\"login()\" class=\"btn btn-primary\" >Login</button>\n" +
     "    <button ng-click=\"logout()\" class=\"btn btn-primary\" >Logout</button>\n" +
+    "    <!--\n" +
     "    <button ng-click=\"password_reset()\" class=\"btn btn-primary\" >Reset Password</button>\n" +
     "    <button ng-click=\"unlock()\" class=\"btn btn-primary\" >Unlock</button>\n" +
     "    <button ng-click=\"confirm()\" class=\"btn btn-primary\" >Confirm</button>\n" +
+    "    -->\n" +
+    "\n" +
     "    <button ng-click=\"showCurrentUser()\" class=\"btn btn-primary\" >Show</button>\n" +
     "\n" +
-    "\n" +
     "    <div>\n" +
-    "        <button ng-click=\"go('/users/auth/facebook')\" class=\"btn btn-primary\">Facebook</button>\n" +
     "        <a class=\"btn btn-default\" href=\"http://localhost:3000/users/auth/facebook\">face</a>\n" +
     "        <a class=\"btn btn-default\" href=\"http://localhost:3000/users/auth/google_oauth2\">google</a>\n" +
     "    </div>\n" +
