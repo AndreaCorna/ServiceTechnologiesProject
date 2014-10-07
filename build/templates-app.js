@@ -1873,18 +1873,9 @@ angular.module("city/guide.tpl.html", []).run(["$templateCache", function($templ
 angular.module("city/guides.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("city/guides.tpl.html",
     "<div class=\"page-header\">\n" +
-    "    <form class=\"directUpload\">\n" +
-    "         <div class=\"field\">\n" +
-    "             <label for=\"filefield\">file</label>\n" +
-    "             <input type=\"file\" name=\"file\" id=\"filefield\" />\n" +
-    "\n" +
-    "         </div>\n" +
-    "    </form>\n" +
     "\n" +
     "\n" +
-    "    <form id=\"fileupload\" action=\"//jquery-file-upload.appspot.com/\" method=\"POST\" enctype=\"multipart/form-data\" data-ng-app=\"demo\" data-ng-controller=\"DemoFileUploadController\" data-file-upload=\"options\" data-ng-class=\"{'fileupload-processing': processing() || loadingFiles}\">\n" +
-    "        <!-- Redirect browsers with JavaScript disabled to the origin page -->\n" +
-    "        <noscript><input type=\"hidden\" name=\"redirect\" value=\"https://blueimp.github.io/jQuery-File-Upload/\"></noscript>\n" +
+    "    <form id=\"fileupload\" action=\"https://trippo.s3.amazonaws.com/\" method=\"POST\" enctype=\"multipart/form-data\" data-ng-app=\"demo\" data-ng-controller=\"DemoFileUploadController\" data-file-upload=\"options\" data-ng-class=\"{'fileupload-processing': processing() || loadingFiles}\">\n" +
     "        <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->\n" +
     "        <div class=\"row fileupload-buttonbar\">\n" +
     "            <div class=\"col-lg-7\">\n" +
@@ -1932,10 +1923,7 @@ angular.module("city/guides.tpl.html", []).run(["$templateCache", function($temp
     "                    </p>\n" +
     "                    <strong data-ng-show=\"file.error\" class=\"error text-danger\">{{file.error}}</strong>\n" +
     "                </td>\n" +
-    "                <td>\n" +
-    "                    <p class=\"size\">{{file.size | formatFileSize}}</p>\n" +
-    "                    <div class=\"progress progress-striped active fade\" data-ng-class=\"{pending: 'in'}[file.$state()]\" data-file-upload-progress=\"file.$progress()\"><div class=\"progress-bar progress-bar-success\" data-ng-style=\"{width: num + '%'}\"></div></div>\n" +
-    "                </td>\n" +
+    "\n" +
     "                <td>\n" +
     "                    <button type=\"button\" class=\"btn btn-primary start\" data-ng-click=\"file.$submit()\" data-ng-hide=\"!file.$submit || options.autoUpload\" data-ng-disabled=\"file.$state() == 'pending' || file.$state() == 'rejected'\">\n" +
     "                        <i class=\"glyphicon glyphicon-upload\"></i>\n" +
@@ -1945,10 +1933,7 @@ angular.module("city/guides.tpl.html", []).run(["$templateCache", function($temp
     "                        <i class=\"glyphicon glyphicon-ban-circle\"></i>\n" +
     "                        <span>Cancel</span>\n" +
     "                    </button>\n" +
-    "                    <button data-ng-controller=\"FileDestroyController\" type=\"button\" class=\"btn btn-danger destroy\" data-ng-click=\"file.$destroy()\" data-ng-hide=\"!file.$destroy\">\n" +
-    "                        <i class=\"glyphicon glyphicon-trash\"></i>\n" +
-    "                        <span>Delete</span>\n" +
-    "                    </button>\n" +
+    "\n" +
     "                </td>\n" +
     "            </tr>\n" +
     "        </table>\n" +

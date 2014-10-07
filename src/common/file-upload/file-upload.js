@@ -16,12 +16,6 @@
 /* jshint nomen:false */
 /* global window, angular */
 
-(function () {
-    'use strict';
-
-    var isOnGitHub = true,
-        url = 'https://trippo.s3.amazonaws.com/';
-
     angular.module('demo', [
         'blueimp.fileupload'
     ])
@@ -33,6 +27,7 @@
                     /\/[^\/]*$/,
                     '/cors/result.html?%s'
                 );
+
 
                     // Demo settings:
                     angular.extend(fileUploadProvider.defaults, {
@@ -125,8 +120,7 @@
             }
         ])
 
-        .controller('DemoFileUploadController', [
-            '$scope', '$http', '$filter', '$window',
+        .controller('DemoFileUploadController',
             function ($scope, $http) {
                 $http({method: 'GET', url: '../guides/s3'}).
                     success(function (result, status, headers, config) {
@@ -157,44 +151,53 @@
 
 
                     });
+                /*
+                $scope.$on('fileuploaddone' ,function(event,file){
+                    console.log("file on submit");
+                    console.log(file);
+                    console.log("form data");
+                    console.log(file['formData']);
+
+
+                    angular.forEach(file.originalFiles, function (value, key) {
+                        var auth = {
+                            AWSAccessKeyId : file.formData.AWSAccessKeyId ,
+                            signature : file.formData.signature
+                        }    ;
+                        UploadService.setSignature(value.name,auth);
+                        console.log(value.name);
+                        console.log(UploadService.getSignature(value.name));
+
+
+                    });
+
+
+                }) ;  */
+
 
 
 
             }
 
 
-        ])
+        ) ;
+        /*
+        .factory('UploadService', function () {
+            var signatures = []    ;
+            return{
+                setSignature : function(file ,sign){
+                    console.log("set signature");
 
-        .controller('FileDestroyController', [
-            '$scope', '$http',
-            function ($scope, $http) {
-                var file = $scope.file,
-                    state;
-                if (file.url) {
-                    file.$state = function () {
-                        return state;
-                    };
-                    file.$destroy = function () {
-                        state = 'pending';
-                        return $http({
-                            url: file.deleteUrl,
-                            method: file.deleteType
-                        }).then(
-                            function () {
-                                state = 'resolved';
-                                $scope.clear(file);
-                            },
-                            function () {
-                                state = 'rejected';
-                            }
-                        );
-                    };
-                } else if (!file.$cancel && !file._index) {
-                    file.$cancel = function () {
-                        $scope.clear(file);
-                    };
+                    signatures[file] = sign ;
+                } ,
+                getSignature  :function(file){
+                    return signatures[file];
                 }
-            }
-        ]);
+            }   ;
 
-}());
+        })
+        */
+
+
+
+
