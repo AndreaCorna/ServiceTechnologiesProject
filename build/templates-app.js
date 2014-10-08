@@ -1875,70 +1875,6 @@ angular.module("city/guides.tpl.html", []).run(["$templateCache", function($temp
     "<div class=\"page-header\">\n" +
     "\n" +
     "\n" +
-    "    <form id=\"fileupload\" action=\"https://trippo.s3.amazonaws.com/\" method=\"POST\" enctype=\"multipart/form-data\" data-ng-app=\"demo\" data-ng-controller=\"DemoFileUploadController\" data-file-upload=\"options\" data-ng-class=\"{'fileupload-processing': processing() || loadingFiles}\">\n" +
-    "        <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->\n" +
-    "        <div class=\"row fileupload-buttonbar\">\n" +
-    "            <div class=\"col-lg-7\">\n" +
-    "                <!-- The fileinput-button span is used to style the file input field as button -->\n" +
-    "                <span class=\"btn btn-success fileinput-button\" ng-class=\"{disabled: disabled}\">\n" +
-    "                    <i class=\"glyphicon glyphicon-plus\"></i>\n" +
-    "                    <span>Add files...</span>\n" +
-    "                    <input type=\"file\" name=\"files[]\" multiple ng-disabled=\"disabled\">\n" +
-    "                </span>\n" +
-    "                <button type=\"button\" class=\"btn btn-primary start\" data-ng-click=\"submit()\">\n" +
-    "                    <i class=\"glyphicon glyphicon-upload\"></i>\n" +
-    "                    <span>Start upload</span>\n" +
-    "                </button>\n" +
-    "                <button type=\"button\" class=\"btn btn-warning cancel\" data-ng-click=\"cancel()\">\n" +
-    "                    <i class=\"glyphicon glyphicon-ban-circle\"></i>\n" +
-    "                    <span>Cancel upload</span>\n" +
-    "                </button>\n" +
-    "                <!-- The global file processing state -->\n" +
-    "                <span class=\"fileupload-process\"></span>\n" +
-    "            </div>\n" +
-    "            <!-- The global progress state -->\n" +
-    "            <div class=\"col-lg-5 fade\" data-ng-class=\"{in: active()}\">\n" +
-    "                <!-- The global progress bar -->\n" +
-    "                <div class=\"progress progress-striped active\" data-file-upload-progress=\"progress()\"><div class=\"progress-bar progress-bar-success\" data-ng-style=\"{width: num + '%'}\"></div></div>\n" +
-    "                <!-- The extended global progress state -->\n" +
-    "                <div class=\"progress-extended\">&nbsp;</div>\n" +
-    "            </div>\n" +
-    "        </div>\n" +
-    "        <!-- The table listing the files available for upload/download -->\n" +
-    "        <table class=\"table table-striped files ng-cloak\">\n" +
-    "            <tr data-ng-repeat=\"file in queue\" data-ng-class=\"{'processing': file.$processing()}\">\n" +
-    "                <td data-ng-switch data-on=\"!!file.thumbnailUrl\">\n" +
-    "                    <div class=\"preview\" data-ng-switch-when=\"true\">\n" +
-    "                        <a data-ng-href=\"{{file.url}}\" title=\"{{file.name}}\" download=\"{{file.name}}\" data-gallery><img style=\"height: 100px\" data-ng-src=\"{{file.thumbnailUrl}}\" alt=\"\"></a>\n" +
-    "                    </div>\n" +
-    "                    <div class=\"preview\" data-ng-switch-default data-file-upload-preview=\"file\"></div>\n" +
-    "                </td>\n" +
-    "                <td>\n" +
-    "                    <p class=\"name\" data-ng-switch data-on=\"!!file.url\">\n" +
-    "                        <span data-ng-switch-when=\"true\" data-ng-switch data-on=\"!!file.thumbnailUrl\">\n" +
-    "                            <a data-ng-switch-when=\"true\" data-ng-href=\"{{file.url}}\" title=\"{{file.name}}\" download=\"{{file.name}}\" data-gallery>{{file.name}}</a>\n" +
-    "                            <a data-ng-switch-default data-ng-href=\"{{file.url}}\" title=\"{{file.name}}\" download=\"{{file.name}}\">{{file.name}}</a>\n" +
-    "                        </span>\n" +
-    "                        <span data-ng-switch-default>{{file.name}}</span>\n" +
-    "                    </p>\n" +
-    "                    <strong data-ng-show=\"file.error\" class=\"error text-danger\">{{file.error}}</strong>\n" +
-    "                </td>\n" +
-    "\n" +
-    "                <td>\n" +
-    "                    <button type=\"button\" class=\"btn btn-primary start\" data-ng-click=\"file.$submit()\" data-ng-hide=\"!file.$submit || options.autoUpload\" data-ng-disabled=\"file.$state() == 'pending' || file.$state() == 'rejected'\">\n" +
-    "                        <i class=\"glyphicon glyphicon-upload\"></i>\n" +
-    "                        <span>Start</span>\n" +
-    "                    </button>\n" +
-    "                    <button type=\"button\" class=\"btn btn-warning cancel\" data-ng-click=\"file.$cancel()\" data-ng-hide=\"!file.$cancel\">\n" +
-    "                        <i class=\"glyphicon glyphicon-ban-circle\"></i>\n" +
-    "                        <span>Cancel</span>\n" +
-    "                    </button>\n" +
-    "\n" +
-    "                </td>\n" +
-    "            </tr>\n" +
-    "        </table>\n" +
-    "    </form>\n" +
-    "\n" +
     "</div>\n" +
     "<div class=\"row\">\n" +
     "    <div class=\"well\">\n" +
@@ -2488,8 +2424,19 @@ angular.module("plan_trip/createtrip.tpl.html", []).run(["$templateCache", funct
     "                            <button type=\"submit\" class=\"btn btn-primary btn-lg btn-outlined\">Submit</button>\n" +
     "                        </div>\n" +
     "                    </div>\n" +
+    "\n" +
+    "\n" +
+    "\n" +
     "                </fieldset>\n" +
     "            </form>\n" +
+    "            <div class=\"form-group\">\n" +
+    "                <label class=\"col-md-2 control-label\" style=\"font-size: 18px\">Usefull Files</label>\n" +
+    "                <div class=\"col-md-10\">\n" +
+    "                    <file-upload></file-upload>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "\n" +
+    "\n" +
     "            <legend>Trip Summary</legend>\n" +
     "            <div class=\"row\" style=\"margin-bottom: 6px\">\n" +
     "                <button class=\"btn btn-primary btn-outlined z-up\" style=\"font-size: 17px;margin-left: 15px;\" ng-click=\"changeView()\">{{currentView}}</button>\n" +

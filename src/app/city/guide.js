@@ -11,7 +11,7 @@ angular.module( 'trippo.guide', [
     'common.placeListMaps' ,
     'common.placeListDetails' ,
     'common.mapsMarkers' ,
-    'demo'
+    'common.file-upload'
 
 
 ])

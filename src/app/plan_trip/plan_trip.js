@@ -482,7 +482,7 @@ angular.module('trippo.plan',[
         };
 
         //STUB START
-        /*
+
         StubHandler.createFakeDates();
         var randomItemsc = [];
         var  randomItemse = [];
@@ -501,11 +501,19 @@ angular.module('trippo.plan',[
          return randomItemsc;  // CHANGE THIS TO    PlanningService.getCurrentTodo()
          };
 
-         */
+
         //STUB END
+        $scope.$on('fileuploadadd', function(event, data){
+            //just one file per time so e
+            data.scope.queue=[];
 
+        });
 
+        $scope.$on('fileuploaddone', function(event, files){
+            console.log("fileuploaddone");
+            console.log(files);
 
+        });
 
         $scope.createTrip = function (form) {
 
