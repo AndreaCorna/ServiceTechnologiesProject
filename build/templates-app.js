@@ -1,4 +1,4 @@
-angular.module('templates-app', ['about/about.tpl.html', 'city/city.tpl.html', 'city/culture.tpl.html', 'city/entertainment.tpl.html', 'city/food.tpl.html', 'city/guide.tpl.html', 'city/guides.tpl.html', 'city/hotel.tpl.html', 'city/utility.tpl.html', 'home/home.tpl.html', 'log_in/log_in.tpl.html', 'plan_trip/createtrip.tpl.html', 'plan_trip/planning.tpl.html', 'plan_trip/trip_dates.tpl.html', 'sign_up/sign_up.tpl.html']);
+angular.module('templates-app', ['about/about.tpl.html', 'city/city.tpl.html', 'city/culture.tpl.html', 'city/entertainment.tpl.html', 'city/food.tpl.html', 'city/guide.tpl.html', 'city/guides.tpl.html', 'city/hotel.tpl.html', 'city/utility.tpl.html', 'home/home.tpl.html', 'log_in/log_in.tpl.html', 'log_in/profile.tpl.html', 'plan_trip/createtrip.tpl.html', 'plan_trip/planning.tpl.html', 'plan_trip/trip_dates.tpl.html', 'sign_up/sign_up.tpl.html']);
 
 angular.module("about/about.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("about/about.tpl.html",
@@ -2371,6 +2371,14 @@ angular.module("log_in/log_in.tpl.html", []).run(["$templateCache", function($te
     "        <a class=\"btn btn-default\" href=\"http://localhost:3000/users/auth/facebook\">face</a>\n" +
     "        <a class=\"btn btn-default\" href=\"http://localhost:3000/users/auth/google_oauth2\">google</a>\n" +
     "    </div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("log_in/profile.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("log_in/profile.tpl.html",
+    "<div>\n" +
+    "   Ciao {{email}}, come va?\n" +
     "</div>\n" +
     "");
 }]);

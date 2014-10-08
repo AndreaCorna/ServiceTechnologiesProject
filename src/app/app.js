@@ -8,7 +8,8 @@ angular.module( 'trippo', [
   'trippo.login',
   'trippo.signup',
   'common.navModule',
-  'LocalStorageModule'
+  'LocalStorageModule',
+  'trippo.profile'
 ])
 
 .config( function myAppConfig ( $stateProvider, $urlRouterProvider ) {

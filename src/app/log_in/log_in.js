@@ -1,5 +1,5 @@
 
-angular.module( 'trippo.login', [
+angular.module( 'trippo.profile', [
     'Devise'
 ])
 
@@ -16,6 +16,8 @@ angular.module( 'trippo.login', [
             data:{ pageTitle: 'Login' }
         });
     })
+
+
 
     .config([
         '$httpProvider',
