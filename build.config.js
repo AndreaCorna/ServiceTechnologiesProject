@@ -76,6 +76,7 @@ module.exports = {
         'vendor/blueimp-file-upload/js/jquery.fileupload-validate.js',
         'vendor/blueimp-file-upload/js/jquery.fileupload-ui.js',
         'vendor/blueimp-file-upload/js/jquery.fileupload-angular.js',
+      'vendor/angular-dialog-service/dist/dialogs.min.js' ,
       'vendor/angular-ui-router/release/angular-ui-router.js',
       'vendor/angular-ui-utils/modules/route/route.js' ,
       'vendor/angular-resource/angular-resource.js',

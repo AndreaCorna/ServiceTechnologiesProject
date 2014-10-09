@@ -1,3 +1,4 @@
+<script src="http://m-e-conroy.github.io/angular-dialog-service/javascripts/dialogs.min.js" type="text/javascript"></script>
 <div class="page-header">
     <div class="vertical-container">
         <div class="row">
@@ -19,8 +20,8 @@
             <div ng-show="submitted  && (form.name.$error.required )" class="alert alert-danger">
                 The field <strong>Trip Name</strong> is required
             </div>
-                <div ng-show="submitted  && (form.name.$error.required )" class="alert alert-danger">
-                    The field <strong>Trip Name</strong> is required
+                <div ng-show="submitted  && errorMessage" class="alert alert-danger">
+                    <strong> {{errorMessage}} </strong>
                 </div>
                 <fieldset>
                     <legend>Trip Details</legend>
@@ -93,25 +94,5 @@
 
 
 
-<div class="modal fade" id="submitError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
 
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title text-center" id="myModalLabel">{{modalTitle}}</h4>
-            </div>
-            <div class="modal-body">
-                <div class="row text-center">
-                    {{modalMessage}}
-                </div>
 
-            </div>
-            <div class="modal-footer">
-
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-
-    </div>
-</div>

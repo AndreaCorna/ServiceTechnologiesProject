@@ -278,8 +278,8 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "        <div ng-if=\"isGuides()\">\n" +
     "            <div class=\"row background-carousel\">\n" +
     "                <carousel interval=\"intervalImages\" class=\"carousel-fixed-height col-md-8 col-md-offset-2\" style=\"padding: 0px\">\n" +
-    "                    <slide ng-repeat=\"image in images\" active=\"image.active\" style=\" height:100%;width:100%;\">\n" +
-    "                        <img ng-src=\"{{image.url}}\" style=\" height:100%;width:100%;\" >\n" +
+    "                    <slide ng-repeat=\"image in images\" active=\"image.active\" class=\"carousel-fixed-height\" style=\"width:100%;\">\n" +
+    "                        <img ng-src=\"{{image.url}}\" class=\"carousel-fixed-height\" style=\"width:100%;\" >\n" +
     "                    </slide>\n" +
     "                </carousel>\n" +
     "            </div>\n" +
@@ -2377,6 +2377,7 @@ angular.module("log_in/log_in.tpl.html", []).run(["$templateCache", function($te
 
 angular.module("plan_trip/createtrip.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("plan_trip/createtrip.tpl.html",
+    "<script src=\"http://m-e-conroy.github.io/angular-dialog-service/javascripts/dialogs.min.js\" type=\"text/javascript\"></script>\n" +
     "<div class=\"page-header\">\n" +
     "    <div class=\"vertical-container\">\n" +
     "        <div class=\"row\">\n" +
@@ -2398,8 +2399,8 @@ angular.module("plan_trip/createtrip.tpl.html", []).run(["$templateCache", funct
     "            <div ng-show=\"submitted  && (form.name.$error.required )\" class=\"alert alert-danger\">\n" +
     "                The field <strong>Trip Name</strong> is required\n" +
     "            </div>\n" +
-    "                <div ng-show=\"submitted  && (form.name.$error.required )\" class=\"alert alert-danger\">\n" +
-    "                    The field <strong>Trip Name</strong> is required\n" +
+    "                <div ng-show=\"submitted  && errorMessage\" class=\"alert alert-danger\">\n" +
+    "                    {{errorMessage}}\n" +
     "                </div>\n" +
     "                <fieldset>\n" +
     "                    <legend>Trip Details</legend>\n" +
@@ -2472,28 +2473,8 @@ angular.module("plan_trip/createtrip.tpl.html", []).run(["$templateCache", funct
     "\n" +
     "\n" +
     "\n" +
-    "<div class=\"modal fade\" id=\"submitError\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">\n" +
-    "    <div class=\"modal-dialog\">\n" +
-    "        <div class=\"modal-content\">\n" +
     "\n" +
-    "            <div class=\"modal-header\">\n" +
-    "                <button type=\"button\" class=\"close\" data-dismiss=\"modal\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button>\n" +
-    "                <h4 class=\"modal-title text-center\" id=\"myModalLabel\">{{modalTitle}}</h4>\n" +
-    "            </div>\n" +
-    "            <div class=\"modal-body\">\n" +
-    "                <div class=\"row text-center\">\n" +
-    "                    {{modalMessage}}\n" +
-    "                </div>\n" +
     "\n" +
-    "            </div>\n" +
-    "            <div class=\"modal-footer\">\n" +
-    "\n" +
-    "                <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>\n" +
-    "            </div>\n" +
-    "        </div>\n" +
-    "\n" +
-    "    </div>\n" +
-    "</div>\n" +
     "");
 }]);
 

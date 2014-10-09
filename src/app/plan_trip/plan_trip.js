@@ -10,7 +10,8 @@ angular.module('trippo.plan',[
     'trippo.modal',
     'common.mapDirections',
     'common.placeListDetails',
-    'common.placeListMaps'
+    'common.placeListMaps' ,
+    'dialogs'
 
 
 ])
@@ -457,7 +458,7 @@ angular.module('trippo.plan',[
 
 })
 
-.controller('CreateTripCtrl',function CreateTripCtrl($stateParams,$scope,$location,DatesService,CityPlanningService,PlanningService, StubHandler,ModalHandler,commonResources,GuideRes){
+.controller('CreateTripCtrl',function CreateTripCtrl($stateParams,$scope,$location,$dialogs,DatesService,CityPlanningService,PlanningService, StubHandler,ModalHandler,commonResources,GuideRes){
         $scope.dateFormat = DatesService.dateFormat;
 
 
@@ -568,9 +569,8 @@ angular.module('trippo.plan',[
                     console.log("data back");
                     console.log(data);
                     if (data.message !== undefined) {
-                        $scope.modalTitle  = 'Error in submitting guide' ;
-                        $scope.modalMessage = data.message;
-                        $('#submitError').modal('toggle');
+                        $scope.errorMessage  = data.message;
+
                     }
                     else{
                         CityPlanningService.removeRangeDatesCity($stateParams.city_name) ;

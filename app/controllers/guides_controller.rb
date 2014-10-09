@@ -26,20 +26,23 @@ class GuidesController < ApplicationController
      # render template:  "shared_guide/show"  ,:locals => { :s3 => @s3_direct_post }
   end
 
+  def error(message)
+    response = Hash.new
+    response['message']= message
+    render json:     response
+
+  end
+
   def create
     puts params
     guide = Guide.new
     if (params['name'] == '')
-      response = Hash.new
-      response['message']= 'The guide need to have a name'
-      render json:     response
+      error('The guide need to have a name')
       return
     end
 
     if (params['days'].nil?)
-      response = Hash.new
-      response['message']= 'None day added to the guide'
-      render json:     response
+      error 'At least one day needs to be added to the guide'
       return
     end
     guide.name= params['name']
@@ -96,6 +99,11 @@ class GuidesController < ApplicationController
 
 
     }
+    #check if some place has been added
+    if (guide.place_summaries.empty?)
+      error 'Need to insert at least one place to the guide'
+      return
+    end
     #check if the guide has succeded in taking an image else no image set
     if (guide.image.nil? or guide.image == '')
       guide.image = 'assets/images/empty_photo.png'
