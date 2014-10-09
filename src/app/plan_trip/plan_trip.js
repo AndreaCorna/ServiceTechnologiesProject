@@ -12,6 +12,7 @@ angular.module('trippo.plan',[
     'common.placeListDetails',
     'common.placeListMaps'
 
+
 ])
 
 
@@ -50,10 +51,14 @@ angular.module('trippo.plan',[
             }
 
         }  ;
+        var removeRangeDatesCity = function(city){
+            city_ranges[city]   = undefined;
+        } ;
 
         return {
             createRangeDatesCity : createRangeDatesCity,
-            setRangeDatesCity : setRangeDatesCity
+            setRangeDatesCity : setRangeDatesCity,
+            removeRangeDatesCity :  removeRangeDatesCity
         }   ;
     })
 
@@ -452,8 +457,10 @@ angular.module('trippo.plan',[
 
 })
 
-.controller('CreateTripCtrl',function CreateTripCtrl($stateParams,$scope,DatesService,CityPlanningService,PlanningService, StubHandler,ModalHandler,commonResources,GuideRes){
+.controller('CreateTripCtrl',function CreateTripCtrl($stateParams,$scope,$location,DatesService,CityPlanningService,PlanningService, StubHandler,ModalHandler,commonResources,GuideRes){
         $scope.dateFormat = DatesService.dateFormat;
+
+
 
 
         $scope.getCityName= function(){
@@ -482,7 +489,7 @@ angular.module('trippo.plan',[
         };
 
         //STUB START
-
+        /*
         StubHandler.createFakeDates();
         var randomItemsc = [];
         var  randomItemse = [];
@@ -502,18 +509,25 @@ angular.module('trippo.plan',[
          };
 
 
+
+         */
         //STUB END
+
         $scope.$on('fileuploadadd', function(event, data){
             //just one file per time so e
-            data.scope.queue=[];
+
+              data.scope.queue=[];
 
         });
 
-        $scope.$on('fileuploaddone', function(event, files){
-            console.log("fileuploaddone");
-            console.log(files);
+        $scope.$on('fileuploaddone', function(event, data){
+            console.log("fileupload done");
+            $scope.imageFile = $(data.jqXHR.responseXML).find('Location').text() ;
+            console.log("image file");
+            console.log($scope.imageFile);
 
         });
+
 
         $scope.createTrip = function (form) {
 
@@ -522,9 +536,11 @@ angular.module('trippo.plan',[
 
             if   (form.$valid){
                 var guide =  new GuideRes();
+                guide.image = $scope.imageFile;
                 guide.name = $scope.name ;
                 guide.description = $scope.description ;
                 guide.city = $stateParams.city_name   ;
+                guide.image = $scope.imageFile;
                 //hash key : day in dateFormat format value: array of activities in that day
                 /**
                  * Adding all the day and their respective activities to  schedule hash
@@ -548,8 +564,21 @@ angular.module('trippo.plan',[
                 console.log("guide schedule");
                 console.log(guide.schedule);
 
-                guide.$save(function(data){
+                guide.$save(function(data, status, headers, config) {
+                    console.log("data back");
                     console.log(data);
+                    if (data.message !== undefined) {
+                        $scope.modalTitle  = 'Error in submitting guide' ;
+                        $scope.modalMessage = data.message;
+                        $('#submitError').modal('toggle');
+                    }
+                    else{
+                        CityPlanningService.removeRangeDatesCity($stateParams.city_name) ;
+                        //redirect to user home when it will be
+                        $location.path('/city/' + $stateParams.city_name + "/guides");
+
+
+                    }
                 });
 
                 console.log("submitted");

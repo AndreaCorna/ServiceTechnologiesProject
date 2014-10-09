@@ -9,39 +9,26 @@ angular.module("file-upload/file-upload.tpl.html", []).run(["$templateCache", fu
     "            <!-- The fileinput-button span is used to style the file input field as button -->\n" +
     "                <span class=\"btn btn-success fileinput-button\" ng-class=\"{disabled: disabled}\">\n" +
     "                    <i class=\"glyphicon glyphicon-plus\"></i>\n" +
-    "                    <span>Add files...</span>\n" +
+    "                    <span>Add Guide Picture</span>\n" +
     "                    <input type=\"file\" name=\"files[]\" multiple ng-disabled=\"disabled\">\n" +
     "                </span>\n" +
-    "            <button type=\"button\" class=\"btn btn-primary start\" data-ng-click=\"submit()\">\n" +
-    "                <i class=\"glyphicon glyphicon-upload\"></i>\n" +
-    "                <span>Start upload</span>\n" +
-    "            </button>\n" +
-    "            <button type=\"button\" class=\"btn btn-warning cancel\" data-ng-click=\"cancel()\">\n" +
-    "                <i class=\"glyphicon glyphicon-ban-circle\"></i>\n" +
-    "                <span>Cancel upload</span>\n" +
-    "            </button>\n" +
+    "\n" +
     "            <!-- The global file processing state -->\n" +
     "            <span class=\"fileupload-process\"></span>\n" +
     "        </div>\n" +
     "        <!-- The global progress state -->\n" +
-    "        <div class=\"col-lg-5 fade\" data-ng-class=\"{in: active()}\">\n" +
-    "            <!-- The global progress bar -->\n" +
-    "            <div class=\"progress progress-striped active\" data-file-upload-progress=\"progress()\"><div class=\"progress-bar progress-bar-success\" data-ng-style=\"{width: num + '%'}\"></div></div>\n" +
-    "            <!-- The extended global progress state -->\n" +
-    "            <div class=\"progress-extended\">&nbsp;</div>\n" +
-    "        </div>\n" +
+    "\n" +
     "    </div>\n" +
     "    <!-- The table listing the files available for upload/download -->\n" +
-    "    <table class=\"table table-striped files ng-cloak\">\n" +
-    "        <tr data-ng-repeat=\"file in queue\" data-ng-class=\"{'processing': file.$processing()}\">\n" +
-    "            <td data-ng-switch data-on=\"!!file.thumbnailUrl\">\n" +
+    "        <div style=\"margin-top: 10px\" class=\"row well\" data-ng-repeat=\"file in queue\" data-ng-class=\"{'processing': file.$processing()}\">\n" +
+    "            <div class=\"col-md-3\" data-ng-switch data-on=\"!!file.thumbnailUrl\" ng-show=\"file.thumbnailUrl\">\n" +
     "                <div class=\"preview\" data-ng-switch-when=\"true\">\n" +
     "                    <a data-ng-href=\"{{file.url}}\" title=\"{{file.name}}\" download=\"{{file.name}}\" data-gallery><img style=\"height: 100px\" data-ng-src=\"{{file.thumbnailUrl}}\" alt=\"\"></a>\n" +
     "                </div>\n" +
     "                <div class=\"preview\" data-ng-switch-default data-file-upload-preview=\"file\"></div>\n" +
-    "            </td>\n" +
-    "            <td>\n" +
-    "                <p class=\"name\" data-ng-switch data-on=\"!!file.url\">\n" +
+    "            </div>\n" +
+    "            <div class=\"col-md-5\">\n" +
+    "                <p class=\"name center-text\" data-ng-switch data-on=\"!!file.url\">\n" +
     "                        <span data-ng-switch-when=\"true\" data-ng-switch data-on=\"!!file.thumbnailUrl\">\n" +
     "                            <a data-ng-switch-when=\"true\" data-ng-href=\"{{file.url}}\" title=\"{{file.name}}\" download=\"{{file.name}}\" data-gallery>{{file.name}}</a>\n" +
     "                            <a data-ng-switch-default data-ng-href=\"{{file.url}}\" title=\"{{file.name}}\" download=\"{{file.name}}\">{{file.name}}</a>\n" +
@@ -49,12 +36,12 @@ angular.module("file-upload/file-upload.tpl.html", []).run(["$templateCache", fu
     "                    <span data-ng-switch-default>{{file.name}}</span>\n" +
     "                </p>\n" +
     "                <strong data-ng-show=\"file.error\" class=\"error text-danger\">{{file.error}}</strong>\n" +
-    "            </td>\n" +
-    "            <td>\n" +
+    "            </div>\n" +
+    "            <div class=\"col-md-12\" ng-show=\"file.$state()\">\n" +
     "\n" +
-    "                <div class=\"progress progress-striped active fade\" data-ng-class=\"{pending: 'in'}[file.$state()]\" data-file-upload-progress=\"file.$progress()\"><div class=\"progress-bar progress-bar-success\" data-ng-style=\"{width: num + '%'}\"></div></div>\n" +
-    "            </td>\n" +
-    "            <td>\n" +
+    "                <div class=\"progress progress-striped active fade\" data-ng-class=\"{pending: 'in'}[file.$state()]\" data-file-upload-progress=\"file.$progress()\" ><div class=\"progress-bar progress-bar-success\" data-ng-style=\"{width: num + '%'}\"></div></div>\n" +
+    "            </div>\n" +
+    "            <div class=\"col-md-4\">\n" +
     "                <button type=\"button\" class=\"btn btn-primary start\" data-ng-click=\"file.$submit()\" data-ng-hide=\"!file.$submit || options.autoUpload\" data-ng-disabled=\"file.$state() == 'pending' || file.$state() == 'rejected'\">\n" +
     "                    <i class=\"glyphicon glyphicon-upload\"></i>\n" +
     "                    <span>Start</span>\n" +
@@ -64,9 +51,8 @@ angular.module("file-upload/file-upload.tpl.html", []).run(["$templateCache", fu
     "                    <span>Cancel</span>\n" +
     "                </button>\n" +
     "\n" +
-    "            </td>\n" +
-    "        </tr>\n" +
-    "    </table>\n" +
+    "            </div>\n" +
+    "          </div>\n" +
     "</form>\n" +
     "");
 }]);

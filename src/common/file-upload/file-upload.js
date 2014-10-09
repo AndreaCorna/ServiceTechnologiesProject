@@ -26,38 +26,37 @@ component.config([
             /\/[^\/]*$/,
             '/cors/result.html?%s'
         );
-
-
-        // Demo settings:
         angular.extend(fileUploadProvider.defaults, {
             // Enable image resizing, except for Android and Opera,
             // which actually support image resizing, but fail to
             // send Blob objects via XHR requests:
             disableImageResize: /Android(?!.*Chrome)|Opera/
-                .test(window.navigator.userAgent),
-            maxFileSize: 5000000,
-            acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i
+                .test(window.navigator.userAgent)
+
         });
+
+
+
         fileUploadProvider.defaults.handleResponse = function (e,data){
-            console.log("response data");
+        /*    console.log("response data");
             console.log(data);
             console.log("result data");
             console.log(data.result);
             console.log("files");
             console.log(data.result.files);
 
-
+            */
 
             var location = $(data.result).find("Location").text();
             var key = $(data.result).find("Key").text();
-            console.log("loacation");
+      /*      console.log("loacation");
 
             console.log(location);
 
             console.log("name");
             console.log(key.split('/').pop());
             console.log(key.split('/').pop());
-
+           */
 
             var file = {
                     deleteType : 'DELETE',
@@ -150,18 +149,15 @@ component.directive('fileUpload', function ($http) {
                             acl: result['acl']
                         },
                         paramName: 'file', // S3 does not like nested name fields i.e. name="user[avatar_url]"
-                        dataType: 'XML'  // S3 returns XML if success_action_status is set to 201
-
+                        dataType: 'XML',  // S3 returns XML if success_action_status is set to 201
+                        maxFileSize: 5000000,
+                        acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i
                     };
 
 
 
                 });
-            scope.$on('fileuploaddone',function(event, data ){
-                console.log("upload complete");
-                console.log(data);
 
-            })  ;
 
 
 

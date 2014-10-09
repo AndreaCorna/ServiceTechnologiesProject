@@ -1888,11 +1888,11 @@ angular.module("city/guides.tpl.html", []).run(["$templateCache", function($temp
     "                                    <div class=\"panel panel-default\">\n" +
     "                                        <div class=\"panel-body image-panel\">\n" +
     "                                            <carousel interval=\"intervalImages\">\n" +
-    "                                                <div ng-if=\"!item.photos\">\n" +
+    "                                                <div ng-if=\"!item.image\">\n" +
     "                                                    <img class=\"image-item\" ng-src=\"assets/images/empty_photo.png\">\n" +
     "                                                </div>\n" +
-    "                                                <div ng-if=\"item.photos.length>0\">\n" +
-    "                                                    <img style=\"height: 220px;  width:100%;\" ng-src=\"{{item.photos[0].image}}\" >\n" +
+    "                                                <div ng-if=\"item.image\">\n" +
+    "                                                    <img style=\"height: 220px;  width:100%;\" ng-src=\"{{item.image}}\" >\n" +
     "                                                </div>\n" +
     "                                            </carousel>\n" +
     "                                        </div>\n" +
@@ -2398,6 +2398,9 @@ angular.module("plan_trip/createtrip.tpl.html", []).run(["$templateCache", funct
     "            <div ng-show=\"submitted  && (form.name.$error.required )\" class=\"alert alert-danger\">\n" +
     "                The field <strong>Trip Name</strong> is required\n" +
     "            </div>\n" +
+    "                <div ng-show=\"submitted  && (form.name.$error.required )\" class=\"alert alert-danger\">\n" +
+    "                    The field <strong>Trip Name</strong> is required\n" +
+    "                </div>\n" +
     "                <fieldset>\n" +
     "                    <legend>Trip Details</legend>\n" +
     "                    <!-- Name input-->\n" +
@@ -2430,9 +2433,10 @@ angular.module("plan_trip/createtrip.tpl.html", []).run(["$templateCache", funct
     "                </fieldset>\n" +
     "            </form>\n" +
     "            <div class=\"form-group\">\n" +
-    "                <label class=\"col-md-2 control-label\" style=\"font-size: 18px\">Usefull Files</label>\n" +
+    "                <label class=\"col-md-2 control-label\" style=\"font-size: 18px\">Guide Picture</label>\n" +
     "                <div class=\"col-md-10\">\n" +
     "                    <file-upload></file-upload>\n" +
+    "\n" +
     "                </div>\n" +
     "            </div>\n" +
     "\n" +
@@ -2461,6 +2465,33 @@ angular.module("plan_trip/createtrip.tpl.html", []).run(["$templateCache", funct
     "                </div>\n" +
     "            </div>\n" +
     "        </div>\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "\n" +
+    "\n" +
+    "\n" +
+    "\n" +
+    "\n" +
+    "<div class=\"modal fade\" id=\"submitError\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">\n" +
+    "    <div class=\"modal-dialog\">\n" +
+    "        <div class=\"modal-content\">\n" +
+    "\n" +
+    "            <div class=\"modal-header\">\n" +
+    "                <button type=\"button\" class=\"close\" data-dismiss=\"modal\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button>\n" +
+    "                <h4 class=\"modal-title text-center\" id=\"myModalLabel\">{{modalTitle}}</h4>\n" +
+    "            </div>\n" +
+    "            <div class=\"modal-body\">\n" +
+    "                <div class=\"row text-center\">\n" +
+    "                    {{modalMessage}}\n" +
+    "                </div>\n" +
+    "\n" +
+    "            </div>\n" +
+    "            <div class=\"modal-footer\">\n" +
+    "\n" +
+    "                <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "\n" +
     "    </div>\n" +
     "</div>\n" +
     "");

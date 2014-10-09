@@ -14,11 +14,11 @@
                                     <div class="panel panel-default">
                                         <div class="panel-body image-panel">
                                             <carousel interval="intervalImages">
-                                                <div ng-if="!item.photos">
+                                                <div ng-if="!item.image">
                                                     <img class="image-item" ng-src="assets/images/empty_photo.png">
                                                 </div>
-                                                <div ng-if="item.photos.length>0">
-                                                    <img style="height: 220px;  width:100%;" ng-src="{{item.photos[0].image}}" >
+                                                <div ng-if="item.image">
+                                                    <img style="height: 220px;  width:100%;" ng-src="{{item.image}}" >
                                                 </div>
                                             </carousel>
                                         </div>
