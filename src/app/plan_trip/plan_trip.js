@@ -200,6 +200,8 @@ angular.module('trippo.plan',[
 
 
         };
+
+
         /**
          * check if the form is valid and creates the range of date selected in the datepicker
          * @param form
