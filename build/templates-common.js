@@ -143,12 +143,11 @@ angular.module("place-list/place-list-details.tpl.html", []).run(["$templateCach
     "                    </div>\n" +
     "                    <div class=\"clearfix visible-sm\"></div>\n" +
     "\n" +
-    "                    <div class=\"col-md-8\">\n" +
+    "                    <div ng-class=\"showMore?'col-md-6' : 'col-md-8'\" >\n" +
     "                        <div class=\"media-body fnt-smaller\">\n" +
     "\n" +
     "                            <h4 class=\"media-heading\">\n" +
     "                                <a href=\"#\" target=\"_parent\">{{item.name}} </a>\n" +
-    "                                <button class=\"btn btn-primary btn-outlined pull-right\" style=\"margin-top: 3px\"  ng-click=\"setDetails(item)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">MORE INFO</button>\n" +
     "\n" +
     "                            </h4>\n" +
     "\n" +
@@ -164,6 +163,13 @@ angular.module("place-list/place-list-details.tpl.html", []).run(["$templateCach
     "\n" +
     "\n" +
     "                        </div>\n" +
+    "                    </div>\n" +
+    "\n" +
+    "                    <div ng-show=\"showMore\" class=\"col-md-2\">\n" +
+    "\n" +
+    "                        <button class=\"btn btn-primary btn-outlined pull-right\" style=\"margin-top: 3px\"  ng-click=\"setDetails(item)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">MORE INFO</button>\n" +
+    "\n" +
+    "\n" +
     "                    </div>\n" +
     "\n" +
     "                </div>\n" +

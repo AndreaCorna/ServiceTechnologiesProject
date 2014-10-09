@@ -2400,7 +2400,7 @@ angular.module("plan_trip/createtrip.tpl.html", []).run(["$templateCache", funct
     "                The field <strong>Trip Name</strong> is required\n" +
     "            </div>\n" +
     "                <div ng-show=\"submitted  && errorMessage\" class=\"alert alert-danger\">\n" +
-    "                    {{errorMessage}}\n" +
+    "                    <strong> {{errorMessage}} </strong>\n" +
     "                </div>\n" +
     "                <fieldset>\n" +
     "                    <legend>Trip Details</legend>\n" +
@@ -2807,7 +2807,7 @@ angular.module("plan_trip/trip_dates.tpl.html", []).run(["$templateCache", funct
     "                    <span class=\"month\">{{curDate.format(monthFormat)}}</span>\n" +
     "                    <span class=\"year\">{{curDate.format(yearFormat)}}</span>\n" +
     "                    <span class=\"time\">ALL DAY</span>\n" +
-    "                    <button href=\"#infoDate\" data-toggle=\"modal\" class=\"btn btn-primary btn-outlined\">MORE</button>\n" +
+    "                    <button href=\"#infoDate\" data-toggle=\"modal\" class=\"btn btn-primary btn-outlined\" ng-click=\"setModalDay(curDate)\">MORE</button>\n" +
     "                    <a class=\"btn btn-primary btn-outlined\" ui-sref=\"planning({date:curDate.format(dateFormat)})\">EDIT</a>\n" +
     "                </time>\n" +
     "            </li>\n" +
@@ -2829,17 +2829,11 @@ angular.module("plan_trip/trip_dates.tpl.html", []).run(["$templateCache", funct
     "                <h4 class=\"modal-title\" id=\"myModalLabel\">More Information</h4>\n" +
     "            </div>\n" +
     "            <div class=\"modal-body\">\n" +
-    "                <div class=\"row\">\n" +
-    "                    <div class=\"column\" >\n" +
-    "                        gtrgtr\n" +
-    "                    </div>\n" +
-    "                    <div class=\"column\">\n" +
-    "                        gtrgtr\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
-    "                <div class=\"row\">\n" +
     "\n" +
-    "                </div>\n" +
+    "                  <place-list-details item-list=\"dayTodo\"  dont-show-more=\"dontShowMore\"></place-list-details>\n" +
+    "\n" +
+    "\n" +
+    "\n" +
     "            </div>\n" +
     "            <div class=\"modal-footer\">\n" +
     "\n" +
