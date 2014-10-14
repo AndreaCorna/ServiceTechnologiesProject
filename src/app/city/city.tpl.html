@@ -16,19 +16,25 @@
     </div>
 </div>
 
-<div id='cssmenu'>
-    <ul>
-        <li><a ui-sref="guides"  data-target="#" data-toggle="pill"><span>Guides</span></a></li>
-        <li><a ui-sref="culture" ng-click="setCurrentList('culture')" data-target="#" data-toggle="pill"><span>Culture</span></a></li>
-        <li><a ui-sref="entertainment" ng-click="setCurrentList('entertainment')" data-target="#" data-toggle="pill"><span>Entertainment</span></a></li>
-        <li><a ui-sref="hotel" ng-click="setCurrentList('hotel')" data-target="#" data-toggle="pill"><span>Hotel</span></a></li>
-        <li><a ui-sref="utility" ng-click="setCurrentList('utility')" data-target="#" data-toggle="pill"><span>Utility</span></a></li>
-        <li><a ui-sref="food" ng-click="setCurrentList('food')" data-target="#" data-toggle="pill"><span>Food</span></a></li>
-
-
-        <li class='last'><a ui-sref="dates" data-target="#" data-toggle="pill"><span>Plan Trip</span></a></li>
-    </ul>
-
+<div class="container">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+    </div>
+    <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav nav-justified capriola" style="font-size: 20px">
+            <li><a ui-sref="guides"  data-target="#" data-toggle="pill"><span>Guides</span></a></li>
+            <li><a ui-sref="culture" ng-click="setCurrentList('culture')" data-target="#" data-toggle="pill"><span>Culture</span></a></li>
+            <li><a ui-sref="entertainment" ng-click="setCurrentList('entertainment')" data-target="#" data-toggle="pill"><span>Entertainment</span></a></li>
+            <li><a ui-sref="hotel" ng-click="setCurrentList('hotel')" data-target="#" data-toggle="pill"><span>Hotel</span></a></li>
+            <li><a ui-sref="utility" ng-click="setCurrentList('utility')" data-target="#" data-toggle="pill"><span>Utility</span></a></li>
+            <li><a ui-sref="food" ng-click="setCurrentList('food')" data-target="#" data-toggle="pill"><span>Food</span></a></li>
+            <li class='last'><a ui-sref="dates" data-target="#" data-toggle="pill"><span>Plan Trip</span></a></li>
+        </ul>
+    </div>
 </div>
 
 <div class="container">

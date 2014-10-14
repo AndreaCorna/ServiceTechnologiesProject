@@ -290,19 +290,25 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "    </div>\n" +
     "</div>\n" +
     "\n" +
-    "<div id='cssmenu'>\n" +
-    "    <ul>\n" +
-    "        <li><a ui-sref=\"guides\"  data-target=\"#\" data-toggle=\"pill\"><span>Guides</span></a></li>\n" +
-    "        <li><a ui-sref=\"culture\" ng-click=\"setCurrentList('culture')\" data-target=\"#\" data-toggle=\"pill\"><span>Culture</span></a></li>\n" +
-    "        <li><a ui-sref=\"entertainment\" ng-click=\"setCurrentList('entertainment')\" data-target=\"#\" data-toggle=\"pill\"><span>Entertainment</span></a></li>\n" +
-    "        <li><a ui-sref=\"hotel\" ng-click=\"setCurrentList('hotel')\" data-target=\"#\" data-toggle=\"pill\"><span>Hotel</span></a></li>\n" +
-    "        <li><a ui-sref=\"utility\" ng-click=\"setCurrentList('utility')\" data-target=\"#\" data-toggle=\"pill\"><span>Utility</span></a></li>\n" +
-    "        <li><a ui-sref=\"food\" ng-click=\"setCurrentList('food')\" data-target=\"#\" data-toggle=\"pill\"><span>Food</span></a></li>\n" +
-    "\n" +
-    "\n" +
-    "        <li class='last'><a ui-sref=\"dates\" data-target=\"#\" data-toggle=\"pill\"><span>Plan Trip</span></a></li>\n" +
-    "    </ul>\n" +
-    "\n" +
+    "<div class=\"container\">\n" +
+    "    <div class=\"navbar-header\">\n" +
+    "        <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\".navbar-collapse\">\n" +
+    "            <span class=\"icon-bar\"></span>\n" +
+    "            <span class=\"icon-bar\"></span>\n" +
+    "            <span class=\"icon-bar\"></span>\n" +
+    "        </button>\n" +
+    "    </div>\n" +
+    "    <div class=\"collapse navbar-collapse\">\n" +
+    "        <ul class=\"nav navbar-nav nav-justified capriola\" style=\"font-size: 20px\">\n" +
+    "            <li><a ui-sref=\"guides\"  data-target=\"#\" data-toggle=\"pill\"><span>Guides</span></a></li>\n" +
+    "            <li><a ui-sref=\"culture\" ng-click=\"setCurrentList('culture')\" data-target=\"#\" data-toggle=\"pill\"><span>Culture</span></a></li>\n" +
+    "            <li><a ui-sref=\"entertainment\" ng-click=\"setCurrentList('entertainment')\" data-target=\"#\" data-toggle=\"pill\"><span>Entertainment</span></a></li>\n" +
+    "            <li><a ui-sref=\"hotel\" ng-click=\"setCurrentList('hotel')\" data-target=\"#\" data-toggle=\"pill\"><span>Hotel</span></a></li>\n" +
+    "            <li><a ui-sref=\"utility\" ng-click=\"setCurrentList('utility')\" data-target=\"#\" data-toggle=\"pill\"><span>Utility</span></a></li>\n" +
+    "            <li><a ui-sref=\"food\" ng-click=\"setCurrentList('food')\" data-target=\"#\" data-toggle=\"pill\"><span>Food</span></a></li>\n" +
+    "            <li class='last'><a ui-sref=\"dates\" data-target=\"#\" data-toggle=\"pill\"><span>Plan Trip</span></a></li>\n" +
+    "        </ul>\n" +
+    "    </div>\n" +
     "</div>\n" +
     "\n" +
     "<div class=\"container\">\n" +
@@ -765,6 +771,9 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
 
 angular.module("city/culture.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("city/culture.tpl.html",
+    "<div class=\"page-header\">\n" +
+    "\n" +
+    "</div>\n" +
     "<div class=\"row\">\n" +
     "    <div class=\"well\">\n" +
     "        <h1 class=\"text-center capriola\">Culture</h1>\n" +
@@ -943,6 +952,9 @@ angular.module("city/culture.tpl.html", []).run(["$templateCache", function($tem
 
 angular.module("city/entertainment.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("city/entertainment.tpl.html",
+    "<div class=\"page-header\">\n" +
+    "\n" +
+    "</div>\n" +
     "<div class=\"row\">\n" +
     "    <div class=\"well\">\n" +
     "        <h1 class=\"text-center capriola\">Entertainment</h1>\n" +
@@ -1118,6 +1130,9 @@ angular.module("city/entertainment.tpl.html", []).run(["$templateCache", functio
 
 angular.module("city/food.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("city/food.tpl.html",
+    "<div class=\"page-header\">\n" +
+    "\n" +
+    "</div>\n" +
     "<div class=\"row\">\n" +
     "    <div class=\"well\">\n" +
     "        <h1 class=\"text-center capriola\">Food</h1>\n" +
@@ -1903,6 +1918,9 @@ angular.module("city/guides.tpl.html", []).run(["$templateCache", function($temp
 
 angular.module("city/hotel.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("city/hotel.tpl.html",
+    "<div class=\"page-header\">\n" +
+    "\n" +
+    "</div>\n" +
     "<div class=\"row\">\n" +
     "    <div class=\"well\">\n" +
     "        <h1 class=\"text-center capriola\" >Hotel</h1>\n" +
@@ -2077,6 +2095,9 @@ angular.module("city/hotel.tpl.html", []).run(["$templateCache", function($templ
 
 angular.module("city/utility.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("city/utility.tpl.html",
+    "<div class=\"page-header\">\n" +
+    "\n" +
+    "</div>\n" +
     "<div class=\"row\">\n" +
     "    <div class=\"well\">\n" +
     "        <h1 class=\"text-center capriola\">Utility</h1>\n" +
