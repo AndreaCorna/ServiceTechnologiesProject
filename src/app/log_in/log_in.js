@@ -52,11 +52,25 @@ angular.module( 'trippo.profile', [
                 // after a login, a hard refresh, a new tab
                 localStorageService.set('auto', true);
                 $rootScope.auto = localStorageService.get('auto');
+                $scope.alerts = [
+                    { type: 'success', msg: "you're logged in!! Yeeeee" }
+                ];
             });
 
             $scope.$on('devise:new-session', function(event, currentUser) {
                 // user logged in by Auth.login({...})
             });
+
+            $scope.$on('devise:unauthorized', function(){
+                $scope.alerts = [
+                    { type: 'danger', msg: 'Incorrect Username or Password!! Try Again' }
+                ];
+
+            });
+
+            $scope.closeAlert = function(index) {
+                $scope.alerts.splice(index, 1);
+            };
         };
 
         $scope.showCurrentUser = function(){
@@ -77,7 +91,6 @@ angular.module( 'trippo.profile', [
                 }
             );
             $scope.$on('devise:unauthorized', function(){
-                console.log('tutttto bene');
                 localStorageService.set('auto', false);
                 $rootScope.auto = localStorageService.get('auto');
             });

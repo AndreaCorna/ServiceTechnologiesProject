@@ -2336,43 +2336,53 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
 
 angular.module("log_in/log_in.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("log_in/log_in.tpl.html",
-    "<div>\n" +
-    "    <h1>Login</h1>\n" +
-    "</div>\n" +
+    "<div class=\"body\" >\n" +
     "\n" +
-    "<div ng-show=\"login_error.message\" class=\"error\">\n" +
-    "    <p>{{login_error.message}}</p>\n" +
-    "</div>\n" +
+    "    <form name=\"loginForm\">\n" +
     "\n" +
-    "<div class=\"body\">\n" +
-    "    <div ng-class=\"{error: login_error.errors.email}\">Email: <input ng-model=\"credentials.email\" />\n" +
-    "        <div ng-show=\"login_error.errors.email\">\n" +
-    "            <div ng-repeat=\"field_error in login_error.errors.email\">{{field_error}}</div>\n" +
+    "        <div class=\"title\">\n" +
+    "            <h1>Login</h1>\n" +
+    "            <hr/>\n" +
     "        </div>\n" +
-    "    </div>\n" +
     "\n" +
-    "    <div ng-class=\"{error: login_error.errors.password}\">Password: <input type=\"password\" ng-model=\"credentials.password\" />\n" +
-    "        <div ng-show=\"login_error.errors.password\">\n" +
-    "            <div ng-repeat=\"field_error in login_error.errors.password\">{{field_error}}</div>\n" +
+    "        <div class=\"loginBody\">\n" +
+    "            <div class=\"emailBody\">\n" +
+    "                <input class=\"form-control\" type=\"email\" name=\"email\" ng-model=\"credentials.email\" placeholder=\"Email\" required/>\n" +
+    "            </div>\n" +
+    "            <div class=\"errorBody\">\n" +
+    "                <span class=\"help-inline\" ng-show=\"loginForm.email.$error.required\">Required</span>\n" +
+    "                <span class=\"help-inline\" ng-show=\"loginForm.email.$error.email\">Invalid email</span>\n" +
+    "            </div>\n" +
+    "\n" +
+    "            <div class=\"passwordBody\">\n" +
+    "                <input class=\"form-control\" type=\"password\" name=\"password\" ng-model=\"credentials.password\" placeholder=\"Password\" required/>\n" +
+    "            </div>\n" +
+    "            <div class=\"errorBody\">\n" +
+    "                <span class=\"help-inline\" ng-show=\"loginForm.password.$error.required\">Required</span>\n" +
+    "            </div>\n" +
+    "\n" +
+    "            <div class=\"buttons\">\n" +
+    "                <button ng-click=\"login()\" class=\"btn btn-block btn-success\" >Login</button>\n" +
+    "                <!--\n" +
+    "                <button ng-click=\"logout()\" class=\"btn btn-primary\" >Logout</button>\n" +
+    "                <button ng-click=\"password_reset()\" class=\"btn btn-primary\" >Reset Password</button>\n" +
+    "                <button ng-click=\"unlock()\" class=\"btn btn-primary\" >Unlock</button>\n" +
+    "                <button ng-click=\"confirm()\" class=\"btn btn-primary\" >Confirm</button>\n" +
+    "                <button ng-click=\"showCurrentUser()\" class=\"btn btn-primary\" >Show</button>\n" +
+    "                -->\n" +
+    "            </div>\n" +
+    "\n" +
+    "            <div class=\"socialButtons\">\n" +
+    "                <a class=\"btn btn-block btn-facebook\" href=\"http://localhost:3000/users/auth/facebook\"><i class=\"fa fa-facebook\"></i></a>\n" +
+    "                <a class=\"btn btn-block btn-google\" href=\"http://localhost:3000/users/auth/google_oauth2\"><i class=\"fa fa-google-plus\"></i></a>\n" +
+    "            </div>\n" +
+    "\n" +
+    "            <div>\n" +
+    "                <alert ng-repeat=\"alert in alerts\" type=\"{{alert.type}}\" close=\"closeAlert($index)\">{{alert.msg}}</alert>\n" +
+    "            </div>\n" +
     "        </div>\n" +
-    "    </div>\n" +
-    "\n" +
-    "    <button ng-click=\"login()\" class=\"btn btn-primary\" >Login</button>\n" +
-    "    <button ng-click=\"logout()\" class=\"btn btn-primary\" >Logout</button>\n" +
-    "    <!--\n" +
-    "    <button ng-click=\"password_reset()\" class=\"btn btn-primary\" >Reset Password</button>\n" +
-    "    <button ng-click=\"unlock()\" class=\"btn btn-primary\" >Unlock</button>\n" +
-    "    <button ng-click=\"confirm()\" class=\"btn btn-primary\" >Confirm</button>\n" +
-    "    -->\n" +
-    "\n" +
-    "    <button ng-click=\"showCurrentUser()\" class=\"btn btn-primary\" >Show</button>\n" +
-    "\n" +
-    "    <div>\n" +
-    "        <a class=\"btn btn-default\" href=\"http://localhost:3000/users/auth/facebook\">face</a>\n" +
-    "        <a class=\"btn btn-default\" href=\"http://localhost:3000/users/auth/google_oauth2\">google</a>\n" +
-    "    </div>\n" +
-    "</div>\n" +
-    "");
+    "    </form>\n" +
+    "</div>");
 }]);
 
 angular.module("log_in/profile.tpl.html", []).run(["$templateCache", function($templateCache) {
@@ -2838,34 +2848,47 @@ angular.module("plan_trip/trip_dates.tpl.html", []).run(["$templateCache", funct
 
 angular.module("sign_up/sign_up.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("sign_up/sign_up.tpl.html",
-    "<div>\n" +
-    "    <h1>Register / Password Change</h1>\n" +
-    "</div>\n" +
+    "<form name=\"signupForm\">\n" +
     "\n" +
-    "<div ng-show=\"register_error.message\" class=\"error\">\n" +
-    "    <p>{{register_error.message}}</p>\n" +
-    "</div>\n" +
-    "\n" +
-    "<div class=\"body\">\n" +
-    "    <div ng-class=\"{error: register_error.errors.email}\">Email: <input ng-model=\"register_user.email\" />\n" +
-    "        <div ng-show=\"register_error.errors.email\">\n" +
-    "            <div ng-repeat=\"field_error in register_error.errors.email\">{{field_error}}</div>\n" +
-    "        </div>\n" +
+    "    <div class=\"title\">\n" +
+    "        <h1>Register</h1>\n" +
+    "        <hr/>\n" +
     "    </div>\n" +
     "\n" +
-    "    <div ng-class=\"{error: register_error.errors.password}\">Password: <input type=\"password\" ng-model=\"register_user.password\" />\n" +
-    "        <div ng-show=\"register_error.errors.password\">\n" +
-    "            <div ng-repeat=\"field_error in register_error.errors.password\">{{field_error}}</div>\n" +
+    "    <div class=\"body\">\n" +
+    "\n" +
+    "        <div class=\"emailBody\">\n" +
+    "            <input class=\"form-control\" type=\"email\" name=\"email\" ng-model=\"credentials.email\" placeholder=\"Email\" required/>\n" +
+    "        </div>\n" +
+    "        <div class=\"errorBody\">\n" +
+    "            <span class=\"help-inline\" data-ng-show=\"signupForm.email.$error.required\">This is required</span>\n" +
+    "            <span class=\"help-inline\" data-ng-show=\"signupForm.email.$error.email\">Invalid email</span>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <div class=\"passwordBody\">\n" +
+    "            <input class=\"form-control\" type=\"password\" name=\"password\" id=\"password\" ng-model=\"credentials.password\" placeholder=\"Password\" ng-minlength=\"8\" required/>\n" +
+    "        </div>\n" +
+    "        <div class=\"errorBody\">\n" +
+    "            <span class=\"help-inline\" data-ng-show=\"signupForm.password.$error.required\">This is required</span>\n" +
+    "            <span class=\"help-inline\" data-ng-show=\"signupForm.password.$error.minlength\">Too short. Min length is 8</span>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <div class=\"passwordCBody\">\n" +
+    "            <input class=\"form-control\" type=\"password\" name=\"password_confirmation\" ng-model=\"credentials.password_confirmation\" pw-check=\"password\" placeholder=\"Confirm Password\" required/>\n" +
+    "        </div>\n" +
+    "        <div class=\"errorBody\">\n" +
+    "            <span class=\"help-inline\" data-ng-show=\"signupForm.password_confirmation.$error.required\">This is required</span>\n" +
+    "            <span class=\"help-inline\" ng-show=\"signupForm.password_confirmation.$error.pwcheck\">Your passwords don't match</span>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <div class=\"registerButtons\">\n" +
+    "            <button ng-click=\"register()\" class=\"btn btn-block btn-success\" >Register</button>\n" +
+    "            <!-- <button ng-click=\"change_password()\" class=\"btn btn-primary\" >Change Password</button> -->\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <div>\n" +
+    "            <alert ng-repeat=\"alert in alerts\" type=\"{{alert.type}}\" close=\"closeAlert($index)\">{{alert.msg}}</alert>\n" +
     "        </div>\n" +
     "    </div>\n" +
-    "\n" +
-    "    <div ng-class=\"{error: register_error.errors.password_confirmation}\">Confirm password: <input type=\"password\" ng-model=\"register_user.password_confirmation\" />\n" +
-    "        <div ng-show=\"register_error.errors.password_confirmation\">\n" +
-    "            <div ng-repeat=\"field_error in register_error.errors.password_confirmation\">{{field_error}}</div>\n" +
-    "        </div>\n" +
-    "    </div>\n" +
-    "\n" +
-    "    <button ng-click=\"register()\" class=\"btn btn-primary\" >Register</button>\n" +
-    "    <button ng-click=\"change_password()\" class=\"btn btn-primary\" >Change Password</button>\n" +
-    "</div>");
+    " </form>");
 }]);

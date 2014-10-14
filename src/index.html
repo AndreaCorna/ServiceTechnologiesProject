@@ -49,9 +49,9 @@
                 <ul role="menu" class="dropdown-menu"></ul>
             </li>
 
-            <li ng-show="auto"><a ui-sref="profile" class="navbar-item">Profile</a></li>
-            <li ng-hide="auto"><a ui-sref="signup" class="navbar-item">Sign Up</a></li>
-            <li ng-hide="auto"><a ui-sref="login" class="navbar-item">Log In</a></li>
+            <li ng-show="auto" ng-class="{ active: isActive('/profile')}"><a ui-sref="profile" class="navbar-item">Profile</a></li>
+            <li ng-hide="auto" ng-class="{ active: isActive('/signup')}"><a ui-sref="signup" class="navbar-item">Sign Up</a></li>
+            <li ng-hide="auto" ng-class="{ active: isActive('/login')}"><a ui-sref="login" class="navbar-item">Log In</a></li>
             <li ng-show="auto"><a href="" class="navbar-item"ng-controller="LoginCtrl" ng-click="logout()">Log Out</a></li>
         </ul>
     </div>
