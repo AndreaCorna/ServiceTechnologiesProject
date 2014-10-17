@@ -20,12 +20,11 @@
                     </div>
                     <div class="clearfix visible-sm"></div>
 
-                    <div class="col-md-8">
+                    <div ng-class="showMore?'col-md-6' : 'col-md-8'" >
                         <div class="media-body fnt-smaller">
 
                             <h4 class="media-heading">
                                 <a href="#" target="_parent">{{item.name}} </a>
-                                <button class="btn btn-primary btn-outlined pull-right" style="margin-top: 3px"  ng-click="setDetails(item)" href="#moreInfoModalPlace" data-toggle="modal">MORE INFO</button>
 
                             </h4>
 
@@ -41,6 +40,13 @@
 
 
                         </div>
+                    </div>
+
+                    <div ng-show="showMore" class="col-md-2">
+
+                        <button class="btn btn-primary btn-outlined pull-right" style="margin-top: 3px"  ng-click="setDetails(item)" href="#moreInfoModalPlace" data-toggle="modal">MORE INFO</button>
+
+
                     </div>
 
                 </div>

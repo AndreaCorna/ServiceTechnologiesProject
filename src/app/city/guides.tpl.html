@@ -1,5 +1,6 @@
 <div class="page-header">
 
+
 </div>
 <div class="row">
     <div class="well">
@@ -9,6 +10,7 @@
                     <div class="list-group-item list-guides">
                         <div class=" bgc-fff  property-listing">
                                 <div class="col-sm-3 col-md-3">
+<<<<<<< HEAD
                                     <div ng-if="!item.photos">
                                             <img style="height: 220px;  width:100%;" ng-src="assets/images/empty_photo.png" >
                                     </div>
@@ -16,6 +18,19 @@
                                         <slide ng-repeat="image in item.photos" active="image.active">
                                             <img style="height: 220px;  width:100%;" ng-src="{{item.photos[0].image}}" >
                                         </slide>
+=======
+                                    <div class="panel panel-default">
+                                        <div class="panel-body image-panel">
+                                            <carousel interval="intervalImages">
+                                                <div ng-if="!item.image">
+                                                    <img class="image-item" ng-src="assets/images/empty_photo.png">
+                                                </div>
+                                                <div ng-if="item.image">
+                                                    <img style="height: 220px;  width:100%;" ng-src="{{item.image}}" >
+                                                </div>
+                                            </carousel>
+                                        </div>
+>>>>>>> s3
                                     </div>
                                 </div>
                         </div>

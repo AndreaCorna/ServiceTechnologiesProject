@@ -1,4 +1,61 @@
-angular.module('templates-common', ['maps/maps-directions.tpl.html', 'maps/maps-markers.tpl.html', 'place-list/place-list-details.tpl.html', 'place-list/place-list-maps.tpl.html']);
+angular.module('templates-common', ['file-upload/file-upload.tpl.html', 'maps/maps-directions.tpl.html', 'maps/maps-markers.tpl.html', 'place-list/place-list-details.tpl.html', 'place-list/place-list-maps.tpl.html']);
+
+angular.module("file-upload/file-upload.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("file-upload/file-upload.tpl.html",
+    "<form id=\"fileupload\" action=\"https://trippo.s3.amazonaws.com/\" method=\"POST\" enctype=\"multipart/form-data\" data-ng-app=\"demo\" data-ng-controller=\"FileUploadController\" data-file-upload=\"options\" data-ng-class=\"{'fileupload-processing': processing() || loadingFiles}\">\n" +
+    "    <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->\n" +
+    "    <div class=\"row fileupload-buttonbar\">\n" +
+    "        <div class=\"col-lg-7\">\n" +
+    "            <!-- The fileinput-button span is used to style the file input field as button -->\n" +
+    "                <span class=\"btn btn-success fileinput-button\" ng-class=\"{disabled: disabled}\">\n" +
+    "                    <i class=\"glyphicon glyphicon-plus\"></i>\n" +
+    "                    <span>Add Guide Picture</span>\n" +
+    "                    <input type=\"file\" name=\"files[]\" multiple ng-disabled=\"disabled\">\n" +
+    "                </span>\n" +
+    "\n" +
+    "            <!-- The global file processing state -->\n" +
+    "            <span class=\"fileupload-process\"></span>\n" +
+    "        </div>\n" +
+    "        <!-- The global progress state -->\n" +
+    "\n" +
+    "    </div>\n" +
+    "    <!-- The table listing the files available for upload/download -->\n" +
+    "        <div style=\"margin-top: 10px\" class=\"row well\" data-ng-repeat=\"file in queue\" data-ng-class=\"{'processing': file.$processing()}\">\n" +
+    "            <div class=\"col-md-3\" data-ng-switch data-on=\"!!file.thumbnailUrl\" ng-show=\"file.thumbnailUrl\">\n" +
+    "                <div class=\"preview\" data-ng-switch-when=\"true\">\n" +
+    "                    <a data-ng-href=\"{{file.url}}\" title=\"{{file.name}}\" download=\"{{file.name}}\" data-gallery><img style=\"height: 100px\" data-ng-src=\"{{file.thumbnailUrl}}\" alt=\"\"></a>\n" +
+    "                </div>\n" +
+    "                <div class=\"preview\" data-ng-switch-default data-file-upload-preview=\"file\"></div>\n" +
+    "            </div>\n" +
+    "            <div class=\"col-md-5\">\n" +
+    "                <p class=\"name center-text\" data-ng-switch data-on=\"!!file.url\">\n" +
+    "                        <span data-ng-switch-when=\"true\" data-ng-switch data-on=\"!!file.thumbnailUrl\">\n" +
+    "                            <a data-ng-switch-when=\"true\" data-ng-href=\"{{file.url}}\" title=\"{{file.name}}\" download=\"{{file.name}}\" data-gallery>{{file.name}}</a>\n" +
+    "                            <a data-ng-switch-default data-ng-href=\"{{file.url}}\" title=\"{{file.name}}\" download=\"{{file.name}}\">{{file.name}}</a>\n" +
+    "                        </span>\n" +
+    "                    <span data-ng-switch-default>{{file.name}}</span>\n" +
+    "                </p>\n" +
+    "                <strong data-ng-show=\"file.error\" class=\"error text-danger\">{{file.error}}</strong>\n" +
+    "            </div>\n" +
+    "            <div class=\"col-md-12\" ng-show=\"file.$state()\">\n" +
+    "\n" +
+    "                <div class=\"progress progress-striped active fade\" data-ng-class=\"{pending: 'in'}[file.$state()]\" data-file-upload-progress=\"file.$progress()\" ><div class=\"progress-bar progress-bar-success\" data-ng-style=\"{width: num + '%'}\"></div></div>\n" +
+    "            </div>\n" +
+    "            <div class=\"col-md-4\">\n" +
+    "                <button type=\"button\" class=\"btn btn-primary start\" data-ng-click=\"file.$submit()\" data-ng-hide=\"!file.$submit || options.autoUpload\" data-ng-disabled=\"file.$state() == 'pending' || file.$state() == 'rejected'\">\n" +
+    "                    <i class=\"glyphicon glyphicon-upload\"></i>\n" +
+    "                    <span>Start</span>\n" +
+    "                </button>\n" +
+    "                <button type=\"button\" class=\"btn btn-warning cancel\" data-ng-click=\"file.$cancel()\" data-ng-hide=\"!file.$cancel\">\n" +
+    "                    <i class=\"glyphicon glyphicon-ban-circle\"></i>\n" +
+    "                    <span>Cancel</span>\n" +
+    "                </button>\n" +
+    "\n" +
+    "            </div>\n" +
+    "          </div>\n" +
+    "</form>\n" +
+    "");
+}]);
 
 angular.module("maps/maps-directions.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("maps/maps-directions.tpl.html",
@@ -86,12 +143,11 @@ angular.module("place-list/place-list-details.tpl.html", []).run(["$templateCach
     "                    </div>\n" +
     "                    <div class=\"clearfix visible-sm\"></div>\n" +
     "\n" +
-    "                    <div class=\"col-md-8\">\n" +
+    "                    <div ng-class=\"showMore?'col-md-6' : 'col-md-8'\" >\n" +
     "                        <div class=\"media-body fnt-smaller\">\n" +
     "\n" +
     "                            <h4 class=\"media-heading\">\n" +
     "                                <a href=\"#\" target=\"_parent\">{{item.name}} </a>\n" +
-    "                                <button class=\"btn btn-primary btn-outlined pull-right\" style=\"margin-top: 3px\"  ng-click=\"setDetails(item)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">MORE INFO</button>\n" +
     "\n" +
     "                            </h4>\n" +
     "\n" +
@@ -107,6 +163,13 @@ angular.module("place-list/place-list-details.tpl.html", []).run(["$templateCach
     "\n" +
     "\n" +
     "                        </div>\n" +
+    "                    </div>\n" +
+    "\n" +
+    "                    <div ng-show=\"showMore\" class=\"col-md-2\">\n" +
+    "\n" +
+    "                        <button class=\"btn btn-primary btn-outlined pull-right\" style=\"margin-top: 3px\"  ng-click=\"setDetails(item)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">MORE INFO</button>\n" +
+    "\n" +
+    "\n" +
     "                    </div>\n" +
     "\n" +
     "                </div>\n" +

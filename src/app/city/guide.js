@@ -10,9 +10,12 @@ angular.module( 'trippo.guide', [
     'trippo.plan',
     'common.placeListMaps' ,
     'common.placeListDetails' ,
-    'common.mapsMarkers'
+    'common.mapsMarkers' ,
+    'common.file-upload'
+
+
 ])
-.config(function config( $stateProvider ) {
+.config(function config( $stateProvider,fileUploadProvider ) {
         $stateProvider.state('guide', {
             url: '/guide/:id',
             views: {
@@ -36,17 +39,143 @@ angular.module( 'trippo.guide', [
                 }
 
             });
+
     }
 )
 
 
-.controller('GuidesCtrl', function GuideCtrl($scope,$location,GuideService,$stateParams) {
+
+.controller('GuidesCtrl', function GuideCtrl($http,$scope,$location,GuideService,$stateParams) {
     $scope.guides =[];
-    GuideService.initGuides($stateParams.city_name,function(){
+
+    GuideService.initGuides($stateParams.city_name,function() {
         $scope.guides = GuideService.getGuides($stateParams.city_name);
+    });
 
 
-    }) ;
+        /*
+        $(function() {
+            $('.directUpload').find("input:file").each(function(i, elem) {
+                var fileInput    = $(elem);
+                var form         = $(fileInput.parents('form:first'));
+                var submitButton = form.find('input[type="submit"]');
+                var progressBar  = $("<div class='bar'></div>");
+                var barContainer = $("<div class='progress'></div>").append(progressBar);
+                fileInput.after(barContainer);
+                $http({method: 'GET', url: '../guides/s3'}).
+                    success(function(result, status, headers, config) {
+
+                        console.log(result);
+                        console.log(result.key);
+
+                        fileInput.fileupload({
+                            fileInput:       fileInput,
+                            url:             result.url,
+                            type:            'POST',
+                            autoUpload:       true,
+                            formData:      {AWSAccessKeyId : result['AWSAccessKeyId'],
+                                            key : result['key'],
+                                            policy : result['policy'],
+                                            signature : result['signature'],
+                                            success_action_status : result['success_action_status'],
+                                            acl : result['acl']
+                            },
+                            paramName:        'file', // S3 does not like nested name fields i.e. name="user[avatar_url]"
+                            dataType:         'XML',  // S3 returns XML if success_action_status is set to 201
+                            replaceFileInput: false,
+                            progressall: function (e, data) {
+                                var progress = parseInt(data.loaded / data.total * 100, 10);
+                                progressBar.css('width', progress + '%')  ;
+                            },
+                            start: function (e) {
+                                submitButton.prop('disabled', true);
+
+                                progressBar.
+                                    css('background', 'green').
+                                    css('display', 'block').
+                                    css('width', '0%').
+                                    text("Loading...");
+                            },
+                            done: function(e, data) {
+                                submitButton.prop('disabled', false);
+                                progressBar.text("Uploading done");
+
+                                // extract key and generate URL from response
+                                var key   = $(data.jqXHR.responseXML).find("Key").text();
+                                var url   = '//<%= @s3_direct_post.url.host %>/' + key;
+
+                                // create hidden field
+                                var input = $("<input />", { type:'hidden', name: fileInput.attr('name'), value: url })  ;
+                                form.append(input);
+                            },
+                            fail: function(e, data) {
+                                console.log("failed");
+                                
+                                console.log(data);
+
+                                submitButton.prop('disabled', false);
+
+                                progressBar.
+                                    css("background", "red").
+                                    text("Failed");
+                            }
+
+                        });
+                            });
+                            });
+                                });
+          */
+
+
+        /*
+
+        $scope.$on('fileuploadadd', function(event, file){
+
+
+
+
+
+          /*
+
+            $http({method: 'GET', url: '../guides/s3'}).
+                    success(function (result, status, headers, config) {
+
+                    console.log("file");
+                    console.log(file);
+
+
+                    file.form.get(0).setAttribute('action', result.url);
+
+                    console.log("file input");
+                    console.log(file.fileInput);
+                    $.each(file.files, function (index, file) {
+                        $scope.options = {
+                            //  fileInput:  file.fileInput,
+                            url: result.url,
+                            type: 'POST',
+                            formData: {AWSAccessKeyId: result['AWSAccessKeyId'],
+                                key : result['key'],
+                                policy: result['policy'],
+                                signature: result['signature'],
+                                success_action_status: result['success_action_status'],
+                                acl: result['acl']
+                            },
+                            paramName: 'file', // S3 does not like nested name fields i.e. name="user[avatar_url]"
+                            dataType: 'XML'  // S3 returns XML if success_action_status is set to 201
+
+                        };
+
+
+                        });
+                    });
+
+
+
+        } ) ;
+
+*/
+
+
         console.log("guides different");
         console.log($location.path().split('/').pop() != 'guides');
         console.log("guides equal");
