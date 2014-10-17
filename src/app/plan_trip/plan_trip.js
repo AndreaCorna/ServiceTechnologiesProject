@@ -256,12 +256,10 @@ angular.module('trippo.plan',[
            ModalHandler.setDetailsItem(item,$stateParams.city_name);
         };
 
-
-
         //START STUB
-        /*
 
-         StubHandler.createFakeDates();
+
+        StubHandler.createFakeDates();
         var randomItemsc = [];
         var  randomItemse = [];
         var  randomItemsh = [];
@@ -280,9 +278,11 @@ angular.module('trippo.plan',[
         $scope.foods =randomItemsf;
 
 
-        */
+
 
         //END STUB
+
+
         //get the item selected in the selectionService and set the current daySchedule removing item which has been removed from the Selection service
 
         $scope.current_day = moment($stateParams.date,"DD-MM-YYYY");
@@ -292,6 +292,8 @@ angular.module('trippo.plan',[
         $scope.culture =SelectionService.getCultureSelection($stateParams.city_name);
         $scope.entertainment =SelectionService.getEntertainmentSelection($stateParams.city_name);
         $scope.foods = SelectionService.getFoodSelection($stateParams.city_name);
+
+
 
 
         var selectedItems = [].concat($scope.culture,$scope.hotels,$scope.entertainment,$scope.foods) ;
@@ -317,6 +319,15 @@ angular.module('trippo.plan',[
             $scope.selectedItems =  PlanningService.removeFromSchedule(item);
 
         };
+
+        $scope.moveBefore = function(item){
+            $scope.selectedItems = PlanningService.movePlaceBefore(item);
+        };
+        $scope.moveAfter =function(item){
+            $scope.selectedItems = PlanningService.movePlaceAfter(item);
+
+        }   ;
+
         /**
          * return correct class based on the item tag
          * @param item   tag
@@ -379,6 +390,16 @@ angular.module('trippo.plan',[
 })
 .factory('PlanningService', function (DatesService) {
         var current_schedule;
+        var movePositionArray = function (array,old_index, new_index) {
+            if (new_index >= array.length) {
+                var k = new_index - array.length;
+                while ((k--) + 1) {
+                    array.push(undefined);
+                }
+            }
+            array.splice(new_index, 0, array.splice(old_index, 1)[0]);
+            return array; // for testing purposes
+        };
 
 
         return {
@@ -439,6 +460,23 @@ angular.module('trippo.plan',[
                     return [] ;
 
             } ,
+            movePlaceBefore:function(item){
+                var index = current_schedule.todo.indexOf(item);
+                if (index > 0) {
+                    current_schedule.todo =movePositionArray(current_schedule.todo,index, index-1);
+                }
+                return current_schedule.todo;
+
+            } ,
+            movePlaceAfter:function(item){
+                var index = current_schedule.todo.indexOf(item);
+                if (index < current_schedule.todo.length -1) {
+                    current_schedule.todo = movePositionArray(current_schedule.todo,index, index+1);
+                }
+                return current_schedule.todo;
+
+
+            }  ,
             /**
              * check if item is inside current day todo_ array
              * @param item
