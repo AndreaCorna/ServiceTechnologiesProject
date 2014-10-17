@@ -211,18 +211,28 @@
                 <div ng-repeat="item in selectedItems"  sv-element="opts">
                     <div class="row" >
                             <div ng-click="setMapsMarker(item)" ng-class="isCurrentMap(item,'marker')? 'selected-color' : getItemClass(item) " class=" timeline-item " >
-                                <div class="row" style="height: 48px;">
-
-                                    <h1 class="item-name">{{item.name}}</h1>
-                                </div>
-
                                 <div class="row">
-                                    <div class="btn-group">
+                                    <div class="col-md-2" id="arrowsbuttons">
 
-                                        <button  style="margin-right: 2px;" class="btn btn-primary btn-outlined z-up" style="display: inline-block;" ng-click="removeFromSchedule(item)">REMOVE</button>
-                                        <button class="btn btn-primary btn-outlined z-up" style=";margin-left: 4px;margin-bottom: 5px"  ng-click="setDetails(item)" href="#moreInfoModalPlace" data-toggle="modal">MORE</button>
+
+                                </div>
+                                    <div class="col-md-8">
+                                    <div class="row" style="height: 48px;">
+
+                                        <h1 class="item-name">{{item.name}}</h1>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="btn-group">
+
+                                            <button  style="margin-right: 2px;" class="btn btn-primary btn-outlined z-up" style="display: inline-block;" ng-click="removeFromSchedule(item)">REMOVE</button>
+                                            <button class="btn btn-primary btn-outlined z-up" style=";margin-left: 4px;margin-bottom: 5px"  ng-click="setDetails(item)" href="#moreInfoModalPlace" data-toggle="modal">MORE</button>
+                                        </div>
                                     </div>
                                 </div>
+                                </div>
+
+
                             </div>
                             <article class="timeline-entry" >
                                 <div class="timeline-entry-inner">
@@ -253,6 +263,10 @@
 
 //mantaining the maps on the top of the page when scrolling
 $().ready(function() {
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        $('<button   class="btn btn-primary btn-outlined z-up"  ng-click="moveBefore(item)"><span class="glyphicon glyphicon-arrow-up"></span></button>').appendTo('#arrowsbuttons');
+        $('<button   class="btn btn-primary btn-outlined z-up"  ng-click="moveAfter(item)"><span class="glyphicon glyphicon-arrow-down"></span></button>').appendTo('#arrowsbuttons');
+    }
         $(window).scroll(function () {
             if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
 

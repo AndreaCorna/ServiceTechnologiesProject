@@ -12,7 +12,7 @@ component.directive('placeListDetails', function (ModalHandler,$stateParams) {
     var placeList = {
         restrict: 'EAC',
         scope: {
-
+            dontShowMore :'=',
             itemList: '='      //list of place to show
 
 
@@ -21,6 +21,13 @@ component.directive('placeListDetails', function (ModalHandler,$stateParams) {
         replace: true,
         templateUrl: 'place-list/place-list-details.tpl.html',
         link: function (scope, element, attrs) {
+            scope.showMore =true;
+            if(scope.dontShowMore===true)  {
+                console.log("dontShowMore");
+                console.log(scope.dontShowMore);
+
+                 scope.showMore =false;
+            }
             //set the details of the modal
             scope.setDetails = function(item) {
                 //check if is defined the field city inside the item useful to retrive the data othewise check the stateParameter in the URL

@@ -272,14 +272,15 @@ angular.module("about/about.tpl.html", []).run(["$templateCache", function($temp
 
 angular.module("city/city.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("city/city.tpl.html",
-    "<div class=\"top-view\">\n" +
+    "<div class=\"background-page\">\n" +
+    "<div class=\"top-view \">\n" +
     "    <div class=\"container \" >\n" +
     "        <h3 class=\"text-capitalize text-center\" style=\"font-family: Capriola;\">Welcome to {{city.name}}</h3>\n" +
     "        <div ng-if=\"isGuides()\">\n" +
-    "            <div class=\"row background-carousel\">\n" +
+    "            <div class=\"row \">\n" +
     "                <carousel interval=\"intervalImages\" class=\"carousel-fixed-height col-md-8 col-md-offset-2\" style=\"padding: 0px\">\n" +
-    "                    <slide ng-repeat=\"image in images\" active=\"image.active\" style=\" height:100%;width:100%;\">\n" +
-    "                        <img ng-src=\"{{image.url}}\" style=\" height:100%;width:100%;\" >\n" +
+    "                    <slide ng-repeat=\"image in images\" active=\"image.active\" class=\"carousel-fixed-height\" style=\"width:100%;\">\n" +
+    "                        <img ng-src=\"{{image.url}}\" class=\"carousel-fixed-height\" style=\"width:100%;\" >\n" +
     "                    </slide>\n" +
     "                </carousel>\n" +
     "            </div>\n" +
@@ -290,7 +291,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "    </div>\n" +
     "</div>\n" +
     "\n" +
-    "<div class=\"container\">\n" +
+    "<div class=\"container \">\n" +
     "    <div class=\"navbar-header\">\n" +
     "        <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\".navbar-collapse\">\n" +
     "            <span class=\"icon-bar\"></span>\n" +
@@ -314,7 +315,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "<div class=\"container\">\n" +
     "    <div ui-view=\"content\" class=\"fill\"></div>\n" +
     "</div>\n" +
-    "\n" +
+    "</div>\n" +
     "\n" +
     "\n" +
     "    <div class=\"modal fade\" ng-controller=\"ModalCtrl\" id=\"moreInfoModalPlace\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">\n" +
@@ -1309,6 +1310,7 @@ angular.module("city/food.tpl.html", []).run(["$templateCache", function($templa
 
 angular.module("city/guide.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("city/guide.tpl.html",
+    "<div class=\"background-page\">\n" +
     "<div class=\"top-view\">\n" +
     "    <div class=\"page-header\" style=\"margin-top: 0px\">\n" +
     "        <div class=\"vertical-container\">\n" +
@@ -1825,6 +1827,7 @@ angular.module("city/guide.tpl.html", []).run(["$templateCache", function($templ
     "        </div>\n" +
     "    </div>\n" +
     "</div>\n" +
+    "</div>\n" +
     "\n" +
     "<script>\n" +
     "    $(function () {\n" +
@@ -1861,6 +1864,7 @@ angular.module("city/guides.tpl.html", []).run(["$templateCache", function($temp
   $templateCache.put("city/guides.tpl.html",
     "<div class=\"page-header\">\n" +
     "\n" +
+    "\n" +
     "</div>\n" +
     "<div class=\"row\">\n" +
     "    <div class=\"well\">\n" +
@@ -1868,18 +1872,22 @@ angular.module("city/guides.tpl.html", []).run(["$templateCache", function($temp
     "            <div class=\"list-group\">\n" +
     "                <div  ng-repeat=\"item in guides\" >\n" +
     "                    <div class=\"list-group-item list-guides\">\n" +
-    "                        <div class=\" bgc-fff  property-listing\">\n" +
+    "                        <div class=\" bgc-fff pad-10 property-listing\">\n" +
+    "                            <div class=\"media\">\n" +
     "                                <div class=\"col-sm-3 col-md-3\">\n" +
-    "                                    <div ng-if=\"!item.photos\">\n" +
-    "                                            <img style=\"height: 220px;  width:100%;\" ng-src=\"assets/images/empty_photo.png\" >\n" +
-    "                                    </div>\n" +
-    "                                    <div ng-if=\"item.photos.length>0\">\n" +
-    "                                        <slide ng-repeat=\"image in item.photos\" active=\"image.active\">\n" +
-    "                                            <img style=\"height: 220px;  width:100%;\" ng-src=\"{{item.photos[0].image}}\" >\n" +
-    "                                        </slide>\n" +
+    "                                    <div class=\"panel panel-default\">\n" +
+    "                                        <div class=\"panel-body image-panel\">\n" +
+    "                                            <carousel interval=\"intervalImages\">\n" +
+    "                                                <div ng-if=\"!item.image\">\n" +
+    "                                                    <img class=\"image-item\" ng-src=\"assets/images/empty_photo.png\">\n" +
+    "                                                </div>\n" +
+    "                                                <div ng-if=\"item.image\">\n" +
+    "                                                    <img style=\"height: 220px;  width:100%;\" ng-src=\"{{item.image}}\" >\n" +
+    "                                                </div>\n" +
+    "                                            </carousel>\n" +
+    "                                        </div>\n" +
     "                                    </div>\n" +
     "                                </div>\n" +
-    "                        </div>\n" +
     "                        <div class=\"clearfix visible-sm\"></div>\n" +
     "                        <div class=\"col-md-7 capriola\" style=\"height:230px\">\n" +
     "                            <p class=\"list-group-item-text\">\n" +
@@ -2347,6 +2355,7 @@ angular.module("log_in/log_in.tpl.html", []).run(["$templateCache", function($te
 
 angular.module("plan_trip/createtrip.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("plan_trip/createtrip.tpl.html",
+    "<script src=\"http://m-e-conroy.github.io/angular-dialog-service/javascripts/dialogs.min.js\" type=\"text/javascript\"></script>\n" +
     "<div class=\"page-header\">\n" +
     "    <div class=\"vertical-container\">\n" +
     "        <div class=\"row\">\n" +
@@ -2368,6 +2377,9 @@ angular.module("plan_trip/createtrip.tpl.html", []).run(["$templateCache", funct
     "            <div ng-show=\"submitted  && (form.name.$error.required )\" class=\"alert alert-danger\">\n" +
     "                The field <strong>Trip Name</strong> is required\n" +
     "            </div>\n" +
+    "                <div ng-show=\"submitted  && errorMessage\" class=\"alert alert-danger\">\n" +
+    "                    <strong> {{errorMessage}} </strong>\n" +
+    "                </div>\n" +
     "                <fieldset>\n" +
     "                    <legend>Trip Details</legend>\n" +
     "                    <!-- Name input-->\n" +
@@ -2394,8 +2406,20 @@ angular.module("plan_trip/createtrip.tpl.html", []).run(["$templateCache", funct
     "                            <button type=\"submit\" class=\"btn btn-primary btn-lg btn-outlined\">Submit</button>\n" +
     "                        </div>\n" +
     "                    </div>\n" +
+    "\n" +
+    "\n" +
+    "\n" +
     "                </fieldset>\n" +
     "            </form>\n" +
+    "            <div class=\"form-group\">\n" +
+    "                <label class=\"col-md-2 control-label\" style=\"font-size: 18px\">Guide Picture</label>\n" +
+    "                <div class=\"col-md-10\">\n" +
+    "                    <file-upload></file-upload>\n" +
+    "\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "\n" +
+    "\n" +
     "            <legend>Trip Summary</legend>\n" +
     "            <div class=\"row\" style=\"margin-bottom: 6px\">\n" +
     "                <button class=\"btn btn-primary btn-outlined z-up\" style=\"font-size: 17px;margin-left: 15px;\" ng-click=\"changeView()\">{{currentView}}</button>\n" +
@@ -2422,6 +2446,13 @@ angular.module("plan_trip/createtrip.tpl.html", []).run(["$templateCache", funct
     "        </div>\n" +
     "    </div>\n" +
     "</div>\n" +
+    "\n" +
+    "\n" +
+    "\n" +
+    "\n" +
+    "\n" +
+    "\n" +
+    "\n" +
     "");
 }]);
 
@@ -2640,18 +2671,28 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
     "                <div ng-repeat=\"item in selectedItems\"  sv-element=\"opts\">\n" +
     "                    <div class=\"row\" >\n" +
     "                            <div ng-click=\"setMapsMarker(item)\" ng-class=\"isCurrentMap(item,'marker')? 'selected-color' : getItemClass(item) \" class=\" timeline-item \" >\n" +
-    "                                <div class=\"row\" style=\"height: 48px;\">\n" +
-    "\n" +
-    "                                    <h1 class=\"item-name\">{{item.name}}</h1>\n" +
-    "                                </div>\n" +
-    "\n" +
     "                                <div class=\"row\">\n" +
-    "                                    <div class=\"btn-group\">\n" +
+    "                                    <div class=\"col-md-2\" id=\"arrowsbuttons\">\n" +
     "\n" +
-    "                                        <button  style=\"margin-right: 2px;\" class=\"btn btn-primary btn-outlined z-up\" style=\"display: inline-block;\" ng-click=\"removeFromSchedule(item)\">REMOVE</button>\n" +
-    "                                        <button class=\"btn btn-primary btn-outlined z-up\" style=\";margin-left: 4px;margin-bottom: 5px\"  ng-click=\"setDetails(item)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">MORE</button>\n" +
+    "\n" +
+    "                                </div>\n" +
+    "                                    <div class=\"col-md-8\">\n" +
+    "                                    <div class=\"row\" style=\"height: 48px;\">\n" +
+    "\n" +
+    "                                        <h1 class=\"item-name\">{{item.name}}</h1>\n" +
+    "                                    </div>\n" +
+    "\n" +
+    "                                    <div class=\"row\">\n" +
+    "                                        <div class=\"btn-group\">\n" +
+    "\n" +
+    "                                            <button  style=\"margin-right: 2px;\" class=\"btn btn-primary btn-outlined z-up\" style=\"display: inline-block;\" ng-click=\"removeFromSchedule(item)\">REMOVE</button>\n" +
+    "                                            <button class=\"btn btn-primary btn-outlined z-up\" style=\";margin-left: 4px;margin-bottom: 5px\"  ng-click=\"setDetails(item)\" href=\"#moreInfoModalPlace\" data-toggle=\"modal\">MORE</button>\n" +
+    "                                        </div>\n" +
     "                                    </div>\n" +
     "                                </div>\n" +
+    "                                </div>\n" +
+    "\n" +
+    "\n" +
     "                            </div>\n" +
     "                            <article class=\"timeline-entry\" >\n" +
     "                                <div class=\"timeline-entry-inner\">\n" +
@@ -2682,6 +2723,10 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
     "\n" +
     "//mantaining the maps on the top of the page when scrolling\n" +
     "$().ready(function() {\n" +
+    "    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {\n" +
+    "        $('<button   class=\"btn btn-primary btn-outlined z-up\"  ng-click=\"moveBefore(item)\"><span class=\"glyphicon glyphicon-arrow-up\"></span></button>').appendTo('#arrowsbuttons');\n" +
+    "        $('<button   class=\"btn btn-primary btn-outlined z-up\"  ng-click=\"moveAfter(item)\"><span class=\"glyphicon glyphicon-arrow-down\"></span></button>').appendTo('#arrowsbuttons');\n" +
+    "    }\n" +
     "        $(window).scroll(function () {\n" +
     "            if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {\n" +
     "\n" +
@@ -2754,7 +2799,7 @@ angular.module("plan_trip/trip_dates.tpl.html", []).run(["$templateCache", funct
     "                    <span class=\"month\">{{curDate.format(monthFormat)}}</span>\n" +
     "                    <span class=\"year\">{{curDate.format(yearFormat)}}</span>\n" +
     "                    <span class=\"time\">ALL DAY</span>\n" +
-    "                    <button href=\"#infoDate\" data-toggle=\"modal\" class=\"btn btn-primary btn-outlined\">MORE</button>\n" +
+    "                    <button href=\"#infoDate\" data-toggle=\"modal\" class=\"btn btn-primary btn-outlined\" ng-click=\"setModalDay(curDate)\">MORE</button>\n" +
     "                    <a class=\"btn btn-primary btn-outlined\" ui-sref=\"planning({date:curDate.format(dateFormat)})\">EDIT</a>\n" +
     "                </time>\n" +
     "            </li>\n" +
@@ -2776,17 +2821,11 @@ angular.module("plan_trip/trip_dates.tpl.html", []).run(["$templateCache", funct
     "                <h4 class=\"modal-title\" id=\"myModalLabel\">More Information</h4>\n" +
     "            </div>\n" +
     "            <div class=\"modal-body\">\n" +
-    "                <div class=\"row\">\n" +
-    "                    <div class=\"column\" >\n" +
-    "                        gtrgtr\n" +
-    "                    </div>\n" +
-    "                    <div class=\"column\">\n" +
-    "                        gtrgtr\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
-    "                <div class=\"row\">\n" +
     "\n" +
-    "                </div>\n" +
+    "                  <place-list-details item-list=\"dayTodo\"  dont-show-more=\"dontShowMore\"></place-list-details>\n" +
+    "\n" +
+    "\n" +
+    "\n" +
     "            </div>\n" +
     "            <div class=\"modal-footer\">\n" +
     "\n" +

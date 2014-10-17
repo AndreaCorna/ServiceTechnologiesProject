@@ -60,6 +60,7 @@ Rails.application.routes.draw do
   #   end
 
   root 'home#index'
+  get 'guides/s3', :to => 'guides#s3_direct_post'
 
 
 
