@@ -1,8 +1,9 @@
-<div class="top-view">
+<div class="background-page">
+<div class="top-view ">
     <div class="container " >
         <h3 class="text-capitalize text-center" style="font-family: Capriola;">Welcome to {{city.name}}</h3>
         <div ng-if="isGuides()">
-            <div class="row background-carousel">
+            <div class="row ">
                 <carousel interval="intervalImages" class="carousel-fixed-height col-md-8 col-md-offset-2" style="padding: 0px">
                     <slide ng-repeat="image in images" active="image.active" class="carousel-fixed-height" style="width:100%;">
                         <img ng-src="{{image.url}}" class="carousel-fixed-height" style="width:100%;" >
@@ -16,7 +17,7 @@
     </div>
 </div>
 
-<div class="container">
+<div class="container ">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="icon-bar"></span>
@@ -40,7 +41,7 @@
 <div class="container">
     <div ui-view="content" class="fill"></div>
 </div>
-
+</div>
 
 
     <div class="modal fade" ng-controller="ModalCtrl" id="moreInfoModalPlace" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

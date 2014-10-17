@@ -272,11 +272,12 @@ angular.module("about/about.tpl.html", []).run(["$templateCache", function($temp
 
 angular.module("city/city.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("city/city.tpl.html",
-    "<div class=\"top-view\">\n" +
+    "<div class=\"background-page\">\n" +
+    "<div class=\"top-view \">\n" +
     "    <div class=\"container \" >\n" +
     "        <h3 class=\"text-capitalize text-center\" style=\"font-family: Capriola;\">Welcome to {{city.name}}</h3>\n" +
     "        <div ng-if=\"isGuides()\">\n" +
-    "            <div class=\"row background-carousel\">\n" +
+    "            <div class=\"row \">\n" +
     "                <carousel interval=\"intervalImages\" class=\"carousel-fixed-height col-md-8 col-md-offset-2\" style=\"padding: 0px\">\n" +
     "                    <slide ng-repeat=\"image in images\" active=\"image.active\" class=\"carousel-fixed-height\" style=\"width:100%;\">\n" +
     "                        <img ng-src=\"{{image.url}}\" class=\"carousel-fixed-height\" style=\"width:100%;\" >\n" +
@@ -290,7 +291,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "    </div>\n" +
     "</div>\n" +
     "\n" +
-    "<div class=\"container\">\n" +
+    "<div class=\"container \">\n" +
     "    <div class=\"navbar-header\">\n" +
     "        <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\".navbar-collapse\">\n" +
     "            <span class=\"icon-bar\"></span>\n" +
@@ -314,7 +315,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "<div class=\"container\">\n" +
     "    <div ui-view=\"content\" class=\"fill\"></div>\n" +
     "</div>\n" +
-    "\n" +
+    "</div>\n" +
     "\n" +
     "\n" +
     "    <div class=\"modal fade\" ng-controller=\"ModalCtrl\" id=\"moreInfoModalPlace\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">\n" +
@@ -1309,6 +1310,7 @@ angular.module("city/food.tpl.html", []).run(["$templateCache", function($templa
 
 angular.module("city/guide.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("city/guide.tpl.html",
+    "<div class=\"background-page\">\n" +
     "<div class=\"top-view\">\n" +
     "    <div class=\"page-header\" style=\"margin-top: 0px\">\n" +
     "        <div class=\"vertical-container\">\n" +
@@ -1824,6 +1826,7 @@ angular.module("city/guide.tpl.html", []).run(["$templateCache", function($templ
     "            </div>\n" +
     "        </div>\n" +
     "    </div>\n" +
+    "</div>\n" +
     "</div>\n" +
     "\n" +
     "<script>\n" +
