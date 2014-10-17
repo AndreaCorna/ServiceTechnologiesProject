@@ -1,3 +1,6 @@
+<div class="page-header">
+
+</div>
 <div class="row">
     <div class="well">
         <h1 class="text-center capriola">Entertainment</h1>
@@ -22,18 +25,14 @@
                 </div>
                 <span ng-repeat="c in entertainmentSelection | filter:{name:elementSelectionName} | orderBy:elementSelectionOrder">
                     <div class="list-group-item list-entertainment" style="background-color: #ffeeaa">
-                        <div class="col-sm-3 col-md-3">
-                            <div class="panel panel-default">
-                                <div class="panel-body image-panel">
-                                    <carousel interval="intervalImages">
-                                        <div ng-if="c.photos.length==0">
-                                            <img ng-src="assets/images/empty_photo.png" style="position: center">
-                                        </div>
-                                        <slide ng-repeat="image in c.photos" active="image.active">
-                                            <img class="image-item" ng-src="{{image.image}}" >
-                                        </slide>
-                                    </carousel>
+                        <div class=" bgc-fff  property-listing">
+                            <div class="col-sm-3 col-md-3">
+                                <div ng-if="c.photos.length==0">
+                                    <img style="height: 220px;  width:100%;" ng-src="assets/images/empty_photo.png" >
                                 </div>
+                                <slide ng-repeat="image in c.photos" active="image.active">
+                                    <img  style="height: 220px;  width:100%;" ng-src="{{c.photos[0].image}}" >
+                                </slide>
                             </div>
                         </div>
                         <div class="col-sm-7 col-md-7" style="height:230px">
@@ -100,18 +99,14 @@
                 <div infinite-scroll="infiniteScroll.nextPage(resource,setLoader)" infinite-scroll-distance="2" infinite-scroll-disabled="infiniteScroll.busy">
                     <span ng-repeat="c in infiniteScroll.itemList | filter:{name:elementListName} | orderBy:elementListOrder">
                         <div class="list-group-item list-entertainment">
-                            <div class="col-sm-3 col-md-3">
-                                <div class="panel panel-default">
-                                    <div class="panel-body image-panel">
-                                        <carousel interval="intervalImages">
-                                            <div ng-if="c.photos.length==0">
-                                                <img ng-src="assets/images/empty_photo.png" style="position: center">
-                                            </div>
-                                            <slide ng-repeat="image in c.photos" active="image.active">
-                                                <img class="image-item" ng-src="{{image.image}}" >
-                                            </slide>
-                                        </carousel>
+                            <div class=" bgc-fff  property-listing">
+                                <div class="col-sm-3 col-md-3">
+                                    <div ng-if="c.photos.length==0">
+                                        <img style="height: 220px;  width:100%;" ng-src="assets/images/empty_photo.png" >
                                     </div>
+                                    <slide ng-repeat="image in c.photos" active="image.active">
+                                        <img  style="height: 220px;  width:100%;" ng-src="{{c.photos[0].image}}" >
+                                    </slide>
                                 </div>
                             </div>
                             <div class="col-sm-7 col-md-7" style="height:230px">
