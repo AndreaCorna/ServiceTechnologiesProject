@@ -31,6 +31,20 @@ angular.module( 'trippo.profile', [
         $scope.login_error = {message: null, errors: {}};
         $scope.credentials = {email: null, password: null};
 
+        $scope.login = function(){
+             Auth.login($scope.credentials).then(function(user){
+                 console.log(user);
+             }, function(error){
+
+                 });
+             $scope.$on('devise:login', function(event, currentUser) {
+                 // after a login, a hard refresh, a new tab
+             });
+
+             $scope.$on('devise:new-session', function(event, currentUser) {
+                 // user logged in by Auth.login({...})
+             });
+            };
         /*
         $scope.login = function() {
             $scope.submit({method: 'POST',
@@ -40,7 +54,6 @@ angular.module( 'trippo.profile', [
                 error_entity: $scope.login_error});
         };
         */
-
         $scope.login = function(){
             Auth.login($scope.credentials).then(function(user) {
                 console.log(user); // => {id: 1, ect: '...'}
@@ -80,6 +93,7 @@ angular.module( 'trippo.profile', [
                 }
             );
         };
+
 
         $scope.showAuth = function(){
             Auth.currentUser().then(function(user){

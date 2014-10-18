@@ -2336,7 +2336,7 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
 
 angular.module("log_in/log_in.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("log_in/log_in.tpl.html",
-    "<div class=\"bodyAuth\" >\n" +
+    "<div class=\"bodyAuth fill\" >\n" +
     "\n" +
     "    <form name=\"loginForm\">\n" +
     "\n" +
@@ -2377,12 +2377,11 @@ angular.module("log_in/log_in.tpl.html", []).run(["$templateCache", function($te
     "                <a class=\"btn btn-block btn-google\" href=\"http://localhost:3000/users/auth/google_oauth2\"><i class=\"fa fa-google-plus\"></i></a>\n" +
     "            </div>\n" +
     "\n" +
-    "            <div>\n" +
-    "                <alert ng-repeat=\"alert in alerts\" type=\"{{alert.type}}\" close=\"closeAlert($index)\">{{alert.msg}}</alert>\n" +
-    "            </div>\n" +
+    "\n" +
     "        </div>\n" +
     "    </form>\n" +
-    "</div>");
+    "</div>\n" +
+    "");
 }]);
 
 angular.module("log_in/profile.tpl.html", []).run(["$templateCache", function($templateCache) {
@@ -2848,6 +2847,8 @@ angular.module("plan_trip/trip_dates.tpl.html", []).run(["$templateCache", funct
 
 angular.module("sign_up/sign_up.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("sign_up/sign_up.tpl.html",
+    "<div class=\"bodyAuth fill\">\n" +
+    "\n" +
     "<form name=\"signupForm\">\n" +
     "\n" +
     "    <div class=\"title\">\n" +
@@ -2855,7 +2856,6 @@ angular.module("sign_up/sign_up.tpl.html", []).run(["$templateCache", function($
     "        <hr/>\n" +
     "    </div>\n" +
     "\n" +
-    "    <div class=\"bodyAuth\">\n" +
     "\n" +
     "        <div class=\"emailBody\">\n" +
     "            <input class=\"form-control\" type=\"email\" name=\"email\" ng-model=\"credentials.email\" placeholder=\"Email\" required/>\n" +
@@ -2889,6 +2889,6 @@ angular.module("sign_up/sign_up.tpl.html", []).run(["$templateCache", function($
     "        <div>\n" +
     "            <alert ng-repeat=\"alert in alerts\" type=\"{{alert.type}}\" close=\"closeAlert($index)\">{{alert.msg}}</alert>\n" +
     "        </div>\n" +
-    "    </div>\n" +
-    " </form>");
+    " </form>\n" +
+    "</div>");
 }]);

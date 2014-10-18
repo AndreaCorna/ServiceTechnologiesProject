@@ -1,3 +1,5 @@
+<div class="bodyAuth fill">
+
 <form name="signupForm">
 
     <div class="title">
@@ -5,7 +7,6 @@
         <hr/>
     </div>
 
-    <div class="bodyAuth">
 
         <div class="emailBody">
             <input class="form-control" type="email" name="email" ng-model="credentials.email" placeholder="Email" required/>
@@ -39,5 +40,5 @@
         <div>
             <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
         </div>
-    </div>
  </form>
+</div>
