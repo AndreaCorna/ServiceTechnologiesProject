@@ -2336,7 +2336,7 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
 
 angular.module("log_in/log_in.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("log_in/log_in.tpl.html",
-    "<div class=\"body\" >\n" +
+    "<div class=\"bodyAuth\" >\n" +
     "\n" +
     "    <form name=\"loginForm\">\n" +
     "\n" +
@@ -2855,7 +2855,7 @@ angular.module("sign_up/sign_up.tpl.html", []).run(["$templateCache", function($
     "        <hr/>\n" +
     "    </div>\n" +
     "\n" +
-    "    <div class=\"body\">\n" +
+    "    <div class=\"bodyAuth\">\n" +
     "\n" +
     "        <div class=\"emailBody\">\n" +
     "            <input class=\"form-control\" type=\"email\" name=\"email\" ng-model=\"credentials.email\" placeholder=\"Email\" required/>\n" +
