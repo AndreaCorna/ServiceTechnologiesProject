@@ -1,5 +1,5 @@
 
-angular.module( 'trippo.login', [
+angular.module( 'trippo.profile', [
     'Devise'
 ])
 
@@ -18,10 +18,34 @@ angular.module( 'trippo.login', [
     })
 
 
-    .controller( 'LoginCtrl', function LoginController( $scope, $http, $location, Auth ) {
+
+    .config([
+        '$httpProvider',
+        function($httpProvider) {
+            $httpProvider.defaults.withCredentials = true;
+        }
+    ])
+
+    .controller( 'LoginCtrl', function LoginController( $scope, $http, $location, Auth, localStorageService, $rootScope ) {
         $scope.login_user = {email: null, password: null};
         $scope.login_error = {message: null, errors: {}};
+        $scope.credentials = {email: null, password: null};
 
+        $scope.login = function(){
+             Auth.login($scope.credentials).then(function(user){
+                 console.log(user);
+             }, function(error){
+
+                 });
+             $scope.$on('devise:login', function(event, currentUser) {
+                 // after a login, a hard refresh, a new tab
+             });
+
+             $scope.$on('devise:new-session', function(event, currentUser) {
+                 // user logged in by Auth.login({...})
+             });
+            };
+        /*
         $scope.login = function() {
             $scope.submit({method: 'POST',
                 url: '../users/sign_in.json',
@@ -29,8 +53,37 @@ angular.module( 'trippo.login', [
                 success_message: "You have been logged in.",
                 error_entity: $scope.login_error});
         };
-        $scope.go = function(path){
-            $location.path(path);
+        */
+        $scope.login = function(){
+            Auth.login($scope.credentials).then(function(user) {
+                console.log(user); // => {id: 1, ect: '...'}
+            }, function(error) {
+                // Authentication failed...
+            });
+
+            $scope.$on('devise:login', function(event, currentUser) {
+                // after a login, a hard refresh, a new tab
+                localStorageService.set('auto', true);
+                $rootScope.auto = localStorageService.get('auto');
+                $scope.alerts = [
+                    { type: 'success', msg: "you're logged in!! Yeeeee" }
+                ];
+            });
+
+            $scope.$on('devise:new-session', function(event, currentUser) {
+                // user logged in by Auth.login({...})
+            });
+
+            $scope.$on('devise:unauthorized', function(){
+                $scope.alerts = [
+                    { type: 'danger', msg: 'Incorrect Username or Password!! Try Again' }
+                ];
+
+            });
+
+            $scope.closeAlert = function(index) {
+                $scope.alerts.splice(index, 1);
+            };
         };
 
         $scope.showCurrentUser = function(){
@@ -41,15 +94,43 @@ angular.module( 'trippo.login', [
             );
         };
 
+
         $scope.showAuth = function(){
-            console.log(Auth.isAuthenticated());
+            Auth.currentUser().then(function(user){
+                    console.log(user);
+                    console.log(Auth.isAuthenticated());
+                    localStorageService.set('auto', true);
+                    $rootScope.auto = localStorageService.get('auto');
+                }, function(error) {
+                }
+            );
+            $scope.$on('devise:unauthorized', function(){
+                localStorageService.set('auto', false);
+                $rootScope.auto = localStorageService.get('auto');
+            });
         };
 
+        /*
         $scope.logout = function() {
             $scope.submit({method: 'DELETE',
                 url: '../users/sign_out.json',
                 success_message: "You have been logged out.",
                 error_entity: $scope.login_error});
+        };
+        */
+
+        $scope.logout = function() {
+            Auth.logout().then(function(oldUser) {
+                // alert(oldUser.name + "you're signed out now.");
+            }, function(error) {
+                // An error occurred logging out.
+            });
+
+            $scope.$on('devise:logout', function(event, oldCurrentUser) {
+                // ...
+                localStorageService.set('auto', false);
+                $rootScope.auto = localStorageService.get('auto');
+            });
         };
 
         $scope.password_reset = function () {

@@ -17,10 +17,12 @@ angular.module( 'trippo.signup', [
     })
 
 
-    .controller( 'SignupCtrl', function SignupController( $scope, $http ) {
+    .controller( 'SignupCtrl', function SignupController( $scope, $http, Auth ) {
         $scope.register_user = {email: null, password: null, password_confirmation: null};
         $scope.register_error = {message: null, errors: {}};
+        $scope.credentials = {email: null, password: null, password_confirmation: null};
 
+        /*
         $scope.register = function() {
             $scope.submit({method: 'POST',
                 url: '../users.json',
@@ -30,6 +32,35 @@ angular.module( 'trippo.signup', [
                 success_message: "You have been registered and logged in.  A confirmation e-mail has been sent to your e-mail address, your access will terminate in 2 days if you do not use the link in that e-mail.",
                 error_entity: $scope.register_error});
         };
+        */
+
+        $scope.register = function() {
+            Auth.register($scope.credentials).then(function(registeredUser) {
+                console.log(registeredUser); // => {id: 1, ect: '...'}
+            }, function(error) {
+                // Registration failed...
+            });
+
+            $scope.$on('devise:new-registration', function(event, user) {
+                $scope.alerts = [
+                    { type: 'success', msg: "Yep, you're succesfully register" }
+                ];
+            });
+
+            $scope.$on('devise:unauthorized', function(){
+                console.log("ok");
+                $scope.alerts = [
+                    { type: 'danger', msg: 'Something wrong! Retry' }
+                ];
+
+            });
+
+            $scope.closeAlert = function(index) {
+                $scope.alerts.splice(index, 1);
+            };
+
+        };
+
 
         $scope.change_password = function() {
             $scope.submit({method: 'PUT',
@@ -85,4 +116,19 @@ angular.module( 'trippo.signup', [
             $scope.register_user.password_confirmation = null;
         };
     })
-;
+
+    .directive('pwCheck', function() {
+        return {
+                require: 'ngModel',
+        link: function (scope, elem, attrs, ctrl) {
+            var firstPassword = '#' + attrs.pwCheck;
+            $(elem).add(firstPassword).on('keyup', function () {
+                scope.$apply(function () {
+                    var v = elem.val()===$(firstPassword).val();
+                    ctrl.$setValidity('pwcheck', v);
+                });
+            });
+        }
+    };
+});
+
