@@ -1,8 +1,9 @@
+<div class="planning">
 <div class="page-header">
     <h1>Choose your dates</h1>
 </div>
 
-    <form novalidate name="form" ng-submit="next(form)">
+    <form novalidate name="form" ng-submit="next(form)" class="well">
         <div ng-show="submitted  && (form.end.$error.required || form.start.$error.required)" class="alert alert-danger">
             Field <strong>start date</strong> and <strong>end date</strong> are required
         </div>
@@ -82,4 +83,5 @@
         </div>
 
     </div>
+</div>
 </div>

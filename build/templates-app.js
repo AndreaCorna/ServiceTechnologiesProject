@@ -1310,6 +1310,7 @@ angular.module("city/food.tpl.html", []).run(["$templateCache", function($templa
 
 angular.module("city/guide.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("city/guide.tpl.html",
+    "<div class=\"planning\">\n" +
     "<div class=\"background-page\">\n" +
     "<div class=\"top-view\">\n" +
     "    <div class=\"page-header\" style=\"margin-top: 0px\">\n" +
@@ -1346,21 +1347,13 @@ angular.module("city/guide.tpl.html", []).run(["$templateCache", function($templ
     "                <div class=\"form-group\">\n" +
     "                    <label class=\"col-md-2 control-label\" for=\"message\" style=\"font-size: 18px\">Description</label>\n" +
     "                    <div class=\"col-md-10\">\n" +
-    "                        <p class=\"form-control\"  id=\"message\" >{{guide.description}}</p>\n" +
+    "                        <p   id=\"message\" >{{guide.description}}</p>\n" +
     "                    </div>\n" +
     "                </div>\n" +
     "\n" +
     "\n" +
     "\n" +
-    "                <!-- Form actions -->\n" +
-    "                <div class=\"form-group\">\n" +
     "\n" +
-    "                    <label class=\"col-md-2 control-label\" for=\"message\" style=\"font-size: 18px\">Rating</label>\n" +
-    "\n" +
-    "                    <div class=\"col-md-10\">\n" +
-    "                        <rating ng-model=\"guide.rating\" readonly=\"true\" ></rating>\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
     "            </fieldset>\n" +
     "            <legend>Trip Summary</legend>\n" +
     "            <div class=\"row\" style=\"margin-bottom: 6px\">\n" +
@@ -1826,6 +1819,7 @@ angular.module("city/guide.tpl.html", []).run(["$templateCache", function($templ
     "            </div>\n" +
     "        </div>\n" +
     "    </div>\n" +
+    "</div>\n" +
     "</div>\n" +
     "</div>\n" +
     "\n" +
@@ -2315,6 +2309,7 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
 
 angular.module("log_in/log_in.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("log_in/log_in.tpl.html",
+    "<div class=\"authentication\">\n" +
     "<div class=\"bodyAuth fill\" >\n" +
     "\n" +
     "    <form name=\"loginForm\">\n" +
@@ -2360,7 +2355,7 @@ angular.module("log_in/log_in.tpl.html", []).run(["$templateCache", function($te
     "        </div>\n" +
     "    </form>\n" +
     "</div>\n" +
-    "");
+    "</div>");
 }]);
 
 angular.module("log_in/profile.tpl.html", []).run(["$templateCache", function($templateCache) {
@@ -2373,7 +2368,7 @@ angular.module("log_in/profile.tpl.html", []).run(["$templateCache", function($t
 
 angular.module("plan_trip/createtrip.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("plan_trip/createtrip.tpl.html",
-    "<script src=\"http://m-e-conroy.github.io/angular-dialog-service/javascripts/dialogs.min.js\" type=\"text/javascript\"></script>\n" +
+    "<div class=\"planning\">\n" +
     "<div class=\"page-header\">\n" +
     "    <div class=\"vertical-container\">\n" +
     "        <div class=\"row\">\n" +
@@ -2464,7 +2459,7 @@ angular.module("plan_trip/createtrip.tpl.html", []).run(["$templateCache", funct
     "        </div>\n" +
     "    </div>\n" +
     "</div>\n" +
-    "\n" +
+    "</div>\n" +
     "\n" +
     "\n" +
     "\n" +
@@ -2768,11 +2763,12 @@ angular.module("plan_trip/planning.tpl.html", []).run(["$templateCache", functio
 
 angular.module("plan_trip/trip_dates.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("plan_trip/trip_dates.tpl.html",
+    "<div class=\"planning\">\n" +
     "<div class=\"page-header\">\n" +
     "    <h1>Choose your dates</h1>\n" +
     "</div>\n" +
     "\n" +
-    "    <form novalidate name=\"form\" ng-submit=\"next(form)\">\n" +
+    "    <form novalidate name=\"form\" ng-submit=\"next(form)\" class=\"well\">\n" +
     "        <div ng-show=\"submitted  && (form.end.$error.required || form.start.$error.required)\" class=\"alert alert-danger\">\n" +
     "            Field <strong>start date</strong> and <strong>end date</strong> are required\n" +
     "        </div>\n" +
@@ -2852,11 +2848,13 @@ angular.module("plan_trip/trip_dates.tpl.html", []).run(["$templateCache", funct
     "        </div>\n" +
     "\n" +
     "    </div>\n" +
+    "</div>\n" +
     "</div>");
 }]);
 
 angular.module("sign_up/sign_up.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("sign_up/sign_up.tpl.html",
+    "<div class=\"authentication\">\n" +
     "<div class=\"bodyAuth fill\">\n" +
     "\n" +
     "<form name=\"signupForm\">\n" +
@@ -2900,5 +2898,6 @@ angular.module("sign_up/sign_up.tpl.html", []).run(["$templateCache", function($
     "            <alert ng-repeat=\"alert in alerts\" type=\"{{alert.type}}\" close=\"closeAlert($index)\">{{alert.msg}}</alert>\n" +
     "        </div>\n" +
     " </form>\n" +
+    "</div>\n" +
     "</div>");
 }]);

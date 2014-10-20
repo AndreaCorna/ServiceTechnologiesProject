@@ -195,7 +195,14 @@ angular.module( 'trippo.guide', [
 
 })
 
-.controller('GuideCtrl', function GuideCtrl($location,$scope,GuideService,$stateParams,DatesService) {
+.controller('GuideCtrl', function GuideCtrl($http,$location,$scope,GuideService,$stateParams,DatesService) {
+
+    /* this method has to be copied where i want to share the guide
+    $scope.share = function () {
+        $http.put('/guides/'+$stateParams.id,{share:true});
+    };
+    */
+
 
     GuideService.initGuide($stateParams.id,function(){
         $scope.guide = GuideService.getGuide($stateParams.id);
@@ -205,6 +212,11 @@ angular.module( 'trippo.guide', [
 
 
     }) ;
+
+
+
+
+
     $scope.markerArraySelected= [];
     var initMarkersInMap = function (guide){
 

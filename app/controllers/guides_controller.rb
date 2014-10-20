@@ -1,17 +1,23 @@
 class GuidesController < ApplicationController
 
-
-
+  # return the list of guides based on the current logged user
   def index
-    guides = Guide.all
+    user = current_user
+    #not authenticate user return empty array
+    if user.nil?
+      render json: []
+      return
+    end
+    #returning user guides
+    guides = Guide.where(:user_id => user.id)
+
+
     render json: guides
   end
 
   def s3_direct_post
       s3_direct_post = S3_BUCKET.presigned_post(key: "uploads/#{SecureRandom.uuid}/${filename}", success_action_status: 201, acl: :public_read)
-      puts  's3_direct_mkmjmjkmkmjjkmkjmjkpost'
-      puts  s3_direct_post.fields.to_json.html_safe
-      puts s3_direct_post.fields['AWSAccessKeyId']
+
 
      result = Hash.new
       result['url'] =  "#{s3_direct_post.url}"
@@ -45,9 +51,16 @@ class GuidesController < ApplicationController
       error 'At least one day needs to be added to the guide'
       return
     end
+    puts current_user
+    if current_user.nil?
+      puts 'nil user'
+      error 'Please Login before creating your guide'
+      return
+    end
     guide.name= params['name']
     guide.description=params['description']
     guide.city = params['city']
+    guide.user_id = current_user.id
     if(params['image']=~/(\.|\/)(gif|jpe?g|png)$/ )
       guide.image = params['image']
       puts guide.image
@@ -116,16 +129,9 @@ class GuidesController < ApplicationController
     render json:  'OK'
   end
 
-  def new
 
 
-
-  end
-
-
-  def edit
-  end
-
+  # return as json the guide with id equals to the id parameter
   def show
     id = params['id']
     result = Hash.new
@@ -168,16 +174,34 @@ class GuidesController < ApplicationController
     render json: result
   end
 
+  # search  a guide by the id passed and set the shared param
+  # accordingly the value of the share parameter
   def update
+    puts 'update'
+    id = params['id']
+    share = params['share']
+
+
+    guide = Guide.find(id)
+    if guide.nil?
+      render json: 'Not found'
+      return
+    end
+    guide.shared=share
+    guide.save
+
+    render json: 'Ok'
+
   end
 
   def destroy
     id = params['id']
-    guide = Guide.all
+    guide = Guide.find(id)
     if guide.nil?
-      render json: ''
+      render json: 'Not found'
       return
     end
-
+    guide.destroy
+    render json: 'Ok'
   end
 end
