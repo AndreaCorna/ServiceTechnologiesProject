@@ -4,8 +4,8 @@
 
 angular.module("common.navModule", [
 ])
-.controller( "navCtrl",[  "$scope","$location","$log", "Auth", "localStorageService", "$rootScope",
-    function($scope, $location, $log, Auth, localStorageService, $rootScope )
+.controller( "navCtrl",[  "$scope","$location","$log", "Auth", "localStorageService", "$rootScope", 'SelectionService' ,
+    function($scope, $location, $log, Auth, localStorageService, $rootScope, SelectionService)
     {
         $scope.isActive = function (viewLocation) {
            /*
@@ -21,6 +21,14 @@ angular.module("common.navModule", [
 
             return "/home" === $location.path();
         };
+
+        $scope.$watchCollection(function () { return SelectionService.getCities(); }, function (newVal, oldVal) {
+            $scope.curTrips= SelectionService.getCities();
+            if(!$scope.$$phase) {
+                $scope.$apply();
+            }
+
+        });
 
         $scope.showAuth = function(){
             Auth.currentUser().then(function(user){

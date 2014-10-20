@@ -831,6 +831,21 @@ angular.module( 'trippo.city', [
         var entertainmentSelection = [];
         var foodSelection = [];
         return{
+            getCities:function(){
+               cityCult = Object.keys(cultureSelection)  ;
+               cityUtility =  Object.keys(utilitySelection)  ;
+                cityHot =  Object.keys(hotelSelection)  ;
+                cityEnt =  Object.keys(entertainmentSelection)  ;
+                cityfood =  Object.keys(foodSelection)  ;
+                cityArr = [].concat(cityCult,cityUtility,cityHot,cityEnt,cityfood)   ;
+                uniquecity = cityArr.filter(function(item, pos) {
+                    return cityArr.indexOf(item) == pos;
+                });
+
+                return uniquecity;
+
+
+            }   ,
             addCultureItem:function (culture_item,city) {
                 if (cultureSelection[city]===undefined){
                     cultureSelection[city] =[];
