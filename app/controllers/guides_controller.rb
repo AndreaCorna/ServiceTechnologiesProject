@@ -1,6 +1,7 @@
 class GuidesController < ApplicationController
 
   # return the list of guides based on the current logged user
+  # url GET /guides
   def index
     user = current_user
     #not authenticate user return empty array
@@ -39,6 +40,7 @@ class GuidesController < ApplicationController
 
   end
 
+  # POST /guides/:id
   def create
     puts params
     guide = Guide.new
@@ -132,6 +134,7 @@ class GuidesController < ApplicationController
 
 
   # return as json the guide with id equals to the id parameter
+  # GET /guides/id
   def show
     id = params['id']
     result = Hash.new
