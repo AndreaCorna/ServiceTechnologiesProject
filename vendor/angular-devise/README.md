@@ -22,7 +22,10 @@ Protection](http://api.rubyonrails.org/classes/ActionController/RequestForgeryPr
 enabled for your controller actions, you will also need to include the
 `X-CSRF-TOKEN` header with the token provided by rails. The easiest way
 to include this is to use the
-[angular_rails_csrf gem](https://github.com/jsanders/angular_rails_csrf).
+[ng-rails-csrf gem](https://github.com/xrd/ng-rails-csrf). You may also
+[setup
+rails](http://stackoverflow.com/questions/14734243/rails-csrf-protection-angular-js-protect-from-forgery-makes-me-to-log-out-on/15761835#15761835)
+to include a `XSRF-TOKEN` cookie, which Angular uses automatically.
 
 Downloading
 -----------
@@ -154,16 +157,14 @@ angular.module('myModule', ['Devise']).
     });
 ```
 
-By default, `login` will POST to '/users/sign_in.json' using the
-resource name `user`. The path, HTTP method, and resource name used to
-login are configurable using:
+By default, `login` will POST to '/users/sign_in.json'. The path and
+HTTP method used to login are configurable using:
 
 ```javascript
 angular.module('myModule', ['Devise']).
     config(function(AuthProvider) {
         AuthProvider.loginPath('path/on/server.json');
         AuthProvider.loginMethod('GET');
-        AuthProvider.resourceName('customer');
     });
 ```
 
@@ -266,16 +267,14 @@ angular.module('myModule', ['Devise']).
     });
 ```
 
-By default, `register` will POST to '/users.json' using the resource
-name `user`. The path, HTTP method, and resource name used to register
-are configurable using:
+By default, `register` will POST to '/users.json'. The path and HTTP
+method used to register are configurable using:
 
 ```javascript
 angular.module('myModule', ['Devise']).
     config(function(AuthProvider) {
         AuthProvider.registerPath('path/on/server.json');
         AuthProvider.registerMethod('GET');
-        AuthProvider.resourceName('customer');
     });
 ```
 
@@ -357,23 +356,17 @@ AuthProvider
 ------------
 
 By default, AngularDevise uses the following HTTP methods/paths:
+ - **login**: POST /users/sign_in.json
+ - **logout**: DELETE /users/sign_out.json
+ - **register**: POST /users.json
 
-| Method   | HTTP Method | HTTP Path            |
-| -------- | ----------- | -------------------- |
-| login    | POST        | /users/sign_in.json  |
-| logout   | DELETE      | /users/sign_out.json |
-| register | POST        | /users.json          |
-
-All credentials will be under the `users` namespace, and the following
-parse function will be used to parse the response:
+And the following parse function:
 
 ```javascript
 function(response) {
     return response.data;
 };
 ```
-
-Aditionally, it will intercept all `401 Unauthorized` responses.
 
 All of these can be configured using a `.config` block in your module.
 
@@ -395,10 +388,6 @@ angular.module('myModule', ['Devise']).
         // Ignore 401 Unauthorized everywhere
         // Disables `devise:unauthorized` interceptor
         AuthProvider.ignoreAuth(true);
-
-        // Customize the resource name data use namespaced under
-        // Pass false to disable the namespace altogether.
-        AuthProvider.resourceName('customer');
 
         // Customize user parsing
         // NOTE: **MUST** return a truth-y expression
