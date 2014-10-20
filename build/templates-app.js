@@ -804,9 +804,9 @@ angular.module("city/culture.tpl.html", []).run(["$templateCache", function($tem
     "                            <div ng-if=\"c.photos.length==0\">\n" +
     "                                <img style=\"height: 220px;  width:100%;\" ng-src=\"assets/images/empty_photo.png\" >\n" +
     "                            </div>\n" +
-    "                            <slide ng-repeat=\"image in c.photos\" active=\"image.active\">\n" +
+    "                            <div ng-if=\"c.photos.length!=0\">\n" +
     "                                <img  style=\"height: 220px;  width:100%;\" ng-src=\"{{c.photos[0].image}}\" >\n" +
-    "                            </slide>\n" +
+    "                            </div>\n" +
     "                        </div>\n" +
     "                    </div>\n" +
     "                        <div class=\"col-sm-7 col-md-7\" style=\"height:230px\">\n" +
@@ -878,9 +878,9 @@ angular.module("city/culture.tpl.html", []).run(["$templateCache", function($tem
     "                                <div ng-if=\"c.photos.length==0\">\n" +
     "                                    <img style=\"height: 220px;  width:100%;\" ng-src=\"assets/images/empty_photo.png\" >\n" +
     "                                </div>\n" +
-    "                                <slide ng-repeat=\"image in c.photos\" active=\"image.active\">\n" +
+    "                                <div ng-if=\"c.photos.length!=0\">\n" +
     "                                    <img  style=\"height: 220px;  width:100%;\" ng-src=\"{{c.photos[0].image}}\" >\n" +
-    "                                </slide>\n" +
+    "                                </div>\n" +
     "                            </div>\n" +
     "                        </div>\n" +
     "                        <div class=\"col-sm-7 col-md-7\" style=\"height:230px\">\n" +
@@ -985,9 +985,9 @@ angular.module("city/entertainment.tpl.html", []).run(["$templateCache", functio
     "                                <div ng-if=\"c.photos.length==0\">\n" +
     "                                    <img style=\"height: 220px;  width:100%;\" ng-src=\"assets/images/empty_photo.png\" >\n" +
     "                                </div>\n" +
-    "                                <slide ng-repeat=\"image in c.photos\" active=\"image.active\">\n" +
+    "                                <div ng-if=\"c.photos.length!=0\">\n" +
     "                                    <img  style=\"height: 220px;  width:100%;\" ng-src=\"{{c.photos[0].image}}\" >\n" +
-    "                                </slide>\n" +
+    "                                </div>\n" +
     "                            </div>\n" +
     "                        </div>\n" +
     "                        <div class=\"col-sm-7 col-md-7\" style=\"height:230px\">\n" +
@@ -1059,9 +1059,9 @@ angular.module("city/entertainment.tpl.html", []).run(["$templateCache", functio
     "                                    <div ng-if=\"c.photos.length==0\">\n" +
     "                                        <img style=\"height: 220px;  width:100%;\" ng-src=\"assets/images/empty_photo.png\" >\n" +
     "                                    </div>\n" +
-    "                                    <slide ng-repeat=\"image in c.photos\" active=\"image.active\">\n" +
+    "                                    <div ng-if=\"c.photos.length!=0\">\n" +
     "                                        <img  style=\"height: 220px;  width:100%;\" ng-src=\"{{c.photos[0].image}}\" >\n" +
-    "                                    </slide>\n" +
+    "                                    </div>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
     "                            <div class=\"col-sm-7 col-md-7\" style=\"height:230px\">\n" +
@@ -1163,9 +1163,9 @@ angular.module("city/food.tpl.html", []).run(["$templateCache", function($templa
     "                            <div ng-if=\"c.photos.length==0\">\n" +
     "                                <img style=\"height: 220px;  width:100%;\" ng-src=\"assets/images/empty_photo.png\" >\n" +
     "                            </div>\n" +
-    "                            <slide ng-repeat=\"image in c.photos\" active=\"image.active\">\n" +
+    "                            <div ng-if=\"c.photos.length!=0\">\n" +
     "                                <img  style=\"height: 220px;  width:100%;\" ng-src=\"{{c.photos[0].image}}\" >\n" +
-    "                            </slide>\n" +
+    "                            </div>\n" +
     "                        </div>\n" +
     "                    </div>\n" +
     "                    <div class=\"col-sm-7 col-md-7\" style=\"height:230px\">\n" +
@@ -1236,9 +1236,9 @@ angular.module("city/food.tpl.html", []).run(["$templateCache", function($templa
     "                                    <div ng-if=\"c.photos.length==0\">\n" +
     "                                        <img style=\"height: 220px;  width:100%;\" ng-src=\"assets/images/empty_photo.png\" >\n" +
     "                                    </div>\n" +
-    "                                    <slide ng-repeat=\"image in c.photos\" active=\"image.active\">\n" +
+    "                                    <div ng-if=\"c.photos.length!=0\">\n" +
     "                                        <img  style=\"height: 220px;  width:100%;\" ng-src=\"{{c.photos[0].image}}\" >\n" +
-    "                                    </slide>\n" +
+    "                                    </div>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
     "                            <div class=\"col-sm-7 col-md-7\" style=\"height:230px\">\n" +
@@ -1958,9 +1958,9 @@ angular.module("city/hotel.tpl.html", []).run(["$templateCache", function($templ
     "                            <div ng-if=\"c.photos.length==0\">\n" +
     "                                <img style=\"height: 220px;  width:100%;\" ng-src=\"assets/images/empty_photo.png\" >\n" +
     "                            </div>\n" +
-    "                            <slide ng-repeat=\"image in c.photos\" active=\"image.active\">\n" +
+    "                            <div ng-if=\"c.photos.length!=0\">\n" +
     "                                <img  style=\"height: 220px;  width:100%;\" ng-src=\"{{c.photos[0].image}}\" >\n" +
-    "                            </slide>\n" +
+    "                            </div>\n" +
     "                        </div>\n" +
     "                    </div>\n" +
     "                    <div class=\"col-sm-7 col-md-7\" style=\"height:230px\">\n" +
@@ -2031,9 +2031,9 @@ angular.module("city/hotel.tpl.html", []).run(["$templateCache", function($templ
     "                                    <div ng-if=\"c.photos.length==0\">\n" +
     "                                        <img style=\"height: 220px;  width:100%;\" ng-src=\"assets/images/empty_photo.png\" >\n" +
     "                                    </div>\n" +
-    "                                    <slide ng-repeat=\"image in c.photos\" active=\"image.active\">\n" +
+    "                                    <div ng-if=\"c.photos.length!=0\">\n" +
     "                                        <img  style=\"height: 220px;  width:100%;\" ng-src=\"{{c.photos[0].image}}\" >\n" +
-    "                                    </slide>\n" +
+    "                                    </div>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
     "                            <div class=\"col-sm-7 col-md-7\" style=\"height:230px\">\n" +
@@ -2135,9 +2135,9 @@ angular.module("city/utility.tpl.html", []).run(["$templateCache", function($tem
     "                            <div ng-if=\"c.photos.length==0\">\n" +
     "                                <img style=\"height: 220px;  width:100%;\" ng-src=\"assets/images/empty_photo.png\" >\n" +
     "                            </div>\n" +
-    "                            <slide ng-repeat=\"image in c.photos\" active=\"image.active\">\n" +
+    "                            <div ng-if=\"c.photos.length!=0\">\n" +
     "                                <img  style=\"height: 220px;  width:100%;\" ng-src=\"{{c.photos[0].image}}\" >\n" +
-    "                            </slide>\n" +
+    "                            </div>\n" +
     "                        </div>\n" +
     "                    </div>\n" +
     "                    <div class=\"col-sm-7 col-md-7\" style=\"height:230px\">\n" +
@@ -2208,9 +2208,9 @@ angular.module("city/utility.tpl.html", []).run(["$templateCache", function($tem
     "                                    <div ng-if=\"c.photos.length==0\">\n" +
     "                                        <img style=\"height: 220px;  width:100%;\" ng-src=\"assets/images/empty_photo.png\" >\n" +
     "                                    </div>\n" +
-    "                                    <slide ng-repeat=\"image in c.photos\" active=\"image.active\">\n" +
+    "                                    <div ng-if=\"c.photos.length!=0\">\n" +
     "                                        <img  style=\"height: 220px;  width:100%;\" ng-src=\"{{c.photos[0].image}}\" >\n" +
-    "                                    </slide>\n" +
+    "                                    </div>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
     "                            <div class=\"col-sm-7 col-md-7\" style=\"height:230px\">\n" +
