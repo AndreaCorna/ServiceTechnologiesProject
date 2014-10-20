@@ -29,5 +29,14 @@
 bin/
 node_modules/
 
+<<<<<<< HEAD
 
 
+=======
+
+
+
+Rubiter.iml
+
+src/ServiceTechnologiesProject.iml
+>>>>>>> master

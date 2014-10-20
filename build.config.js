@@ -69,10 +69,21 @@ module.exports = {
       'vendor/angular-sortable-view/src/angular-sortable-view.js',
       'vendor/bootstrap/dist/js/bootstrap.js',
       'vendor/placeholders/angular-placeholders-0.0.1-SNAPSHOT.min.js',
+       'vendor/blueimp-file-upload/js/vendor/jquery.ui.widget.js',
+       'vendor/blueimp-file-upload/js/jquery.iframe-transport.js',
+       'vendor/blueimp-file-upload/js/jquery.fileupload.js',
+        'vendor/blueimp-file-upload/js/jquery.fileupload-process.js',
+        'vendor/blueimp-file-upload/js/jquery.fileupload-validate.js',
+        'vendor/blueimp-file-upload/js/jquery.fileupload-ui.js',
+        'vendor/blueimp-file-upload/js/jquery.fileupload-angular.js',
+      'vendor/angular-dialog-service/dist/dialogs.min.js' ,
       'vendor/angular-ui-router/release/angular-ui-router.js',
       'vendor/angular-ui-utils/modules/route/route.js' ,
       'vendor/angular-resource/angular-resource.js',
-      'vendor/ngInfiniteScroll/build/ng-infinite-scroll.min.js'
+      'vendor/ngInfiniteScroll/build/ng-infinite-scroll.min.js',
+      'vendor/angular-devise/lib/devise-min.js',
+      'vendor/angular-local-storage/dist/angular-local-storage.js'
+
     ],
     css: [
     ],

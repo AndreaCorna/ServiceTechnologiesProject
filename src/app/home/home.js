@@ -15,7 +15,9 @@
 angular.module( 'trippo.home', [
   'ui.router',
   'trippo.city',
-  'trippo.plan'
+  'trippo.plan',
+    'trippo.login',
+    'trippo.signup'
 ])
 
 /**
@@ -42,7 +44,7 @@ angular.module( 'trippo.home', [
 .controller( 'HomeCtrl', function HomeController($scope,$log,$location , CityRes,$http ) {
 
 
-        $scope.cities = CityRes.list.query();
+        $scope.cities = CityRes.query();
         $scope.selected_city = undefined;
 
         $scope.search = function() {
@@ -50,10 +52,10 @@ angular.module( 'trippo.home', [
             if ($scope.selected_city !== undefined) {
 
                 if ($scope.selected_city.name === undefined) {
-                    $location.path('/city/' + $scope.selected_city + "/culture");
+                    $location.path('/city/' + $scope.selected_city.toLowerCase() + "/guides");
                 }
                 else {
-                    $location.path('/city/' + $scope.selected_city.name + "/culture");
+                    $location.path('/city/' + $scope.selected_city.name + "/guides");
                 }
             }
 
@@ -76,8 +78,12 @@ angular.module( 'trippo.home', [
             });
         };
 
+        $scope.startsWith = function(name, viewValue) {
+            return name.substr(0, viewValue.length).toLowerCase() == viewValue.toLowerCase();
+        };
 
-})
+
+    })
 
 
 ;

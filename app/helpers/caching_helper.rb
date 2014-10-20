@@ -6,159 +6,149 @@ module CachingHelper
   include PlacesHelper::FoodHelperCity
   include HotelsHelper
 
+=begin
+The method returns the details of the item identified by the id.
+Before checks if the information are already in redis cache, otherwise asks to
+google places to give them.
+=end
   def get_details(id)
     if((results = $redis.get(id)).nil?)
-      puts 'no redis data details'
       details = get_details_item(id)
       $redis.set(id,details.to_json)
-      puts $redis.get(id)
-
       return details.to_json
     else
-      puts 'redis data details'
-      puts results
       return results
     end
   end
 
+=begin
+The method returns the data related to the category culture of the city passed as parameter.
+Moreover you can specify the token in order to load more items.
+=end
   def get_culture(city,token)
-    results=[]
+    results = []
     if(token.nil?)
       if((results = $redis.get(city+':culture')).nil?)
-        puts 'no redis data'
         culture = get_culture_items(city)
         $redis.set(city+':culture',culture.to_json)
-        #puts culture.to_json
-        puts 'redis data culture'
-        #puts $redis.get(city+':culture')
         return culture.to_json
       else
-        puts 'redis data get after insert'
-        #puts results
         return results
       end
     else
       if((results = $redis.get(city+':culture:'+token)).nil?)
-        puts 'no redis other data'
         culture = get_culture_others(token,city)
         $redis.set(city+':culture:'+token,culture.to_json)
         return culture.to_json
       else
-        puts 'redis data other'
         return results
       end
     end
 
   end
 
+=begin
+The method returns the data related to the category utility of the city passed as parameter.
+Moreover you can specify the token in order to load more items.
+=end
   def get_utility(city,token)
-    results=[]
+    results = []
     if(token.nil?)
       if((results = $redis.get(city+':utility')).nil?)
-        puts 'no redis data'
         utility = get_utility_items(city)
         $redis.set(city+':utility',utility.to_json)
-        puts utility.to_json
-        puts 'redis data culture'
-        puts $redis.get(city+':utility')
         return utility.to_json
       else
-        puts 'redis data get after insert'
-        puts results
         return results
       end
     else
       if((results = $redis.get(city+':utility:'+token)).nil?)
-        puts 'no redis other data'
         utility = get_utility_others(token,city)
         $redis.set(city+':utility:'+token,utility.to_json)
         return utility.to_json
       else
-        puts 'redis data other'
         return results
       end
     end
   end
 
+=begin
+The method returns the data related to the category entertainment of the city passed as parameter.
+Moreover you can specify the token in order to load more items.
+=end
   def get_entertainment(city,token)
-    results=[]
+    results = []
     if(token.nil?)
       if((results = $redis.get(city+':entertainment')).nil?)
-        puts 'no redis data'
         entertainment = get_entertainment_items(city)
         $redis.set(city+':entertainment',entertainment.to_json)
-        puts entertainment.to_json
-        puts 'redis data culture'
-        puts $redis.get(city+':entertainment')
         return entertainment.to_json
       else
-        puts 'redis data get after insert'
-        puts results
-        #to do parse json
         return results
       end
     else
       if((results = $redis.get(city+':entertainment:'+token)).nil?)
-        puts 'no redis other data'
         entertainment = get_entertainment_others(token,city)
         $redis.set(city+':entertainment:'+token,entertainment.to_json)
         return entertainment.to_json
       else
-        puts 'redis data other'
         return results
       end
     end
 
   end
 
+=begin
+The method returns the data related to the category food of the city passed as parameter.
+Moreover you can specify the token in order to load more items.
+=end
   def get_food(city,token)
-    results=[]
+    results = []
     if(token.nil?)
       if((results = $redis.get(city+':food')).nil?)
-        puts 'no redis data'
         food = get_food_items(city)
         $redis.set(city+':food',food.to_json)
-        puts food.to_json
-        puts 'redis data culture'
-        puts $redis.get(city+':food')
         return food.to_json
       else
-        puts 'redis data get after insert'
-        puts results
         return results
       end
     else
       if((results = $redis.get(city+':food:'+token)).nil?)
-        puts 'no redis other data'
         food = get_food_others(token,city)
         $redis.set(city+':food:'+token,food.to_json)
         return food.to_json
       else
-        puts 'redis data other'
         return results
       end
     end
   end
 
-  def get_hotels(city)
-    results=[]
-    if((results = $redis.get(city+':hotel')).nil?)
-      puts 'no redis data'
-      hotel = get_hotels_list(city)
-      $redis.set(city+':hotel',hotel.to_json)
-      #puts hotel.to_json
-      puts 'redis data culture'
-      #puts $redis.get(city+':hotel')
-      return hotel.to_json
+=begin
+The method returns the data related to the category hotel of the city passed as parameter.
+Moreover you can specify the token in order to load more items.
+=end
+  def get_hotels(city,token)
+    results = []
+    if(token.nil?)
+      if((results = $redis.get(city+':hotel')).nil?)
+        hotel = get_hotels_list(city)
+        return hotel
+      else
+        return results
+      end
     else
-      puts 'redis data get after insert'
-      #puts results
+      results = $redis.get(city+':hotel:'+token)
       return results
-    end
+      end
   end
 
+=begin
+The method returns the details of the hotel identified by the id.
+Before checks if the information are already in redis cache, otherwise asks to
+expedia to give them.
+=end
   def hotel_details(id)
-    results=[]
+    results = []
     if((results = $redis.get(id)).nil?)
       details = get_hotel_details(id)
       $redis.set(id,details.to_json)

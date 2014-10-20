@@ -5,7 +5,11 @@ angular.module( 'trippo', [
   'trippo.city',
   'trippo.plan',
   'ui.router',
-  'trippo.navModule'
+  'trippo.login',
+  'trippo.signup',
+  'common.navModule',
+  'LocalStorageModule',
+  'trippo.profile'
 ])
 
 .config( function myAppConfig ( $stateProvider, $urlRouterProvider ) {

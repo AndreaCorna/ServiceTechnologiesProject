@@ -1,0 +1,41 @@
+<div  class=" timeline-centered"  >
+
+    <div class="row">
+        <div class="timeline-list col-md-4">
+            <div ng-repeat="item in selectedItems"  >
+                <div class="row" >
+                    <div ng-click="setMapsMarker(item)" ng-class="isCurrentMap(item,'marker')? 'selected-color' : getItemClass(item) " class=" timeline-item " >
+                        <div class="row" style="height: 48px;">
+
+                            <h1 class="item-name">{{item.name}}</h1>
+                        </div>
+
+                        <div class="row">
+                            <div class="btn-group">
+
+                                <button class="btn btn-primary btn-outlined z-up" style=";margin-left: 4px;margin-bottom: 5px"  ng-click="setDetails(item)" href="#moreInfoModalPlace" data-toggle="modal">MORE</button>
+                            </div>
+                        </div>
+                    </div>
+                    <article class="timeline-entry" >
+                        <div class="timeline-entry-inner">
+
+                            <div ng-click="setMapsDirections(item,date)"  class="timeline-icon " ng-class="isCurrentMap(item,'direction')? 'icon-selected' : 'icon-not-selected' ">
+                                <i class="entypo-feather"></i>
+                            </div>
+
+
+                        </div>
+
+                    </article>
+
+                </div>
+            </div>
+        </div>
+        <div  id="scrollingMaps" class="col-md-8 " >
+
+            <map-directions origin="origin" map-id="{{mymapid}}" init-position="initPosition"  destination="destination" marker="currentMarker" type="roadmap" class="mapContainer" ></map-directions>
+
+        </div>
+    </div>
+</div>

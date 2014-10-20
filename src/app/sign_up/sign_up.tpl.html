@@ -1,0 +1,44 @@
+<div class="bodyAuth fill">
+
+<form name="signupForm">
+
+    <div class="title">
+        <h1>Register</h1>
+        <hr/>
+    </div>
+
+
+        <div class="emailBody">
+            <input class="form-control" type="email" name="email" ng-model="credentials.email" placeholder="Email" required/>
+        </div>
+        <div class="errorBody">
+            <span class="help-inline" data-ng-show="signupForm.email.$error.required">This is required</span>
+            <span class="help-inline" data-ng-show="signupForm.email.$error.email">Invalid email</span>
+        </div>
+
+        <div class="passwordBody">
+            <input class="form-control" type="password" name="password" id="password" ng-model="credentials.password" placeholder="Password" ng-minlength="8" required/>
+        </div>
+        <div class="errorBody">
+            <span class="help-inline" data-ng-show="signupForm.password.$error.required">This is required</span>
+            <span class="help-inline" data-ng-show="signupForm.password.$error.minlength">Too short. Min length is 8</span>
+        </div>
+
+        <div class="passwordCBody">
+            <input class="form-control" type="password" name="password_confirmation" ng-model="credentials.password_confirmation" pw-check="password" placeholder="Confirm Password" required/>
+        </div>
+        <div class="errorBody">
+            <span class="help-inline" data-ng-show="signupForm.password_confirmation.$error.required">This is required</span>
+            <span class="help-inline" ng-show="signupForm.password_confirmation.$error.pwcheck">Your passwords don't match</span>
+        </div>
+
+        <div class="registerButtons">
+            <button ng-click="register()" class="btn btn-block btn-success" >Register</button>
+            <!-- <button ng-click="change_password()" class="btn btn-primary" >Change Password</button> -->
+        </div>
+
+        <div>
+            <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+        </div>
+ </form>
+</div>

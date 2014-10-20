@@ -1,5 +1,2 @@
 module CultureHelper
-
-
-
 end
