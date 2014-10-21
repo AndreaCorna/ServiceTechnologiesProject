@@ -31,20 +31,7 @@ angular.module( 'trippo.profile', [
         $scope.login_error = {message: null, errors: {}};
         $scope.credentials = {email: null, password: null};
 
-        $scope.login = function(){
-             Auth.login($scope.credentials).then(function(user){
-                 console.log(user);
-             }, function(error){
 
-                 });
-             $scope.$on('devise:login', function(event, currentUser) {
-                 // after a login, a hard refresh, a new tab
-             });
-
-             $scope.$on('devise:new-session', function(event, currentUser) {
-                 // user logged in by Auth.login({...})
-             });
-            };
         /*
         $scope.login = function() {
             $scope.submit({method: 'POST',
@@ -65,9 +52,8 @@ angular.module( 'trippo.profile', [
                 // after a login, a hard refresh, a new tab
                 localStorageService.set('auto', true);
                 $rootScope.auto = localStorageService.get('auto');
-                $scope.alerts = [
-                    { type: 'success', msg: "you're logged in!! Yeeeee" }
-                ];
+                $location.path("/home");
+
             });
 
             $scope.$on('devise:new-session', function(event, currentUser) {
@@ -130,6 +116,7 @@ angular.module( 'trippo.profile', [
                 // ...
                 localStorageService.set('auto', false);
                 $rootScope.auto = localStorageService.get('auto');
+                $location.path("/home");
             });
         };
 

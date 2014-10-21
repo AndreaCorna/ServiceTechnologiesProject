@@ -2356,7 +2356,9 @@ angular.module("log_in/log_in.tpl.html", []).run(["$templateCache", function($te
     "                <a class=\"btn btn-block btn-google\" href=\"http://localhost:3000/users/auth/google_oauth2\"><i class=\"fa fa-google-plus\"></i></a>\n" +
     "            </div>\n" +
     "\n" +
-    "\n" +
+    "            <div>\n" +
+    "                <alert ng-repeat=\"alert in alerts\" type=\"{{alert.type}}\" close=\"closeAlert($index)\">{{alert.msg}}</alert>\n" +
+    "            </div>\n" +
     "        </div>\n" +
     "    </form>\n" +
     "</div>\n" +
