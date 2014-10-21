@@ -16,14 +16,7 @@
     <!-- compiled JavaScript --><% scripts.forEach( function ( file ) { %>
     <script type="text/javascript" src="<%= file %>"></script><% }); %>
 
-    <!-- prevent login modal to dissappear when clicj -->
-    <script>
-        $(function() {
-            // Fix input element click problem
-            $('.dropdown input').click(function(e) {
-                e.stopPropagation();
-            });
-        });</script>
+
 </head>
 <body>
 <nav role="navigation" class="navbar navbar-inverse navbar-static-top no_margin" ng-controller="navCtrl as nav" ng-init="showAuth()" >
@@ -45,8 +38,10 @@
             <li ng-class="{ active: isActive('/home')}" class="navbar-item"><a href="#">Home</a></li>
 
             <li class="dropdown navbar-item" ng-show="auto">
-                <a data-toggle="dropdown" class="dropdown-toggle" href="#">Current trips<b class="caret"></b></a>
-                <ul role="menu" class="dropdown-menu"></ul>
+                <a data-toggle="dropdown" class="dropdown-toggle" href="#">Current Trips <b class="caret"></b></a>
+                <ul role="menu" class="dropdown-menu">
+                    <li ng-repeat="city in curTrips"><a ui-sref="guides({city_name: city})">{{city.toUpperCase()}}</a></li>
+                </ul>
             </li>
 
             <li ng-show="auto" ng-class="{ active: isActive('/profile')}"><a ui-sref="profile" class="navbar-item">Profile</a></li>

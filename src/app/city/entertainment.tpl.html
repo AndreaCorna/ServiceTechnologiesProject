@@ -30,9 +30,9 @@
                                 <div ng-if="c.photos.length==0">
                                     <img style="height: 220px;  width:100%;" ng-src="assets/images/empty_photo.png" >
                                 </div>
-                                <slide ng-repeat="image in c.photos" active="image.active">
+                                <div ng-if="c.photos.length!=0">
                                     <img  style="height: 220px;  width:100%;" ng-src="{{c.photos[0].image}}" >
-                                </slide>
+                                </div>
                             </div>
                         </div>
                         <div class="col-sm-7 col-md-7" style="height:230px">
@@ -104,9 +104,9 @@
                                     <div ng-if="c.photos.length==0">
                                         <img style="height: 220px;  width:100%;" ng-src="assets/images/empty_photo.png" >
                                     </div>
-                                    <slide ng-repeat="image in c.photos" active="image.active">
+                                    <div ng-if="c.photos.length!=0">
                                         <img  style="height: 220px;  width:100%;" ng-src="{{c.photos[0].image}}" >
-                                    </slide>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-sm-7 col-md-7" style="height:230px">
