@@ -197,11 +197,7 @@ angular.module( 'trippo.guide', [
 
 .controller('GuideCtrl', function GuideCtrl($http,$location,$scope,GuideService,$stateParams,DatesService) {
 
-    /* this method has to be copied where i want to share the guide
-    $scope.share = function () {
-        $http.put('/guides/'+$stateParams.id,{share:true});
-    };
-    */
+
 
 
     GuideService.initGuide($stateParams.id,function(){

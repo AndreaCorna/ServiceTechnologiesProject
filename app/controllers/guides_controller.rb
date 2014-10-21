@@ -41,6 +41,7 @@ class GuidesController < ApplicationController
   end
 
   # POST /guides/:id
+  #create in the db a guide object if some parameter s are provided
   def create
     puts params
     guide = Guide.new
@@ -179,6 +180,12 @@ class GuidesController < ApplicationController
 
   # search  a guide by the id passed and set the shared param
   # accordingly the value of the share parameter
+  # PUT guides/:id
+  # Angular example
+  #  $scope.share = function () {
+  #      $http.put('/guides/'+$stateParams.id,{share:true});
+  # };
+
   def update
     puts 'update'
     id = params['id']
@@ -197,6 +204,8 @@ class GuidesController < ApplicationController
 
   end
 
+  #delete a guide with id
+  #DELETE  guides/:id
   def destroy
     id = params['id']
     guide = Guide.find(id)
