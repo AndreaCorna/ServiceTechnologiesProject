@@ -2357,15 +2357,72 @@ angular.module("log_in/log_in.tpl.html", []).run(["$templateCache", function($te
     "        </div>\n" +
     "    </form>\n" +
     "</div>\n" +
-    "</div>");
+    "</div>\n" +
+    "");
 }]);
 
 angular.module("log_in/profile.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("log_in/profile.tpl.html",
-    "<div>\n" +
-    "   Ciao {{email}}, come va?\n" +
+    "<div class=\"topEmail\">\n" +
+    "   <i> {{email}} </i>\n" +
     "</div>\n" +
-    "");
+    "\n" +
+    "<div class=\"row\">\n" +
+    "    <div class=\"well\">\n" +
+    "        <h1 class=\"text-center capriola\" >Your Guides</h1>\n" +
+    "        <div class=\"list-group\">\n" +
+    "            <div  ng-repeat=\"item in guides\" >\n" +
+    "                <div class=\"list-group-item list-guides\">\n" +
+    "                    <div class=\" bgc-fff pad-10 property-listing\">\n" +
+    "                        <div class=\"media\">\n" +
+    "                            <div class=\"col-sm-3 col-md-3\">\n" +
+    "                                <div class=\"panel panel-default\">\n" +
+    "                                    <div class=\"panel-body image-panel\">\n" +
+    "                                        <carousel interval=\"intervalImages\">\n" +
+    "                                            <div ng-if=\"!item.image\">\n" +
+    "                                                <img class=\"image-item\" ng-src=\"assets/images/empty_photo.png\">\n" +
+    "                                            </div>\n" +
+    "                                            <div ng-if=\"item.image\">\n" +
+    "                                                <img style=\"height: 220px;  width:100%;\" ng-src=\"{{item.image}}\" >\n" +
+    "                                            </div>\n" +
+    "                                        </carousel>\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                            <div class=\"clearfix visible-sm\"></div>\n" +
+    "                            <div class=\"col-md-7 capriola\" style=\"height:230px\">\n" +
+    "                                <p class=\"list-group-item-text\">\n" +
+    "                                <div class=\"row\">\n" +
+    "                                    <b class=\"text-capitalize\">{{item.name}}</b>\n" +
+    "                                </div>\n" +
+    "                                <div class=\"row\" style=\"margin-top: 5px\">\n" +
+    "                                    <div class=\"col-sm-12 col-md-12 panel panel-default scrollable\" style=\"max-height: 165px;overflow-y: auto\">\n" +
+    "                                        <div class=\"text-justify capriola\" >\n" +
+    "                                            <div ng-if=\"!item.description\">\n" +
+    "                                                <p>No description available</p>\n" +
+    "                                            </div>\n" +
+    "                                            <div ng-if=\"item.description\">\n" +
+    "                                                <div class=\"text-justify \" >{{item.description}}</div>\n" +
+    "                                            </div>\n" +
+    "                                        </div>\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                                </p>\n" +
+    "                            </div>\n" +
+    "                            <div class=\"col-sm-2 col-md-2\">\n" +
+    "                                <div class=\"row text-center\" style=\"padding-top: 50%;padding-bottom: 50%\">\n" +
+    "                                    <div class=\"col-md-12\">\n" +
+    "                                        <button class=\"btn btn-primary pull-right\"   ng-click=\"moreInfo(item.id)\" >MORE INFO</button>\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>");
 }]);
 
 angular.module("plan_trip/createtrip.tpl.html", []).run(["$templateCache", function($templateCache) {

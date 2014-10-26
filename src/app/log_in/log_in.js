@@ -1,5 +1,5 @@
 
-angular.module( 'trippo.profile', [
+angular.module( 'trippo.login', [
     'Devise'
 ])
 
