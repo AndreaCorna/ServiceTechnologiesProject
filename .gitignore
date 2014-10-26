@@ -35,3 +35,11 @@ vendor/
 Rubiter.iml
 
 src/ServiceTechnologiesProject.iml
+
+app/app.iml
+
+config/config.iml
+
+db/db.iml
+
+dump.rdb
