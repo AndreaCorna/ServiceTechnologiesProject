@@ -59,6 +59,9 @@ angular.module('trippo.resources', [
 
 .factory('SharedGuideRes', function ($resource,ResourceBaseUrl) {
     var  shared_guide = $resource(ResourceBaseUrl.val+"city/:city_name/shared_guide" );
+
+
+
     return shared_guide;
 })
 
