@@ -62,6 +62,12 @@ angular.module('trippo.resources', [
     return shared_guide;
 })
 
+.factory('ProfileGuideRes', function ($resource, ResourceBaseUrl) {
+    var guides = $resource(ResourceBaseUrl.val+"guides");
+        return guides;
+    }
+)
+
 
 .factory('commonResources',function(FoodRes,HotelRes,EntertainmentRes,CultureRes){
       return{

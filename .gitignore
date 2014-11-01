@@ -39,4 +39,15 @@ node_modules/
 Rubiter.iml
 
 src/ServiceTechnologiesProject.iml
+<<<<<<< HEAD
+>>>>>>> master
+=======
+
+app/app.iml
+
+config/config.iml
+
+db/db.iml
+
+dump.rdb
 >>>>>>> master
