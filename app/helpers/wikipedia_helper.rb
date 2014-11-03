@@ -23,9 +23,10 @@ parameters.
         key =  data_json.fetch('query').fetch('pages').keys
         string =  data_json['query']['pages'][key.to_param]['extract']
         description  = string.strip_tags
-
       end
     }
+    rescue Timeout::Error
+      return description
     return description
   end
 
