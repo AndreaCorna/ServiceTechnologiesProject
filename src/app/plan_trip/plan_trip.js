@@ -509,7 +509,7 @@ angular.module('trippo.plan',[
 
 })
 
-.controller('CreateTripCtrl',function CreateTripCtrl($stateParams,$scope,$location,DatesService,CityPlanningService,PlanningService, StubHandler,ModalHandler,commonResources,GuideRes){
+.controller('CreateTripCtrl',function CreateTripCtrl($stateParams,$scope,$location,DatesService,CityPlanningService,PlanningService, StubHandler,ModalHandler,commonResources,GuideRes,SelectionService){
         $scope.dateFormat = DatesService.dateFormat;
 
 
@@ -628,7 +628,10 @@ angular.module('trippo.plan',[
                     else{
                         CityPlanningService.removeRangeDatesCity($stateParams.city_name) ;
                         //redirect to user home when it will be
-                        $location.path('/city/' + $stateParams.city_name + "/guides");
+                        $location.path('/profile');
+                        //clear all the selection of this city
+                        SelectionService.clearAllSelection($stateParams.city_name )  ;
+
 
 
                     }
