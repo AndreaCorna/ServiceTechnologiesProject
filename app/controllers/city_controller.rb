@@ -15,6 +15,7 @@ The method returns the details of the city passed as parameter in the url.
 =end
   def show
     details = []
+
     param_city =params[:id].downcase
     city = City.find_by_name(param_city)
     puts city_culture_path(:city_id=>param_city).gsub(/\/[^\/]*$/,'')   #trick because not having decleared the route as plurals I don't have the helper method for the index

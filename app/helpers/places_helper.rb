@@ -8,6 +8,7 @@ require 'timeout'
 module PlacesHelper
 
   module UtilityHelperCity
+  include Rails.application.routes.url_helpers
 
 =begin
 The method returns the utility items of the city passed as param.
@@ -42,7 +43,7 @@ The result is an object with two elements:
             }
           end
           description = get_description(place.name,city)
-          results.append(UtilityItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'utility',description))}
+          results.append(UtilityItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'utility',description,city_utility_url(city,place.place_id)))}
       }
       threads.each do |thread|
         thread.join
@@ -81,7 +82,7 @@ The result is an object with two elements:
             }
           end
           description = get_description(place.name,city)
-          results.append(UtilityItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'utility',description))}
+          results.append(UtilityItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'utility',description,city_utility_url(city,place.place_id)))}
       }
       threads.each do |thread|
         thread.join
@@ -95,7 +96,7 @@ The result is an object with two elements:
     class UtilityItem
       attr_accessor :id,:lat,:lng,:price,:rating,:name,:photos,:icon,:tag,:description;
 
-      def initialize(lat,lng,name,rating,price,photos,icon,place_id,tag,description)
+      def initialize(lat,lng,name,rating,price,photos,icon,place_id,tag,description,link)
         @id = place_id
         @lat = lat;
         @lng = lng;
@@ -106,6 +107,7 @@ The result is an object with two elements:
         @icon = icon;
         @tag = tag;
         @description = description;
+        @link = link;
 
       end
     end
@@ -148,7 +150,7 @@ The result is an object with two elements:
             }
           end
           description = get_description(place.name,city)
-          results.append(CultureItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'culture',description))}
+          results.append(CultureItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'culture',description,city_culture_url(city,place.place_id)))}
       }
       threads.each do |thread|
         thread.join
@@ -188,7 +190,7 @@ The result is an object with two elements:
             }
           end
           description = get_description(place.name,city)
-          results.append(CultureItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'culture',description))}
+          results.append(CultureItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'culture',description,city_culture_url(city,place.place_id)))}
       }
       threads.each do |thread|
         thread.join
@@ -201,7 +203,7 @@ The result is an object with two elements:
     class CultureItem
       attr_accessor :id,:lat,:lng,:price,:rating,:name,:photos,:icon,:tag,:description;
 
-      def initialize(lat,lng,name,rating,price,photos,icon,place_id,tag,description)
+      def initialize(lat,lng,name,rating,price,photos,icon,place_id,tag,description,link)
         @id = place_id
         @lat = lat;
         @lng = lng;
@@ -212,6 +214,7 @@ The result is an object with two elements:
         @icon = icon;
         @tag = tag;
         @description = description;
+        @link = link;
 
       end
 
@@ -254,7 +257,7 @@ The result is an object with two elements:
             }
           end
           description = get_description(place.name,city)
-          results.append(EntertainmentItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'entertainment',description))}
+          results.append(EntertainmentItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'entertainment',description,city_entertainment_url(city,place.place_id)))}
       }
       threads.each do |thread|
         thread.join
@@ -294,7 +297,7 @@ The result is an object with two elements:
             }
           end
           description = get_description(place.name,city)
-          results.append(EntertainmentItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'entertainment',description))}
+          results.append(EntertainmentItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'entertainment',description,city_entertainment_url(city,place.place_id)))}
       }
       threads.each do |thread|
         thread.join
@@ -308,7 +311,7 @@ The result is an object with two elements:
     class EntertainmentItem
       attr_accessor :id,:lat,:lng,:price,:rating,:name,:photos,:icon,:tag,:description;
 
-      def initialize(lat,lng,name,rating,price,photos,icon,place_id,tag,description)
+      def initialize(lat,lng,name,rating,price,photos,icon,place_id,tag,description,link)
         @id = place_id
         @lat = lat;
         @lng = lng;
@@ -319,6 +322,7 @@ The result is an object with two elements:
         @icon = icon;
         @tag = tag;
         @description = description;
+        @link = link ;
 
       end
     end
@@ -358,7 +362,7 @@ The items' types are:
             }
           end
           description = get_description(place.name,city)
-          results.append(FoodItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'food',description))}
+          results.append(FoodItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'food',description,city_food_url(city,place.place_id)))}
       }
       threads.each do |thread|
         thread.join
@@ -398,7 +402,7 @@ The result is an object with two elements:
             }
           end
           description = get_description(place.name,city)
-          results.append(FoodItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'food',description))}
+          results.append(FoodItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'food',description,city_food_url(city,place.place_id)))}
       }
       threads.each do |thread|
         thread.join
@@ -411,7 +415,7 @@ The result is an object with two elements:
     class FoodItem
       attr_accessor :id,:lat,:lng,:price,:rating,:name,:photos,:icon,:tag,:description;
 
-      def initialize(lat,lng,name,rating,price,photos,icon,place_id,tag,description)
+      def initialize(lat,lng,name,rating,price,photos,icon,place_id,tag,description,link)
         @id = place_id
         @lat = lat;
         @lng = lng;
@@ -422,6 +426,7 @@ The result is an object with two elements:
         @icon = icon;
         @tag = tag;
         @description = description;
+        @link = link;
 
       end
     end
