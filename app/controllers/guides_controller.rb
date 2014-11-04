@@ -64,7 +64,7 @@ class GuidesController < ApplicationController
     guide.description=params['description']
     guide.city = params['city']
     guide.user_id = current_user.id
-    if(params['image']=~/(\.|\/)(gif|jpe?g|png)$/ )
+    if(params['image'].downcase=~/(\.|\/)(gif|jpe?g|png)$/ )
       guide.image = params['image']
       puts guide.image
     end
