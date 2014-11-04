@@ -49,7 +49,11 @@ The result is an object with two elements:
         thread.join
       end
       json = []
-      json.append({:results=>results,:token=>next_page_token})
+      if (results.length != 0)
+        json.append({:results=>results,:token=>next_page_token})
+      else
+        json.append(nil)
+      end
       return json
 
     end
@@ -88,7 +92,11 @@ The result is an object with two elements:
         thread.join
       end
       json = []
-      json.append({:results=>results,:token=>next_page_token})
+      if (results.length != 0)
+        json.append({:results=>results,:token=>next_page_token})
+      else
+        json.append(nil)
+      end
       return json
 
     end
@@ -156,7 +164,11 @@ The result is an object with two elements:
         thread.join
       end
       json = []
-      json.append({:results=>results,:token=>next_page_token})
+      if (results.length != 0)
+        json.append({:results=>results,:token=>next_page_token})
+      else
+        json.append(nil)
+      end
       return json
 
     end
@@ -196,7 +208,11 @@ The result is an object with two elements:
         thread.join
       end
       json = []
-      json.append({:results=>results,:token=>next_page_token})
+      if (results.length != 0)
+        json.append({:results=>results,:token=>next_page_token})
+      else
+        json.append(nil)
+      end
       return json
     end
 
@@ -263,7 +279,11 @@ The result is an object with two elements:
         thread.join
       end
       json = []
-      json.append({:results=>results,:token=>next_page_token})
+      if (results.length != 0)
+        json.append({:results=>results,:token=>next_page_token})
+      else
+        json.append(nil)
+      end
       return json
 
     end
@@ -303,7 +323,11 @@ The result is an object with two elements:
         thread.join
       end
       json = []
-      json.append({:results=>results,:token=>next_page_token})
+      if (results.length != 0)
+        json.append({:results=>results,:token=>next_page_token})
+      else
+        json.append(nil)
+      end
       return json
     end
 
@@ -368,7 +392,11 @@ The items' types are:
         thread.join
       end
       json = []
-      json.append({:results=>results,:token=>next_page_token})
+      if (results.length != 0)
+        json.append({:results=>results,:token=>next_page_token})
+      else
+        json.append(nil)
+      end
       return json
 
     end
@@ -408,7 +436,11 @@ The result is an object with two elements:
         thread.join
       end
       json = []
-      json.append({:results=>results,:token=>next_page_token})
+      if (results.length != 0)
+        json.append({:results=>results,:token=>next_page_token})
+      else
+        json.append(nil)
+      end
       return json
     end
 
