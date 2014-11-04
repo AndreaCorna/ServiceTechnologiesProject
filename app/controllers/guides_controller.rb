@@ -73,10 +73,10 @@ class GuidesController < ApplicationController
       if not day['schedule'].nil?
         day['schedule'].each { |curr_place|
           #check if exist a place in db with same name and google id if not create a new object
-
+          curr_place['id'] =curr_place['id'].to_s #avoind problem with id of hotels which are integer
           place =  PlaceSummary.where(:google_id => curr_place['id'] , :name => curr_place['name']).first_or_initialize do |place|
             puts 'current place'
-            puts curr_place
+
             place.name = curr_place['name']
             place.lat = curr_place['lat']
             place.lng = curr_place['lng']
