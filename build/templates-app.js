@@ -2431,8 +2431,9 @@ angular.module("log_in/log_in.tpl.html", []).run(["$templateCache", function($te
     "            </div>\n" +
     "\n" +
     "            <div class=\"socialButtons\">\n" +
-    "                <a class=\"btn btn-block btn-facebook\" href=\"http://localhost:3000/users/auth/facebook\"><i class=\"fa fa-facebook\"></i></a>\n" +
-    "                <a class=\"btn btn-block btn-google\" href=\"http://localhost:3000/users/auth/google_oauth2\"><i class=\"fa fa-google-plus\"></i></a>\n" +
+    "                dsadas\n" +
+    "                <a class=\"btn btn-block btn-facebook\" href=\"../../users/auth/facebook\"><i class=\"fa fa-facebook\"></i></a>\n" +
+    "                <a class=\"btn btn-block btn-google\" href=\"../../users/auth/google_oauth2\"><i class=\"fa fa-google-plus\"></i></a>\n" +
     "            </div>\n" +
     "\n" +
     "\n" +
