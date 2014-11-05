@@ -851,6 +851,23 @@ angular.module("city/culture.tpl.html", []).run(["$templateCache", function($tem
     "                    </div>\n" +
     "        </span>\n" +
     "        </div>\n" +
+    "        <div ng-if=\"infiniteScroll.itemList.length ==0\">\n" +
+    "            <div class=\"row capriola\">\n" +
+    "                <div class=\"col-md-4\">\n" +
+    "                    <img ng-src=\"assets/images/no_api.png\" >\n" +
+    "                </div>\n" +
+    "                <div class=\"col-md-8\">\n" +
+    "                    <br>\n" +
+    "                    <br>\n" +
+    "                    <br>\n" +
+    "                    <br>\n" +
+    "                    <br>\n" +
+    "                    <h3 class=\"text-center\" style=\"vertical-align: middle;\"> At this time API not respond, please reload the page</h3>\n" +
+    "                    <br>\n" +
+    "                    <br>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
     "        <div class=\"list-group\">\n" +
     "            <div ng-show=\"infiniteScroll.itemList != null && infiniteScroll.itemList.length !=0\">\n" +
     "                <div class=\"panel panel-default\">\n" +
@@ -1032,7 +1049,23 @@ angular.module("city/entertainment.tpl.html", []).run(["$templateCache", functio
     "                    </div>\n" +
     "                </span>\n" +
     "            </div>\n" +
-    "\n" +
+    "        <div ng-if=\"infiniteScroll.itemList.length ==0\">\n" +
+    "            <div class=\"row capriola\">\n" +
+    "                <div class=\"col-md-4\">\n" +
+    "                    <img ng-src=\"assets/images/no_api.png\" >\n" +
+    "                </div>\n" +
+    "                <div class=\"col-md-8\">\n" +
+    "                    <br>\n" +
+    "                    <br>\n" +
+    "                    <br>\n" +
+    "                    <br>\n" +
+    "                    <br>\n" +
+    "                    <h3 class=\"text-center\" style=\"vertical-align: middle;\"> At this time API not respond, please reload the page</h3>\n" +
+    "                    <br>\n" +
+    "                    <br>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
     "        <div class=\"list-group\">\n" +
     "            <div ng-show=\"infiniteScroll.itemList != null && infiniteScroll.itemList.length !=0\">\n" +
     "                <div class=\"panel panel-default\">\n" +
@@ -1209,6 +1242,23 @@ angular.module("city/food.tpl.html", []).run(["$templateCache", function($templa
     "                    </div>\n" +
     "                </div>\n" +
     "            </span>\n" +
+    "        </div>\n" +
+    "        <div ng-if=\"infiniteScroll.itemList.length ==0\">\n" +
+    "            <div class=\"row capriola\">\n" +
+    "                <div class=\"col-md-4\">\n" +
+    "                    <img ng-src=\"assets/images/no_api.png\" >\n" +
+    "                </div>\n" +
+    "                <div class=\"col-md-8\">\n" +
+    "                    <br>\n" +
+    "                    <br>\n" +
+    "                    <br>\n" +
+    "                    <br>\n" +
+    "                    <br>\n" +
+    "                    <h3 class=\"text-center\" style=\"vertical-align: middle;\"> At this time API not respond, please reload the page</h3>\n" +
+    "                    <br>\n" +
+    "                    <br>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
     "        </div>\n" +
     "        <div class=\"list-group\">\n" +
     "            <div ng-show=\"infiniteScroll.itemList != null && infiniteScroll.itemList.length !=0\">\n" +
@@ -1999,6 +2049,23 @@ angular.module("city/hotel.tpl.html", []).run(["$templateCache", function($templ
     "                </div>\n" +
     "            </span>\n" +
     "    </div>\n" +
+    "        <div ng-if=\"infiniteScroll.itemList.length ==0\">\n" +
+    "            <div class=\"row capriola\">\n" +
+    "                <div class=\"col-md-4\">\n" +
+    "                    <img ng-src=\"assets/images/no_api.png\" >\n" +
+    "                </div>\n" +
+    "                <div class=\"col-md-8\">\n" +
+    "                    <br>\n" +
+    "                    <br>\n" +
+    "                    <br>\n" +
+    "                    <br>\n" +
+    "                    <br>\n" +
+    "                    <h3 class=\"text-center\" style=\"vertical-align: middle;\"> At this time API not respond, please reload the page</h3>\n" +
+    "                    <br>\n" +
+    "                    <br>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
     "        <div class=\"list-group\">\n" +
     "            <div ng-show=\"infiniteScroll.itemList != null && infiniteScroll.itemList.length !=0\">\n" +
     "                <div class=\"panel panel-default\">\n" +
@@ -2175,6 +2242,23 @@ angular.module("city/utility.tpl.html", []).run(["$templateCache", function($tem
     "                    </div>\n" +
     "                </div>\n" +
     "            </span>\n" +
+    "        </div>\n" +
+    "        <div ng-if=\"infiniteScroll.itemList.length ==0\">\n" +
+    "            <div class=\"row capriola\">\n" +
+    "                <div class=\"col-md-4\">\n" +
+    "                    <img ng-src=\"assets/images/no_api.png\" >\n" +
+    "                </div>\n" +
+    "                <div class=\"col-md-8\">\n" +
+    "                    <br>\n" +
+    "                    <br>\n" +
+    "                    <br>\n" +
+    "                    <br>\n" +
+    "                    <br>\n" +
+    "                    <h3 class=\"text-center\" style=\"vertical-align: middle;\"> At this time API not respond, please reload the page</h3>\n" +
+    "                    <br>\n" +
+    "                    <br>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
     "        </div>\n" +
     "        <div class=\"list-group\">\n" +
     "            <div ng-show=\"infiniteScroll.itemList != null && infiniteScroll.itemList.length !=0\">\n" +
