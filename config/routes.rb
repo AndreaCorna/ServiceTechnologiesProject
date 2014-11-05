@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
-
-
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
 
 
@@ -61,23 +60,24 @@ Rails.application.routes.draw do
   #   end
 
   root 'home#index'
+  get 'guides/s3', :to => 'guides#s3_direct_post'
 
 
 
-  resources :city, :only => [:index , :show,]    do
+  resources :city, :only => [:index , :show]    do
+
     resources :hotels    ,  :only => [:index,:show]
     resources :culture   ,  :only => [:index,:show]
     resources :entertainment  ,  :only => [:index,:show]
     resources :utility  ,  :only => [:index,:show]
-    resources  :food     ,  :only => [:index,:show]
+    resources :food     ,  :only => [:index,:show]
+    resources :shared_guide ,   :only => [:index]
 
   end
 
   resources :guides
 
   get 'populate', :to => 'city#populate'
-
-
 
 
 end

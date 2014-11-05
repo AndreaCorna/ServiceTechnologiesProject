@@ -1,76 +1,93 @@
-<div class="top-view">
+<div class="background-page">
+<div class="top-view ">
     <div class="container " >
         <h3 class="text-capitalize text-center" style="font-family: Capriola;">Welcome to {{city.name}}</h3>
-        <div class="row background-carousel">
-        <carousel interval="intervalImages" class="carousel-fixed-height col-md-8 col-md-offset-2" style="padding: 0px">
-            <slide ng-repeat="image in images" active="image.active" style=" height:100%;width:100%;">
-                <img ng-src="{{image.url}}" style=" height:100%;width:100%;" >
-            </slide>
-        </carousel>
+        <div ng-if="isGuides()">
+            <div class="row ">
+                <carousel interval="intervalImages" class="carousel-fixed-height col-md-8 col-md-offset-2" style="padding: 0px">
+                    <slide ng-repeat="image in images" active="image.active" class="carousel-fixed-height" style="width:100%;">
+                        <img ng-src="{{image.url}}" class="carousel-fixed-height" style="width:100%;" >
+                    </slide>
+                </carousel>
+            </div>
+        </div>
+        <div ng-if="!isGuides()"  >
+            <map-markers marker-array-selected="markerArraySelected" init-position="getCityName()" marker-array-list="markerArrayList" map-id="cityMap"  type="roadmap" class="mapContainer" ></map-markers>
         </div>
     </div>
 </div>
 
-<div id='cssmenu'>
-    <ul>
-        <li class='active'><a ui-sref="culture" data-target="#" data-toggle="pill"><span>Culture</span></a></li>
-        <li><a ui-sref="entertainment" data-target="#" data-toggle="pill"><span>Entertainment</span></a></li>
-        <li><a ui-sref="hotel" data-target="#" data-toggle="pill"><span>Hotel</span></a></li>
-        <li><a ui-sref="utility" data-target="#" data-toggle="pill"><span>Utility</span></a></li>
-        <li><a ui-sref="food" data-target="#" data-toggle="pill"><span>Food</span></a></li>
-
-
-        <li class='last'><a ui-sref="dates" data-target="#" data-toggle="pill"><span>Plan Trip</span></a></li>
-    </ul>
-
+<div class="container ">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+    </div>
+    <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav nav-justified capriola" style="font-size: 20px">
+            <li><a ui-sref="guides"  data-target="#" data-toggle="pill"><span>Guides</span></a></li>
+            <li><a ui-sref="culture" ng-click="setCurrentList('culture')" data-target="#" data-toggle="pill"><span>Culture</span></a></li>
+            <li><a ui-sref="entertainment" ng-click="setCurrentList('entertainment')" data-target="#" data-toggle="pill"><span>Entertainment</span></a></li>
+            <li><a ui-sref="hotel" ng-click="setCurrentList('hotel')" data-target="#" data-toggle="pill"><span>Hotel</span></a></li>
+            <li><a ui-sref="utility" ng-click="setCurrentList('utility')" data-target="#" data-toggle="pill"><span>Utility</span></a></li>
+            <li><a ui-sref="food" ng-click="setCurrentList('food')" data-target="#" data-toggle="pill"><span>Food</span></a></li>
+            <li class='last'><a ui-sref="dates" data-target="#" data-toggle="pill"><span>Plan Trip</span></a></li>
+        </ul>
+    </div>
 </div>
 
 <div class="container">
     <div ui-view="content" class="fill"></div>
 </div>
+</div>
 
 
-
-    <div class="modal fade" ng-controller="ModalCtrl" id="moreInfoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade" ng-controller="ModalCtrl" id="moreInfoModalPlace" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                     <div ng-show="modalEnabled">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" ng-click="disableModal()"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                            <h4 class="modal-title" id="myModalLabel">More Information about {{moreInfoSelection.name}}</h4>
+                            <h4 class="modal-title capriola" id="myModalLabel">More Information about {{moreInfoSelection.name}}</h4>
                         </div>
                     </div>
                     <div class="modal-body">
                         <div ng-show="modalEnabled">
-                            <div class="container-fluid">
+                            <div class="container-fluid capriola">
                             <div class="row">
-                                <div class="col-lg-6" >
+                                <div class="col-sm-6 col-md-6 capriola" >
                                     <div class="row">
                                         <b>Rating</b>
                                     </div>
                                     <div class="row">
-                                        {{moreInfoSelection.rating || 'Unknown'}}
+                                        <rating ng-model="moreInfoSelection.rating" readonly="true" max=5></rating>
                                     </div>
                                 </div>
-                                <div class="col-lg-6">
-                                    <div class="row">
-                                        <b>Price</b>
-                                    </div>
-                                    <div class="row">
-                                        {{moreInfoSelection.price || 'Unknown'}}
+                                <div class="col-sm-6 col-md-6">
+                                    <div ng-show="moreInfoSelection.price != null">
+                                        <div class="row">
+                                            <b>Price</b>
+                                        </div>
+                                        <div class="row">
+                                            {{moreInfoSelection.price}}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-lg-6" >
-                                    <div class="row">
-                                        <b>Phone</b>
-                                    </div>
-                                    <div class="row">
-                                        {{moreInfoSelection.international_phone}}
+                                <div class="col-sm-6 col-md-6" >
+                                    <div ng-show="moreInfoSelection.international_phone != null">
+                                        <div class="row">
+                                            <b>Phone</b>
+                                        </div>
+                                        <div class="row">
+                                            {{moreInfoSelection.international_phone}}
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-6">
+                                <div class="col-sm-6 col-md-6">
                                     <div class="row">
                                         <b>Address</b>
                                     </div>
@@ -80,63 +97,140 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-lg-12" >
+                                <div class="col-sm-12 col-md-12" >
                                     <div class="row">
                                         <b>Web Site</b>
                                     </div>
-                                    <div class="row">
-                                        {{moreInfoSelection.web_site}}
+                                    <div class="row" style="word-wrap: break-word;">
+                                        <a target="_blank" ng-href="{{moreInfoSelection.web_site}}">{{moreInfoSelection.web_site}}</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-show="moreInfoSelection.open_hours != null">
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-12">
+                                        <div class="text-capitalize text-center">
+                                            <b>Open Hours</b>
+                                        </div>
+                                    </div>
+                                    <div ng-show="moreInfoSelection.open_hours[0].hours[0].close != null">
+                                        <div class="col-sm-3 col-md-3" >
+                                            <div class="panel panel-info">
+                                                <div>
+                                                    <div class="text-center">Sunday</div>
+                                                    <div class="text-center" ng-repeat="couple in moreInfoSelection.open_hours[0].hours">
+                                                        {{couple.open}} - {{couple.close}}
+                                                    </div>
+                                                    <div ng-if="moreInfoSelection.open_hours[0] == null">
+                                                        <div class="text-center">
+                                                            <b>Closed</b>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3 col-md-3" >
+                                            <div class="panel panel-info">
+                                                <div>
+                                                    <div class="text-center">Monday</div>
+                                                    <div class="text-center" ng-repeat="couple in moreInfoSelection.open_hours[1].hours">
+                                                        {{couple.open}} - {{couple.close}}
+                                                    </div>
+                                                    <div ng-if="moreInfoSelection.open_hours[1] == null">
+                                                        <div class="text-center">
+                                                            <b>Closed</b>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3 col-md-3" >
+                                            <div class="panel panel-info">
+                                                <div>
+                                                    <div class="text-center">Tuesday</div>
+                                                    <div class="text-center" ng-repeat="couple in moreInfoSelection.open_hours[2].hours">
+                                                        {{couple.open}} - {{couple.close}}
+                                                    </div>
+                                                    <div ng-if="moreInfoSelection.open_hours[2] == null">
+                                                        <div class="text-center">
+                                                            <b>Closed</b>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3 col-md-3" >
+                                            <div class="panel panel-info">
+                                                <div>
+                                                    <div class="text-center">Wednesday</div>
+                                                    <div class="text-center" ng-repeat="couple in moreInfoSelection.open_hours[3].hours">
+                                                        {{couple.open}} - {{couple.close}}
+                                                    </div>
+                                                    <div ng-if="moreInfoSelection.open_hours[3] == null">
+                                                        <div class="text-center">
+                                                            <b>Closed</b>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3 col-md-3" >
+                                            <div class="panel panel-info">
+                                                <div>
+                                                    <div class="text-center">Thursday</div>
+                                                    <div class="text-center" ng-repeat="couple in moreInfoSelection.open_hours[4].hours">
+                                                        {{couple.open}} - {{couple.close}}
+                                                    </div>
+                                                    <div ng-if="moreInfoSelection.open_hours[4] == null">
+                                                        <div class="text-center">
+                                                            <b>Closed</b>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3 col-md-3" >
+                                            <div class="panel panel-info">
+                                                <div>
+                                                    <div class="text-center">Friday</div>
+                                                    <div class="text-center" ng-repeat="couple in moreInfoSelection.open_hours[5].hours">
+                                                        {{couple.open}} - {{couple.close}}
+                                                    </div>
+                                                    <div ng-if="moreInfoSelection.open_hours[5] == null">
+                                                        <div class="text-center">
+                                                            <b>Closed</b>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3 col-md-3" >
+                                            <div class="panel panel-info">
+                                                <div>
+                                                    <div class="text-center">Saturday</div>
+                                                    <div class="text-center" ng-repeat="couple in moreInfoSelection.open_hours[6].hours">
+                                                        {{couple.open}} - {{couple.close}}
+                                                    </div>
+                                                    <div ng-if="moreInfoSelection.open_hours[6] == null">
+                                                        <div class="text-center">
+                                                            <b>Closed</b>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div ng-show="moreInfoSelection.open_hours[0].hours[0].close == null">
+                                        <div class="col-sm-12 col-md-12">
+                                            <div class="panel panel-info">
+                                                <h5 class="text-center text-capitalize capriola">Always Open</h5>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-lg-12" >
-                                    <div class="row">
-                                        <b>Open Hours</b>
-                                    </div>
-                                    <div class="row">
-                                        <table class="table table-hover">
-                                            <thead>
-                                                <tr>
-                                                    <th></th>
-                                                    <th>Sunday</th>
-                                                    <th>Monday</th>
-                                                    <th>Tuesday</th>
-                                                    <th>Wednesday</th>
-                                                    <th>Thursday</th>
-                                                    <th>Friday</th>
-                                                    <th>Saturday</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr class="info">
-                                                    <td>From</td>
-                                                    <td>{{moreInfoSelection.open_hours.periods[0].open.time}}</td>
-                                                    <td>{{moreInfoSelection.open_hours.periods[1].open.time}}</td>
-                                                    <td>{{moreInfoSelection.open_hours.periods[2].open.time}}</td>
-                                                    <td>{{moreInfoSelection.open_hours.periods[3].open.time}}</td>
-                                                    <td>{{moreInfoSelection.open_hours.periods[4].open.time}}</td>
-                                                    <td>{{moreInfoSelection.open_hours.periods[5].open.time}}</td>
-                                                    <td>{{moreInfoSelection.open_hours.periods[6].open.time}}</td>
-                                                </tr>
-                                                <tr class="info">
-                                                    <td>To</td>
-                                                    <td>{{moreInfoSelection.open_hours.periods[0].close.time}}</td>
-                                                    <td>{{moreInfoSelection.open_hours.periods[1].close.time}}</td>
-                                                    <td>{{moreInfoSelection.open_hours.periods[2].close.time}}</td>
-                                                    <td>{{moreInfoSelection.open_hours.periods[3].close.time}}</td>
-                                                    <td>{{moreInfoSelection.open_hours.periods[4].close.time}}</td>
-                                                    <td>{{moreInfoSelection.open_hours.periods[5].close.time}}</td>
-                                                    <td>{{moreInfoSelection.open_hours.periods[6].close.time}}</td>
-                                                </tr>
-                                            </tbody>
-
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12">
+                                <div class="col-sm-12 col-md-12">
                                     <div class="row">
                                         <div class="panel-image-modal">
                                             <carousel interval="intervalImages" >
@@ -149,63 +243,69 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-lg-12">
-                                    <p class="text-center">
-                                        <b>Reviews</b>
-                                    </p>
-                                    <span ng-repeat="review in moreInfoSelection.reviews">
-                                        <div class="panel-group" id="{{review.author_name}}">
-                                            <div class="panel  panel-info">
-                                                <div class="panel-heading">
-                                                    <h4 class="panel-title">
-                                                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#{{review.author_name}}" data-target="#{{$index}}">{{review.author_name}}</a>
-                                                    </h4>
-                                                </div>
-                                                <div id="{{$index}}" class="panel-collapse collapse">
-                                                    <div class="panel-body">
-                                                        <p class="text-left">
-                                                            <b>Ratings</b>
-                                                        </p>
-                                                        <div class="star-rating">
-                                                            <span ng-repeat="aspect in review.aspects">
-                                                                <div class="row">
-                                                                    <div class="col-lg-3">
-                                                                        <b class="text-capitalize">{{aspect.type}}</b>
+                                <div class="col-sm-12 col-md-12">
+                                    <div ng-show="moreInfoSelection.reviews != null">
+                                        <p class="text-center">
+                                            <b>Reviews</b>
+                                        </p>
+                                        <span ng-repeat="review in moreInfoSelection.reviews">
+                                            <div class="panel-group" id="{{review.author_name}}">
+                                                <div class="panel  panel-info">
+                                                    <div class="panel-heading">
+                                                        <h4 class="panel-title">
+                                                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#{{review.author_name}}" data-target="#{{$index}}">{{review.author_name}}</a>
+                                                        </h4>
+                                                    </div>
+                                                    <div id="{{$index}}" class="panel-collapse collapse">
+                                                        <div class="panel-body">
+                                                            <p class="text-left">
+                                                                <b>Aspects</b>
+                                                            </p>
+                                                            <div class="star-rating">
+                                                                <span ng-repeat="aspect in review.aspects">
+                                                                    <div class="row">
+                                                                        <div class="col-sm-3 col-md-3">
+                                                                            <b class="text-capitalize">{{aspect.type}}</b>
+                                                                        </div>
+                                                                        <div class="col-sm-8 col-md-8">
+                                                                            <rating ng-model="aspect.rating" readonly="true" max=3></rating>
+                                                                        </div>
                                                                     </div>
-                                                                    <div class="col-lg-8">
-                                                                        <rating ng-model="aspect.rating" readonly="true"></rating>
+                                                                </span>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-sm-12 col-md-12">
+                                                                    <div ng-show="review.text != ''">
+                                                                        <p class="text-left">
+                                                                            <b>Comment</b>
+                                                                        </p>
+                                                                        {{review.text}}
                                                                     </div>
                                                                 </div>
-                                                            </span>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-lg-12">
-                                                                <p class="text-left">
-                                                                    <b>Comment</b>
-                                                                </p>
-                                                                {{review.text}}
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-12">
-                                                            <div class="row">
-                                                                <em>
-                                                                    <span>{{review.time | date:'medium'}}</span>
-                                                                </em>
                                                             </div>
                                                             <div class="row">
-                                                                <em>
-                                                                    Contact User <a href="{{review.author_url}}">GooglePlus!</a>
-                                                                </em>
+                                                                <div class="col-sm-3 col-md-3">
+                                                                    <b class="text-capitalize">Rating</b>
+                                                                </div>
+                                                                <div class="col-sm-8 col-md-8">
+                                                                    <rating ng-model="review.rating" readonly="true" max=5></rating>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-12 col-md-12">
+                                                                <div class="row">
+                                                                    <em>
+                                                                        Contact User <a target="_blank" ng-href="{{review.author_url}}">GooglePlus!</a>
+                                                                    </em>
+                                                                </div>
                                                             </div>
                                                         </div>
+
                                                     </div>
-
                                                 </div>
-                                            </div>
 
-                                   </div>
-                                  </span>
-
+                                       </div>
+                                      </span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -234,11 +334,162 @@
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer">
+                    <div class="modal-footer capriola">
 
-                        <button type="button" class="btn btn-default" data-dismiss="modal"  ng-click="disableModal()">Close</button>
+                        <button type="button" class="btn btn-default " data-dismiss="modal"  ng-click="disableModal()">Close</button>
                     </div>
             </div>
 
         </div>
     </div>
+
+
+
+<div class="modal fade" ng-controller="ModalCtrl" id="moreInfoModalHotel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div ng-show="modalEnabled">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" ng-click="disableModal()"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title capriola" id="myModalLabelHotel">More Information about {{moreInfoSelection.name}}</h4>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div ng-show="modalEnabled">
+                    <div class="container-fluid capriola">
+                        <div class="row">
+                            <div class="col-sm-6 col-md-6 capriola" >
+                                <div ng-if="hotelShow">
+                                    <div class="row">
+                                        <b>Rating</b>
+                                    </div>
+                                    <div class="row">
+                                        <img ng-src="{{moreInfoSelection.rating}}" >
+                                    </div>
+                                </div>
+
+                        </div>
+                            <div class="col-sm-6 col-md-6 capriola" >
+                                <div ng-show="moreInfoSelection.address != null">
+                                    <div class="row">
+                                        <b>Address</b>
+                                    </div>
+                                    <div class="row">
+                                        {{moreInfoSelection.address}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12">
+                                <div class="row" style="padding-top: 20px">
+                                    <div class="panel-image-modal">
+                                        <carousel interval="intervalImages" >
+                                            <slide ng-repeat="image in moreInfoSelection.photos" active="image.active">
+                                                <img class="image-modal" style="height: 400px" ng-src="data:image/JPEG;base64,{{image.image}}" >
+                                            </slide>
+                                        </carousel>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 20px">
+                            <div class="col-sm-11 col-md-11 capriola" >
+                                <div class="panel  panel-info">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a class="accordion-toggle" data-toggle="collapse" data-target="#descriptionInfo">Information</a>
+                                        </h4>
+                                    </div>
+                                    <div id="descriptionInfo" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <div class="text-justify">
+                                                {{moreInfoSelection.info}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel  panel-info">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a class="accordion-toggle" data-toggle="collapse" data-target="#descriptionTab">Description</a>
+                                        </h4>
+                                    </div>
+                                    <div id="descriptionTab" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <div class="text-justify">
+                                                {{moreInfoSelection.description}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel  panel-info">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a class="accordion-toggle" data-toggle="collapse" data-target="#descriptionPolicy">Policy</a>
+                                        </h4>
+                                    </div>
+                                    <div id="descriptionPolicy" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <div class="text-justify">
+                                                {{moreInfoSelection.policy}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div ng-show="loaderEnabled">
+                    <div class="container-fluid">
+                        <div class="panel-body">
+                            <div class="loader">
+                                <div class="bouncywrap">
+                                    <div class="dotcon dc1">
+                                        <div class="dot"></div>
+                                    </div>
+                                    <div class="dotcon dc2">
+                                        <div class="dot"></div>
+                                    </div>
+                                    <div class="dotcon dc3">
+                                         <div class="dot"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer capriola">
+                <button type="button" class="btn btn-default " data-dismiss="modal"  ng-click="disableModal()">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('#moreInfoModalPlace').on('hidden.bs.modal', function () {
+            var scope = angular.element(document.querySelector('#moreInfoModalPlace')).scope();
+            scope.disableModal();
+        });
+    });
+</script>
+<script>
+    $(function () {
+        $('#moreInfoModalHotel').on('hidden.bs.modal', function () {
+            var scope = angular.element(document.querySelector('#moreInfoModalHotel')).scope();
+            scope.disableModal();
+        });
+    });
+</script>
+<script>
+    $(function(){
+        $('#moreInfoModalHotel').on('shown.bs.modal', function () {
+            var scope = angular.element(document.querySelector('#moreInfoModalHotel')).scope();
+            scope.hotelShow = true;
+        });
+    });
+</script>

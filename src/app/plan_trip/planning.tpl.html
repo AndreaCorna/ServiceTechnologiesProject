@@ -1,7 +1,17 @@
-
+<div class="planning">
 <div class="page-header">
-    <h1>Planning</h1>
+    <div class="row">
+        <div class="col-md-2">
+            <a ui-sref="dates" class="btn btn-primary btn-large btn-outlined big-button back-button"><i class="glyphicon glyphicon-chevron-left"></i> Dates</a>
+        </div>
+        <div class="col-md-8">
+            <h1 class="text-center subtitle">{{current_day.format('dddd DD  MMMM YYYY')}}</h1>
+        </div>
+        <div class="col-md-2">
+        </div>
+    </div>
 </div>
+
 <div class="panel-group" id="Culture">
     <div class="panel  panel-primary no-radius">
         <div class="panel-heading no-radius  bigger-accordition" data-toggle="collapse" data-parent="#Culture" data-target="#cultureList">
@@ -14,7 +24,7 @@
                 <ul>
                     <div ng-repeat="cult in culture" class="event-list col-md-4">
                         <li>
-                            <div ng-class="isScheduled(cult) ? 'selected' :'not-selected'">
+                            <div ng-class="isScheduled(cult) ? 'selected-item culture-color' :'not-selected'">
                                 <div class="row" style="height: 48px;">
 
                                     <h1 class="item-name">{{cult.name}}</h1>
@@ -38,7 +48,7 @@
 
                                         <button ng-show="!isScheduled(cult)" style="margin-right: 2px"  class="btn btn-primary btn-outlined " style="display: inline-block;" ng-click="addToSchedule(cult)">ADD</button>
 
-                                        <button class="btn btn-primary btn-outlined " style="margin-left: 4px;margin-bottom: 5px"  ng-click="setCultureDetails(cult.id)" href="#moreInfoModal" data-toggle="modal">MORE</button>
+                                        <button class="btn btn-primary btn-outlined " style="margin-left: 4px;margin-bottom: 5px"  ng-click="setDetails(cult)" href="#moreInfoModalPlace" data-toggle="modal">MORE</button>
                                     </div>
                                   </div>
                             </div>
@@ -62,7 +72,7 @@
                 <ul>
                     <div ng-repeat="ent in entertainment" class="event-list col-md-4">
                         <li>
-                            <div class="not-selected">
+                            <div ng-class="isScheduled(ent) ? 'selected-item  entertainment-color' :'not-selected'">
                                 <div class="row" style="height: 48px;">
 
                                     <h1 class="item-name">{{ent.name}}</h1>
@@ -79,8 +89,15 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <button class="btn btn-primary btn-outlined ">Add</button>
-                                    <button class="btn btn-primary btn-outlined " ng-click="setEntertainmentDetails(ent.id)" href="#moreInfoModal" data-toggle="modal">More</button>
+                                    <div class="btn-group">
+
+                                        <button ng-show="isScheduled(ent)" style="margin-right: 2px;" class="btn btn-primary btn-outlined " style="display: inline-block;" ng-click="removeFromSchedule(ent)">REMOVE</button>
+
+
+                                        <button ng-show="!isScheduled(ent)" style="margin-right: 2px"  class="btn btn-primary btn-outlined " style="display: inline-block;" ng-click="addToSchedule(ent)">ADD</button>
+
+                                        <button class="btn btn-primary btn-outlined " style="margin-left: 4px;margin-bottom: 5px"  ng-click="setDetails(ent)" href="#moreInfoModalPlace" data-toggle="modal">MORE</button>
+                                    </div>
                                 </div>
                             </div>
                         </li>
@@ -103,7 +120,7 @@
                 <ul>
                     <div ng-repeat="hot in hotels" class="event-list col-md-4">
                         <li>
-                            <div class="not-selected">
+                            <div ng-class="isScheduled(hot) ? 'selected-item  hotel-color' :'not-selected'">
                                 <div class="row" style="height: 48px;">
 
                                     <h1 class="item-name">{{hot.name}}</h1>
@@ -120,8 +137,15 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <button class="btn btn-primary btn-outlined ">Add</button>
-                                    <button class="btn btn-primary btn-outlined " ng-click="setHotelDetails(hot.id)" href="#moreInfoModal" data-toggle="modal">More</button>
+                                    <div class="btn-group">
+
+                                        <button ng-show="isScheduled(hot)" style="margin-right: 2px;" class="btn btn-primary btn-outlined " style="display: inline-block;" ng-click="removeFromSchedule(hot)">REMOVE</button>
+
+
+                                        <button ng-show="!isScheduled(hot)" style="margin-right: 2px"  class="btn btn-primary btn-outlined " style="display: inline-block;" ng-click="addToSchedule(hot)">ADD</button>
+
+                                        <button class="btn btn-primary btn-outlined " style="margin-left: 4px;margin-bottom: 5px"  ng-click="setDetails(hot)" href="#moreInfoModalPlace" data-toggle="modal">MORE</button>
+                                    </div>
                                 </div>
                             </div>
                         </li>
@@ -144,7 +168,7 @@
                 <ul>
                     <div ng-repeat="food in foods" class="event-list col-md-4">
                         <li>
-                            <div class="not-selected">
+                            <div ng-class="isScheduled(food) ? 'selected-item food-color' :'not-selected'">
                                 <div class="row" style="height: 48px;">
 
                                     <h1 class="item-name">{{food.name}}</h1>
@@ -161,8 +185,15 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <button class="btn btn-primary btn-outlined ">Add</button>
-                                    <button class="btn btn-primary btn-outlined " ng-click="setFoodDetails(food.id)" href="#moreInfoModal" data-toggle="modal">More</button>
+                                    <div class="btn-group">
+
+                                        <button ng-show="isScheduled(food)" style="margin-right: 2px;" class="btn btn-primary btn-outlined " style="display: inline-block;" ng-click="removeFromSchedule(food)">REMOVE</button>
+
+
+                                        <button ng-show="!isScheduled(food)" style="margin-right: 2px"  class="btn btn-primary btn-outlined " style="display: inline-block;" ng-click="addToSchedule(food)">ADD</button>
+
+                                        <button class="btn btn-primary btn-outlined " style="margin-left: 4px;margin-bottom: 5px"  ng-click="setDetails(food)" href="#moreInfoModalPlace" data-toggle="modal">MORE</button>
+                                    </div>
                                 </div>
                             </div>
                         </li>
@@ -173,11 +204,84 @@
     </div>
 </div>
 
-</div>
-<div class="sortable-container" sv-root sv-part="selectedItems">
-    <div ng-repeat="item in selectedItems" sv-element="opts" class="well">
-        {{item}}
+    <h1 id="planning" class="text-center subtitle">Planning</h1>
+    <div  class="sortable-container timeline-centered" sv-root sv-part="selectedItems" >
+        <div class="row">
+            <div class="timeline-list col-md-4">
+                <div ng-repeat="item in selectedItems"  sv-element="opts">
+                    <div class="row" >
+                            <div ng-click="setMapsMarker(item)" ng-class="isCurrentMap(item,'marker')? 'selected-color' : getItemClass(item) " class=" timeline-item " >
+                                <div class="row">
+                                    <div class="col-md-2" id="arrowsbuttons">
+
+
+                                </div>
+                                    <div class="col-md-8">
+                                    <div class="row" style="height: 48px;">
+
+                                        <h1 class="item-name">{{item.name}}</h1>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="btn-group">
+
+                                            <button  style="margin-right: 2px;" class="btn btn-primary btn-outlined z-up" style="display: inline-block;" ng-click="removeFromSchedule(item)">REMOVE</button>
+                                            <button class="btn btn-primary btn-outlined z-up" style=";margin-left: 4px;margin-bottom: 5px"  ng-click="setDetails(item)" href="#moreInfoModalPlace" data-toggle="modal">MORE</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+
+
+                            </div>
+                            <article class="timeline-entry" >
+                                <div class="timeline-entry-inner">
+
+                                    <div ng-click="setMapsDirections(item)"  class="timeline-icon " ng-class="isCurrentMap(item,'direction')? 'icon-selected' : 'icon-not-selected' ">
+                                        <i class="entypo-feather"></i>
+                                    </div>
+
+
+                                </div>
+
+                            </article>
+
+              </div>
+                </div>
+            </div>
+            <div  id="scrollingMaps" class="col-md-8 " >
+
+               <map-directions origin="origin" map-id="planningMap" init-position="getCityName()" destination="destination" marker="currentMarker" type="roadmap" class="mapContainer" ></map-directions>
+
+            </div>
+        </div>
     </div>
 </div>
+
+
+<script>
+
+//mantaining the maps on the top of the page when scrolling
+$().ready(function() {
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        $('<button   class="btn btn-primary btn-outlined z-up"  ng-click="moveBefore(item)"><span class="glyphicon glyphicon-arrow-up"></span></button>').appendTo('#arrowsbuttons');
+        $('<button   class="btn btn-primary btn-outlined z-up"  ng-click="moveAfter(item)"><span class="glyphicon glyphicon-arrow-down"></span></button>').appendTo('#arrowsbuttons');
+    }
+        $(window).scroll(function () {
+            if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+
+                if ($("#planning").offset() !== undefined) {
+
+                    if ($(window).scrollTop() > $("#planning").offset().top) {
+                        $("#scrollingMaps").stop().animate({"marginTop": ($(window).scrollTop() - $("#planning").offset().top) + "px"}, "slow");
+                    }
+                }
+            }
+        });
+
+});
+</script>
+
+
 
 

@@ -37,19 +37,6 @@
         }; */
 
     return moment.defineLocale('ta', {
-<<<<<<< HEAD
-        months : 'ஜனவரி_பிப்ரவரி_மார்ச்_ஏப்ரல்_மே_ஜூன்_ஜூலை_ஆகஸ்ட்_செப்டெம்பர்_அக்டோபர்_நவம்பர்_டிசம்பர்'.split("_"),
-        monthsShort : 'ஜனவரி_பிப்ரவரி_மார்ச்_ஏப்ரல்_மே_ஜூன்_ஜூலை_ஆகஸ்ட்_செப்டெம்பர்_அக்டோபர்_நவம்பர்_டிசம்பர்'.split("_"),
-        weekdays : 'ஞாயிற்றுக்கிழமை_திங்கட்கிழமை_செவ்வாய்கிழமை_புதன்கிழமை_வியாழக்கிழமை_வெள்ளிக்கிழமை_சனிக்கிழமை'.split("_"),
-        weekdaysShort : 'ஞாயிறு_திங்கள்_செவ்வாய்_புதன்_வியாழன்_வெள்ளி_சனி'.split("_"),
-        weekdaysMin : 'ஞா_தி_செ_பு_வி_வெ_ச'.split("_"),
-        longDateFormat : {
-            LT : "HH:mm",
-            L : "DD/MM/YYYY",
-            LL : "D MMMM YYYY",
-            LLL : "D MMMM YYYY, LT",
-            LLLL : "dddd, D MMMM YYYY, LT"
-=======
         months : 'ஜனவரி_பிப்ரவரி_மார்ச்_ஏப்ரல்_மே_ஜூன்_ஜூலை_ஆகஸ்ட்_செப்டெம்பர்_அக்டோபர்_நவம்பர்_டிசம்பர்'.split('_'),
         monthsShort : 'ஜனவரி_பிப்ரவரி_மார்ச்_ஏப்ரல்_மே_ஜூன்_ஜூலை_ஆகஸ்ட்_செப்டெம்பர்_அக்டோபர்_நவம்பர்_டிசம்பர்'.split('_'),
         weekdays : 'ஞாயிற்றுக்கிழமை_திங்கட்கிழமை_செவ்வாய்கிழமை_புதன்கிழமை_வியாழக்கிழமை_வெள்ளிக்கிழமை_சனிக்கிழமை'.split('_'),
@@ -61,7 +48,6 @@
             LL : 'D MMMM YYYY',
             LLL : 'D MMMM YYYY, LT',
             LLLL : 'dddd, D MMMM YYYY, LT'
->>>>>>> 3559bba7069e0a5ae395d0b2097e2327ca3221e2
         },
         calendar : {
             sameDay : '[இன்று] LT',
@@ -72,21 +58,6 @@
             sameElse : 'L'
         },
         relativeTime : {
-<<<<<<< HEAD
-            future : "%s இல்",
-            past : "%s முன்",
-            s : "ஒரு சில விநாடிகள்",
-            m : "ஒரு நிமிடம்",
-            mm : "%d நிமிடங்கள்",
-            h : "ஒரு மணி நேரம்",
-            hh : "%d மணி நேரம்",
-            d : "ஒரு நாள்",
-            dd : "%d நாட்கள்",
-            M : "ஒரு மாதம்",
-            MM : "%d மாதங்கள்",
-            y : "ஒரு வருடம்",
-            yy : "%d ஆண்டுகள்"
-=======
             future : '%s இல்',
             past : '%s முன்',
             s : 'ஒரு சில விநாடிகள்',
@@ -100,7 +71,6 @@
             MM : '%d மாதங்கள்',
             y : 'ஒரு வருடம்',
             yy : '%d ஆண்டுகள்'
->>>>>>> 3559bba7069e0a5ae395d0b2097e2327ca3221e2
         },
 /*        preparse: function (string) {
             return string.replace(/[௧௨௩௪௫௬௭௮௯௦]/g, function (match) {
@@ -121,19 +91,6 @@
 
         meridiem : function (hour, minute, isLower) {
             if (hour >= 6 && hour <= 10) {
-<<<<<<< HEAD
-                return " காலை";
-            } else if (hour >= 10 && hour <= 14) {
-                return " நண்பகல்";
-            } else if (hour >= 14 && hour <= 18) {
-                return " எற்பாடு";
-            } else if (hour >= 18 && hour <= 20) {
-                return " மாலை";
-            } else if (hour >= 20 && hour <= 24) {
-                return " இரவு";
-            } else if (hour >= 0 && hour <= 6) {
-                return " வைகறை";
-=======
                 return ' காலை';
             } else if (hour >= 10 && hour <= 14) {
                 return ' நண்பகல்';
@@ -145,7 +102,6 @@
                 return ' இரவு';
             } else if (hour >= 0 && hour <= 6) {
                 return ' வைகறை';
->>>>>>> 3559bba7069e0a5ae395d0b2097e2327ca3221e2
             }
         },
         week : {

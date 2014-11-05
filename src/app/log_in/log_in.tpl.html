@@ -1,0 +1,47 @@
+<div class="authentication">
+<div class="bodyAuth fill" >
+
+    <form name="loginForm">
+
+        <div class="title">
+            <h1>Login</h1>
+            <hr/>
+        </div>
+
+        <div class="loginBody">
+            <div class="emailBody">
+                <input class="form-control" type="email" name="email" ng-model="credentials.email" placeholder="Email" required/>
+            </div>
+            <div class="errorBody">
+                <span class="help-inline" ng-show="loginForm.email.$error.required">Required</span>
+                <span class="help-inline" ng-show="loginForm.email.$error.email">Invalid email</span>
+            </div>
+
+            <div class="passwordBody">
+                <input class="form-control" type="password" name="password" ng-model="credentials.password" placeholder="Password" required/>
+            </div>
+            <div class="errorBody">
+                <span class="help-inline" ng-show="loginForm.password.$error.required">Required</span>
+            </div>
+
+            <div class="buttons">
+                <button ng-click="login()" class="btn btn-block btn-success" >Login</button>
+                <!--
+                <button ng-click="logout()" class="btn btn-primary" >Logout</button>
+                <button ng-click="password_reset()" class="btn btn-primary" >Reset Password</button>
+                <button ng-click="unlock()" class="btn btn-primary" >Unlock</button>
+                <button ng-click="confirm()" class="btn btn-primary" >Confirm</button>
+                <button ng-click="showCurrentUser()" class="btn btn-primary" >Show</button>
+                -->
+            </div>
+
+            <div class="socialButtons">
+                <a class="btn btn-block btn-facebook" href="http://localhost:3000/users/auth/facebook"><i class="fa fa-facebook"></i></a>
+                <a class="btn btn-block btn-google" href="http://localhost:3000/users/auth/google_oauth2"><i class="fa fa-google-plus"></i></a>
+            </div>
+
+
+        </div>
+    </form>
+</div>
+</div>

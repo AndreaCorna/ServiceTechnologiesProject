@@ -8,64 +8,75 @@
 angular.module('trippo.resources', [
     'ngResource'
 ])
+.value('ResourceBaseUrl', {val:'../../'})
 
-
-.factory( 'CultureRes', function ($resource) {
-    var cultureList = $resource("../../city/:city_name/culture");
-    var cultureDetails = $resource("../../city/:city_name/culture/:id_culture");
-    var cultureOthers = $resource("../../city/:city_name/culture?token=:token");
-    return {
-        list: cultureList,
-        details: cultureDetails,
-        others: cultureOthers
-    };
+.factory('CityRes', function ($resource,ResourceBaseUrl){
+     var city = $resource (ResourceBaseUrl.val+"city/:city_name");
+     return city;
 })
 
-.factory('UtilityRes',function($resource){
-    var utilityList = $resource("../../city/:city_name/utility");
-    var utilityDetails = $resource("../../city/:city_name/utility/:id_utility");
-    var utilityOthers = $resource("../../city/:city_name/utility?token=:token");
+.factory( 'CultureRes', function ($resource,ResourceBaseUrl) {
+    var culture = $resource(ResourceBaseUrl.val+"city/:city_name/culture/:id");
+    return culture;
+})
 
-    return{
-        list:utilityList,
-        details:utilityDetails,
-        others:utilityOthers
-    };
+.factory('UtilityRes',function($resource,ResourceBaseUrl){
+
+    var utility = $resource(ResourceBaseUrl.val+"city/:city_name/utility/:id");
+
+
+    return utility;
 
 
 })
 
-.factory('EntertainmentRes',function($resource){
-    var entertainmentList = $resource("../../city/:city_name/entertainment");
-    var entertainmentDetails = $resource("../../city/:city_name/entertainment/:id_entertainment");
-    var entertainmentOthers = $resource("../../city/:city_name/entertainment?token=:token");
+.factory('EntertainmentRes',function($resource,ResourceBaseUrl){
+    var entertainment = $resource(ResourceBaseUrl.val+"city/:city_name/entertainment/:id");
 
-    return{
-        list:entertainmentList,
-        details:entertainmentDetails,
-        others:entertainmentOthers
-    };
+    return entertainment;
 })
 
-.factory('HotelRes',function($resource){
-    var hotelList = $resource("../../city/:city_name/hotels");
-    var hotelDetails = $resource("../../city/:city_name/hotels/:id_hotel");
-    return{
-        list:hotelList,
-        details:hotelDetails
-    };
+.factory('HotelRes',function($resource,ResourceBaseUrl){
+    var hotel = $resource(ResourceBaseUrl.val+"city/:city_name/hotels/:id");
+    return hotel;
 
 })
 
-.factory('FoodRes',function($resource){
-    var foodList = $resource("../../city/:city_name/food");
-    var foodDetails = $resource("../../city/:city_name/food/:id_food");
-    var foodOthers = $resource("../../city/:city_name/food?token=:token");
+.factory('FoodRes',function($resource,ResourceBaseUrl){
+    var food = $resource(ResourceBaseUrl.val+"city/:city_name/food/:id");
 
-    return{
-        list:foodList,
-        details:foodDetails,
-        others:foodOthers
-    };
-}) ;
+    return food;
+})
+.factory('GuideRes', function ($resource,ResourceBaseUrl) {
+   var  guide = $resource(ResourceBaseUrl.val+"guides/:id"/*,{id: '@id'},
+       {
+           inutile: {
+               method: 'POST', url: ResourceBaseUrl.val+"guides/new"
+           }
+       }*/);
+    return  guide;
+})
 
+.factory('SharedGuideRes', function ($resource,ResourceBaseUrl) {
+    var  shared_guide = $resource(ResourceBaseUrl.val+"city/:city_name/shared_guide" );
+
+
+
+    return shared_guide;
+})
+
+.factory('ProfileGuideRes', function ($resource, ResourceBaseUrl) {
+    var guides = $resource(ResourceBaseUrl.val+"guides");
+        return guides;
+    }
+)
+
+
+.factory('commonResources',function(FoodRes,HotelRes,EntertainmentRes,CultureRes){
+      return{
+          FoodRes : FoodRes,
+          HotelRes : HotelRes ,
+          EntertainmentRes : EntertainmentRes ,
+          CultureRes : CultureRes
+      } ;
+})  ;

@@ -84,7 +84,6 @@ module.exports = function(grunt) {
         grunt.task.run('karma:' + type);
     });
     grunt.registerTask('travis', ['jshint:devise', 'karma']);
-    grunt.registerTask('build', ['default', 'preprocess', 'ngmin', 'uglify']);
-    grunt.registerTask('default', ['jshint:devise', 'test']);
+    grunt.registerTask('default', ['jshint:devise', 'test', 'preprocess', 'ngmin', 'uglify']);
 
 };

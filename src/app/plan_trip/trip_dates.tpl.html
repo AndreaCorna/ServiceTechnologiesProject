@@ -1,8 +1,9 @@
+<div class="planning">
 <div class="page-header">
     <h1>Choose your dates</h1>
 </div>
 
-    <form novalidate name="form" ng-submit="next(form)">
+    <form novalidate name="form" ng-submit="next(form)" class="well">
         <div ng-show="submitted  && (form.end.$error.required || form.start.$error.required)" class="alert alert-danger">
             Field <strong>start date</strong> and <strong>end date</strong> are required
         </div>
@@ -30,7 +31,7 @@
 
         <div class="row">
             <div class="col-md-12 text-center">
-                <button id="singlefrfbutton" name="singlebutton" class="btn btn-primary">Confirm</button>
+                <button id="singlefrfbutton" name="singlebutton" class="btn btn-primary btn-outlined">Confirm</button>
             </div>
         </div>
     </form>
@@ -47,13 +48,16 @@
                     <span class="month">{{curDate.format(monthFormat)}}</span>
                     <span class="year">{{curDate.format(yearFormat)}}</span>
                     <span class="time">ALL DAY</span>
-                    <button href="#infoDate" data-toggle="modal" class="btn btn-primary btn-outlined">MORE</button>
+                    <button href="#infoDate" data-toggle="modal" class="btn btn-primary btn-outlined" ng-click="setModalDay(curDate)">MORE</button>
                     <a class="btn btn-primary btn-outlined" ui-sref="planning({date:curDate.format(dateFormat)})">EDIT</a>
                 </time>
             </li>
         </div>
     </ul>
 
+</div>
+<div class="col-md-12 text-center" ng-show="dates.length">
+    <button name="createbutton" ui-sref="createtrip" class="btn btn-primary btn-outlined big-button" style="margin-bottom: 30px">CREATE MY TRIP</button>
 </div>
 
 
@@ -66,17 +70,11 @@
                 <h4 class="modal-title" id="myModalLabel">More Information</h4>
             </div>
             <div class="modal-body">
-                <div class="row">
-                    <div class="column" >
-                        gtrgtr
-                    </div>
-                    <div class="column">
-                        gtrgtr
-                    </div>
-                </div>
-                <div class="row">
 
-                </div>
+                  <place-list-details item-list="dayTodo"  dont-show-more="dontShowMore"></place-list-details>
+
+
+
             </div>
             <div class="modal-footer">
 
@@ -85,4 +83,5 @@
         </div>
 
     </div>
+</div>
 </div>

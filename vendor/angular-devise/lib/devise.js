@@ -45,11 +45,6 @@
      */
     var ignoreAuth = false;
     /**
-     * Default devise resource_name is 'user', can be set to any string.
-     * If it's falsey, it will not namespace the data.
-     */
-    var resourceName = 'user';
-    /**
      * The parsing function used to turn a $http
      * response into a "user".
      *
@@ -75,12 +70,7 @@
           ignoreAuth: ignoreAuth
         };
       if (data) {
-        if (resourceName) {
-          config.data = {};
-          config.data[resourceName] = data;
-        } else {
-          config.data = data;
-        }
+        config.data = data;
       }
       return config;
     }
@@ -108,14 +98,6 @@
       ignoreAuth = !!value;
       return this;
     };
-    // The resourceName config function
-    this.resourceName = function (value) {
-      if (value === undefined) {
-        return resourceName;
-      }
-      resourceName = value;
-      return this;
-    };
     // The parse configure function.
     this.parse = function (fn) {
       if (typeof fn !== 'function') {
@@ -137,7 +119,9 @@
       '$rootScope',
       function ($q, $http, $rootScope) {
         // Our shared save function, called
-        // by `then`s.
+        // by `then`s. Will return the first argument,
+        // unless it is falsey (then it'll return
+        // the second).
         function save(user) {
           service._currentUser = user;
           return user;
@@ -158,7 +142,7 @@
             login: function (creds) {
               var withCredentials = arguments.length > 0, loggedIn = service.isAuthenticated();
               creds = creds || {};
-              return $http(httpConfig('login', creds)).then(service.parse).then(save).then(function (user) {
+              return $http(httpConfig('login', { user: creds })).then(service.parse).then(save).then(function (user) {
                 if (withCredentials && !loggedIn) {
                   return broadcast('new-session')(user);
                 }
@@ -171,7 +155,7 @@
             },
             register: function (creds) {
               creds = creds || {};
-              return $http(httpConfig('register', creds)).then(service.parse).then(save).then(broadcast('new-registration'));
+              return $http(httpConfig('register', { user: creds })).then(service.parse).then(save).then(broadcast('new-registration'));
             },
             currentUser: function () {
               if (service.isAuthenticated()) {

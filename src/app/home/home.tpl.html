@@ -1,5 +1,5 @@
 <script type="text/ng-template" id="customTemplate.html">
-    <a class="col-md-12">
+    <a class="col-md-12 text-capitalize">
         <span bind-html-unsafe="match.label| typeaheadHighlight:query"></span>
        <i>({{match.model.state}})</i>
     </a>
@@ -13,9 +13,9 @@
 
 
 
-            <input id="city" name="city"  type="text" placeholder="Search here..." class="form-control col-md-12 typeahead"
+            <input id="city" name="city"  type="text" placeholder="Search here..." class="form-control col-md-12 text-capitalize typeahead"
                    ng-model="selected_city"
-                   typeahead="city as city.name for city in cities | filter:$viewValue | limitTo:8"
+                   typeahead="city as city.name for city in cities | filter:{name:$viewValue}:startsWith | limitTo:8"
                    typeahead-template-url="customTemplate.html">
             <button id="submit" type="submit" ng-click="search()">Search</button>
         </form>

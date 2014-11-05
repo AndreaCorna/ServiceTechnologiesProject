@@ -1,0 +1,65 @@
+<div class="row" ng-repeat="item in itemList" >
+
+    <div class="col-md-12" >
+        <div class="row" style="margin-left: 4px;margin-right: 4px">
+
+            <div class="brdr bgc-fff pad-10 box-shad property-listing">
+                <div class="media">
+                    <div class="col-md-4">
+
+                        <div ng-if="item.photos[0] !== undefined">
+                            <img style="height: 220px;  width:100%;" ng-src="{{item.photos[0].image}}" >
+                        </div>
+                        <div ng-if="item.image !== undefined && item.photos[0] === undefined">
+                            <img style="height: 220px;  width:100%;" ng-src="{{item.image}}" >
+                        </div>
+                        <div ng-if="item.image === undefined && item.photos[0] === undefined">
+                            <img style="height: 220px;  width:100%;" ng-src="assets/images/empty_photo.png">
+                        </div>
+
+                    </div>
+                    <div class="clearfix visible-sm"></div>
+
+                    <div ng-class="showMore?'col-md-6' : 'col-md-8'" >
+                        <div class="media-body fnt-smaller">
+
+                            <h4 class="media-heading">
+                                <a href="#" target="_parent">{{item.name}} </a>
+
+                            </h4>
+
+
+                            <div ng-if="!item.description">
+                                <p class="hidden-xs">No description available</p>
+                            </div>
+                            <div ng-if="item.description">
+                                <div class="panel panel-default scrollable" style="max-height: 165px;overflow-y: auto;margin-top: 13px;">
+                                    <div class="hidden-xs text-justify " >{{item.description}}</div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    <div ng-show="showMore" class="col-md-2">
+
+                        <button class="btn btn-primary btn-outlined pull-right" style="margin-top: 3px"  ng-click="setDetails(item)" href="#moreInfoModalPlace" data-toggle="modal">MORE INFO</button>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="clearfix"></div>
+    <br><br>
+
+
+
+
+</div>
