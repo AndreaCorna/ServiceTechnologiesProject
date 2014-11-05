@@ -52,7 +52,7 @@ The result is an object with two elements:
       if (results.length != 0)
         json.append({:results=>results,:token=>next_page_token})
       else
-        json.append(nil)
+        json.append({:results=>[],:token=>next_page_token})
       end
       return json
 
@@ -95,7 +95,7 @@ The result is an object with two elements:
       if (results.length != 0)
         json.append({:results=>results,:token=>next_page_token})
       else
-        json.append(nil)
+        json.append({:results=>[],:token=>next_page_token})
       end
       return json
 
@@ -167,7 +167,7 @@ The result is an object with two elements:
       if (results.length != 0)
         json.append({:results=>results,:token=>next_page_token})
       else
-        json.append(nil)
+        json.append({:results=>[],:token=>next_page_token})
       end
       return json
 
@@ -211,7 +211,7 @@ The result is an object with two elements:
       if (results.length != 0)
         json.append({:results=>results,:token=>next_page_token})
       else
-        json.append(nil)
+        json.append({:results=>[],:token=>next_page_token})
       end
       return json
     end
@@ -282,7 +282,7 @@ The result is an object with two elements:
       if (results.length != 0)
         json.append({:results=>results,:token=>next_page_token})
       else
-        json.append(nil)
+        json.append({:results=>[],:token=>next_page_token})
       end
       return json
 
@@ -326,7 +326,7 @@ The result is an object with two elements:
       if (results.length != 0)
         json.append({:results=>results,:token=>next_page_token})
       else
-        json.append(nil)
+        json.append({:results=>[],:token=>next_page_token})
       end
       return json
     end
@@ -395,7 +395,7 @@ The items' types are:
       if (results.length != 0)
         json.append({:results=>results,:token=>next_page_token})
       else
-        json.append(nil)
+        json.append({:results=>[],:token=>next_page_token})
       end
       return json
 
@@ -439,7 +439,7 @@ The result is an object with two elements:
       if (results.length != 0)
         json.append({:results=>results,:token=>next_page_token})
       else
-        json.append(nil)
+        json.append({:results=>[],:token=>next_page_token})
       end
       return json
     end

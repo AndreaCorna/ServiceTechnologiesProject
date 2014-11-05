@@ -30,7 +30,9 @@ Moreover you can specify the token in order to load more items.
     if(token.nil?)
       if((results = $redis.get(city+':culture')).nil?)
         culture = get_culture_items(city)
-        $redis.set(city+':culture',culture.to_json)
+        if(culture[0][:results] != nil)
+          $redis.set(city+':culture',culture.to_json)
+        end
         return culture.to_json
       else
         return results
@@ -38,7 +40,9 @@ Moreover you can specify the token in order to load more items.
     else
       if((results = $redis.get(city+':culture:'+token)).nil?)
         culture = get_culture_others(token,city)
-        $redis.set(city+':culture:'+token,culture.to_json)
+        if(culture[0][:results] != nil)
+          $redis.set(city+':culture:'+token,culture.to_json)
+        end
         return culture.to_json
       else
         return results
@@ -56,7 +60,7 @@ Moreover you can specify the token in order to load more items.
     if(token.nil?)
       if((results = $redis.get(city+':utility')).nil?)
         utility = get_utility_items(city)
-        if(utility[0] != nil)
+        if(utility[0][:results] != nil)
           $redis.set(city+':utility',utility.to_json)
         end
         return utility.to_json
@@ -66,7 +70,7 @@ Moreover you can specify the token in order to load more items.
     else
       if((results = $redis.get(city+':utility:'+token)).nil?)
         utility = get_utility_others(token,city)
-        if(utility[0] != nil)
+        if(utility[0][:results] != nil)
           $redis.set(city+':utility:'+token,utility.to_json)
         end
         return utility.to_json
@@ -85,7 +89,7 @@ Moreover you can specify the token in order to load more items.
     if(token.nil?)
       if((results = $redis.get(city+':entertainment')).nil?)
         entertainment = get_entertainment_items(city)
-        if(entertainment[0] != nil)
+        if(entertainment[0][:results] != nil)
           $redis.set(city+':entertainment',entertainment.to_json)
         end
         return entertainment.to_json
@@ -95,7 +99,7 @@ Moreover you can specify the token in order to load more items.
     else
       if((results = $redis.get(city+':entertainment:'+token)).nil?)
         entertainment = get_entertainment_others(token,city)
-        if(entertainment[0] != nil)
+        if(entertainment[0][:results] != nil)
           $redis.set(city+':entertainment:'+token,entertainment.to_json)
         end
         return entertainment.to_json
@@ -115,7 +119,8 @@ Moreover you can specify the token in order to load more items.
     if(token.nil?)
       if((results = $redis.get(city+':food')).nil?)
         food = get_food_items(city)
-        if(food[0] != nil)
+        puts food[0][:results]
+        if(food[0][:results].length != 0)
           $redis.set(city+':food',food.to_json)
         end
         return food.to_json
@@ -125,7 +130,7 @@ Moreover you can specify the token in order to load more items.
     else
       if((results = $redis.get(city+':food:'+token)).nil?)
         food = get_food_others(token,city)
-        if(food[0] != nil)
+        if(food[0][:results].length != 0)
           $redis.set(city+':food:'+token,food.to_json)
         end
         return food.to_json
