@@ -77,7 +77,23 @@
                     </div>
                 </span>
             </div>
-
+        <div ng-if="infiniteScroll.itemList.length ==0">
+            <div class="row capriola">
+                <div class="col-md-4">
+                    <img ng-src="assets/images/no_api.png" >
+                </div>
+                <div class="col-md-8">
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <h3 class="text-center" style="vertical-align: middle;"> At this time API not respond, please reload the page</h3>
+                    <br>
+                    <br>
+                </div>
+            </div>
+        </div>
         <div class="list-group">
             <div ng-show="infiniteScroll.itemList != null && infiniteScroll.itemList.length !=0">
                 <div class="panel panel-default">
