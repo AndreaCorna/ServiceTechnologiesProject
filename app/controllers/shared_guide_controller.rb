@@ -6,10 +6,9 @@ class SharedGuideController < ApplicationController
 
 
     city = params[:city_id]
-    user = current_user
-    puts user.inspect
-    guides = Guide.where(:city => city).where(:shared => true)
 
+    guides = Guide.where(:city => city).where(:shared => true)
+    puts guides
     render json: guides
   end
 end

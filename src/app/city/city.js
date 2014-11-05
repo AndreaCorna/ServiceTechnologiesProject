@@ -995,6 +995,14 @@ angular.module( 'trippo.city', [
 
             getSelections:function(city){
                 return [].concat(this.getFoodSelection(city),this.getEntertainmentSelection(city),this.getHotelSelection(city),this.getUtilitySelection(city),this.getCultureSelection(city));
+            } ,
+            clearAllSelection:function(city){
+                 cultureSelection[city]= [];
+                 utilitySelection[city] = [];
+                 hotelSelection[city] = [];
+                 entertainmentSelection[city]= [];
+                 foodSelection[city] = [];
+
             }
          };
     }) ;

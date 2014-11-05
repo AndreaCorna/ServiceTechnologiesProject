@@ -5,6 +5,7 @@ require 'httparty'
 require 'timeout'
 
 module HotelsHelper
+  include Rails.application.routes.url_helpers
 
 =begin
 The method returns the entire list of hotels nearby in the city passed as
@@ -25,7 +26,7 @@ The result is an object with two elements:
       url = 'http://images.travelnow.com'+hotel['thumbNailUrl']
       photos.append(:image=>url)
       description = parse_description(hotel['shortDescription'])
-      hotels_list.append(HotelItem.new(hotel['hotelId'],hotel['latitude'],hotel['longitude'],hotel['name'],hotel['hotelRating'],address,photos,'','hotel',description))
+      hotels_list.append(HotelItem.new(hotel['hotelId'],hotel['latitude'],hotel['longitude'],hotel['name'],hotel['hotelRating'],address,photos,'','hotel',description,city_hotel_url(city,hotel['hotelId'])))
       count = count + 1
       if(count == 20)
         count = 0
@@ -133,7 +134,7 @@ The method returns the string passed as parameter purified by all html tags.
   class HotelItem
     attr_accessor :id,:lat,:lng,:price,:rating,:name,:photos,:icon,:tag,:description;
 
-    def initialize(id,lat,lng,name,rating,address,photo,icon,tag,description)
+    def initialize(id,lat,lng,name,rating,address,photo,icon,tag,description,link)
       @id = id;
       @lat = lat;
       @lng = lng;
@@ -144,6 +145,7 @@ The method returns the string passed as parameter purified by all html tags.
       @icon = icon;
       @tag = tag;
       @description = description;
+      @link = link;
     end
 
   end
