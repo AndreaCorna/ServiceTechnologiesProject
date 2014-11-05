@@ -84,4 +84,10 @@ Rails.application.configure do
   #added in order to be compatible with angularjs
   config.assets.js_compressor = Uglifier.new(mangle: false)
   config.assets.initialize_on_precompile = false
+
+
+  #added to solve problem in heroku
+  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.default_url_options = { :host => 'trippo.herokuapp.com'}
+
 end
