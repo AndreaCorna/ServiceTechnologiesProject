@@ -83,4 +83,5 @@ Rails.application.configure do
 
   #added in order to be compatible with angularjs
   config.assets.js_compressor = Uglifier.new(mangle: false)
+  config.assets.initialize_on_precompile = false
 end
