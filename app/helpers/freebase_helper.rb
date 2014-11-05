@@ -11,15 +11,7 @@ If the result of freebase isn't null it's returned, otherwise the method returns
     descr_freebase = nil
     descr_wikipedia = nil
     threads << Thread.new{
-      status = Timeout::timeout(30) {
-        FreebaseAPI.session = FreebaseAPI::Session.new(key: ENV['API_KEY'], env: :stable)
-        results = FreebaseAPI::Topic.search(name+' in '+city)
-        best_match = results.values.first
-        if(!best_match.nil?)
-          best_match.sync
-          descr_freebase = best_match.description
-        end
-      }
+       descr_freebase = get_freebase_description(name,city)
     }
     threads << Thread.new{
       descr_wikipedia = get_wikipedia_description(name,city)
@@ -32,6 +24,22 @@ If the result of freebase isn't null it's returned, otherwise the method returns
     else
       return descr_freebase
     end
+  end
+
+  def get_freebase_description(name,city)
+    descrition = nil
+    status = Timeout::timeout(30) {
+      FreebaseAPI.session = FreebaseAPI::Session.new(key: ENV['API_KEY'], env: :stable)
+      results = FreebaseAPI::Topic.search(name+' in '+city)
+      best_match = results.values.first
+      if(!best_match.nil?)
+        best_match.sync
+        descrition = best_match.description
+      end
+    }
+    rescue Timeout::Error
+      return descrition
+    return descrition
   end
 
 end
