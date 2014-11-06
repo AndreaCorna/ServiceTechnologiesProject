@@ -1,4 +1,5 @@
 # config valid only for Capistrano 3.1
+require 'bundler/capistrano'
 lock '3.2.1'
 
 set :application, 'trippo'
@@ -6,6 +7,7 @@ set :repo_url, 'https://434dd7cf2170b160c94d916f0fce5a34f9ac56c4:@github.com/And
 
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
+set :branch, fetch(:branch, "capistrano")
 
 # Default deploy_to directory is /var/www/my_app
  set :deploy_to, '/home/deploy/apps/trippo'
