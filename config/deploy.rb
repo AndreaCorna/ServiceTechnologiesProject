@@ -6,7 +6,7 @@ set :repo_url, 'https://434dd7cf2170b160c94d916f0fce5a34f9ac56c4:@github.com/And
 
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
-set :branch, fetch(:branch, "capistrano")
+set :branch, 'capistrano'
 
 # Default deploy_to directory is /var/www/my_app
  set :deploy_to, '/home/deploy/apps/trippo'
@@ -30,7 +30,25 @@ set :scm, :git
 # set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
 
 # Default value for default_env is {}
-# set :default_env, { path: "/opt/ruby/bin:$PATH" }
+set :default_env, {
+SECRET_KEY_BASE_DEVELOPMENT:'a0e398990a978570f8e96ab3b79222ac3f52704b3f39b49400061017023a034e8388514eed29e0283cd20064cc059bdde87949831c926834d4164203c21c3099' ,
+SECRET_KEY_BASE_TEST: '96d773bca20846f5465297e690fbd90138e1c52c2ebf2a68ebf9f95f4c28096978254a69e11565cb402741105edcce1e56653af5e600d76e6fad631450208997'  ,
+
+SECRET_KEY_BASE: '96d773bca20846f5465297e690fbd90138e1c52c2ebf2a68ebf9f95f4c28096978254a69e11565cb402741105edcce1e56653af5e600d76e6fad631450208996'   ,
+
+API_KEY: 'AIzaSyAFHiWwiB6QIy8TDbdO8iUVhnx4SpDbNuA'      ,
+
+EXPEDIA_KEY: 'aq8ku32u3zhcga8npjt6xtu9'        ,
+
+EXPEDIA_SECRET: 'bGgdkV4N'            ,
+
+
+SECRET_PASSWORD_DATABASE: 'youllneverguessitforever'      ,
+
+S3_BUCKET: 'trippo'                          ,
+AWS_ACCESS_KEY_ID: 'AKIAIMKCN2IFW2XDKUCQ'        ,
+AWS_SECRET_ACCESS_KEY: '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'     ,
+}
 
 # Default value for keep_releases is 5
 # set :keep_releases, 5
