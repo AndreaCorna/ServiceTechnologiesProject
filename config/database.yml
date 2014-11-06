@@ -17,8 +17,8 @@ development:
   database: Rubyter
 
   username: trippo
-  password: youllneverguessitforever
-  host: trippodb.chahbrd3foyj.us-west-2.rds.amazonaws.com:5432
+  password: youwillneverguessitforever
+  host: trippodb.chahbrd3foyj.us-west-2.rds.amazonaws.com
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
