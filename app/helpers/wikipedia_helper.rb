@@ -22,7 +22,9 @@ parameters.
         data_json = JSON.parse(data)
         key =  data_json.fetch('query').fetch('pages').keys
         string =  data_json['query']['pages'][key.to_param]['extract']
-        description  = string.strip_tags
+        if (!string.nil?)
+            description  = string.strip_tags
+        end
       end
     }
     rescue Timeout::Error
