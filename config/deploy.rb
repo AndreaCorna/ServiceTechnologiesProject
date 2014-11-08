@@ -41,12 +41,12 @@ namespace :deploy do
  task :restart do
    on roles(:app), in: :sequence, wait: 5 do
       # Your restart mechanism here, for example:
-       execute 'mkdir tmp'
+
        execute :touch, release_path.join('tmp/restart.txt')
        end
  end
   desc 'compiling grunt and bower'
-  task :check_mail do
+  task :compile_resources do
     on roles(:app) do
       execute 'npm install'
       execute 'bower install'
@@ -54,7 +54,7 @@ namespace :deploy do
     end
   end
 
-  after :publishing, :restart
+  after :compile_resources, :restart
 
 #  after :restart, :clear_cache do
 #    on roles(:web), in: :groups, limit: 3, wait: 10 do
