@@ -16,7 +16,7 @@ angular.module( 'trippo.profile', [
         });
     })
 
-    .controller('ProfileCtrl', function ProfileController($scope, Auth, $stateParams, ProfileService, $location){
+    .controller('ProfileCtrl', function ProfileController($scope, Auth, $stateParams, ProfileService, $location, $http){
 
         Auth.currentUser().then(function(user){
             $scope.email = user.email;
@@ -31,6 +31,21 @@ angular.module( 'trippo.profile', [
         $scope.moreInfo = function(id) {
             $location.path('guide/' + id);
         };
+        $scope.shareTrip = function(id){
+                 $scope.submitted   =false ;
+                 $http.put('/guides/'+id,{share:true}).
+                 success(function(data, status, headers, config) {
+                         $scope.submitted=id;
+                         $scope.result= 'success';
+                         $scope.message= 'Guide has been successfully shared' ;
+                     }).
+                 error(function(data, status, headers, config) {
+                         $scope.submitted=id;
+                     $scope.result= 'error';
+                     $scope.message= 'There has been a problem.Try again later' ;
+                 });
+
+        }   ;
 
     })
 

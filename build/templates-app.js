@@ -2448,13 +2448,19 @@ angular.module("log_in/profile.tpl.html", []).run(["$templateCache", function($t
     "   <i> {{email}} </i>\n" +
     "</div>\n" +
     "\n" +
+    "\n" +
     "<div class=\"row\">\n" +
     "    <div class=\"well\">\n" +
     "        <h1 class=\"text-center capriola\" >Your Guides</h1>\n" +
+    "\n" +
     "        <div class=\"list-group\">\n" +
     "            <div  ng-repeat=\"item in guides\" >\n" +
+    "\n" +
     "                <div class=\"list-group-item list-guides\">\n" +
     "                    <div class=\" bgc-fff pad-10 property-listing\">\n" +
+    "                        <div ng-show=\"submitted == item.id\" class=\"alert\" ng-class=\"result=='success'? 'alert-success':'alert-danger'\">\n" +
+    "                            {{message}}\n" +
+    "                        </div>\n" +
     "                        <div class=\"media\">\n" +
     "                            <div class=\"col-sm-3 col-md-3\">\n" +
     "                                <div class=\"panel panel-default\">\n" +
@@ -2491,11 +2497,18 @@ angular.module("log_in/profile.tpl.html", []).run(["$templateCache", function($t
     "                                </p>\n" +
     "                            </div>\n" +
     "                            <div class=\"col-sm-2 col-md-2\">\n" +
-    "                                <div class=\"row text-center\" style=\"padding-top: 50%;padding-bottom: 50%\">\n" +
+    "                                <div class=\"row text-center\"  style=\"padding-top: 50%;padding-bottom: 50%\">\n" +
     "                                    <div class=\"col-md-12\">\n" +
     "                                        <button class=\"btn btn-primary pull-right\"   ng-click=\"moreInfo(item.id)\" >MORE INFO</button>\n" +
     "                                    </div>\n" +
+    "                                    <div class=\"col-md-12\" style=\"padding-top: 10px\">\n" +
+    "                                        <button class=\"btn btn-primary pull-right\"   ng-click=\"shareTrip(item.id)\" >SHARE</button>\n" +
+    "                                    </div>\n" +
     "                                </div>\n" +
+    "\n" +
+    "\n" +
+    "\n" +
+    "\n" +
     "                            </div>\n" +
     "                        </div>\n" +
     "                    </div>\n" +
