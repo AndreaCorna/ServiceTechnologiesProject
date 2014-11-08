@@ -299,7 +299,7 @@ angular.module("city/city.tpl.html", []).run(["$templateCache", function($templa
     "            <span class=\"icon-bar\"></span>\n" +
     "        </button>\n" +
     "    </div>\n" +
-    "    <div class=\"collapse navbar-collapse\">\n" +
+    "    <div >\n" +
     "        <ul class=\"nav navbar-nav nav-justified capriola\" style=\"font-size: 20px\">\n" +
     "            <li><a ui-sref=\"guides\"  data-target=\"#\" data-toggle=\"pill\"><span>Guides</span></a></li>\n" +
     "            <li><a ui-sref=\"culture\" ng-click=\"setCurrentList('culture')\" data-target=\"#\" data-toggle=\"pill\"><span>Culture</span></a></li>\n" +
