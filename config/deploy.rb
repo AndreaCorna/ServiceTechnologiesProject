@@ -50,7 +50,7 @@ namespace :deploy do
   desc 'exporting env variables'
   task :exportenv do
     on roles(:app)  do
-      excute "exportenv"
+      execute "exportenv"
     end
   end
 
