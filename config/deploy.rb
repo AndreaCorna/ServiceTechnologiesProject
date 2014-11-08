@@ -38,14 +38,22 @@ set :scm, :git
 namespace :deploy do
 
   desc 'Restart application'
- task :restart do
-   on roles(:app), in: :sequence, wait: 5 do
-      # Your restart mechanism here, for example:
+  task :restart do
+     on roles(:app), in: :sequence, wait: 5 do
+        # Your restart mechanism here, for example:
 
-       execute "nginxstop"
-       execute "nginxstart"
-       end
- end
+         execute "nginxstop"
+         execute "nginxstart"
+         end
+  end
+
+  desc 'exporting env variables'
+  task :exportenv do
+    on roles(:app)  do
+      excute "exportenv"
+    end
+  end
+
   desc 'compiling grunt and bower'
   task :compile_resources do
     on roles(:app) do
@@ -57,7 +65,8 @@ namespace :deploy do
     end
   end
   after :publishing, :compile_resources
-
+  after  :compile_resources , :exportenv
+  after :exportenv,   :restart
 
 
 #  after :restart, :clear_cache do
