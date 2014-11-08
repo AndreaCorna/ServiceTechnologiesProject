@@ -42,7 +42,8 @@ namespace :deploy do
    on roles(:app), in: :sequence, wait: 5 do
       # Your restart mechanism here, for example:
 
-       execute :touch, release_path.join('tmp/restart.txt')
+       execute "nginxstop"
+       execute "nginxstart"
        end
  end
   desc 'compiling grunt and bower'
@@ -56,7 +57,7 @@ namespace :deploy do
     end
   end
   after :publishing, :compile_resources
-  after :compile_resources, :restart
+
 
 
 #  after :restart, :clear_cache do
