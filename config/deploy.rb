@@ -42,17 +42,12 @@ namespace :deploy do
      on roles(:app), in: :sequence, wait: 5 do
         # Your restart mechanism here, for example:
 
-         execute "nginxstop"
-         execute "nginxstart"
+         execute "reload_app"
+
          end
   end
 
-  desc 'exporting env variables'
-  task :exportenv do
-    on roles(:app)  do
-      execute "exportenv"
-    end
-  end
+
 
   desc 'compiling grunt and bower'
   task :compile_resources do
@@ -65,8 +60,8 @@ namespace :deploy do
     end
   end
   after :publishing, :compile_resources
-  after  :compile_resources , :exportenv
-  after :exportenv,   :restart
+  after  :compile_resources , :restart
+
 
 
 #  after :restart, :clear_cache do
