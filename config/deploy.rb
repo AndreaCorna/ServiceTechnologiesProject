@@ -48,9 +48,11 @@ namespace :deploy do
   desc 'compiling grunt and bower'
   task :compile_resources do
     on roles(:app) do
-      execute 'npm install'
-      execute 'bower install'
-      execute 'grunt build --force'
+      within release_path do
+        execute 'npm install'
+        execute 'bower install'
+        execute 'grunt build --force'
+      end
     end
   end
   after :publishing, :compile_resources
