@@ -53,8 +53,9 @@ namespace :deploy do
       execute 'grunt build --force'
     end
   end
-
+  after :publishing, :compile_resources
   after :compile_resources, :restart
+
 
 #  after :restart, :clear_cache do
 #    on roles(:web), in: :groups, limit: 3, wait: 10 do
