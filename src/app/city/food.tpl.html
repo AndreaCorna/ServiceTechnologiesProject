@@ -5,25 +5,7 @@
     <div class="well">
         <h1 class="text-center capriola">Food</h1>
         <div class="list-group">
-            <div ng-show="foodSelection != undefined && foodSelection.length != 0">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <div class="col-sm-4 col-md-4" style="display: inline">
-                            <div class="capriola">Search
-                                <input type="text"  placeholder="Name" data-ng-model="elementSelectionName" />
-                            </div>
-                        </div>
-                        <div class="col-sm-4 col-md-4">
-                            <div class="text-capitalize item-filter">Order by:</div>
-                            <select data-ng-model="elementSelectionOrder" class="item-filter">
-                                <option value="name" selected>Name</option>
-                                <option value="rating">Rating</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <span ng-repeat="c in foodSelection | filter:{name:elementSelectionName} | orderBy:elementSelectionOrder">
+            <span ng-repeat="c in foodSelection ">
                 <div class="list-group-item list-food" style="background-color: #ffeeaa">
                     <div class=" bgc-fff  property-listing">
                         <div class="col-sm-3 col-md-3">

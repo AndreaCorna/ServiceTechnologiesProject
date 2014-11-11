@@ -779,25 +779,7 @@ angular.module("city/culture.tpl.html", []).run(["$templateCache", function($tem
     "    <div class=\"well\">\n" +
     "        <h1 class=\"text-center capriola\">Culture</h1>\n" +
     "        <div class=\"list-group\">\n" +
-    "        <div ng-show=\"cultureSelection != undefined && cultureSelection.length != 0\">\n" +
-    "            <div class=\"panel panel-default\">\n" +
-    "                <div class=\"panel-body\">\n" +
-    "                    <div class=\"col-sm-4 col-md-4\" style=\"display: inline\">\n" +
-    "                        <div class=\"capriola\">Search\n" +
-    "                            <input type=\"text\"  placeholder=\"Name\" data-ng-model=\"elementSelectionName\" />\n" +
-    "                        </div>\n" +
-    "                    </div>\n" +
-    "                    <div class=\"col-sm-4 col-md-4\">\n" +
-    "                        <div class=\"text-capitalize item-filter\">Order by:</div>\n" +
-    "                        <select data-ng-model=\"elementSelectionOrder\" class=\"item-filter\">\n" +
-    "                            <option value=\"name\" selected>Name</option>\n" +
-    "                            <option value=\"rating\">Rating</option>\n" +
-    "                        </select>\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
-    "            </div>\n" +
-    "        </div>\n" +
-    "        <span ng-repeat=\"c in cultureSelection | filter:{name:elementSelectionName} | orderBy:elementSelectionOrder\">\n" +
+    "        <span ng-repeat=\"c in cultureSelection \">\n" +
     "            <div class=\"list-group-item list-culture\" style=\"background-color: #ffeeaa\">\n" +
     "                    <div class=\" bgc-fff  property-listing\">\n" +
     "                        <div class=\"col-sm-3 col-md-3\">\n" +
@@ -977,25 +959,7 @@ angular.module("city/entertainment.tpl.html", []).run(["$templateCache", functio
     "    <div class=\"well\">\n" +
     "        <h1 class=\"text-center capriola\">Entertainment</h1>\n" +
     "            <div class=\"list-group\">\n" +
-    "                <div ng-show=\"entertainmentSelection != undefined && entertainmentSelection.length !=  0\">\n" +
-    "                    <div class=\"panel panel-default\">\n" +
-    "                        <div class=\"panel-body\">\n" +
-    "                            <div class=\"col-sm-4 col-md-4\" style=\"display: inline\">\n" +
-    "                                <div class=\"capriola\">Search\n" +
-    "                                    <input type=\"text\"  placeholder=\"Name\" data-ng-model=\"elementSelectionName\" />\n" +
-    "                                </div>\n" +
-    "                            </div>\n" +
-    "                            <div class=\"col-sm-4 col-md-4\">\n" +
-    "                                <div class=\"text-capitalize item-filter\">Order by:</div>\n" +
-    "                                <select data-ng-model=\"elementSelectionOrder\" class=\"item-filter\">\n" +
-    "                                    <option value=\"name\" selected>Name</option>\n" +
-    "                                    <option value=\"rating\">Rating</option>\n" +
-    "                                </select>\n" +
-    "                            </div>\n" +
-    "                        </div>\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
-    "                <span ng-repeat=\"c in entertainmentSelection | filter:{name:elementSelectionName} | orderBy:elementSelectionOrder\">\n" +
+    "                <span ng-repeat=\"c in entertainmentSelection\">\n" +
     "                    <div class=\"list-group-item list-entertainment\" style=\"background-color: #ffeeaa\">\n" +
     "                        <div class=\" bgc-fff  property-listing\">\n" +
     "                            <div class=\"col-sm-3 col-md-3\">\n" +
@@ -1171,25 +1135,7 @@ angular.module("city/food.tpl.html", []).run(["$templateCache", function($templa
     "    <div class=\"well\">\n" +
     "        <h1 class=\"text-center capriola\">Food</h1>\n" +
     "        <div class=\"list-group\">\n" +
-    "            <div ng-show=\"foodSelection != undefined && foodSelection.length != 0\">\n" +
-    "                <div class=\"panel panel-default\">\n" +
-    "                    <div class=\"panel-body\">\n" +
-    "                        <div class=\"col-sm-4 col-md-4\" style=\"display: inline\">\n" +
-    "                            <div class=\"capriola\">Search\n" +
-    "                                <input type=\"text\"  placeholder=\"Name\" data-ng-model=\"elementSelectionName\" />\n" +
-    "                            </div>\n" +
-    "                        </div>\n" +
-    "                        <div class=\"col-sm-4 col-md-4\">\n" +
-    "                            <div class=\"text-capitalize item-filter\">Order by:</div>\n" +
-    "                            <select data-ng-model=\"elementSelectionOrder\" class=\"item-filter\">\n" +
-    "                                <option value=\"name\" selected>Name</option>\n" +
-    "                                <option value=\"rating\">Rating</option>\n" +
-    "                            </select>\n" +
-    "                        </div>\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
-    "            </div>\n" +
-    "            <span ng-repeat=\"c in foodSelection | filter:{name:elementSelectionName} | orderBy:elementSelectionOrder\">\n" +
+    "            <span ng-repeat=\"c in foodSelection \">\n" +
     "                <div class=\"list-group-item list-food\" style=\"background-color: #ffeeaa\">\n" +
     "                    <div class=\" bgc-fff  property-listing\">\n" +
     "                        <div class=\"col-sm-3 col-md-3\">\n" +
@@ -1977,25 +1923,7 @@ angular.module("city/hotel.tpl.html", []).run(["$templateCache", function($templ
     "    <div class=\"well\">\n" +
     "        <h1 class=\"text-center capriola\" >Hotel</h1>\n" +
     "        <div class=\"list-group\">\n" +
-    "            <div ng-show=\"hotelSelection != undefined && hotelSelection.length != 0\">\n" +
-    "                <div class=\"panel panel-default\">\n" +
-    "                    <div class=\"panel-body\">\n" +
-    "                        <div class=\"col-sm-4 col-md-4\" style=\"display: inline\">\n" +
-    "                            <div class=\"capriola\">Search\n" +
-    "                                <input type=\"text\"  placeholder=\"Name\" data-ng-model=\"elementSelectionName\" />\n" +
-    "                            </div>\n" +
-    "                        </div>\n" +
-    "                        <div class=\"col-sm-4 col-md-4\">\n" +
-    "                            <div class=\"text-capitalize item-filter\">Order by:</div>\n" +
-    "                            <select data-ng-model=\"elementSelectionOrder\" class=\"item-filter\">\n" +
-    "                                <option value=\"name\" selected>Name</option>\n" +
-    "                                <option value=\"rating\">Rating</option>\n" +
-    "                            </select>\n" +
-    "                        </div>\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
-    "            </div>\n" +
-    "            <span ng-repeat=\"c in hotelSelection | filter:{name:elementSelectionName} | orderBy:elementSelectionOrder\">\n" +
+    "            <span ng-repeat=\"c in hotelSelection\">\n" +
     "                <div class=\"list-group-item list-hotel\" style=\"background-color: #ffeeaa\">\n" +
     "                    <div class=\" bgc-fff  property-listing\">\n" +
     "                        <div class=\"col-sm-3 col-md-3\">\n" +
@@ -2171,25 +2099,7 @@ angular.module("city/utility.tpl.html", []).run(["$templateCache", function($tem
     "    <div class=\"well\">\n" +
     "        <h1 class=\"text-center capriola\">Utility</h1>\n" +
     "        <div class=\"list-group\">\n" +
-    "            <div ng-show=\"utilitySelection != undefined && utilitySelection.length != 0\">\n" +
-    "                <div class=\"panel panel-default\">\n" +
-    "                    <div class=\"panel-body\">\n" +
-    "                        <div class=\"col-sm-4 col-md-4\" style=\"display: inline\">\n" +
-    "                            <div class=\"capriola\">Search\n" +
-    "                                <input type=\"text\"  placeholder=\"Name\" data-ng-model=\"elementSelectionName\" />\n" +
-    "                            </div>\n" +
-    "                        </div>\n" +
-    "                        <div class=\"col-sm-4 col-md-4\">\n" +
-    "                            <div class=\"text-capitalize item-filter\">Order by:</div>\n" +
-    "                            <select data-ng-model=\"elementSelectionOrder\" class=\"item-filter\">\n" +
-    "                                <option value=\"name\" selected>Name</option>\n" +
-    "                                <option value=\"rating\">Rating</option>\n" +
-    "                            </select>\n" +
-    "                        </div>\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
-    "            </div>\n" +
-    "            <span ng-repeat=\"c in utilitySelection | filter:{name:elementSelectionName} | orderBy:elementSelectionOrder\">\n" +
+    "            <span ng-repeat=\"c in utilitySelection \">\n" +
     "                <div class=\"list-group-item list-utility\" style=\"background-color: #ffeeaa\">\n" +
     "                    <div class=\" bgc-fff  property-listing\">\n" +
     "                        <div class=\"col-sm-3 col-md-3\">\n" +
