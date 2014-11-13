@@ -64,7 +64,7 @@ class GuidesController < ApplicationController
     guide.description=params['description']
     guide.city = params['city']
     guide.user_id = current_user.id
-    if(params['image'].downcase=~/(\.|\/)(gif|jpe?g|png)$/ )
+    if(!params['image'].nil? and ['image'].downcase=~/(\.|\/)(gif|jpe?g|png)$/ )
       guide.image = params['image']
       puts guide.image
     end
@@ -75,8 +75,7 @@ class GuidesController < ApplicationController
           #check if exist a place in db with same name and google id if not create a new object
           curr_place['id'] =curr_place['id'].to_s #avoind problem with id of hotels which are integer
           place =  PlaceSummary.where(:google_id => curr_place['id'] , :name => curr_place['name']).first_or_initialize do |place|
-            puts 'current place'
-
+            #code executed only if place not already in database
             place.name = curr_place['name']
             place.lat = curr_place['lat']
             place.lng = curr_place['lng']
@@ -84,11 +83,9 @@ class GuidesController < ApplicationController
             place.price = curr_place['price']
             if not curr_place['photos'].nil?
               place.image = curr_place['photos'][0]['image']
+              puts 'guide.imacsacascasge'
 
-              #if no image added to the guide add the one of the first item with image
-              if (guide.image.nil? or guide.image == '')
-                guide.image = place.image
-              end
+              puts guide.image
 
             else
               place.image = 'assets/images/empty_photo.png'
@@ -103,6 +100,12 @@ class GuidesController < ApplicationController
             place.google_id = curr_place['id']
 
             place.save
+          end
+
+          #if no image added to the guide add the one of the first item with image
+          if (guide.image.nil? or guide.image == '' and place.image !='assets/images/empty_photo.png')
+            guide.image = place.image
+            puts guide.image
           end
 
           guide.place_summaries << place

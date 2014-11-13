@@ -243,6 +243,9 @@ module.exports = function ( grunt ) {
     uglify: {
       compile: {
         options: {
+          compress: {
+                drop_console: true
+          }  ,
           mangle: false,
           banner: '<%= meta.banner %>'
         },
