@@ -47,7 +47,7 @@ namespace :deploy do
 
         execute "cd '#{release_path}'; npm install"
         execute "cd '#{release_path}'; bower install"
-        execute "cd '#{release_path}'; grunt build --force"
+        execute "cd '#{release_path}'; grunt compile"
 
     end
   end
