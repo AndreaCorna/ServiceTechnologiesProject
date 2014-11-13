@@ -51,7 +51,14 @@ namespace :deploy do
 
     end
   end
+
+  task :restart do
+    run "mkdir #{release_path}/tmp"
+    run "touch #{release_path}/tmp/restart.txt"
+  end
+
   after :publishing, :compile_resources
+  after :compile_resources, :restart
 
 
 
