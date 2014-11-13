@@ -2,6 +2,5 @@
 #$redis = Redis.new(host:'localhost', port: 6379)
 
 #This is to use the remote redis server
-#$redis = Redis.new(:url => ENV["REDISCLOUD_URL"])
-$redis = Redis.new(host: ENV['REDISCLOUD_URL'], port: 6379)
+$redis = Redis.new(:url => ENV["REDISCLOUD_URL"])
 
