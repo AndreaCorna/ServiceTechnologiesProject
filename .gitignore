@@ -29,6 +29,7 @@
 bin/
 node_modules/
 
+grunt_bin/
 build/
 vendor/
 
