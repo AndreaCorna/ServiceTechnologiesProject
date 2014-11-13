@@ -6,7 +6,7 @@
         <div class="list-group">
             <span ng-repeat="c in cultureSelection ">
                 <div class="col-sm-4">
-                    <div class="product-image-wrapper-culture">
+                    <div class="product-image-wrapper">
                         <div class="single-products">
                             <div class="productinfo text-center">
                                 <div ng-if="c.photos.length==0">
@@ -89,7 +89,7 @@
             <div infinite-scroll="infiniteScroll.nextPage(resource,setLoader)" infinite-scroll-distance="2" infinite-scroll-disabled="infiniteScroll.busy">
                 <span ng-repeat="c in infiniteScroll.itemList | filter:{name:elementListName} | orderBy:elementListOrder">
                     <div class="col-sm-4">
-                        <div class="product-image-wrapper-culture">
+                        <div class="product-image-wrapper">
                             <div class="single-products">
                                 <div class="productinfo text-center">
                                     <div ng-if="c.photos.length==0">

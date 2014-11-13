@@ -2,63 +2,47 @@
 
 </div>
 <div class="row">
-    <div class="well">
-        <h1 class="text-center capriola">Utility</h1>
-        <div class="list-group">
+    <h1 class="text-center capriola">Utility</h1>
+    <div class="list-group">
             <span ng-repeat="c in utilitySelection ">
-                <div class="list-group-item list-utility" style="background-color: #ffeeaa">
-                    <div class=" bgc-fff  property-listing">
-                        <div class="col-sm-3 col-md-3">
-                            <div ng-if="c.photos.length==0">
-                                <img style="height: 220px;  width:100%;" ng-src="assets/images/empty_photo.png" >
-                            </div>
-                            <div ng-if="c.photos.length!=0">
-                                <img  style="height: 220px;  width:100%;" ng-src="{{c.photos[0].image}}" >
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-7 col-md-7" style="height:230px">
-                        <p class="list-group-item-text">
-                        <div class="row capriola">
-                            <div class="col-sm-9 col-md-9">
-                                <b class="text-capitalize">{{c.name}}</b>
-                            </div>
-
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4 col-md-4">
+                <div class="col-sm-4">
+                    <div class="product-image-wrapper">
+                        <div class="single-products">
+                            <div class="productinfo text-center">
+                                <div ng-if="c.photos.length==0">
+                                    <img style="height: 220px;  width:100%;" src="assets/images/empty_photo.png"  alt="" />
+                                </div>
+                                <div ng-if="c.photos.length!=0">
+                                    <img  style="height: 220px;  width:100%;" src="{{c.photos[0].image}}"  alt="" />
+                                </div>
+                                <h4>{{c.name}}</h4>
                                 <p class="capriola">Rating <rating ng-model="c.rating" readonly="true" ></rating></p>
-                            </div>
-                            <div class="col-sm-3 col-md-3">
                                 <div ng-show="c.price != null">
                                     <p class="capriola">Price {{c.price}}</p>
                                 </div>
                             </div>
-                        </div>
-                        <div ng-show="c.description != null" style="display: block">
-                            <div class="col-sm-12 col-md-12 panel panel-default scrollable" style="max-height: 165px;overflow-y: auto">
-                                <div class="text-justify capriola" >{{c.description}}</div>
-                            </div>
-                        </div>
-                        </p>
-                    </div>
-                    <div class="col-sm-2 col-md-2">
-                        <div class="row text-center" style="padding-top: 50%;padding-bottom: 50%">
-                            <div class="col-md-12">
-                                <button class="btn btn-primary btn-sm capriola button-item" ng-click="setUtilityDetails(c.id)" href="#moreInfoModalPlace" data-toggle="modal">
-                                    Details <span class="glyphicon glyphicon-info-sign "></span>
-                                </button>
-                            </div>
-                            <div class="col-md-12" style="padding-top: 10px">
-                                <button class="btn btn-danger btn-sm capriola button-item" ng-click="removeUtilityItem(c)">
-                                    Remove <span class="glyphicon glyphicon-minus-sign "></span>
-                                </button>
+                            <div class="product-overlay">
+                                <div class="overlay-content">
+                                    <h4>{{c.name}}</h4>
+                                    <div ng-show="c.description != null" style="display: block">
+                                        <div class="col-sm-12 col-md-12 panel panel-default scrollable" style="max-height: 165px;overflow-y: auto">
+                                            <div class="text-justify capriola" >{{c.description}}</div>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-default btn-sm capriola button-item" ng-click="setUtilityDetails(c.id)" href="#moreInfoModalPlace" data-toggle="modal">
+                                        Details <span class="glyphicon glyphicon-info-sign "></span>
+                                    </button>
+                                    <button class="btn btn-danger btn-sm capriola button-item" ng-click="removeUtilityItem(c)">
+                                        Remove <span class="glyphicon glyphicon-minus-sign "></span>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </span>
-        </div>
+    </div>
+    <div class="row">
         <div ng-if="infiniteScroll.itemList.length ==0">
             <div class="row capriola">
                 <div class="col-md-4">
@@ -76,17 +60,22 @@
                 </div>
             </div>
         </div>
-        <div class="list-group">
-            <div ng-show="infiniteScroll.itemList != null && infiniteScroll.itemList.length !=0">
-                <div class="panel panel-default">
+    </div>
+    <div class="list-group">
+        <div ng-show="infiniteScroll.itemList != null && infiniteScroll.itemList.length !=0">
+            <div class="row">
+                <div class="panel">
                     <div class="panel-body">
                         <div class="col-sm-4 col-md-4" style="display: inline">
                             <div class="capriola">Search
                                 <input type="text"  placeholder="Name" data-ng-model="elementListName" />
                             </div>
                         </div>
-                        <div class="col-sm-4 col-md-4">
-                            <div class="text-capitalize item-filter">Order by:</div>
+                        <div class="col-sm-2 col-md-2" >
+                            <div class=" text-capitalize item-filter">Order by:</div>
+                        </div>
+                        <div class="col-sm-6 col-md-6" >
+
                             <select data-ng-model="elementListOrder" class="item-filter">
                                 <option value="name" selected>Name</option>
                                 <option value="rating">Rating</option>
@@ -94,52 +83,38 @@
                         </div>
                     </div>
                 </div>
-                <div infinite-scroll="infiniteScroll.nextPage(resource,setLoader)" infinite-scroll-distance="2" infinite-scroll-disabled="infiniteScroll.busy">
-                    <span ng-repeat="c in infiniteScroll.itemList | filter:{name:elementListName} | orderBy:elementListOrder">
-                        <div class="list-group-item list-utility">
-                            <div class=" bgc-fff  property-listing">
-                                <div class="col-sm-3 col-md-3">
+            </div>
+        </div>
+    </div>
+    <div infinite-scroll="infiniteScroll.nextPage(resource,setLoader)" infinite-scroll-distance="2" infinite-scroll-disabled="infiniteScroll.busy">
+                <span ng-repeat="c in infiniteScroll.itemList | filter:{name:elementListName} | orderBy:elementListOrder">
+                    <div class="col-sm-4">
+                        <div class="product-image-wrapper">
+                            <div class="single-products">
+                                <div class="productinfo text-center">
                                     <div ng-if="c.photos.length==0">
-                                        <img style="height: 220px;  width:100%;" ng-src="assets/images/empty_photo.png" >
+                                        <img style="height: 220px;  width:100%;" src="assets/images/empty_photo.png"  alt="" />
                                     </div>
                                     <div ng-if="c.photos.length!=0">
-                                        <img  style="height: 220px;  width:100%;" ng-src="{{c.photos[0].image}}" >
+                                        <img  style="height: 220px;  width:100%;" src="{{c.photos[0].image}}"  alt="" />
+                                    </div>
+                                    <h4>{{c.name}}</h4>
+                                    <p class="capriola">Rating <rating ng-model="c.rating" readonly="true" ></rating></p>
+                                    <div ng-show="c.price != null">
+                                        <p class="capriola">Price {{c.price}}</p>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-sm-7 col-md-7" style="height:230px">
-                                <p class="list-group-item-text">
-                                <div class="row capriola">
-                                    <div class="col-sm-9 col-md-9">
-                                        <b class="text-capitalize">{{c.name}}</b>
-                                    </div>
-
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-4 col-md-4">
-                                        <p class="capriola">Rating <rating ng-model="c.rating" readonly="true" ></rating></p>
-                                    </div>
-                                    <div class="col-sm-3 col-md-3">
-                                        <div ng-show="c.price != null">
-                                            <p class="capriola">Price {{c.price}}</p>
+                                <div class="product-overlay">
+                                    <div class="overlay-content">
+                                        <h4>{{c.name}}</h4>
+                                        <div ng-show="c.description != null" style="display: block">
+                                            <div class="col-sm-12 col-md-12 panel panel-default scrollable" style="max-height: 165px;overflow-y: auto">
+                                                <div class="text-justify capriola" >{{c.description}}</div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div ng-show="c.description != null" style="display: block">
-                                    <div class="col-sm-12 col-md-12 panel panel-default scrollable" style="max-height: 165px;overflow-y: auto">
-                                        <div class="text-justify capriola" >{{c.description}}</div>
-                                    </div>
-                                </div>
-                                </p>
-                            </div>
-                            <div class="col-sm-2 col-md-2">
-                                <div class="row text-center" style="padding-top: 50%;padding-bottom: 50%">
-                                    <div class="col-md-12">
-                                        <button class="btn btn-primary btn-sm capriola button-item" ng-click="setUtilityDetails(c.id)" href="#moreInfoModalPlace" data-toggle="modal">
+                                        <button class="btn btn-default btn-sm capriola button-item" ng-click="setUtilityDetails(c.id)" href="#moreInfoModalPlace" data-toggle="modal">
                                             Details <span class="glyphicon glyphicon-info-sign "></span>
                                         </button>
-                                    </div>
-                                    <div class="col-md-12" style="padding-top: 10px">
                                         <button class="btn btn-success btn-sm capriola button-item" ng-click="addUtilityItem(c)">
                                             Add <span class="glyphicon glyphicon-plus-sign "></span>
                                         </button>
@@ -147,11 +122,10 @@
                                 </div>
                             </div>
                         </div>
-                    </span>
-                </div>
-            </div>
-        </div>
+                    </div>
+                </span>
     </div>
+</div>
 </div>
 <div ng-show="loaderEnabled">
     <div class="row loader-wait">
