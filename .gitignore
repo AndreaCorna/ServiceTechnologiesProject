@@ -18,7 +18,7 @@
 .idea/*
 
 *.xml
-*.yml
+
 
 .idea/dataSources.ids
 .gitignore.bak
@@ -29,8 +29,9 @@
 bin/
 node_modules/
 
-build/
-vendor/
+grunt_bin/
+
+
 
 Rubiter.iml
 

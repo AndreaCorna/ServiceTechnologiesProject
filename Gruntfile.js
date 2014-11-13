@@ -154,7 +154,13 @@ module.exports = function ( grunt ) {
             dest: '<%= compile_dir %>/assets',
             cwd: '<%= build_dir %>/assets',
             expand: true
-          }
+          }  ,
+            {
+                src: [ '**' ],
+                dest: '<%= compile_dir %>/fonts',
+                cwd: 'src/assets/fonts',
+                expand: true
+            }
         ]
       }
     },
@@ -237,6 +243,10 @@ module.exports = function ( grunt ) {
     uglify: {
       compile: {
         options: {
+          compress: {
+                drop_console: true
+          }  ,
+          mangle: false,
           banner: '<%= meta.banner %>'
         },
         files: {
