@@ -3,3 +3,4 @@
 
 #This is to use the remote redis server
 $redis = Redis.new(:url => ENV["REDISCLOUD_URL"])
+
