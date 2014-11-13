@@ -237,6 +237,7 @@ module.exports = function ( grunt ) {
     uglify: {
       compile: {
         options: {
+          mangle: false,
           banner: '<%= meta.banner %>'
         },
         files: {
