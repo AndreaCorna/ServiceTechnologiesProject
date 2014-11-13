@@ -154,7 +154,13 @@ module.exports = function ( grunt ) {
             dest: '<%= compile_dir %>/assets',
             cwd: '<%= build_dir %>/assets',
             expand: true
-          }
+          }  ,
+            {
+                src: [ '**' ],
+                dest: '<%= compile_dir %>/fonts',
+                cwd: 'src/assets/fonts',
+                expand: true
+            }
         ]
       }
     },
