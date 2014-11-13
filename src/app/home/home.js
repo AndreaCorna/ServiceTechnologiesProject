@@ -46,7 +46,7 @@ angular.module( 'trippo.home', [
 
         $scope.cities = CityRes.query();
         $scope.selected_city = undefined;
-        console.log("change has been made");
+        console.log("different change");
         
         $scope.search = function() {
             $log.log("city passed " + $scope.selected_city);
