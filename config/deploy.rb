@@ -53,8 +53,10 @@ namespace :deploy do
   end
 
   task :restart do
-    run "mkdir #{release_path}/tmp"
-    run "touch #{release_path}/tmp/restart.txt"
+    on roles(:app) do
+      execute "mkdir #{release_path}/tmp"
+      execute "touch #{release_path}/tmp/restart.txt"
+    end
   end
 
   after :publishing, :compile_resources
