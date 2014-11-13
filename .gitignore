@@ -28,7 +28,7 @@
 *~
 bin/
 node_modules/
-
+build/
 grunt_bin/
 
 
