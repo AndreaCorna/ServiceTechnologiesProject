@@ -16,8 +16,8 @@ development:
   <<: *default
   database: Rubyter
 
-  username: trippo
-  password: youwillneverguessitforever
+  username: <%= ENV["USERNAME_POSTGRES"] %>
+  password: <%= ENV["SECRET_PASSWORD_DATABASE"]%>
   host:  <%= ENV["HOST_POSTGRES"] %>
 
 # Warning: The database defined as "test" will be erased and
