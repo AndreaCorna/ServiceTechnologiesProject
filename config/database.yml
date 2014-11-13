@@ -29,8 +29,8 @@ test:
 
 production:
   <<: *default
-   database: Rubyter
+  database: Rubyter
 
-   username: <%= ENV["USERNAME_POSTGRES"] %>
-   password: <%= ENV["SECRET_PASSWORD_DATABASE"]%>
-   host:  <%= ENV["HOST_POSTGRES"] %>
+  username: <%= ENV["USERNAME_POSTGRES"] %>
+  password: <%= ENV["SECRET_PASSWORD_DATABASE"]%>
+  host:  <%= ENV["HOST_POSTGRES"] %>
