@@ -87,8 +87,9 @@
                 </div>
             </div>
             <div infinite-scroll="infiniteScroll.nextPage(resource,setLoader)" infinite-scroll-distance="1" infinite-scroll-disabled="infiniteScroll.busy">
+                <div class="container">
                 <span ng-repeat="c in infiniteScroll.itemList | filter:{name:elementListName} | orderBy:elementListOrder">
-                    <div class="col-sm-4">
+                    <div class="col-md-4 col-sm-4">
                         <div class="product-image-wrapper">
                             <div class="single-products">
                                 <div class="productinfo text-center">
@@ -124,6 +125,8 @@
                         </div>
                     </div>
                 </span>
+                </div>
+
             </div>
         </div>
 </div>
