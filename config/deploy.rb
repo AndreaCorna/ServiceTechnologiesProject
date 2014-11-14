@@ -2,7 +2,7 @@
 lock '3.2.1'
 puts ENV['GITHUB_KEY']
 set :application, 'trippo'
-set :repo_url, 'https://'+ENV['GITHUB_KEY']+':@github.com/AndreaCorna/ServiceTechnologiesProject.git'
+set :repo_url, 'https://434dd7cf2170b160c94d916f0fce5a34f9ac56c4:@github.com/AndreaCorna/ServiceTechnologiesProject.git'
 
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
