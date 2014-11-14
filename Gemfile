@@ -78,3 +78,7 @@ gem 'omniauth-google-oauth2'
 gem 'aws-sdk'
 
 gem 'rake'
+
+gem 'capistrano'
+
+gem 'colorize'
