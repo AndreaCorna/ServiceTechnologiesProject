@@ -86,7 +86,7 @@
                     </div>
                 </div>
             </div>
-            <div infinite-scroll="infiniteScroll.nextPage(resource,setLoader)" infinite-scroll-distance="2" infinite-scroll-disabled="infiniteScroll.busy">
+            <div infinite-scroll="infiniteScroll.nextPage(resource,setLoader)" infinite-scroll-distance="1" infinite-scroll-disabled="infiniteScroll.busy">
                 <span ng-repeat="c in infiniteScroll.itemList | filter:{name:elementListName} | orderBy:elementListOrder">
                     <div class="col-sm-4">
                         <div class="product-image-wrapper">
