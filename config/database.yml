@@ -16,9 +16,9 @@ development:
   <<: *default
   database: Rubyter
 
-  username: <%= ENV["USERNAME_POSTGRES"] %>
+  username: rubyter
   password: <%= ENV["SECRET_PASSWORD_DATABASE"]%>
-  host:  <%= ENV["HOST_POSTGRES"] %>
+  host:  localhost
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
