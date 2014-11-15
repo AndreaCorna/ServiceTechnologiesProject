@@ -44,3 +44,13 @@ config/config.iml
 db/db.iml
 
 dump.rdb
+
+config/database.yml
+
+vendor/vendor.iml
+
+config/database.yml
+
+config/initializers/redis.rb
+
+config/database.yml

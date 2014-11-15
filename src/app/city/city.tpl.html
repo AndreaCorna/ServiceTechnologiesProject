@@ -5,7 +5,7 @@
         <div ng-if="isGuides()">
             <div class="row ">
                 <carousel interval="intervalImages" class="carousel-fixed-height col-md-8 col-md-offset-2" style="padding: 0px">
-                    <slide ng-repeat="image in images" active="image.active" class="carousel-fixed-height" style="width:100%;">
+                    <slide ng-repeat="image in images" active="image.active" class="carousel-fixed-height" style="width:100%; padding-left: 0px">
                         <img ng-src="{{image.url}}" class="carousel-fixed-height" style="width:100%;" >
                     </slide>
                 </carousel>
