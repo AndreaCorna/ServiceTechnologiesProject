@@ -13,7 +13,7 @@
                                     <img style="height: 220px;  width:100%;" src="assets/images/empty_photo.png"  alt="" />
                                 </div>
                                 <div ng-if="c.photos.length!=0">
-                                    <img  style="height: 220px;  width:100%;" src="{{c.photos[0].image}}"  alt="" />
+                                    <img  style="height: 220px;  width:100%;" ng-src="{{c.photos[0].image}}"  alt="" />
                                 </div>
                                 <h4>{{c.name}}</h4>
                                 <p class="capriola">Rating <rating ng-model="c.rating" readonly="true" ></rating></p>
@@ -98,7 +98,7 @@
                                         <img style="height: 220px;  width:100%;" src="assets/images/empty_photo.png"  alt="" />
                                     </div>
                                     <div ng-if="c.photos.length!=0">
-                                        <img  style="height: 220px;  width:100%;" src="{{c.photos[0].image}}"  alt="" />
+                                        <img  style="height: 220px;  width:100%;" ng-src="{{c.photos[0].image}}"  alt="" />
                                     </div>
                                     <h4>{{c.name}}</h4>
                                     <p class="capriola">Rating <rating ng-model="c.rating" readonly="true" ></rating></p>
