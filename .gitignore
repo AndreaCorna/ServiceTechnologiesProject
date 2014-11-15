@@ -44,3 +44,8 @@ config/config.iml
 db/db.iml
 
 dump.rdb
+
+
+vendor/vendor.iml
+
+
