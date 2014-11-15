@@ -45,7 +45,6 @@ db/db.iml
 
 dump.rdb
 
-config/database.yml
 
 vendor/vendor.iml
 
