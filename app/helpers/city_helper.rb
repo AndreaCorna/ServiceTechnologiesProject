@@ -37,15 +37,21 @@ The method returns an array contains 4 images url around the coordinates passed 
     photos = []
     latitude = (lat+0.01).to_s
     longitude =(lng+0.01).to_s
-    url = 'http://www.panoramio.com/map/get_panoramas.php?set=public&from=0&to=4&minx='+lng.to_s+'&miny='+lat.to_s+'&maxx='+longitude+'&maxy='+latitude+'&size=medium&mapfilter=true'
+    url = 'http://www.panoramio.com/map/get_panoramas.php?set=public&from=0&to=20&minx='+lng.to_s+'&miny='+lat.to_s+'&maxx='+longitude+'&maxy='+latitude+'&size=original&mapfilter=true'
     status = Timeout::timeout(30){
       response = HTTParty.get(url)
       json = JSON.parse(response.body)
+      count = 0
       json['photos'].each do |photo|
-        photos.append(photo)
+        puts count
+        if(count <= 5 and photo['width'] >= 1000)
+          puts  "add"
+          photos.append(photo)
+          count = count + 1
+        end
       end
     }
-
+    return photos
   end
 
 
