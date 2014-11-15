@@ -2,12 +2,19 @@
 <div class="top-view ">
     <div class="container_top" >
         <div ng-if="isGuides()">
+                    <carousel  interval="intervalImages" class="carousel-fixed-height" style="padding: 0px;width:100%;">
+                        <slide ng-repeat="image in images" active="image.active" class="carousel-fixed-height" style="width:100%; padding-left: 0px">
+                            <img src="assets/images/green_background.png" du-parallax y="background" alt="" class="carousel-fixed-height" style="width:100%;"/>
+                        </slide>
+                        <div class="carousel-caption">
+                            <div class="intro-text">
+                                <div class="intro-lead-in">Welcome to Milan</div>
+                            </div>
+                        </div>
+                    </carousel>
+            </header>
             <div class="row ">
-                <carousel interval="intervalImages" class="carousel-fixed-height col-md-8 col-md-offset-2" style="padding: 0px">
-                    <slide ng-repeat="image in images" active="image.active" class="carousel-fixed-height" style="width:100%; padding-left: 0px">
-                        <img ng-src="{{image.url}}" class="carousel-fixed-height" style="width:100%;" >
-                    </slide>
-                </carousel>
+
             </div>
         </div>
         <div ng-if="!isGuides()"  >

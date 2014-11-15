@@ -6,7 +6,8 @@ angular.module( 'trippo.city', [
   'trippo.modal',
   'infinite-scroll',
    'trippo.guide' ,
-    'common.mapsMarkers'
+    'common.mapsMarkers' ,
+    'duParallax'
 ])
 
 .config(function config( $stateProvider ) {
@@ -681,7 +682,9 @@ angular.module( 'trippo.city', [
 
 
 
-.controller( 'CityCtrl', function CityCtrl($rootScope, $scope, $stateParams, CityRes,SelectionService, CityService,$location) {
+.controller( 'CityCtrl', function CityCtrl($rootScope, $scope, $stateParams, CityRes,SelectionService, CityService,$location,parallaxHelper) {
+    $scope.background = parallaxHelper.createAnimator(-0.4); //handle parallax effect
+
     $scope.intervalImages = 5000;
     $scope.modalEnabled = false;
     $scope.loaderEnabled = true;

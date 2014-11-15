@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "ngInfiniteScroll": "1.0.0",
-    "blueimp-file-upload": "https://github.com/blueimp/jQuery-File-Upload.git#~9.8.0"
+    "blueimp-file-upload": "https://github.com/blueimp/jQuery-File-Upload.git#~9.8.0",
+    "ng-parallax": "~0.1.8"
   }
 }

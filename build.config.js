@@ -82,8 +82,9 @@ module.exports = {
       'vendor/angular-resource/angular-resource.js',
       'vendor/ngInfiniteScroll/build/ng-infinite-scroll.min.js',
       'vendor/angular-devise/lib/devise-min.js',
-      'vendor/angular-local-storage/dist/angular-local-storage.js'
-
+      'vendor/angular-local-storage/dist/angular-local-storage.js',
+       'vendor/angular-scroll/angular-scroll.min.js' ,
+        'vendor/ng-parallax/angular-parallax.min.js'
     ],
     css: [
     ],
