@@ -42,7 +42,8 @@ This method must be used to add cities to the database using as url
         City.create({:name => city.name,:state => city.state,:lat => city.lat,:lng => city.lng,:link => city_url(city.name)})
         photos = get_images_url(city.lat,city.lng)
         photos.each{ |photo|
-          CityImage.create({:url =>photo['photo_file_url'],:city_id => city.name})
+          url_photo = photo['photo_file_url'].sub! 'http', 'https'
+          CityImage.create({:url =>url_photo,:city_id => city.name})
         }
       end
     }
