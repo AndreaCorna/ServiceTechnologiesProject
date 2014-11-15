@@ -37,7 +37,7 @@ The method returns an array contains 4 images url around the coordinates passed 
     photos = []
     latitude = (lat+0.01).to_s
     longitude =(lng+0.01).to_s
-    url = 'http://www.panoramio.com/map/get_panoramas.php?set=public&from=0&to=4&minx='+lng.to_s+'&miny='+lat.to_s+'&maxx='+longitude+'&maxy='+latitude+'&size=large&mapfilter=true'
+    url = 'http://www.panoramio.com/map/get_panoramas.php?set=public&from=0&to=4&minx='+lng.to_s+'&miny='+lat.to_s+'&maxx='+longitude+'&maxy='+latitude+'&size=medium&mapfilter=true'
     status = Timeout::timeout(30){
       response = HTTParty.get(url)
       json = JSON.parse(response.body)
