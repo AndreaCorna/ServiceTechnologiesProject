@@ -49,8 +49,4 @@ config/database.yml
 
 vendor/vendor.iml
 
-config/database.yml
 
-config/initializers/redis.rb
-
-config/database.yml
