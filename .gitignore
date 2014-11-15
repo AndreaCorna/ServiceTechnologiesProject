@@ -44,3 +44,9 @@ config/config.iml
 db/db.iml
 
 dump.rdb
+
+vendor/vendor.iml
+
+config/initializers/redis.rb
+
+config/database.yml
