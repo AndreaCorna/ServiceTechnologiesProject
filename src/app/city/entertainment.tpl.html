@@ -24,10 +24,13 @@
                             <div class="product-overlay">
                                 <div class="overlay-content">
                                     <h4>{{c.name}}</h4>
-                                    <div ng-show="c.description != null" style="display: block">
+                                    <div ng-if="c.description != null" style="display: block">
                                         <div class="col-sm-12 col-md-12 panel panel-default scrollable" style="max-height: 165px;overflow-y: auto">
                                             <div class="text-justify capriola" >{{c.description}}</div>
                                         </div>
+                                    </div>
+                                    <div ng-if="c.description == null" style="display: block">
+                                        <h5>Description not available</h5>
                                     </div>
                                     <button class="btn btn-default btn-sm capriola button-item" ng-click="setEntertainmentDetails(c.id)" href="#moreInfoModalPlace" data-toggle="modal">
                                         Details <span class="glyphicon glyphicon-info-sign "></span>
@@ -109,10 +112,13 @@
                                 <div class="product-overlay">
                                     <div class="overlay-content">
                                         <h4>{{c.name}}</h4>
-                                        <div ng-show="c.description != null" style="display: block">
+                                        <div ng-if="c.description != null" style="display: block">
                                             <div class="col-sm-12 col-md-12 panel panel-default scrollable" style="max-height: 165px;overflow-y: auto">
                                                 <div class="text-justify capriola" >{{c.description}}</div>
                                             </div>
+                                        </div>
+                                        <div ng-if="c.description == null" style="display: block">
+                                            <h5>Description not available</h5>
                                         </div>
                                         <button class="btn btn-default btn-sm capriola button-item" ng-click="setEntertainmentDetails(c.id)" href="#moreInfoModalPlace" data-toggle="modal">
                                             Details <span class="glyphicon glyphicon-info-sign "></span>

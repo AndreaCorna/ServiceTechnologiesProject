@@ -9,6 +9,8 @@ module PlacesHelper
 
   module UtilityHelperCity
   include Rails.application.routes.url_helpers
+  include FreebaseHelper
+
 
 =begin
 The method returns the utility items of the city passed as param.
@@ -240,6 +242,8 @@ The result is an object with two elements:
   end
 
   module EntertainmentHelperCity
+    include FreebaseHelper
+
 =begin
 The method returns the entertainment items of the city passed as param.
 The items' types are:
@@ -354,6 +358,8 @@ The result is an object with two elements:
   end
 
   module FoodHelperCity
+    include FreebaseHelper
+
 =begin
 The method returns the food items of the city passed as param.
 The items' types are:

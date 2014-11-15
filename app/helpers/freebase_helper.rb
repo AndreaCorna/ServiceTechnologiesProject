@@ -10,20 +10,20 @@ If the result of freebase isn't null it's returned, otherwise the method returns
     threads = []
     descr_freebase = nil
     descr_wikipedia = nil
-    threads << Thread.new{
-       descr_freebase = get_freebase_description(name,city)
-    }
+    #threads << Thread.new{
+    #   descr_freebase = get_freebase_description(name,city)
+    #}
     threads << Thread.new{
       descr_wikipedia = get_wikipedia_description(name,city)
     }
     threads.each do |thread|
       thread.join
     end
-    if(descr_freebase.nil?)
-      return descr_wikipedia
-    else
-      return descr_freebase
-    end
+    #if(descr_freebase.nil?)
+    return descr_wikipedia
+    #else
+    #return descr_freebase
+    #end
   end
 
   def get_freebase_description(name,city)
