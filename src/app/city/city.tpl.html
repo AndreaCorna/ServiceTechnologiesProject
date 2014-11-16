@@ -3,7 +3,7 @@
     <div ng-if="isGuides()">
                 <carousel  interval="intervalImages" class="carousel-fixed-height" style="padding: 0px;width:100%;">
                     <slide ng-repeat="image in images" active="image.active" class="carousel-fixed-height" style="width:100%; padding-left: 0px">
-                        <img ng-src="assets/images/green_background.png" du-parallax y="background" alt="" class="carousel-fixed-height" style="width:100%;"/>
+                        <img ng-src="assets/images/green_background.png" du-parallax y="background" alt="" class="carousel-fixed-height" style="width:100%;height: 500px;"/>
                     </slide>
                     <div class="carousel-caption">
                         <div class="intro-text">
@@ -22,13 +22,6 @@
 </div>
 <div style="background-color: #323231" >
 <div class="container" >
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
-    </div>
     <div >
         <ul class="nav navbar-nav nav-justified capriola" style="font-size: 20px">
             <li><a ui-sref="guides"   data-target="#" data-toggle="pill"><span>Guides</span></a></li>
