@@ -1,6 +1,7 @@
 <div class="background-page">
 <div class="top-view ">
-    <div class="container_top" >
+    <div class="container container_top" style="padding-left: 0px; padding-right: 0px">
+        <h4 class="text-capitalize text-center">{{city.name}}</h4>
         <div ng-if="isGuides()">
             <div class="row ">
                 <carousel interval="intervalImages" class="carousel-fixed-height col-md-8 col-md-offset-2" style="padding: 0px">
@@ -27,11 +28,11 @@
     <div >
         <ul class="nav navbar-nav nav-justified capriola" style="font-size: 20px">
             <li><a ui-sref="guides"  data-target="#" data-toggle="pill"><span>Guides</span></a></li>
-            <li><a ui-sref="culture" ng-click="setCurrentList('culture')" data-target="#" data-toggle="pill"><span>Culture</span></a></li>
-            <li><a ui-sref="entertainment" ng-click="setCurrentList('entertainment')" data-target="#" data-toggle="pill"><span>Entertainment</span></a></li>
-            <li><a ui-sref="hotel" ng-click="setCurrentList('hotel')" data-target="#" data-toggle="pill"><span>Hotel</span></a></li>
-            <li><a ui-sref="utility" ng-click="setCurrentList('utility')" data-target="#" data-toggle="pill"><span>Utility</span></a></li>
-            <li><a ui-sref="food" ng-click="setCurrentList('food')" data-target="#" data-toggle="pill"><span>Food</span></a></li>
+            <li><a ui-sref="culture" ng-click="setCurrentList('culture')" data-target="#" data-toggle="pill" class="fa fa-university" title="Culture"><span></span></a></li>
+            <li><a ui-sref="entertainment" ng-click="setCurrentList('entertainment')" data-target="#" data-toggle="pill" class="fa fa-film" title="Entertainment"><span></span></a></li>
+            <li><a ui-sref="hotel" ng-click="setCurrentList('hotel')" data-target="#" data-toggle="pill" class="fa fa-home" title="Hotel"><span></span></a></li>
+            <li><a ui-sref="utility" ng-click="setCurrentList('utility')" data-target="#" data-toggle="pill" class="fa fa-info" title="Utility"><span></span></a></li>
+            <li><a ui-sref="food" ng-click="setCurrentList('food')" data-target="#" data-toggle="pill" class="fa fa-cutlery" title="Food"><span></span></a></li>
             <li class='last'><a ui-sref="dates" data-target="#" data-toggle="pill"><span>Plan Trip</span></a></li>
         </ul>
     </div>
@@ -234,7 +235,7 @@
                                         <div class="panel-image-modal">
                                             <carousel interval="intervalImages" >
                                                 <slide ng-repeat="image in moreInfoSelection.photos" active="image.active">
-                                                    <img class="image-modal" style="height: 400px" ng-src="data:image/JPEG;base64,{{image.image}}" >
+                                                    <img class="image-modal" style="height: 400px; padding-left: 0px" ng-src="data:image/JPEG;base64,{{image.image}}" >
                                                 </slide>
                                             </carousel>
                                         </div>
