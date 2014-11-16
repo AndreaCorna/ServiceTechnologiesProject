@@ -48,4 +48,6 @@ angular.module("common.navModule", [
     }
 
     ]
-);
+)
+
+;
