@@ -15,9 +15,9 @@
                                     <img  style="height: 220px;  width:100%;" ng-src="{{c.photos[0].image}}"  alt="" />
                                 </div>
                                 <h4>{{c.name}}</h4>
-                                <p class="capriola">Rating <rating ng-model="c.rating" readonly="true" ></rating></p>
+                                <p style="color: white"  class="capriola">Rating <rating style="color: white"  ng-model="c.rating" readonly="true" ></rating></p>
                                 <div ng-show="c.price != null">
-                                    <p class="capriola">Price {{c.price}}</p>
+                                    <p style="color: white"  class="capriola">Price {{c.price}}</p>
                                 </div>
                                 <button class="btn btn-default btn-sm capriola button-item" ng-click="setCultureDetails(c.id)" href="#moreInfoModalPlace" data-toggle="modal">
                                     Details <span class="glyphicon glyphicon-info-sign "></span>
@@ -28,7 +28,6 @@
                             </div>
                             <div class="product-overlay">
                                 <div class="overlay-content">
-                                    <h4>{{c.name}}</h4>
                                     <div ng-if="c.description != null" style="display: block">
                                         <div class="col-sm-12 col-md-12 panel panel-default scrollable" style="max-height: 165px;overflow-y: auto">
                                             <div class="text-justify capriola" >{{c.description}}</div>
@@ -95,7 +94,7 @@
                     <div class="col-md-4 col-sm-4">
                         <div class="product-image-wrapper">
                             <div class="single-products">
-                                <div class="productinfo text-center">
+                                <div class="productinfo text-center" >
                                     <div ng-if="c.photos.length==0">
                                         <img style="height: 220px;  width:100%;" src="assets/images/empty_photo.png"  alt="" />
                                     </div>
@@ -103,9 +102,9 @@
                                         <img  style="height: 220px;  width:100%;" ng-src="{{c.photos[0].image}}"  alt="" />
                                     </div>
                                     <h4>{{c.name}}</h4>
-                                    <p class="capriola">Rating <rating ng-model="c.rating" readonly="true" ></rating></p>
+                                    <p  style="color: white" class="capriola">Rating <rating style="color: white" ng-model="c.rating" readonly="true" ></rating></p>
                                     <div ng-show="c.price != null">
-                                        <p class="capriola">Price {{c.price}}</p>
+                                        <p style="color: white" class="capriola">Price {{c.price}}</p>
                                     </div>
                                     <button class="btn btn-default btn-sm capriola button-item" ng-click="setCultureDetails(c.id)" href="#moreInfoModalPlace" data-toggle="modal">
                                         Details <span class="glyphicon glyphicon-info-sign "></span>
