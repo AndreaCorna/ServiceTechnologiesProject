@@ -21,27 +21,51 @@ google places to give them.
     end
   end
 
+  def get_coordinates(city)
+    location = City.find_by_name(city)
+    if location.nil?
+      location = Geocoder.search(city)
+      begin
+        lat = location[0].latitude
+        lng = location[0].longitude
+      rescue NoMethodError
+        return nil,nil
+      end
+
+    else
+      lat = location.lat
+      lng = location.lng
+    end
+    return lat,lng
+
+
+  end
+
 =begin
 The method returns the data related to the category culture of the city passed as parameter.
 Moreover you can specify the token in order to load more items.
 =end
   def get_culture(city,token)
     results = []
+    lat,lng = get_coordinates(city)
+    if  lat.nil? or lng.nil?
+      return [].to_json
+    end
     if(token.nil?)
-      if((results = $redis.get(city+':culture')).nil?)
-        culture = get_culture_items(city)
+      if((results = $redis.get(lat.to_s+':'+lng.to_s+':culture')).nil?)
+        culture = get_culture_items(city,lat,lng)
         if(culture[0][:results] != nil)
-          $redis.set(city+':culture',culture.to_json)
+          $redis.set(lat.to_s+':'+lng.to_s+':culture',culture.to_json)
         end
         return culture.to_json
       else
         return results
       end
     else
-      if((results = $redis.get(city+':culture:'+token)).nil?)
+      if((results = $redis.get(lat.to_s+':'+lng.to_s+':culture'+token)).nil?)
         culture = get_culture_others(token,city)
         if(culture[0][:results] != nil)
-          $redis.set(city+':culture:'+token,culture.to_json)
+          $redis.set(lat.to_s+':'+lng.to_s+':culture'+token,culture.to_json)
         end
         return culture.to_json
       else
