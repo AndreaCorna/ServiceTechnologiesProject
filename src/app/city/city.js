@@ -728,6 +728,7 @@ angular.module( 'trippo.city', [
     $scope.city = CityRes.query({city_name: $stateParams.city_name}, function () {
         $scope.images = $scope.city[0].images;
         $scope.city = $scope.city[0].details;
+        console.log( $scope.images );
     });
 
     $scope.setCurrentList = function(data){

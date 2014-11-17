@@ -31,7 +31,7 @@ The method returns the details of the city passed as parameter in the url.
                       :link_culture =>link_culture,:link_entertainment => link_entertainment ,
                       :link_food => link_food,:link_hotel =>link_hotel,:link_utility =>link_utility})
     else
-      details.append({:details => city,:images => images,
+      details.append({:details => city,:images => city.city_images,
                       :link_culture =>link_culture,:link_entertainment => link_entertainment ,
                       :link_food => link_food,:link_hotel =>link_hotel,:link_utility =>link_utility})
     end
