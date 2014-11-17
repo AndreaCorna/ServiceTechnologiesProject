@@ -1,73 +1,53 @@
+
 <div class="topEmail">
    <i> {{email}} </i>
 </div>
-
+<div class="background-page">
+<div class="container ">
 
 <div class="row">
-    <div class="well">
         <h1 class="text-center capriola" >Your Guides</h1>
 
         <div class="list-group">
             <div  ng-repeat="item in guides" >
-
-                <div class="list-group-item list-guides">
-                    <div class=" bgc-fff pad-10 property-listing">
                         <div ng-show="submitted == item.id" class="alert" ng-class="result=='success'? 'alert-success':'alert-danger'">
                             {{message}}
                         </div>
-                        <div class="media">
-                            <div class="col-sm-3 col-md-3">
-                                <div class="panel panel-default">
-                                    <div class="panel-body image-panel">
-                                        <carousel interval="intervalImages">
+                        <div class="col-sm-4">
+                            <div class="product-image-wrapper">
+                                <div class="single-products">
+                                    <div class="productinfo text-center">
+                                        <carousel>
                                             <div ng-if="!item.image">
-                                                <img class="image-item" ng-src="assets/images/empty_photo.png">
+                                                <img style="height: 220px;  width:100%;" src="assets/images/empty_photo.png"  alt="" />
                                             </div>
                                             <div ng-if="item.image">
-                                                <img style="height: 220px;  width:100%;" ng-src="{{item.image}}" >
+                                                <img  style="height: 220px;  width:100%;" ng-src="{{item.image}}"  alt="" />
                                             </div>
                                         </carousel>
+                                        <h4>{{item.name}}</h4>
+                                        <button class="btn btn-default btn-sm capriola button-item" ng-click="moreInfo(item.id)" >
+                                            Details <span class="glyphicon glyphicon-info-sign "></span>
+                                        </button>
+                                        <button class="btn btn-success btn-sm capriola button-item" ng-click="shareTrip(item.id)"  >
+                                            Share <span class="glyphicon glyphicon-plus-sign "></span>
+                                        </button>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="clearfix visible-sm"></div>
-                            <div class="col-md-7 capriola" style="height:230px">
-                                <p class="list-group-item-text">
-                                <div class="row">
-                                    <b class="text-capitalize">{{item.name}}</b>
-                                </div>
-                                <div class="row" style="margin-top: 5px">
-                                    <div class="col-sm-12 col-md-12 panel panel-default scrollable" style="max-height: 165px;overflow-y: auto">
-                                        <div class="text-justify capriola" >
-                                            <div ng-if="!item.description">
-                                                <p>No description available</p>
-                                            </div>
-                                            <div ng-if="item.description">
-                                                <div class="text-justify " >{{item.description}}</div>
+                                    <div class="product-overlay">
+                                        <div class="overlay-content">
+                                            <h4>{{item.name}}</h4>
+                                            <div ng-show="item.description != null" style="display: block">
+                                                <div class="col-sm-12 col-md-12 panel panel-default scrollable" style="max-height: 165px;overflow-y: auto">
+                                                    <div class="text-justify capriola" >{{item.description}}</div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                </p>
-                            </div>
-                            <div class="col-sm-2 col-md-2">
-                                <div class="row text-center"  style="padding-top: 50%;padding-bottom: 50%">
-                                    <div class="col-md-12">
-                                        <button class="btn btn-primary pull-right"   ng-click="moreInfo(item.id)" >MORE INFO</button>
-                                    </div>
-                                    <div class="col-md-12" style="padding-top: 10px">
-                                        <button class="btn btn-primary pull-right"   ng-click="shareTrip(item.id)" >SHARE</button>
-                                    </div>
-                                </div>
-
-
-
-
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
         </div>
-    </div>
+</div>
+</div>
 </div>
