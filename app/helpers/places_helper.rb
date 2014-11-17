@@ -134,11 +134,8 @@ The result is an object with two elements:
 -results → contains the list of almost 20 items;
 -token → contains the token to be used to load more result.
 =end
-    def get_culture_items(city)
+    def get_culture_items(city,lat,lng)
       client = GooglePlaces::Client.new(ENV['API_KEY'])
-      location = City.find_by_name(city)
-      lat = location.lat
-      lng = location.lng
       culture_items= client.spots(lat,lng,:types => ['library','book_store','museum','aquarium','art_gallery','church'],:exclude => ['hotel'],:radius => 15000)
       results = []
       next_page_token = nil
