@@ -14,7 +14,7 @@ The result is an object with two elements:
 -results → contains the list of almost 20 items;
 -token → contains the token to be used to load more result.
 =end
-  def get_hotels_list(city)
+  def get_hotels_list(city,lat,lng)
     json = hotels(city)
     hotels_list = []
     count = 0
@@ -34,17 +34,17 @@ The result is an object with two elements:
         json_list = []
         json_list.append({:results=>hotels_list,:token=>next_tag.to_words})
         if(first)
-          $redis.set(city+':hotel',json_list.to_json)
+          $redis.set(lat.to_s+':'+lng.to_s+':hotel',json_list.to_json)
           first = false
         else
           to_add = tag.to_words
-          $redis.set(city+':hotel:'+to_add,json_list.to_json)
+          $redis.set(lat.to_s+':'+lng.to_s+':hotel:'+to_add,json_list.to_json)
         end
         hotels_list.clear
         tag = tag + 1
       end
     end
-    return  $redis.get(city+':hotel')
+    return  $redis.get(lat.to_s+':'+lng.to_s+':hotel')
 
   end
 

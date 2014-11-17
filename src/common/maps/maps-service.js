@@ -56,16 +56,18 @@ angular.module('common.mapsService',[])
                 geocoder.geocode({
                     address: center
                 }, function (results, status) {
-                    var location = results[0].geometry.location;
-                    if (status === google.maps.GeocoderStatus.OK) {
-                        console.log('geocoding center');
-                        console.log(location);
+                    if (results[0] != null) {
+                        var location = results[0].geometry.location;
+                        if (status === google.maps.GeocoderStatus.OK) {
+                            console.log('geocoding center');
+                            console.log(location);
 
-                        map.setCenter(location);
+                            map.setCenter(location);
 
 
-                    } else {
-                        console.log('Cannot Geocode');
+                        } else {
+                            console.log('Cannot Geocode');
+                        }
                     }
 
                 });

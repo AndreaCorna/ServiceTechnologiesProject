@@ -24,9 +24,18 @@ The method returns the details of the city passed as parameter in the url.
     link_food = city_food_url(:city_id=>param_city).gsub(/\/[^\/]*$/,'')
     link_hotel = city_hotel_url(:city_id=>param_city).gsub(/\/[^\/]*$/,'')
     link_utility =city_utility_url(:city_id=>param_city).gsub(/\/[^\/]*$/,'')
-    details.append({:details => city,:images => city.city_images,
-                    :link_culture =>link_culture,:link_entertainment => link_entertainment ,
-                   :link_food => link_food,:link_hotel =>link_hotel,:link_utility =>link_utility})
+    images = nil
+    if city.nil?
+      detail = {:name => param_city}
+      details.append({:details => detail,:images => [],
+                      :link_culture =>link_culture,:link_entertainment => link_entertainment ,
+                      :link_food => link_food,:link_hotel =>link_hotel,:link_utility =>link_utility})
+    else
+      details.append({:details => city,:images => images,
+                      :link_culture =>link_culture,:link_entertainment => link_entertainment ,
+                      :link_food => link_food,:link_hotel =>link_hotel,:link_utility =>link_utility})
+    end
+
     render  json:  details.to_json
   end
 

@@ -20,11 +20,8 @@ The result is an object with two elements:
 -results → contains the list of almost 20 items;
 -token → contains the token to be used to load more result.
 =end
-    def get_utility_items(city)
+    def get_utility_items(city,lat,lng)
       client = GooglePlaces::Client.new(ENV['API_KEY'])
-      location = City.find_by_name(city)
-      lat = location.lat
-      lng = location.lng
       utility_items= client.spots(lat,lng,:types => ['airport','atm','bank','bus_station','doctor','fire_station','hospital','parking','pharmacy','police','subway_station','taxi_stand','train_station','embassy'],:exclude => ['hotel'],:radius => 15000)
       results = []
       next_page_token = nil
@@ -249,11 +246,8 @@ The result is an object with two elements:
 -results → contains the list of almost 20 items;
 -token → contains the token to be used to load more result.
 =end
-    def get_entertainment_items(city)
+    def get_entertainment_items(city,lat,lng)
       client = GooglePlaces::Client.new(ENV['API_KEY'])
-      location = City.find_by_name(city)
-      lat = location.lat
-      lng = location.lng
       entertainment_items= client.spots(lat,lng,:types => ['amusement_park','casino','gym','zoo','spa','park','movie_theater'],:exclude => ['hotel'],:radius => 15000)
       next_page_token = nil
       results = []
@@ -364,11 +358,8 @@ The items' types are:
 -results → contains the list of almost 20 items;
 -token → contains the token to be used to load more result.
 =end
-    def get_food_items(city)
+    def get_food_items(city,lat,lng)
       client = GooglePlaces::Client.new(ENV['API_KEY'])
-      location = City.find_by_name(city)
-      lat = location.lat
-      lng = location.lng
       food_items = client.spots(lat,lng,:types => ['food','restaurant','cafe','bakery'],:exclude => ['hotel'],:radius => 15000)
       results = []
       next_page_token = nil

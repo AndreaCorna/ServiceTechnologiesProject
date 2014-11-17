@@ -24,11 +24,15 @@ google places to give them.
   def get_coordinates(city)
     location = City.find_by_name(city)
     if location.nil?
+      #Geocoder.configure(:timeout => 10)
       location = Geocoder.search(city)
       begin
         lat = location[0].latitude
         lng = location[0].longitude
       rescue NoMethodError
+        return nil,nil
+      end
+      if location.nil?
         return nil,nil
       end
 
@@ -49,7 +53,8 @@ Moreover you can specify the token in order to load more items.
     results = []
     lat,lng = get_coordinates(city)
     if  lat.nil? or lng.nil?
-      return [].to_json
+      return   [].append({:results=>[],:token=>nil}).to_json
+
     end
     if(token.nil?)
       if((results = $redis.get(lat.to_s+':'+lng.to_s+':culture')).nil?)
@@ -81,21 +86,25 @@ Moreover you can specify the token in order to load more items.
 =end
   def get_utility(city,token)
     results = []
+    lat,lng = get_coordinates(city)
+    if  lat.nil? or lng.nil?
+      return   [].append({:results=>[],:token=>nil}).to_json
+    end
     if(token.nil?)
-      if((results = $redis.get(city+':utility')).nil?)
-        utility = get_utility_items(city)
+      if((results = $redis.get(lat.to_s+':'+lng.to_s+':utility')).nil?)
+        utility = get_utility_items(city,lat,lng)
         if(utility[0][:results] != nil)
-          $redis.set(city+':utility',utility.to_json)
+          $redis.set(lat.to_s+':'+lng.to_s+':utility',utility.to_json)
         end
         return utility.to_json
       else
         return results
       end
     else
-      if((results = $redis.get(city+':utility:'+token)).nil?)
+      if((results = $redis.get(lat.to_s+':'+lng.to_s+':utility:'+token)).nil?)
         utility = get_utility_others(token,city)
         if(utility[0][:results] != nil)
-          $redis.set(city+':utility:'+token,utility.to_json)
+          $redis.set(lat.to_s+':'+lng.to_s+':utility:'+token,utility.to_json)
         end
         return utility.to_json
       else
@@ -110,21 +119,25 @@ Moreover you can specify the token in order to load more items.
 =end
   def get_entertainment(city,token)
     results = []
+    lat,lng = get_coordinates(city)
+    if  lat.nil? or lng.nil?
+      return   [].append({:results=>[],:token=>nil}).to_json
+    end
     if(token.nil?)
-      if((results = $redis.get(city+':entertainment')).nil?)
-        entertainment = get_entertainment_items(city)
+      if((results = $redis.get(lat.to_s+':'+lng.to_s+':entertainment')).nil?)
+        entertainment = get_entertainment_items(city,lat,lng)
         if(entertainment[0][:results] != nil)
-          $redis.set(city+':entertainment',entertainment.to_json)
+          $redis.set(lat.to_s+':'+lng.to_s+':entertainment',entertainment.to_json)
         end
         return entertainment.to_json
       else
         return results
       end
     else
-      if((results = $redis.get(city+':entertainment:'+token)).nil?)
+      if((results = $redis.get(lat.to_s+':'+lng.to_s+':entertainment:'+token)).nil?)
         entertainment = get_entertainment_others(token,city)
         if(entertainment[0][:results] != nil)
-          $redis.set(city+':entertainment:'+token,entertainment.to_json)
+          $redis.set(lat.to_s+':'+lng.to_s+':entertainment:'+token,entertainment.to_json)
         end
         return entertainment.to_json
       else
@@ -140,22 +153,26 @@ Moreover you can specify the token in order to load more items.
 =end
   def get_food(city,token)
     results = []
+    lat,lng = get_coordinates(city)
+    if  lat.nil? or lng.nil?
+      return   [].append({:results=>[],:token=>nil}).to_json
+    end
     if(token.nil?)
-      if((results = $redis.get(city+':food')).nil?)
-        food = get_food_items(city)
+      if((results = $redis.get(lat.to_s+':'+lng.to_s+':food')).nil?)
+        food = get_food_items(city,lat,lng)
         puts food[0][:results]
         if(food[0][:results].length != 0)
-          $redis.set(city+':food',food.to_json)
+          $redis.set(lat.to_s+':'+lng.to_s+':food',food.to_json)
         end
         return food.to_json
       else
         return results
       end
     else
-      if((results = $redis.get(city+':food:'+token)).nil?)
+      if((results = $redis.get(lat.to_s+':'+lng.to_s+':food:'+token)).nil?)
         food = get_food_others(token,city)
         if(food[0][:results].length != 0)
-          $redis.set(city+':food:'+token,food.to_json)
+          $redis.set(lat.to_s+':'+lng.to_s+':food:'+token,food.to_json)
         end
         return food.to_json
       else
@@ -170,15 +187,19 @@ Moreover you can specify the token in order to load more items.
 =end
   def get_hotels(city,token)
     results = []
+    lat,lng = get_coordinates(city)
+    if  lat.nil? or lng.nil?
+      return   [].append({:results=>[],:token=>nil}).to_json
+    end
     if(token.nil?)
-      if((results = $redis.get(city+':hotel')).nil?)
-        hotel = get_hotels_list(city)
+      if((results = $redis.get(lat.to_s+':'+lng.to_s+':hotel')).nil?)
+        hotel = get_hotels_list(city,lat,lng)
         return hotel
       else
         return results
       end
     else
-      results = $redis.get(city+':hotel:'+token)
+      results = $redis.get(lat.to_s+':'+lng.to_s+':hotel:'+token)
       return results
       end
   end
