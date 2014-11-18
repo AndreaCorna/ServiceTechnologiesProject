@@ -17,13 +17,14 @@ angular.module('trippo.plan',[
 ])
 
 
-.factory('CityPlanningService',function(DatesService){
+.factory('CityPlanningService',function(DatesService, localStorageService){
         /**
          * keep track of the range of dates defined for each city
          * hash key:city-name value:array of
-         * @type {Array}
+         *
          */
-        var city_ranges =[];
+        var city_ranges ={};
+        var current_city;
 
         /**
          * Create the range of days for the respective city  keep track in city_ranges[city] and set current range in DatesService
@@ -32,7 +33,7 @@ angular.module('trippo.plan',[
          * @param end
          */
         var createRangeDatesCity = function(city,start,end){
-             city_ranges[city] = DatesService.createRange(start,end);
+            city_ranges[city] = DatesService.createRange(start, end);
             setRangeDatesCity(city);
 
 
@@ -42,21 +43,70 @@ angular.module('trippo.plan',[
          * @param city
          */
         var setRangeDatesCity = function(city) {
-
+            current_city = city ;
+            //data already in memory
             if (city_ranges[city] !== undefined) {
 
                 DatesService.initRange(city_ranges[city]);
             }
             else{
-                DatesService.initRange([]);
+                // check if data is in local storage
+                var local_storage = localStorageService.get(city+'plan_trip');
+                console.log("plan trip local storage");
+                console.log(local_storage);
+
+                if( local_storage === null ){
+                    console.log("DatesService.initRange empty");
+
+                    //no data even in localStorage
+                    DatesService.initRange([]);
+                }
+                else{
+                    console.log("DatesService.initRange with localstorage");
+                    city_ranges[city]   = local_storage;
+                    DatesService.initRange(local_storage)  ;
+                }
+
             }
 
         }  ;
         var removeRangeDatesCity = function(city){
             city_ranges[city]   = undefined;
+            localStorageService.remove(city+'plan_trip');
+
         } ;
 
+        var printRanges = function(){
+            console.log("RANGES IN CITYSERVICE");
+            console.log(current_city);
+            console.log("city_ranges[current_city]");
+            console.log(city_ranges[current_city]);
+            console.log("city_ranges");
+            console.log(city_ranges);
+
+        }  ;
+
+        var saveLocalStorage = function(){
+            console.log("city_ranges");
+            console.log(city_ranges);
+            var data = city_ranges[current_city];
+            localStorageService.set(current_city+'plan_trip', data);
+            console.log("saved saveLocalStorage  in saveLocalStorage");
+            console.log("current city ");
+            console.log(current_city);
+            console.log("city_ranges[current_city]");
+            console.log(city_ranges[current_city]);
+            console.log("city_ranges");
+            console.log(city_ranges);
+            console.log("get local storage");
+            console.log(localStorageService.get(current_city+'plan_trip'));
+
+
+        }  ;
+
         return {
+            printRanges :printRanges,
+            saveLocalStorage : saveLocalStorage,
             createRangeDatesCity : createRangeDatesCity,
             setRangeDatesCity : setRangeDatesCity,
             removeRangeDatesCity :  removeRangeDatesCity
@@ -75,7 +125,7 @@ angular.module('trippo.plan',[
          * hash key: date in dateFormat format value: day_schedule defined in  createRange function
          * @type {Array}
          */
-    var range=[];
+    var range={};
     var  dateFormat="DD-MM-YYYY";
 
 
@@ -107,6 +157,8 @@ angular.module('trippo.plan',[
          * @param newrange range passed from the cityPlanningService
          */
         initRange : function(newrange) {
+            console.log("new Range of dates:");
+            console.log(newrange);
 
             range = newrange;
 
@@ -117,7 +169,7 @@ angular.module('trippo.plan',[
          * @param end   end date of range
          */
         createRange:function(start,end){
-            var currentrange = [];
+            var currentrange = {};
             var dates =createRangeDates(start,end);
             angular.forEach(dates, function (value, index) {
                 var day_schedule = {
@@ -154,7 +206,8 @@ angular.module('trippo.plan',[
             console.log("getRangeDate in datesservice  range");
             console.log(range);
             for (var key in range) {
-                dateRange.push(range[key].date);
+                var mymoment = moment(range[key].date);
+                dateRange.push(mymoment);
             } /*
             angular.forEach(range, function (value, key) {
                 console.log("value");
@@ -174,12 +227,19 @@ angular.module('trippo.plan',[
  * gets the range of dates generated by the create range.
  */
 .controller('DatesCtrl', function DatesCtrl($scope,DatesService,CityPlanningService,$stateParams,PlanningService) {
+        console.log("initializing dates ctrl");
 
+        CityPlanningService.printRanges();
         $scope.dtstart=null;
         $scope.dtend=null;
         $scope.submitted =false;
         CityPlanningService.setRangeDatesCity($stateParams.city_name) ;
         $scope.dates = DatesService.getRangeDates();
+        console.log("dates in dateCtrl");
+        console.log($scope.dates);
+
+
+
         /**
          * open the start or end datepicker based on which button is pushed
          * @param $event
@@ -248,16 +308,20 @@ angular.module('trippo.plan',[
 
 })
 
-.controller('PlanningCtrl', function PlanningCtrl($scope,SelectionService,ModalHandler,PlanningService,$stateParams,StubHandler,commonResources) {
+.controller('PlanningCtrl', function PlanningCtrl(CityPlanningService,$scope,SelectionService,ModalHandler,PlanningService,$stateParams,StubHandler,commonResources) {
         /**
          * List of fuction which set the content of the modal when clicked More button in item
          */
+        console.log("initializing planning ctrl");
+        CityPlanningService.setRangeDatesCity($stateParams.city_name) ;
+
+        CityPlanningService.printRanges();
         $scope.setDetails = function(item) {
            ModalHandler.setDetailsItem(item,$stateParams.city_name);
         };
 
         //START STUB
-
+        /*
 
         StubHandler.createFakeDates();
         var randomItemsc = [];
@@ -279,7 +343,7 @@ angular.module('trippo.plan',[
 
 
 
-
+         */
         //END STUB
 
 
@@ -288,11 +352,13 @@ angular.module('trippo.plan',[
         $scope.current_day = moment($stateParams.date,"DD-MM-YYYY");
 
 
-        $scope.hotels =SelectionService. getHotelSelection($stateParams.city_name);
+        $scope.hotels =SelectionService.getHotelSelection($stateParams.city_name);
         $scope.culture =SelectionService.getCultureSelection($stateParams.city_name);
         $scope.entertainment =SelectionService.getEntertainmentSelection($stateParams.city_name);
         $scope.foods = SelectionService.getFoodSelection($stateParams.city_name);
 
+        console.log("$scope.culture from selected");
+        console.log($scope.culture);
 
 
 
@@ -308,6 +374,12 @@ angular.module('trippo.plan',[
          * loading the previously chosen items
          */
         $scope.selectedItems =PlanningService.getCurrentTodo();
+
+        //saving to local storage every time the  selectedItems array is modified
+        $scope.$watchCollection('selectedItems', function () {
+            CityPlanningService.saveLocalStorage() ;
+
+        });
 
         $scope.addToSchedule = function (item) {
             $scope.selectedItems =  PlanningService.addToSchedule(item);
@@ -388,7 +460,7 @@ angular.module('trippo.plan',[
 
 
 })
-.factory('PlanningService', function (DatesService) {
+.factory('PlanningService', function (DatesService, CityPlanningService) {
         var current_schedule;
         var movePositionArray = function (array,old_index, new_index) {
             if (new_index >= array.length) {
@@ -411,22 +483,31 @@ angular.module('trippo.plan',[
                 console.log("initiliaze current day");
                 console.log(day);
 
+
                  current_schedule = DatesService.getDay(day);
+                console.log("current schedule ");
+                console.log(current_schedule);
+
 
              },
             /**
              * remove items which were removed from the selectedItem in city page
              * @param selectedItems
              */
+
             removeUnselectedItems: function(selectedItems){
+
+
                 if (current_schedule !== undefined) {
-                    angular.forEach(current_schedule.todo, function (value, key) {
-                        if (selectedItems.indexOf(value) == -1) {
-                            var index = current_schedule.todo.indexOf(value);
-                            current_schedule.todo.splice(index, 1);
-                        }
+                    current_schedule.todo = current_schedule.todo.filter(function (current) {
+                        return selectedItems.filter(function (current_b) {
+                            return current_b.id == current.id;
+                        }).length > 0;
                     });
+
                 }
+                console.log("current schedule after delete");
+                console.log(current_schedule);
             } ,
             /**
              * add item to the todo_ array of schedule
@@ -437,6 +518,7 @@ angular.module('trippo.plan',[
                 var index = current_schedule.todo.indexOf(item);
                 if (index==-1){
                     current_schedule.todo.push(item);
+
                 }
                 return current_schedule.todo;
 
@@ -447,10 +529,9 @@ angular.module('trippo.plan',[
              * @returns {*|day_schedule.todo_}  item of the current day
              */
             removeFromSchedule:function(item){
-                var index = current_schedule.todo.indexOf(item);
-                if (index > -1) {
-                    current_schedule.todo.splice(index, 1);
-                }
+                current_schedule.todo =  current_schedule.todo.filter(function(current){
+                    return item.id != current.id ;
+                });
                 return current_schedule.todo;
             },
             getCurrentTodo:function(){
@@ -483,7 +564,10 @@ angular.module('trippo.plan',[
              * @returns {boolean}
              */
             isScheduled:function(item){
-                return current_schedule.todo.indexOf(item)>-1 ;
+                var result = current_schedule.todo.filter(function( current ) {
+                    return item.id == current.id ;
+                });
+                return result.length>0 ;
             } ,
             /**
              * return correct class based on the item tag

@@ -186,17 +186,13 @@ angular.module( 'trippo.city', [
 
                 //check if data are already in localstorage   placed here because I need the info of the token can't put
                 // this code outside  even if make more sense
-                var result = localStorageService.get('culture_list');
-                if( result === null ){
-                    //initialize cultureList[city] with the data coming from the api call
-                    cultureList[city] = cult[0].results;
+                var culture_selection = localStorageService.get(city+'culture_selection');
+                if( culture_selection === null ){
+                    //initialize cultureList[city] with the data coming from the api call nothing selected in localstorage
+                    culture_selection = [];
                 }
-                else{
-                    //initialize cultureList[city] with data from localstorage
-                    cultureList[city] = result;
-                }
-
-
+                //remove item present in the selction
+                cultureList[city] = CityService.arrayDiff(cult[0].results,culture_selection);
 
                //creating infinity scrollhandler for this city
                 infiniteScroll[city] = new InfiniteScrollHandler(token,cultureList[city]);
@@ -227,7 +223,7 @@ angular.module( 'trippo.city', [
     var addItem = function(city,item){
           cultureList[city].push(item);
         //keep track on localStorage of change inside the list culture
-        localStorageService.set('culture_list',cultureList[city]);
+     //   localStorageService.set('culture_list',cultureList[city]);
 
     };
 
@@ -236,7 +232,7 @@ angular.module( 'trippo.city', [
        if (index != -1){
           cultureList[city].splice(index,1);
            //keep track on localStorage of change inside the list culture
-           localStorageService.set('culture_list',cultureList[city]);
+       //    localStorageService.set('culture_list',cultureList[city]);
 
        }
     };
@@ -290,7 +286,7 @@ angular.module( 'trippo.city', [
         });
 })
 
-.factory('EntertainmentService', function EntertainmentService(EntertainmentRes,InfiniteScrollHandler,CityService){
+.factory('EntertainmentService', function EntertainmentService(EntertainmentRes,InfiniteScrollHandler,CityService, localStorageService){
         var entertainmentList=[];
         //hash with key: "city" , value : InfiniteScrollHandler object of the city
         var infiniteScroll =[];
@@ -306,7 +302,12 @@ angular.module( 'trippo.city', [
                     var token =  cult[0].token;
 
                     //initialize cultureList[city] with the data coming from the api call
-                    entertainmentList[city] = cult[0].results;
+                    var entertainment_selection = localStorageService.get(city+'entertainment_selection');
+                    if( entertainment_selection === null ){
+                        entertainment_selection = [];
+                    }
+                    //remove item present in the selection
+                    entertainmentList[city] = CityService.arrayDiff(cult[0].results,entertainment_selection);
 
                     CityService.setEntertainmentList(entertainmentList[city]);
 
@@ -392,7 +393,7 @@ angular.module( 'trippo.city', [
         });
 })
 
-.factory('UtilityService', function UtilityService(UtilityRes,InfiniteScrollHandler,CityService){
+.factory('UtilityService', function UtilityService(UtilityRes,InfiniteScrollHandler,CityService, localStorageService){
         var utilityList=[];
         //hash with key: "city" , value : InfiniteScrollHandler object of the city
         var infiniteScroll =[];
@@ -408,7 +409,14 @@ angular.module( 'trippo.city', [
                     var token =  cult[0].token;
 
                     //initialize cultureList[city] with the data coming from the api call
-                    utilityList[city] = cult[0].results;
+                    var utility_selection = localStorageService.get('utility_selection');
+                    if( utility_selection === null ){
+                        utility_selection = [];
+                    }
+                    //remove item present in the selection
+                    utilityList[city] = CityService.arrayDiff(cult[0].results,utility_selection);
+
+
 
                     CityService.setUtilityList(utilityList[city]);
 
@@ -494,7 +502,7 @@ angular.module( 'trippo.city', [
         });
 })
 
-.factory('HotelService', function HotelService(HotelRes,InfiniteScrollHandler,CityService){
+.factory('HotelService', function HotelService(HotelRes,InfiniteScrollHandler,CityService, localStorageService){
         var hotelList=[];
         //hash with key: "city" , value : InfiniteScrollHandler object of the city
         var infiniteScroll =[];
@@ -510,7 +518,14 @@ angular.module( 'trippo.city', [
                     var token =  cult[0].token;
 
                     //initialize cultureList[city] with the data coming from the api call
-                    hotelList[city] = cult[0].results;
+                    var hotel_selection = localStorageService.get(city+'hotel_selection');
+                    if( hotel_selection === null ){
+                        hotel_selection = [];
+                    }
+                    //remove item present in the selection
+                    hotelList[city] = CityService.arrayDiff(cult[0].results,hotel_selection);
+
+
 
                     CityService.setHotelList(hotelList[city]);
 
@@ -594,7 +609,7 @@ angular.module( 'trippo.city', [
         });
 
 })
-.factory('FoodService',function FoodService(FoodRes,InfiniteScrollHandler,CityService){
+.factory('FoodService',function FoodService(FoodRes,InfiniteScrollHandler,CityService, localStorageService){
         var foodList=[];
         //hash with key: "city" , value : InfiniteScrollHandler object of the city
         var infiniteScroll =[];
@@ -610,7 +625,13 @@ angular.module( 'trippo.city', [
                     var token =  cult[0].token;
 
                     //initialize cultureList[city] with the data coming from the api call
-                    foodList[city] = cult[0].results;
+                    var food_selection = localStorageService.get(city+'food_selection');
+                    if( food_selection === null ){
+                        food_selection = [];
+                    }
+                    //remove item present in the selection
+                    foodList[city] =  CityService.arrayDiff(cult[0].results,food_selection);
+
 
                     CityService.setFoodList(foodList[city]);
 
@@ -780,6 +801,16 @@ angular.module( 'trippo.city', [
         var hotel_list = [];
         var entertainment_list = [];
 
+       var arrayDiff = function (first,second) {
+
+            var onlyFirst = first.filter(function (current) {
+                return second.filter(function (current_b) {
+                    return current_b.id == current.id;
+                }).length === 0;
+            });
+            return onlyFirst;
+        };
+
 
         var setEntertainmentList = function(list){
             entertainment_list = list;
@@ -836,6 +867,7 @@ angular.module( 'trippo.city', [
             return current_list;
         } ;
         return {
+            arrayDiff :arrayDiff  ,
             getCurrentList :getCurrentList,
             setCurrentList : setCurrentList,
             setCultureList : setCultureList,
@@ -856,8 +888,6 @@ angular.module( 'trippo.city', [
 
         var getLocalStorage = function(key){
             var result = localStorageService.get(key);
-            console.log("result get localstorage");
-            console.log(result);
 
             if( result ===null ){
                 return   [];
@@ -890,9 +920,7 @@ angular.module( 'trippo.city', [
                 if( cultureSelection[city].indexOf(culture_item) == -1) {
                     CultureService.removeItem(city,culture_item);
                     cultureSelection[city].push(culture_item);
-                    localStorageService.set('culture_selection', cultureSelection[city]);
-                    console.log("local storage keys");
-                    console.log(localStorageService.keys());
+                    localStorageService.set(city+'culture_selection', cultureSelection[city]);
 
 
                 }
@@ -905,7 +933,7 @@ angular.module( 'trippo.city', [
                 if(index != -1) {
                     cultureSelection[city].splice(index, 1);
                     CultureService.addItem(city,culture_item);
-                    localStorageService.set('culture_selection', cultureSelection[city]);
+                    localStorageService.set(city+'culture_selection', cultureSelection[city]);
 
                 }
                 return cultureSelection[city];
@@ -914,7 +942,7 @@ angular.module( 'trippo.city', [
 
             getCultureSelection:function (city) {
                 if (cultureSelection[city]=== undefined){
-                    cultureSelection[city] = getLocalStorage('culture_selection');
+                    cultureSelection[city] = getLocalStorage(city+'culture_selection');
                 }
                 return cultureSelection[city];
             },
@@ -926,6 +954,8 @@ angular.module( 'trippo.city', [
                 if( utilitySelection[city].indexOf(utility_item) == -1) {
                     UtilityService.removeItem(city,utility_item);
                     utilitySelection[city].push(utility_item);
+                    localStorageService.set(city+'utility_selection', utilitySelection[city]);
+
 
                 }
                 return utilitySelection[city];
@@ -937,6 +967,8 @@ angular.module( 'trippo.city', [
                 if(index != -1) {
                     utilitySelection[city].splice(index, 1);
                     UtilityService.addItem(city,utility_item);
+                    localStorageService.set(city+'utility_selection', utilitySelection[city]);
+
                 }
                 return utilitySelection[city];
 
@@ -944,7 +976,7 @@ angular.module( 'trippo.city', [
 
             getUtilitySelection:function(city){
                 if (utilitySelection[city]=== undefined){
-                    utilitySelection[city] = [];
+                    utilitySelection[city] = getLocalStorage(city+'utility_selection');
                 }
                return utilitySelection[city];
             },
@@ -956,6 +988,8 @@ angular.module( 'trippo.city', [
                 if( hotelSelection[city].indexOf(hotel_item) == -1) {
                     HotelService.removeItem(city,hotel_item);
                     hotelSelection[city].push(hotel_item);
+                    localStorageService.set(city+'hotel_selection', hotelSelection[city]);
+
 
                 }
                 return hotelSelection[city];
@@ -968,6 +1002,8 @@ angular.module( 'trippo.city', [
                 if(index != -1) {
                     hotelSelection[city].splice(index, 1);
                     HotelService.addItem(city,hotel_item);
+                    localStorageService.set(city+'hotel_selection', hotelSelection[city]);
+
                 }
                 return hotelSelection[city];
 
@@ -975,7 +1011,7 @@ angular.module( 'trippo.city', [
 
             getHotelSelection:function(city){
                 if (hotelSelection[city]=== undefined){
-                    hotelSelection[city] = [];
+                    hotelSelection[city] = getLocalStorage(city+'hotel_selection');
                 }
                 return hotelSelection[city];
             },
@@ -987,6 +1023,8 @@ angular.module( 'trippo.city', [
                 if( entertainmentSelection[city].indexOf(entertainment_item) == -1) {
                     EntertainmentService.removeItem(city,entertainment_item);
                     entertainmentSelection[city].push(entertainment_item);
+                    localStorageService.set(city+'entertainment_selection', entertainmentSelection[city]);
+
 
                 }
                 return entertainmentSelection[city];
@@ -997,13 +1035,15 @@ angular.module( 'trippo.city', [
                 if(index != -1) {
                     entertainmentSelection[city].splice(index, 1);
                     EntertainmentService.addItem(city,entertainment_item);
+                    localStorageService.set(city+'entertainment_selection', entertainmentSelection[city]);
+
                 }
                 return entertainmentSelection[city];
             },
 
             getEntertainmentSelection:function(city){
                 if (entertainmentSelection[city]=== undefined){
-                    entertainmentSelection[city] = [];
+                    entertainmentSelection[city]   = getLocalStorage(city+'entertainment_selection');
                 }
                 return entertainmentSelection[city];
             },
@@ -1015,6 +1055,8 @@ angular.module( 'trippo.city', [
                 if( foodSelection[city].indexOf(food_item) == -1) {
                     FoodService.removeItem(city,food_item);
                     foodSelection[city].push(food_item);
+                    localStorageService.set(city+'food_selection', foodSelection[city]);
+
 
                 }
                 return foodSelection[city];
@@ -1025,13 +1067,15 @@ angular.module( 'trippo.city', [
                 if(index != -1) {
                     foodSelection[city].splice(index, 1);
                     FoodService.addItem(city,food_item);
+                    localStorageService.set(city+'food_selection', foodSelection[city]);
+
                 }
                 return foodSelection[city];
             },
 
             getFoodSelection:function(city){
                 if (foodSelection[city]=== undefined){
-                    foodSelection[city] = [];
+                    foodSelection[city] =  getLocalStorage(city+'food_selection');
                 }
                 return foodSelection[city];
             },
@@ -1045,6 +1089,11 @@ angular.module( 'trippo.city', [
                  hotelSelection[city] = [];
                  entertainmentSelection[city]= [];
                  foodSelection[city] = [];
+                 localStorageService.remove(city+'culture_selection');
+                localStorageService.remove(city+'utility_selection');
+                localStorageService.remove(city+'hotel_selection');
+                localStorageService.remove(city+'entertainment_selection');
+                localStorageService.remove(city+'food_selection');
 
             }
          };
