@@ -13,7 +13,7 @@
 
 
 
-            <input id="city" name="city"  type="text" placeholder="Search here..." class="form-control col-md-12 text-capitalize typeahead"
+            <input id="city" name="city"  type="text" placeholder="Search the city of your holidays" class="form-control col-md-12 typeahead"
                    ng-model="selected_city"
                    typeahead="city as city.name for city in cities | filter:{name:$viewValue}:startsWith | limitTo:8"
                    typeahead-template-url="customTemplate.html">
