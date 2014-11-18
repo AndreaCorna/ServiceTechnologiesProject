@@ -13,6 +13,7 @@ angular.module( 'trippo.city', [
 
 .config(function config( $stateProvider , localStorageServiceProvider ) {
     localStorageServiceProvider.setPrefix('trippo');
+    localStorageServiceProvider.setStorageType('sessionStorage');
   $stateProvider.state( 'city', {
     url: '/city/:city_name',
     views: {

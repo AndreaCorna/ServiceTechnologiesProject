@@ -140,6 +140,8 @@ class GuidesController < ApplicationController
   # return as json the guide with id equals to the id parameter
   # GET /guides/id
   def show
+
+
     id = params['id']
     result = Hash.new
     #get guide from the id passed through params and set result field of guide
@@ -149,6 +151,24 @@ class GuidesController < ApplicationController
       render json: ''
       return
     end
+
+    #check if guide of an user or a shared one
+    user = current_user
+    if user.nil?
+      guides = []
+    else
+      guides = Guide.where(:user_id => user.id)
+    end
+    puts 'guides'
+    puts guides
+    puts guide.inspect
+    if !guides.include?guide and  guide.shared != true
+      puts 'denied'
+      render json: ''
+      return
+    end
+
+    puts 'allowed'
 
     result['name'] = guide.name
     result['city'] = guide.city

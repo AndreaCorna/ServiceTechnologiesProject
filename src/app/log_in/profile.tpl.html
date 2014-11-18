@@ -10,9 +10,7 @@
 
         <div class="list-group">
             <div  ng-repeat="item in guides" >
-                        <div ng-show="submitted == item.id" class="alert" ng-class="result=='success'? 'alert-success':'alert-danger'">
-                            {{message}}
-                        </div>
+
                         <div class="col-sm-4">
                             <div class="product-image-wrapper">
                                 <div class="single-products">
@@ -29,8 +27,11 @@
                                         <button class="btn btn-default btn-sm capriola button-item" ng-click="moreInfo(item.id)" >
                                             Details <span class="glyphicon glyphicon-info-sign "></span>
                                         </button>
-                                        <button class="btn btn-success btn-sm capriola button-item" ng-click="shareTrip(item.id)"  >
+                                        <button ng-show="!item.shared" class="btn btn-success btn-sm capriola button-item" ng-click="shareTrip(item.id,true)"  >
                                             Share <span class="glyphicon glyphicon-plus-sign "></span>
+                                        </button>
+                                        <button ng-show="item.shared" class="btn btn-danger btn-sm capriola button-item" ng-click="shareTrip(item.id,false)">
+                                            Unshared <span class="glyphicon glyphicon-minus-sign "></span>
                                         </button>
                                     </div>
                                     <div class="product-overlay">

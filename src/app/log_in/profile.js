@@ -22,30 +22,34 @@ angular.module( 'trippo.profile', [
             $scope.email = user.email;
         });
 
+
         $scope.guides =[];
 
         ProfileService.initGuides(function() {
             $scope.guides = ProfileService.getGuides();
+            console.log($scope.guides);
+
         });
 
         $scope.moreInfo = function(id) {
             $location.path('guide/' + id);
         };
-        $scope.shareTrip = function(id){
+        $scope.shareTrip = function(id,action){
                  $scope.submitted   =false ;
-                 $http.put('/guides/'+id,{share:true}).
+                 $http.put('/guides/'+id,{share:action}).
                  success(function(data, status, headers, config) {
-                         $scope.submitted=id;
-                         $scope.result= 'success';
-                         $scope.message= 'Guide has been successfully shared' ;
+                         $scope.guides =  $scope.guides.map(function(cur){
+                             if( cur.id == id){
+                                 cur.shared = action;
+                             }
+                             return cur;
+                         });
                      }).
                  error(function(data, status, headers, config) {
-                         $scope.submitted=id;
-                     $scope.result= 'error';
-                     $scope.message= 'There has been a problem.Try again later' ;
                  });
 
         }   ;
+
 
     })
 
