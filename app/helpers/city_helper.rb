@@ -43,8 +43,8 @@ The method returns an array contains 4 images url around the coordinates passed 
       json = JSON.parse(response.body)
       count = 0
       json['photos'].each do |photo|
-        puts count
-        if(count <= 5 and photo['width'] >= 1000)
+        puts photo.inspect
+        if(count <= 5 and photo['width'] >= 1000 and photo['width'] <= 2000 and photo['height'] <= 1000)
           puts  "add"
           photos.append(photo)
           count = count + 1

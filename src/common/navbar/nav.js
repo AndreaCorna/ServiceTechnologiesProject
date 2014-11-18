@@ -7,15 +7,7 @@ angular.module("common.navModule", [
 .controller( "navCtrl",[  "$scope","$location","$log", "Auth", "localStorageService", "$rootScope", 'SelectionService' ,
     function($scope, $location, $log, Auth, localStorageService, $rootScope, SelectionService)
     {
-        $scope.isActive = function (viewLocation) {
-           /*
-            $scope.$log = $log;
-            $log.log("location  "+$location.path());
-            $log.log("viewLocation  "+viewLocation);
-            */
 
-            return viewLocation === $location.path();
-        };
         $scope.isHidden = function(){
 
 
