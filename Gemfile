@@ -82,3 +82,5 @@ gem 'rake'
 gem 'capistrano'
 
 gem 'colorize'
+
+gem 'prerender_rails'
