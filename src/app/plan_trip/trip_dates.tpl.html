@@ -7,6 +7,9 @@
         <div ng-show="submitted  && (form.end.$error.required || form.start.$error.required)" class="alert alert-danger">
             Field <strong>start date</strong> and <strong>end date</strong> are required
         </div>
+        <div ng-show="submitted  && error" class="alert alert-danger">
+            Too many date selected! Select less than 21 days
+        </div>
         <div class="row">
             <div class="col-md-4 col-md-offset-2">
                 <h2>Start date:<span ng-show="dtstart">{{dtstart | date:'dd/MM/yyyy'}}</span></h2>
@@ -48,8 +51,9 @@
                     <span class="month">{{curDate.format(monthFormat)}}</span>
                     <span class="year">{{curDate.format(yearFormat)}}</span>
                     <span class="time">ALL DAY</span>
-                    <button href="#infoDate" data-toggle="modal" class="btn btn-primary btn-outlined" ng-click="setModalDay(curDate)">MORE</button>
                     <a class="btn btn-primary btn-outlined" ui-sref="planning({date:curDate.format(dateFormat)})">EDIT</a>
+                    <button href="#infoDate" data-toggle="modal" class="btn btn-primary btn-outlined" ng-click="setModalDay(curDate)">MORE</button>
+
                 </time>
             </li>
         </div>

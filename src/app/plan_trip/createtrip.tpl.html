@@ -75,13 +75,14 @@
                             <button class="btn btn-primary btn-outlined z-up" style="float: right;font-size: 17px;margin-right: 5px;" ui-sref="planning({date:date.format(dateFormat)})">EDIT</button>
                         </h4>
                     </div>
-                    <div id="{{date.format('DD-MM-YYYY')}}List" class="panel-collapse in">
-                        <div class="panel-body" style="background-color:#e8e8e8">
-                            <div ng-show="currentView == 'MAPS VIEW'">
-                                <place-list-details item-list="getDayProgram(date)"  ></place-list-details>
+                    <div id="{{date.format('DD-MM-YYYY')}}List" class="panel-collapse collapse in">
+                        <div ng-show="getDayProgram(date).length > 0">
+                            <div class="panel-body" style="background-color:#e8e8e8">
+                                <div ng-show="currentView == 'MAPS VIEW'">
+                                    <place-list-details item-list="getDayProgram(date)"  ></place-list-details>
+                                </div>
+                                <place-list-maps ng-show="currentView == 'DETAILS VIEW'" init-position="getCityName()" selected-items="getDayProgram(date)" map-id="date"></place-list-maps>
                             </div>
-                            <place-list-maps ng-show="currentView == 'DETAILS VIEW'" init-position="getCityName()" selected-items="getDayProgram(date)" map-id="date"></place-list-maps>
-
                         </div>
                     </div>
                 </div>

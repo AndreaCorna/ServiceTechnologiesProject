@@ -76,15 +76,7 @@ angular.module('trippo.plan',[
 
         } ;
 
-        var printRanges = function(){
-            console.log("RANGES IN CITYSERVICE");
-            console.log(current_city);
-            console.log("city_ranges[current_city]");
-            console.log(city_ranges[current_city]);
-            console.log("city_ranges");
-            console.log(city_ranges);
 
-        }  ;
 
         var saveLocalStorage = function(){
             console.log("city_ranges");
@@ -105,7 +97,6 @@ angular.module('trippo.plan',[
         }  ;
 
         return {
-            printRanges :printRanges,
             saveLocalStorage : saveLocalStorage,
             createRangeDatesCity : createRangeDatesCity,
             setRangeDatesCity : setRangeDatesCity,
@@ -229,7 +220,6 @@ angular.module('trippo.plan',[
 .controller('DatesCtrl', function DatesCtrl($scope,DatesService,CityPlanningService,$stateParams,PlanningService) {
         console.log("initializing dates ctrl");
 
-        CityPlanningService.printRanges();
         $scope.dtstart=null;
         $scope.dtend=null;
         $scope.submitted =false;
@@ -280,6 +270,14 @@ angular.module('trippo.plan',[
         $scope.next = function (form) {
             $scope.submitted = true;
             if (form.$valid) {
+                console.log("dates difference");
+                console.log($scope.dtend.getDate() -$scope.dtstart.getDate());
+
+                var date_difference = $scope.dtend.getDate() -$scope.dtstart.getDate();
+                if (date_difference>20) {
+                    $scope.error =true ;
+                    return ;
+                }
 
                 CityPlanningService.createRangeDatesCity($stateParams.city_name,$scope.dtstart, $scope.dtend);
                 $scope.dates = DatesService.getRangeDates();
@@ -315,7 +313,6 @@ angular.module('trippo.plan',[
         console.log("initializing planning ctrl");
         CityPlanningService.setRangeDatesCity($stateParams.city_name) ;
 
-        CityPlanningService.printRanges();
         $scope.setDetails = function(item) {
            ModalHandler.setDetailsItem(item,$stateParams.city_name);
         };
