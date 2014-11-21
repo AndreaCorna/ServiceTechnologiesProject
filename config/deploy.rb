@@ -6,7 +6,7 @@ set :repo_url, 'https://434dd7cf2170b160c94d916f0fce5a34f9ac56c4:@github.com/And
 
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
-set :branch, 'prerender'
+set :branch, 'master'
 
 # Default deploy_to directory is /var/www/my_app
  set :deploy_to, '/var/www/trippo'
