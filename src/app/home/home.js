@@ -25,7 +25,7 @@ angular.module( 'trippo.home', [
  * will handle ensuring they are all available at run-time, but splitting it
  * this way makes each module more "self-contained".
  */
-.config(function config( $stateProvider ) {
+.config(function config( $stateProvider ,$locationProvider) {
   $stateProvider.state( 'home', {
     url: '/home',
     views: {
@@ -36,7 +36,10 @@ angular.module( 'trippo.home', [
     },
     data:{ pageTitle: 'Home' }
   });
+        $locationProvider.hashPrefix('!');
 })
+
+
 
 /**
  *Home controller implements search and get the list of cities from a rest call to the cityResource
