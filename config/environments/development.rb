@@ -38,4 +38,8 @@ Rails.application.configure do
 
   #added in order to be compatible with angularjs
   config.assets.js_compressor = Uglifier.new(mangle: false)
+
+  #added in order to use prerender
+  config.middleware.use Rack::Prerender, prerender_token: 'blr6gLxmvkUbz8ZZl8A9'
+
 end
