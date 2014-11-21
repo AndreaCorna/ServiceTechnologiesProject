@@ -88,7 +88,7 @@ Rails.application.configure do
 
   #added to solve problem in heroku
   config.action_mailer.raise_delivery_errors = false
-  config.action_mailer.default_url_options = { :host => 'trippo.herokuapp.com'}
+  config.action_mailer.default_url_options = { :host => 'trippo.cf'}
 
   #added in order to use prerender
   config.middleware.use Rack::Prerender, prerender_token: 'blr6gLxmvkUbz8ZZl8A9'
