@@ -25,7 +25,10 @@ angular.module( 'trippo.guide', [
 
                 }
             },
-            data: { pageTitle: 'Trippo' }
+
+            data:{  pageTitle: 'Guide | Trippo ',
+            description:''
+        }
         })
             .state('guides', {
                 url: '/guides',
@@ -36,6 +39,9 @@ angular.module( 'trippo.guide', [
                         templateUrl: 'city/guides.tpl.html'
 
                     }
+                }   ,
+                data:{  pageTitle: 'Guides | Trippo ',
+                    description:''
                 }
 
             });
