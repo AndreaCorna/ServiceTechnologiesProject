@@ -693,7 +693,7 @@ angular.module('trippo.plan',[
                 guide.description = $scope.description ;
                 guide.city = $stateParams.city_name   ;
                 guide.image = $scope.imageFile;
-                if(lat !=undefined && lng != undefined)  {
+                if(lat !==undefined && lng !== undefined)  {
                     guide.lat_lng = lat+':'+lng ;
                 }
                 else{
