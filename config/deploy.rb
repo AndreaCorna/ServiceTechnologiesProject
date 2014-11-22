@@ -49,7 +49,9 @@ namespace :deploy do
         execute "cd '#{release_path}'; bower install"
         execute "cd '#{release_path}'; grunt build --force"
         execute "cd '#{release_path}'; grunt compile"
-        execute "cd '#{release_path}'; cd public;rm compiled; ln -s ../grunt_bin compiled"
+     #  execute "cd '#{release_path}'; cd public;rm compiled; ln -s ../grunt_bin compiled"
+        execute "cd '#{release_path}'; cd public; cp -r ../grunt_bin/* ."
+
         execute "cd '#{release_path}'; rm public/UI;"
 
 
