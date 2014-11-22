@@ -47,6 +47,7 @@ angular.module( 'trippo.login', [
                 console.log(user); // => {id: 1, ect: '...'}
             }, function(error) {
                 // Authentication failed...
+
             });
 
             $scope.$on('devise:login', function(event, currentUser) {
