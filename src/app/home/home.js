@@ -35,7 +35,9 @@ angular.module( 'trippo.home', [
         templateUrl: 'home/home.tpl.html'
       }
     },
-    data:{ pageTitle: 'Home' }
+     data:{ pageTitle: 'Trippo | Trip planning assistant | Guides creator',
+            description:'Website which helps you searching interesting places in a city, creating your personal guide and share it with friends'}
+
   });
         $locationProvider.hashPrefix('!');
 })

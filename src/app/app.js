@@ -24,6 +24,9 @@ angular.module( 'trippo', [
     if ( angular.isDefined( toState.data.pageTitle ) ) {
       $scope.pageTitle = toState.data.pageTitle  ;
     }
+      if ( angular.isDefined( toState.data.description ) ) {
+          $scope.metadescription = toState.data.description  ;
+      }
   });
 })
 

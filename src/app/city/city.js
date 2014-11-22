@@ -21,8 +21,8 @@ angular.module( 'trippo.city', [
         controller: 'CityCtrl',
         templateUrl: 'city/city.tpl.html'
       }
-    },
-    data:{ pageTitle: 'Trippo' }
+    }
+
   })
 
 
@@ -36,6 +36,9 @@ angular.module( 'trippo.city', [
                   templateUrl: 'city/culture.tpl.html'
 
               }
+          } ,
+          data: {  pageTitle: 'Culture | Trippo ',
+                 description:''
           }
 
       })
@@ -48,6 +51,9 @@ angular.module( 'trippo.city', [
                   templateUrl: 'city/hotel.tpl.html'
 
               }
+          } ,
+          data: {  pageTitle: 'Hotel | Trippo ',
+                    description:''
           }
 
       })
@@ -60,6 +66,9 @@ angular.module( 'trippo.city', [
                   templateUrl: 'city/entertainment.tpl.html'
 
               }
+          }  ,
+          data: {  pageTitle: 'Entertainment | Trippo ',
+                    description:''
           }
 
       })
@@ -72,8 +81,10 @@ angular.module( 'trippo.city', [
                   templateUrl: 'city/utility.tpl.html'
 
               }
+          } ,
+          data: {  pageTitle: 'Utility | Trippo ',
+                   description:''
           }
-
       })
 
       .state('food', {
@@ -85,8 +96,10 @@ angular.module( 'trippo.city', [
                   templateUrl: 'city/food.tpl.html'
 
               }
+          }   ,
+          data: {  pageTitle: 'Food | Trippo ' ,
+                   description:''
           }
-
       })
 
 
@@ -110,7 +123,10 @@ angular.module( 'trippo.city', [
               "content@city": {
                   controller: 'PlanningCtrl',
                   templateUrl: 'plan_trip/planning.tpl.html'
-              }
+              }  ,
+              data:{  pageTitle: 'Planning | Trippo ' ,
+                        description:''
+                   }
           }
 
       })
@@ -121,6 +137,9 @@ angular.module( 'trippo.city', [
               "content@city": {
                   controller: 'CreateTripCtrl',
                   templateUrl: 'plan_trip/createtrip.tpl.html'
+              }  ,
+              data:{  pageTitle: 'CreateTrip | Trippo ',
+                        description:''
               }
           }
 

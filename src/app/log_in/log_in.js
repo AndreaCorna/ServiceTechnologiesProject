@@ -13,7 +13,8 @@ angular.module( 'trippo.login', [
                     templateUrl: 'log_in/log_in.tpl.html'
                 }
             },
-            data:{ pageTitle: 'Login' }
+            data:{  pageTitle: 'Login | Trippo ',
+                description:'' }
         });
     })
 
