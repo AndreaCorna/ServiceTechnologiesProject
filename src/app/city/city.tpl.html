@@ -41,13 +41,13 @@
 <div class="container" >
     <div >
         <ul class="nav navbar-nav nav-justified capriola" style="font-size: 20px">
-            <li><a ui-sref="guides"   data-target="#" data-toggle="pill"><span>Guides</span></a></li>
-            <li><a ui-sref="culture"  ng-click="setCurrentList('culture')" data-target="#" data-toggle="pill"><i class="fa fa-university"></i><span>Culture</span></a></li>
-            <li><a ui-sref="entertainment" ng-click="setCurrentList('entertainment')" data-target="#" data-toggle="pill"><i class="fa fa-film"></i><span>Entertainment</span></a></li>
-            <li><a ui-sref="hotel" ng-click="setCurrentList('hotel')" data-target="#" data-toggle="pill"><i class="fa fa-home"></i><span>Hotel</span></a></li>
-            <li><a ui-sref="utility" ng-click="setCurrentList('utility')" data-target="#" data-toggle="pill"><i class="fa fa-info"></i><span>Utility</span></a></li>
-            <li><a ui-sref="food" ng-click="setCurrentList('food')" data-target="#" data-toggle="pill"><i class="fa fa-cutlery"></i><span>Food</span></a></li>
-            <li class='last'><a ui-sref="dates" data-target="#" data-toggle="pill"><span>Plan Trip</span></a></li>
+            <li><a ui-sref="guides"  data-target="#" data-toggle="pill" ng-mouseleave="icon_guides = 'fa fa-bookmark'; text_guides=''" ng-mouseover="text_guides='Guides'; icon_guides=''" ng-init="icon_guides='fa fa-bookmark'"><i class={{icon_guides}}>{{text_guides}}</i></a></li>
+            <li><a ui-sref="culture" ng-click="setCurrentList('culture')" data-target="#" data-toggle="pill" ng-mouseleave="icon_culture = 'fa fa-university'; text_culture=''" ng-mouseover="text_culture='Culture'; icon_culture=''" ng-init="icon_culture='fa fa-university'"><i class={{icon_culture}}>{{text_culture}}</i></a></li>
+            <li><a ui-sref="entertainment" ng-click="setCurrentList('entertainment')" data-target="#" data-toggle="pill" ng-mouseleave="icon_enterteinment = 'fa fa-film'; text_enterteinment=''" ng-mouseover="text_enterteinment='Enterteinment'; icon_enterteinment=''" ng-init="icon_enterteinment='fa fa-film'"><i class={{icon_enterteinment}}>{{text_enterteinment}}</i></a></li>
+            <li><a ui-sref="hotel" ng-click="setCurrentList('hotel')" data-target="#" data-toggle="pill" ng-mouseleave="icon_hotel = 'fa fa-home'; text_hotel=''" ng-mouseover="text_hotel='Hotel'; icon_hotel=''" ng-init="icon_hotel='fa fa-home'"><i class={{icon_hotel}}>{{text_hotel}}</i></a></li>
+            <li><a ui-sref="utility" ng-click="setCurrentList('utility')" data-target="#" data-toggle="pill" ng-mouseleave="icon_utility = 'fa fa-info'; text_utility=''" ng-mouseover="text_utility='Utility'; icon_utility=''" ng-init="icon_utility='fa fa-info'"><i class={{icon_utility}}>{{text_utility}}</i></a></li>
+            <li><a ui-sref="food" ng-click="setCurrentList('food')" data-target="#" data-toggle="pill" ng-mouseleave="icon_food = 'fa fa-cutlery'; text_food=''" ng-mouseover="text_food='Food'; icon_food=''" ng-init="icon_food='fa fa-cutlery'"><i class={{icon_food}}>{{text_food}}</i></a></li>
+            <li class='last'><a ui-sref="dates" data-target="#" data-toggle="pill" ng-mouseleave="icon_dates = 'fa fa-arrow-right'; text_dates=''" ng-mouseover="text_dates='Plan'; icon_dates=''" ng-init="icon_dates='fa fa-arrow-right'"><i class={{icon_dates}}>{{text_dates}}</i></a></li>
         </ul>
     </div>
 </div>
@@ -85,7 +85,7 @@
                                             <b>Price</b>
                                         </div>
                                         <div class="row">
-                                            {{moreInfoSelection.price}}
+                                            <rating ng-model="moreInfoSelection.price" readonly="true" max=5></rating>
                                         </div>
                                     </div>
                                 </div>

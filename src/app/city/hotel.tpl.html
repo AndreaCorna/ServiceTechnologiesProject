@@ -15,9 +15,6 @@
                                 </div>
                                 <h4>{{c.name}}</h4>
                                 <p style="color: white" class="capriola">Rating <rating style="color: white" ng-model="c.rating" readonly="true" ></rating></p>
-                                <div ng-show="c.price != null">
-                                    <p style="color: white" class="capriola">Price {{c.price}}</p>
-                                </div>
                                 <button class="btn btn-default btn-sm capriola button-item" ng-click="setHotelDetails(c.id)" href="#moreInfoModalPlace" data-toggle="modal">
                                     Details <span class="glyphicon glyphicon-info-sign "></span>
                                 </button>
@@ -103,9 +100,6 @@
                                     </div>
                                     <h4>{{c.name}}</h4>
                                     <p style="color: white" class="capriola">Rating <rating style="color: white" ng-model="c.rating" readonly="true" ></rating></p>
-                                    <div ng-show="c.price != null">
-                                        <p style="color: white" class="capriola">Price {{c.price}}</p>
-                                    </div>
                                     <button class="btn btn-default btn-sm capriola button-item" ng-click="setHotelDetails(c.id)" href="#moreInfoModalPlace" data-toggle="modal">
                                         Details <span class="glyphicon glyphicon-info-sign "></span>
                                     </button>
