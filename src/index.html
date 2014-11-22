@@ -39,7 +39,7 @@
             <li class="navbar-item"><a href="#!">Home</a></li>
 
             <li class="dropdown navbar-item" ng-show="auto">
-                <a data-toggle="dropdown" class="dropdown-toggle" href="#">Current Trips <b class="caret"></b></a>
+                <a  class="dropdown-toggle" href="#">Current Trips <b class="caret"></b></a>
                 <ul role="menu" class="dropdown-menu">
                     <li ng-repeat="city in curTrips"><a ui-sref="dates({city_name: city})">{{city.toUpperCase()}}</a></li>
                 </ul>

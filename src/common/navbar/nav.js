@@ -13,7 +13,7 @@ angular.module("common.navModule", [
 
             return "/home" === $location.path();
         };
-
+        $scope.curTrips= SelectionService.getCities();
         $scope.$watchCollection(function () { return SelectionService.getCities(); }, function (newVal, oldVal) {
             $scope.curTrips= SelectionService.getCities();
             if(!$scope.$$phase) {
