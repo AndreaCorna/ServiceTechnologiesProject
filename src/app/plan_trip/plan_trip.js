@@ -276,6 +276,8 @@ angular.module('trippo.plan',[
 
                 var date_difference = $scope.dtend.getDate() -$scope.dtstart.getDate();
                 if (date_difference>20) {
+                    console.log("date difference not allowed");
+                    
                     $scope.error =true ;
                     return ;
                 }

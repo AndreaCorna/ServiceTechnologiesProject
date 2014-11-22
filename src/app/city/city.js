@@ -112,6 +112,9 @@ angular.module( 'trippo.city', [
                   templateUrl: 'plan_trip/trip_dates.tpl.html'
 
               }
+          } ,
+          data:{  pageTitle: 'Dates | Trippo ',
+              description:''
           }
 
       })
@@ -123,10 +126,10 @@ angular.module( 'trippo.city', [
               "content@city": {
                   controller: 'PlanningCtrl',
                   templateUrl: 'plan_trip/planning.tpl.html'
-              }  ,
-              data:{  pageTitle: 'Planning | Trippo ' ,
-                        description:''
-                   }
+              }
+          }  ,
+          data:{  pageTitle: 'Planning | Trippo ' ,
+              description:''
           }
 
       })
@@ -137,10 +140,10 @@ angular.module( 'trippo.city', [
               "content@city": {
                   controller: 'CreateTripCtrl',
                   templateUrl: 'plan_trip/createtrip.tpl.html'
-              }  ,
-              data:{  pageTitle: 'CreateTrip | Trippo ',
-                        description:''
               }
+          }   ,
+          data:{  pageTitle: 'CreateTrip | Trippo ',
+              description:''
           }
 
       });
