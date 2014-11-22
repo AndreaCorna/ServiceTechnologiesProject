@@ -74,6 +74,34 @@ angular.module('common.mapsService',[])
             }
         };
 
+
+        var cityGeocode  = function(city,callback){
+
+            geocoder.geocode({
+                address: city
+            }, function (results, status) {
+                if (results[0] != null) {
+                    if (status === google.maps.GeocoderStatus.OK) {
+                        if (typeof(callback)=='function'){
+                            var location = results[0].geometry.location ;
+                            callback(location);
+                            console.log('geocoding center');
+                            console.log(location);
+
+                        }
+
+
+                    } else {
+                        if (typeof(callback)=='function') {
+                            callback(undefined);
+                            console.log('Cannot Geocode');
+                        }
+                    }
+                }
+
+            });
+        } ;
+
         //external variable so that whe clicked outside or to another marker the old infowindow disappear
         var infowindow;
 
@@ -143,6 +171,7 @@ angular.module('common.mapsService',[])
         };
 
         return {
+            cityGeocode:cityGeocode,
             initMap :initMap ,
             initializeMapCenter : initializeMapCenter,
             addMarker :addMarker

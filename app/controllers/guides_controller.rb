@@ -63,11 +63,16 @@ class GuidesController < ApplicationController
     guide.name= params['name']
     guide.description=params['description']
     guide.city = params['city']
+    guide.lat_lng = params['lat_lng']
     guide.user_id = current_user.id
     if(!params['image'].nil? and params['image'].downcase=~/(\.|\/)(gif|jpe?g|png)$/ )
       guide.image = params['image']
       puts guide.image
     end
+
+    #get lat and lng of the passed city
+    #first check if one of the DB
+
 
     params['days'].each { |day|
       if not day['schedule'].nil?

@@ -14,10 +14,11 @@
  */
 angular.module( 'trippo.home', [
   'ui.router',
+  'common.mapsService',
   'trippo.city',
   'trippo.plan',
-    'trippo.login',
-    'trippo.signup'
+  'trippo.login',
+  'trippo.signup'
 ])
 
 /**
@@ -54,6 +55,7 @@ angular.module( 'trippo.home', [
         $scope.search = function() {
             $log.log("city passed " + $scope.selected_city);
             if ($scope.selected_city !== undefined) {
+
 
                 if ($scope.selected_city.name === undefined) {
                     $location.path('/city/' + $scope.selected_city.toLowerCase() + "/guides");

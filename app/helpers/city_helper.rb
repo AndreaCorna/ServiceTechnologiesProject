@@ -17,6 +17,9 @@ The method creates the list of cities to be added to the database of the applica
           location = Geocoder.search(city)
           lat = location[0].latitude
           lng = location[0].longitude
+          #rounding at the 4 decimal
+          lat = (lat*10000).round / 10000.0
+          lng = (lng*10000).round / 10000.0
           country = location[0].country
           item = CityItem.new(city.downcase,country,lat,lng)
           results.append(item)
@@ -43,9 +46,7 @@ The method returns an array contains 4 images url around the coordinates passed 
       json = JSON.parse(response.body)
       count = 0
       json['photos'].each do |photo|
-        puts photo.inspect
         if(count <= 5 and photo['width'] >= 1000 and photo['width'] <= 2000 and photo['height'] <= 1000)
-          puts  "add"
           photos.append(photo)
           count = count + 1
         end

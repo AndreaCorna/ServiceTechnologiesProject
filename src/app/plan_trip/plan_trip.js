@@ -8,6 +8,7 @@ angular.module('trippo.plan',[
     'angular-sortable-view',
     'trippo.city',
     'trippo.modal',
+    'common.mapsService',
     'common.mapDirections',
     'common.placeListDetails',
     'common.placeListMaps'
@@ -590,7 +591,7 @@ angular.module('trippo.plan',[
 
 })
 
-.controller('CreateTripCtrl',function CreateTripCtrl($stateParams,$scope,$location,DatesService,CityPlanningService,PlanningService, StubHandler,ModalHandler,commonResources,GuideRes,SelectionService){
+.controller('CreateTripCtrl',function CreateTripCtrl($stateParams,$scope,$location,DatesService,CityPlanningService,PlanningService, StubHandler,ModalHandler,commonResources,GuideRes,SelectionService,MapsService){
         $scope.dateFormat = DatesService.dateFormat;
 
 
@@ -664,7 +665,23 @@ angular.module('trippo.plan',[
         });
 
 
+        //geocoding the city to send infoabout lat and lng to createTrip
+        var lat;
+        var lng;
+        MapsService.cityGeocode($stateParams.city_name,function(location){
+            lat =  location.lat();
+            lng = location.lng();
+            lat = Math.round(lat*10000)/10000;   //rounding to make it flexible to small changes
+            lng = Math.round(lng*10000)/10000;
+
+        });
+
         $scope.createTrip = function (form) {
+            console.log("lat and lng in createTrip");
+            console.log(lat);
+            console.log(lng);
+
+
 
 
             $scope.submitted = true;
@@ -676,6 +693,13 @@ angular.module('trippo.plan',[
                 guide.description = $scope.description ;
                 guide.city = $stateParams.city_name   ;
                 guide.image = $scope.imageFile;
+                if(lat !=undefined && lng != undefined)  {
+                    guide.lat_lng = lat+':'+lng ;
+                }
+                else{
+                    guide.lat_lng ='';
+                }
+
                 //hash key : day in dateFormat format value: array of activities in that day
                 /**
                  * Adding all the day and their respective activities to  schedule hash
