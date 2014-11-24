@@ -118,7 +118,7 @@ angular.module('common.mapsService',[])
             //console.log(place);
 
             //changing icon based on attribute
-            var iconBase = 'assets/images/maps/';
+            var iconBase = '/assets/images/maps/';
             var icons = {
                 notselected: {
                     icon: iconBase + 'notselectedmarker.png'

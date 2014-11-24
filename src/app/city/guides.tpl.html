@@ -8,7 +8,7 @@
                  <div ng-if="guides.length ==0">
                         <div class="row capriola">
                             <div class="col-md-12 text-center" >
-                                <img ng-src="assets/images/sad_face.png" >
+                                <img ng-src="/assets/images/sad_face.png" >
                                 <h3 class="text-center"> None has already shared a guide. Be the first!</h3>
 
                             </div>
@@ -22,7 +22,7 @@
                                 <div class="productinfo text-center">
                                     <carousel>
                                     <div ng-if="!item.image">
-                                        <img style="height: 220px;  width:100%;" src="assets/images/empty_photo.png"  alt="" />
+                                        <img style="height: 220px;  width:100%;" src="/assets/images/empty_photo.png"  alt="" />
                                     </div>
                                     <div ng-if="item.image">
                                         <img  style="height: 220px;  width:100%;" ng-src="{{item.image}}"  alt="" />

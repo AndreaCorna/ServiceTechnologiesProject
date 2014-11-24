@@ -787,7 +787,7 @@ angular.module('trippo.plan',[
             } ,
             getItemRandom : function(type){
                 var image1 = {image : "http://ilmiomappamondo.files.wordpress.com/2014/02/londra2.jpg"} ;
-                var image2 = {image : "assets/images/empty_photo.png"} ;
+                var image2 = {image : "/assets/images/empty_photo.png"} ;
 
                 return {
                     id:"fdsfsd",

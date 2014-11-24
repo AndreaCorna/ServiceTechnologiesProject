@@ -8,7 +8,7 @@
                         <div class="single-products">
                             <div class="productinfo text-center">
                                 <div ng-if="c.photos.length==0">
-                                    <img style="height: 220px;  width:100%;" src="assets/images/empty_photo.png"  alt="" />
+                                    <img style="height: 220px;  width:100%;" src="/assets/images/empty_photo.png"  alt="" />
                                 </div>
                                 <div ng-if="c.photos.length!=0">
                                     <img  style="height: 220px;  width:100%;" ng-src="{{c.photos[0].image}}"  alt="" />
@@ -44,7 +44,7 @@
         <div ng-if="infiniteScroll.itemList.length ==0">
             <div class="row capriola">
                 <div class="col-md-4">
-                    <img ng-src="assets/images/no_api.png" >
+                    <img ng-src="/assets/images/no_api.png" >
                 </div>
                 <div class="col-md-8">
                     <br>
@@ -91,7 +91,7 @@
                             <div class="single-products">
                                 <div class="productinfo text-center">
                                     <div ng-if="c.photos.length==0">
-                                        <img style="height: 220px;  width:100%;" src="assets/images/empty_photo.png"  alt="" />
+                                        <img style="height: 220px;  width:100%;" src="/assets/images/empty_photo.png"  alt="" />
                                     </div>
                                     <div ng-if="c.photos.length!=0">
                                         <img  style="height: 220px;  width:100%;" ng-src="{{c.photos[0].image}}"  alt="" />

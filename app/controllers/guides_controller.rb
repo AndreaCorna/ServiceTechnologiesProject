@@ -93,7 +93,7 @@ class GuidesController < ApplicationController
               puts guide.image
 
             else
-              place.image = 'assets/images/empty_photo.png'
+              place.image = '/assets/images/empty_photo.png'
             end
 
 
@@ -108,7 +108,7 @@ class GuidesController < ApplicationController
           end
 
           #if no image added to the guide add the one of the first item with image
-          if (guide.image.nil? or guide.image == '' and place.image !='assets/images/empty_photo.png')
+          if (guide.image.nil? or guide.image == '' and place.image !='/assets/images/empty_photo.png')
             guide.image = place.image
             puts guide.image
           end
@@ -130,7 +130,7 @@ class GuidesController < ApplicationController
     end
     #check if the guide has succeded in taking an image else no image set
     if (guide.image.nil? or guide.image == '')
-      guide.image = 'assets/images/empty_photo.png'
+      guide.image = '/assets/images/empty_photo.png'
     end
 
     guide.save
