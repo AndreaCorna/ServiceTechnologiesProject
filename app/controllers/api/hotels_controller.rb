@@ -1,4 +1,4 @@
-class HotelsController < ApplicationController
+class Api::HotelsController < ApplicationController
   include CachingHelper
 
 =begin

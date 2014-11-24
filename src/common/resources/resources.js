@@ -8,7 +8,7 @@
 angular.module('trippo.resources', [
     'ngResource'
 ])
-.value('ResourceBaseUrl', {val:'../../'})
+.value('ResourceBaseUrl', {val:'../../api/'})
 
 .factory('CityRes', function ($resource,ResourceBaseUrl){
      var city = $resource (ResourceBaseUrl.val+"city/:city_name");

@@ -1,4 +1,4 @@
-class UtilityController < ApplicationController
+class Api::UtilityController < ApplicationController
   include CachingHelper
 
 =begin

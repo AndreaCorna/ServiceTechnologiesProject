@@ -1,4 +1,4 @@
-class GuidesController < ApplicationController
+class Api::GuidesController < ApplicationController
 
   # return the list of guides based on the current logged user
   # url GET /guides

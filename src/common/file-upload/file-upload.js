@@ -127,7 +127,7 @@ component.directive('fileUpload', function ($http) {
         templateUrl: 'file-upload/file-upload.tpl.html',
         link: function (scope, element, attrs) {
 
-            $http({method: 'GET', url: '../guides/s3'}).
+            $http({method: 'GET', url: '../api/guides/s3'}).
                 success(function (result, status, headers, config) {
 
 

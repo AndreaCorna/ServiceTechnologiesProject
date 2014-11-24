@@ -42,7 +42,7 @@ The result is an object with two elements:
             }
           end
           description = get_description(place.name,city)
-          results.append(UtilityItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'utility',description,city_utility_url(city,place.place_id)))}
+          results.append(UtilityItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'utility',description,api_city_utility_url(city,place.place_id)))}
       }
       threads.each do |thread|
         thread.join
@@ -85,7 +85,7 @@ The result is an object with two elements:
             }
           end
           description = get_description(place.name,city)
-          results.append(UtilityItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'utility',description,city_utility_url(city,place.place_id)))}
+          results.append(UtilityItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'utility',description,api_city_utility_url(city,place.place_id)))}
       }
       threads.each do |thread|
         thread.join
@@ -154,7 +154,7 @@ The result is an object with two elements:
             }
           end
           description = get_description(place.name,city)
-          results.append(CultureItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'culture',description,city_culture_url(city,place.place_id)))}
+          results.append(CultureItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'culture',description,api_city_culture_url(city,place.place_id)))}
       }
       threads.each do |thread|
         thread.join
@@ -198,7 +198,7 @@ The result is an object with two elements:
             }
           end
           description = get_description(place.name,city)
-          results.append(CultureItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'culture',description,city_culture_url(city,place.place_id)))}
+          results.append(CultureItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'culture',description,api_city_culture_url(city,place.place_id)))}
       }
       threads.each do |thread|
         thread.join
@@ -268,7 +268,7 @@ The result is an object with two elements:
             }
           end
           description = get_description(place.name,city)
-          results.append(EntertainmentItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'entertainment',description,city_entertainment_url(city,place.place_id)))}
+          results.append(EntertainmentItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'entertainment',description,api_city_entertainment_url(city,place.place_id)))}
       }
       threads.each do |thread|
         thread.join
@@ -312,7 +312,7 @@ The result is an object with two elements:
             }
           end
           description = get_description(place.name,city)
-          results.append(EntertainmentItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'entertainment',description,city_entertainment_url(city,place.place_id)))}
+          results.append(EntertainmentItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'entertainment',description,api_city_entertainment_url(city,place.place_id)))}
       }
       threads.each do |thread|
         thread.join
@@ -380,7 +380,7 @@ The items' types are:
             }
           end
           description = get_description(place.name,city)
-          results.append(FoodItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'food',description,city_food_url(city,place.place_id)))}
+          results.append(FoodItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'food',description,api_city_food_url(city,place.place_id)))}
       }
       threads.each do |thread|
         thread.join
@@ -424,7 +424,7 @@ The result is an object with two elements:
             }
           end
           description = get_description(place.name,city)
-          results.append(FoodItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'food',description,city_food_url(city,place.place_id)))}
+          results.append(FoodItem.new(place.lat,place.lng,place.name,place.rating,place.price_level,photos,place.icon,place.place_id,'food',description,api_city_food_url(city,place.place_id)))}
       }
       threads.each do |thread|
         thread.join

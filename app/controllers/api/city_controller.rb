@@ -1,4 +1,4 @@
-class CityController < ApplicationController
+class Api::CityController < ApplicationController
   include CityHelper
 =begin
 The method returns the list of all cities contained in the database
@@ -18,12 +18,12 @@ The method returns the details of the city passed as parameter in the url.
 
     param_city =params[:id].downcase
     city = City.find_by_name(param_city)
-    puts city_culture_path(:city_id=>param_city).gsub(/\/[^\/]*$/,'')   #trick because not having decleared the route as plurals I don't have the helper method for the index
-    link_culture = city_culture_url(:city_id=>param_city).gsub(/\/[^\/]*$/,'')
-    link_entertainment = city_entertainment_url(:city_id=>param_city).gsub(/\/[^\/]*$/,'')
-    link_food = city_food_url(:city_id=>param_city).gsub(/\/[^\/]*$/,'')
-    link_hotel = city_hotel_url(:city_id=>param_city).gsub(/\/[^\/]*$/,'')
-    link_utility =city_utility_url(:city_id=>param_city).gsub(/\/[^\/]*$/,'')
+    puts  api_city_culture_path(:city_id=>param_city).gsub(/\/[^\/]*$/,'')   #trick because not having decleared the route as plurals I don't have the helper method for the index
+    link_culture = api_city_culture_url(:city_id=>param_city).gsub(/\/[^\/]*$/,'')
+    link_entertainment = api_city_entertainment_url(:city_id=>param_city).gsub(/\/[^\/]*$/,'')
+    link_food = api_city_food_url(:city_id=>param_city).gsub(/\/[^\/]*$/,'')
+    link_hotel = api_city_hotel_url(:city_id=>param_city).gsub(/\/[^\/]*$/,'')
+    link_utility =api_city_utility_url(:city_id=>param_city).gsub(/\/[^\/]*$/,'')
     images = nil
     if city.nil?
       detail = {:name => param_city}
@@ -48,7 +48,7 @@ This method must be used to add cities to the database using as url
     cities = populate_database(json)
     cities.each{ |city|
       if(City.find_by_name(city.name).nil?)
-        City.create({:name => city.name,:state => city.state,:lat => city.lat,:lng => city.lng,:link => city_url(city.name)})
+        City.create({:name => city.name,:state => city.state,:lat => city.lat,:lng => city.lng,:link => api_city_url(city.name)})
         photos = get_images_url(city.lat,city.lng)
         photos.each{ |photo|
           #url_photo = photo['photo_file_url'].sub! 'http', 'https'

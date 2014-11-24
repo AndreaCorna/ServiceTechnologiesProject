@@ -1,4 +1,4 @@
-class CultureController < ApplicationController
+class Api::CultureController < ApplicationController
   include CachingHelper
 
 =begin

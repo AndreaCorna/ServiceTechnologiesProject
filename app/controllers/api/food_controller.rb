@@ -1,4 +1,4 @@
-class FoodController < ApplicationController
+class Api::FoodController < ApplicationController
   include CachingHelper
 
 =begin

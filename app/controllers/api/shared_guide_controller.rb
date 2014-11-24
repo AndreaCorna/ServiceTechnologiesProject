@@ -1,4 +1,4 @@
-class SharedGuideController < ApplicationController
+class Api::SharedGuideController < ApplicationController
 
   #return the list of the shared guide of a specific city pass as param(city_id)
   # GET /city/:city_id/shared_guide

@@ -1,4 +1,4 @@
-class EntertainmentController < ApplicationController
+class Api::EntertainmentController < ApplicationController
   include CachingHelper
 
 =begin
