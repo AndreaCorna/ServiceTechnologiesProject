@@ -22,6 +22,7 @@ component.directive('mapDirections', function ($timeout,MapsService) {
             type: '@',          //type of map
             directions: '@',
             marker:'=',
+            fixedmarkers:'=',
             mapId:'@',
             initPosition : '='  //start position if string will be used geocoding to find lat and lng if object with lat and lng this will be used
         },
@@ -60,7 +61,10 @@ component.directive('mapDirections', function ($timeout,MapsService) {
 
             /**
              * Trick in order to be sure that the element MapId has already been rendered (like onload but is triggered every time a directive is created)
-             */
+              DON'T NEED IT ANY MORE THE  updateFixedMarkers take care of initializing the map if is not already defined
+             SELECTED_ITEMS Update -> Watch on fixedmarkers (to which we pass selected_items) is fired -> updateFixedMarkers  is called
+             and map initialized
+
 
             $timeout(function(){
 
@@ -70,6 +74,7 @@ component.directive('mapDirections', function ($timeout,MapsService) {
 
 
             }) ;
+             */
 
 
 
@@ -102,6 +107,7 @@ component.directive('mapDirections', function ($timeout,MapsService) {
              */
             var directionsDisplay = new google.maps.DirectionsRenderer(),
                 directionsService = new google.maps.DirectionsService();
+            var markerList = [];
 
             //WATCHERS
             /**
@@ -129,7 +135,42 @@ component.directive('mapDirections', function ($timeout,MapsService) {
                     scope.updateMarkerMap();
                 }
             });
+            scope.$watch('fixedmarkers', function (newValue, oldValue) {
+                if (newValue) {
+                    console.log("called fixedmarkers ");
+                    console.log(newValue);
+                    
 
+                    scope.fixedmarkers = newValue;
+                    scope.updateFixedMarkers();
+                }
+            },true);
+
+            /*
+            Update fixed point in the map
+             */
+            scope.updateFixedMarkers= function(markerMap){
+
+                if (markerMap === undefined) {
+
+                    markerMap = MapsService.initMap(markerMap,scope.initPosition,scope.mapId,scope.zoom,scope.type) ;
+
+                }
+
+                angular.forEach(markerList, function (value, key) {
+                    value.setMap(null);
+
+                });
+                markerList = []; //all marker have been cleaned up by the function before
+
+
+
+                angular.forEach(scope.fixedmarkers, function (value, key) {
+
+                    markerList.push(MapsService.addMarker(value, markerMap,false));
+                });
+
+            }  ;
 
             scope.updateDirectionMap = function () {
                 scope.directionsMode =true;
@@ -151,6 +192,8 @@ component.directive('mapDirections', function ($timeout,MapsService) {
                 scope.endPoint = new google.maps.LatLng(scope.destination.lat, scope.destination.lng, true);
 
                 map.setCenter(scope.startPoint);
+
+                scope.updateFixedMarkers(map);// readding fixed points
 
                 /**
                  * Create the marker for the origin and destination and setting info window
@@ -224,6 +267,9 @@ component.directive('mapDirections', function ($timeout,MapsService) {
                 map = new google.maps.Map(document.getElementById(scope.mapId), mapOptions);
                 var place = new google.maps.LatLng(scope.marker.lat, scope.marker.lng, true);
                 map.setCenter(place);
+
+                scope.updateFixedMarkers(map);// readding fixed points
+
 
                 MapsService.addMarker(scope.marker, map, true);
 

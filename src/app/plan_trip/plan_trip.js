@@ -623,6 +623,9 @@ angular.module('trippo.plan',[
         $scope.getDayProgram = function(day){
 
             PlanningService.initializeCurrentDay(day.format(DatesService.dateFormat));
+            console.log(PlanningService.getCurrentTodo());
+
+
             return PlanningService.getCurrentTodo();  // CHANGE THIS TO    PlanningService.getCurrentTodo()
         };
 
