@@ -15,7 +15,7 @@ angular.module( 'trippo', [
 .config( function myAppConfig ( $locationProvider,$stateProvider, $urlRouterProvider ) {
     $urlRouterProvider.otherwise( '/home' );
 
-      //  $locationProvider.html5Mode(true);
+       $locationProvider.html5Mode(true);
 })
 
 .run( function run () {
