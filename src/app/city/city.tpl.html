@@ -44,10 +44,10 @@
         <map-markers marker-array-selected="markerArraySelected" init-position="getCityName()" marker-array-list="markerArrayList" map-id="cityMap"  type="roadmap" class="mapContainer" ></map-markers>
     </div>
 </div>
-<nav style="background-color: #323231" class="navbar navbar-collapse nav-collapse">
+<nav style="background-color: #222222; border-radius: 0" class="navbar">
 <div class="container" >
-    <div id="navbarCollapse" class="navbar-collapse collapse">
-        <ul class="nav navbar-nav nav-justified capriola btn btn-navbar" style="font-size: 20px" data-toggle="collapse" data-target=".nav-collapse">
+    <div id="navbarCollapse" class="navbar" style="margin-bottom: 0px">
+        <ul class="nav navbar-nav nav-justified capriola btn btn-navbar" style="font-size: 20px; padding-right: 0px; margin-right: 0px; margin-left: 0px" data-toggle="collapse" data-target=".nav-collapse">
             <li><a ui-sref="guides"  data-target="#" data-toggle="pill">Guides</a></li>
             <li><a ui-sref="culture" ng-click="setCurrentList('culture')" data-target="#" data-toggle="pill"> Culture </a></li>
             <li><a ui-sref="entertainment" ng-click="setCurrentList('entertainment')" data-target="#" data-toggle="pill"> Enterteinment </a></li>
