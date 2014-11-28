@@ -52,7 +52,7 @@ namespace :deploy do
      #  execute "cd '#{release_path}'; cd public;rm compiled; ln -s ../grunt_bin compiled"
         execute "cd '#{release_path}';mkdir public; cd public; cp -r ../grunt_bin/* ."
 
-        execute "cd '#{release_path}'; rm public/UI;"
+       # execute "cd '#{release_path}'; rm public/UI;"
 
 
     end
