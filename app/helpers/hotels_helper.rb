@@ -26,7 +26,7 @@ The result is an object with two elements:
       url = 'http://images.travelnow.com'+hotel['thumbNailUrl']
       photos.append(:image=>url)
       description = parse_description(hotel['shortDescription'])
-      hotels_list.append(HotelItem.new(hotel['hotelId'],hotel['latitude'],hotel['longitude'],hotel['name'],hotel['hotelRating'],address,photos,'','hotel',description,city_hotel_url(city,hotel['hotelId'])))
+      hotels_list.append(HotelItem.new(hotel['hotelId'],hotel['latitude'],hotel['longitude'],hotel['name'],hotel['hotelRating'],address,photos,'','hotel',description,api_city_hotel_url(city,hotel['hotelId'])))
       count = count + 1
       if(count == 20)
         count = 0

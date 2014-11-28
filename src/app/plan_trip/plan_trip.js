@@ -281,6 +281,7 @@ angular.module('trippo.plan',[
                     $scope.error =true ;
                     return ;
                 }
+                $scope.error =false ;
 
                 CityPlanningService.createRangeDatesCity($stateParams.city_name,$scope.dtstart, $scope.dtend);
                 $scope.dates = DatesService.getRangeDates();
