@@ -36,7 +36,7 @@ angular.module( 'trippo.profile', [
         };
         $scope.shareTrip = function(id,action){
                  $scope.submitted   =false ;
-                 $http.put('/guides/'+id,{share:action}).
+                 $http.put('/api/guides/'+id,{share:action}).
                  success(function(data, status, headers, config) {
                          $scope.guides =  $scope.guides.map(function(cur){
                              if( cur.id == id){
