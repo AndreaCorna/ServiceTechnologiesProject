@@ -6,7 +6,7 @@ angular.module('common.mapsService',[])
 .factory('MapsService', function () {
          var  geocoder = new google.maps.Geocoder();
 
-         var initMap= function(map, initPosition,mapId,zoom,type){
+         var initMap= function(map, initPosition,mapId,zoom,type,draggable){
             console.log("init position ");
             console.log(initPosition);
             console.log(map);
@@ -15,7 +15,7 @@ angular.module('common.mapsService',[])
 
             var mapOptions = {
                 zoom: zoom !== undefined ? zoom : 12,
-
+                scrollwheel: draggable !== undefined ? draggable : true,
                 mapTypeId: type.toLowerCase(),
                 streetViewControl: false
             };

@@ -91,7 +91,7 @@ component.directive('mapMarkers', function ($timeout,MapsService) {
 
                     // markerMap = new google.maps.Map(document.getElementById(scope.mapId), mapOptions);
                     // scope.initializeMapCenter(scope.initPosition,markerMap);
-                    markerMap = MapsService.initMap(markerMap,scope.initPosition,scope.mapId,scope.zoom,scope.type) ;
+                    markerMap = MapsService.initMap(markerMap,scope.initPosition,scope.mapId,scope.zoom,scope.type,false) ;
                     console.log('selsction '+markersArraySelection);
 
 
@@ -128,7 +128,7 @@ component.directive('mapMarkers', function ($timeout,MapsService) {
                     toAdd = initialArraySelection;
                     // markerMap = new google.maps.Map(document.getElementById(scope.mapId), mapOptions);
                     // scope.initializeMapCenter(scope.initPosition,markerMap);
-                    markerMap = MapsService.initMap(markerMap,scope.initPosition,scope.mapId,scope.zoom,scope.type) ;
+                    markerMap = MapsService.initMap(markerMap,scope.initPosition,scope.mapId,scope.zoom,scope.type,false) ;
                     console.log('selsction'+markersArraySelection);
 
 
