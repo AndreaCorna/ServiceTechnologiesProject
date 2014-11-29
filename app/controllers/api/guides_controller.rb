@@ -88,7 +88,6 @@ class Api::GuidesController < ApplicationController
             place.price = curr_place['price']
             if not curr_place['photos'].nil?
               place.image = curr_place['photos'][0]['image']
-              puts 'guide.imacsacascasge'
 
               puts guide.image
 
@@ -103,7 +102,7 @@ class Api::GuidesController < ApplicationController
             place.description = curr_place['description']
             place.city = params['city']
             place.google_id = curr_place['id']
-
+             puts place.image
             place.save
           end
 

@@ -75,11 +75,11 @@ Rails.application.routes.draw do
       resources :shared_guide ,   :only => [:index]
 
     end
+    get 'populate', :to => 'city#populate'
 
     resources :guides
   end
 
-  get 'populate', :to => 'city#populate'
 
 
 end
