@@ -50,7 +50,7 @@ namespace :deploy do
         execute "cd '#{release_path}'; grunt build --force"
         execute "cd '#{release_path}'; grunt compile"
      #  execute "cd '#{release_path}'; cd public;rm compiled; ln -s ../grunt_bin compiled"
-        execute "cd '#{release_path}';mkdir public; cd public;ln -s ../grunt_bin UI"
+        execute "cd '#{release_path}';mkdir public; cd public;rm UI;ln -s ../grunt_bin UI"
 
        # execute "cd '#{release_path}'; rm public/UI;"
 
