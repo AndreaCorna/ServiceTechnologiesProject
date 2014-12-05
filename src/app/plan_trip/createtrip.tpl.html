@@ -76,7 +76,7 @@
                         </h4>
                     </div>
                     <div id="{{date.format('DD-MM-YYYY')}}List" class="panel-collapse collapse in">
-                        <div ng-show="getDayProgram(date).length > 0">
+                        <div ng-if="getDayProgram(date).length > 0">
                             <div class="panel-body" style="background-color:#e8e8e8">
                                 <div ng-show="currentView == 'MAPS VIEW'">
                                     <place-list-details item-list="getDayProgram(date)"  ></place-list-details>
