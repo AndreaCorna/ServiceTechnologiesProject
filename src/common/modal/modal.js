@@ -107,7 +107,7 @@ angular.module('trippo.modal', ["trippo.resources"])
             $scope.modalEnabled = false;
             $scope.loaderEnabled = true;
             $scope.hotelShow = false;
-
+            $scope.moreInfoSelection = null;
         };
 
         $scope.changeDate = function(milliseconds){
