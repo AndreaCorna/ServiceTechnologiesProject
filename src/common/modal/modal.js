@@ -99,6 +99,7 @@ angular.module('trippo.modal', ["trippo.resources"])
                 $scope.moreInfoSelection = ModalHandler.getDetails();
                 $scope.modalEnabled = true;
                 $scope.loaderEnabled = false;
+                $scope.$apply();
 
             }
 
