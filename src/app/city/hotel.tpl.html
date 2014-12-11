@@ -15,7 +15,7 @@
                                 </div>
                                 <h4>{{c.name}}</h4>
                                 <p style="color: white" class="capriola">Rating <rating style="color: white" ng-model="c.rating" readonly="true" ></rating></p>
-                                <button class="btn btn-default btn-sm capriola button-item" ng-click="setHotelDetails(c.id)" href="#moreInfoModalPlace" data-toggle="modal">
+                                <button class="btn btn-default btn-sm capriola button-item" ng-click="setHotelDetails(c.id)" href="#moreInfoModalHotel" data-toggle="modal">
                                     Details <span class="glyphicon glyphicon-info-sign "></span>
                                 </button>
                                 <button class="btn btn-danger btn-sm capriola button-item" ng-click="removeHotelItem(c)">
@@ -98,7 +98,7 @@
                                     </div>
                                     <h4>{{c.name}}</h4>
                                     <p style="color: white" class="capriola">Rating <rating style="color: white" ng-model="c.rating" readonly="true" ></rating></p>
-                                    <button class="btn btn-default btn-sm capriola button-item" ng-click="setHotelDetails(c.id)" href="#moreInfoModalPlace" data-toggle="modal">
+                                    <button class="btn btn-default btn-sm capriola button-item" ng-click="setHotelDetails(c.id)" href="#moreInfoModalHotel" data-toggle="modal">
                                         Details <span class="glyphicon glyphicon-info-sign "></span>
                                     </button>
                                     <button class="btn btn-success btn-sm capriola button-item" ng-click="addHotelItem(c)">
