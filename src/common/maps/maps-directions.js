@@ -56,6 +56,7 @@ component.directive('mapDirections', function ($timeout,MapsService) {
                     return (Math.round( km * 10 ) / 10)+' Km';
                 }
 
+
             }  ;
 
 
